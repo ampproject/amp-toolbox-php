@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject\Optimizer\Tests\TestTransformer;
+namespace AmpProject\Tests\TestTransformer;
 
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\ErrorCollection;

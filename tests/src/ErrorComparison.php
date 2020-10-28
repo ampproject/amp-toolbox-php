@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject\Optimizer\Tests;
+namespace AmpProject\Tests;
 
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;

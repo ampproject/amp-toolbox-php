@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject\Optimizer\Tests;
+namespace AmpProject\Tests;
 
 /**
  * Compare HTML markup without failing on whitespace or alignment.

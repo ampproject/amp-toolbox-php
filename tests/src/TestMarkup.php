@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject\Optimizer\Tests;
+namespace AmpProject\Tests;
 
 /**
  * Constants that provide the test markup to use.

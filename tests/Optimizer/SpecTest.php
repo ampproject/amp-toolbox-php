@@ -4,8 +4,8 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
-use AmpProject\Optimizer\Tests\MarkupComparison;
-use AmpProject\Optimizer\Tests\TestMarkup;
+use AmpProject\Tests\MarkupComparison;
+use AmpProject\Tests\TestMarkup;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
 use AmpProject\Optimizer\Transformer\ReorderHead;
 use AmpProject\Optimizer\Transformer\ServerSideRendering;
