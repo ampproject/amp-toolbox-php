@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Coding Standard for the AMP Common PHP Library">
+<ruleset name="Coding Standard for the AMP Toolbox PHP Library">
 
 	<!-- Use PSR-12 as baseline standard -->
 	<rule ref="PSR12">
@@ -28,6 +28,11 @@
 
 	<!-- Check up to 20 files simultaneously. -->
 	<arg name="parallel" value="20"/>
+
+    <!-- Executable scripts are meant to have side-effects. -->
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>bin/*</exclude-pattern>
+    </rule>
 
 	<rule ref="Generic.Files.LineLength.TooLong">
 		<exclude-pattern>tests/*</exclude-pattern>
