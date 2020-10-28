@@ -1,7 +1,7 @@
 {
-  "name": "ampproject/common",
+  "name": "ampproject/amp-toolbox",
   "type": "library",
-  "description": "PHP library with common base functionality for AMP integrations.",
+  "description": "A collection of AMP tools making it easier to publish and host AMP pages with PHP.",
   "license": "MIT",
   "require": {
     "php": "^5.6 || ^7.0",
