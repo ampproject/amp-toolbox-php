@@ -2,7 +2,7 @@
     <img src="https://ps.w.org/amp/assets/icon-256x256.png" alt="AMP logo" title="AMP" align="right" height="60" />
 </a>
 
-# AMP Toolbox for PHP
+# AMP Toolbox for PHP ![Build Status](https://img.shields.io/github/workflow/status/ampproject/amp-toolbox-php/Run%20tests?style=for-the-badge)
 
 A collection of AMP tools making it easier to publish and host AMP pages with PHP.
 
