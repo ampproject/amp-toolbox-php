@@ -339,8 +339,6 @@ final class MyCustomTransformer implements Transformer
 
 ### Transformers Requesting External Data
 
-<!-- TODO: This reflects code changes that are yet to be merged via https://github.com/ampproject/amp-wp/issues/4612 -->
-
 In case your transformer needs to make remote requests to fetch external data (like the `AmpProject\Optimizer\Transformer\AmpRuntimeCss` does for fetching the latest version of the CSS to inline), you need to accept an `AmpProject\RemoteGetRequest` object as an argument in your constructor. The transformation engine will then inject the appropriate implementation at runtime when the transformer is being instantiated.
 
 This layer of abstraction allows code outside of the transformation engine to control the specific conditions and limits that govern these remote request, like for example throttling them or integrating them with the caching subsystem of the framework in use.
