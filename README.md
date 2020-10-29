@@ -18,8 +18,6 @@ The following tools are part of this library:
 
 AMP Optimizer is a library for doing server-side optimization to AMP markup by automatically applying [AMP performance best practices](https://amp.dev/documentation/guides-and-tutorials/optimize-and-measure/optimize_amp?format=websites) and enabling [AMP server-side-rendering](https://amp.dev/documentation/guides-and-tutorials/optimize-and-measure/server-side-rendering?format=websites).
 
-<!-- TODO: Provide shields once we have a separate repository -->
-
 <details>
   <summary><strong>Table of Contents</strong> (click to expand)</summary>
 
