@@ -47,8 +47,6 @@ During the process, errors might occur that make parts of the optimization impos
 
 ### Installation
 
-> Note: This is preliminary documentation. The following installation steps will not work until the library has been extracted into its own repository. Right now, it is only usable from within the [AMP for WordPress](https://wordpress.org/plugins/amp/) plugin.
-
 The AMP Optimizer is part of the AMP Toolbox for PHP library that you can pull into your project via the [Composer PHP package manager](https://getcomposer.org/):
 
 ```BASH
