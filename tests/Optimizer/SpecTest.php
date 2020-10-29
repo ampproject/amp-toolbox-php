@@ -24,7 +24,7 @@ final class SpecTest extends TestCase
 {
     use MarkupComparison;
 
-    const TRANSFORMER_SPEC_PATH = __DIR__ . '/spec/transformers/valid';
+    const TRANSFORMER_SPEC_PATH = __DIR__ . '/../spec/transformers/valid';
 
     const TESTS_TO_SKIP = [
         'ReorderHead - reorders_head_a4a'                => 'see https://github.com/ampproject/amp-toolbox/issues/583',
