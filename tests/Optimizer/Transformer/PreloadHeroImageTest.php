@@ -6,9 +6,9 @@ use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
-use AmpProject\Optimizer\Tests\ErrorComparison;
-use AmpProject\Optimizer\Tests\MarkupComparison;
-use AmpProject\Optimizer\Tests\TestMarkup;
+use AmpProject\Tests\ErrorComparison;
+use AmpProject\Tests\MarkupComparison;
+use AmpProject\Tests\TestMarkup;
 use PHPUnit\Framework\TestCase;
 
 /**
