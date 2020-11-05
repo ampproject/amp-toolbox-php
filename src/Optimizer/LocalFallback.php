@@ -17,7 +17,7 @@ final class LocalFallback
      *
      * @var string
      */
-    const ROOT_FOLDER = __DIR__ . '/../resources/local_fallback';
+    const ROOT_FOLDER = __DIR__ . '/../../resources/local_fallback';
 
     /**
      * Array of mapped files for which a local fallback is provided.
