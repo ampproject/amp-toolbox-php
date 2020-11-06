@@ -2,7 +2,7 @@
   "name": "ampproject/amp-toolbox",
   "type": "library",
   "description": "A collection of AMP tools making it easier to publish and host AMP pages with PHP.",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "require": {
     "php": "^5.6 || ^7.0",
     "ext-dom": "*",
