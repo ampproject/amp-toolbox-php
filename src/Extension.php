@@ -24,7 +24,7 @@ interface Extension
     const GEO                 = 'amp-geo';
     const GFYCAT              = 'amp-gfycat';
     const IFRAME              = 'amp-iframe';
-    const IMAGE               = 'amp-img';
+    const IMG                 = 'amp-img';
     const IMGUR               = 'amp-imgur';
     const INSTAGRAM           = 'amp-instagram';
     const MUSTACHE            = 'amp-mustache';

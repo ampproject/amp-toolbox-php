@@ -239,7 +239,7 @@ final class PreloadHeroImage implements Transformer
         }
 
         $src = $element->getAttribute(Attribute::SRC);
-        if ($element->tagName === Extension::IMAGE && Url::isValidNonDataUrl($src)) {
+        if ($element->tagName === Extension::IMG && Url::isValidNonDataUrl($src)) {
             return new HeroImage(
                 $src,
                 $element->getAttribute(Attribute::MEDIA),
@@ -286,7 +286,7 @@ final class PreloadHeroImage implements Transformer
             return null;
         }
 
-        if ($element->tagName === Extension::IMAGE || $element->tagName === Tag::IMG) {
+        if ($element->tagName === Extension::IMG || $element->tagName === Tag::IMG) {
             return $this->detectHeroImageCandidateForAmpImg($element);
         }
 
@@ -402,7 +402,7 @@ final class PreloadHeroImage implements Transformer
                 }
 
                 if (
-                    $placeholder->tagName === Extension::IMAGE
+                    $placeholder->tagName === Extension::IMG
                     || $placeholder->tagName === Tag::IMG
                 ) {
                     // Found valid candidate for placeholder image.
@@ -507,7 +507,7 @@ final class PreloadHeroImage implements Transformer
     {
         $element = $heroImage->getAmpImg();
 
-        if (! $element || $element->tagName !== Extension::IMAGE) {
+        if (! $element || $element->tagName !== Extension::IMG) {
             return;
         }
 
