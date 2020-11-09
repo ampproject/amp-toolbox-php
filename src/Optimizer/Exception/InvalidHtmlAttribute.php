@@ -2,7 +2,7 @@
 
 namespace AmpProject\Optimizer\Exception;
 
-use AmpProject\Optimizer\Error\ElementDump;
+use AmpProject\Dom\ElementDump;
 use DomainException;
 use DOMElement;
 

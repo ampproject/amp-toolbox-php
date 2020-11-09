@@ -2,6 +2,7 @@
 
 namespace AmpProject\Optimizer\Error;
 
+use AmpProject\Dom\ElementDump;
 use AmpProject\Optimizer\Error;
 use DOMElement;
 use Exception;
