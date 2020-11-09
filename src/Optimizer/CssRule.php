@@ -16,6 +16,13 @@ final class CssRule
 {
 
     /**
+     * Characters to use for trimming CSS values.
+     *
+     * @var string
+     */
+    const CSS_TRIM_CHARACTERS = " \t\n\r\0\x0B;";
+
+    /**
      * Placeholder to use in the rule to denote an ID that has yet to be defined.
      *
      * Use applyId() to finalize the CSS rule.
@@ -151,7 +158,7 @@ final class CssRule
                 ';',
                 array_map(
                     static function ($property) {
-                        return trim($property, " \t\n\r\0\x0B;");
+                        return trim($property, self::CSS_TRIM_CHARACTERS);
                     },
                     $this->properties
                 )
@@ -265,7 +272,7 @@ final class CssRule
         $selector = preg_replace('/ ?([>+~]) ?/', '$1', $selector);
 
         // Remove leading and trailing whitespace and commas.
-        $selector = trim($selector, " \t\n\r\0\x0B;");
+        $selector = trim($selector, self::CSS_TRIM_CHARACTERS);
 
         return $selector;
     }
@@ -288,7 +295,7 @@ final class CssRule
         $property = preg_replace('/([;]+)/', ';', $property);
 
         // Remove leading and trailing whitespace and semicolons.
-        $property = trim($property, " \t\n\r\0\x0B;");
+        $property = trim($property, self::CSS_TRIM_CHARACTERS);
 
         return $property;
     }

@@ -74,13 +74,6 @@ final class ServerSideRendering implements Transformer
     const CSS_DIMENSION_WITH_MEDIA_CONDITION_REGEX_PATTERN = '/\s*(?<media_condition>\(.*\))\s+(?<dimension>.*)\s*/m';
 
     /**
-     * Characters to use for trimming CSS values.
-     *
-     * @var string
-     */
-    const CSS_TRIM_CHARACTERS = " \t\n\r\0\x0B;";
-
-    /**
      * Smallest acceptable difference in floating point comparisons.
      *
      * @var float
@@ -978,7 +971,7 @@ final class ServerSideRendering implements Transformer
         }
 
         $sourceSizes = explode(',', $attribute->nodeValue);
-        $lastItem    = trim(array_pop($sourceSizes), self::CSS_TRIM_CHARACTERS);
+        $lastItem    = trim(array_pop($sourceSizes), CssRule::CSS_TRIM_CHARACTERS);
 
         if (empty($lastItem)) {
             throw InvalidHtmlAttribute::fromAttribute($attribute->nodeName, $element);
@@ -993,13 +986,13 @@ final class ServerSideRendering implements Transformer
                 throw InvalidHtmlAttribute::fromAttribute($attribute->nodeName, $element);
             }
 
-            $mediaCondition = trim($matches['media_condition'], self::CSS_TRIM_CHARACTERS);
+            $mediaCondition = trim($matches['media_condition'], CssRule::CSS_TRIM_CHARACTERS);
 
             if (empty($mediaCondition)) {
                 throw InvalidHtmlAttribute::fromAttribute($attribute->nodeName, $element);
             }
 
-            $dimension = trim($matches['dimension'], self::CSS_TRIM_CHARACTERS);
+            $dimension = trim($matches['dimension'], CssRule::CSS_TRIM_CHARACTERS);
 
             if (empty($dimension)) {
                 throw InvalidHtmlAttribute::fromAttribute($attribute->nodeName, $element);
@@ -1038,7 +1031,7 @@ final class ServerSideRendering implements Transformer
      */
     private function extractMediaAttributeCss(Document $document, DOMElement $element, DOMAttr $attribute)
     {
-        $attributeValue = trim($attribute->nodeValue, self::CSS_TRIM_CHARACTERS);
+        $attributeValue = trim($attribute->nodeValue, CssRule::CSS_TRIM_CHARACTERS);
 
         if (empty($attributeValue)) {
             return [];
