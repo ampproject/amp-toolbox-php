@@ -7,7 +7,7 @@ use RuntimeException;
 /**
  * Exception thrown when a cached remote response could not be retrieved.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class FailedToGetCachedResponse extends RuntimeException implements FailedRemoteRequest
 {

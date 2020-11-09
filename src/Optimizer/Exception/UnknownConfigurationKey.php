@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * Exception thrown when an unknown configuration key was requested.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class UnknownConfigurationKey extends InvalidArgumentException implements AmpOptimizerException
 {

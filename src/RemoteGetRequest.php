@@ -9,7 +9,7 @@ use AmpProject\Exception\FailedRemoteRequest;
  *
  * This allows external code to replace the transport and tests to mock it.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 interface RemoteGetRequest
 {

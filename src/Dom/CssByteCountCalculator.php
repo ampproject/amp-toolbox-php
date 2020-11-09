@@ -11,7 +11,7 @@ use DOMNodeList;
  *
  * This can be used to check against the allowed limit of 75kB that AMP enforces.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class CssByteCountCalculator
 {

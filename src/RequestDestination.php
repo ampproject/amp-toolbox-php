@@ -11,7 +11,7 @@ namespace AmpProject;
  * Full list of request destinations:
  * @see https://fetch.spec.whatwg.org/#concept-request-destination
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 interface RequestDestination
 {

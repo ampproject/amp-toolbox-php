@@ -8,7 +8,7 @@ use RuntimeException;
 /**
  * Exception thrown when a remote request failed.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class FailedToGetFromRemoteUrl extends RuntimeException implements FailedRemoteRequest
 {

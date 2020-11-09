@@ -9,7 +9,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  *
  * @property int $version Version number to use. Defaults to 0.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class TransformedIdentifierConfiguration extends BaseTransformerConfiguration
 {

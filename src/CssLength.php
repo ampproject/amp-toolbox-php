@@ -11,7 +11,7 @@ namespace AmpProject;
  * @version 1911070201440
  * @link    https://github.com/ampproject/amphtml/blob/1911070201440/validator/engine/validator.js#L3351
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class CssLength
 {

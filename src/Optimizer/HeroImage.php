@@ -9,7 +9,7 @@ use DOMElement;
  *
  * This is used by the PreloadHeroImages transformer to store (potential) hero images to optimize.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class HeroImage
 {

@@ -21,7 +21,7 @@ use DOMElement;
  * @version c9993b8ac4d17d1f05d3a1289956dadf3f9c370a
  * @link    https://github.com/ampproject/amppackager/blob/c9993b8ac4d17d1f05d3a1289956dadf3f9c370a/transformer/transformers/ampboilerplate.go
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class AmpBoilerplate implements Transformer
 {

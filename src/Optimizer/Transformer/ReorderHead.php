@@ -41,7 +41,7 @@ use DOMNodeList;
  * @version ea0959046c179953de43077eafaeb720f9b20bdf
  * @link    https://github.com/ampproject/amppackager/blob/ea0959046c179953de43077eafaeb720f9b20bdf/transformer/transformers/reorderhead.go
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class ReorderHead implements Transformer
 {

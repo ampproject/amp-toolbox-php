@@ -12,7 +12,7 @@ use DOMNode;
  *
  * @link    https://github.com/ampproject/amphtml/issues/20974
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class DevMode
 {

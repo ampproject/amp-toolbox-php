@@ -5,7 +5,7 @@ namespace AmpProject;
 /**
  * Interface with constants for AMP extensions.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 interface Extension
 {

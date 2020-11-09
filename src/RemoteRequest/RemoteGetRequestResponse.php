@@ -7,7 +7,7 @@ use AmpProject\Response;
 /**
  * Stub for simulating remote requests.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class RemoteGetRequestResponse implements Response
 {

@@ -9,7 +9,7 @@ use DOMNode;
 /**
  * Central helper functionality for all Amp-related PHP code.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class Amp
 {

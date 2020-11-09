@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * Exception thrown when an invalid configuration value was provided.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class InvalidConfigurationValue extends InvalidArgumentException implements AmpOptimizerException
 {

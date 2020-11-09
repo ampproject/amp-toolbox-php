@@ -31,7 +31,7 @@ namespace AmpProject;
  *    against, since prod's immutable caching would affect metrics.</li>
  *  </ul>
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class RuntimeVersion
 {

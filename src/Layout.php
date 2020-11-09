@@ -5,7 +5,7 @@ namespace AmpProject;
 /**
  * Interface with constants for the different layouts.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 interface Layout
 {

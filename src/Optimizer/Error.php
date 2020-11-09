@@ -5,7 +5,7 @@ namespace AmpProject\Optimizer;
 /**
  * Error object to transport optimization errors.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 interface Error
 {

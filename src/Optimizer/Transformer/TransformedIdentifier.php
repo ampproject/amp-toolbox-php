@@ -21,7 +21,7 @@ use AmpProject\Optimizer\TransformerConfiguration;
  * @version b26a35142e0ed1458158435b252a0fcd659f93c4
  * @link    https://github.com/ampproject/amppackager/blob/b26a35142e0ed1458158435b252a0fcd659f93c4/transformer/transformers/transformedidentifier.go
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class TransformedIdentifier implements Transformer
 {

@@ -9,7 +9,7 @@ use DOMElement;
 /**
  * Exception thrown when an invalid HTML attribute was detected.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class InvalidHtmlAttribute extends DomainException implements AmpOptimizerException
 {

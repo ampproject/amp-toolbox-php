@@ -10,7 +10,7 @@ namespace AmpProject\Optimizer;
  * Note: This is a simplistic representation of CSS rules built for a specific purpose.
  * Make sure it supports a given use case before including in new code!
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class CssRule
 {

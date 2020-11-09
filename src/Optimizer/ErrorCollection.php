@@ -9,7 +9,7 @@ use IteratorAggregate;
 /**
  * Collection of error objects to pass around the transformation engine.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class ErrorCollection implements Countable, IteratorAggregate
 {

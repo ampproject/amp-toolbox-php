@@ -10,7 +10,7 @@ use LogicException;
 /**
  * Stub for simulating remote requests.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class StubbedRemoteGetRequest implements RemoteGetRequest
 {
