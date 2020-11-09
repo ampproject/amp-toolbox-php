@@ -67,13 +67,6 @@ final class ServerSideRendering implements Transformer
     ];
 
     /**
-     * XPath query to retrieve the <style amp-custom> tag, relative to the <head> node.
-     *
-     * @var string
-     */
-    const STYLE_AMP_CUSTOM_XPATH = './/style[@amp-custom]';
-
-    /**
      * Regex pattern to match a CSS Dimension with an associated media condition.
      *
      * @var string
@@ -853,7 +846,7 @@ final class ServerSideRendering implements Transformer
         }
 
         if (empty($this->ampCustomStyleElement)) {
-            $ampCustomStyleElement = $document->xpath->query(self::STYLE_AMP_CUSTOM_XPATH, $document->head)->item(0);
+            $ampCustomStyleElement = $document->xpath->query(Document::XPATH_AMP_CUSTOM_STYLE_QUERY, $document->head)->item(0);
             if ($ampCustomStyleElement instanceof DOMElement) {
                 $this->ampCustomStyleElement = $ampCustomStyleElement;
                 $this->ampCustomCssByteCount = (new CssByteCountCalculator($document))->calculate();

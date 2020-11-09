@@ -19,14 +19,15 @@ use DOMXPath;
  *
  * Abstract away some of the difficulties of working with PHP's DOMDocument.
  *
- * @property DOMXPath        $xpath       XPath query object for this document.
- * @property DOMElement      $html        The document's <html> element.
- * @property DOMElement      $head        The document's <head> element.
- * @property DOMElement      $body        The document's <body> element.
- * @property DOMElement|null $viewport    The document's viewport meta element.
- * @property DOMNodeList     $ampElements The document's <amp-*> elements.
+ * @property DOMXPath        $xpath          XPath query object for this document.
+ * @property DOMElement      $html           The document's <html> element.
+ * @property DOMElement      $head           The document's <head> element.
+ * @property DOMElement      $body           The document's <body> element.
+ * @property DOMElement|null $viewport       The document's viewport meta element.
+ * @property DOMNodeList     $ampElements    The document's <amp-*> elements.
+ * @property DOMElement      $ampCustomStyle The document's <style amp-custom> element.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class Document extends DOMDocument
 {
@@ -195,6 +196,20 @@ final class Document extends DOMDocument
         // Assume ISO-8859-1 for some charsets.
         'latin-1' => 'ISO-8859-1',
     ];
+
+    /**
+     * XPath query to retrieve all <amp-*> tags, relative to the <body> node.
+     *
+     * @var string
+     */
+    const XPATH_AMP_ELEMENTS_QUERY = ".//*[starts-with(name(), 'amp-')]";
+
+    /**
+     * XPath query to retrieve the <style amp-custom> tag, relative to the <head> node.
+     *
+     * @var string
+     */
+    const XPATH_AMP_CUSTOM_STYLE_QUERY = './/style[@amp-custom]';
 
     /**
      * Whether `data-ampdevmode` was initially set on the the document element.
@@ -1593,7 +1608,7 @@ final class Document extends DOMDocument
                 return $this->xpath;
             case Tag::HTML:
                 $this->html = $this->getElementsByTagName(Tag::HTML)->item(0);
-                if (null === $this->html) {
+                if ($this->html === null) {
                     // Document was assembled manually and bypassed normalisation.
                     $this->normalizeDomStructure();
                     $this->html = $this->getElementsByTagName(Tag::HTML)->item(0);
@@ -1601,7 +1616,7 @@ final class Document extends DOMDocument
                 return $this->html;
             case Tag::HEAD:
                 $this->head = $this->getElementsByTagName(Tag::HEAD)->item(0);
-                if (null === $this->head) {
+                if ($this->head === null) {
                     // Document was assembled manually and bypassed normalisation.
                     $this->normalizeDomStructure();
                     $this->head = $this->getElementsByTagName(Tag::HEAD)->item(0);
@@ -1609,7 +1624,7 @@ final class Document extends DOMDocument
                 return $this->head;
             case Tag::BODY:
                 $this->body = $this->getElementsByTagName(Tag::BODY)->item(0);
-                if (null === $this->body) {
+                if ($this->body === null) {
                     // Document was assembled manually and bypassed normalisation.
                     $this->normalizeDomStructure();
                     $this->body = $this->getElementsByTagName(Tag::BODY)->item(0);
@@ -1629,10 +1644,20 @@ final class Document extends DOMDocument
                 }
                 return null;
             case 'ampElements':
-                $this->ampElements = $this->xpath->query(".//*[ starts-with( name(), 'amp-' ) ]", $this->body)
+                $this->ampElements = $this->xpath->query(self::XPATH_AMP_ELEMENTS_QUERY, $this->body)
                     ?: new DOMNodeList();
 
                 return $this->ampElements;
+
+            case 'ampCustomStyle':
+                $this->ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
+                if($this->ampCustomStyle === null) {
+                    $this->ampCustomStyle = $this->createElement(Tag::STYLE);
+                    $this->ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+                    $this->head->appendChild($this->ampCustomStyle);
+                }
+
+                return $this->ampCustomStyle;
         }
 
         // Mimic regular PHP behavior for missing notices.
