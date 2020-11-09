@@ -1570,8 +1570,8 @@ final class Document extends DOMDocument
      */
     public function getElementId(DOMElement $element, $prefix = 'i-amp')
     {
-        if ($element->hasAttribute('id')) {
-            return $element->getAttribute('id');
+        if ($element->hasAttribute(Attribute::ID)) {
+            return $element->getAttribute(Attribute::ID);
         }
 
         $id = $this->getUniqueId($prefix);
@@ -1579,7 +1579,7 @@ final class Document extends DOMDocument
             $id = $this->getUniqueId($prefix);
         }
 
-        $element->setAttribute('id', $id);
+        $element->setAttribute(Attribute::ID, $id);
 
         return $id;
     }
