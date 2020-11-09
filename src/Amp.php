@@ -117,6 +117,15 @@ final class Amp
     const INTRINSIC_SIZER_ELEMENT   = 'i-amphtml-intrinsic-sizer';
 
     /**
+     * Maximum size of the CSS styles in bytes.
+     *
+     * @todo Max size is hard-coded for now until we ported over the generated spec into a reusable package.
+     *
+     * @var int
+     */
+    const MAX_CSS_BYTE_COUNT = 75000;
+
+    /**
      * Check if a given node is the AMP runtime script.
      *
      * The AMP runtime script node is of the form '<script async src="https://cdn.ampproject.org...v0.js"></script>'.

@@ -88,15 +88,6 @@ final class ServerSideRendering implements Transformer
     const CSS_TRIM_CHARACTERS = " \t\n\r\0\x0B;";
 
     /**
-     * Maximum size of the CSS styles in bytes.
-     *
-     * @todo Max size is hard-coded for now until we ported over the generated spec into a reusable package.
-     *
-     * @var int
-     */
-    const MAX_CSS_BYTE_COUNT = 75000;
-
-    /**
      * Smallest acceptable difference in floating point comparisons.
      *
      * @var float
@@ -857,7 +848,7 @@ final class ServerSideRendering implements Transformer
             $additionalBytes += $cssRule->getByteCount();
         }
 
-        if ($this->ampCustomCssByteCount + $additionalBytes > self::MAX_CSS_BYTE_COUNT) {
+        if ($this->ampCustomCssByteCount + $additionalBytes > Amp::MAX_CSS_BYTE_COUNT) {
             return false;
         }
 
@@ -866,7 +857,7 @@ final class ServerSideRendering implements Transformer
             if ($ampCustomStyleElement instanceof DOMElement) {
                 $this->ampCustomStyleElement = $ampCustomStyleElement;
                 $this->ampCustomCssByteCount = (new CssByteCountCalculator($document))->calculate();
-                if (($this->ampCustomCssByteCount + $additionalBytes) > self::MAX_CSS_BYTE_COUNT) {
+                if (($this->ampCustomCssByteCount + $additionalBytes) > Amp::MAX_CSS_BYTE_COUNT) {
                     return false;
                 }
             } else {
