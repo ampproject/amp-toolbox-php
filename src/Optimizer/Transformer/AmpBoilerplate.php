@@ -78,7 +78,7 @@ final class AmpBoilerplate implements Transformer
          *
          * @var DOMElement $style
          */
-        foreach (iterator_to_array($document->head->getElementsByTagName('style')) as $style) {
+        foreach (iterator_to_array($document->head->getElementsByTagName(Tag::STYLE)) as $style) {
             if (! $this->isBoilerplateStyle($style)) {
                 continue;
             }
