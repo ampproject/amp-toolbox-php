@@ -50,7 +50,7 @@ During the process, errors might occur that make parts of the optimization impos
 The AMP Optimizer is part of the AMP Toolbox for PHP library that you can pull into your project via the [Composer PHP package manager](https://getcomposer.org/):
 
 ```BASH
-composer require ampproject/amp-toolbox-php
+composer require ampproject/amp-toolbox
 ```
 
 ### Basic Usage
