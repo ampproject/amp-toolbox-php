@@ -55,7 +55,10 @@ final class AmpRuntimeCss implements Transformer
      *
      * @var string
      */
-    const V0_CSS_URL = Amp::CACHE_HOST . '/' . self::V0_CSS;
+    public static function v0CSSUrl()
+    {
+        return Amp::CACHE_HOST . '/' . self::V0_CSS;
+    }
 
     /**
      * Configuration store to use.
@@ -156,7 +159,7 @@ final class AmpRuntimeCss implements Transformer
         if (! empty($version)) {
             $v0CssUrl = $this->appendRuntimeVersion(Amp::CACHE_HOST, $version) . '/' . self::V0_CSS;
         } else {
-            $v0CssUrl = self::V0_CSS_URL;
+            $v0CssUrl = self::v0CSSUrl();
             $options  = [
                 RuntimeVersion::OPTION_CANARY => $this->configuration->get(AmpRuntimeCssConfiguration::CANARY)
             ];
@@ -191,7 +194,7 @@ final class AmpRuntimeCss implements Transformer
     {
         $cssStyleNode = $document->createElement(Tag::LINK);
         $cssStyleNode->setAttribute(Attribute::REL, Attribute::REL_STYLESHEET);
-        $cssStyleNode->setAttribute(Attribute::HREF, self::V0_CSS_URL);
+        $cssStyleNode->setAttribute(Attribute::HREF, self::v0CSSUrl());
 
         $ampRuntimeStyle->parentNode->insertBefore($cssStyleNode, $ampRuntimeStyle);
     }
