@@ -22,17 +22,20 @@ final class Amp
      *
      * @var string[]
      */
-    const TAGS = [
-        Attribute::AMP,
-        Attribute::AMP_EMOJI,
-        Attribute::AMP_EMOJI_ALT,
-        Attribute::AMP4ADS,
-        Attribute::AMP4ADS_EMOJI,
-        Attribute::AMP4ADS_EMOJI_ALT,
-        Attribute::AMP4EMAIL,
-        Attribute::AMP4EMAIL_EMOJI,
-        Attribute::AMP4EMAIL_EMOJI_ALT,
-    ];
+    public static function tags()
+    {
+        [
+            Attribute::AMP,
+            Attribute::AMP_EMOJI,
+            Attribute::AMP_EMOJI_ALT,
+            Attribute::AMP4ADS,
+            Attribute::AMP4ADS_EMOJI,
+            Attribute::AMP4ADS_EMOJI_ALT,
+            Attribute::AMP4EMAIL,
+            Attribute::AMP4EMAIL_EMOJI,
+            Attribute::AMP4EMAIL_EMOJI_ALT,
+        ];
+    }
 
     /**
      * Host and scheme of the AMP cache.
@@ -46,14 +49,17 @@ final class Amp
      *
      * @var string
      */
-    const CACHE_ROOT_URL = self::CACHE_HOST . '/';
+    const CACHE_ROOT_URL = 'https://cdn.ampproject.org/';
 
     /**
      * List of valid AMP formats.
      *
      * @var string[]
      */
-    const FORMATS = ['AMP', 'AMP4EMAIL', 'AMP4ADS'];
+    public static function formats()
+    {
+        return ['AMP', 'AMP4EMAIL', 'AMP4ADS'];
+    }
 
     /**
      * List of dynamic components
@@ -64,21 +70,27 @@ final class Amp
      *
      * @var array[]
      */
-    const DYNAMIC_COMPONENTS = [
-        Attribute::CUSTOM_ELEMENT  => [Extension::GEO],
-        Attribute::CUSTOM_TEMPLATE => [],
-    ];
+    public static function dynamicComponents()
+    {
+        return [
+            Attribute::CUSTOM_ELEMENT => [Extension::GEO],
+            Attribute::CUSTOM_TEMPLATE => [],
+        ];
+    }
 
     /**
      * Array of custom element names that delay rendering.
      *
      * @var string[]
      */
-    const RENDER_DELAYING_EXTENSIONS = [
-        Extension::DYNAMIC_CSS_CLASSES,
-        Extension::EXPERIMENT,
-        Extension::STORY,
-    ];
+    public static function renderDelayingExtensions()
+    {
+        return [
+            Extension::DYNAMIC_CSS_CLASSES,
+            Extension::EXPERIMENT,
+            Extension::STORY,
+        ];
+    }
 
     /**
      * Standard boilerplate CSS stylesheet.
@@ -236,7 +248,7 @@ final class Amp
             return false;
         }
 
-        return in_array($extensionName, self::RENDER_DELAYING_EXTENSIONS, true);
+        return in_array($extensionName, self::renderDelayingExtensions(), true);
     }
 
     /**
