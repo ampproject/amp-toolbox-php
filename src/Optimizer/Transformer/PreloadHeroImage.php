@@ -55,17 +55,20 @@ final class PreloadHeroImage implements Transformer
      *
      * @var string[]
      */
-    const ATTRIBUTES_TO_COPY = [
-        Attribute::ALT,
-        Attribute::ATTRIBUTION,
-        Attribute::OBJECT_FIT,
-        Attribute::OBJECT_POSITION,
-        Attribute::REFERRERPOLICY,
-        Attribute::SRC,
-        Attribute::SRCSET,
-        Attribute::SIZES,
-        Attribute::TITLE,
-    ];
+    public static function attributesToCopy()
+    {
+       return [
+            Attribute::ALT,
+            Attribute::ATTRIBUTION,
+            Attribute::OBJECT_FIT,
+            Attribute::OBJECT_POSITION,
+            Attribute::REFERRERPOLICY,
+            Attribute::SRC,
+            Attribute::SRCSET,
+            Attribute::SIZES,
+            Attribute::TITLE,
+        ];
+    }
 
     /**
      * Maximum number of hero images defined via data-hero attribute.
@@ -81,25 +84,28 @@ final class PreloadHeroImage implements Transformer
      *
      * @var bool[]
      */
-    const AMP_EMBEDS = [
-        Extension::AD            => true,
-        Extension::ANIM          => true,
-        Extension::BRIGHTCOVE    => true,
-        Extension::DAILYMOTION   => true,
-        Extension::FACEBOOK      => true,
-        Extension::GFYCAT        => true,
-        Extension::IFRAME        => true,
-        Extension::IMGUR         => true,
-        Extension::INSTAGRAM     => true,
-        Extension::PINTEREST     => true,
-        Extension::REDDIT        => true,
-        Extension::TWITTER       => true,
-        Extension::VIDEO         => true,
-        Extension::VIDEO_IFRAME  => true,
-        Extension::VIMEO         => true,
-        Extension::WISTIA_PLAYER => true,
-        Extension::YOUTUBE       => true,
-    ];
+    public static function ampEmbeds()
+    {
+        return [
+            Extension::AD => true,
+            Extension::ANIM => true,
+            Extension::BRIGHTCOVE => true,
+            Extension::DAILYMOTION => true,
+            Extension::FACEBOOK => true,
+            Extension::GFYCAT => true,
+            Extension::IFRAME => true,
+            Extension::IMGUR => true,
+            Extension::INSTAGRAM => true,
+            Extension::PINTEREST => true,
+            Extension::REDDIT => true,
+            Extension::TWITTER => true,
+            Extension::VIDEO => true,
+            Extension::VIDEO_IFRAME => true,
+            Extension::VIMEO => true,
+            Extension::WISTIA_PLAYER => true,
+            Extension::YOUTUBE => true,
+        ];
+    }
 
     /**
      * XPath query to relatively fetch all noscript > img elements.
@@ -515,7 +521,7 @@ final class PreloadHeroImage implements Transformer
         $imgElement->setAttribute(Attribute::CLASS_, self::SSR_IMAGE_CLASS);
         $imgElement->setAttribute(Attribute::DECODING, 'async');
 
-        foreach (self::ATTRIBUTES_TO_COPY as $attribute) {
+        foreach (self::attributesToCopy() as $attribute) {
             if ($element->hasAttribute($attribute)) {
                 $imgElement->setAttribute($attribute, $element->getAttribute($attribute));
             }
@@ -612,7 +618,7 @@ final class PreloadHeroImage implements Transformer
      */
     private function isAmpEmbed(DOMElement $element)
     {
-        return array_key_exists($element->tagName, self::AMP_EMBEDS);
+        return array_key_exists($element->tagName, self::ampEmbeds());
     }
 
     /**
