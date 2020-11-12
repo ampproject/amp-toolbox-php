@@ -49,7 +49,7 @@ abstract class Layout
             self::INTRINSIC => 9,
         ];
     }
-    
+
     public static function sizeDefinedLayouts()
     {
         return [

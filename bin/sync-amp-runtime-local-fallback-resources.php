@@ -21,7 +21,7 @@ function ensureDirExists($directory)
     }
 }
 
-ensureDirExists(LocalFallback::ROOT_FOLDER);
+ensureDirExists(LocalFallback::rootFolder());
 
 foreach (LocalFallback::getMappings() as $url => $filepath) {
     ensureDirExists(dirname($filepath));

@@ -17,17 +17,23 @@ final class LocalFallback
      *
      * @var string
      */
-    const ROOT_FOLDER = __DIR__ . '/../../resources/local_fallback';
+    public static function rootFolder()
+    {
+        return __DIR__ . '/../../resources/local_fallback';
+    }
 
     /**
      * Array of mapped files for which a local fallback is provided.
      *
      * @var string[]
      */
-    const MAPPED_FILES = [
-        'rtv/metadata',
-        'v0.css',
-    ];
+    public static function mappedFiles()
+    {
+        return [
+            'rtv/metadata',
+            'v0.css',
+        ];
+    }
 
     /**
      * Get the mappings that are provided as local fallbacks.
@@ -39,8 +45,8 @@ final class LocalFallback
         static $mappings = null;
 
         if ($mappings === null) {
-            $rootFolder = realpath(self::ROOT_FOLDER);
-            foreach (self::MAPPED_FILES as $mappedFile) {
+            $rootFolder = realpath(self::rootFolder());
+            foreach (self::mappedFiles() as $mappedFile) {
                 $mappings[self::MAPPED_DOMAIN . '/' . $mappedFile] = "{$rootFolder}/{$mappedFile}";
             }
         }
