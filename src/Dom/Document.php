@@ -829,7 +829,7 @@ final class Document extends DOMDocument
         static $regexPattern = null;
 
         if (null === $regexPattern) {
-            $regexPattern = '#<(' . implode('|', Tag::SELF_CLOSING_TAGS) . ')([^>]*?)(?>\s*\/)?>(?!</\1>)#';
+            $regexPattern = '#<(' . implode('|', Tag::selfClosingTags()) . ')([^>]*?)(?>\s*\/)?>(?!</\1>)#';
         }
 
         $this->selfClosingTagsTransformed = true;
@@ -854,7 +854,7 @@ final class Document extends DOMDocument
         }
 
         if (null === $regexPattern) {
-            $regexPattern = '#</(' . implode('|', Tag::SELF_CLOSING_TAGS) . ')>#i';
+            $regexPattern = '#</(' . implode('|', Tag::selfClosingTags()) . ')>#i';
         }
 
         $this->selfClosingTagsTransformed = false;
@@ -1515,7 +1515,7 @@ final class Document extends DOMDocument
     public function isValidHeadNode(DOMNode $node)
     {
         return (
-            ($node instanceof DOMElement && in_array($node->nodeName, Tag::ELEMENTS_ALLOWED_IN_HEAD, true))
+            ($node instanceof DOMElement && in_array($node->nodeName, Tag::elementsAllowedInHead(), true))
             ||
             ($node instanceof DOMText && preg_match('/^\s*$/', $node->nodeValue)) // Whitespace text nodes are OK.
             ||

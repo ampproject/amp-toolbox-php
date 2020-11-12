@@ -7,7 +7,7 @@ namespace AmpProject;
  *
  * @package ampproject/common
  */
-interface Tag
+abstract class Tag
 {
 
     const A          = 'a';
@@ -49,26 +49,29 @@ interface Tag
      *
      * @var string[]
      */
-    const SELF_CLOSING_TAGS = [
-        self::AREA,
-        self::BASE,
-        self::BASEFONT,
-        self::BGSOUND,
-        self::BR,
-        self::COL,
-        self::EMBED,
-        self::FRAME,
-        self::HR,
-        self::IMG,
-        self::INPUT,
-        self::KEYGEN,
-        self::LINK,
-        self::META,
-        self::PARAM,
-        self::SOURCE,
-        self::TRACK,
-        self::WBR,
-    ];
+    public static function selfClosingTags()
+    {
+        return [
+            self::AREA,
+            self::BASE,
+            self::BASEFONT,
+            self::BGSOUND,
+            self::BR,
+            self::COL,
+            self::EMBED,
+            self::FRAME,
+            self::HR,
+            self::IMG,
+            self::INPUT,
+            self::KEYGEN,
+            self::LINK,
+            self::META,
+            self::PARAM,
+            self::SOURCE,
+            self::TRACK,
+            self::WBR,
+        ];
+    }
 
     /**
      * List of elements allowed in head.
@@ -78,13 +81,16 @@ interface Tag
      *
      * @var string[]
      */
-    const ELEMENTS_ALLOWED_IN_HEAD = [
-        self::TITLE,
-        self::BASE,
-        self::LINK,
-        self::META,
-        self::STYLE,
-        self::NOSCRIPT,
-        self::SCRIPT,
-    ];
+    public static function elementsAllowedInHead()
+    {
+        return [
+            self::TITLE,
+            self::BASE,
+            self::LINK,
+            self::META,
+            self::STYLE,
+            self::NOSCRIPT,
+            self::SCRIPT,
+        ];
+    }
 }
