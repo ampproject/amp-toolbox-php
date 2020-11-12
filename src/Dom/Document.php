@@ -27,8 +27,8 @@ use DOMXPath;
  * @property DOMElement|null $viewport                The document's viewport meta element.
  * @property DOMNodeList     $ampElements             The document's <amp-*> elements.
  * @property DOMElement      $ampCustomStyle          The document's <style amp-custom> element.
- * @property int|null        $ampCustomStyleByteCount Count of bytes of the CSS in the <style amp-custom> tag.
- * @property int|null        $inlineStyleByteCount    Count of bytes of the CSS in all of the inline style attributes.
+ * @property int             $ampCustomStyleByteCount Count of bytes of the CSS in the <style amp-custom> tag.
+ * @property int             $inlineStyleByteCount    Count of bytes of the CSS in all of the inline style attributes.
  *
  * @package ampproject/amp-toolbox
  */
@@ -1670,24 +1670,26 @@ final class Document extends DOMDocument
                 return $this->ampElements;
 
             case 'ampCustomStyle':
-                $this->ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
-                if ($this->ampCustomStyle === null) {
-                    $this->ampCustomStyle = $this->createElement(Tag::STYLE);
-                    $this->ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
-                    $this->head->appendChild($this->ampCustomStyle);
+                $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
+                if (!$ampCustomStyle instanceof DOMElement) {
+                    $ampCustomStyle = $this->createElement(Tag::STYLE);
+                    $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+                    $this->head->appendChild($ampCustomStyle);
                 }
+
+                $this->ampCustomStyle = $ampCustomStyle;
 
                 return $this->ampCustomStyle;
 
             case 'ampCustomStyleByteCount':
-                if (! isset($this->ampCustomStyleByteCount)) {
+                if ($this->ampCustomStyleByteCount === null) {
                     $this->ampCustomStyleByteCount = strlen($this->ampCustomStyle->textContent);
                 }
 
                 return $this->ampCustomStyleByteCount;
 
             case 'inlineStyleByteCount':
-                if (! isset($this->inlineStyleByteCount)) {
+                if ($this->inlineStyleByteCount === null) {
                     $this->inlineStyleByteCount = 0;
                     $elements = $this->xpath->query(self::XPATH_INLINE_STYLE_ATTRIBUTES_QUERY, $this->body);
                     foreach ($elements as $element) {

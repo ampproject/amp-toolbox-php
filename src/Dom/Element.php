@@ -9,7 +9,7 @@ use DOMElement;
 /**
  * Class AmpProject\Dom\Element.
  *
- * @property int inlineStyleByteCount Number of bytes that are consumed by the inline style attribute.
+ * @property int $inlineStyleByteCount Number of bytes that are consumed by the inline style attribute.
  *
  * @package ampproject/amp-toolbox
  */
@@ -27,7 +27,6 @@ final class Element extends DOMElement
      * Add CSS styles to the element as an inline style attribute.
      *
      * @param string $style CSS style(s) to add to the inline style attribute.
-     * @throws
      */
     public function addInlineStyle($style)
     {
@@ -54,7 +53,7 @@ final class Element extends DOMElement
     {
         switch ($name) {
             case 'inlineStyleByteCount':
-                if (! isset($this->inlineStyleByteCount)) {
+                if ($this->inlineStyleByteCount === null) {
                     $this->inlineStyleByteCount = strlen($this->getAttribute(Attribute::STYLE));
                 }
 
