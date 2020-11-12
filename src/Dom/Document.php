@@ -2,6 +2,7 @@
 
 namespace AmpProject\Dom;
 
+use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\DevMode;
 use AmpProject\Tag;
@@ -27,6 +28,7 @@ use DOMXPath;
  * @property DOMNodeList     $ampElements             The document's <amp-*> elements.
  * @property DOMElement      $ampCustomStyle          The document's <style amp-custom> element.
  * @property int|null        $ampCustomStyleByteCount Count of bytes of the CSS in the <style amp-custom> tag.
+ * @property int|null        $inlineStyleByteCount    Count of bytes of the CSS in all of the inline style attributes.
  *
  * @package ampproject/amp-toolbox
  */
@@ -211,6 +213,13 @@ final class Document extends DOMDocument
      * @var string
      */
     const XPATH_AMP_CUSTOM_STYLE_QUERY = './/style[@amp-custom]';
+
+    /**
+     * XPath query to fetch the inline style attributes, relative to the <body> node.
+     *
+     * @var string
+     */
+    const XPATH_INLINE_STYLE_ATTRIBUTES_QUERY = './/@style';
 
     /**
      * Whether `data-ampdevmode` was initially set on the the document element.
@@ -1596,6 +1605,16 @@ final class Document extends DOMDocument
     }
 
     /**
+     * Get the remaining number bytes allowed for custom CSS.
+     *
+     * @return int
+     */
+    public function getRemainingCustomCssSpace()
+    {
+        return max(0, Amp::MAX_CSS_BYTE_COUNT - (int)$this->ampCustomStyleByteCount - (int)$this->inlineStyleByteCount);
+    }
+
+    /**
      * Magic getter to implement lazily-created, cached properties for the document.
      *
      * @param string $name Name of the property to get.
@@ -1652,7 +1671,7 @@ final class Document extends DOMDocument
 
             case 'ampCustomStyle':
                 $this->ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
-                if($this->ampCustomStyle === null) {
+                if ($this->ampCustomStyle === null) {
                     $this->ampCustomStyle = $this->createElement(Tag::STYLE);
                     $this->ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
                     $this->head->appendChild($this->ampCustomStyle);
@@ -1662,10 +1681,21 @@ final class Document extends DOMDocument
 
             case 'ampCustomStyleByteCount':
                 if (! isset($this->ampCustomStyleByteCount)) {
-                    $this->ampCustomStyleByteCount = strlen($this->getAttribute(Attribute::STYLE));
+                    $this->ampCustomStyleByteCount = strlen($this->ampCustomStyle->textContent);
                 }
 
                 return $this->ampCustomStyleByteCount;
+
+            case 'inlineStyleByteCount':
+                if (! isset($this->inlineStyleByteCount)) {
+                    $this->inlineStyleByteCount = 0;
+                    $elements = $this->xpath->query(self::XPATH_INLINE_STYLE_ATTRIBUTES_QUERY, $this->body);
+                    foreach ($elements as $element) {
+                        $this->inlineStyleByteCount += strlen($element->textContent);
+                    }
+                }
+
+                return $this->inlineStyleByteCount;
         }
 
         // Mimic regular PHP behavior for missing notices.
