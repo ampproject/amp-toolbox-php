@@ -350,7 +350,7 @@ final class ServerSideRendering implements Transformer
 
         $layout = strtolower($layout);
 
-        if (array_key_exists($layout, Layout::TO_SPEC)) {
+        if (array_key_exists($layout, Layout::toSpec())) {
             return $layout;
         }
 
@@ -577,7 +577,7 @@ final class ServerSideRendering implements Transformer
      */
     private function isLayoutSizeDefined($layout)
     {
-        return in_array($layout, Layout::SIZE_DEFINED_LAYOUTS, true);
+        return in_array($layout, Layout::sizeDefinedLayouts(), true);
     }
 
     /**
