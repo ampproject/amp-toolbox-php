@@ -45,17 +45,20 @@ final class ServerSideRendering implements Transformer
      *
      * @var string[]
      */
-    const SUPPORTED_LAYOUTS = [
-        '',
-        Layout::NODISPLAY,
-        Layout::FIXED,
-        Layout::FIXED_HEIGHT,
-        Layout::RESPONSIVE,
-        Layout::CONTAINER,
-        Layout::FILL,
-        Layout::FLEX_ITEM,
-        Layout::INTRINSIC,
-    ];
+    public static function supportedLayouts()
+    {
+        return [
+            '',
+            Layout::NODISPLAY,
+            Layout::FIXED,
+            Layout::FIXED_HEIGHT,
+            Layout::RESPONSIVE,
+            Layout::CONTAINER,
+            Layout::FILL,
+            Layout::FLEX_ITEM,
+            Layout::INTRINSIC,
+        ];
+    }
 
     /**
      * List of elements to exclude from rendering their layout at the server.
@@ -473,7 +476,7 @@ final class ServerSideRendering implements Transformer
      */
     private function isSupportedLayout($layout)
     {
-        return in_array($layout, self::SUPPORTED_LAYOUTS, true);
+        return in_array($layout, self::supportedLayouts(), true);
     }
 
     /**
