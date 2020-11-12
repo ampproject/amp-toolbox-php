@@ -5,7 +5,7 @@ namespace AmpProject\Tests;
 /**
  * Compatibility trait for assertStringContainsString support.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 
 trait AssertContainsCompatibility

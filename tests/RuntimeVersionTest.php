@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Tests for AmpProject\RuntimeVersion.
  *
  * @covers  RuntimeVersion
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 class RuntimeVersionTest extends TestCase
 {

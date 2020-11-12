@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the configuration storage and validation.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class ConfigurationTest extends TestCase
 {

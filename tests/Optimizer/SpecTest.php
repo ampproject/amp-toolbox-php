@@ -20,7 +20,7 @@ use ReflectionException;
 /**
  * Test the individual transformers against the NodeJS spec test suite.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class SpecTest extends TestCase
 {

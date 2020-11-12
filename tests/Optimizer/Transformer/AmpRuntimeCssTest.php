@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the AmpRuntimeCss transformer.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class AmpRuntimeCssTest extends TestCase
 {

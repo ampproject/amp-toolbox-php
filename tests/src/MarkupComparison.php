@@ -5,7 +5,7 @@ namespace AmpProject\Tests;
 /**
  * Compare HTML markup without failing on whitespace or alignment.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 trait MarkupComparison
 {

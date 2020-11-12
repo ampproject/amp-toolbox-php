@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the PreloadHeroImage transformer.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class PreloadHeroImageTest extends TestCase
 {

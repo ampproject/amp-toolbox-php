@@ -11,7 +11,7 @@ namespace AmpProject\Tests;
  *
  * @see     https://github.com/ampproject/amppackager/blob/releases/transformer/internal/testing/testing.go
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class TestMarkup
 {

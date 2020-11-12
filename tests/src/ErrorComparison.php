@@ -9,7 +9,7 @@ use ReflectionClass;
 /**
  * Compare produced errors while disregarding their specific representation.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 trait ErrorComparison
 {

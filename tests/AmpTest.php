@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  * Tests for AmpProject\Amp.
  *
  * @covers Amp
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 class AmpTest extends TestCase
 {

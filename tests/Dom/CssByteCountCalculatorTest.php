@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Tests for AmpProject\Dom\CssByteCountCalculator.
  *
  * @covers  CssByteCountCalculator
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 class CssByteCountCalculatorTest extends TestCase
 {

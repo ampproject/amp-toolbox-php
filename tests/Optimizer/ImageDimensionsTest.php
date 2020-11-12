@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
  * Tests for AmpProject\Optimizer\ImageDimensions.
  *
  * @covers  ImageDimensions
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 class ImageDimensionsTest extends TestCase
 {

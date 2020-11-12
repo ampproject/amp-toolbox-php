@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  * Tests for AmpProject\Url.
  *
  * @covers  Url
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 class UrlTest extends TestCase
 {

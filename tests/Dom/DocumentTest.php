@@ -3,19 +3,16 @@
 namespace AmpProject\Common;
 
 use AmpProject\Attribute;
-use AmpProject\Dom\CssByteCountCalculator;
 use AmpProject\Dom\Document;
 use AmpProject\Tests\AssertContainsCompatibility;
 use DOMNode;
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
-use ReflectionException;
 
 /**
  * Tests for AmpProject\Dom\Document.
  *
  * @covers Document
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 class DocumentTest extends TestCase
 {

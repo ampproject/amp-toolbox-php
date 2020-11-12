@@ -14,7 +14,7 @@ use ReflectionException;
 /**
  * Test the transformation engine as a whole.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class TransformationEngineTest extends TestCase
 {

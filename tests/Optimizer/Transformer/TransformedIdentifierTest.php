@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the TransformedIdentifier transformer.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class TransformedIdentifierTest extends TestCase
 {
