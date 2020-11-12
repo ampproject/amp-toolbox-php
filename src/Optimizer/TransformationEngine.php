@@ -89,9 +89,9 @@ final class TransformationEngine
         $this->transformers = [];
 
         foreach ($this->configuration->get(Configuration::KEY_TRANSFORMERS) as $transformerClass) {
-            $this->transformers[$transformerClass] = new $transformerClass(
-                ...$this->getTransformerDependencies($transformerClass)
-            );
+            $reflect = new ReflectionClass($transformerClass);
+            $instance = $reflect->newInstanceArgs($this->getTransformerDependencies($transformerClass));
+            $this->transformers[$transformerClass] = $instance;
         }
     }
 

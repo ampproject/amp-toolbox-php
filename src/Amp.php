@@ -29,11 +29,11 @@ final class Amp
             Attribute::AMP_EMOJI,
             Attribute::AMP_EMOJI_ALT,
             Attribute::AMP4ADS,
-            Attribute::AMP4ADS_EMOJI,
-            Attribute::AMP4ADS_EMOJI_ALT,
+            Attribute::amp4adsemoji(),
+            Attribute::amp4adsemojialt(),
             Attribute::AMP4EMAIL,
-            Attribute::AMP4EMAIL_EMOJI,
-            Attribute::AMP4EMAIL_EMOJI_ALT,
+            Attribute::amp4emailemoji(),
+            Attribute::amp4emailemojialt(),
         ];
     }
 

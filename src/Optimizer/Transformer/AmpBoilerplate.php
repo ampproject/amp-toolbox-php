@@ -98,7 +98,7 @@ final class AmpBoilerplate implements Transformer
      */
     private function isBoilerplateStyle(DOMElement $element)
     {
-        foreach (Attribute::ALL_BOILERPLATES as $boilerplate) {
+        foreach (Attribute::allBoilerplates() as $boilerplate) {
             if ($element->hasAttribute($boilerplate)) {
                 return true;
             }
@@ -135,7 +135,7 @@ final class AmpBoilerplate implements Transformer
         $boilerplate = Attribute::AMP_BOILERPLATE;
         $css         = Amp::BOILERPLATE_CSS;
 
-        foreach (Attribute::ALL_AMP4ADS as $attribute) {
+        foreach (Attribute::allAmp4ads() as $attribute) {
             if (
                 $htmlElement->hasAttribute($attribute)
                 || (
@@ -151,7 +151,7 @@ final class AmpBoilerplate implements Transformer
             }
         }
 
-        foreach (Attribute::ALL_AMP4EMAIL as $attribute) {
+        foreach (Attribute::allAmp4email() as $attribute) {
             if (
                 $htmlElement->hasAttribute($attribute)
                 || (
