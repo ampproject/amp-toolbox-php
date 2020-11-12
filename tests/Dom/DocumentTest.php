@@ -3,6 +3,7 @@
 namespace AmpProject\Common;
 
 use AmpProject\Attribute;
+use AmpProject\Dom\CssByteCountCalculator;
 use AmpProject\Dom\Document;
 use AmpProject\Tests\AssertContainsCompatibility;
 use DOMNode;
@@ -853,5 +854,50 @@ class DocumentTest extends TestCase
         $dom->body->appendChild($element);
 
         $this->assertEquals('some-prefix-3', $dom->getElementId($element, 'some-prefix'));
+    }
+
+    /**
+     * Data provider for testing the byte count properties.
+     *
+     * @return array Testing data.
+     */
+    public function dataByteCounts()
+    {
+        return [
+            'amp_custom_style_tag' => [
+                '<html><head><style amp-custom>12345</style>', 5, 0,
+            ],
+            'one_inline_style_attribute' => [
+                '<html><body><div style="12345"></div></body></html>', 0, 5,
+            ],
+            'multiple_inline_style_attributes' => [
+                '<html><body><div style="1234"></div><div style="567"><div style="89"></body></html>', 0, 9,
+            ],
+            'amp_custom_style_tag_and_multiple_inline_style_attributes' => [
+                '<html><head><style amp-custom>12345</style></head><body><div style="1234"></div><div style="567"><div style="89"></body></html>', 5, 9,
+            ],
+            'amp_custom_style_tag_outside_head' => [
+                '<html><head><style amp-custom>12345</style></head><body><style amp-custom>123</style></body></html>', 5, 0,
+            ],
+            'multibyte_chars_are_counted_in_bytes_not_chars' => [
+                '<html><head><style amp-custom>Iñtërnâtiônàlizætiøn</style></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>', 27, 27,
+            ],
+        ];
+    }
+
+    /**
+     * Test the byte count properties method.
+     *
+     * @dataProvider dataByteCounts
+     *
+     * @param string $html              HTML to test against.
+     * @param int    $expectedAmpCustom Expected number of bytes of the <style amp-custom> tag.
+     * @param int    $expectedInline    Expected number of bytes of inline styles.
+     */
+    public function testByteCounts($html, $expectedAmpCustom, $expectedInline)
+    {
+        $document = Document::fromHtml($html);
+        $this->assertEquals($expectedAmpCustom, $document->ampCustomStyleByteCount);
+        $this->assertEquals($expectedInline, $document->inlineStyleByteCount);
     }
 }

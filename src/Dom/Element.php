@@ -63,7 +63,7 @@ final class Element extends DOMElement
     {
         switch ($name) {
             case 'inlineStyleByteCount':
-                if ($this->inlineStyleByteCount === null) {
+                if (!isset($this->inlineStyleByteCount)) {
                     $this->inlineStyleByteCount = strlen($this->getAttribute(Attribute::STYLE));
                 }
 

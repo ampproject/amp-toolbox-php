@@ -1720,14 +1720,14 @@ final class Document extends DOMDocument
                 return $this->ampCustomStyle;
 
             case 'ampCustomStyleByteCount':
-                if ($this->ampCustomStyleByteCount === null) {
+                if (!isset($this->ampCustomStyleByteCount)) {
                     $this->ampCustomStyleByteCount = strlen($this->ampCustomStyle->textContent);
                 }
 
                 return $this->ampCustomStyleByteCount;
 
             case 'inlineStyleByteCount':
-                if ($this->inlineStyleByteCount === null) {
+                if (!isset($this->inlineStyleByteCount)) {
                     $this->inlineStyleByteCount = 0;
                     $elements = $this->xpath->query(self::XPATH_INLINE_STYLE_ATTRIBUTES_QUERY, $this->body);
                     foreach ($elements as $element) {
