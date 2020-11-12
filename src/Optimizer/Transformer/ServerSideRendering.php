@@ -65,9 +65,12 @@ final class ServerSideRendering implements Transformer
      *
      * @var string[]
      */
-    const EXCLUDED_ELEMENTS = [
-        'amp-audio',
-    ];
+    public static function excludedElements()
+    {
+        return [
+            'amp-audio',
+        ];
+    }
 
     /**
      * XPath query to retrieve the <style amp-custom> tag, relative to the <head> node.
@@ -1087,7 +1090,7 @@ final class ServerSideRendering implements Transformer
      */
     private function isExcludedElement(DOMElement $element)
     {
-        return in_array($element->tagName, self::EXCLUDED_ELEMENTS, true);
+        return in_array($element->tagName, self::excludedElements(), true);
     }
 
     /**
