@@ -19,13 +19,14 @@ use DOMXPath;
  *
  * Abstract away some of the difficulties of working with PHP's DOMDocument.
  *
- * @property DOMXPath        $xpath          XPath query object for this document.
- * @property DOMElement      $html           The document's <html> element.
- * @property DOMElement      $head           The document's <head> element.
- * @property DOMElement      $body           The document's <body> element.
- * @property DOMElement|null $viewport       The document's viewport meta element.
- * @property DOMNodeList     $ampElements    The document's <amp-*> elements.
- * @property DOMElement      $ampCustomStyle The document's <style amp-custom> element.
+ * @property DOMXPath        $xpath                   XPath query object for this document.
+ * @property DOMElement      $html                    The document's <html> element.
+ * @property DOMElement      $head                    The document's <head> element.
+ * @property DOMElement      $body                    The document's <body> element.
+ * @property DOMElement|null $viewport                The document's viewport meta element.
+ * @property DOMNodeList     $ampElements             The document's <amp-*> elements.
+ * @property DOMElement      $ampCustomStyle          The document's <style amp-custom> element.
+ * @property int|null        $ampCustomStyleByteCount Count of bytes of the CSS in the <style amp-custom> tag.
  *
  * @package ampproject/amp-toolbox
  */
@@ -1658,6 +1659,13 @@ final class Document extends DOMDocument
                 }
 
                 return $this->ampCustomStyle;
+
+            case 'ampCustomStyleByteCount':
+                if (! isset($this->ampCustomStyleByteCount)) {
+                    $this->ampCustomStyleByteCount = strlen($this->getAttribute(Attribute::STYLE));
+                }
+
+                return $this->ampCustomStyleByteCount;
         }
 
         // Mimic regular PHP behavior for missing notices.
