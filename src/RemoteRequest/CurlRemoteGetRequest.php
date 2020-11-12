@@ -34,15 +34,18 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
      *
      * @var int[]
      */
-    const RETRYABLE_ERROR_CODES = [
-        CURLE_COULDNT_RESOLVE_HOST,
-        CURLE_COULDNT_CONNECT,
-        CURLE_HTTP_NOT_FOUND,
-        CURLE_READ_ERROR,
-        CURLE_OPERATION_TIMEOUTED,
-        CURLE_HTTP_POST_ERROR,
-        CURLE_SSL_CONNECT_ERROR,
-    ];
+    public function retryableErrorCodes()
+    {
+        return [
+            CURLE_COULDNT_RESOLVE_HOST,
+            CURLE_COULDNT_CONNECT,
+            CURLE_HTTP_NOT_FOUND,
+            CURLE_READ_ERROR,
+            CURLE_OPERATION_TIMEOUTED,
+            CURLE_HTTP_POST_ERROR,
+            CURLE_SSL_CONNECT_ERROR,
+        ];
+    }
 
     /**
      * Whether to verify SSL certificates or not.
@@ -135,7 +138,7 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
             if ($body === false) {
                 $curlErrno = curl_errno($curlHandle);
 
-                if (! $retriesLeft || in_array($curlErrno, self::RETRYABLE_ERROR_CODES, true) === false) {
+                if (! $retriesLeft || in_array($curlErrno, self::retryableErrorCodes(), true) === false) {
                     if (! empty($status) && is_numeric($status)) {
                         throw FailedToGetFromRemoteUrl::withHttpStatus($url, (int) $status);
                     }
