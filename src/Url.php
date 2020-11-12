@@ -15,16 +15,19 @@ final class Url
      *
      * @var string[]
      */
-    const URL_DEFAULT_PARTS = [
-        'scheme'   => 'https',
-        'host'     => 'example.com',
-        'port'     => '',
-        'user'     => '',
-        'pass'     => '',
-        'path'     => '',
-        'query'    => '',
-        'fragment' => '',
-    ];
+    public static function urlDefaultParts()
+    {
+        return [
+            'scheme' => 'https',
+            'host' => 'example.com',
+            'port' => '',
+            'user' => '',
+            'pass' => '',
+            'path' => '',
+            'query' => '',
+            'fragment' => '',
+        ];
+    }
 
     /**
      * Check whether a given src string is a valid image source URL.
@@ -36,7 +39,7 @@ final class Url
     {
         list($scheme, $host, $port, $user, $pass, $path, $query, $fragment) = array_values(
             array_merge(
-                self::URL_DEFAULT_PARTS,
+                self::urlDefaultParts(),
                 (array)parse_url($src)
             )
         );
