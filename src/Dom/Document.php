@@ -311,6 +311,7 @@ final class Document extends DOMDocument
     {
         $this->originalEncoding = (string)$encoding ?: self::UNKNOWN_ENCODING;
         parent::__construct($version ?: '1.0', self::AMP_ENCODING);
+        $this->registerNodeClass(DOMElement::class, Element::class);
     }
 
     /**
