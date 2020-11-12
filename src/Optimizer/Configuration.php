@@ -35,23 +35,29 @@ final class Configuration
      *
      * @var string[]
      */
-    const DEFAULTS = [
-        self::KEY_TRANSFORMERS => self::DEFAULT_TRANSFORMERS,
-    ];
+    public static function defaults()
+    {
+        return [
+            self::KEY_TRANSFORMERS => self::defaultTransformers(),
+        ];
+    }
 
     /**
      * Array of FQCNs of transformers to use for the default setup.
      *
      * @var string[]
      */
-    const DEFAULT_TRANSFORMERS = [
-        AmpBoilerplate::class,
-        ServerSideRendering::class,
-        AmpRuntimeCss::class,
-        TransformedIdentifier::class,
-        ReorderHead::class,
-        PreloadHeroImage::class,
-    ];
+    public static function defaultTransformers()
+    {
+        return [
+            AmpBoilerplate::class,
+            ServerSideRendering::class,
+            AmpRuntimeCss::class,
+            TransformedIdentifier::class,
+            ReorderHead::class,
+            PreloadHeroImage::class,
+        ];
+    }
 
     /**
      * Associative array of already validated configuration settings.
@@ -84,7 +90,7 @@ final class Configuration
     public function __construct($configurationData = [])
     {
         $this->configuration = array_merge(
-            self::DEFAULTS,
+            self::defaults(),
             $this->validateConfigurationKeys($configurationData)
         );
     }

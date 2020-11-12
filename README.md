@@ -219,7 +219,7 @@ use MyProject\MyCustomTransformer;
 
 $configurationData = [
 	Configuration::KEY_TRANSFORMERS => array_merge(
-		Configuration::DEFAULT_TRANSFORMERS,
+		Configuration::defaultTransformers(),
 		[
 			MyCustomTransformer::class
 		],
@@ -247,7 +247,7 @@ use MyProject\MyCustomTransformerConfiguration;
 
 $configurationData = [
 	Configuration::KEY_TRANSFORMERS => array_merge(
-		Configuration::DEFAULT_TRANSFORMERS,
+		Configuration::defaultTransformers(),
 		[
 			MyCustomTransformer::class
 		],

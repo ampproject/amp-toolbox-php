@@ -25,7 +25,7 @@ final class ConfigurationTest extends TestCase
         $configuration = new Configuration();
         $this->assertTrue($configuration->has(Configuration::KEY_TRANSFORMERS));
         $this->assertFalse($configuration->has('unknown_key'));
-        $this->assertEquals(Configuration::DEFAULT_TRANSFORMERS, $configuration->get(Configuration::KEY_TRANSFORMERS));
+        $this->assertEquals(Configuration::defaultTransformers(), $configuration->get(Configuration::KEY_TRANSFORMERS));
     }
 
     /**
@@ -39,7 +39,7 @@ final class ConfigurationTest extends TestCase
         $configuration = new Configuration(['custom_key' => 'custom_value']);
         $this->assertTrue($configuration->has(Configuration::KEY_TRANSFORMERS));
         $this->assertTrue($configuration->has('custom_key'));
-        $this->assertEquals(Configuration::DEFAULT_TRANSFORMERS, $configuration->get(Configuration::KEY_TRANSFORMERS));
+        $this->assertEquals(Configuration::defaultTransformers(), $configuration->get(Configuration::KEY_TRANSFORMERS));
         $this->assertEquals('custom_value', $configuration->get('custom_key'));
     }
 
