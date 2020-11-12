@@ -5,6 +5,8 @@ namespace AmpProject\Dom;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\DevMode;
+use AmpProject\Exception\MaxCssByteCountExceeded;
+use AmpProject\Optimizer\CssRule;
 use AmpProject\Tag;
 use DOMAttr;
 use DOMComment;
@@ -1602,6 +1604,42 @@ final class Document extends DOMDocument
     public function hasInitialAmpDevMode()
     {
         return $this->hasInitialAmpDevMode;
+    }
+
+    /**
+     * Add style(s) to the <style amp-custom> tag.
+     *
+     * @param string $style Style to add.
+     * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
+     */
+    public function addAmpCustomStyle($style)
+    {
+        $style = trim($style, CssRule::CSS_TRIM_CHARACTERS);
+
+        $existingStyle = (string)$this->ampCustomStyle->textContent;
+        if (!empty($existingStyle)) {
+            $existingStyle = rtrim($existingStyle, ';') . ';';
+        }
+
+        $newStyle     = $existingStyle . $style;
+        $newByteCount = strlen($newStyle);
+
+        if ($this->getRemainingCustomCssSpace() < ($newByteCount - $this->ampCustomStyleByteCount)) {
+            throw MaxCssByteCountExceeded::forAmpCustom($newStyle);
+        }
+
+        $this->ampCustomStyle->textContent = $newStyle;
+        $this->ampCustomStyleByteCount = $newByteCount;
+    }
+
+    /**
+     * Add the given number of bytes ot the total inline style byte count.
+     *
+     * @param int $byteCount Bytes to add.
+     */
+    public function addInlineStyleByteCount($byteCount)
+    {
+        $this->inlineStyleByteCount += $byteCount;
     }
 
     /**

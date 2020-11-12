@@ -3,13 +3,15 @@
 namespace AmpProject\Dom;
 
 use AmpProject\Attribute;
+use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
 use DOMElement;
 
 /**
  * Class AmpProject\Dom\Element.
  *
- * @property int $inlineStyleByteCount Number of bytes that are consumed by the inline style attribute.
+ * @property Document $ownerDocument        The ownerDocument for these elements should always be a Dom\Document.
+ * @property int      $inlineStyleByteCount Number of bytes that are consumed by the inline style attribute.
  *
  * @package ampproject/amp-toolbox
  */
@@ -27,20 +29,28 @@ final class Element extends DOMElement
      * Add CSS styles to the element as an inline style attribute.
      *
      * @param string $style CSS style(s) to add to the inline style attribute.
+     * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
      */
     public function addInlineStyle($style)
     {
         $style = trim($style, CssRule::CSS_TRIM_CHARACTERS);
 
-        $existingStyle = '';
-        if ($this->hasAttribute(Attribute::STYLE)) {
-            $existingStyle = $this->getAttribute(Attribute::STYLE);
+        $existingStyle = (string)trim($this->getAttribute(Attribute::STYLE));
+        if (!empty($existingStyle)) {
             $existingStyle = rtrim($existingStyle, ';') . ';';
         }
 
-        $this->setAttribute(Attribute::STYLE, $existingStyle . $style);
+        $newStyle     = $existingStyle . $style;
+        $newByteCount = strlen($newStyle);
 
-        unset($this->inlineStyleByteCount);
+        if ($this->ownerDocument->getRemainingCustomCssSpace() < ($newByteCount - $this->inlineStyleByteCount)) {
+            throw MaxCssByteCountExceeded::forInlineStyle($this, $style);
+        }
+
+        $this->ownerDocument->addInlineStyleByteCount($newByteCount - $this->inlineStyleByteCount);
+
+        $this->setAttribute(Attribute::STYLE, $newStyle);
+        $this->inlineStyleByteCount = $newByteCount;
     }
 
     /**
