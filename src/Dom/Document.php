@@ -1626,7 +1626,16 @@ final class Document extends DOMDocument
             throw MaxCssByteCountExceeded::forAmpCustom($newStyle);
         }
 
-        $this->ampCustomStyle->textContent = $newStyle;
+        // Inject new styles before any potential source map annotation comment like: /*# sourceURL=amp-custom.css */.
+        // If not present, then just put it at the end of the stylesheet. This isn't strictly required, but putting the
+        // source map comments at the end is the convention.
+        $this->ampCustomStyle->textContent = preg_replace(
+            ':(?=\s+/\*#[^*]+?\*/\s*$|$):s',
+            $newStyle,
+            $this->ampCustomStyle->textContent,
+            1
+        );
+
         $this->ampCustomStyleByteCount = $newByteCount;
     }
 

@@ -4,7 +4,6 @@ namespace AmpProject\Optimizer\Transformer;
 
 use AmpProject\Amp;
 use AmpProject\Attribute;
-use AmpProject\Dom\CssByteCountCalculator;
 use AmpProject\Dom\Document;
 use AmpProject\CssLength;
 use AmpProject\Extension;
@@ -81,22 +80,6 @@ final class ServerSideRendering implements Transformer
     const FLOATING_POINT_EPSILON = 0.00001;
 
     /**
-     * The <style amp-custom> element that custom CSS styles need to be added to.
-     *
-     * @var DOMElement|null
-     */
-    private $ampCustomStyleElement;
-
-    /**
-     * Count of bytes to calculate against the AMP size limit for the custom CSS styling.
-     *
-     * AMP only allows for 75000 bytes of CSS across <style amp-custom> and inline style attributes.
-     *
-     * @var int
-     */
-    private $ampCustomCssByteCount = 0;
-
-    /**
      * Associative array of custom sizer styles where the key is the ID of the associated element.
      *
      * @var string[]
@@ -124,9 +107,7 @@ final class ServerSideRendering implements Transformer
         }
 
         // Reset internal state for a new transform.
-        $this->customCss             = new CssRules();
-        $this->ampCustomCssByteCount = 0;
-        $this->ampCustomStyleElement = null;
+        $this->customCss = new CssRules();
 
         /*
          * Within the loop we apply the layout to the custom tags (amp-foo...) where possible, but while we're at this
@@ -777,26 +758,17 @@ final class ServerSideRendering implements Transformer
                             break;
                         }
 
-                        $customCss            = array_merge(
-                            $customCss,
-                            $this->extractSizesAttributeCss($document, $ampElement, $attribute)
-                        );
+                        $customCss += $this->extractSizesAttributeCss($document, $ampElement, $attribute);
                         $attributesToRemove[] = $attribute->name;
                         break;
 
                     case Attribute::HEIGHTS:
-                        $customCss            = array_merge(
-                            $customCss,
-                            $this->extractHeightsAttributeCss($document, $ampElement, $attribute)
-                        );
+                        $customCss += $this->extractHeightsAttributeCss($document, $ampElement, $attribute);
                         $attributesToRemove[] = $attribute->name;
                         break;
 
                     case Attribute::MEDIA:
-                        $customCss = array_merge(
-                            $customCss,
-                            $this->extractMediaAttributeCss($document, $ampElement, $attribute)
-                        );
+                        $customCss += $this->extractMediaAttributeCss($document, $ampElement, $attribute);
                         $attributesToRemove[] = $attribute->name;
                         break;
                 }
@@ -806,58 +778,16 @@ final class ServerSideRendering implements Transformer
             }
         }
 
-        if (!empty($customCss) && ! $this->checkCustomCssSize($document, $customCss)) {
-            $errors->add(Error\CannotRemoveBoilerplate::fromAttributesRequiringBoilerplate($ampElement));
-            return false;
-        }
-
-        // The custom CSS seems to fit within the byte count limit, so let's add it to the document.
         foreach ($customCss as $cssRule) {
+            if ($document->getRemainingCustomCssSpace() < $cssRule->getByteCount()) {
+                $errors->add(Error\CannotRemoveBoilerplate::fromAttributesRequiringBoilerplate($ampElement));
+                return false;
+            }
+
             $this->customCss = $this->customCss->add($cssRule);
         }
 
         return $attributesToRemove;
-    }
-
-    /**
-     * Check whether adding a custom CSS rule still fits within the CSS byte limit of the document.
-     *
-     * @param Document  $document Document to check the custom CSS size of.
-     * @param CssRule[] $cssRules CSS rules that are meant to be added.
-     * @return bool Whether the custom CSS rule still fits within the byte limits.
-     */
-    private function checkCustomCssSize(Document $document, $cssRules)
-    {
-        $additionalBytes = $this->customCss->getByteCount();
-
-        foreach ($cssRules as $cssRule) {
-            $additionalBytes += $cssRule->getByteCount();
-        }
-
-        if ($this->ampCustomCssByteCount + $additionalBytes > Amp::MAX_CSS_BYTE_COUNT) {
-            return false;
-        }
-
-        if (empty($this->ampCustomStyleElement)) {
-            $ampCustomStyleElement = $document->xpath->query(
-                Document::XPATH_AMP_CUSTOM_STYLE_QUERY,
-                $document->head
-            )->item(0);
-            if ($ampCustomStyleElement instanceof DOMElement) {
-                $this->ampCustomStyleElement = $ampCustomStyleElement;
-                $this->ampCustomCssByteCount = (new CssByteCountCalculator($document))->calculate();
-                if (($this->ampCustomCssByteCount + $additionalBytes) > Amp::MAX_CSS_BYTE_COUNT) {
-                    return false;
-                }
-            } else {
-                $ampCustomStyleElement = $document->createElement(Tag::STYLE);
-                $ampCustomStyleElement->setAttribute(Attribute::AMP_CUSTOM, null);
-                $this->ampCustomStyleElement = $ampCustomStyleElement;
-                $document->head->appendChild($this->ampCustomStyleElement);
-            }
-        }
-
-        return true;
     }
 
     /**
@@ -873,17 +803,7 @@ final class ServerSideRendering implements Transformer
             return;
         }
 
-        // Inject new styles before any potential source map annotation comment like: /*# sourceURL=amp-custom.css */.
-        // If not present, then just put it at the end of the stylesheet. This isn't strictly required, but putting the
-        // source map comments at the end is the convention.
-        $this->ampCustomStyleElement->textContent = preg_replace(
-            ':(?=\s+/\*#[^*]+?\*/\s*$|$):s',
-            $customCss,
-            $this->ampCustomStyleElement->textContent,
-            1
-        );
-
-        $this->ampCustomCssByteCount += $this->customCss->getByteCount();
+        $document->addAmpCustomStyle($customCss);
     }
 
     /**
