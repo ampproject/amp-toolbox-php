@@ -116,7 +116,7 @@ final class PreloadHeroImageTest extends TestCase
                 [
                     Error\CannotPreloadImage::fromImageWithSrcsetAttribute(
                         Document::fromHtmlFragment(
-                            '<amp-img width="500" height="400" src="https://example-com.cdn.ampproject.org/foo.png" srcset="test 100w test2 3dpr"></amp-img>'
+                            '<amp-img data-hero width="500" height="400" src="https://example-com.cdn.ampproject.org/hero1.png" srcset="test 100w test2 3dpr"></amp-img>'
                         )->body->firstChild
                     ),
                 ],

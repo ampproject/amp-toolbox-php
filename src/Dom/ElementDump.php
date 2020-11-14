@@ -51,27 +51,29 @@ final class ElementDump
      */
     public function __toString()
     {
-        static $dump = null;
+        $attributes = array_reduce(
+            iterator_to_array($this->element->attributes, true),
+            static function ($text, DOMAttr $attribute) {
+                return $text . " {$attribute->nodeName}=\"{$attribute->value}\"";
+            },
+            ''
+        );
 
-        if ($dump === null) {
-            $dump = sprintf(
-                '<%s%s',
-                $this->element->tagName,
-                array_reduce(
-                    iterator_to_array($this->element->attributes, true),
-                    static function ($text, DOMAttr $attribute) {
-                        return $text . " {$attribute->nodeName}=\"{$attribute->value}\"";
-                    },
-                    ''
-                )
-            );
-
-            if (mb_strlen($dump) > $this->truncate) {
-                $dump = mb_substr($dump, 0, $this->truncate - 1) . '…';
-            }
-            $dump .= '>';
+        if (mb_strlen($attributes) > $this->truncate) {
+            $attributes = mb_substr($attributes, 0, $this->truncate - 1) . '…';
         }
 
-        return (string)$dump;
+        $textContent = $this->element->textContent;
+
+        if (mb_strlen($textContent) > $this->truncate) {
+            $textContent = mb_substr($textContent, 0, $this->truncate - 1) . '…';
+        }
+
+        return sprintf(
+            '<%1$s%2$s>%3$s</%1$s>',
+            $this->element->tagName,
+            $attributes,
+            $textContent
+        );
     }
 }
