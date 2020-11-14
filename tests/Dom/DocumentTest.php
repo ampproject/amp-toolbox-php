@@ -883,7 +883,7 @@ class DocumentTest extends TestCase
     }
 
     /**
-     * Test the byte count properties method.
+     * Test the byte count properties.
      *
      * @dataProvider dataByteCounts
      *
