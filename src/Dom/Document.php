@@ -1616,12 +1616,8 @@ final class Document extends DOMDocument
      */
     public function addAmpCustomStyle($style)
     {
-        $style = trim($style, CssRule::CSS_TRIM_CHARACTERS);
-
+        $style         = trim($style, CssRule::CSS_TRIM_CHARACTERS);
         $existingStyle = (string)$this->ampCustomStyle->textContent;
-        if (!empty($existingStyle)) {
-            $existingStyle = rtrim($existingStyle, ';') . ';';
-        }
 
         $newStyle     = $existingStyle . $style;
         $newByteCount = strlen($newStyle);

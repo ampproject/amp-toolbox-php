@@ -63,7 +63,7 @@ class ElementTest extends TestCase
         $document = new Document();
         $ampCustomStyle = $document->createElement(Tag::STYLE);
         $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
-        $ampCustomStyle->textContent = str_pad('X', Amp::MAX_CSS_BYTE_COUNT - 38);
+        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 38, 'X');
         $document->head->appendChild($ampCustomStyle);
 
         /** @var Element $element */

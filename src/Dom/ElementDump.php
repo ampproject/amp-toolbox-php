@@ -36,7 +36,7 @@ final class ElementDump
      * The object is meant to be cast to a string to do its magic.
      *
      * @param DOMElement $element  Element to dump.
-     * @param int        $truncate Optional. Maximum length of the dumped string to truncate to. Defaults to 120.
+     * @param int        $truncate Optional. Maximum length to truncate attributes and textContent to. Defaults to 120.
      */
     public function __construct(DOMElement $element, $truncate = 120)
     {
@@ -59,13 +59,13 @@ final class ElementDump
             ''
         );
 
-        if (mb_strlen($attributes) > $this->truncate) {
+        if ($this->truncate > 0 && mb_strlen($attributes) > $this->truncate) {
             $attributes = mb_substr($attributes, 0, $this->truncate - 1) . '…';
         }
 
         $textContent = $this->element->textContent;
 
-        if (mb_strlen($textContent) > $this->truncate) {
+        if ($this->truncate > 0 && mb_strlen($textContent) > $this->truncate) {
             $textContent = mb_substr($textContent, 0, $this->truncate - 1) . '…';
         }
 

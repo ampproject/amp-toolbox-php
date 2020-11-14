@@ -2,8 +2,13 @@
 
 namespace AmpProject\Common;
 
+use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
+use AmpProject\Dom\ElementDump;
+use AmpProject\Exception\MaxCssByteCountExceeded;
+use AmpProject\Tag;
 use AmpProject\Tests\AssertContainsCompatibility;
 use DOMNode;
 use PHPUnit\Framework\TestCase;
@@ -896,5 +901,51 @@ class DocumentTest extends TestCase
         $document = Document::fromHtml($html);
         $this->assertEquals($expectedAmpCustom, $document->ampCustomStyleByteCount);
         $this->assertEquals($expectedInline, $document->inlineStyleByteCount);
+    }
+
+    /**
+     * Test the Document::getRemainingCssSpace() method.
+     */
+    public function testGetRemainingCssSpace()
+    {
+        $document = new Document();
+        $ampCustomStyle = $document->createElement(Tag::STYLE);
+        $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 10, 'X');
+        $document->head->appendChild($ampCustomStyle);
+
+        /** @var Element $element */
+        $element = $document->createElement(Tag::DIV);
+        $document->body->appendChild($element);
+        $element->addInlineStyle('12345');
+
+        $this->assertEquals(5, $document->getRemainingCustomCssSpace());
+    }
+
+
+    /**
+     * Test the Document::addAmpCustomStyle() method.
+     */
+    public function testAddAmpCustomStyle()
+    {
+        $document = new Document();
+        $ampCustomStyle = $document->createElement(Tag::STYLE);
+        $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 28, 'X');
+        $document->head->appendChild($ampCustomStyle);
+
+        // Custom styles can be added.
+        $document->addAmpCustomStyle('h1{color:red}');
+        $document->addAmpCustomStyle('h2{color:green}');
+
+        $this->assertStringEndsWith('XXXXXh1{color:red}h2{color:green}', $document->ampCustomStyle->textContent);
+
+        // Exception is thrown if maximum allowed byte count is exceeded.
+        $this->expectException(MaxCssByteCountExceeded::class);
+        $this->expectExceptionMessage(
+            'Maximum allowed CSS byte count exceeded for amp-custom style \'X'
+        );
+
+        $document->addAmpCustomStyle('X');
     }
 }
