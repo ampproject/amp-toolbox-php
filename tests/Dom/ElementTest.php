@@ -2,8 +2,13 @@
 
 namespace AmpProject\Common;
 
+use AmpProject\Amp;
+use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
+use AmpProject\Dom\ElementDump;
+use AmpProject\Exception\MaxCssByteCountExceeded;
+use AmpProject\Tag;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -47,5 +52,41 @@ class ElementTest extends TestCase
         /** @var Element $element */
         $element = $document->xpath->query('.//*[@style]', $document->body)->item(0);
         $this->assertEquals($expected, $element->inlineStyleByteCount);
+    }
+
+
+    /**
+     * Test adding inline styles.
+     */
+    public function testAddInlineStyle()
+    {
+        $document = new Document();
+        $ampCustomStyle = $document->createElement(Tag::STYLE);
+        $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+        $ampCustomStyle->textContent = str_pad('X', Amp::MAX_CSS_BYTE_COUNT - 38);
+        $document->head->appendChild($ampCustomStyle);
+
+        /** @var Element $element */
+        $element = $document->createElement(Tag::DIV);
+        $document->body->appendChild($element);
+
+        // Inline style can be added.
+        $element->addInlineStyle('color:red');
+
+        $this->assertEquals('<div style="color:red"></div>', (string)new ElementDump($element));
+
+        // Semicolons are handled automatically.
+        $element->addInlineStyle('  ;  ;  border-left=0  ;  ;  ');
+        $element->addInlineStyle('  ;  ;  border-right=0  ;  ;  ');
+
+        $this->assertEquals('<div style="color:red;border-left=0;border-right=0"></div>', (string)new ElementDump($element));
+
+        // Exception is thrown if maximum allowed byte count is exceeded.
+        $this->expectException(MaxCssByteCountExceeded::class);
+        $this->expectExceptionMessage(
+            'Maximum allowed CSS byte count exceeded for inline style \'X\': <div style="color:red;border-left=0;border-right=0"></div>'
+        );
+
+        $element->addInlineStyle('X');
     }
 }

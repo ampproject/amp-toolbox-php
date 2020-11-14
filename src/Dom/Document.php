@@ -691,10 +691,11 @@ final class Document extends DOMDocument
      */
     public function normalizeDomStructure()
     {
-
         if (! $this->documentElement) {
             $this->appendChild($this->createElement(Tag::HTML));
-        } elseif (Tag::HTML !== $this->documentElement->nodeName) {
+        }
+
+        if (Tag::HTML !== $this->documentElement->nodeName) {
             $nextSibling = $this->documentElement->nextSibling;
             /**
              * The old document element that we need to remove and replace as we cannot just move it around.
