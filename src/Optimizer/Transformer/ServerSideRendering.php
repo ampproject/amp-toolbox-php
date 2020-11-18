@@ -601,7 +601,7 @@ final class ServerSideRendering implements Transformer
         $style = empty($style) ? 'display:block' : "display:block;{$style}";
 
         $sizer = $document->createElement(Amp::SIZER_ELEMENT);
-        $sizer->setAttribute(Tag::STYLE, sprintf($style, $paddingString));
+        $sizer->addInlineStyle(sprintf($style, $paddingString));
 
         return $sizer;
     }
