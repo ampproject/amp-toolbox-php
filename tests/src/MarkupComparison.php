@@ -73,6 +73,10 @@ trait MarkupComparison
         $actual   = preg_replace('/(?<=\s)([a-zA-Z-_]+)="(?:\1|)"/i', '$1', $actual);
         $expected = preg_replace('/(?<=\s)([a-zA-Z-_]+)="(?:\1|)"/i', '$1', $expected);
 
+        // Normalize inline styles to always end with a semicolon.
+        $actual   = preg_replace('/\s+style="([^"]+?)(?:;)?"/i', ' style="$1;"', $actual);
+        $expected = preg_replace('/\s+style="([^"]+?)(?:;)?"/i', ' style="$1;"', $expected);
+
         $normalizeAttributes = static function ($element) {
             // Extract attributes for the given element.
             if (!preg_match('#^(<[a-z0-9-]+)(\s[^>]+)>$#i', $element, $matches)) {

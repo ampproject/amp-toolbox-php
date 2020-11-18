@@ -484,12 +484,8 @@ final class ServerSideRendering implements Transformer
                 break;
         }
 
-        // We prepend just in case an existing value (which shouldn't be there for valid docs) doesn't end with ';'.
-        if ($element->hasAttribute(Tag::STYLE)) {
-            $styles .= $element->getAttribute(Tag::STYLE);
-        }
-        if (! empty($styles)) {
-            $element->setAttribute(Tag::STYLE, $styles);
+        if (!empty($styles)) {
+            $element->addInlineStyle($styles);
         }
 
         $element->setAttribute(Amp::LAYOUT_ATTRIBUTE, $layout);
