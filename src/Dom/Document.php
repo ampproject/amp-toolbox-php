@@ -726,7 +726,8 @@ final class Document extends DOMDocument
     private function normalizeHtmlAttributes()
     {
         $html = $this->documentElement;
-        if (! $html->hasAttributes()) {
+
+        if (! $html instanceof DOMElement || ! $html->hasAttributes()) {
             return;
         }
 
