@@ -1727,6 +1727,15 @@ final class Document extends DOMDocument
                 return $this->ampCustomStyle;
 
             case 'ampCustomStyleByteCount':
+                if (!isset($this->ampCustomStyle)) {
+                    $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
+                    if (!$ampCustomStyle instanceof DOMElement) {
+                        return 0;
+                    } else {
+                        $this->ampCustomStyle = $ampCustomStyle;
+                    }
+                }
+
                 if (!isset($this->ampCustomStyleByteCount)) {
                     $this->ampCustomStyleByteCount = strlen($this->ampCustomStyle->textContent);
                 }
