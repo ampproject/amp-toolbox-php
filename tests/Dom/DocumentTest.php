@@ -6,7 +6,6 @@ use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
-use AmpProject\Dom\ElementDump;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\AssertContainsCompatibility;
@@ -580,7 +579,7 @@ class DocumentTest extends TestCase
         $this->assertEquals('meta', $dom->head->firstChild->tagName);
         $this->assertNull($dom->head->firstChild->nextSibling);
         $body_first_child = $dom->body->firstChild;
-        $this->assertInstanceOf('DOMElement', $body_first_child);
+        $this->assertInstanceOf(Element::class, $body_first_child);
         $this->assertEquals('text', $body_first_child->textContent);
 
         // Valid nodes.

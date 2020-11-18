@@ -3,7 +3,7 @@
 namespace AmpProject;
 
 use AmpProject\Dom\Document;
-use DOMElement;
+use AmpProject\Dom\Element;
 use DOMNode;
 
 /**
@@ -136,7 +136,7 @@ final class Amp
     public static function isRuntimeScript(DOMNode $node)
     {
         if (
-            ! $node instanceof DOMElement
+            ! $node instanceof Element
             || ! self::isAsyncScript($node)
             || self::isExtension($node)
         ) {
@@ -171,7 +171,7 @@ final class Amp
     public static function isViewerScript(DOMNode $node)
     {
         if (
-            ! $node instanceof DOMElement
+            ! $node instanceof Element
             || ! self::isAsyncScript($node)
             || self::isExtension($node)
         ) {
@@ -212,7 +212,7 @@ final class Amp
      */
     public static function getExtensionName(DOMNode $node)
     {
-        if (! $node instanceof DOMElement || $node->tagName !== Tag::SCRIPT) {
+        if (! $node instanceof Element || $node->tagName !== Tag::SCRIPT) {
             return '';
         }
 
@@ -256,7 +256,7 @@ final class Amp
      */
     public static function isCustomElement(DOMNode $node)
     {
-        return $node instanceof DOMElement && strpos($node->tagName, Extension::PREFIX) === 0;
+        return $node instanceof Element && strpos($node->tagName, Extension::PREFIX) === 0;
     }
 
     /**
@@ -269,7 +269,7 @@ final class Amp
     {
         foreach ($document->head->childNodes as $node) {
             if (
-                $node instanceof DOMElement
+                $node instanceof Element
                 &&
                 $node->tagName === Tag::SCRIPT
                 &&
@@ -290,7 +290,7 @@ final class Amp
      */
     public static function isTemplate(DOMNode $node)
     {
-        if (! $node instanceof DOMElement) {
+        if (! $node instanceof Element) {
             return false;
         }
 
@@ -318,7 +318,7 @@ final class Amp
     private static function isAsyncScript(DOMNode $node)
     {
         if (
-            ! $node instanceof DOMElement
+            ! $node instanceof Element
             || $node->tagName !== Tag::SCRIPT
         ) {
             return false;
@@ -342,7 +342,7 @@ final class Amp
      */
     public static function isAmpIframe(DOMNode $node)
     {
-        if (! $node instanceof DOMElement) {
+        if (! $node instanceof Element) {
             return false;
         }
 

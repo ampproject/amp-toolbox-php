@@ -5,10 +5,10 @@ namespace AmpProject\Optimizer\Transformer;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Tag;
-use DOMElement;
 
 /**
  * Transformer that removes AMP boilerplate <style> and <noscript> tags in <head>, keeping only the amp-custom <style>
@@ -76,7 +76,7 @@ final class AmpBoilerplate implements Transformer
         /**
          * Style element.
          *
-         * @var DOMElement $style
+         * @var Element $style
          */
         foreach (iterator_to_array($document->head->getElementsByTagName(Tag::STYLE)) as $style) {
             if (! $this->isBoilerplateStyle($style)) {
@@ -93,10 +93,10 @@ final class AmpBoilerplate implements Transformer
     /**
      * Check whether an element is a boilerplate style.
      *
-     * @param DOMElement $element Element to check.
+     * @param Element $element Element to check.
      * @return bool Whether the element is a boilerplate style.
      */
-    private function isBoilerplateStyle(DOMElement $element)
+    private function isBoilerplateStyle(Element $element)
     {
         foreach (Attribute::ALL_BOILERPLATES as $boilerplate) {
             if ($element->hasAttribute($boilerplate)) {
@@ -127,10 +127,10 @@ final class AmpBoilerplate implements Transformer
     /**
      * Determine and return the boilerplate attribute and inline CSS to use.
      *
-     * @param DOMElement $htmlElement HTML DOM element to check against.
+     * @param Element $htmlElement HTML DOM element to check against.
      * @return array Tuple containing the $boilerplate and $css to use.
      */
-    private function determineBoilerplateAndCss(DOMElement $htmlElement)
+    private function determineBoilerplateAndCss(Element $htmlElement)
     {
         $boilerplate = Attribute::AMP_BOILERPLATE;
         $css         = Amp::BOILERPLATE_CSS;

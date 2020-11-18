@@ -5,10 +5,10 @@ namespace AmpProject\Optimizer\Transformer;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Tag;
-use DOMElement;
 use DOMNode;
 use DOMNodeList;
 
@@ -102,7 +102,7 @@ final class ReorderHead implements Transformer
      */
     private function registerNode(DOMNode $node)
     {
-        if (! $node instanceof DOMElement) {
+        if (! $node instanceof Element) {
             if ($node->nodeType === XML_TEXT_NODE) {
                 $nodeContent = trim($node->textContent);
                 if (empty($nodeContent)) {
@@ -137,9 +137,9 @@ final class ReorderHead implements Transformer
     /**
      * Register a <meta> node.
      *
-     * @param DOMElement $node Node to register.
+     * @param Element $node Node to register.
      */
-    private function registerMeta(DOMElement $node)
+    private function registerMeta(Element $node)
     {
         if ($node->hasAttribute(Attribute::CHARSET)) {
             $this->metaCharset = $node;
@@ -152,9 +152,9 @@ final class ReorderHead implements Transformer
     /**
      * Register a <script> node.
      *
-     * @param DOMElement $node Node to register.
+     * @param Element $node Node to register.
      */
-    private function registerScript(DOMElement $node)
+    private function registerScript(Element $node)
     {
         if (Amp::isRuntimeScript($node)) {
             $this->scriptAmpRuntime = $node;
@@ -191,9 +191,9 @@ final class ReorderHead implements Transformer
     /**
      * Register a <style> node.
      *
-     * @param DOMElement $node Node to register.
+     * @param Element $node Node to register.
      */
-    private function registerStyle(DOMElement $node)
+    private function registerStyle(Element $node)
     {
         if ($node->hasAttribute(Attribute::AMP_RUNTIME)) {
             $this->styleAmpRuntime = $node;
@@ -219,9 +219,9 @@ final class ReorderHead implements Transformer
     /**
      * Register a <link> node.
      *
-     * @param DOMElement $node Node to register.
+     * @param Element $node Node to register.
      */
-    private function registerLink(DOMElement $node)
+    private function registerLink(Element $node)
     {
         $rel = $node->getAttribute(Attribute::REL);
 
@@ -263,10 +263,10 @@ final class ReorderHead implements Transformer
     /**
      * Get the name of the custom node or template.
      *
-     * @param DOMElement $node Node to get the name of.
+     * @param Element $node Node to get the name of.
      * @return string Name of the custom node or template. Empty string if none found.
      */
-    private function getName(DOMElement $node)
+    private function getName(Element $node)
     {
         if ($node->hasAttribute(Attribute::CUSTOM_ELEMENT)) {
             return $node->getAttribute(Attribute::CUSTOM_ELEMENT);
@@ -357,10 +357,10 @@ final class ReorderHead implements Transformer
     /**
      * Check whether a given resource hint link element is pointing to an AMP resource.
      *
-     * @param DOMElement $node Link element to check.
+     * @param Element $node Link element to check.
      * @return bool Whether the link element is pointing to an AMP resource.
      */
-    private function isHintForAmp(DOMElement $node)
+    private function isHintForAmp(Element $node)
     {
         $href = $node->getAttribute(Attribute::HREF);
         if (empty($href)) {

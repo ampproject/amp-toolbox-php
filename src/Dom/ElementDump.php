@@ -3,7 +3,6 @@
 namespace AmpProject\Dom;
 
 use DOMAttr;
-use DOMElement;
 
 /**
  * Dump an element with its attributes.
@@ -17,7 +16,7 @@ final class ElementDump
     /**
      * Element to dump.
      *
-     * @var DOMElement
+     * @var Element
      */
     private $element;
 
@@ -35,10 +34,10 @@ final class ElementDump
      *
      * The object is meant to be cast to a string to do its magic.
      *
-     * @param DOMElement $element  Element to dump.
-     * @param int        $truncate Optional. Maximum length to truncate attributes and textContent to. Defaults to 120.
+     * @param Element $element  Element to dump.
+     * @param int     $truncate Optional. Maximum length to truncate attributes and textContent to. Defaults to 120.
      */
-    public function __construct(DOMElement $element, $truncate = 120)
+    public function __construct(Element $element, $truncate = 120)
     {
         $this->element  = $element;
         $this->truncate = $truncate;

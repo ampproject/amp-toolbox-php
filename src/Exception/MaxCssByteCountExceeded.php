@@ -2,8 +2,8 @@
 
 namespace AmpProject\Exception;
 
+use AmpProject\Dom\Element;
 use AmpProject\Dom\ElementDump;
-use DOMElement;
 use OverflowException;
 
 /**
@@ -17,11 +17,11 @@ final class MaxCssByteCountExceeded extends OverflowException implements AmpExce
     /**
      * Instantiate a MaxCssByteCountExceeded exception for an inline style that exceeds the maximum byte count.
      *
-     * @param DOMElement $element Element that was supposed to receive the inline style.
-     * @param string     $style   Inline style that was supposed to be added.
+     * @param Element $element Element that was supposed to receive the inline style.
+     * @param string  $style   Inline style that was supposed to be added.
      * @return self
      */
-    public static function forInlineStyle(DOMElement $element, $style)
+    public static function forInlineStyle(Element $element, $style)
     {
         $message = "Maximum allowed CSS byte count exceeded for inline style '{$style}': " . new ElementDump($element);
 

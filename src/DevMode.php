@@ -3,8 +3,7 @@
 namespace AmpProject;
 
 use AmpProject\Dom\Document;
-use DOMDocument;
-use DOMElement;
+use AmpProject\Dom\Element;
 use DOMNode;
 
 /**
@@ -27,15 +26,11 @@ final class DevMode
     /**
      * Check whether the provided document is in dev mode.
      *
-     * @param DOMDocument $document Document for which to check whether dev mode is active.
+     * @param Document $document Document for which to check whether dev mode is active.
      * @return bool Whether the document is in dev mode.
      */
-    public static function isActiveForDocument(DOMDocument $document)
+    public static function isActiveForDocument(Document $document)
     {
-        if (! $document instanceof Document) {
-            $document = Document::fromNode($document);
-        }
-
         return $document->documentElement->hasAttribute(self::DEV_MODE_ATTRIBUTE);
     }
 
@@ -47,7 +42,7 @@ final class DevMode
      */
     public static function hasExemptionForNode(DOMNode $node)
     {
-        if (! $node instanceof DOMElement) {
+        if (! $node instanceof Element) {
             return false;
         }
 

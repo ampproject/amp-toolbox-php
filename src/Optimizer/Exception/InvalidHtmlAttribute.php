@@ -2,9 +2,9 @@
 
 namespace AmpProject\Optimizer\Exception;
 
+use AmpProject\Dom\Element;
 use AmpProject\Dom\ElementDump;
 use DomainException;
-use DOMElement;
 
 /**
  * Exception thrown when an invalid HTML attribute was detected.
@@ -17,11 +17,11 @@ final class InvalidHtmlAttribute extends DomainException implements AmpOptimizer
     /**
      * Instantiate an InvalidHtmlAttribute exception for an invalid attribute value.
      *
-     * @param string     $attributeName Name of the attribute.
-     * @param DOMElement $element       Element that contains the invalid attribute.
+     * @param string  $attributeName Name of the attribute.
+     * @param Element $element       Element that contains the invalid attribute.
      * @return self
      */
-    public static function fromAttribute($attributeName, DOMElement $element)
+    public static function fromAttribute($attributeName, Element $element)
     {
         $message = "Invalid value detected for attribute '{$attributeName}': " . new ElementDump($element);
 

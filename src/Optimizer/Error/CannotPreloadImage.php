@@ -2,9 +2,9 @@
 
 namespace AmpProject\Optimizer\Error;
 
+use AmpProject\Dom\Element;
 use AmpProject\Dom\ElementDump;
 use AmpProject\Optimizer\Error;
-use DOMElement;
 
 final class CannotPreloadImage implements Error
 {
@@ -17,10 +17,10 @@ final class CannotPreloadImage implements Error
     /**
      * Instantiate a CannotPreloadImage object for an image with a srcset attribute.
      *
-     * @param DOMElement|null $element Optional. Image element that has the srcset attribute, or null if no element.
+     * @param Element|null $element Optional. Image element that has the srcset attribute, or null if no element.
      * @return self
      */
-    public static function fromImageWithSrcsetAttribute(DOMElement $element = null)
+    public static function fromImageWithSrcsetAttribute(Element $element = null)
     {
         $message = self::SRCSET_STRING;
 

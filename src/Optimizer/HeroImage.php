@@ -2,7 +2,7 @@
 
 namespace AmpProject\Optimizer;
 
-use DOMElement;
+use AmpProject\Dom\Element;
 
 /**
  * Representation of a hero image.
@@ -17,7 +17,7 @@ final class HeroImage
     /**
      * <amp-img> element wrapping the actual hero image.
      *
-     * @var DOMElement|null
+     * @var Element|null
      */
     private $ampImg;
 
@@ -45,10 +45,10 @@ final class HeroImage
     /**
      * HeroImage constructor.
      *
-     * @param string          $src    Image src tag pointing to the image file.
-     * @param string          $media  Image media attribute.
-     * @param string          $srcset Image srcset attribute.
-     * @param DOMElement|null $ampImg <amp-img> element wrapping the actual hero image, or null if none.
+     * @param string       $src    Image src tag pointing to the image file.
+     * @param string       $media  Image media attribute.
+     * @param string       $srcset Image srcset attribute.
+     * @param Element|null $ampImg <amp-img> element wrapping the actual hero image, or null if none.
      */
     public function __construct($src, $media, $srcset, $ampImg = null)
     {
@@ -61,7 +61,7 @@ final class HeroImage
     /**
      * Get the <amp-img> element wrapping the actual hero image.
      *
-     * @return DOMElement|null AMP image element or null if none.
+     * @return Element|null AMP image element or null if none.
      */
     public function getAmpImg()
     {

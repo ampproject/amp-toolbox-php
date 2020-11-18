@@ -5,6 +5,7 @@ namespace AmpProject\Dom;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\DevMode;
+use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
 use AmpProject\Tag;
@@ -22,15 +23,15 @@ use DOMXPath;
  *
  * Abstract away some of the difficulties of working with PHP's DOMDocument.
  *
- * @property DOMXPath        $xpath                   XPath query object for this document.
- * @property DOMElement      $html                    The document's <html> element.
- * @property DOMElement      $head                    The document's <head> element.
- * @property DOMElement      $body                    The document's <body> element.
- * @property DOMElement|null $viewport                The document's viewport meta element.
- * @property DOMNodeList     $ampElements             The document's <amp-*> elements.
- * @property DOMElement      $ampCustomStyle          The document's <style amp-custom> element.
- * @property int             $ampCustomStyleByteCount Count of bytes of the CSS in the <style amp-custom> tag.
- * @property int             $inlineStyleByteCount    Count of bytes of the CSS in all of the inline style attributes.
+ * @property DOMXPath     $xpath                   XPath query object for this document.
+ * @property Element      $html                    The document's <html> element.
+ * @property Element      $head                    The document's <head> element.
+ * @property Element      $body                    The document's <body> element.
+ * @property Element|null $viewport                The document's viewport meta element.
+ * @property DOMNodeList  $ampElements             The document's <amp-*> elements.
+ * @property Element      $ampCustomStyle          The document's <style amp-custom> element.
+ * @property int          $ampCustomStyleByteCount Count of bytes of the CSS in the <style amp-custom> tag.
+ * @property int          $inlineStyleByteCount    Count of bytes of the CSS in all of the inline style attributes.
  *
  * @package ampproject/amp-toolbox
  */
@@ -496,7 +497,7 @@ final class Document extends DOMDocument
             }
 
             if (
-                $meta instanceof DOMElement
+                $meta instanceof Element
                 && Tag::META === $meta->tagName
                 && self::HTML_HTTP_EQUIV_VALUE === $meta->getAttribute(Attribute::HTTP_EQUIV)
                 && (self::HTML_HTTP_EQUIV_CONTENT_VALUE) === $meta->getAttribute(Attribute::CONTENT)
@@ -700,30 +701,42 @@ final class Document extends DOMDocument
             /**
              * The old document element that we need to remove and replace as we cannot just move it around.
              *
-             * @var DOMElement
+             * @var Element
              */
             $oldDocumentElement = $this->removeChild($this->documentElement);
             $html = $this->createElement(Tag::HTML);
             $this->insertBefore($html, $nextSibling);
 
             if ($oldDocumentElement->nodeName === Tag::HEAD) {
-                $this->head = $oldDocumentElement;
+                $head = $oldDocumentElement;
             } else {
-                $this->head = $this->getElementsByTagName(Tag::HEAD)->item(0);
-                if (! $this->head) {
-                    $this->head = $this->createElement(Tag::HEAD);
+                $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
+                if (!$head) {
+                    $head = $this->createElement(Tag::HEAD);
                 }
             }
+
+            if (!$head instanceof Element) {
+                throw FailedToRetrieveRequiredDomElement::forHeadElement($head);
+            }
+
+            $this->head = $head;
             $html->appendChild($this->head);
 
             if ($oldDocumentElement->nodeName === Tag::BODY) {
-                $this->body = $oldDocumentElement;
+                $body = $oldDocumentElement;
             } else {
-                $this->body = $this->getElementsByTagName(Tag::BODY)->item(0);
-                if (! $this->body) {
-                    $this->body = $this->createElement(Tag::BODY);
+                $body = $this->getElementsByTagName(Tag::BODY)->item(0);
+                if (!$body) {
+                    $body = $this->createElement(Tag::BODY);
                 }
             }
+
+            if (!$body instanceof Element) {
+                throw FailedToRetrieveRequiredDomElement::forBodyElement($body);
+            }
+
+            $this->body = $body;
             $html->appendChild($this->body);
 
             if ($oldDocumentElement !== $this->body && $oldDocumentElement !== $this->head) {
@@ -731,13 +744,13 @@ final class Document extends DOMDocument
             }
         } else {
             $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
-            if (! $head) {
+            if (!$head) {
                 $this->head = $this->createElement(Tag::HEAD);
                 $this->documentElement->insertBefore($this->head, $this->documentElement->firstChild);
             }
 
             $body = $this->getElementsByTagName(Tag::BODY)->item(0);
-            if (! $body) {
+            if (!$body) {
                 $this->body = $this->createElement(Tag::BODY);
                 $this->documentElement->appendChild($this->body);
             }
@@ -832,7 +845,7 @@ final class Document extends DOMDocument
         // Move nodes from after the </html>.
         while ($this->documentElement->nextSibling) {
             $nextSibling = $this->documentElement->nextSibling;
-            if ($nextSibling instanceof DOMElement && Tag::HTML === $nextSibling->nodeName) {
+            if ($nextSibling instanceof Element && Tag::HTML === $nextSibling->nodeName) {
                 // Handle trailing elements getting wrapped in implicit duplicate <html>.
                 while ($nextSibling->firstChild) {
                     $this->body->appendChild($nextSibling->firstChild);
@@ -1490,7 +1503,7 @@ final class Document extends DOMDocument
         /**
          * Main tag to keep.
          *
-         * @var DOMElement|null $mainTag
+         * @var Element|null $mainTag
          */
         $mainTag = $tags->item(0);
 
@@ -1502,7 +1515,7 @@ final class Document extends DOMDocument
             /**
              * Tag to remove.
              *
-             * @var DOMElement $tagToRemove
+             * @var Element $tagToRemove
              */
             $tagToRemove = $tags->item(1);
 
@@ -1545,7 +1558,7 @@ final class Document extends DOMDocument
     public function isValidHeadNode(DOMNode $node)
     {
         return (
-            ($node instanceof DOMElement && in_array($node->nodeName, Tag::ELEMENTS_ALLOWED_IN_HEAD, true))
+            ($node instanceof Element && in_array($node->nodeName, Tag::ELEMENTS_ALLOWED_IN_HEAD, true))
             ||
             ($node instanceof DOMText && preg_match('/^\s*$/', $node->nodeValue)) // Whitespace text nodes are OK.
             ||
@@ -1578,18 +1591,18 @@ final class Document extends DOMDocument
      *
      * If the element does not have an ID, create one first.
      *
-     * @param DOMElement $element Element to get the ID for.
-     * @param string     $prefix  Optional. The prefix to use (should not have a trailing dash). Defaults to 'i-amp-id'.
+     * @param Element $element Element to get the ID for.
+     * @param string  $prefix  Optional. The prefix to use (should not have a trailing dash). Defaults to 'i-amp-id'.
      * @return string ID to use.
      */
-    public function getElementId(DOMElement $element, $prefix = 'i-amp')
+    public function getElementId(Element $element, $prefix = 'i-amp')
     {
         if ($element->hasAttribute(Attribute::ID)) {
             return $element->getAttribute(Attribute::ID);
         }
 
         $id = $this->getUniqueId($prefix);
-        while ($this->getElementById($id) instanceof DOMElement) {
+        while ($this->getElementById($id) instanceof Element) {
             $id = $this->getUniqueId($prefix);
         }
 
@@ -1672,35 +1685,56 @@ final class Document extends DOMDocument
                 $this->xpath = new DOMXPath($this);
                 return $this->xpath;
             case Tag::HTML:
-                $this->html = $this->getElementsByTagName(Tag::HTML)->item(0);
-                if ($this->html === null) {
+                $html = $this->getElementsByTagName(Tag::HTML)->item(0);
+
+                if ($html === null) {
                     // Document was assembled manually and bypassed normalisation.
                     $this->normalizeDomStructure();
-                    $this->html = $this->getElementsByTagName(Tag::HTML)->item(0);
+                    $html = $this->getElementsByTagName(Tag::HTML)->item(0);
                 }
+
+                if (!$html instanceof Element) {
+                    throw FailedToRetrieveRequiredDomElement::forHtmlElement($html);
+                }
+
+                $this->html = $html;
                 return $this->html;
             case Tag::HEAD:
-                $this->head = $this->getElementsByTagName(Tag::HEAD)->item(0);
-                if ($this->head === null) {
+                $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
+
+                if ($head === null) {
                     // Document was assembled manually and bypassed normalisation.
                     $this->normalizeDomStructure();
-                    $this->head = $this->getElementsByTagName(Tag::HEAD)->item(0);
+                    $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
                 }
+
+                if (!$head instanceof Element) {
+                    throw FailedToRetrieveRequiredDomElement::forHeadElement($head);
+                }
+
+                $this->head = $head;
                 return $this->head;
             case Tag::BODY:
-                $this->body = $this->getElementsByTagName(Tag::BODY)->item(0);
-                if ($this->body === null) {
+                $body = $this->getElementsByTagName(Tag::BODY)->item(0);
+
+                if ($body === null) {
                     // Document was assembled manually and bypassed normalisation.
                     $this->normalizeDomStructure();
-                    $this->body = $this->getElementsByTagName(Tag::BODY)->item(0);
+                    $body = $this->getElementsByTagName(Tag::BODY)->item(0);
                 }
+
+                if (!$body instanceof Element) {
+                    throw FailedToRetrieveRequiredDomElement::forBodyElement($body);
+                }
+
+                $this->body = $body;
                 return $this->body;
             case Attribute::VIEWPORT:
                 // This is not cached as it could potentially be requested too early, before the viewport was added, and
                 // the cache would then store null without rechecking later on after the viewport has been added.
                 for ($node = $this->head->firstChild; $node !== null; $node = $node->nextSibling) {
                     if (
-                        $node instanceof DOMElement
+                        $node instanceof Element
                         && $node->tagName === Tag::META
                         && $node->getAttribute(Attribute::NAME) === Attribute::VIEWPORT
                     ) {
@@ -1716,7 +1750,7 @@ final class Document extends DOMDocument
 
             case 'ampCustomStyle':
                 $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
-                if (!$ampCustomStyle instanceof DOMElement) {
+                if (!$ampCustomStyle instanceof Element) {
                     $ampCustomStyle = $this->createElement(Tag::STYLE);
                     $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
                     $this->head->appendChild($ampCustomStyle);
@@ -1729,7 +1763,7 @@ final class Document extends DOMDocument
             case 'ampCustomStyleByteCount':
                 if (!isset($this->ampCustomStyle)) {
                     $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
-                    if (!$ampCustomStyle instanceof DOMElement) {
+                    if (!$ampCustomStyle instanceof Element) {
                         return 0;
                     } else {
                         $this->ampCustomStyle = $ampCustomStyle;
@@ -1767,5 +1801,28 @@ final class Document extends DOMDocument
     public function __clone()
     {
         $this->reset();
+    }
+
+    /**
+     * Create new element node.
+     *
+     * @link https://php.net/manual/domdocument.createelement.php
+     *
+     * This override only serves to provide the correct object type-hint for our extended Dom/Element class.
+     *
+     * @param string $name  The tag name of the element.
+     * @param string $value Optional. The value of the element. By default, an empty element will be created.
+     *                      You can also set the value later with Element->nodeValue.
+     * @return Element|false A new instance of class Element or false if an error occurred.
+     */
+    public function createElement($name, $value = null)
+    {
+        $element = parent::createElement($name, $value);
+
+        if (!$element instanceof Element) {
+            return false;
+        }
+
+        return $element;
     }
 }

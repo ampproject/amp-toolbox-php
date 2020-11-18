@@ -3,8 +3,8 @@
 namespace AmpProject\Optimizer;
 
 use AmpProject\Attribute;
+use AmpProject\Dom\Element;
 use AmpProject\Layout;
-use DOMElement;
 
 final class ImageDimensions
 {
@@ -19,7 +19,7 @@ final class ImageDimensions
     /**
      * Image for which this represents the dimensions.
      *
-     * @var DOMElement
+     * @var Element
      */
     private $image;
 
@@ -47,9 +47,9 @@ final class ImageDimensions
     /**
      * ImageDimensions constructor.
      *
-     * @param DOMElement $image Image to represent the dimensions of.
+     * @param Element $image Image to represent the dimensions of.
      */
-    public function __construct(DOMElement $image)
+    public function __construct(Element $image)
     {
         $this->image = $image;
     }
@@ -66,7 +66,7 @@ final class ImageDimensions
         while ($element->parentNode && ++$level < 3) {
             $element = $element->parentNode;
 
-            if (! $element instanceof DOMElement) {
+            if (! $element instanceof Element) {
                 continue;
             }
 

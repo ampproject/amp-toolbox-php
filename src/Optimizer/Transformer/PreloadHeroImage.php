@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer\Transformer;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
 use AmpProject\Extension;
 use AmpProject\Layout;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
@@ -17,7 +18,6 @@ use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\RequestDestination;
 use AmpProject\Tag;
 use AmpProject\Url;
-use DOMElement;
 use DOMNode;
 
 /**
@@ -125,7 +125,7 @@ final class PreloadHeroImage implements Transformer
     /**
      * Reference node to attach preload links to.
      *
-     * @var DOMElement|null
+     * @var Element|null
      */
     private $preloadReferenceNode;
 
@@ -191,7 +191,7 @@ final class PreloadHeroImage implements Transformer
         $node               = $document->body;
 
         while ($node !== null) {
-            if (! $node instanceof DOMElement) {
+            if (! $node instanceof Element) {
                 $node = $this->nextNode($node);
                 continue;
             }
@@ -229,10 +229,10 @@ final class PreloadHeroImage implements Transformer
     /**
      * Detect a hero image with the data-hero attribute.
      *
-     * @param DOMElement $element Element to detect for.
+     * @param Element $element Element to detect for.
      * @return HeroImage|null Detected hero image, or null if none detected.
      */
-    private function detectImageWithDataHero(DOMElement $element)
+    private function detectImageWithDataHero(Element $element)
     {
         if (!$element->hasAttribute(Attribute::DATA_HERO)) {
             return null;
@@ -274,10 +274,10 @@ final class PreloadHeroImage implements Transformer
      *
      * The hero image here can come from one of <amp-img>, <amp-video>, <amp-iframe>, <amp-video-iframe>.
      *
-     * @param DOMElement $element Element to detect for.
+     * @param Element $element Element to detect for.
      * @return HeroImage|null Detected hero image candidate, or null if none detected.
      */
-    private function detectHeroImageCandidate(DOMElement $element)
+    private function detectHeroImageCandidate(Element $element)
     {
         if (
             $element->hasAttribute(Attribute::LAYOUT)
@@ -304,10 +304,10 @@ final class PreloadHeroImage implements Transformer
     /**
      * Detect a hero image candidate from an <amp-img> element.
      *
-     * @param DOMElement $element Element to detect for.
+     * @param Element $element Element to detect for.
      * @return HeroImage|null Detected hero image candidate, or null if none detected.
      */
-    private function detectHeroImageCandidateForAmpImg(DOMElement $element)
+    private function detectHeroImageCandidateForAmpImg(Element $element)
     {
         $src = $element->getAttribute(Attribute::SRC);
 
@@ -332,10 +332,10 @@ final class PreloadHeroImage implements Transformer
     /**
      * Detect a hero image candidate from a video's poster (= placeholder) image.
      *
-     * @param DOMElement $element Element to detect for.
+     * @param Element $element Element to detect for.
      * @return HeroImage|null Detected hero image candidate, or null if none detected.
      */
-    private function detectHeroImageCandidateForPosterImage(DOMElement $element)
+    private function detectHeroImageCandidateForPosterImage(Element $element)
     {
         $poster = $element->getAttribute(Attribute::POSTER);
 
@@ -359,10 +359,10 @@ final class PreloadHeroImage implements Transformer
     /**
      * Detect a hero image candidate from a placeholder image.
      *
-     * @param DOMElement $element Element to detect for.
+     * @param Element $element Element to detect for.
      * @return HeroImage|null Detected hero image candidate, or null if none detected.
      */
-    private function detectHeroImageCandidateForPlaceholderImage(DOMElement $element)
+    private function detectHeroImageCandidateForPlaceholderImage(Element $element)
     {
         // The placeholder will be a child node of the element.
         if (! $element->hasChildNodes()) {
@@ -380,14 +380,14 @@ final class PreloadHeroImage implements Transformer
     /**
      * Get the placeholder image for a given element.
      *
-     * @param DOMElement $element Element to check the placeholder image for.
+     * @param Element $element Element to check the placeholder image for.
      * @return HeroImage|null Placeholder image to use or null if none found.
      */
-    private function getPlaceholderImage(DOMElement $element)
+    private function getPlaceholderImage(Element $element)
     {
         foreach ($element->childNodes as $childNode) {
             if (
-                ! $childNode instanceof DOMElement
+                ! $childNode instanceof Element
                 || ! $childNode->hasAttribute(Attribute::PLACEHOLDER)
             ) {
                 continue;
@@ -396,7 +396,7 @@ final class PreloadHeroImage implements Transformer
             $placeholder = $childNode;
 
             while ($placeholder !== null) {
-                if (! $placeholder instanceof DOMElement) {
+                if (! $placeholder instanceof Element) {
                     $placeholder = $this->nextNode($placeholder);
                     continue;
                 }
@@ -417,7 +417,7 @@ final class PreloadHeroImage implements Transformer
                 }
             }
 
-            if (!$placeholder instanceof DOMElement) {
+            if (!$placeholder instanceof Element) {
                 break;
             }
 
@@ -528,7 +528,7 @@ final class PreloadHeroImage implements Transformer
 
         // Remove any noscript>img when an amp-img is pre-rendered.
         $noscript = $document->xpath->query(self::NOSCRIPT_IMG_XPATH_QUERY, $element)->item(0);
-        if ($noscript instanceof DOMElement) {
+        if ($noscript instanceof Element) {
             $noscript->parentNode->removeChild($noscript);
         }
     }
@@ -543,7 +543,7 @@ final class PreloadHeroImage implements Transformer
     private function hasExistingImagePreload(Document $document, $src)
     {
         foreach ($document->head->childNodes as $node) {
-            if (! $node instanceof DOMElement) {
+            if (! $node instanceof Element) {
                 continue;
             }
 
@@ -607,10 +607,10 @@ final class PreloadHeroImage implements Transformer
     /**
      * Check whether a given element is an AMP embed.
      *
-     * @param DOMElement $element Element to check.
+     * @param Element $element Element to check.
      * @return bool Whether the given element is an AMP embed.
      */
-    private function isAmpEmbed(DOMElement $element)
+    private function isAmpEmbed(Element $element)
     {
         return array_key_exists($element->tagName, self::AMP_EMBEDS);
     }
@@ -621,10 +621,10 @@ final class PreloadHeroImage implements Transformer
      * This falls back to the data-amp-original-style attribute if the inline
      * style was already extracted by the CSS tree-shaking.
      *
-     * @param DOMElement $element
+     * @param Element $element
      * @return string URL of the background image, or an empty string if not found.
      */
-    private function getCssBackgroundImageUrl(DOMElement $element)
+    private function getCssBackgroundImageUrl(Element $element)
     {
         $matches = [];
 

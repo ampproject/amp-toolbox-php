@@ -4,9 +4,9 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
 use AmpProject\Layout;
 use AmpProject\Tag;
-use DOMElement;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,7 +25,7 @@ class ImageDimensionsTest extends TestCase
      */
     public function testItCanBeInstantiated()
     {
-        $image           = new DOMElement(Tag::IMG);
+        $image           = new Element(Tag::IMG);
         $imageDimensions = new ImageDimensions($image);
 
         $this->assertInstanceOf(ImageDimensions::class, $imageDimensions);

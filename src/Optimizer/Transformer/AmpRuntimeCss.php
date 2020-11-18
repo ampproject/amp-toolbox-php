@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer\Transformer;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
@@ -13,7 +14,6 @@ use AmpProject\RemoteGetRequest;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\RuntimeVersion;
 use AmpProject\Tag;
-use DOMElement;
 use Exception;
 
 /**
@@ -106,7 +106,7 @@ final class AmpRuntimeCss implements Transformer
      *
      * @param Document        $document Document to find the element in.
      * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
-     * @return DOMElement|false DOM element for the <style amp-runtime> tag, or false if not found.
+     * @return Element|false DOM element for the <style amp-runtime> tag, or false if not found.
      */
     private function findAmpRuntimeStyle(Document $document, ErrorCollection $errors)
     {
@@ -114,7 +114,7 @@ final class AmpRuntimeCss implements Transformer
             ->query(self::AMP_RUNTIME_STYLE_XPATH, $document->head)
             ->item(0);
 
-        if (! $ampRuntimeStyle instanceof DOMElement) {
+        if (! $ampRuntimeStyle instanceof Element) {
             $version = $this->configuration->get(AmpRuntimeCssConfiguration::VERSION);
             $errors->add(Error\CannotInlineRuntimeCss::fromMissingAmpRuntimeStyle($version));
             return false;
@@ -127,10 +127,10 @@ final class AmpRuntimeCss implements Transformer
      * Add the static boilerplate CSS to the <style amp-runtime> element.
      *
      * @param Document        $document        Document to add the static CSS to.
-     * @param DOMElement      $ampRuntimeStyle DOM element for the <style amp-runtime> tag to add the static CSS to.
+     * @param Element         $ampRuntimeStyle DOM element for the <style amp-runtime> tag to add the static CSS to.
      * @param ErrorCollection $errors          Error collection to add errors to.
      */
-    private function addStaticCss(Document $document, DOMElement $ampRuntimeStyle, ErrorCollection $errors)
+    private function addStaticCss(Document $document, Element $ampRuntimeStyle, ErrorCollection $errors)
     {
         $version = $this->configuration->get(AmpRuntimeCssConfiguration::VERSION);
 
@@ -147,10 +147,10 @@ final class AmpRuntimeCss implements Transformer
     /**
      * Insert the boilerplate style as inline CSS.
      *
-     * @param DOMElement $ampRuntimeStyle DOM element for the <style amp-runtime> tag to inline the CSS into.
-     * @param string     $version         Version of the boilerplate style to use.
+     * @param Element $ampRuntimeStyle DOM element for the <style amp-runtime> tag to inline the CSS into.
+     * @param string  $version         Version of the boilerplate style to use.
      */
-    private function inlineCss(DOMElement $ampRuntimeStyle, $version)
+    private function inlineCss(Element $ampRuntimeStyle, $version)
     {
         // Use version passed in via params if available, otherwise fetch the current prod version.
         if (! empty($version)) {
@@ -184,10 +184,10 @@ final class AmpRuntimeCss implements Transformer
     /**
      * Insert the boilerplate style as inline CSS.
      *
-     * @param Document   $document        Document to link the CSS in.
-     * @param DOMElement $ampRuntimeStyle DOM element for the <style amp-runtime> tag to inline the CSS into.
+     * @param Document $document        Document to link the CSS in.
+     * @param Element  $ampRuntimeStyle DOM element for the <style amp-runtime> tag to inline the CSS into.
      */
-    private function linkCss(Document $document, DOMElement $ampRuntimeStyle)
+    private function linkCss(Document $document, Element $ampRuntimeStyle)
     {
         $cssStyleNode = $document->createElement(Tag::LINK);
         $cssStyleNode->setAttribute(Attribute::REL, Attribute::REL_STYLESHEET);
