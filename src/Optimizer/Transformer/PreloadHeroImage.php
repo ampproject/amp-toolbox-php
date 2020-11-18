@@ -58,13 +58,21 @@ final class PreloadHeroImage implements Transformer
     const ATTRIBUTES_TO_COPY = [
         Attribute::ALT,
         Attribute::ATTRIBUTION,
-        Attribute::OBJECT_FIT,
-        Attribute::OBJECT_POSITION,
         Attribute::REFERRERPOLICY,
         Attribute::SRC,
         Attribute::SRCSET,
         Attribute::SIZES,
         Attribute::TITLE,
+    ];
+
+    /**
+     * List of attributes to inline onto an SSR'ed image.
+     *
+     * @var string[]
+     */
+    const ATTRIBUTES_TO_INLINE = [
+        Attribute::OBJECT_FIT,
+        Attribute::OBJECT_POSITION,
     ];
 
     /**
@@ -518,6 +526,14 @@ final class PreloadHeroImage implements Transformer
         foreach (self::ATTRIBUTES_TO_COPY as $attribute) {
             if ($element->hasAttribute($attribute)) {
                 $imgElement->setAttribute($attribute, $element->getAttribute($attribute));
+            }
+        }
+
+        foreach (self::ATTRIBUTES_TO_INLINE as $attribute) {
+            if ($element->hasAttribute($attribute)) {
+                $value = $element->getAttribute($attribute);
+                $style = empty($value) ? '' : "{$attribute}:{$element->getAttribute($attribute)}";
+                $imgElement->addInlineStyle($style);
             }
         }
 
