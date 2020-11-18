@@ -1619,24 +1619,24 @@ final class Document extends DOMDocument
         $style         = trim($style, CssRule::CSS_TRIM_CHARACTERS);
         $existingStyle = (string)$this->ampCustomStyle->textContent;
 
-        $newStyle     = $existingStyle . $style;
+        // Inject new styles before any potential source map annotation comment like: /*# sourceURL=amp-custom.css */.
+        // If not present, then just put it at the end of the stylesheet. This isn't strictly required, but putting the
+        // source map comments at the end is the convention.
+        $newStyle = preg_replace(
+            ':(?=\s+/\*#[^*]+?\*/\s*$|$):s',
+            $style,
+            $existingStyle,
+            1
+        );
+
         $newByteCount = strlen($newStyle);
 
         if ($this->getRemainingCustomCssSpace() < ($newByteCount - $this->ampCustomStyleByteCount)) {
             throw MaxCssByteCountExceeded::forAmpCustom($newStyle);
         }
 
-        // Inject new styles before any potential source map annotation comment like: /*# sourceURL=amp-custom.css */.
-        // If not present, then just put it at the end of the stylesheet. This isn't strictly required, but putting the
-        // source map comments at the end is the convention.
-        $this->ampCustomStyle->textContent = preg_replace(
-            ':(?=\s+/\*#[^*]+?\*/\s*$|$):s',
-            $newStyle,
-            $this->ampCustomStyle->textContent,
-            1
-        );
-
-        $this->ampCustomStyleByteCount = $newByteCount;
+        $this->ampCustomStyle->textContent = $newStyle;
+        $this->ampCustomStyleByteCount     = $newByteCount;
     }
 
     /**
