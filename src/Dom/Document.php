@@ -663,7 +663,6 @@ final class Document extends DOMDocument
      */
     public function normalizeDomStructure()
     {
-
         if (! $this->documentElement) {
             $this->appendChild($this->createElement(Tag::HTML));
         } elseif (Tag::HTML !== $this->documentElement->nodeName) {
@@ -725,24 +724,23 @@ final class Document extends DOMDocument
      */
     private function normalizeHtmlAttributes()
     {
-        $html = $this->documentElement;
-        if (! $html->hasAttributes()) {
+        if (! $this->html->hasAttributes()) {
             return;
         }
 
-        $xmlns = $html->attributes->getNamedItem('xmlns');
+        $xmlns = $this->html->attributes->getNamedItem('xmlns');
         if ($xmlns instanceof DOMAttr && 'http://www.w3.org/1999/xhtml' === $xmlns->nodeValue) {
-            $html->removeAttributeNode($xmlns);
+            $this->html->removeAttributeNode($xmlns);
         }
 
-        $xml_lang = $html->attributes->getNamedItem('xml:lang');
+        $xml_lang = $this->html->attributes->getNamedItem('xml:lang');
         if ($xml_lang instanceof DOMAttr) {
-            $lang_node = $html->attributes->getNamedItem('lang');
+            $lang_node = $this->html->attributes->getNamedItem('lang');
             if ((! $lang_node || ! $lang_node->nodeValue) && $xml_lang->nodeValue) {
                 // Move the html[xml:lang] value to html[lang].
-                $html->setAttribute('lang', $xml_lang->nodeValue);
+                $this->html->setAttribute('lang', $xml_lang->nodeValue);
             }
-            $html->removeAttributeNode($xml_lang);
+            $this->html->removeAttributeNode($xml_lang);
         }
     }
 
