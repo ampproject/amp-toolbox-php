@@ -21,7 +21,7 @@ final class ElementDump
     private $element;
 
     /**
-     *
+     * Maximum length to truncate attributes and textContent to.
      *
      * Defaults to 120.
      *
@@ -50,23 +50,17 @@ final class ElementDump
      */
     public function __toString()
     {
-        $attributes = array_reduce(
-            iterator_to_array($this->element->attributes, true),
-            static function ($text, DOMAttr $attribute) {
-                return $text . " {$attribute->nodeName}=\"{$attribute->value}\"";
-            },
-            ''
+        $attributes = $this->maybeTruncate(
+            array_reduce(
+                iterator_to_array($this->element->attributes, true),
+                static function ($text, DOMAttr $attribute) {
+                    return $text . " {$attribute->nodeName}=\"{$attribute->value}\"";
+                },
+                ''
+            )
         );
 
-        if ($this->truncate > 0 && mb_strlen($attributes) > $this->truncate) {
-            $attributes = mb_substr($attributes, 0, $this->truncate - 1) . '…';
-        }
-
-        $textContent = $this->element->textContent;
-
-        if ($this->truncate > 0 && mb_strlen($textContent) > $this->truncate) {
-            $textContent = mb_substr($textContent, 0, $this->truncate - 1) . '…';
-        }
+        $textContent = $this->maybeTruncate($this->element->textContent);
 
         return sprintf(
             '<%1$s%2$s>%3$s</%1$s>',
@@ -74,5 +68,33 @@ final class ElementDump
             $attributes,
             $textContent
         );
+    }
+
+    /**
+     * Truncate the provided text if needed.
+     *
+     * @param string $text Text to truncate.
+     * @return string Potentially truncated text.
+     */
+    private function maybeTruncate($text)
+    {
+        if ($this->truncate <= 0) {
+            return $text;
+        }
+
+        // Not checking for both mb_* functions, as we assume that if one mb_* function exists, the extension is
+        // available and all mb_* functions will exist.
+        if (function_exists('mb_strlen')) {
+            if (mb_strlen($text) > $this->truncate) {
+                return mb_substr($text, 0, $this->truncate - 1) . '…';
+            }
+        } elseif (strlen($text) > $this->truncate) {
+            // Fall back to regular string functions, knowing that this might potentially miscalculate and/or split
+            // multi-byte chars. We do so as we assume a site with special character encoding needs will have the
+            // multi-byte extension loaded anyway.
+            return substr($text, 0, $this->truncate - 1) . '…';
+        }
+
+        return $text;
     }
 }
