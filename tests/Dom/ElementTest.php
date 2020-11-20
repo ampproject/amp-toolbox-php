@@ -54,13 +54,44 @@ class ElementTest extends TestCase
         $this->assertEquals($expected, $element->inlineStyleByteCount);
     }
 
-
     /**
-     * Test adding inline styles.
+     * Test adding inline styles without CSS byte count limit.
      */
-    public function testAddInlineStyle()
+    public function testAddInlineStyleWithoutLimit()
     {
         $document = new Document();
+        $ampCustomStyle = $document->createElement(Tag::STYLE);
+        $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 38, 'X');
+        $document->head->appendChild($ampCustomStyle);
+
+        /** @var Element $element */
+        $element = $document->createElement(Tag::DIV);
+        $document->body->appendChild($element);
+
+        // Inline style can be added.
+        $element->addInlineStyle('color:red');
+
+        $this->assertEquals('<div style="color:red"></div>', (string)new ElementDump($element));
+
+        // Semicolons are handled automatically.
+        $element->addInlineStyle('  ;  ;  border-left=0  ;  ;  ');
+        $element->addInlineStyle('  ;  ;  border-right=0  ;  ;  ');
+
+        $this->assertEquals('<div style="color:red;border-left=0;border-right=0"></div>', (string)new ElementDump($element));
+
+        $element->addInlineStyle('XXXXX');
+
+        $this->assertEquals('<div style="color:red;border-left=0;border-right=0;XXXXX"></div>', (string)new ElementDump($element));
+    }
+
+    /**
+     * Test adding inline styles with CSS byte count limit.
+     */
+    public function testAddInlineStyleWithLimit()
+    {
+        $document = new Document();
+        $document->enforceCssMaxByteCount(Amp::MAX_CSS_BYTE_COUNT);
         $ampCustomStyle = $document->createElement(Tag::STYLE);
         $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
         $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 38, 'X');
@@ -84,7 +115,7 @@ class ElementTest extends TestCase
         // Exception is thrown if maximum allowed byte count is exceeded.
         $this->expectException(MaxCssByteCountExceeded::class);
         $this->expectExceptionMessage(
-            'Maximum allowed CSS byte count exceeded for inline style \'X\': <div style="color:red;border-left=0;border-right=0"></div>'
+            'Maximum allowed CSS byte count exceeded for inline style'
         );
 
         $element->addInlineStyle('X');

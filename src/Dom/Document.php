@@ -1683,7 +1683,10 @@ final class Document extends DOMDocument
             return PHP_INT_MAX;
         }
 
-        return max(0, $this->cssMaxByteCountEnforced - (int)$this->ampCustomStyleByteCount - (int)$this->inlineStyleByteCount);
+        return max(
+            0,
+            $this->cssMaxByteCountEnforced - (int)$this->ampCustomStyleByteCount - (int)$this->inlineStyleByteCount
+        );
     }
 
     /**
