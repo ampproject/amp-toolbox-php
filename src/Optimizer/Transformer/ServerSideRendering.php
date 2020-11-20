@@ -157,7 +157,8 @@ final class ServerSideRendering implements Transformer
              * Now apply the layout to the custom elements. If we encounter any unsupported layout, the applyLayout()
              * method returns false and we can't remove the boilerplate.
              */
-            if (! $this->applyLayout($document, $ampElement, $errors)) {
+            $adaptedElement = $this->applyLayout($document, $ampElement, $errors);
+            if ($adaptedElement === false) {
                 $errors->add(Error\CannotRemoveBoilerplate::fromUnsupportedLayout($ampElement));
                 $canRemoveBoilerplate = false;
             }
@@ -165,7 +166,7 @@ final class ServerSideRendering implements Transformer
             // Removal of attributes is deferred as layout application needs them.
             if (is_array($attributesToRemove)) {
                 foreach ($attributesToRemove as $attributeToRemove) {
-                    $ampElement->removeAttribute($attributeToRemove);
+                    $adaptedElement->removeAttribute($attributeToRemove);
                 }
             }
         }
@@ -251,7 +252,7 @@ final class ServerSideRendering implements Transformer
      * @param Element         $element  Element to apply the layout to.
      * @param Document        $document DOM document to apply the transformations to.
      * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
-     * @return boolean Whether applying the layout was successful or not.
+     * @return Element|false Adapted element, or false if the layout could not be applied.
      */
     private function applyLayout(Document $document, Element $element, ErrorCollection $errors)
     {
@@ -290,6 +291,7 @@ final class ServerSideRendering implements Transformer
         }
 
         try {
+            /** @var Element $newElement */
             $newElement = $element->cloneNode(true);
             $this->applyLayoutAttributes($newElement, $layout, $width, $height);
             $this->maybeAddSizerInto($document, $newElement, $layout, $width, $height);
@@ -301,7 +303,7 @@ final class ServerSideRendering implements Transformer
             return false;
         }
 
-        return true;
+        return $newElement;
     }
 
     /**

@@ -35,7 +35,8 @@ final class SpecTest extends TestCase
         'ReorderHead - reorders_head_amphtml'            => 'see https://github.com/ampproject/amp-toolbox/issues/583',
         'ReorderHead - preserves_amp_custom_style_order' => 'see https://github.com/ampproject/amp-toolbox/issues/604',
 
-        'ServerSideRendering - converts_sizes_attribute_to_css' => 'see https://github.com/ampproject/amp-toolbox/issues/819',
+        'ServerSideRendering - converts_sizes_attribute_to_css'                => 'see https://github.com/ampproject/amp-toolbox/issues/819',
+        'ServerSideRendering - boilerplate_not_removed_when_amp-story_present' => 'Node.js on stories produces partial SSR whereas PHP leaves the original story intact',
     ];
 
     const CLASS_SKIP_TEST = '__SKIP__';

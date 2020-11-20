@@ -59,6 +59,8 @@ final class CannotPerformServerSideRendering implements Error
      */
     public static function fromMaxCssByteCountExceededException(MaxCssByteCountExceeded $exception, Element $element)
     {
-        return new self(self::EXCEEDED_MAX_CSS_BYTE_COUNT . new ElementDump($element) . " => {$exception->getMessage()}");
+        return new self(
+            self::EXCEEDED_MAX_CSS_BYTE_COUNT . new ElementDump($element) . " => {$exception->getMessage()}"
+        );
     }
 }

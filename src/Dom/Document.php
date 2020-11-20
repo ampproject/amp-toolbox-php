@@ -1760,10 +1760,10 @@ final class Document extends DOMDocument
                 }
                 return null;
             case 'ampElements':
-                $this->ampElements = $this->xpath->query(self::XPATH_AMP_ELEMENTS_QUERY, $this->body)
+                // This is not cached as we clone some elements during SSR transformations to avoid ending up with
+                // partially transformed, broken elements.
+                return $this->xpath->query(self::XPATH_AMP_ELEMENTS_QUERY, $this->body)
                     ?: new DOMNodeList();
-
-                return $this->ampElements;
 
             case 'ampCustomStyle':
                 $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
