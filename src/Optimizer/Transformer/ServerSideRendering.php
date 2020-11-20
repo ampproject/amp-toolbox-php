@@ -291,8 +291,8 @@ final class ServerSideRendering implements Transformer
 
         try {
             $newElement = $element->cloneNode(true);
-            $this->applyLayoutAttributes($element, $layout, $width, $height);
-            $this->maybeAddSizerInto($document, $element, $layout, $width, $height);
+            $this->applyLayoutAttributes($newElement, $layout, $width, $height);
+            $this->maybeAddSizerInto($document, $newElement, $layout, $width, $height);
             $element->parentNode->replaceChild($newElement, $element);
         } catch (MaxCssByteCountExceeded $exception) {
             $errors->add(
