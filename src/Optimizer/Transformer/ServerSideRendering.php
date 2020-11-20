@@ -754,17 +754,26 @@ final class ServerSideRendering implements Transformer
                             break;
                         }
 
-                        $customCss += $this->extractSizesAttributeCss($document, $ampElement, $attribute);
+                        $customCss = array_merge(
+                            $customCss,
+                            $this->extractSizesAttributeCss($document, $ampElement, $attribute)
+                        );
                         $attributesToRemove[] = $attribute->name;
                         break;
 
                     case Attribute::HEIGHTS:
-                        $customCss += $this->extractHeightsAttributeCss($document, $ampElement, $attribute);
+                        $customCss = array_merge(
+                            $customCss,
+                            $this->extractHeightsAttributeCss($document, $ampElement, $attribute)
+                        );
                         $attributesToRemove[] = $attribute->name;
                         break;
 
                     case Attribute::MEDIA:
-                        $customCss += $this->extractMediaAttributeCss($document, $ampElement, $attribute);
+                        $customCss = array_merge(
+                            $customCss,
+                            $this->extractMediaAttributeCss($document, $ampElement, $attribute)
+                        );
                         $attributesToRemove[] = $attribute->name;
                         break;
                 }
