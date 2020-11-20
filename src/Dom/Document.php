@@ -1678,7 +1678,12 @@ final class Document extends DOMDocument
      */
     public function getRemainingCustomCssSpace()
     {
-        return max(0, Amp::MAX_CSS_BYTE_COUNT - (int)$this->ampCustomStyleByteCount - (int)$this->inlineStyleByteCount);
+        if ($this->cssMaxByteCountEnforced < 0) {
+            // No CSS byte count limit is being enforced, so return the next best thing to +∞.
+            return PHP_INT_MAX;
+        }
+
+        return max(0, $this->cssMaxByteCountEnforced - (int)$this->ampCustomStyleByteCount - (int)$this->inlineStyleByteCount);
     }
 
     /**
