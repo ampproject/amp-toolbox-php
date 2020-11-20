@@ -4,15 +4,17 @@ namespace AmpProject\Optimizer\Error;
 
 use AmpProject\Dom\Element;
 use AmpProject\Dom\ElementDump;
+use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\Error;
 
 final class CannotPerformServerSideRendering implements Error
 {
     use ErrorProperties;
 
-    const INVALID_INPUT_WIDTH  = 'Cannot perform serverside rendering, invalid input width: ';
-    const INVALID_INPUT_HEIGHT = 'Cannot perform serverside rendering, invalid input height: ';
-    const UNSUPPORTED_LAYOUT   = 'Cannot perform serverside rendering, unsupported layout: ';
+    const INVALID_INPUT_WIDTH         = 'Cannot perform serverside rendering, invalid input width: ';
+    const INVALID_INPUT_HEIGHT        = 'Cannot perform serverside rendering, invalid input height: ';
+    const UNSUPPORTED_LAYOUT          = 'Cannot perform serverside rendering, unsupported layout: ';
+    const EXCEEDED_MAX_CSS_BYTE_COUNT = 'Cannot perform serverside rendering, exceeded maximum CSS byte count: ';
 
     /**
      * Instantiate a CannotPerformServerSideRendering object for an element with an invalid input width.
@@ -46,5 +48,17 @@ final class CannotPerformServerSideRendering implements Error
     public static function fromUnsupportedLayout(Element $element, $layout)
     {
         return new self(self::UNSUPPORTED_LAYOUT . new ElementDump($element) . " => {$layout}");
+    }
+
+    /**
+     * Instantiate a CannotPerformServerSideRendering object for a MaxCssByteCountExceeded exception.
+     *
+     * @param MaxCssByteCountExceeded $exception Caught exception.
+     * @param Element                 $element   Element that caused the exception.
+     * @return self
+     */
+    public static function fromMaxCssByteCountExceededException(MaxCssByteCountExceeded $exception, Element $element)
+    {
+        return new self(self::EXCEEDED_MAX_CSS_BYTE_COUNT . new ElementDump($element) . " => {$exception->getMessage()}");
     }
 }

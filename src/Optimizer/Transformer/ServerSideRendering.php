@@ -7,6 +7,7 @@ use AmpProject\Attribute;
 use AmpProject\CssLength;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
+use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Extension;
 use AmpProject\Layout;
 use AmpProject\Optimizer\CssRule;
@@ -288,8 +289,17 @@ final class ServerSideRendering implements Transformer
             return false;
         }
 
-        $this->applyLayoutAttributes($element, $layout, $width, $height);
-        $this->maybeAddSizerInto($document, $element, $layout, $width, $height);
+        try {
+            $newElement = $element->cloneNode(true);
+            $this->applyLayoutAttributes($element, $layout, $width, $height);
+            $this->maybeAddSizerInto($document, $element, $layout, $width, $height);
+            $element->parentNode->replaceChild($newElement, $element);
+        } catch (MaxCssByteCountExceeded $exception) {
+            $errors->add(
+                Error\CannotPerformServerSideRendering::fromMaxCssByteCountExceededException($exception, $element)
+            );
+            return false;
+        }
 
         return true;
     }
@@ -558,6 +568,7 @@ final class ServerSideRendering implements Transformer
         ) {
             return;
         }
+
         $sizer = null;
 
         if ($layout === Layout::RESPONSIVE) {
