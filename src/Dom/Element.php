@@ -5,6 +5,7 @@ namespace AmpProject\Dom;
 use AmpProject\Attribute;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
+use DOMAttr;
 use DOMElement;
 
 /**
@@ -29,6 +30,7 @@ final class Element extends DOMElement
      * Add CSS styles to the element as an inline style attribute.
      *
      * @param string $style CSS style(s) to add to the inline style attribute.
+     * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
      * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
      */
     public function addInlineStyle($style)
@@ -49,8 +51,38 @@ final class Element extends DOMElement
 
         $this->ownerDocument->addInlineStyleByteCount($newByteCount - $this->inlineStyleByteCount);
 
-        $this->setAttribute(Attribute::STYLE, $newStyle);
         $this->inlineStyleByteCount = $newByteCount;
+        return $this->unmanagedSetAttribute(Attribute::STYLE, $newStyle);
+    }
+
+    /**
+     * Sets or modifies an attribute.
+     *
+     * @link https://php.net/manual/en/domelement.setattribute.php
+     * @param string $name  The name of the attribute.
+     * @param string $value The value of the attribute.
+     * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
+     * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
+     */
+    public function setAttribute($name, $value)
+    {
+        if ($name === Attribute::STYLE) {
+            return $this->addInlineStyle($value);
+        }
+
+        return parent::setAttribute($name, $value);
+    }
+
+    /**
+     * Set an attribute without enforcing integrity/validity checks.
+     *
+     * @param string $name  The name of the attribute.
+     * @param string $value The value of the attribute.
+     * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
+     */
+    public function unmanagedSetAttribute($name, $value)
+    {
+        return parent::setAttribute($name, $value);
     }
 
     /**
