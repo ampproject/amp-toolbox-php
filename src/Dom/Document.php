@@ -301,6 +301,15 @@ final class Document extends DOMDocument
     private $indexCounter = [];
 
     /**
+     * The maximum number of bytes of CSS that is enforced.
+     *
+     * A negative number will disable the byte count limit.
+     *
+     * @var int
+     */
+    private $cssMaxByteCountEnforced = -1;
+
+    /**
      * Creates a new AmpProject\Dom\Document object
      *
      * @link  https://php.net/manual/domdocument.construct.php
@@ -1824,5 +1833,25 @@ final class Document extends DOMDocument
         }
 
         return $element;
+    }
+
+    /**
+     * Check whether the CSS maximum byte count is enforced.
+     *
+     * @return bool Whether the CSS maximum byte count is enforced.
+     */
+    public function isCssMaxByteCountEnforced()
+    {
+        return $this->cssMaxByteCountEnforced >= 0;
+    }
+
+    /**
+     * Enforce a maximum number of bytes for the CSS.
+     *
+     * @param int $maxByteCount Maximum number of bytes to limit the CSS to. A negative number disables the limit.
+     */
+    public function enforceCssMaxByteCount($maxByteCount = AMP::MAX_CSS_BYTE_COUNT)
+    {
+        $this->cssMaxByteCountEnforced = $maxByteCount;
     }
 }

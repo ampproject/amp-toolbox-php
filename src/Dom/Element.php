@@ -42,17 +42,9 @@ final class Element extends DOMElement
             $existingStyle = rtrim($existingStyle, ';') . ';';
         }
 
-        $newStyle     = $existingStyle . $style;
-        $newByteCount = strlen($newStyle);
+        $newStyle = $existingStyle . $style;
 
-        if ($this->ownerDocument->getRemainingCustomCssSpace() < ($newByteCount - $this->inlineStyleByteCount)) {
-            throw MaxCssByteCountExceeded::forInlineStyle($this, $style);
-        }
-
-        $this->ownerDocument->addInlineStyleByteCount($newByteCount - $this->inlineStyleByteCount);
-
-        $this->inlineStyleByteCount = $newByteCount;
-        return $this->unmanagedSetAttribute(Attribute::STYLE, $newStyle);
+        return $this->setAttribute(Attribute::STYLE, $newStyle);
     }
 
     /**
@@ -66,22 +58,22 @@ final class Element extends DOMElement
      */
     public function setAttribute($name, $value)
     {
-        if ($name === Attribute::STYLE) {
-            return $this->addInlineStyle($value);
+        if (
+            $name === Attribute::STYLE
+            && $this->ownerDocument->isCssMaxByteCountEnforced()
+        ) {
+            $newByteCount = strlen($value);
+
+            if ($this->ownerDocument->getRemainingCustomCssSpace() < ($newByteCount - $this->inlineStyleByteCount)) {
+                throw MaxCssByteCountExceeded::forInlineStyle($this, $value);
+            }
+
+            $this->ownerDocument->addInlineStyleByteCount($newByteCount - $this->inlineStyleByteCount);
+
+            $this->inlineStyleByteCount = $newByteCount;
+            return parent::setAttribute(Attribute::STYLE, $value);
         }
 
-        return parent::setAttribute($name, $value);
-    }
-
-    /**
-     * Set an attribute without enforcing integrity/validity checks.
-     *
-     * @param string $name  The name of the attribute.
-     * @param string $value The value of the attribute.
-     * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
-     */
-    public function unmanagedSetAttribute($name, $value)
-    {
         return parent::setAttribute($name, $value);
     }
 
