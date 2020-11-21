@@ -10,7 +10,7 @@ use AmpProject\Response;
 /**
  * Remote request transport using cURL.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class CurlRemoteGetRequest implements RemoteGetRequest
 {

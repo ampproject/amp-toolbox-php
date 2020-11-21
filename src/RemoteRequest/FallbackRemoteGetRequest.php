@@ -15,7 +15,7 @@ use Exception;
  *
  * A successful response is a response that doesn't return boolean false and doesn't throw an exception.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class FallbackRemoteGetRequest implements RemoteGetRequest
 {

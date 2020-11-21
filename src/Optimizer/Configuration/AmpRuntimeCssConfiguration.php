@@ -11,7 +11,7 @@ use AmpProject\RuntimeVersion;
  * @property string  $version Version string to use. Defaults to an empty string.
  * @property boolean $canary  Whether to use the canary version or not. Defaults to false.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class AmpRuntimeCssConfiguration extends BaseTransformerConfiguration
 {

@@ -2,19 +2,21 @@
 
 namespace AmpProject\Common;
 
+use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
+use AmpProject\Exception\MaxCssByteCountExceeded;
+use AmpProject\Tag;
 use AmpProject\Tests\AssertContainsCompatibility;
 use DOMNode;
 use PHPUnit\Framework\TestCase;
-use ReflectionClass;
-use ReflectionException;
 
 /**
  * Tests for AmpProject\Dom\Document.
  *
  * @covers Document
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 class DocumentTest extends TestCase
 {
@@ -577,7 +579,7 @@ class DocumentTest extends TestCase
         $this->assertEquals('meta', $dom->head->firstChild->tagName);
         $this->assertNull($dom->head->firstChild->nextSibling);
         $body_first_child = $dom->body->firstChild;
-        $this->assertInstanceOf('DOMElement', $body_first_child);
+        $this->assertInstanceOf(Element::class, $body_first_child);
         $this->assertEquals('text', $body_first_child->textContent);
 
         // Valid nodes.
@@ -853,5 +855,122 @@ class DocumentTest extends TestCase
         $dom->body->appendChild($element);
 
         $this->assertEquals('some-prefix-3', $dom->getElementId($element, 'some-prefix'));
+    }
+
+    /**
+     * Data provider for testing the byte count properties.
+     *
+     * @return array Testing data.
+     */
+    public function dataByteCounts()
+    {
+        return [
+            'amp_custom_style_tag' => [
+                '<html><head><style amp-custom>12345</style>', 5, 0,
+            ],
+            'one_inline_style_attribute' => [
+                '<html><body><div style="12345"></div></body></html>', 0, 5,
+            ],
+            'multiple_inline_style_attributes' => [
+                '<html><body><div style="1234"></div><div style="567"><div style="89"></body></html>', 0, 9,
+            ],
+            'amp_custom_style_tag_and_multiple_inline_style_attributes' => [
+                '<html><head><style amp-custom>12345</style></head><body><div style="1234"></div><div style="567"><div style="89"></body></html>', 5, 9,
+            ],
+            'amp_custom_style_tag_outside_head' => [
+                '<html><head><style amp-custom>12345</style></head><body><style amp-custom>123</style></body></html>', 5, 0,
+            ],
+            'multibyte_chars_are_counted_in_bytes_not_chars' => [
+                '<html><head><style amp-custom>Iñtërnâtiônàlizætiøn</style></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>', 27, 27,
+            ],
+        ];
+    }
+
+    /**
+     * Test the byte count properties.
+     *
+     * @dataProvider dataByteCounts
+     *
+     * @param string $html              HTML to test against.
+     * @param int    $expectedAmpCustom Expected number of bytes of the <style amp-custom> tag.
+     * @param int    $expectedInline    Expected number of bytes of inline styles.
+     */
+    public function testByteCounts($html, $expectedAmpCustom, $expectedInline)
+    {
+        $document = Document::fromHtml($html);
+        $this->assertEquals($expectedAmpCustom, $document->ampCustomStyleByteCount);
+        $this->assertEquals($expectedInline, $document->inlineStyleByteCount);
+    }
+
+    /**
+     * Test the Document::getRemainingCssSpace() method.
+     */
+    public function testGetRemainingCssSpace()
+    {
+        $document = new Document();
+        $ampCustomStyle = $document->createElement(Tag::STYLE);
+        $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 10, 'X');
+        $document->head->appendChild($ampCustomStyle);
+
+        /** @var Element $element */
+        $element = $document->createElement(Tag::DIV);
+        $document->body->appendChild($element);
+        $element->addInlineStyle('12345');
+
+        $this->assertEquals(PHP_INT_MAX, $document->getRemainingCustomCssSpace());
+        $document->enforceCssMaxByteCount(Amp::MAX_CSS_BYTE_COUNT);
+        $this->assertEquals(5, $document->getRemainingCustomCssSpace());
+    }
+
+
+    /**
+     * Test the Document::addAmpCustomStyle() method without byte limit.
+     */
+    public function testAddAmpCustomStyleWithoutLimit()
+    {
+        $document = new Document();
+        $ampCustomStyle = $document->createElement(Tag::STYLE);
+        $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 28, 'X');
+        $document->head->appendChild($ampCustomStyle);
+
+        // Custom styles can be added.
+        $document->addAmpCustomStyle('h1{color:red}');
+        $document->addAmpCustomStyle('h2{color:green}');
+
+        $this->assertStringEndsWith('XXXXXh1{color:red}h2{color:green}', $document->ampCustomStyle->textContent);
+
+        // No exception will be thrown here, even though we go past the CSS byte count limit.
+        $document->addAmpCustomStyle('XXXXX');
+
+        $this->assertStringEndsWith('XXXXXh1{color:red}h2{color:green}XXXXX', $document->ampCustomStyle->textContent);
+    }
+
+    /**
+     * Test the Document::addAmpCustomStyle() method with byte limit.
+     */
+    public function testAddAmpCustomStyleWithLimit()
+    {
+        $document = new Document();
+        $document->enforceCssMaxByteCount(Amp::MAX_CSS_BYTE_COUNT);
+        $ampCustomStyle = $document->createElement(Tag::STYLE);
+        $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 28, 'X');
+        $document->head->appendChild($ampCustomStyle);
+
+        // Custom styles can be added.
+        $document->addAmpCustomStyle('h1{color:red}');
+        $document->addAmpCustomStyle('h2{color:green}');
+
+        $this->assertStringEndsWith('XXXXXh1{color:red}h2{color:green}', $document->ampCustomStyle->textContent);
+
+        // Exception is thrown if maximum allowed byte count is exceeded.
+        $this->expectException(MaxCssByteCountExceeded::class);
+        $this->expectExceptionMessage(
+            'Maximum allowed CSS byte count exceeded for amp-custom style'
+        );
+
+        $document->addAmpCustomStyle('X');
     }
 }

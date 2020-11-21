@@ -2,8 +2,9 @@
 
 namespace AmpProject\Optimizer\Error;
 
+use AmpProject\Dom\Element;
+use AmpProject\Dom\ElementDump;
 use AmpProject\Optimizer\Error;
-use DOMElement;
 use Exception;
 
 final class CannotRemoveBoilerplate implements Error
@@ -23,10 +24,10 @@ final class CannotRemoveBoilerplate implements Error
     /**
      * Instantiate a CannotRemoveBoilerplate object for attributes that require the boilerplate to be around.
      *
-     * @param DOMElement $element Element that contains the attributes that need the boilerplate.
+     * @param Element $element Element that contains the attributes that need the boilerplate.
      * @return self
      */
-    public static function fromAttributesRequiringBoilerplate(DOMElement $element)
+    public static function fromAttributesRequiringBoilerplate(Element $element)
     {
         return new self(self::ATTRIBUTES_STRING . new ElementDump($element));
     }
@@ -45,10 +46,10 @@ final class CannotRemoveBoilerplate implements Error
     /**
      * Instantiate a CannotRemoveBoilerplate object for an amp-experiment element.
      *
-     * @param DOMElement $element amp-experiment element.
+     * @param Element $element amp-experiment element.
      * @return self
      */
-    public static function fromAmpExperiment(DOMElement $element)
+    public static function fromAmpExperiment(Element $element)
     {
         return new self(self::RENDER_DELAYING_SCRIPT_STRING . $element->tagName);
     }
@@ -56,10 +57,10 @@ final class CannotRemoveBoilerplate implements Error
     /**
      * Instantiate a CannotRemoveBoilerplate object for an amp-audio element.
      *
-     * @param DOMElement $element amp-audio element.
+     * @param Element $element amp-audio element.
      * @return self
      */
-    public static function fromAmpAudio(DOMElement $element)
+    public static function fromAmpAudio(Element $element)
     {
         return new self(self::AMP_AUDIO_STRING . new ElementDump($element));
     }
@@ -67,10 +68,10 @@ final class CannotRemoveBoilerplate implements Error
     /**
      * Instantiate a CannotRemoveBoilerplate object for an element with an unsupported layout.
      *
-     * @param DOMElement $element Element with an unsupported layout.
+     * @param Element $element Element with an unsupported layout.
      * @return self
      */
-    public static function fromUnsupportedLayout(DOMElement $element)
+    public static function fromUnsupportedLayout(Element $element)
     {
         return new self(self::UNSUPPORTED_LAYOUT_STRING . new ElementDump($element));
     }
@@ -78,10 +79,10 @@ final class CannotRemoveBoilerplate implements Error
     /**
      * Instantiate a CannotRemoveBoilerplate object for render-delaying script element.
      *
-     * @param DOMElement $element Element with an unsupported layout.
+     * @param Element $element Element with an unsupported layout.
      * @return self
      */
-    public static function fromRenderDelayingScript(DOMElement $element)
+    public static function fromRenderDelayingScript(Element $element)
     {
         $elementName = $element->hasAttribute('custom-element')
             ? $element->getAttribute('custom-element')

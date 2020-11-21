@@ -11,7 +11,7 @@ use ReflectionException;
 /**
  * Transformation engine that accepts HTML and returns optimized HTML.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class TransformationEngine
 {

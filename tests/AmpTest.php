@@ -5,9 +5,9 @@ namespace AmpProject\Common;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
 use AmpProject\Extension;
 use AmpProject\Tag;
-use DOMElement;
 use DOMNode;
 use PHPUnit\Framework\TestCase;
 
@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  * Tests for AmpProject\Amp.
  *
  * @covers Amp
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 class AmpTest extends TestCase
 {
@@ -287,7 +287,7 @@ class AmpTest extends TestCase
      *
      * @param Document $dom DOM document object to use.
      * @param string   $src Source URL to use.
-     * @return DOMElement AMP CDN script element
+     * @return Element AMP CDN script element
      */
     protected function createAmpCDNScript(Document $dom, $src)
     {
@@ -303,7 +303,7 @@ class AmpTest extends TestCase
      * @param Document $dom  DOM document object to use.
      * @param string   $name Name of the extension script to create.
      * @param string   $type Type of the extension script to crate. Defaults to 'custom-element'.
-     * @return DOMElement Custom element.
+     * @return Element Custom element.
      */
     protected function createExtensionScript(Document $dom, $name, $type = Attribute::CUSTOM_ELEMENT)
     {

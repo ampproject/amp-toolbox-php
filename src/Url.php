@@ -5,7 +5,7 @@ namespace AmpProject;
 /**
  * Helper class to work with URLs.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class Url
 {

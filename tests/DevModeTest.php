@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Tests for AmpProject\DevMode.
  *
  * @covers  \AmpProject\DevMode
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 class DevModeTest extends TestCase
 {

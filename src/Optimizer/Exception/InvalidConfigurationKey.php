@@ -7,7 +7,7 @@ use OutOfBoundsException;
 /**
  * Exception thrown when an invalid configuration key was provided.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class InvalidConfigurationKey extends OutOfBoundsException implements AmpOptimizerException
 {

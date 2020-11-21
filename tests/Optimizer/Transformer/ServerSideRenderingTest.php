@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the ServerSideRendering transformer.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class ServerSideRenderingTest extends TestCase
 {

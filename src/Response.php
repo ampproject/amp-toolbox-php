@@ -10,7 +10,7 @@ namespace AmpProject;
  *
  * @todo Consider using PSR-7 directly (both interfaces and a library that implements them).
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 interface Response
 {

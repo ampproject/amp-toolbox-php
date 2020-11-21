@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the ReorderHead transformer.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class ReorderHeadTest extends TestCase
 {

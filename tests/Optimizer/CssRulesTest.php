@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
  * Tests for AmpProject\Optimizer\CssRules.
  *
  * @covers  CssRules
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 class CssRulesTest extends TestCase
 {

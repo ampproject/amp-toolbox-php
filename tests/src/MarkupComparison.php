@@ -5,7 +5,7 @@ namespace AmpProject\Tests;
 /**
  * Compare HTML markup without failing on whitespace or alignment.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 trait MarkupComparison
 {
@@ -72,6 +72,10 @@ trait MarkupComparison
         // Normalize boolean attributes that use their name as value.
         $actual   = preg_replace('/(?<=\s)([a-zA-Z-_]+)="(?:\1|)"/i', '$1', $actual);
         $expected = preg_replace('/(?<=\s)([a-zA-Z-_]+)="(?:\1|)"/i', '$1', $expected);
+
+        // Normalize inline styles to always end with a semicolon.
+        $actual   = preg_replace('/\s+style="([^"]+?)(?:;)?"/i', ' style="$1;"', $actual);
+        $expected = preg_replace('/\s+style="([^"]+?)(?:;)?"/i', ' style="$1;"', $expected);
 
         $normalizeAttributes = static function ($element) {
             // Extract attributes for the given element.

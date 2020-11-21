@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the AmpBoilerplate transformer.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class AmpBoilerplateTest extends TestCase
 {

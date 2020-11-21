@@ -12,7 +12,7 @@ use AmpProject\Optimizer\TransformerConfiguration;
  * @property string  $version Version string to use. Defaults to an empty string.
  * @property boolean $canary  Whether to use the canary version or not. Defaults to false.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 abstract class BaseTransformerConfiguration implements TransformerConfiguration
 {

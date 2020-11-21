@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * Exception thrown when an invalid HTML attribute was detected.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class InvalidArgument extends InvalidArgumentException implements AmpOptimizerException
 {

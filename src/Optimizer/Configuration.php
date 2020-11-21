@@ -18,7 +18,7 @@ use AmpProject\Optimizer\Transformer\TransformedIdentifier;
 /**
  * Configuration object that validates and stores configuration settings.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class Configuration
 {

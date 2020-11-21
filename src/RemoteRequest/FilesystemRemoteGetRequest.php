@@ -14,7 +14,7 @@ use LogicException;
  *
  * This can be used to provide offline fallbacks.
  *
- * @package ampproject/common
+ * @package ampproject/amp-toolbox
  */
 final class FilesystemRemoteGetRequest implements RemoteGetRequest
 {

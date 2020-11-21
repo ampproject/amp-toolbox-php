@@ -2,8 +2,9 @@
 
 namespace AmpProject\Optimizer\Error;
 
+use AmpProject\Dom\Element;
+use AmpProject\Dom\ElementDump;
 use AmpProject\Optimizer\Error;
-use DOMElement;
 use Exception;
 
 final class CannotInlineRuntimeCss implements Error
@@ -17,12 +18,12 @@ final class CannotInlineRuntimeCss implements Error
     /**
      * Instantiate a CannotInlineRuntimeCss object for an exception that was thrown.
      *
-     * @param Exception  $exception       Exception that was thrown.
-     * @param DOMElement $ampRuntimeStyle DOM element of the <style amp-runtime> tag that was targeted.
-     * @param string     $version         Version string that was meant to be used.
+     * @param Exception $exception       Exception that was thrown.
+     * @param Element   $ampRuntimeStyle DOM element of the <style amp-runtime> tag that was targeted.
+     * @param string    $version         Version string that was meant to be used.
      * @return self
      */
-    public static function fromException(Exception $exception, DOMElement $ampRuntimeStyle, $version)
+    public static function fromException(Exception $exception, Element $ampRuntimeStyle, $version)
     {
         $version = empty($version) ? 'unspecified version' : "version {$version}";
 

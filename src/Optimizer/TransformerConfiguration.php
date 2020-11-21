@@ -7,7 +7,7 @@ use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
 /**
  * Interface for a configuration that validates and stores configuration settings for an individual transformer.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 interface TransformerConfiguration
 {

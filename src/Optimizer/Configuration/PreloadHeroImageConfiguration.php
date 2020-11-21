@@ -9,7 +9,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  *
  * @property string  $preloadHeroImage Whether to preload hero images. Defaults to true.
  *
- * @package ampproject/optimizer
+ * @package ampproject/amp-toolbox
  */
 final class PreloadHeroImageConfiguration extends BaseTransformerConfiguration
 {
