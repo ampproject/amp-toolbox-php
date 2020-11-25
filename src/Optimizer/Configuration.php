@@ -7,6 +7,7 @@ use AmpProject\Optimizer\Transformer\AmpBoilerplate;
 use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
 use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
+use AmpProject\Optimizer\Transformer\BrowserHints;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
@@ -49,6 +50,7 @@ interface Configuration
         ServerSideRendering::class,
         AmpRuntimeCss::class,
         AmpBoilerplateErrorHandler::class,
+        BrowserHints::class,
         RewriteAmpUrls::class,
         ReorderHead::class,
         OptimizeAmpBind::class,
