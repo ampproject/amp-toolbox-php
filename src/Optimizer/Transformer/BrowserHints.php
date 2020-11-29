@@ -10,11 +10,25 @@ final class BrowserHints implements Transformer
 {
 
     /**
-     * Domain that the Google Fonts are loaded from.
+     * Domain that the Google Fonts static files are loaded from.
      *
      * @var string
      */
-    const GOOGLE_FONTS_DOMAIN = 'https://fonts.gstatic.com/';
+    const GOOGLE_FONTS_STATIC_DOMAIN = 'https://fonts.gstatic.com/';
+
+    /**
+     * Domain that the Google Fonts API is accepting requests from.
+     *
+     * @var string
+     */
+    const GOOGLE_FONTS_API_DOMAIN = 'https://fonts.googleapis.com/';
+
+    /**
+     * XPath query to fetch links pointing to the Google Fonts API.
+     *
+     * @var string
+     */
+    const XPATH_GOOGLE_FONTS_API_QUERY = './/link[starts-with(@href, "' . self::GOOGLE_FONTS_API_DOMAIN . '")]';
 
     /**
      * Apply transformations to the provided DOM document.
@@ -28,7 +42,7 @@ final class BrowserHints implements Transformer
     public function transform(Document $document, ErrorCollection $errors)
     {
         if ($this->usesGoogleFonts($document)) {
-            $document->links->addPreconnect(self::GOOGLE_FONTS_DOMAIN);
+            $document->links->addPreconnect(self::GOOGLE_FONTS_STATIC_DOMAIN);
         }
     }
 
@@ -40,6 +54,11 @@ final class BrowserHints implements Transformer
      */
     private function usesGoogleFonts(Document $document)
     {
-        return false;
+        $links = $document->xpath->query(
+            self::XPATH_GOOGLE_FONTS_API_QUERY,
+            $document->head
+        );
+
+        return $links->length > 0;
     }
 }
