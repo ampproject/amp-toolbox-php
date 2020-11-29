@@ -77,6 +77,10 @@ trait MarkupComparison
         $actual   = preg_replace('/\s+style="([^"]+?)(?:;)?"/i', ' style="$1;"', $actual);
         $expected = preg_replace('/\s+style="([^"]+?)(?:;)?"/i', ' style="$1;"', $expected);
 
+        // Decode special HTML characters (`&amp; => &`).
+        $actual   = htmlspecialchars_decode($actual, ENT_COMPAT | ENT_HTML5);
+        $expected = htmlspecialchars_decode($expected, ENT_COMPAT | ENT_HTML5);
+
         $normalizeAttributes = static function ($element) {
             // Extract attributes for the given element.
             if (!preg_match('#^(<[a-z0-9-]+)(\s[^>]+)>$#i', $element, $matches)) {
