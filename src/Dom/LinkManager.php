@@ -56,6 +56,6 @@ final class LinkManager
             $link->setAttribute($attribute, $value);
         }
 
-        $this->document->head->appendChild($link);
+        $this->document->head->insertBefore($link, $this->document->viewport->nextSibling);
     }
 }
