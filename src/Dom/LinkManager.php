@@ -4,6 +4,7 @@ namespace AmpProject\Dom;
 
 use AmpProject\Attribute;
 use AmpProject\Tag;
+use DOMNode;
 
 final class LinkManager
 {
@@ -14,6 +15,13 @@ final class LinkManager
      * @var Document
      */
     private $document;
+
+    /**
+     * Reference node to attach the link to.
+     *
+     * @var DOMNode|null
+     */
+    private $referenceNode;
 
     /**
      * LinkManager constructor.
@@ -34,28 +42,36 @@ final class LinkManager
     public function addPreconnect($href, $crossorigin = true)
     {
         $this->addLink(
-            [ Attribute::REL_DNS_PREFETCH, Attribute::REL_PRECONNECT ],
+            Attribute::REL_PRECONNECT,
             $href,
             $crossorigin ? [ Attribute::CROSSORIGIN => null ] : []
         );
+
+        // Use dns-prefetch as fallback for browser that don't support preconnect.
+        // See https://web.dev/preconnect-and-dns-prefetch/#resolve-domain-name-early-with-reldns-prefetch
+        $this->addLink(Attribute::REL_DNS_PREFETCH, $href);
     }
 
     /**
      * Add a link.
      *
-     * @param string|string[] $rel        A 'rel' string or an array of 'rel' strings.
-     * @param string          $href       URL to link to.
-     * @param string[]        $attributes Associative array of attributes and their values.
+     * @param string   $rel        A 'rel' string.
+     * @param string   $href       URL to link to.
+     * @param string[] $attributes Associative array of attributes and their values.
      */
     public function addLink($rel, $href, $attributes = [])
     {
         $link = $this->document->createElement(Tag::LINK);
-        $link->setAttribute(Attribute::REL, implode(' ', (array) $rel));
+        $link->setAttribute(Attribute::REL, $rel);
         $link->setAttribute(Attribute::HREF, $href);
         foreach ($attributes as $attribute => $value) {
             $link->setAttribute($attribute, $value);
         }
 
-        $this->document->head->insertBefore($link, $this->document->viewport->nextSibling);
+        if (!isset($this->referenceNode)) {
+            $this->referenceNode = $this->document->viewport;
+        }
+
+        $this->referenceNode = $this->document->head->insertBefore($link, $this->referenceNode->nextSibling);
     }
 }

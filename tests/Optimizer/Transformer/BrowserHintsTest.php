@@ -50,7 +50,8 @@ final class BrowserHintsTest extends TestCase
                 ),
                 $output(
                     '<link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet">',
-                    '<link crossorigin href="https://fonts.gstatic.com/" rel="dns-prefetch preconnect">'
+                    '<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>'
+                    . '<link rel="dns-prefetch" href="https://fonts.gstatic.com/">'
                 ),
             ],
 
