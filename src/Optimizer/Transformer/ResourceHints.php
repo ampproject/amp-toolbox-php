@@ -6,7 +6,15 @@ use AmpProject\Dom\Document;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 
-final class BrowserHints implements Transformer
+/**
+ * Transformer adding meaningful resource hints to the document.
+ *
+ * This transformer adds the following resource hints:
+ * 1. Google Fonts preconnect hint.
+ *
+ * @package ampproject/amp-toolbox
+ */
+final class ResourceHints implements Transformer
 {
 
     /**
@@ -33,16 +41,14 @@ final class BrowserHints implements Transformer
     /**
      * Apply transformations to the provided DOM document.
      *
-     * @param Document        $document DOM document to apply the
-     *                                  transformations to.
-     * @param ErrorCollection $errors   Collection of errors that are collected
-     *                                  during transformation.
+     * @param Document        $document DOM document to apply the transformations to.
+     * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
      * @return void
      */
     public function transform(Document $document, ErrorCollection $errors)
     {
         if ($this->usesGoogleFonts($document)) {
-            $document->links->addPreconnect(self::GOOGLE_FONTS_STATIC_DOMAIN);
+            $document->resourceHints->addPreconnect(self::GOOGLE_FONTS_STATIC_DOMAIN);
         }
     }
 

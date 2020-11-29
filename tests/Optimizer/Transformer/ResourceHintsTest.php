@@ -11,11 +11,11 @@ use AmpProject\Tests\TestMarkup;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test the BrowserHints transformer.
+ * Test the ResourceHints transformer.
  *
  * @package ampproject/amp-toolbox
  */
-final class BrowserHintsTest extends TestCase
+final class ResourceHintsTest extends TestCase
 {
     use ErrorComparison;
     use MarkupComparison;
@@ -65,7 +65,7 @@ final class BrowserHintsTest extends TestCase
     /**
      * Test the transform() method.
      *
-     * @covers       \AmpProject\Optimizer\Transformer\BrowserHints::transform()
+     * @covers       \AmpProject\Optimizer\Transformer\ResourceHints::transform()
      * @dataProvider dataTransform()
      *
      * @param string                  $source         String of source HTML.
@@ -76,7 +76,7 @@ final class BrowserHintsTest extends TestCase
     public function testTransform($source, $expectedHtml, $expectedErrors = [], $config = [])
     {
         $document    = Document::fromHtml($source);
-        $transformer = new BrowserHints();
+        $transformer = new ResourceHints();
         $errors      = new ErrorCollection();
 
         $transformer->transform($document, $errors);
