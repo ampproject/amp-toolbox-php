@@ -2,9 +2,11 @@
 
 namespace AmpProject\Optimizer\Transformer;
 
+use AmpProject\Amp;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
+use AmpProject\RequestDestination;
 
 /**
  * Transformer adding meaningful resource hints to the document.
@@ -47,6 +49,14 @@ final class ResourceHints implements Transformer
      */
     public function transform(Document $document, ErrorCollection $errors)
     {
+        if($this->isAmpRuntimeScriptNeeded()) {
+            $document->resourceHints->addPreload($this->getAmpRuntimeScriptHost(), RequestDestination::SCRIPT);
+        }
+
+        if($this->isAmpRuntimeCssNeeded()) {
+            $document->resourceHints->addPreload($this->getAmpRuntimeCssHost(), RequestDestination::STYLE);
+        }
+
         if ($this->usesGoogleFonts($document)) {
             $document->resourceHints->addPreconnect(self::GOOGLE_FONTS_STATIC_DOMAIN);
         }
@@ -66,5 +76,45 @@ final class ResourceHints implements Transformer
         );
 
         return $links->length > 0;
+    }
+
+    /**
+     * Check whether the AMP runtime script is needed.
+     *
+     * @return bool Whether the AMP runtime script is needed.
+     */
+    private function isAmpRuntimeScriptNeeded()
+    {
+        return true;
+    }
+
+    /**
+     * Get the host domain of the AMP runtime script to preload.
+     *
+     * @return string AMP runtime script host.
+     */
+    private function getAmpRuntimeScriptHost()
+    {
+        return Amp::CACHE_HOST;
+    }
+
+    /**
+     * Check whether the AMP runtime CSS is needed.
+     *
+     * @return bool Whether the AMP runtime CSS is needed.
+     */
+    private function isAmpRuntimeCssNeeded()
+    {
+        return true;
+    }
+
+    /**
+     * Get the host domain of the AMP runtime CSS to preload.
+     *
+     * @return string AMP runtime CSS host.
+     */
+    private function getAmpRuntimeCssHost()
+    {
+        return Amp::CACHE_HOST;
     }
 }
