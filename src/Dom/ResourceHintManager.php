@@ -3,6 +3,7 @@
 namespace AmpProject\Dom;
 
 use AmpProject\Attribute;
+use AmpProject\RequestDestination;
 use AmpProject\Tag;
 use DOMNode;
 
@@ -56,6 +57,25 @@ final class ResourceHintManager
         // Use dns-prefetch as fallback for browser that don't support preconnect.
         // See https://web.dev/preconnect-and-dns-prefetch/#resolve-domain-name-early-with-reldns-prefetch
         $this->addLinkTag(Attribute::REL_DNS_PREFETCH, $href);
+    }
+
+    /**
+     * Add a preconnect resource hint.
+     *
+     * @param string      $href  URL to link to.
+     * @param string      $type  Optional. Type of the resource. Defaults to type 'image'.
+     * @param string|null $media Optional. Media query to add to the preload. Defaults to none.
+     */
+    public function addPreload($href, $type = RequestDestination::IMAGE, $media = null)
+    {
+        // TODO: Should we enforce a valid $type here?
+
+        $attributes = [ Attribute::AS_ => $type ];
+        if (!empty($media)) {
+            $attributes[Attribute::MEDIA] = $media;
+        }
+
+        $this->addLinkTag(Attribute::REL_PRELOAD, $href, $attributes);
     }
 
     /**
