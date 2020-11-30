@@ -8,6 +8,7 @@ use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
 use AmpProject\Optimizer\Transformer\ResourceHints;
 use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
+use AmpProject\Optimizer\Transformer\GoogleFontsPreconnect;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;

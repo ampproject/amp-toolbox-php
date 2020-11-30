@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @package ampproject/amp-toolbox
  */
-final class ResourceHintsTest extends TestCase
+final class GooglePreconnectTest extends TestCase
 {
     use ErrorComparison;
     use MarkupComparison;
@@ -65,7 +65,7 @@ final class ResourceHintsTest extends TestCase
     /**
      * Test the transform() method.
      *
-     * @covers       \AmpProject\Optimizer\Transformer\ResourceHints::transform()
+     * @covers       \AmpProject\Optimizer\Transformer\GoogleFontsPreconnect::transform()
      * @dataProvider dataTransform()
      *
      * @param string                  $source         String of source HTML.
@@ -76,7 +76,7 @@ final class ResourceHintsTest extends TestCase
     public function testTransform($source, $expectedHtml, $expectedErrors = [], $config = [])
     {
         $document    = Document::fromHtml($source);
-        $transformer = new ResourceHints();
+        $transformer = new GoogleFontsPreconnect();
         $errors      = new ErrorCollection();
 
         $transformer->transform($document, $errors);
