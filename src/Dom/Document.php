@@ -32,8 +32,8 @@ use DOMXPath;
  * @property Element|null        $viewport                The document's viewport meta element.
  * @property DOMNodeList         $ampElements             The document's <amp-*> elements.
  * @property Element             $ampCustomStyle          The document's <style amp-custom> element.
- * @property int                 $ampCustomStyleByteCount Count of bytes of the CSS in the <style amp-custom> tag.
- * @property int                 $inlineStyleByteCount    Count of bytes of the CSS in all of the inline style attributes.
+ * @property int                 $ampCustomStyleByteCount Count of bytes of CSS in the <style amp-custom> tag.
+ * @property int                 $inlineStyleByteCount    Count of bytes of CSS in all of the inline style attributes.
  * @property ResourceHintManager $resourceHints           Resource hint manager to manage <link> tags in the <head>.
  *
  * @package ampproject/amp-toolbox
