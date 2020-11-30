@@ -605,7 +605,7 @@ final class ServerSideRendering implements Transformer
         $style = 'padding-top:%s%%'
     ) {
         $padding       = $height->getNumeral() / $width->getNumeral() * 100;
-        $paddingString = sprintf('%.6g', $padding);
+        $paddingString = preg_replace('/\.?0*$/', '', sprintf('%.4F', $padding));
 
         $style = empty($style) ? 'display:block' : "display:block;{$style}";
 
