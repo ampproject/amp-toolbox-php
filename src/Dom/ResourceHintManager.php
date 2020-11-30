@@ -98,7 +98,7 @@ final class ResourceHintManager
             $this->referenceNode = $this->document->viewport;
         }
 
-        if($this->referenceNode) {
+        if ($this->referenceNode) {
             $this->referenceNode = $this->document->head->insertBefore($link, $this->referenceNode->nextSibling);
         } else {
             $this->referenceNode = $this->document->head->appendChild($link);
