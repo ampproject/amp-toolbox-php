@@ -109,8 +109,8 @@ trait MarkupComparison
         };
 
         // Split into an array of individual elements.
-        $actual   = preg_split('#(<[^>]+>|[^<>]+)#', $actual, -1, PREG_SPLIT_DELIM_CAPTURE);
-        $expected = preg_split('#(<[^>]+>|[^<>]+)#', $expected, -1, PREG_SPLIT_DELIM_CAPTURE);
+        $actual   = preg_split('#((?><!--.*?-->)|<(?>"[^"]+"|\'[^\']+\'|[^"\'>]+)+>|(?>[^<>]+))#', $actual, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $expected = preg_split('#((?><!--.*?-->)|<(?>"[^"]+"|\'[^\']+\'|[^"\'>]+)+>|(?>[^<>]+))#', $expected, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
         // Normalize the attributes for each individual element.
         $actual   = array_map($normalizeAttributes, array_filter($actual));
