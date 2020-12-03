@@ -11,11 +11,11 @@ use AmpProject\Tests\TestMarkup;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Test the ResourceHints transformer.
+ * Test the GoogleFontsPreconnect transformer.
  *
  * @package ampproject/amp-toolbox
  */
-final class GooglePreconnectTest extends TestCase
+final class GoogleFontsPreconnectTest extends TestCase
 {
     use ErrorComparison;
     use MarkupComparison;

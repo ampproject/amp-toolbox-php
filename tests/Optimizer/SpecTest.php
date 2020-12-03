@@ -7,6 +7,7 @@ use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
 use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
 use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
+use AmpProject\Optimizer\Transformer\GoogleFontsPreconnect;
 use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
 use AmpProject\Tests\MarkupComparison;
