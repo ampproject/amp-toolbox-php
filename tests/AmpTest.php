@@ -8,8 +8,8 @@ use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Extension;
 use AmpProject\Tag;
+use AmpProject\Tests\TestCase;
 use DOMNode;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for AmpProject\Amp.

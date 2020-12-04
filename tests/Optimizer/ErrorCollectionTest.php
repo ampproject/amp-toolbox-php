@@ -3,7 +3,7 @@
 namespace AmpProject\Optimizer;
 
 use AmpProject\Optimizer\Error\UnknownError;
-use PHPUnit\Framework\TestCase;
+use AmpProject\Tests\TestCase;
 use ReflectionClass;
 
 /**

@@ -9,7 +9,7 @@ use AmpProject\Dom\Element;
 use AmpProject\Dom\ElementDump;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
-use PHPUnit\Framework\TestCase;
+use AmpProject\Tests\TestCase;
 
 /**
  * Tests for AmpProject\Dom\Element.

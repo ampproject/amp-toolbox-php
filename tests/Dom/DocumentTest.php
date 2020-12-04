@@ -9,8 +9,8 @@ use AmpProject\Dom\Element;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\AssertContainsCompatibility;
+use AmpProject\Tests\TestCase;
 use DOMNode;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for AmpProject\Dom\Document.

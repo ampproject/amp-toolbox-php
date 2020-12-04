@@ -2,8 +2,8 @@
 
 namespace AmpProject\Common;
 
+use AmpProject\Tests\TestCase;
 use AmpProject\Url;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for AmpProject\Url.

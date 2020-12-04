@@ -7,7 +7,7 @@ use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Layout;
 use AmpProject\Tag;
-use PHPUnit\Framework\TestCase;
+use AmpProject\Tests\TestCase;
 
 /**
  * Tests for AmpProject\Optimizer\ImageDimensions.
