@@ -8,7 +8,6 @@ use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
-use AmpProject\Tests\AssertContainsCompatibility;
 use AmpProject\Tests\TestCase;
 use DOMNode;
 
@@ -20,8 +19,6 @@ use DOMNode;
  */
 class DocumentTest extends TestCase
 {
-    use AssertContainsCompatibility;
-
     /**
      * Data for AmpProject\Dom\Document test.
      *
@@ -413,8 +410,8 @@ class DocumentTest extends TestCase
         $original  = '<amp-img width=300 height="200" data-foo="bar" selected src="/img/dog.jpg" [src]="myAnimals[currentAnimal].imageUrl"></amp-img>';
         $converted = Document::fromHtml($original)->saveHTML();
         $this->assertNotEquals($original, $converted);
-        $this->assertStringContains(Document::AMP_BIND_DATA_ATTR_PREFIX . 'src="myAnimals[currentAnimal].imageUrl"', $converted);
-        $this->assertStringContains('width="300" height="200" data-foo="bar" selected', $converted);
+        $this->assertStringContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX . 'src="myAnimals[currentAnimal].imageUrl"', $converted);
+        $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
 
         // Check tag with self-closing attribute.
         $original  = '<input type="text" role="textbox" class="calc-input" id="liens" name="liens" [value]="(result1 != null) ? result1.liens : \'verifying…\'" />';
@@ -435,7 +432,7 @@ class DocumentTest extends TestCase
         ];
         foreach ($malformed_html as $html) {
             $converted = Document::fromHtml($html)->saveHTML();
-            $this->assertStringNotContains(Document::AMP_BIND_DATA_ATTR_PREFIX, $converted, "Source: {$html}");
+            $this->assertStringNotContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX, $converted, "Source: {$html}");
         }
     }
 
