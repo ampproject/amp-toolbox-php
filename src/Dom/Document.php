@@ -1768,7 +1768,7 @@ final class Document extends DOMDocument
                 $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
                 if (!$ampCustomStyle instanceof Element) {
                     $ampCustomStyle = $this->createElement(Tag::STYLE);
-                    $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
+                    $ampCustomStyle->appendChild($this->createAttribute(Attribute::AMP_CUSTOM));
                     $this->head->appendChild($ampCustomStyle);
                 }
 
