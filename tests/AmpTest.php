@@ -1,13 +1,9 @@
 <?php
 
-namespace AmpProject\Common;
+namespace AmpProject;
 
-use AmpProject\Amp;
-use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
-use AmpProject\Extension;
-use AmpProject\Tag;
 use AmpProject\Tests\TestCase;
 use DOMNode;
 

@@ -1,9 +1,8 @@
 <?php
 
-namespace AmpProject\Common;
+namespace AmpProject;
 
 use AmpProject\Tests\TestCase;
-use AmpProject\Url;
 
 /**
  * Tests for AmpProject\Url.

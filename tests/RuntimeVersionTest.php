@@ -1,9 +1,8 @@
 <?php
 
-namespace AmpProject\Common;
+namespace AmpProject;
 
 use AmpProject\RemoteRequest\StubbedRemoteGetRequest;
-use AmpProject\RuntimeVersion;
 use AmpProject\Tests\TestCase;
 
 /**

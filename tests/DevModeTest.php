@@ -1,8 +1,7 @@
 <?php
 
-namespace AmpProject\Common;
+namespace AmpProject;
 
-use AmpProject\DevMode;
 use AmpProject\Dom\Document;
 use AmpProject\Tests\TestCase;
 
