@@ -128,9 +128,10 @@ final class ImageDimensions
             case Layout::RESPONSIVE:
                 return false;
             case Layout::FIXED_HEIGHT:
-                return $this->getHeight() < $threshold;
+                return is_numeric($this->getHeight()) && $this->getHeight() < $threshold;
             default:
-                return $this->getWidth() < $threshold || $this->getHeight() < $threshold;
+                return (is_numeric($this->getWidth()) && $this->getWidth() < $threshold)
+                    || (is_numeric($this->getHeight()) && $this->getHeight() < $threshold);
         }
     }
 
