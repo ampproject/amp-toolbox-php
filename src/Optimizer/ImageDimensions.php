@@ -176,7 +176,9 @@ final class ImageDimensions
             $width       = $this->image->getAttribute(Attribute::WIDTH);
             if (! empty($width)) {
                 if (is_numeric($width)) {
-                    $this->width = $width + 0; // Cast string into either int or float as needed.
+                    $intWidth    = (int)$width;
+                    $floatWidth  = (float)$width;
+                    $this->width = $intWidth == $floatWidth ? $intWidth : $floatWidth;
                 } else {
                     $this->width = $width;
                 }
@@ -198,7 +200,9 @@ final class ImageDimensions
             $height       = $this->image->getAttribute(Attribute::HEIGHT);
             if (! empty($height)) {
                 if (is_numeric($height)) {
-                    $this->height = $height + 0; // Cast string into either int or float as needed.
+                    $intHeight    = (int)$height;
+                    $floatHeight  = (float)$height;
+                    $this->height = $intHeight == $floatHeight ? $intHeight : $floatHeight;
                 } else {
                     $this->height = $height;
                 }
