@@ -26,7 +26,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, iconv, json, libxml, zip
-          tools: composer:v1, cs2pr
+          tools: composer, cs2pr
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -67,7 +67,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, iconv, json, libxml, zip
-          tools: composer:v1, cs2pr
+          tools: composer, cs2pr
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -103,7 +103,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, iconv, json, libxml, zip
-          tools: composer:v1, cs2pr
+          tools: composer, cs2pr
 
       - name: Get Composer Cache Directory
         id: composer-cache
