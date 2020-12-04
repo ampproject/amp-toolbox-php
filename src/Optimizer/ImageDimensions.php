@@ -119,7 +119,14 @@ final class ImageDimensions
             }
         }
 
-        if ($this->getWidth() <= 0 || $this->getHeight() <= 0) {
+        if ($this->getWidth() === null || $this->getHeight() === null) {
+            return true;
+        }
+
+        if (
+            (is_numeric($this->getWidth()) && $this->getWidth() <= 0)
+            || (is_numeric($this->getHeight()) && $this->getHeight() <= 0)
+        ) {
             return true;
         }
 
@@ -175,7 +182,7 @@ final class ImageDimensions
         if ($this->width === null) {
             $this->width = -1;
             $width       = $this->image->getAttribute(Attribute::WIDTH);
-            if (! empty($width)) {
+            if (trim($width) !== '') {
                 if (is_numeric($width)) {
                     $intWidth    = (int)$width;
                     $floatWidth  = (float)$width;
@@ -199,7 +206,7 @@ final class ImageDimensions
         if ($this->height === null) {
             $this->height = -1;
             $height       = $this->image->getAttribute(Attribute::HEIGHT);
-            if (! empty($height)) {
+            if (trim($height) !== '') {
                 if (is_numeric($height)) {
                     $intHeight    = (int)$height;
                     $floatHeight  = (float)$height;
