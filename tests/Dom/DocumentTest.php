@@ -366,8 +366,28 @@ class DocumentTest extends TestCase
             ],
             'schema_markup_check' => [
                 'utf-8',
-                '<!DOCTYPE html><html>' . $head . '<body><script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"LiveBlogPosting","url":"https:\/\/amp.dev\/documentation\/examples\/news-publishing\/live_blog\/","articleBody":"<p><img class=\"aligncenter size-large wp-image-807214\" src=\"https:\/\/images.frandroid.com\/wp-content\/uploads\/2020\/11\/sonos-beam-1200x799.jpg\" alt=\"\" width=\"1200\" height=\"799\" \/><br \/><\/p>\n","datePublished":"2016-09-08T23:04:28.24337"}</script></body></html></body></html>',
-                '<!DOCTYPE html><html>' . $head . '<body><script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"LiveBlogPosting","url":"https:\/\/amp.dev\/documentation\/examples\/news-publishing\/live_blog\/","articleBody":"<p><img class=\"aligncenter size-large wp-image-807214\" src=\"https:\/\/images.frandroid.com\/wp-content\/uploads\/2020\/11\/sonos-beam-1200x799.jpg\" alt=\"\" width=\"1200\" height=\"799\" \/><br \/><\/p>\n","datePublished":"2016-09-08T23:04:28.24337"}</script></body></html></body></html>'
+                '
+                <!DOCTYPE html>
+                <html>
+                    <head><meta charset="utf-8"></head>
+                    <body>
+                    <script type="application/ld+json">
+                        {"@context":"http:\/\/schema.org","@type":"LiveBlogPosting","url":"https:\/\/amp.dev\/documentation\/examples\/news-publishing\/live_blog\/","articleBody":"<p><img class=\"aligncenter size-large wp-image-807214\" src=\"https:\/\/images.frandroid.com\/wp-content\/uploads\/2020\/11\/sonos-beam-1200x799.jpg\" alt=\"\" width=\"1200\" height=\"799\" \/><br \/><\/p>\n","datePublished":"2016-09-08T23:04:28.24337"}
+                    </script>
+                    </body>
+                </html>
+                ',
+                '
+                <!DOCTYPE html>
+                <html>
+                    <head><meta charset="utf-8"></head>
+                    <body>
+                    <script type="application/ld+json">
+                        {"@context":"http:\/\/schema.org","@type":"LiveBlogPosting","url":"https:\/\/amp.dev\/documentation\/examples\/news-publishing\/live_blog\/","articleBody":"<p><img class=\"aligncenter size-large wp-image-807214\" src=\"https:\/\/images.frandroid.com\/wp-content\/uploads\/2020\/11\/sonos-beam-1200x799.jpg\" alt=\"\" width=\"1200\" height=\"799\" \/><br \/><\/p>\n","datePublished":"2016-09-08T23:04:28.24337"}
+                    </script>
+                    </body>
+                </html>
+                '
             ],
             'self_closing_tag' => [
                 'utf-8',
