@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
 use AmpProject\Tests\MarkupComparison;
+use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
@@ -13,7 +14,6 @@ use AmpProject\Optimizer\Transformer\ReorderHead;
 use AmpProject\Optimizer\Transformer\ServerSideRendering;
 use AmpProject\RemoteRequest\StubbedRemoteGetRequest;
 use DirectoryIterator;
-use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
 

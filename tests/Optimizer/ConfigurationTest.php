@@ -4,7 +4,7 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
-use PHPUnit\Framework\TestCase;
+use AmpProject\Tests\TestCase;
 
 /**
  * Test the configuration storage and validation.

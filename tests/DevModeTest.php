@@ -1,10 +1,9 @@
 <?php
 
-namespace AmpProject\Common;
+namespace AmpProject;
 
-use AmpProject\DevMode;
 use AmpProject\Dom\Document;
-use PHPUnit\Framework\TestCase;
+use AmpProject\Tests\TestCase;
 
 /**
  * Tests for AmpProject\DevMode.

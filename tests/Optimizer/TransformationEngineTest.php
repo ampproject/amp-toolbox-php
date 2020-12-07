@@ -4,10 +4,10 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Dom\Document;
 use AmpProject\Tests\MarkupComparison;
+use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
 use AmpProject\Tests\TestTransformer;
 use AmpProject\RemoteRequest\StubbedRemoteGetRequest;
-use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
 

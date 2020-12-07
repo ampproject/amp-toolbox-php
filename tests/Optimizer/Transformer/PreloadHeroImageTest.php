@@ -8,8 +8,8 @@ use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Tests\ErrorComparison;
 use AmpProject\Tests\MarkupComparison;
+use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Test the PreloadHeroImage transformer.

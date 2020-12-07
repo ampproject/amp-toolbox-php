@@ -1,15 +1,12 @@
 <?php
 
-namespace AmpProject\Common;
+namespace AmpProject\Dom;
 
 use AmpProject\Amp;
 use AmpProject\Attribute;
-use AmpProject\Dom\Document;
-use AmpProject\Dom\Element;
-use AmpProject\Dom\ElementDump;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
-use PHPUnit\Framework\TestCase;
+use AmpProject\Tests\TestCase;
 
 /**
  * Tests for AmpProject\Dom\Element.

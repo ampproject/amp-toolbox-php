@@ -2,7 +2,7 @@
 
 namespace AmpProject\Optimizer;
 
-use PHPUnit\Framework\TestCase;
+use AmpProject\Tests\TestCase;
 
 /**
  * Tests for AmpProject\Optimizer\CssRules.

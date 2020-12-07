@@ -7,8 +7,8 @@ use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Tests\MarkupComparison;
+use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
-use PHPUnit\Framework\TestCase;
 
 /**
  * Test the AmpBoilerplate transformer.

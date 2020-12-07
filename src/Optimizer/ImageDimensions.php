@@ -119,7 +119,14 @@ final class ImageDimensions
             }
         }
 
-        if ($this->getWidth() <= 0 || $this->getHeight() <= 0) {
+        if ($this->getWidth() === null || $this->getHeight() === null) {
+            return true;
+        }
+
+        if (
+            (is_numeric($this->getWidth()) && $this->getWidth() <= 0)
+            || (is_numeric($this->getHeight()) && $this->getHeight() <= 0)
+        ) {
             return true;
         }
 
@@ -128,9 +135,10 @@ final class ImageDimensions
             case Layout::RESPONSIVE:
                 return false;
             case Layout::FIXED_HEIGHT:
-                return $this->getHeight() < $threshold;
+                return is_numeric($this->getHeight()) && $this->getHeight() < $threshold;
             default:
-                return $this->getWidth() < $threshold || $this->getHeight() < $threshold;
+                return (is_numeric($this->getWidth()) && $this->getWidth() < $threshold)
+                    || (is_numeric($this->getHeight()) && $this->getHeight() < $threshold);
         }
     }
 
@@ -174,9 +182,11 @@ final class ImageDimensions
         if ($this->width === null) {
             $this->width = -1;
             $width       = $this->image->getAttribute(Attribute::WIDTH);
-            if (! empty($width)) {
+            if (trim($width) !== '') {
                 if (is_numeric($width)) {
-                    $this->width = $width + 0; // Cast string into either int or float as needed.
+                    $intWidth    = (int)$width;
+                    $floatWidth  = (float)$width;
+                    $this->width = $intWidth == $floatWidth ? $intWidth : $floatWidth;
                 } else {
                     $this->width = $width;
                 }
@@ -196,9 +206,11 @@ final class ImageDimensions
         if ($this->height === null) {
             $this->height = -1;
             $height       = $this->image->getAttribute(Attribute::HEIGHT);
-            if (! empty($height)) {
+            if (trim($height) !== '') {
                 if (is_numeric($height)) {
-                    $this->height = $height + 0; // Cast string into either int or float as needed.
+                    $intHeight    = (int)$height;
+                    $floatHeight  = (float)$height;
+                    $this->height = $intHeight == $floatHeight ? $intHeight : $floatHeight;
                 } else {
                     $this->height = $height;
                 }
