@@ -481,7 +481,7 @@ final class PreloadHeroImage implements Transformer
         $preload->setAttribute(Attribute::REL, Attribute::REL_PRELOAD);
         $preload->setAttribute(Attribute::HREF, $heroImage->getSrc());
         $preload->setAttribute(Attribute::AS_, RequestDestination::IMAGE);
-        $preload->setAttribute(Attribute::DATA_HERO, null);
+        $preload->appendChild($document->createAttribute(Attribute::DATA_HERO));
         if ($heroImage->getSrcset()) {
             $preload->setAttribute(Attribute::IMAGESRCSET, $heroImage->getSrcset());
             if ($img && $img->hasAttribute(Attribute::SIZES)) {
@@ -537,8 +537,8 @@ final class PreloadHeroImage implements Transformer
             }
         }
 
-        $element->setAttribute(Attribute::I_AMPHTML_SSR, null);
-        $element->setAttribute(Attribute::DATA_HERO, null);
+        $element->appendChild($document->createAttribute(Attribute::I_AMPHTML_SSR));
+        $element->appendChild($document->createAttribute(Attribute::DATA_HERO));
 
         $element->appendChild($imgElement);
 

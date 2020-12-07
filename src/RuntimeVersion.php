@@ -99,6 +99,6 @@ final class RuntimeVersion
      */
     private function padVersionString($version)
     {
-        return str_pad($version, 15, 0);
+        return str_pad($version, 15, '0');
     }
 }
