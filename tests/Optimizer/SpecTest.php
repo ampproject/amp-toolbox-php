@@ -29,8 +29,6 @@ final class SpecTest extends TestCase
     const TRANSFORMER_SPEC_PATH = __DIR__ . '/../spec/transformers/valid';
 
     const TESTS_TO_SKIP = [
-        'PreloadHeroImage - attributes' => 'see https://github.com/ampproject/amp-toolbox/issues/951',
-
         'ReorderHead - reorders_head_a4a'                => 'see https://github.com/ampproject/amp-toolbox/issues/583',
         'ReorderHead - reorders_head_amphtml'            => 'see https://github.com/ampproject/amp-toolbox/issues/583',
         'ReorderHead - preserves_amp_custom_style_order' => 'see https://github.com/ampproject/amp-toolbox/issues/604',
