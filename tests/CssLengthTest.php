@@ -9,7 +9,7 @@ use AmpProject\Tests\TestCase;
  *
  * @todo   This is only a stub and basic smoke test, more tests need to be added here, as the plugin didn't have any.
  *
- * @covers CssLength
+ * @covers \AmpProject\CssLength
  * @package ampproject/amp-toolbox
  */
 class CssLengthTest extends TestCase
@@ -18,9 +18,9 @@ class CssLengthTest extends TestCase
     /**
      * Test instantiating empty CssLength.
      *
-     * @covers CssLength::__construct()
-     * @covers CssLength::isValid()
-     * @covers CssLength::isDefined()
+     * @covers \AmpProject\CssLength::__construct()
+     * @covers \AmpProject\CssLength::isValid()
+     * @covers \AmpProject\CssLength::isDefined()
      */
     public function testEmptyCssLengthIsValidButNotDefined()
     {

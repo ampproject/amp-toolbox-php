@@ -14,6 +14,7 @@ use AmpProject\Tests\TestMarkup;
 /**
  * Test the ServerSideRendering transformer.
  *
+ * @covers \AmpProject\Optimizer\Transformer\ServerSideRendering
  * @package ampproject/amp-toolbox
  */
 final class ServerSideRenderingTest extends TestCase

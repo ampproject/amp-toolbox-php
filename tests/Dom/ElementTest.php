@@ -11,7 +11,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Tests for AmpProject\Dom\Element.
  *
- * @covers Element
+ * @covers \AmpProject\Dom\Element
  * @package ampproject/amp-toolbox
  */
 class ElementTest extends TestCase
@@ -39,6 +39,7 @@ class ElementTest extends TestCase
      * Test the byte count property.
      *
      * @dataProvider dataByteCounts
+     * @covers \AmpProject\Dom\Element::__get()
      *
      * @param string $html     HTML to test against.
      * @param int    $expected Expected number of bytes of inline styles.
@@ -53,6 +54,8 @@ class ElementTest extends TestCase
 
     /**
      * Test adding inline styles without CSS byte count limit.
+     *
+     * @covers \AmpProject\Dom\Element::addInlineStyle()
      */
     public function testAddInlineStyleWithoutLimit()
     {
@@ -84,6 +87,8 @@ class ElementTest extends TestCase
 
     /**
      * Test adding inline styles with CSS byte count limit.
+     *
+     * @covers \AmpProject\Dom\Element::addInlineStyle()
      */
     public function testAddInlineStyleWithLimit()
     {

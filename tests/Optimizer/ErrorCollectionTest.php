@@ -9,6 +9,7 @@ use ReflectionClass;
 /**
  * Test the error collection container.
  *
+ * @covers \AmpProject\Optimizer\ErrorCollection
  * @package ampproject/amp-toolbox
  */
 final class ErrorCollectionTest extends TestCase

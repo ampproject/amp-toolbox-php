@@ -7,18 +7,25 @@ use AmpProject\Tests\TestCase;
 /**
  * Tests for AmpProject\Optimizer\CssRules.
  *
- * @covers  CssRules
+ * @covers  \AmpProject\Optimizer\CssRules
  * @package ampproject/amp-toolbox
  */
 class CssRulesTest extends TestCase
 {
 
+    /**
+     * @covers \AmpProject\Optimizer\CssRules::getCss()
+     */
     public function testEmptyCollection()
     {
         $cssRules = new CssRules();
         $this->assertEquals('', $cssRules->getCss());
     }
 
+    /**
+     * @covers \AmpProject\Optimizer\CssRules::add()
+     * @covers \AmpProject\Optimizer\CssRules::getCss()
+     */
     public function testSingleRule()
     {
         $cssRules = (new CssRules())
@@ -26,6 +33,10 @@ class CssRulesTest extends TestCase
         $this->assertEquals('h1{color:red}', $cssRules->getCss());
     }
 
+    /**
+     * @covers \AmpProject\Optimizer\CssRules::add()
+     * @covers \AmpProject\Optimizer\CssRules::getCss()
+     */
     public function testMultipleRules()
     {
         $cssRules = (new CssRules())
@@ -35,6 +46,10 @@ class CssRulesTest extends TestCase
         $this->assertEquals('h1{color:red}h2{color:green}h3{color:blue}', $cssRules->getCss());
     }
 
+    /**
+     * @covers \AmpProject\Optimizer\CssRules::add()
+     * @covers \AmpProject\Optimizer\CssRules::getCss()
+     */
     public function testMultipleRulesWithOverlap()
     {
         $cssRules = (new CssRules())
@@ -46,6 +61,10 @@ class CssRulesTest extends TestCase
         $this->assertEquals('h1,h3,h5{color:red}h2,h4{color:green}', $cssRules->getCss());
     }
 
+    /**
+     * @covers \AmpProject\Optimizer\CssRules::add()
+     * @covers \AmpProject\Optimizer\CssRules::getCss()
+     */
     public function testNamedConstructor()
     {
         $cssRules = CssRules::fromCssRuleArray(

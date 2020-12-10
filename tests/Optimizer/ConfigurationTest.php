@@ -9,6 +9,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Test the configuration storage and validation.
  *
+ * @covers \AmpProject\Optimizer\Configuration
  * @package ampproject/amp-toolbox
  */
 final class ConfigurationTest extends TestCase

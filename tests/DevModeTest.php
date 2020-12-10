@@ -22,7 +22,10 @@ class DevModeTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataIsActiveForDocument */
+    /**
+     * @dataProvider dataIsActiveForDocument
+     * @covers \AmpProject\DevMode::isActiveForDocument()
+     */
     public function testIsActiveForDocument($html, $expected)
     {
         $document = Document::fromHtml($html);
@@ -44,7 +47,10 @@ class DevModeTest extends TestCase
         return $testData;
     }
 
-    /** @dataProvider dataHasExemptionForNode */
+    /**
+     * @dataProvider dataHasExemptionForNode
+     * @covers \AmpProject\DevMode::hasExemptionForNode()
+     */
     public function testHasExemptionForNode($document, $expected)
     {
         $node = $document->xpath->query('//*[@id="node_to_test"]')->item(0);
@@ -61,7 +67,10 @@ class DevModeTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataIsExemptFromValidation */
+    /**
+     * @dataProvider dataIsExemptFromValidation
+     * @covers \AmpProject\DevMode::isExemptFromValidation()
+     */
     public function testIsExemptFromValidation($html, $expected)
     {
         $document = Document::fromHtml($html);

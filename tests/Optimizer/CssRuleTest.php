@@ -7,7 +7,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Tests for AmpProject\Optimizer\CssRule.
  *
- * @covers  CssRule
+ * @covers  \AmpProject\Optimizer\CssRule
  * @package ampproject/amp-toolbox
  */
 class CssRuleTest extends TestCase
@@ -60,9 +60,9 @@ class CssRuleTest extends TestCase
      *
      * @dataProvider dataCssRuleOutput
      *
-     * @covers CssRule::__construct()
-     * @covers CssRule::applyID()
-     * @covers CssRule::getCss()
+     * @covers \AmpProject\Optimizer\CssRule::__construct()
+     * @covers \AmpProject\Optimizer\CssRule::applyID()
+     * @covers \AmpProject\Optimizer\CssRule::getCss()
      */
     public function testCssRuleOutput($selectors, $properties, $expected)
     {
@@ -139,10 +139,10 @@ class CssRuleTest extends TestCase
      *
      * @dataProvider dataCssRuleMerging
      *
-     * @covers CssRule::__construct()
-     * @covers CssRule::withMediaQuery()
-     * @covers CssRule::canBeMerged()
-     * @covers CssRule::mergeWith()
+     * @covers \AmpProject\Optimizer\CssRule::__construct()
+     * @covers \AmpProject\Optimizer\CssRule::withMediaQuery()
+     * @covers \AmpProject\Optimizer\CssRule::canBeMerged()
+     * @covers \AmpProject\Optimizer\CssRule::mergeWith()
      */
     public function testCssRulesCanBeMerged($ruleAValues, $ruleBValues, $expectedCanBeMerged, $expectedMergedRuleValues = [])
     {

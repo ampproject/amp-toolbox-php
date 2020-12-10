@@ -12,6 +12,7 @@ use AmpProject\Tests\TestMarkup;
 /**
  * Test the TransformedIdentifier transformer.
  *
+ * @covers \AmpProject\Optimizer\Transformer\TransformedIdentifier
  * @package ampproject/amp-toolbox
  */
 final class TransformedIdentifierTest extends TestCase

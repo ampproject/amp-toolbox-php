@@ -14,6 +14,7 @@ use AmpProject\Tests\TestMarkup;
 /**
  * Test the PreloadHeroImage transformer.
  *
+ * @covers \AmpProject\Optimizer\Transformer\PreloadHeroImage
  * @package ampproject/amp-toolbox
  */
 final class PreloadHeroImageTest extends TestCase

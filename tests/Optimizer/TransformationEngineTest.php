@@ -14,6 +14,7 @@ use ReflectionException;
 /**
  * Test the transformation engine as a whole.
  *
+ * @covers \AmpProject\Optimizer\TransformationEngine
  * @package ampproject/amp-toolbox
  */
 final class TransformationEngineTest extends TestCase
@@ -68,7 +69,7 @@ final class TransformationEngineTest extends TestCase
      * All conversion details will be the same as with optimizeHtml, so there's no point
      * in testing everything twice.
      *
-     * @covers TransformationEngine::optimizeDom()
+     * @covers       \AmpProject\Optimizer\TransformationEngine::optimizeDom()
      */
     public function testOptimizeDom()
     {
