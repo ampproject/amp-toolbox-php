@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Tests for AmpProject\RuntimeVersion.
  *
- * @covers  RuntimeVersion
+ * @covers  \AmpProject\RuntimeVersion
  * @package ampproject/amp-toolbox
  */
 class RuntimeVersionTest extends TestCase
@@ -40,7 +40,7 @@ class RuntimeVersionTest extends TestCase
     /**
      * Test whether the release version is returned by default.
      *
-     * @covers RuntimeVersion::currentVersion()
+     * @covers \AmpProject\RuntimeVersion::currentVersion()
      */
     public function testItReturnsReleaseVersionByDefault()
     {
@@ -51,7 +51,7 @@ class RuntimeVersionTest extends TestCase
     /**
      * Test whether the canary version can be requested via an option.
      *
-     * @covers RuntimeVersion::currentVersion()
+     * @covers \AmpProject\RuntimeVersion::currentVersion()
      */
     public function testItReturnsCanaryVersionViaOption()
     {

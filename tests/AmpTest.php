@@ -10,7 +10,7 @@ use DOMNode;
 /**
  * Tests for AmpProject\Amp.
  *
- * @covers Amp
+ * @covers \AmpProject\Amp
  * @package ampproject/amp-toolbox
  */
 class AmpTest extends TestCase
@@ -40,7 +40,7 @@ class AmpTest extends TestCase
      * Test the check for an AMP runtime method.
      *
      * @dataProvider dataIsRuntimeScript
-     * @covers       Amp::isRuntimeScript()
+     * @covers       \AmpProject\Amp::isRuntimeScript()
      *
      * @param DOMNode $node     Node to check.
      * @param bool    $expected Expected boolean result.
@@ -72,7 +72,7 @@ class AmpTest extends TestCase
      * Test the check for an AMP runtime method.
      *
      * @dataProvider dataIsViewerScript
-     * @covers       Amp::isViewerScript()
+     * @covers       \AmpProject\Amp::isViewerScript()
      *
      * @param DOMNode $node     Node to check.
      * @param bool    $expected Expected boolean result.
@@ -106,7 +106,7 @@ class AmpTest extends TestCase
      * Test the render delaying check method.
      *
      * @dataProvider dataIsRenderDelayingExtension
-     * @covers       Amp::isRenderDelayingExtension()
+     * @covers       \AmpProject\Amp::isRenderDelayingExtension()
      *
      * @param DOMNode $node     Node to check
      * @param bool    $expected Expected boolean result.
@@ -137,7 +137,7 @@ class AmpTest extends TestCase
      * Test the check whether a given node is an AMP custom element.
      *
      * @dataProvider dataIsCustomElement
-     * @covers       Amp::isCustomElement()
+     * @covers       \AmpProject\Amp::isCustomElement()
      *
      * @param DOMNode $node     Node to check
      * @param bool    $expected Expected boolean result.
@@ -175,7 +175,7 @@ class AmpTest extends TestCase
      * Test the retrieval of an extension's name.
      *
      * @dataProvider dataExtensionTests
-     * @covers       Amp::getExtensionName()
+     * @covers       \AmpProject\Amp::getExtensionName()
      *
      * @param DOMNode $node     Node to get the name of.
      * @param string  $expected Expected string result.
@@ -190,7 +190,7 @@ class AmpTest extends TestCase
      * Test the check whether a node is an extension.
      *
      * @dataProvider dataExtensionTests
-     * @covers       Amp::isExtension()
+     * @covers       \AmpProject\Amp::isExtension()
      *
      * @param DOMNode $node     Node to check.
      * @param string  $_        (unused).
@@ -234,7 +234,7 @@ class AmpTest extends TestCase
      * Test the check for whether a document is an AMP Story.
      *
      * @dataProvider dataIsAmpStory
-     * @covers       Amp::isAmpStory()
+     * @covers       \AmpProject\Amp::isAmpStory()
      *
      * @param Document $document Document to get check for an AMP Story.
      * @param bool     $expected Expected result.
@@ -268,7 +268,7 @@ class AmpTest extends TestCase
      * Test the check whether a given node is an AMP template.
      *
      * @dataProvider dataIsTemplate
-     * @covers       Amp::isTemplate()
+     * @covers       \AmpProject\Amp::isTemplate()
      *
      * @param DOMNode $node     Node to check.
      * @param bool    $expected Expected boolean result.
@@ -332,7 +332,7 @@ class AmpTest extends TestCase
      * Test the check whether a given node is an AMP iframe.
      *
      * @dataProvider dataIsAmpIframe
-     * @covers       Amp::isAmpIframe()
+     * @covers       \AmpProject\Amp::isAmpIframe()
      *
      * @param DOMNode $node     Node to check.
      * @param bool    $expected Expected boolean result.

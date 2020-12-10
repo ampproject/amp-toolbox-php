@@ -13,6 +13,7 @@ use AmpProject\Tests\TestMarkup;
 /**
  * Test the AmpBoilerplate transformer.
  *
+ * @covers \AmpProject\Optimizer\Transformer\AmpBoilerplate
  * @package ampproject/amp-toolbox
  */
 final class AmpBoilerplateTest extends TestCase

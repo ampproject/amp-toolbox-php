@@ -12,7 +12,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Tests for AmpProject\Optimizer\ImageDimensions.
  *
- * @covers  ImageDimensions
+ * @covers  \AmpProject\Optimizer\ImageDimensions
  * @package ampproject/amp-toolbox
  */
 class ImageDimensionsTest extends TestCase

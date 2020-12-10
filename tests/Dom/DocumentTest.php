@@ -6,17 +6,20 @@ use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
+use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
 use DOMNode;
 
 /**
  * Tests for AmpProject\Dom\Document.
  *
- * @covers Document
+ * @covers \AmpProject\Dom\Document
  * @package ampproject/amp-toolbox
  */
 class DocumentTest extends TestCase
 {
+    use MarkupComparison;
+
     /**
      * Data for AmpProject\Dom\Document test.
      *
@@ -400,8 +403,8 @@ class DocumentTest extends TestCase
      * @param string $expected Expected target content.
      *
      * @dataProvider dataDomDocument
-     * @covers       Document::loadHTML()
-     * @covers       Document::saveHTML()
+     * @covers       \AmpProject\Dom\Document::loadHTML()
+     * @covers       \AmpProject\Dom\Document::saveHTML()
      */
     public function testDomDocument($charset, $source, $expected)
     {
@@ -410,28 +413,9 @@ class DocumentTest extends TestCase
     }
 
     /**
-     * Assert markup is equal.
-     *
-     * @param string $expected Expected markup.
-     * @param string $actual   Actual markup.
-     */
-    public function assertEqualMarkup($expected, $actual)
-    {
-        $actual   = preg_replace('/\s+/', ' ', $actual);
-        $expected = preg_replace('/\s+/', ' ', $expected);
-        $actual   = preg_replace('/(?<=>)\s+(?=<)/', '', trim($actual));
-        $expected = preg_replace('/(?<=>)\s+(?=<)/', '', trim($expected));
-
-        $this->assertEquals(
-            array_filter(preg_split('#(<!--.*?-->|<[^>]+>|[^<>]+)#', $expected, -1, PREG_SPLIT_DELIM_CAPTURE)),
-            array_filter(preg_split('#(<!--.*?-->|<[^>]+>|[^<>]+)#', $actual, -1, PREG_SPLIT_DELIM_CAPTURE))
-        );
-    }
-
-    /**
      * Test convertAmpBindAttributes.
      *
-     * @covers Document::convertAmpBindAttributes()
+     * @covers \AmpProject\Dom\Document::convertAmpBindAttributes()
      */
     public function testAmpBindConversion()
     {
@@ -467,8 +451,8 @@ class DocumentTest extends TestCase
     /**
      * Test handling noscript elements in the head.
      *
-     * @covers Document::maybeReplaceNoscriptElements()
-     * @covers Document::maybeRestoreNoscriptElements()
+     * @covers \AmpProject\Dom\Document::maybeReplaceNoscriptElements()
+     * @covers \AmpProject\Dom\Document::maybeRestoreNoscriptElements()
      */
     public function testHeadNoscriptElementHandling()
     {
@@ -551,7 +535,7 @@ class DocumentTest extends TestCase
     /**
      * Test that HEAD and BODY elements are always present.
      *
-     * @covers Document::normalizeDocumentStructure()
+     * @covers \AmpProject\Dom\Document::normalizeDocumentStructure()
      */
     public function testEnsuringHeadBody()
     {
@@ -592,7 +576,7 @@ class DocumentTest extends TestCase
     /**
      * Test that invalid head nodes are moved to body.
      *
-     * @covers Document::moveInvalidHeadNodesToBody()
+     * @covers \AmpProject\Dom\Document::moveInvalidHeadNodesToBody()
      */
     public function testInvalidHeadNodes()
     {
@@ -669,7 +653,7 @@ class DocumentTest extends TestCase
      * Test isValidHeadNode().
      *
      * @dataProvider getHeadNodeData
-     * @covers       Document::isValidHeadNode()
+     * @covers       \AmpProject\Dom\Document::isValidHeadNode()
      *
      * @param Document $dom   DOM document to use.
      * @param DOMNode  $node  Node.
@@ -683,8 +667,7 @@ class DocumentTest extends TestCase
     /**
      * Test that the $html property fetches the right element.
      *
-     * @covers Document::__get()
-     * @covers Document::$html
+     * @covers \AmpProject\Dom\Document::__get()
      */
     public function testHtmlProperty()
     {
@@ -696,8 +679,7 @@ class DocumentTest extends TestCase
     /**
      * Test that the $head property fetches the right element.
      *
-     * @covers Document::__get()
-     * @covers Document::$head
+     * @covers \AmpProject\Dom\Document::__get()
      */
     public function testHeadProperty()
     {
@@ -709,8 +691,7 @@ class DocumentTest extends TestCase
     /**
      * Test that the $body property fetches the right element.
      *
-     * @covers Document::__get()
-     * @covers Document::$body
+     * @covers \AmpProject\Dom\Document::__get()
      */
     public function testBodyProperty()
     {
@@ -722,8 +703,7 @@ class DocumentTest extends TestCase
     /**
      * Test that the $ampElements property fetches the right elements.
      *
-     * @covers Document::__get()
-     * @covers Document::$ampElements
+     * @covers \AmpProject\Dom\Document::__get()
      */
     public function testAmpElementsProperty()
     {
@@ -772,6 +752,7 @@ class DocumentTest extends TestCase
      * Test that AMP dev mode on the root DOM element is initially set.
      *
      * @dataProvider getInitialAmpDevModeData
+     * @covers \AmpProject\Dom\Document::hasInitialAmpDevMode()
      *
      * @param Document $document          Document.
      * @param boolean  $hasInitialDevMode Whether $document should have dev mode initially or not.
@@ -847,7 +828,7 @@ class DocumentTest extends TestCase
      * Test Document::getElementId().
      *
      * @dataProvider getGetElementIdData
-     * @covers Document::getElementId()
+     * @covers \AmpProject\Dom\Document::getElementId()
      *
      * @param array $checks Checks to perform. Each check is an array containing an element, a prefix and an expected ID.
      */
@@ -868,7 +849,7 @@ class DocumentTest extends TestCase
     /**
      * Test whether existing element IDs are taken into account, even if the index counter is off.
      *
-     * @covers Document::getElementId()
+     * @covers \AmpProject\Dom\Document::getElementId()
      */
     public function testGetElementIdOnPreexistingIds()
     {
@@ -929,6 +910,8 @@ class DocumentTest extends TestCase
 
     /**
      * Test the Document::getRemainingCssSpace() method.
+     *
+     * @covers \AmpProject\Dom\Document::getRemainingCustomCssSpace()
      */
     public function testGetRemainingCssSpace()
     {
@@ -951,6 +934,8 @@ class DocumentTest extends TestCase
 
     /**
      * Test the Document::addAmpCustomStyle() method without byte limit.
+     *
+     * @covers \AmpProject\Dom\Document::addAmpCustomStyle()
      */
     public function testAddAmpCustomStyleWithoutLimit()
     {
@@ -974,6 +959,8 @@ class DocumentTest extends TestCase
 
     /**
      * Test the Document::addAmpCustomStyle() method with byte limit.
+     *
+     * @covers \AmpProject\Dom\Document::addAmpCustomStyle()
      */
     public function testAddAmpCustomStyleWithLimit()
     {

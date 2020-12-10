@@ -13,6 +13,7 @@ use AmpProject\Tests\TestMarkup;
 /**
  * Test the ReorderHead transformer.
  *
+ * @covers \AmpProject\Optimizer\Transformer\ReorderHead
  * @package ampproject/amp-toolbox
  */
 final class ReorderHeadTest extends TestCase

@@ -7,7 +7,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Tests for AmpProject\Url.
  *
- * @covers  Url
+ * @covers  \AmpProject\Url
  * @package ampproject/amp-toolbox
  */
 class UrlTest extends TestCase
@@ -26,7 +26,10 @@ class UrlTest extends TestCase
         ];
     }
 
-    /** @dataProvider dataIsValidNonDataUrl */
+    /**
+     * @dataProvider dataIsValidNonDataUrl
+     * @covers \AmpProject\Url::isValidNonDataUrl()
+     */
     public function testIsValidNonDataUrl($src, $expected)
     {
         $this->assertEquals($expected, Url::isValidNonDataUrl($src));

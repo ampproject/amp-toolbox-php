@@ -13,6 +13,7 @@ use AmpProject\RemoteRequest\StubbedRemoteGetRequest;
 /**
  * Test the AmpRuntimeCss transformer.
  *
+ * @covers \AmpProject\Optimizer\Transformer\AmpRuntimeCss
  * @package ampproject/amp-toolbox
  */
 final class AmpRuntimeCssTest extends TestCase
