@@ -1,0 +1,17 @@
+# Improve diff output for PHP files.
+*.php              diff=php
+
+# Mark generated files so diffs are hidden by default.
+/resources/**/*    linguist-generated=true
+/tests/spec/**/*   linguist-generated=true
+
+# Exclude build & test files from dist archives.
+/.github           export-ignore
+/bin               export-ignore
+/tests             export-ignore
+/.editorconfig     export-ignore
+/.gitattributes    export-ignore
+/.gitignore        export-ignore
+/.phpcs.xml.dist   export-ignore
+/phpstan.neon.dist export-ignore
+/phpunit.xml       export-ignore
