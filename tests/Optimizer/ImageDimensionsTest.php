@@ -317,8 +317,8 @@ class ImageDimensionsTest extends TestCase
             'small fixed height'                      => ['auto', 50, Layout::FIXED_HEIGHT, null, true],
             'no dimensions no layout'                 => [null, null, null, null, true],
             'no dimensions fill (checks parent size)' => [null, null, Layout::FILL, null, false],
-            'width with unit'                         => ['50vw', 500, null, null, true],
-            'height with unit'                        => [500, '50vh', null, null, true],
+            'width with unit'                         => ['50vw', 500, null, null, false],
+            'height with unit'                        => [500, '50vh', null, null, false],
         ];
     }
 

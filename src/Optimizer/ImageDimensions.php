@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer;
 use AmpProject\Attribute;
 use AmpProject\Dom\Element;
 use AmpProject\Layout;
+use AmpProject\LengthUnit;
 
 final class ImageDimensions
 {
@@ -114,10 +115,12 @@ final class ImageDimensions
      */
     public function isTiny($threshold = self::TINY_THRESHOLD)
     {
+        // Make sure we have a valid threshold to compare against.
         if ($threshold === null) {
             $threshold = self::TINY_THRESHOLD;
         }
 
+        // For the 'fill' layout, we need to look at the parent container's dimensions.
         if (! $this->hasWidth() && ! $this->hasHeight()) {
             if ($this->getLayout() === Layout::FILL) {
                 list($this->width, $this->height) = $this->getDimensionsFromParent();
@@ -126,10 +129,12 @@ final class ImageDimensions
             }
         }
 
+        // If one or both of the dimensions are missing, we cannot deduce an aspect ratio.
         if ($this->getWidth() === null || $this->getHeight() === null) {
             return true;
         }
 
+        // If one or both of the dimensions are zero, the entire image will be invisible.
         if (
             (is_numeric($this->getWidth()) && $this->getWidth() <= 0)
             || (is_numeric($this->getHeight()) && $this->getHeight() <= 0)
@@ -137,12 +142,33 @@ final class ImageDimensions
             return true;
         }
 
+        // If relative units are in use, we cannot assume much about the final dimensions.
+        if (
+            (
+                $this->hasWidthUnit()
+                && in_array($this->getWidthUnit(), LengthUnit::RELATIVE_UNITS, true)
+                && (is_numeric($this->getHeight()) && $this->getHeight() < $threshold)
+            ) || (
+                $this->hasHeightUnit()
+                && in_array($this->getHeightUnit(), LengthUnit::RELATIVE_UNITS, true)
+                && (is_numeric($this->getWidth()) && $this->getWidth() < $threshold)
+            )
+        ) {
+            return false;
+        }
+
         switch ($this->getLayout()) {
+            // For 'intrinsic' layout, the natural dimensions are more important, so assume not tiny for now.
             case Layout::INTRINSIC:
+            // For 'responsive' layout, the image adapts to the container and can grow beyond its dimensions.
             case Layout::RESPONSIVE:
                 return false;
+
+            // For 'fixed-height' layout, the width can grow and shrink, so we only compare the height.
             case Layout::FIXED_HEIGHT:
                 return is_numeric($this->getHeight()) && $this->getHeight() < $threshold;
+
+            // By default, we compare the dimensions against the provided threshold.
             default:
                 return (is_numeric($this->getWidth()) && $this->getWidth() < $threshold)
                     || (is_numeric($this->getHeight()) && $this->getHeight() < $threshold);
@@ -192,6 +218,8 @@ final class ImageDimensions
 
         return is_string($height) && preg_match(self::UNIT_REGEX_PATTERN, $height);
     }
+
+    /**
      * Check whether the image has a layout.
      *
      * @return bool Whether the image has a layout.
