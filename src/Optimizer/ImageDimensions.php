@@ -10,6 +10,13 @@ final class ImageDimensions
 {
 
     /**
+     * Regular expression pattern to match the trailing unit of a dimension.
+     *
+     * @var string
+     */
+    const UNIT_REGEX_PATTERN = '/[0-9]+(?<unit>(?:[a-z]+|%))$/i';
+
+    /**
      * Images smaller than 150px are considered tiny.
      *
      * @var int
@@ -163,6 +170,28 @@ final class ImageDimensions
     }
 
     /**
+     * Check whether the width has a unit.
+     *
+     * @return bool Whether the width has a unit.
+     */
+    public function hasWidthUnit()
+    {
+        $width = $this->getWidth();
+
+        return is_string($width) && preg_match(self::UNIT_REGEX_PATTERN, $width);
+    }
+
+    /**
+     * Check whether the height has a unit.
+     *
+     * @return bool Whether the height has a unit.
+     */
+    public function hasHeightUnit()
+    {
+        $height = $this->getHeight();
+
+        return is_string($height) && preg_match(self::UNIT_REGEX_PATTERN, $height);
+    }
      * Check whether the image has a layout.
      *
      * @return bool Whether the image has a layout.
@@ -218,6 +247,50 @@ final class ImageDimensions
         }
 
         return $this->height !== -1 ? $this->height : null;
+    }
+
+    /**
+     * Get the unit of the width.
+     *
+     * @return string Unit of the width, or an empty string if none found.
+     */
+    public function getWidthUnit()
+    {
+        $width = $this->getWidth();
+
+        if (!is_string($width)) {
+            return '';
+        }
+
+        $matches = [];
+
+        if (!preg_match(self::UNIT_REGEX_PATTERN, $width, $matches)) {
+            return '';
+        }
+
+        return $matches['unit'];
+    }
+
+    /**
+     * Get the unit of the height.
+     *
+     * @return string Unit of the height, or an empty string if none found.
+     */
+    public function getHeightUnit()
+    {
+        $height = $this->getHeight();
+
+        if (!is_string($height)) {
+            return '';
+        }
+
+        $matches = [];
+
+        if (!preg_match(self::UNIT_REGEX_PATTERN, $height, $matches)) {
+            return '';
+        }
+
+        return $matches['unit'];
     }
 
     /**

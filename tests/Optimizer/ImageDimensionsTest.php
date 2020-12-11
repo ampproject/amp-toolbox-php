@@ -56,6 +56,7 @@ class ImageDimensionsTest extends TestCase
             'fluid width'             => ['fluid', null, true, false, 'fluid', null],
             'fluid height'            => [null, 'fluid', false, true, null, 'fluid'],
             'fluid width & height'    => ['fluid', 'fluid', true, true, 'fluid', 'fluid'],
+            'with units'              => ['50vw', '50vh', true, true, '50vw', '50vh'],
         ];
     }
 
@@ -101,6 +102,83 @@ class ImageDimensionsTest extends TestCase
         $this->assertEquals($expectedHasHeight, $imageDimensions->hasHeight());
         $this->assertEquals($expectedWidth, $imageDimensions->getWidth());
         $this->assertEquals($expectedHeight, $imageDimensions->getHeight());
+    }
+
+    /**
+     * Provide an associative array of test data for checking and getting image dimension units.
+     *
+     * @return array[] Associative array of test data.
+     */
+    public function dataItCanGetDimensionUnits()
+    {
+        return [
+            'no dimensions'           => [null, null, false, false, '', ''],
+            'width only'              => [500, null, false, false, '', ''],
+            'height only'             => [null, 500, false, false, '', ''],
+            'width & height'          => [640, 480, false, false, '', ''],
+            'no dimensions (string)'  => ['', '', false, false, '', ''],
+            'width only (string)'     => ['500', '', false, false, '', ''],
+            'height only (string)'    => ['', '500', false, false, '', ''],
+            'width & height (string)' => ['640', '480', false, false, '', ''],
+            'width only (float)'      => [500.3, null, false, false, '', ''],
+            'height only (float)'     => [null, 500.7, false, false, '', ''],
+            'width & height (float)'  => [640.0, 480.0, false, false, '', ''],
+            'auto width'              => ['auto', null, false, false, '', ''],
+            'auto height'             => [null, 'auto', false, false, '', ''],
+            'auto width & height'     => ['auto', 'auto', false, false, '', ''],
+            'fluid width'             => ['fluid', null, false, false, '', ''],
+            'fluid height'            => [null, 'fluid', false, false, '', ''],
+            'fluid width & height'    => ['fluid', 'fluid', false, false, '', ''],
+            'width unit only'         => ['2em', '500', true, false, 'em', ''],
+            'height unit only'        => ['500', '5rem', false, true, '', 'rem'],
+            'with absolute units'     => ['500px', '500px', true, true, 'px', 'px'],
+            'with relative units'     => ['50vw', '50vh', true, true, 'vw', 'vh'],
+            'with percentages'        => ['50%', '50%', true, true, '%', '%'],
+        ];
+    }
+
+    /**
+     * Test checking and getting the dimension units.
+     *
+     * @param int|string|null $width                 Width of the image.
+     * @param int|string|null $height                Height of the image.
+     * @param bool            $expectedHasWidthUnit  Expected presence check for width unit.
+     * @param bool            $expectedHasHeightUnit Expected presence check for height unit.
+     * @param int|null        $expectedWidthUnit     Expected value of width unit.
+     * @param int|null        $expectedHeightUnit    Expected value of height unit.
+     *
+     * @dataProvider dataItCanGetDimensionUnits()
+     *
+     * @covers       \AmpProject\Optimizer\ImageDimensions::hasWidthUnit()
+     * @covers       \AmpProject\Optimizer\ImageDimensions::hasHeightUnit()
+     * @covers       \AmpProject\Optimizer\ImageDimensions::getWidthUnit()
+     * @covers       \AmpProject\Optimizer\ImageDimensions::getHeightUnit()
+     */
+    public function testItCanGetDimensionUnits(
+        $width,
+        $height,
+        $expectedHasWidthUnit,
+        $expectedHasHeightUnit,
+        $expectedWidthUnit,
+        $expectedHeightUnit
+    ) {
+        $dom   = new Document();
+        $image = $dom->createElement(Tag::IMG);
+
+        if ($width !== null) {
+            $image->setAttribute(Attribute::WIDTH, $width);
+        }
+
+        if ($height !== null) {
+            $image->setAttribute(Attribute::HEIGHT, $height);
+        }
+
+        $imageDimensions = new ImageDimensions($image);
+
+        $this->assertEquals($expectedHasWidthUnit, $imageDimensions->hasWidthUnit());
+        $this->assertEquals($expectedHasHeightUnit, $imageDimensions->hasHeightUnit());
+        $this->assertEquals($expectedWidthUnit, $imageDimensions->getWidthUnit());
+        $this->assertEquals($expectedHeightUnit, $imageDimensions->getHeightUnit());
     }
 
     /**
@@ -239,6 +317,8 @@ class ImageDimensionsTest extends TestCase
             'small fixed height'                      => ['auto', 50, Layout::FIXED_HEIGHT, null, true],
             'no dimensions no layout'                 => [null, null, null, null, true],
             'no dimensions fill (checks parent size)' => [null, null, Layout::FILL, null, false],
+            'width with unit'                         => ['50vw', 500, null, null, true],
+            'height with unit'                        => [500, '50vh', null, null, true],
         ];
     }
 
