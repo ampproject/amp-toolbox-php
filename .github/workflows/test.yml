@@ -48,11 +48,8 @@ jobs:
 
       - name: Setup PCOV
         if: ${{ matrix.coverage == true }}
-        # phpdocumentor/reflection has to be removed as it makes use of an outdated dependency, making pcov/clobber
-        # unable to be installed.
         run: |
-          composer remove --dev phpdocumentor/reflection
-          composer require --dev --ignore-platform-reqs pcov/clobber
+          composer require --dev pcov/clobber
           vendor/bin/pcov clobber
 
       # Scan the logs for failing tests and surface that information by creating annotations and log file decorations.
