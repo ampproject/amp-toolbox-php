@@ -10,7 +10,7 @@ on:
 
 jobs:
   unit-test:
-    name: "Unit test / PHP ${{ matrix.php }}"
+    name: "Unit test${{ matrix.coverage && ' (with coverage)' || '' }} / PHP ${{ matrix.php }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
