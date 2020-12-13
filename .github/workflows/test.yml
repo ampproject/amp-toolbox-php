@@ -61,7 +61,7 @@ jobs:
       - name: Run tests with coverage
         if: ${{ matrix.coverage == true }}
         run: |
-          composer unit -- --coverage-clover build/logs/clover.xml
+          vendor/bin/phpunit --coverage-clover build/logs/clover.xml
           bash <(curl -s https://codecov.io/bash) -cF php -f "$PWD/build/logs/clover.xml"
 
   code-style:
