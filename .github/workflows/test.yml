@@ -49,12 +49,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install
 
-      - name: Setup PCOV
-        if: ${{ matrix.coverage == true }}
-        run: |
-          composer require --dev pcov/clobber
-          vendor/bin/pcov clobber
-
       # Scan the logs for failing tests and surface that information by creating annotations and log file decorations.
       - name: Setup problem matcher to provide annotations for PHPUnit
         # The JSON file is provided by the `shivammathur/setup-php` action. See https://github.com/shivammathur/setup-php#problem-matchers.
