@@ -112,28 +112,28 @@ class ImageDimensionsTest extends TestCase
     public function dataItCanGetDimensionUnits()
     {
         return [
-            'no dimensions'           => [null, null, false, false, '', ''],
-            'width only'              => [500, null, false, false, '', ''],
-            'height only'             => [null, 500, false, false, '', ''],
-            'width & height'          => [640, 480, false, false, '', ''],
-            'no dimensions (string)'  => ['', '', false, false, '', ''],
-            'width only (string)'     => ['500', '', false, false, '', ''],
-            'height only (string)'    => ['', '500', false, false, '', ''],
-            'width & height (string)' => ['640', '480', false, false, '', ''],
-            'width only (float)'      => [500.3, null, false, false, '', ''],
-            'height only (float)'     => [null, 500.7, false, false, '', ''],
-            'width & height (float)'  => [640.0, 480.0, false, false, '', ''],
-            'auto width'              => ['auto', null, false, false, '', ''],
-            'auto height'             => [null, 'auto', false, false, '', ''],
-            'auto width & height'     => ['auto', 'auto', false, false, '', ''],
-            'fluid width'             => ['fluid', null, false, false, '', ''],
-            'fluid height'            => [null, 'fluid', false, false, '', ''],
-            'fluid width & height'    => ['fluid', 'fluid', false, false, '', ''],
-            'width unit only'         => ['2em', '500', true, false, 'em', ''],
-            'height unit only'        => ['500', '5rem', false, true, '', 'rem'],
-            'with absolute units'     => ['500px', '500px', true, true, 'px', 'px'],
-            'with relative units'     => ['50vw', '50vh', true, true, 'vw', 'vh'],
-            'with percentages'        => ['50%', '50%', true, true, '%', '%'],
+            'no dimensions'           => [null, null, '', ''],
+            'width only'              => [500, null, '', ''],
+            'height only'             => [null, 500, '', ''],
+            'width & height'          => [640, 480, '', ''],
+            'no dimensions (string)'  => ['', '', '', ''],
+            'width only (string)'     => ['500', '', '', ''],
+            'height only (string)'    => ['', '500', '', ''],
+            'width & height (string)' => ['640', '480', '', ''],
+            'width only (float)'      => [500.3, null, '', ''],
+            'height only (float)'     => [null, 500.7, '', ''],
+            'width & height (float)'  => [640.0, 480.0, '', ''],
+            'auto width'              => ['auto', null, '', ''],
+            'auto height'             => [null, 'auto', '', ''],
+            'auto width & height'     => ['auto', 'auto', '', ''],
+            'fluid width'             => ['fluid', null, '', ''],
+            'fluid height'            => [null, 'fluid', '', ''],
+            'fluid width & height'    => ['fluid', 'fluid', '', ''],
+            'width unit only'         => ['2em', '500', 'em', ''],
+            'height unit only'        => ['500', '5rem', '', 'rem'],
+            'with absolute units'     => ['500px', '500px', 'px', 'px'],
+            'with relative units'     => ['50vw', '50vh', 'vw', 'vh'],
+            'with percentages'        => ['50%', '50%', '%', '%'],
         ];
     }
 
@@ -142,23 +142,17 @@ class ImageDimensionsTest extends TestCase
      *
      * @param int|string|null $width                 Width of the image.
      * @param int|string|null $height                Height of the image.
-     * @param bool            $expectedHasWidthUnit  Expected presence check for width unit.
-     * @param bool            $expectedHasHeightUnit Expected presence check for height unit.
      * @param int|null        $expectedWidthUnit     Expected value of width unit.
      * @param int|null        $expectedHeightUnit    Expected value of height unit.
      *
      * @dataProvider dataItCanGetDimensionUnits()
      *
-     * @covers       \AmpProject\Optimizer\ImageDimensions::hasWidthUnit()
-     * @covers       \AmpProject\Optimizer\ImageDimensions::hasHeightUnit()
      * @covers       \AmpProject\Optimizer\ImageDimensions::getWidthUnit()
      * @covers       \AmpProject\Optimizer\ImageDimensions::getHeightUnit()
      */
     public function testItCanGetDimensionUnits(
         $width,
         $height,
-        $expectedHasWidthUnit,
-        $expectedHasHeightUnit,
         $expectedWidthUnit,
         $expectedHeightUnit
     ) {
@@ -175,8 +169,6 @@ class ImageDimensionsTest extends TestCase
 
         $imageDimensions = new ImageDimensions($image);
 
-        $this->assertEquals($expectedHasWidthUnit, $imageDimensions->hasWidthUnit());
-        $this->assertEquals($expectedHasHeightUnit, $imageDimensions->hasHeightUnit());
         $this->assertEquals($expectedWidthUnit, $imageDimensions->getWidthUnit());
         $this->assertEquals($expectedHeightUnit, $imageDimensions->getHeightUnit());
     }

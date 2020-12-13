@@ -145,12 +145,10 @@ final class ImageDimensions
         // If relative units are in use, we cannot assume much about the final dimensions.
         if (
             (
-                $this->hasWidthUnit()
-                && in_array($this->getWidthUnit(), LengthUnit::RELATIVE_UNITS, true)
+                in_array($this->getWidthUnit(), LengthUnit::RELATIVE_UNITS, true)
                 && (is_numeric($this->getHeight()) && $this->getHeight() < $threshold)
             ) || (
-                $this->hasHeightUnit()
-                && in_array($this->getHeightUnit(), LengthUnit::RELATIVE_UNITS, true)
+                in_array($this->getHeightUnit(), LengthUnit::RELATIVE_UNITS, true)
                 && (is_numeric($this->getWidth()) && $this->getWidth() < $threshold)
             )
         ) {
@@ -193,30 +191,6 @@ final class ImageDimensions
     public function hasHeight()
     {
         return $this->getHeight() !== null;
-    }
-
-    /**
-     * Check whether the width has a unit.
-     *
-     * @return bool Whether the width has a unit.
-     */
-    public function hasWidthUnit()
-    {
-        $width = $this->getWidth();
-
-        return is_string($width) && preg_match(self::UNIT_REGEX_PATTERN, $width);
-    }
-
-    /**
-     * Check whether the height has a unit.
-     *
-     * @return bool Whether the height has a unit.
-     */
-    public function hasHeightUnit()
-    {
-        $height = $this->getHeight();
-
-        return is_string($height) && preg_match(self::UNIT_REGEX_PATTERN, $height);
     }
 
     /**
