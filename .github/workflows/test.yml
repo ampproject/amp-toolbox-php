@@ -30,7 +30,10 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, iconv, json, libxml, zip
+          coverage: ${{ matrix.coverage && 'pcov' || 'none' }}
+          ini-values: pcov.directory=.
           tools: composer, cs2pr
+
 
       - name: Get Composer Cache Directory
         id: composer-cache
