@@ -8,6 +8,7 @@ use AmpProject\Dom\Element;
 use AmpProject\Layout;
 use AmpProject\Tag;
 use AmpProject\Tests\TestCase;
+use stdClass;
 
 /**
  * Tests for AmpProject\Optimizer\ImageDimensions.
@@ -171,6 +172,78 @@ class ImageDimensionsTest extends TestCase
 
         $this->assertEquals($expectedWidthUnit, $imageDimensions->getWidthUnit());
         $this->assertEquals($expectedHeightUnit, $imageDimensions->getHeightUnit());
+    }
+
+    /**
+     * Provide an associative array of test data for getting converted numeric dimensions.
+     *
+     * @return array[] Associative array of test data.
+     */
+    public function dataItCanGetNumericDimensions()
+    {
+        return [
+            'no dimensions'          => [null, null, false, false],
+            'width only'             => [500, null, 500, false],
+            'height only'            => [null, 500, false, 500],
+            'width & height ints'    => [640, 480, 640, 480],
+            'width & height floats'  => [123.4, 567.8, 123.4, 567.8],
+            'no dimensions (string)' => ['', '', false, false],
+            'string ints'            => ['640', '480', 640, 480],
+            'string floats'          => [123.4, 567.8, 123.4, 567.8],
+            'auto width & height'    => ['auto', 'auto', false, false],
+            'fluid width & height'   => ['fluid', 'fluid', false, false],
+            'centimeters'            => ['5cm', '3cm', 188.9763779527559, 113.38582677165354],
+            'millimeters'            => ['5mm', '3mm', 18.89763779527559, 11.338582677165354],
+            'quarter-millimeters'    => ['5q', '3q', 4.724409448818898, 2.8346456692913384],
+            'inches'                 => ['5in', '3in', 480, 288],
+            'picas'                  => ['5pc', '3pc', 80, 48],
+            'points'                 => ['5pt', '3pt', 6.666666666666667, 4],
+            'pixels'                 => ['5px', '3px', 5, 3],
+            'ems'                    => ['5em', '3em', false, false],
+            'exs'                    => ['5ex', '3ex', false, false],
+            'chs'                    => ['5ch', '3ch', false, false],
+            'rems'                   => ['5rem', '3rem', false, false],
+            'line-heights'           => ['5lh', '3lh', false, false],
+            'vws & vhs'              => ['5vw', '3vh', false, false],
+            'vmin & vmax'            => ['5vmin', '3vmax', false, false],
+            'arbitrary strings'      => ['some', 'stuff', false, false],
+        ];
+    }
+
+    /**
+     * Test checking and getting the dimension units.
+     *
+     * @param int|string|null $width                 Width of the image.
+     * @param int|string|null $height                Height of the image.
+     * @param int|null        $expectedNumericWidth  Expected numeric width after conversion.
+     * @param int|null        $expectedNumericHeight Expected numeric height after conversion.
+     *
+     * @dataProvider dataItCanGetNumericDimensions()
+     *
+     * @covers       \AmpProject\Optimizer\ImageDimensions::getNumericWidth()
+     * @covers       \AmpProject\Optimizer\ImageDimensions::getNumericHeight()
+     */
+    public function testItCanGetNumericDimensions(
+        $width,
+        $height,
+        $expectedNumericWidth,
+        $expectedNumericHeight
+    ) {
+        $dom   = new Document();
+        $image = $dom->createElement(Tag::IMG);
+
+        if ($width !== null) {
+            $image->setAttribute(Attribute::WIDTH, $width);
+        }
+
+        if ($height !== null) {
+            $image->setAttribute(Attribute::HEIGHT, $height);
+        }
+
+        $imageDimensions = new ImageDimensions($image);
+
+        $this->assertEquals($expectedNumericWidth, $imageDimensions->getNumericWidth());
+        $this->assertEquals($expectedNumericHeight, $imageDimensions->getNumericHeight());
     }
 
     /**
