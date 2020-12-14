@@ -129,30 +129,38 @@ final class ImageDimensions
             }
         }
 
+        $width  = $this->getWidth();
+        $height = $this->getHeight();
+
         // If one or both of the dimensions are missing, we cannot deduce an aspect ratio.
-        if ($this->getWidth() === null || $this->getHeight() === null) {
+        if ($width === null || $height === null) {
             return true;
         }
 
         // If one or both of the dimensions are zero, the entire image will be invisible.
         if (
-            (is_numeric($this->getWidth()) && $this->getWidth() <= 0)
-            || (is_numeric($this->getHeight()) && $this->getHeight() <= 0)
+            (is_numeric($width) && $width <= 0)
+            || (is_numeric($height) && $height <= 0)
         ) {
             return true;
         }
 
-        // If relative units are in use, we cannot assume much about the final dimensions.
+        $widthUnit  = $this->getWidthUnit();
+        $heightUnit = $this->getHeightUnit();
+
+        // If only relative units are in use, we cannot assume much about the final dimensions.
         if (
-            (
-                in_array($this->getWidthUnit(), LengthUnit::RELATIVE_UNITS, true)
-                && (is_numeric($this->getHeight()) && $this->getHeight() < $threshold)
-            ) || (
-                in_array($this->getHeightUnit(), LengthUnit::RELATIVE_UNITS, true)
-                && (is_numeric($this->getWidth()) && $this->getWidth() < $threshold)
-            )
+            in_array($widthUnit, LengthUnit::RELATIVE_UNITS, true)
+            && in_array($heightUnit, LengthUnit::RELATIVE_UNITS, true)
         ) {
             return false;
+        }
+
+        // If only one of the units is relative, compare the other against the threshold.
+        if (in_array($widthUnit, LengthUnit::RELATIVE_UNITS, true)) {
+            return is_numeric($height) && $height < $threshold;
+        } elseif (in_array($heightUnit, LengthUnit::RELATIVE_UNITS, true)) {
+            return is_numeric($width) && $width < $threshold;
         }
 
         switch ($this->getLayout()) {
@@ -164,12 +172,12 @@ final class ImageDimensions
 
             // For 'fixed-height' layout, the width can grow and shrink, so we only compare the height.
             case Layout::FIXED_HEIGHT:
-                return is_numeric($this->getHeight()) && $this->getHeight() < $threshold;
+                return is_numeric($height) && $height < $threshold;
 
             // By default, we compare the dimensions against the provided threshold.
             default:
-                return (is_numeric($this->getWidth()) && $this->getWidth() < $threshold)
-                    || (is_numeric($this->getHeight()) && $this->getHeight() < $threshold);
+                return (is_numeric($width) && $width < $threshold)
+                    || (is_numeric($height) && $height < $threshold);
         }
     }
 
