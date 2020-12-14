@@ -11,7 +11,7 @@ namespace AmpProject;
  *
  * @package ampproject/amp-toolbox
  */
-interface LengthUnit
+final class LengthUnit
 {
 
     /**
@@ -172,4 +172,47 @@ interface LengthUnit
         self::VMIN,
         self::VMAX,
     ];
+
+    /**
+     * Pixels per inch resolution to use for conversions.
+     *
+     * @var int
+     */
+    const PPI = 96;
+
+    /**
+     * Centimeters per inch.
+     *
+     * @var float;
+     */
+    const CM_PER_IN = 2.54;
+
+    /**
+     * Convert a unit-based length into a number of pixels.
+     *
+     * @param int|float $value Value to convert.
+     * @param string    $unit  Unit of the value.
+     * @return int|float|false Converted value, or false if it could not be converted.
+     */
+    public static function convertIntoPixels($value, $unit) {
+        switch($unit) {
+            case self::PX;
+                // No conversion needed for pixel values.
+                return $value;
+            case self::CM:
+                return $value * self::PPI / self::CM_PER_IN;
+            case self::MM:
+                return $value * self::PPI / self::CM_PER_IN / 10;
+            case self::Q:
+                return $value * self::PPI / self::CM_PER_IN / 40;
+            case self::IN:
+                return $value * self::PPI;
+            case self::PC:
+                return $value * self::PPI / 6;
+            case self::PT:
+                return $value * self::PPI / 72;
+            default:
+                return false;
+        }
+    }
 }
