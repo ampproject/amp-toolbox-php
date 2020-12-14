@@ -46,6 +46,20 @@ final class ImageDimensions
     private $height;
 
     /**
+     * Unit of the width of the image.
+     *
+     * @var int|float|string|null
+     */
+    private $widthUnit;
+
+    /**
+     * Unit of the height of the image.
+     *
+     * @var int|float|string|null
+     */
+    private $heightUnit;
+
+    /**
      * Layout of the image.
      *
      * @var string|null
@@ -260,26 +274,99 @@ final class ImageDimensions
     }
 
     /**
+     * Get the numeric width of the image.
+     *
+     * This automatically converts some of the units into numeric pixel values.
+     *
+     * @return int|float|false Numeric width of the image, or false if the width is not numeric.
+     */
+    public function getNumericWidth()
+    {
+        $width     = $this->getWidth();
+        $widthUnit = $this->getWidthUnit();
+
+        if (is_numeric($width)) {
+            return $width;
+        }
+
+        if (!is_string($width) || empty($widthUnit)) {
+            return false;
+        }
+
+        $width = trim(str_replace($widthUnit, '', $width));
+
+        if (!is_numeric($width)) {
+            return false;
+        }
+
+        $intWidth   = (int)$width;
+        $floatWidth = (float)$width;
+        $width      = $intWidth == $floatWidth ? $intWidth : $floatWidth;
+
+        return LengthUnit::convertIntoPixels($width, $widthUnit);
+    }
+
+    /**
+     * Get the numeric height of the image.
+     *
+     * This automatically converts some of the units into numeric pixel values.
+     *
+     * @return int|float|false Numeric height of the image, or false if the height is not numeric.
+     */
+    public function getNumericHeight()
+    {
+        $height     = $this->getHeight();
+        $heightUnit = $this->getHeightUnit();
+
+        if (is_numeric($height)) {
+            return $height;
+        }
+
+        if (!is_string($height) || empty($heightUnit)) {
+            return false;
+        }
+
+        $height = trim(str_replace($heightUnit, '', $height));
+
+        if (!is_numeric($height)) {
+            return false;
+        }
+
+        $intHeight   = (int)$height;
+        $floatHeight = (float)$height;
+        $height      = $intHeight == $floatHeight ? $intHeight : $floatHeight;
+
+        return LengthUnit::convertIntoPixels($height, $heightUnit);
+    }
+
+    /**
      * Get the unit of the width.
      *
      * @return string Unit of the width, or an empty string if none found.
      */
     public function getWidthUnit()
     {
+        if ($this->widthUnit !== null) {
+            return $this->widthUnit;
+        }
         $width = $this->getWidth();
 
         if (!is_string($width)) {
-            return '';
+            $this->widthUnit = '';
+            return $this->widthUnit;
         }
 
         $matches = [];
 
         if (!preg_match(self::UNIT_REGEX_PATTERN, $width, $matches)) {
-            return '';
+            $this->widthUnit = '';
+            return $this->widthUnit;
         }
 
-        return $matches['unit'];
+        $this->widthUnit = strtolower(trim($matches['unit']));
+        return $this->widthUnit;
     }
+
 
     /**
      * Get the unit of the height.
@@ -288,19 +375,25 @@ final class ImageDimensions
      */
     public function getHeightUnit()
     {
+        if ($this->heightUnit !== null) {
+            return $this->heightUnit;
+        }
         $height = $this->getHeight();
 
         if (!is_string($height)) {
-            return '';
+            $this->heightUnit = '';
+            return $this->heightUnit;
         }
 
         $matches = [];
 
         if (!preg_match(self::UNIT_REGEX_PATTERN, $height, $matches)) {
-            return '';
+            $this->heightUnit = '';
+            return $this->heightUnit;
         }
 
-        return $matches['unit'];
+        $this->heightUnit = strtolower(trim($matches['unit']));
+        return $this->heightUnit;
     }
 
     /**
