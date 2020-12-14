@@ -41,6 +41,7 @@ final class AmpRuntimePreloads implements Transformer
      */
     private function isAmpRuntimeScriptNeeded(Document $document)
     {
+        // TODO: What condition should be used here... same as isAmpRuntimeCssNeeded()?
         return false;
     }
 
