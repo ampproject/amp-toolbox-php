@@ -39,7 +39,7 @@ final class LengthUnit
      *
      * @var string
      */
-    const Q = 'Q';
+    const Q = 'q';
 
     /**
      * Inches.
@@ -194,11 +194,9 @@ final class LengthUnit
      * @param string    $unit  Unit of the value.
      * @return int|float|false Converted value, or false if it could not be converted.
      */
-    public static function convertIntoPixels($value, $unit) {
-        switch($unit) {
-            case self::PX;
-                // No conversion needed for pixel values.
-                return $value;
+    public static function convertIntoPixels($value, $unit)
+    {
+        switch ($unit) {
             case self::CM:
                 return $value * self::PPI / self::CM_PER_IN;
             case self::MM:
@@ -211,6 +209,9 @@ final class LengthUnit
                 return $value * self::PPI / 6;
             case self::PT:
                 return $value * self::PPI / 72;
+            case self::PX:
+                // No conversion needed for pixel values.
+                return $value;
             default:
                 return false;
         }
