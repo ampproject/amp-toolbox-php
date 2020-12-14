@@ -52,7 +52,7 @@ final class AmpRuntimePreloads implements Transformer
      */
     private function getAmpRuntimeScriptHost()
     {
-        return Amp::CACHE_HOST;
+        return Amp::CACHE_HOST . '/v0.js';
     }
 
     /**
@@ -80,6 +80,6 @@ final class AmpRuntimePreloads implements Transformer
      */
     private function getAmpRuntimeCssHost()
     {
-        return Amp::CACHE_HOST;
+        return Amp::CACHE_HOST . '/v0.css';
     }
 }
