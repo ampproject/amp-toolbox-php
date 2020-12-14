@@ -162,6 +162,22 @@ final class ImageDimensions
         $widthUnit  = $this->getWidthUnit();
         $heightUnit = $this->getHeightUnit();
 
+        // Try to convert absolute units into their equivalent pixel value.
+        if (!empty($widthUnit)) {
+            $numericWidth = $this->getNumericWidth();
+            if ($numericWidth) {
+                $width     = $numericWidth;
+                $widthUnit = '';
+            }
+        }
+        if (!empty($heightUnit)) {
+            $numericHeight = $this->getNumericHeight();
+            if ($numericHeight) {
+                $height     = $numericHeight;
+                $heightUnit = '';
+            }
+        }
+
         // If only relative units are in use, we cannot assume much about the final dimensions.
         if (
             in_array($widthUnit, LengthUnit::RELATIVE_UNITS, true)

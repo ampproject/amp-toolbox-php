@@ -387,6 +387,10 @@ class ImageDimensionsTest extends TestCase
             'width with relative unit and small height' => ['50vw', 50, null, null, true],
             'height with relative unit and small width' => [50, '50vh', null, null, true],
             'width & height with relative unit'         => ['50vw', '50vh', null, null, false],
+            'width with large absolute unit'            => ['500in', 500, null, null, false],
+            'height with large absolute unit'           => [500, '500in', null, null, false],
+            'width with small absolute unit'            => ['1in', 500, null, null, true],
+            'height with small absolute unit'           => [500, '1in', null, null, true],
         ];
     }
 
