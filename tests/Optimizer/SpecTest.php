@@ -76,6 +76,10 @@ final class SpecTest extends TestCase
                 AmpRuntimeCss::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/AmpBoilerplateTransformer',
             ],
+            'GoogleFontsPreconnect' => [
+                GoogleFontsPreconnect::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/GoogleFontsPreconnect'
+            ]
             'OptimizeAmpBind'               => [
                 OptimizeAmpBind::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeAmpBind',
