@@ -46,10 +46,11 @@ final class SpecGenerator
         foreach ($jsonSpec as $section => $sectionSpec) {
             $sectionFile      = $this->createNewFile();
             $sectionNamespace = $sectionFile->addNamespace("{$rootNamespace}\\Spec\\Section");
-            $sectionClass     = $sectionNamespace->addClass($this->getClassName($section))
+            $sectionClassName = $this->getClassName($section);
+            $sectionClass     = $sectionNamespace->addClass($sectionClassName)
                                                  ->setFinal();
 
-            $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$this->getClassName($section)}";
+            $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$sectionClassName}";
 
             if (class_exists($sectionProcessorClass)) {
                 /** @var Section $sectionProcessor */
@@ -58,20 +59,20 @@ final class SpecGenerator
             }
 
             file_put_contents(
-                "{$destination}/Spec/Section/{$this->getClassName($section)}.php",
+                "{$destination}/Spec/Section/{$sectionClassName}.php",
                 $printer->printFile($sectionFile)
             );
 
             $specClass->addProperty($section)
                       ->setPrivate()
-                      ->addComment("@var Spec\\Section\\{$this->getClassName($section)}");
+                      ->addComment("@var Spec\\Section\\{$sectionClassName}");
 
             $specClass->addMethod($section)
                       ->addBody('if ($this->? === null) {', [$section])
-                      ->addBody("    \$this->? = new Spec\\Section\\{$this->getClassName($section)}();", [$section])
+                      ->addBody("    \$this->? = new Spec\\Section\\{$sectionClassName}();", [$section])
                       ->addBody('}')
                       ->addBody('return $this->?;', [$section])
-                      ->addComment("@return Spec\\Section\\{$this->getClassName($section)}");
+                      ->addComment("@return Spec\\Section\\{$sectionClassName}");
         }
 
         file_put_contents("{$destination}/Spec.php", $printer->printFile($specFile));
