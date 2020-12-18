@@ -47,7 +47,7 @@ final class Tags
             return [];
         }
 
-        return $this->byTagName[$specName];
+        return $this->bySpecName[$specName];
     }
 
     public function __construct()
