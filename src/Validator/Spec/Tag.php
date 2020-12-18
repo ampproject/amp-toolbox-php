@@ -2,17 +2,15 @@
 
 namespace AmpProject\Validator\Spec;
 
-use LogicException;
-
 final class Tag
 {
-    /** @var string[] */
+    /** @var array<string> */
     private $alsoRequiresTagWarning;
 
     /** @var array */
     private $ampLayout;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $attrLists;
 
     /** @var array */
@@ -36,16 +34,16 @@ final class Tag
     /** @var string */
     private $descriptiveName;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $disabledBy;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $disallowedAncestor;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $enabledBy;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $excludes;
 
     /** @var bool */
@@ -54,7 +52,7 @@ final class Tag
     /** @var array */
     private $extensionSpec;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $htmlFormat;
 
     /** @var bool */
@@ -81,16 +79,16 @@ final class Tag
     /** @var string */
     private $namedId;
 
-    /** @var array[] */
+    /** @var array<array> */
     private $referencePoints;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $requires;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $requiresExtension;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $satisfies;
 
     /** @var bool */
@@ -120,7 +118,7 @@ final class Tag
     {
         foreach ($attributes as $key => $value) {
             if (!property_exists($this, $key)) {
-                throw new LogicException("Missing property {$key} in Tag class");
+                throw new \LogicException("Missing property {$key} in Tag class");
             }
 
             $this->$key = $value;
@@ -128,7 +126,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function alsoRequiresTagWarning()
     {
@@ -144,7 +142,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function attrLists()
     {
@@ -208,7 +206,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function disabledBy()
     {
@@ -216,7 +214,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function disallowedAncestor()
     {
@@ -224,7 +222,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function enabledBy()
     {
@@ -232,7 +230,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function excludes()
     {
@@ -256,7 +254,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function htmlFormat()
     {
@@ -328,7 +326,7 @@ final class Tag
     }
 
     /**
-     * @return array[]
+     * @return array<array>
      */
     public function referencePoints()
     {
@@ -336,7 +334,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function requires()
     {
@@ -344,7 +342,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function requiresExtension()
     {
@@ -352,7 +350,7 @@ final class Tag
     }
 
     /**
-     * @return string[]
+     * @return array<string>
      */
     public function satisfies()
     {

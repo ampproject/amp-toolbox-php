@@ -3,6 +3,7 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
+use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\PhpNamespace;
@@ -13,21 +14,21 @@ final class Tags implements Section
     /**
      * Associative array of tags and their attributes.
      *
-     * @var array
+     * @var array<string, array>
      */
     private $tags = [];
 
     /**
      * Provide hashed access to tags by tag name.
      *
-     * @var array
+     * @var array<string, array<int, array>>
      */
     private $byTagName = [];
 
     /**
      * Provide hashed access to tags by spec name.
      *
-     * @var array
+     * @var array<string, array<int, array>>
      */
     private $bySpecName = [];
 
@@ -42,19 +43,27 @@ final class Tags implements Section
      */
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
+        $tagsTemplateClass = ClassType::withBodiesFrom(Template\Tags::class);
+        foreach ($tagsTemplateClass->getMethods() as $method) {
+            $class->addMember($method);
+        }
+
         $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
 
         $class->addProperty('tags')
               ->setValue([])
-              ->setPrivate();
+              ->setPrivate()
+              ->addComment("@var array<string, \\{$rootNamespace}\\Spec\\Tag>");
 
         $class->addProperty('byTagName')
               ->setValue([])
-              ->setPrivate();
+              ->setPrivate()
+              ->addComment("@var array<string, array<int, \\{$rootNamespace}\\Spec\\Tag>>");
 
         $class->addProperty('bySpecName')
               ->setValue([])
-              ->setPrivate();
+              ->setPrivate()
+              ->addComment("@var array<string, array<int, \\{$rootNamespace}\\Spec\\Tag>>");
 
         $constructor = $class->addMethod('__construct');
 

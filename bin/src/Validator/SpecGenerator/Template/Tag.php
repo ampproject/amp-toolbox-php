@@ -7,13 +7,13 @@ use LogicException;
 final class Tag
 {
 
-    /** @var string[] */
+    /** @var array<string> */
     private $alsoRequiresTagWarning;
 
     /** @var array */
     private $ampLayout;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $attrLists;
 
     /** @var array */
@@ -37,16 +37,16 @@ final class Tag
     /** @var string */
     private $descriptiveName;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $disabledBy;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $disallowedAncestor;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $enabledBy;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $excludes;
 
     /** @var bool */
@@ -55,7 +55,7 @@ final class Tag
     /** @var array */
     private $extensionSpec;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $htmlFormat;
 
     /** @var bool */
@@ -82,16 +82,16 @@ final class Tag
     /** @var string */
     private $namedId;
 
-    /** @var array[] */
+    /** @var array<array> */
     private $referencePoints;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $requires;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $requiresExtension;
 
-    /** @var string[] */
+    /** @var array<string> */
     private $satisfies;
 
     /** @var bool */
@@ -128,7 +128,7 @@ final class Tag
         }
     }
 
-    /** @return string[] */
+    /** @return array<string> */
     public function alsoRequiresTagWarning()
     {
         return $this->alsoRequiresTagWarning;
@@ -140,7 +140,7 @@ final class Tag
         return $this->ampLayout;
     }
 
-    /** @return string[] */
+    /** @return array<string> */
     public function attrLists()
     {
         return $this->attrLists;
@@ -188,25 +188,25 @@ final class Tag
         return $this->descriptiveName;
     }
 
-    /** @return string[] */
+    /** @return array<string> */
     public function disabledBy()
     {
         return $this->disabledBy;
     }
 
-    /** @return string[] */
+    /** @return array<string> */
     public function disallowedAncestor()
     {
         return $this->disallowedAncestor;
     }
 
-    /** @return string[] */
+    /** @return array<string> */
     public function enabledBy()
     {
         return $this->enabledBy;
     }
 
-    /** @return string[] */
+    /** @return array<string> */
     public function excludes()
     {
         return $this->excludes;
@@ -224,7 +224,7 @@ final class Tag
         return $this->extensionSpec;
     }
 
-        /** @return string[] */
+        /** @return array<string> */
     public function htmlFormat()
     {
         return $this->htmlFormat;
@@ -278,25 +278,25 @@ final class Tag
         return $this->namedId;
     }
 
-    /** @return array[] */
+    /** @return array<array> */
     public function referencePoints()
     {
         return $this->referencePoints;
     }
 
-        /** @return string[] */
+        /** @return array<string> */
     public function requires()
     {
         return $this->requires;
     }
 
-    /** @return string[] */
+    /** @return array<string> */
     public function requiresExtension()
     {
         return $this->requiresExtension;
     }
 
-    /** @return string[] */
+    /** @return array<string> */
     public function satisfies()
     {
         return $this->satisfies;
