@@ -12,6 +12,8 @@ use AmpProject\Validator\Spec\Tag;
 final class Tags
 {
     private $tags = [];
+    private $byTagName = [];
+    private $bySpecName = [];
 
     public function __construct()
     {
@@ -8950,5 +8952,1972 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
             ]
         );
+        $this->byTagName = [
+            'A' => [
+                $this->tags['A'],
+                $this->tags['A (AMP4EMAIL)'],
+            ],
+            'ABBR' => [
+                $this->tags['ABBR'],
+            ],
+            'ACRONYM' => [
+                $this->tags['ACRONYM'],
+            ],
+            'ADDRESS' => [
+                $this->tags['ADDRESS'],
+            ],
+            'AMP-3D-GLTF' => [
+                $this->tags['AMP-3D-GLTF'],
+            ],
+            'AMP-3Q-PLAYER' => [
+                $this->tags['AMP-3Q-PLAYER'],
+            ],
+            'SCRIPT' => [
+                $this->tags['amp-access extension .json script'],
+                $this->tags['amp-ad-exit configuration JSON'],
+                $this->tags['amp-ad extension script'],
+                $this->tags['amp-analytics extension .json script'],
+                $this->tags['amp-animation extension .json script'],
+                $this->tags['amp-anim extension script (AMP4EMAIL)'],
+                $this->tags['amp-autocomplete JSON'],
+                $this->tags['amp-bind extension .json script'],
+                $this->tags['amp-consent extension .json script'],
+                $this->tags['amp-experiment extension .json script'],
+                $this->tags['amp-experiment story extension .json script'],
+                $this->tags['amp-geo extension .json script'],
+                $this->tags['amp-ima-video > script[type=application/json]'],
+                $this->tags['amp-link-rewriter extension .json script'],
+                $this->tags['AMP-NEXT-PAGE > SCRIPT[type=application/json]'],
+                $this->tags['amp-script extension local script'],
+                $this->tags['amp-story-animation json script'],
+                $this->tags['amp-story-auto-ads config script'],
+                $this->tags['amp-story-bookend extension .json script'],
+                $this->tags['amp-story-consent extension .json script'],
+                $this->tags['amp-subscriptions extension .json script'],
+                $this->tags['amp-video extension script'],
+                $this->tags['amp4ads engine script'],
+                $this->tags['amphtml engine script'],
+                $this->tags['amphtml engine script (LTS)'],
+                $this->tags['amphtml engine script [AMP4EMAIL]'],
+                $this->tags['cryptokeys .json script'],
+                $this->tags['SCRIPT'],
+                $this->tags['SCRIPT (2)'],
+                $this->tags['SCRIPT (3)'],
+                $this->tags['SCRIPT (4)'],
+                $this->tags['SCRIPT (5)'],
+                $this->tags['SCRIPT (6)'],
+                $this->tags['SCRIPT (7)'],
+                $this->tags['SCRIPT (8)'],
+                $this->tags['SCRIPT (9)'],
+                $this->tags['SCRIPT (10)'],
+                $this->tags['SCRIPT (11)'],
+                $this->tags['SCRIPT (12)'],
+                $this->tags['SCRIPT (13)'],
+                $this->tags['SCRIPT (14)'],
+                $this->tags['SCRIPT (15)'],
+                $this->tags['SCRIPT (16)'],
+                $this->tags['SCRIPT (17)'],
+                $this->tags['SCRIPT (18)'],
+                $this->tags['SCRIPT (19)'],
+                $this->tags['SCRIPT (20)'],
+                $this->tags['SCRIPT (21)'],
+                $this->tags['SCRIPT (22)'],
+                $this->tags['SCRIPT (23)'],
+                $this->tags['SCRIPT (24)'],
+                $this->tags['SCRIPT (25)'],
+                $this->tags['SCRIPT (26)'],
+                $this->tags['SCRIPT (27)'],
+                $this->tags['SCRIPT (28)'],
+                $this->tags['SCRIPT (29)'],
+                $this->tags['SCRIPT (30)'],
+                $this->tags['SCRIPT (31)'],
+                $this->tags['SCRIPT (32)'],
+                $this->tags['SCRIPT (33)'],
+                $this->tags['SCRIPT (34)'],
+                $this->tags['SCRIPT (35)'],
+                $this->tags['SCRIPT (36)'],
+                $this->tags['SCRIPT (37)'],
+                $this->tags['SCRIPT (38)'],
+                $this->tags['SCRIPT (39)'],
+                $this->tags['SCRIPT (40)'],
+                $this->tags['SCRIPT (41)'],
+                $this->tags['SCRIPT (42)'],
+                $this->tags['SCRIPT (43)'],
+                $this->tags['SCRIPT (44)'],
+                $this->tags['SCRIPT (45)'],
+                $this->tags['SCRIPT (46)'],
+                $this->tags['SCRIPT (47)'],
+                $this->tags['SCRIPT (48)'],
+                $this->tags['SCRIPT (49)'],
+                $this->tags['SCRIPT (50)'],
+                $this->tags['SCRIPT (51)'],
+                $this->tags['SCRIPT (52)'],
+                $this->tags['SCRIPT (53)'],
+                $this->tags['SCRIPT (54)'],
+                $this->tags['SCRIPT (55)'],
+                $this->tags['SCRIPT (56)'],
+                $this->tags['SCRIPT (57)'],
+                $this->tags['SCRIPT (58)'],
+                $this->tags['SCRIPT (59)'],
+                $this->tags['SCRIPT (60)'],
+                $this->tags['SCRIPT (61)'],
+                $this->tags['SCRIPT (62)'],
+                $this->tags['SCRIPT (63)'],
+                $this->tags['SCRIPT (64)'],
+                $this->tags['SCRIPT (65)'],
+                $this->tags['SCRIPT (66)'],
+                $this->tags['SCRIPT (67)'],
+                $this->tags['SCRIPT (68)'],
+                $this->tags['SCRIPT (69)'],
+                $this->tags['SCRIPT (70)'],
+                $this->tags['SCRIPT (71)'],
+                $this->tags['SCRIPT (72)'],
+                $this->tags['SCRIPT (73)'],
+                $this->tags['SCRIPT (74)'],
+                $this->tags['SCRIPT (75)'],
+                $this->tags['SCRIPT (76)'],
+                $this->tags['SCRIPT (77)'],
+                $this->tags['SCRIPT (78)'],
+                $this->tags['SCRIPT (79)'],
+                $this->tags['SCRIPT (80)'],
+                $this->tags['SCRIPT (81)'],
+                $this->tags['SCRIPT (82)'],
+                $this->tags['SCRIPT (83)'],
+                $this->tags['SCRIPT (84)'],
+                $this->tags['SCRIPT (85)'],
+                $this->tags['SCRIPT (86)'],
+                $this->tags['SCRIPT (87)'],
+                $this->tags['SCRIPT (88)'],
+                $this->tags['SCRIPT (89)'],
+                $this->tags['SCRIPT (90)'],
+                $this->tags['SCRIPT (91)'],
+                $this->tags['SCRIPT (92)'],
+                $this->tags['SCRIPT (93)'],
+                $this->tags['SCRIPT (94)'],
+                $this->tags['SCRIPT (95)'],
+                $this->tags['SCRIPT (96)'],
+                $this->tags['SCRIPT (97)'],
+                $this->tags['SCRIPT (98)'],
+                $this->tags['SCRIPT (99)'],
+                $this->tags['SCRIPT (100)'],
+                $this->tags['SCRIPT (101)'],
+                $this->tags['SCRIPT (102)'],
+                $this->tags['SCRIPT (103)'],
+                $this->tags['SCRIPT (104)'],
+                $this->tags['SCRIPT (105)'],
+                $this->tags['SCRIPT (106)'],
+                $this->tags['SCRIPT (107)'],
+                $this->tags['SCRIPT (108)'],
+                $this->tags['SCRIPT (109)'],
+                $this->tags['SCRIPT (110)'],
+                $this->tags['SCRIPT (111)'],
+                $this->tags['SCRIPT (112)'],
+                $this->tags['SCRIPT (113)'],
+                $this->tags['SCRIPT (114)'],
+                $this->tags['SCRIPT (115)'],
+                $this->tags['SCRIPT (116)'],
+                $this->tags['SCRIPT (117)'],
+                $this->tags['SCRIPT (118)'],
+                $this->tags['SCRIPT (119)'],
+                $this->tags['SCRIPT (120)'],
+                $this->tags['SCRIPT (121)'],
+                $this->tags['SCRIPT (122)'],
+                $this->tags['SCRIPT (123)'],
+                $this->tags['SCRIPT (124)'],
+                $this->tags['SCRIPT (125)'],
+                $this->tags['SCRIPT (126)'],
+                $this->tags['script id=amp-rtc'],
+                $this->tags['script type=application/ld+json'],
+                $this->tags['SCRIPT type=text/plain'],
+                $this->tags['SCRIPT type=text/plain (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-autocomplete] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-bind] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-fit-text] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-form] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-image-lightbox] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-lightbox] (AMP4ADS)'],
+                $this->tags['SCRIPT[custom-element=amp-lightbox] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-list] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-selector] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-sidebar] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-element=amp-timeago] (AMP4EMAIL)'],
+                $this->tags['SCRIPT[custom-template=amp-mustache] (AMP4ADS)'],
+                $this->tags['SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)'],
+                $this->tags['subscriptions script ciphertext'],
+            ],
+            'AMP-ACCORDION' => [
+                $this->tags['AMP-ACCORDION'],
+            ],
+            'SECTION' => [
+                $this->tags['amp-accordion > section'],
+                $this->tags['SECTION'],
+                $this->tags['section (AMP4EMAIL)'],
+                $this->tags['subscriptions-section content swg_amp_cache_nonce'],
+            ],
+            'AMP-ACTION-MACRO' => [
+                $this->tags['AMP-ACTION-MACRO'],
+            ],
+            'AMP-AD' => [
+                $this->tags['AMP-AD'],
+                $this->tags['amp-ad with data-enable-refresh attribute'],
+                $this->tags['amp-ad with data-multi-size attribute'],
+                $this->tags['amp-ad with type=custom'],
+            ],
+            'AMP-AD-CUSTOM' => [
+                $this->tags['AMP-AD-CUSTOM'],
+            ],
+            'AMP-AD-EXIT' => [
+                $this->tags['AMP-AD-EXIT'],
+            ],
+            'AMP-ADDTHIS' => [
+                $this->tags['AMP-ADDTHIS'],
+            ],
+            'AMP-ANALYTICS' => [
+                $this->tags['AMP-ANALYTICS'],
+            ],
+            'AMP-ANIM' => [
+                $this->tags['AMP-ANIM'],
+                $this->tags['AMP-ANIM (AMP4EMAIL)'],
+            ],
+            'AMP-ANIMATION' => [
+                $this->tags['AMP-ANIMATION'],
+            ],
+            'AMP-APESTER-MEDIA' => [
+                $this->tags['AMP-APESTER-MEDIA'],
+            ],
+            'AMP-APP-BANNER' => [
+                $this->tags['AMP-APP-BANNER'],
+            ],
+            'BUTTON' => [
+                $this->tags['amp-app-banner button[open-button]'],
+                $this->tags['amp-list-load-more button[load-more-clickable]'],
+                $this->tags['BUTTON'],
+                $this->tags['button amp-nested-menu'],
+            ],
+            'AMP-AUDIO' => [
+                $this->tags['AMP-AUDIO'],
+                $this->tags['amp-audio (A4A)'],
+                $this->tags['amp-story >> amp-audio'],
+            ],
+            'SOURCE' => [
+                $this->tags['amp-audio > source'],
+                $this->tags['amp-ima-video > source'],
+                $this->tags['amp-video > source'],
+                $this->tags['audio > source'],
+                $this->tags['picture > source'],
+                $this->tags['video > source'],
+            ],
+            'TRACK' => [
+                $this->tags['amp-audio > track'],
+                $this->tags['amp-audio > track[kind=subtitles]'],
+                $this->tags['amp-ima-video > track'],
+                $this->tags['amp-ima-video > track[kind=subtitles]'],
+                $this->tags['amp-video > track'],
+                $this->tags['amp-video > track[kind=subtitles]'],
+                $this->tags['audio > track'],
+                $this->tags['audio > track[kind=subtitles]'],
+                $this->tags['video > track'],
+                $this->tags['video > track[kind=subtitles]'],
+            ],
+            'AMP-AUTO-ADS' => [
+                $this->tags['AMP-AUTO-ADS'],
+            ],
+            'AMP-AUTOCOMPLETE' => [
+                $this->tags['amp-autocomplete'],
+                $this->tags['AMP-AUTOCOMPLETE (AMP4EMAIL)'],
+            ],
+            'INPUT' => [
+                $this->tags['amp-autocomplete > input'],
+                $this->tags['INPUT'],
+                $this->tags['input [mask=date-dd-mm-yyyy]'],
+                $this->tags['input [mask=date-mm-dd-yyyy]'],
+                $this->tags['input [mask=date-mm-yy]'],
+                $this->tags['input [mask=date-yyyy-mm-dd]'],
+                $this->tags['input [mask=payment-card]'],
+                $this->tags['input [mask] (custom mask)'],
+                $this->tags['INPUT [type=file]'],
+                $this->tags['INPUT [type=password]'],
+            ],
+            'AMP-BASE-CAROUSEL' => [
+                $this->tags['AMP-BASE-CAROUSEL'],
+                $this->tags['AMP-BASE-CAROUSEL [lightbox]'],
+            ],
+            '$REFERENCE_POINT' => [
+                $this->tags['AMP-BASE-CAROUSEL lightbox [child]'],
+                $this->tags['AMP-BASE-CAROUSEL lightbox [lightbox-exclude]'],
+                $this->tags['AMP-CAROUSEL lightbox [child]'],
+                $this->tags['AMP-CAROUSEL lightbox [lightbox-exclude]'],
+                $this->tags['AMP-LIVE-LIST [items]'],
+                $this->tags['AMP-LIVE-LIST [items] item'],
+                $this->tags['AMP-LIVE-LIST [pagination]'],
+                $this->tags['AMP-LIVE-LIST [update]'],
+                $this->tags['AMP-MEGA-MENU > AMP-LIST'],
+                $this->tags['AMP-MEGA-MENU > AMP-LIST > TEMPLATE'],
+                $this->tags['AMP-MEGA-MENU > NAV'],
+                $this->tags['AMP-MEGA-MENU item-content'],
+                $this->tags['AMP-MEGA-MENU item-heading'],
+                $this->tags['AMP-MEGA-MENU NAV > UL/OL'],
+                $this->tags['AMP-MEGA-MENU NAV > UL/OL > LI'],
+                $this->tags['AMP-NEXT-PAGE > [footer]'],
+                $this->tags['AMP-NEXT-PAGE > [recommendation-box]'],
+                $this->tags['AMP-NEXT-PAGE > [separator]'],
+                $this->tags['AMP-SELECTOR child'],
+                $this->tags['AMP-SELECTOR option'],
+                $this->tags['AMP-STORY-CTA-LAYER animate-in'],
+                $this->tags['AMP-STORY-GRID-LAYER animate-in'],
+                $this->tags['AMP-STORY-GRID-LAYER default'],
+                $this->tags['AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]'],
+                $this->tags['AMP-VIDEO-IFRAME > [placeholder]'],
+            ],
+            'AMP-BEOPINION' => [
+                $this->tags['AMP-BEOPINION'],
+            ],
+            'AMP-BIND-MACRO' => [
+                $this->tags['AMP-BIND-MACRO'],
+            ],
+            'AMP-BODYMOVIN-ANIMATION' => [
+                $this->tags['AMP-BODYMOVIN-ANIMATION'],
+            ],
+            'AMP-BRID-PLAYER' => [
+                $this->tags['AMP-BRID-PLAYER'],
+            ],
+            'AMP-BRIGHTCOVE' => [
+                $this->tags['AMP-BRIGHTCOVE'],
+            ],
+            'AMP-BYSIDE-CONTENT' => [
+                $this->tags['AMP-BYSIDE-CONTENT'],
+            ],
+            'AMP-CALL-TRACKING' => [
+                $this->tags['AMP-CALL-TRACKING'],
+            ],
+            'AMP-CAROUSEL' => [
+                $this->tags['AMP-CAROUSEL'],
+                $this->tags['AMP-CAROUSEL lightbox'],
+            ],
+            'AMP-CONNATIX-PLAYER' => [
+                $this->tags['AMP-CONNATIX-PLAYER'],
+            ],
+            'AMP-CONSENT' => [
+                $this->tags['AMP-CONSENT'],
+                $this->tags['amp-consent [type]'],
+            ],
+            'AMP-DAILYMOTION' => [
+                $this->tags['AMP-DAILYMOTION'],
+            ],
+            'AMP-DATE-COUNTDOWN' => [
+                $this->tags['AMP-DATE-COUNTDOWN'],
+            ],
+            'AMP-DATE-DISPLAY' => [
+                $this->tags['AMP-DATE-DISPLAY'],
+            ],
+            'TEMPLATE' => [
+                $this->tags['amp-date-picker > template [date-template]'],
+                $this->tags['amp-date-picker > template [info-template]'],
+                $this->tags['amp-story-auto-ads > template'],
+                $this->tags['TEMPLATE'],
+                $this->tags['TEMPLATE (AMP4EMAIL)'],
+            ],
+            'AMP-DATE-PICKER' => [
+                $this->tags['amp-date-picker[type=range][mode=overlay]'],
+                $this->tags['amp-date-picker[type=range][mode=static]'],
+                $this->tags['amp-date-picker[type=single][mode=overlay]'],
+                $this->tags['amp-date-picker[type=single][mode=static]'],
+            ],
+            'AMP-DELIGHT-PLAYER' => [
+                $this->tags['AMP-DELIGHT-PLAYER'],
+            ],
+            'AMP-EMBED' => [
+                $this->tags['AMP-EMBED'],
+                $this->tags['amp-embed with data-multi-size attribute'],
+            ],
+            'AMP-EMBEDLY-CARD' => [
+                $this->tags['AMP-EMBEDLY-CARD'],
+            ],
+            'AMP-EMBEDLY-KEY' => [
+                $this->tags['AMP-EMBEDLY-KEY'],
+            ],
+            'AMP-EXPERIMENT' => [
+                $this->tags['AMP-EXPERIMENT'],
+            ],
+            'AMP-FACEBOOK' => [
+                $this->tags['AMP-FACEBOOK'],
+            ],
+            'AMP-FACEBOOK-COMMENTS' => [
+                $this->tags['AMP-FACEBOOK-COMMENTS'],
+            ],
+            'AMP-FACEBOOK-LIKE' => [
+                $this->tags['AMP-FACEBOOK-LIKE'],
+            ],
+            'AMP-FACEBOOK-PAGE' => [
+                $this->tags['AMP-FACEBOOK-PAGE'],
+            ],
+            'AMP-FIT-TEXT' => [
+                $this->tags['AMP-FIT-TEXT'],
+            ],
+            'AMP-FONT' => [
+                $this->tags['AMP-FONT'],
+            ],
+            'AMP-FX-FLYING-CARPET' => [
+                $this->tags['AMP-FX-FLYING-CARPET'],
+            ],
+            'AMP-GEO' => [
+                $this->tags['AMP-GEO'],
+            ],
+            'AMP-GFYCAT' => [
+                $this->tags['AMP-GFYCAT'],
+            ],
+            'AMP-GIST' => [
+                $this->tags['AMP-GIST'],
+            ],
+            'AMP-GOOGLE-DOCUMENT-EMBED' => [
+                $this->tags['AMP-GOOGLE-DOCUMENT-EMBED'],
+            ],
+            'AMP-GWD-ANIMATION' => [
+                $this->tags['AMP-GWD-ANIMATION'],
+            ],
+            'AMP-HULU' => [
+                $this->tags['AMP-HULU'],
+            ],
+            'AMP-IFRAME' => [
+                $this->tags['AMP-IFRAME'],
+            ],
+            'AMP-IMA-VIDEO' => [
+                $this->tags['AMP-IMA-VIDEO'],
+            ],
+            'AMP-IMAGE-LIGHTBOX' => [
+                $this->tags['AMP-IMAGE-LIGHTBOX'],
+            ],
+            'AMP-IMAGE-SLIDER' => [
+                $this->tags['AMP-IMAGE-SLIDER'],
+                $this->tags['amp-image-slider (transformed)'],
+            ],
+            'DIV' => [
+                $this->tags['AMP-IMAGE-SLIDER > DIV [first]'],
+                $this->tags['AMP-IMAGE-SLIDER > DIV [second]'],
+                $this->tags['AMP-LIST DIV [fetch-error]'],
+                $this->tags['DIV'],
+                $this->tags['div amp-nested-menu'],
+                $this->tags['FORM DIV [submit-error]'],
+                $this->tags['FORM DIV [submit-error][template]'],
+                $this->tags['FORM DIV [submit-success]'],
+                $this->tags['FORM DIV [submit-success][template]'],
+                $this->tags['FORM DIV [submitting]'],
+                $this->tags['FORM DIV [submitting][template]'],
+                $this->tags['FORM DIV [verify-error]'],
+                $this->tags['FORM DIV [verify-error][template]'],
+            ],
+            'AMP-IMG' => [
+                $this->tags['AMP-IMG'],
+                $this->tags['AMP-IMG (AMP4EMAIL)'],
+                $this->tags['amp-img (transformed)'],
+            ],
+            'IMG' => [
+                $this->tags['amp-img > img (transformed)'],
+                $this->tags['amp-img > img[placeholder] (transformed)'],
+                $this->tags['IMG-I-AMPHTML-INTRINSIC-SIZER'],
+                $this->tags['noscript > img'],
+            ],
+            'AMP-IMGUR' => [
+                $this->tags['AMP-IMGUR'],
+            ],
+            'AMP-INLINE-GALLERY' => [
+                $this->tags['AMP-INLINE-GALLERY'],
+            ],
+            'AMP-INLINE-GALLERY-PAGINATION' => [
+                $this->tags['amp-inline-gallery-pagination'],
+                $this->tags['amp-inline-gallery-pagination [inset]'],
+            ],
+            'AMP-INLINE-GALLERY-THUMBNAILS' => [
+                $this->tags['AMP-INLINE-GALLERY-THUMBNAILS'],
+            ],
+            'AMP-INSTAGRAM' => [
+                $this->tags['AMP-INSTAGRAM'],
+            ],
+            'AMP-INSTALL-SERVICEWORKER' => [
+                $this->tags['AMP-INSTALL-SERVICEWORKER'],
+            ],
+            'AMP-IZLESENE' => [
+                $this->tags['AMP-IZLESENE'],
+            ],
+            'AMP-JWPLAYER' => [
+                $this->tags['AMP-JWPLAYER'],
+            ],
+            'AMP-KALTURA-PLAYER' => [
+                $this->tags['AMP-KALTURA-PLAYER'],
+            ],
+            'AMP-LAYOUT' => [
+                $this->tags['AMP-LAYOUT'],
+            ],
+            'AMP-LIGHTBOX' => [
+                $this->tags['AMP-LIGHTBOX'],
+                $this->tags['amp-lightbox [AMP4ADS]'],
+            ],
+            'AMP-LINK-REWRITER' => [
+                $this->tags['AMP-LINK-REWRITER'],
+            ],
+            'AMP-LIST' => [
+                $this->tags['AMP-LIST'],
+                $this->tags['AMP-LIST (AMP4EMAIL)'],
+            ],
+            'AMP-LIST-LOAD-MORE' => [
+                $this->tags['AMP-LIST-LOAD-MORE'],
+            ],
+            'AMP-LIVE-LIST' => [
+                $this->tags['AMP-LIVE-LIST'],
+            ],
+            'AMP-MATHML' => [
+                $this->tags['AMP-MATHML'],
+            ],
+            'AMP-MEGA-MENU' => [
+                $this->tags['AMP-MEGA-MENU'],
+            ],
+            'AMP-MEGAPHONE' => [
+                $this->tags['amp-megaphone [data-episode]'],
+                $this->tags['amp-megaphone [data-playlist]'],
+            ],
+            'AMP-MINUTE-MEDIA-PLAYER' => [
+                $this->tags['AMP-MINUTE-MEDIA-PLAYER'],
+            ],
+            'AMP-MOWPLAYER' => [
+                $this->tags['AMP-MOWPLAYER'],
+            ],
+            'AMP-NESTED-MENU' => [
+                $this->tags['AMP-NESTED-MENU'],
+            ],
+            'AMP-NEXT-PAGE' => [
+                $this->tags['amp-next-page with inline config'],
+                $this->tags['amp-next-page with src attribute'],
+                $this->tags['amp-next-page [type=adsense]'],
+            ],
+            'AMP-NEXXTV-PLAYER' => [
+                $this->tags['AMP-NEXXTV-PLAYER'],
+            ],
+            'AMP-O2-PLAYER' => [
+                $this->tags['AMP-O2-PLAYER'],
+            ],
+            'AMP-ONETAP-GOOGLE' => [
+                $this->tags['AMP-ONETAP-GOOGLE'],
+            ],
+            'AMP-OOYALA-PLAYER' => [
+                $this->tags['AMP-OOYALA-PLAYER'],
+            ],
+            'AMP-ORIENTATION-OBSERVER' => [
+                $this->tags['AMP-ORIENTATION-OBSERVER'],
+            ],
+            'AMP-PAN-ZOOM' => [
+                $this->tags['AMP-PAN-ZOOM'],
+            ],
+            'AMP-PINTEREST' => [
+                $this->tags['AMP-PINTEREST'],
+            ],
+            'AMP-PIXEL' => [
+                $this->tags['AMP-PIXEL'],
+            ],
+            'AMP-PLAYBUZZ' => [
+                $this->tags['AMP-PLAYBUZZ'],
+            ],
+            'AMP-POSITION-OBSERVER' => [
+                $this->tags['AMP-POSITION-OBSERVER'],
+            ],
+            'AMP-POWR-PLAYER' => [
+                $this->tags['AMP-POWR-PLAYER'],
+            ],
+            'AMP-REACH-PLAYER' => [
+                $this->tags['AMP-REACH-PLAYER'],
+            ],
+            'AMP-RECAPTCHA-INPUT' => [
+                $this->tags['AMP-RECAPTCHA-INPUT'],
+            ],
+            'AMP-REDBULL-PLAYER' => [
+                $this->tags['AMP-REDBULL-PLAYER'],
+            ],
+            'AMP-REDDIT' => [
+                $this->tags['AMP-REDDIT'],
+            ],
+            'AMP-RIDDLE-QUIZ' => [
+                $this->tags['AMP-RIDDLE-QUIZ'],
+            ],
+            'AMP-SCRIPT' => [
+                $this->tags['AMP-SCRIPT'],
+            ],
+            'AMP-SELECTOR' => [
+                $this->tags['AMP-SELECTOR'],
+            ],
+            'AMP-SIDEBAR' => [
+                $this->tags['amp-sidebar'],
+                $this->tags['amp-sidebar (AMP4EMAIL)'],
+                $this->tags['amp-story >> amp-sidebar'],
+            ],
+            'NAV' => [
+                $this->tags['amp-sidebar > nav'],
+                $this->tags['NAV'],
+            ],
+            'AMP-SKIMLINKS' => [
+                $this->tags['AMP-SKIMLINKS'],
+            ],
+            'AMP-SMARTLINKS' => [
+                $this->tags['AMP-SMARTLINKS'],
+            ],
+            'AMP-SOCIAL-SHARE' => [
+                $this->tags['AMP-SOCIAL-SHARE'],
+            ],
+            'AMP-SOUNDCLOUD' => [
+                $this->tags['AMP-SOUNDCLOUD'],
+            ],
+            'AMP-SPRINGBOARD-PLAYER' => [
+                $this->tags['AMP-SPRINGBOARD-PLAYER'],
+            ],
+            'AMP-STATE' => [
+                $this->tags['amp-state'],
+                $this->tags['amp-state (AMP4EMAIL)'],
+            ],
+            'AMP-STICKY-AD' => [
+                $this->tags['AMP-STICKY-AD'],
+            ],
+            'AMP-STORY' => [
+                $this->tags['AMP-STORY'],
+            ],
+            'AMP-STORY-360' => [
+                $this->tags['AMP-STORY-360'],
+            ],
+            'AMP-STORY-ANIMATION' => [
+                $this->tags['AMP-STORY-ANIMATION'],
+            ],
+            'AMP-STORY-AUTO-ADS' => [
+                $this->tags['AMP-STORY-AUTO-ADS'],
+            ],
+            'AMP-STORY-BOOKEND' => [
+                $this->tags['AMP-STORY-BOOKEND'],
+            ],
+            'AMP-STORY-CONSENT' => [
+                $this->tags['AMP-STORY-CONSENT'],
+            ],
+            'AMP-STORY-CTA-LAYER' => [
+                $this->tags['AMP-STORY-CTA-LAYER'],
+            ],
+            'AMP-STORY-GRID-LAYER' => [
+                $this->tags['AMP-STORY-GRID-LAYER'],
+            ],
+            'AMP-STORY-INTERACTIVE-BINARY-POLL' => [
+                $this->tags['AMP-STORY-INTERACTIVE-BINARY-POLL'],
+            ],
+            'AMP-STORY-INTERACTIVE-POLL' => [
+                $this->tags['AMP-STORY-INTERACTIVE-POLL'],
+            ],
+            'AMP-STORY-INTERACTIVE-QUIZ' => [
+                $this->tags['AMP-STORY-INTERACTIVE-QUIZ'],
+            ],
+            'AMP-STORY-INTERACTIVE-RESULTS' => [
+                $this->tags['AMP-STORY-INTERACTIVE-RESULTS'],
+            ],
+            'AMP-STORY-PAGE' => [
+                $this->tags['AMP-STORY-PAGE'],
+            ],
+            'AMP-STORY-PAGE-ATTACHMENT' => [
+                $this->tags['amp-story-page-attachment'],
+                $this->tags['amp-story-page-attachment[href]'],
+            ],
+            'AMP-STORY-PANNING-MEDIA' => [
+                $this->tags['AMP-STORY-PANNING-MEDIA'],
+            ],
+            'AMP-STORY-PLAYER' => [
+                $this->tags['AMP-STORY-PLAYER'],
+            ],
+            'AMP-VIDEO' => [
+                $this->tags['amp-story >> amp-story-page-attachment >> amp-video'],
+                $this->tags['amp-story >> amp-video'],
+                $this->tags['AMP-VIDEO'],
+            ],
+            'AMP-TIMEAGO' => [
+                $this->tags['AMP-TIMEAGO'],
+            ],
+            'AMP-TRUNCATE-TEXT' => [
+                $this->tags['AMP-TRUNCATE-TEXT'],
+            ],
+            'AMP-TWITTER' => [
+                $this->tags['AMP-TWITTER'],
+            ],
+            'AMP-USER-NOTIFICATION' => [
+                $this->tags['AMP-USER-NOTIFICATION'],
+            ],
+            'AMP-VIDEO-IFRAME' => [
+                $this->tags['AMP-VIDEO-IFRAME with [placeholder]'],
+                $this->tags['AMP-VIDEO-IFRAME with [placeholder] (transformed)'],
+                $this->tags['AMP-VIDEO-IFRAME[poster]'],
+            ],
+            'AMP-VIMEO' => [
+                $this->tags['AMP-VIMEO'],
+            ],
+            'AMP-VINE' => [
+                $this->tags['AMP-VINE'],
+            ],
+            'AMP-VIQEO-PLAYER' => [
+                $this->tags['AMP-VIQEO-PLAYER'],
+            ],
+            'AMP-VK' => [
+                $this->tags['AMP-VK'],
+            ],
+            'AMP-WEB-PUSH' => [
+                $this->tags['AMP-WEB-PUSH'],
+            ],
+            'AMP-WEB-PUSH-WIDGET' => [
+                $this->tags['AMP-WEB-PUSH-WIDGET'],
+            ],
+            'AMP-WISTIA-PLAYER' => [
+                $this->tags['AMP-WISTIA-PLAYER'],
+            ],
+            'AMP-YOTPO' => [
+                $this->tags['AMP-YOTPO'],
+            ],
+            'AMP-YOUTUBE' => [
+                $this->tags['AMP-YOUTUBE'],
+            ],
+            'ARTICLE' => [
+                $this->tags['ARTICLE'],
+            ],
+            'ASIDE' => [
+                $this->tags['ASIDE'],
+            ],
+            'AUDIO' => [
+                $this->tags['AUDIO'],
+            ],
+            'B' => [
+                $this->tags['B'],
+            ],
+            'BASE' => [
+                $this->tags['BASE'],
+            ],
+            'BDI' => [
+                $this->tags['BDI'],
+            ],
+            'BDO' => [
+                $this->tags['BDO'],
+            ],
+            'BIG' => [
+                $this->tags['BIG'],
+            ],
+            'BLOCKQUOTE' => [
+                $this->tags['BLOCKQUOTE'],
+            ],
+            'BODY' => [
+                $this->tags['BODY'],
+            ],
+            'BR' => [
+                $this->tags['BR'],
+            ],
+            'CANVAS' => [
+                $this->tags['CANVAS'],
+            ],
+            'CAPTION' => [
+                $this->tags['CAPTION'],
+            ],
+            'CENTER' => [
+                $this->tags['CENTER'],
+            ],
+            'CIRCLE' => [
+                $this->tags['CIRCLE'],
+            ],
+            'CITE' => [
+                $this->tags['CITE'],
+            ],
+            'CLIPPATH' => [
+                $this->tags['CLIPPATH'],
+            ],
+            'CODE' => [
+                $this->tags['CODE'],
+            ],
+            'COL' => [
+                $this->tags['COL'],
+            ],
+            'COLGROUP' => [
+                $this->tags['COLGROUP'],
+            ],
+            'DATA' => [
+                $this->tags['DATA'],
+            ],
+            'DATALIST' => [
+                $this->tags['DATALIST'],
+            ],
+            'DD' => [
+                $this->tags['DD'],
+            ],
+            'DEFS' => [
+                $this->tags['DEFS'],
+            ],
+            'DEL' => [
+                $this->tags['DEL'],
+            ],
+            'DESC' => [
+                $this->tags['DESC'],
+            ],
+            'DETAILS' => [
+                $this->tags['DETAILS'],
+            ],
+            'DFN' => [
+                $this->tags['DFN'],
+            ],
+            'DIR' => [
+                $this->tags['DIR'],
+            ],
+            'DL' => [
+                $this->tags['DL'],
+            ],
+            'DT' => [
+                $this->tags['DT'],
+            ],
+            'ELLIPSE' => [
+                $this->tags['ELLIPSE'],
+            ],
+            'EM' => [
+                $this->tags['EM'],
+            ],
+            'FECOLORMATRIX' => [
+                $this->tags['FECOLORMATRIX'],
+            ],
+            'FECOMPOSITE' => [
+                $this->tags['FECOMPOSITE'],
+            ],
+            'FEFLOOD' => [
+                $this->tags['FEFLOOD'],
+            ],
+            'FEGAUSSIANBLUR' => [
+                $this->tags['FEGAUSSIANBLUR'],
+            ],
+            'FEMERGE' => [
+                $this->tags['FEMERGE'],
+            ],
+            'FEMERGENODE' => [
+                $this->tags['FEMERGENODE'],
+            ],
+            'FEOFFSET' => [
+                $this->tags['FEOFFSET'],
+            ],
+            'FIELDSET' => [
+                $this->tags['FIELDSET'],
+            ],
+            'FIGCAPTION' => [
+                $this->tags['FIGCAPTION'],
+            ],
+            'FIGURE' => [
+                $this->tags['FIGURE'],
+            ],
+            'FILTER' => [
+                $this->tags['FILTER'],
+            ],
+            'FOOTER' => [
+                $this->tags['FOOTER'],
+            ],
+            'FORM' => [
+                $this->tags['FORM [method=GET]'],
+                $this->tags['FORM [method=GET] (AMP4EMAIL)'],
+                $this->tags['FORM [method=POST]'],
+                $this->tags['FORM [method=POST] (AMP4EMAIL)'],
+            ],
+            'G' => [
+                $this->tags['G'],
+            ],
+            'GLYPH' => [
+                $this->tags['GLYPH'],
+            ],
+            'GLYPHREF' => [
+                $this->tags['GLYPHREF'],
+            ],
+            'H1' => [
+                $this->tags['H1'],
+            ],
+            'H2' => [
+                $this->tags['H2'],
+                $this->tags['h2 amp-nested-menu'],
+            ],
+            'H3' => [
+                $this->tags['H3'],
+                $this->tags['h3 amp-nested-menu'],
+            ],
+            'H4' => [
+                $this->tags['H4'],
+                $this->tags['h4 amp-nested-menu'],
+            ],
+            'H5' => [
+                $this->tags['H5'],
+                $this->tags['h5 amp-nested-menu'],
+            ],
+            'H6' => [
+                $this->tags['H6'],
+                $this->tags['h6 amp-nested-menu'],
+            ],
+            'HEAD' => [
+                $this->tags['HEAD'],
+            ],
+            'STYLE' => [
+                $this->tags['head > style[amp-boilerplate]'],
+                $this->tags['head > style[amp-boilerplate] (transformed)'],
+                $this->tags['head > style[amp4ads-boilerplate]'],
+                $this->tags['head > style[amp4email-boilerplate]'],
+                $this->tags['noscript > style[amp-boilerplate]'],
+                $this->tags['noscript > style[amp-boilerplate] (transformed)'],
+                $this->tags['style amp-custom'],
+                $this->tags['style amp-custom (AMP4ADS)'],
+                $this->tags['style amp-custom (AMP4EMAIL)'],
+                $this->tags['style amp-custom (css-strict)'],
+                $this->tags['style amp-custom-length-check'],
+                $this->tags['style[amp-keyframes]'],
+                $this->tags['style[amp-runtime] (transformed)'],
+            ],
+            'HEADER' => [
+                $this->tags['HEADER'],
+            ],
+            'HGROUP' => [
+                $this->tags['HGROUP'],
+            ],
+            'HKERN' => [
+                $this->tags['HKERN'],
+            ],
+            'HR' => [
+                $this->tags['HR'],
+            ],
+            'HTML' => [
+                $this->tags['HTML'],
+                $this->tags['html (transformed)'],
+            ],
+            '!DOCTYPE' => [
+                $this->tags['html doctype'],
+                $this->tags['html doctype (AMP4ADS)'],
+            ],
+            'I' => [
+                $this->tags['I'],
+            ],
+            'I-AMPHTML-SIZER' => [
+                $this->tags['I-AMPHTML-SIZER-INTRINSIC'],
+                $this->tags['I-AMPHTML-SIZER-RESPONSIVE'],
+            ],
+            'IFRAME' => [
+                $this->tags['IFRAME'],
+            ],
+            'IMAGE' => [
+                $this->tags['IMAGE'],
+            ],
+            'INS' => [
+                $this->tags['INS'],
+            ],
+            'KBD' => [
+                $this->tags['KBD'],
+            ],
+            'LABEL' => [
+                $this->tags['LABEL'],
+            ],
+            'LEGEND' => [
+                $this->tags['LEGEND'],
+            ],
+            'LI' => [
+                $this->tags['LI'],
+            ],
+            'LINE' => [
+                $this->tags['LINE'],
+            ],
+            'LINEARGRADIENT' => [
+                $this->tags['LINEARGRADIENT'],
+            ],
+            'STOP' => [
+                $this->tags['lineargradient > stop'],
+                $this->tags['radialgradient > stop'],
+            ],
+            'LINK' => [
+                $this->tags['link itemprop='],
+                $this->tags['link itemprop=sameAs'],
+                $this->tags['link property='],
+                $this->tags['link rel='],
+                $this->tags['link rel=canonical'],
+                $this->tags['link rel=manifest'],
+                $this->tags['link rel=preload'],
+                $this->tags['link rel=stylesheet for fonts'],
+            ],
+            'LISTING' => [
+                $this->tags['LISTING'],
+            ],
+            'MAIN' => [
+                $this->tags['MAIN'],
+            ],
+            'MARK' => [
+                $this->tags['MARK'],
+            ],
+            'MARKER' => [
+                $this->tags['MARKER'],
+            ],
+            'MASK' => [
+                $this->tags['MASK'],
+            ],
+            'META' => [
+                $this->tags['meta charset=utf-8'],
+                $this->tags['meta http-equiv=content-language'],
+                $this->tags['meta http-equiv=Content-Script-Type'],
+                $this->tags['meta http-equiv=Content-Style-Type'],
+                $this->tags['meta http-equiv=Content-Type'],
+                $this->tags['meta http-equiv=imagetoolbar'],
+                $this->tags['meta http-equiv=origin-trial'],
+                $this->tags['meta http-equiv=pics-label'],
+                $this->tags['meta http-equiv=resource-type'],
+                $this->tags['meta http-equiv=x-dns-prefetch-control'],
+                $this->tags['meta http-equiv=X-UA-Compatible'],
+                $this->tags['meta name=amp-3p-iframe-src'],
+                $this->tags['meta name=amp-ad-doubleclick-sra'],
+                $this->tags['meta name=amp-ad-enable-refresh'],
+                $this->tags['meta name=amp-consent-blocking'],
+                $this->tags['meta name=amp-cta-landing-page-type'],
+                $this->tags['meta name=amp-cta-type'],
+                $this->tags['meta name=amp-cta-url'],
+                $this->tags['meta name=amp-experiment-token'],
+                $this->tags['meta name=amp-experiments-opt-in'],
+                $this->tags['meta name=amp-google-clientid-id-api'],
+                $this->tags['meta name=amp-link-variable-allowed-origin'],
+                $this->tags['meta name=amp-list-load-more'],
+                $this->tags['meta name=amp-recaptcha-input'],
+                $this->tags['meta name=amp-script-src'],
+                $this->tags['meta name=amp-story-generator-name'],
+                $this->tags['meta name=amp-story-generator-version'],
+                $this->tags['meta name=amp-to-amp-navigation'],
+                $this->tags['meta name=amp4ads-id'],
+                $this->tags['meta name=amp4ads-vars-*'],
+                $this->tags['meta name= and content='],
+                $this->tags['meta name=apple-itunes-app'],
+                $this->tags['meta name=viewport'],
+            ],
+            'METADATA' => [
+                $this->tags['METADATA'],
+            ],
+            'METER' => [
+                $this->tags['METER'],
+            ],
+            'MULTICOL' => [
+                $this->tags['MULTICOL'],
+            ],
+            'NEXTID' => [
+                $this->tags['NEXTID'],
+            ],
+            'NOBR' => [
+                $this->tags['NOBR'],
+            ],
+            'NOSCRIPT' => [
+                $this->tags['NOSCRIPT'],
+                $this->tags['noscript enclosure for boilerplate'],
+                $this->tags['noscript enclosure for boilerplate (transformed)'],
+            ],
+            'O:P' => [
+                $this->tags['O:P'],
+            ],
+            'OL' => [
+                $this->tags['OL'],
+            ],
+            'OPTGROUP' => [
+                $this->tags['OPTGROUP'],
+            ],
+            'OPTION' => [
+                $this->tags['OPTION'],
+            ],
+            'OUTPUT' => [
+                $this->tags['OUTPUT'],
+            ],
+            'P' => [
+                $this->tags['P'],
+            ],
+            'PATH' => [
+                $this->tags['PATH'],
+            ],
+            'PATTERN' => [
+                $this->tags['PATTERN'],
+            ],
+            'PICTURE' => [
+                $this->tags['PICTURE'],
+            ],
+            'POLYGON' => [
+                $this->tags['POLYGON'],
+            ],
+            'POLYLINE' => [
+                $this->tags['POLYLINE'],
+            ],
+            'PRE' => [
+                $this->tags['PRE'],
+            ],
+            'PROGRESS' => [
+                $this->tags['PROGRESS'],
+            ],
+            'Q' => [
+                $this->tags['Q'],
+            ],
+            'RADIALGRADIENT' => [
+                $this->tags['RADIALGRADIENT'],
+            ],
+            'RB' => [
+                $this->tags['RB'],
+            ],
+            'RECT' => [
+                $this->tags['RECT'],
+            ],
+            'RP' => [
+                $this->tags['RP'],
+            ],
+            'RT' => [
+                $this->tags['RT'],
+            ],
+            'RTC' => [
+                $this->tags['RTC'],
+            ],
+            'RUBY' => [
+                $this->tags['RUBY'],
+            ],
+            'S' => [
+                $this->tags['S'],
+            ],
+            'SAMP' => [
+                $this->tags['SAMP'],
+            ],
+            'SELECT' => [
+                $this->tags['SELECT'],
+            ],
+            'SLOT' => [
+                $this->tags['SLOT'],
+            ],
+            'SMALL' => [
+                $this->tags['SMALL'],
+            ],
+            'SOLIDCOLOR' => [
+                $this->tags['SOLIDCOLOR'],
+            ],
+            'SPACER' => [
+                $this->tags['SPACER'],
+            ],
+            'SPAN' => [
+                $this->tags['SPAN'],
+                $this->tags['span amp-nested-menu'],
+                $this->tags['span swg_amp_cache_nonce'],
+            ],
+            'STRIKE' => [
+                $this->tags['STRIKE'],
+            ],
+            'STRONG' => [
+                $this->tags['STRONG'],
+            ],
+            'SUB' => [
+                $this->tags['SUB'],
+            ],
+            'SUMMARY' => [
+                $this->tags['SUMMARY'],
+            ],
+            'SUP' => [
+                $this->tags['SUP'],
+            ],
+            'SVG' => [
+                $this->tags['SVG'],
+            ],
+            'TITLE' => [
+                $this->tags['svg title'],
+                $this->tags['title'],
+                $this->tags['title [AMP4EMAIL]'],
+            ],
+            'SWITCH' => [
+                $this->tags['SWITCH'],
+            ],
+            'SYMBOL' => [
+                $this->tags['SYMBOL'],
+            ],
+            'TABLE' => [
+                $this->tags['TABLE'],
+            ],
+            'TBODY' => [
+                $this->tags['TBODY'],
+            ],
+            'TD' => [
+                $this->tags['TD'],
+            ],
+            'TEXT' => [
+                $this->tags['TEXT'],
+            ],
+            'TEXTAREA' => [
+                $this->tags['TEXTAREA'],
+            ],
+            'TEXTPATH' => [
+                $this->tags['TEXTPATH'],
+            ],
+            'TFOOT' => [
+                $this->tags['TFOOT'],
+            ],
+            'TH' => [
+                $this->tags['TH'],
+            ],
+            'THEAD' => [
+                $this->tags['THEAD'],
+            ],
+            'TIME' => [
+                $this->tags['TIME'],
+            ],
+            'TR' => [
+                $this->tags['TR'],
+            ],
+            'TREF' => [
+                $this->tags['TREF'],
+            ],
+            'TSPAN' => [
+                $this->tags['TSPAN'],
+            ],
+            'TT' => [
+                $this->tags['TT'],
+            ],
+            'U' => [
+                $this->tags['U'],
+            ],
+            'UL' => [
+                $this->tags['UL'],
+            ],
+            'USE' => [
+                $this->tags['USE'],
+            ],
+            'VAR' => [
+                $this->tags['VAR'],
+            ],
+            'VIDEO' => [
+                $this->tags['VIDEO'],
+            ],
+            'VIEW' => [
+                $this->tags['VIEW'],
+            ],
+            'VKERN' => [
+                $this->tags['VKERN'],
+            ],
+            'WBR' => [
+                $this->tags['WBR'],
+            ],
+        ];
+        $this->bySpecName = [
+            'A (AMP4EMAIL)' => [
+                $this->tags['A (AMP4EMAIL)'],
+            ],
+            'amp-access extension .json script' => [
+                $this->tags['amp-access extension .json script'],
+            ],
+            'amp-accordion > section' => [
+                $this->tags['amp-accordion > section'],
+            ],
+            'amp-ad-exit configuration JSON' => [
+                $this->tags['amp-ad-exit configuration JSON'],
+            ],
+            'amp-ad extension script' => [
+                $this->tags['amp-ad extension script'],
+            ],
+            'amp-ad with data-enable-refresh attribute' => [
+                $this->tags['amp-ad with data-enable-refresh attribute'],
+            ],
+            'amp-ad with data-multi-size attribute' => [
+                $this->tags['amp-ad with data-multi-size attribute'],
+            ],
+            'amp-ad with type=custom' => [
+                $this->tags['amp-ad with type=custom'],
+            ],
+            'amp-analytics extension .json script' => [
+                $this->tags['amp-analytics extension .json script'],
+            ],
+            'AMP-ANIM (AMP4EMAIL)' => [
+                $this->tags['AMP-ANIM (AMP4EMAIL)'],
+            ],
+            'amp-animation extension .json script' => [
+                $this->tags['amp-animation extension .json script'],
+            ],
+            'amp-anim extension script (AMP4EMAIL)' => [
+                $this->tags['amp-anim extension script (AMP4EMAIL)'],
+            ],
+            'amp-app-banner button[open-button]' => [
+                $this->tags['amp-app-banner button[open-button]'],
+            ],
+            'amp-audio (A4A)' => [
+                $this->tags['amp-audio (A4A)'],
+            ],
+            'amp-audio > source' => [
+                $this->tags['amp-audio > source'],
+            ],
+            'amp-audio > track' => [
+                $this->tags['amp-audio > track'],
+            ],
+            'amp-audio > track[kind=subtitles]' => [
+                $this->tags['amp-audio > track[kind=subtitles]'],
+            ],
+            'amp-autocomplete' => [
+                $this->tags['amp-autocomplete'],
+            ],
+            'AMP-AUTOCOMPLETE (AMP4EMAIL)' => [
+                $this->tags['AMP-AUTOCOMPLETE (AMP4EMAIL)'],
+            ],
+            'amp-autocomplete > input' => [
+                $this->tags['amp-autocomplete > input'],
+            ],
+            'amp-autocomplete JSON' => [
+                $this->tags['amp-autocomplete JSON'],
+            ],
+            'AMP-BASE-CAROUSEL lightbox [child]' => [
+                $this->tags['AMP-BASE-CAROUSEL lightbox [child]'],
+            ],
+            'AMP-BASE-CAROUSEL lightbox [lightbox-exclude]' => [
+                $this->tags['AMP-BASE-CAROUSEL lightbox [lightbox-exclude]'],
+            ],
+            'AMP-BASE-CAROUSEL [lightbox]' => [
+                $this->tags['AMP-BASE-CAROUSEL [lightbox]'],
+            ],
+            'amp-bind extension .json script' => [
+                $this->tags['amp-bind extension .json script'],
+            ],
+            'AMP-CAROUSEL' => [
+                $this->tags['AMP-CAROUSEL'],
+            ],
+            'AMP-CAROUSEL lightbox' => [
+                $this->tags['AMP-CAROUSEL lightbox'],
+            ],
+            'AMP-CAROUSEL lightbox [child]' => [
+                $this->tags['AMP-CAROUSEL lightbox [child]'],
+            ],
+            'AMP-CAROUSEL lightbox [lightbox-exclude]' => [
+                $this->tags['AMP-CAROUSEL lightbox [lightbox-exclude]'],
+            ],
+            'amp-consent extension .json script' => [
+                $this->tags['amp-consent extension .json script'],
+            ],
+            'amp-consent [type]' => [
+                $this->tags['amp-consent [type]'],
+            ],
+            'amp-date-picker > template [date-template]' => [
+                $this->tags['amp-date-picker > template [date-template]'],
+            ],
+            'amp-date-picker > template [info-template]' => [
+                $this->tags['amp-date-picker > template [info-template]'],
+            ],
+            'amp-date-picker[type=range][mode=overlay]' => [
+                $this->tags['amp-date-picker[type=range][mode=overlay]'],
+            ],
+            'amp-date-picker[type=range][mode=static]' => [
+                $this->tags['amp-date-picker[type=range][mode=static]'],
+            ],
+            'amp-date-picker[type=single][mode=overlay]' => [
+                $this->tags['amp-date-picker[type=single][mode=overlay]'],
+            ],
+            'amp-date-picker[type=single][mode=static]' => [
+                $this->tags['amp-date-picker[type=single][mode=static]'],
+            ],
+            'amp-embed with data-multi-size attribute' => [
+                $this->tags['amp-embed with data-multi-size attribute'],
+            ],
+            'amp-experiment extension .json script' => [
+                $this->tags['amp-experiment extension .json script'],
+            ],
+            'amp-experiment story extension .json script' => [
+                $this->tags['amp-experiment story extension .json script'],
+            ],
+            'amp-geo extension .json script' => [
+                $this->tags['amp-geo extension .json script'],
+            ],
+            'amp-ima-video > script[type=application/json]' => [
+                $this->tags['amp-ima-video > script[type=application/json]'],
+            ],
+            'amp-ima-video > source' => [
+                $this->tags['amp-ima-video > source'],
+            ],
+            'amp-ima-video > track' => [
+                $this->tags['amp-ima-video > track'],
+            ],
+            'amp-ima-video > track[kind=subtitles]' => [
+                $this->tags['amp-ima-video > track[kind=subtitles]'],
+            ],
+            'amp-image-slider (transformed)' => [
+                $this->tags['amp-image-slider (transformed)'],
+            ],
+            'AMP-IMAGE-SLIDER > DIV [first]' => [
+                $this->tags['AMP-IMAGE-SLIDER > DIV [first]'],
+            ],
+            'AMP-IMAGE-SLIDER > DIV [second]' => [
+                $this->tags['AMP-IMAGE-SLIDER > DIV [second]'],
+            ],
+            'AMP-IMG (AMP4EMAIL)' => [
+                $this->tags['AMP-IMG (AMP4EMAIL)'],
+            ],
+            'amp-img (transformed)' => [
+                $this->tags['amp-img (transformed)'],
+            ],
+            'amp-img > img (transformed)' => [
+                $this->tags['amp-img > img (transformed)'],
+            ],
+            'amp-img > img[placeholder] (transformed)' => [
+                $this->tags['amp-img > img[placeholder] (transformed)'],
+            ],
+            'amp-inline-gallery-pagination' => [
+                $this->tags['amp-inline-gallery-pagination'],
+            ],
+            'amp-inline-gallery-pagination [inset]' => [
+                $this->tags['amp-inline-gallery-pagination [inset]'],
+            ],
+            'amp-lightbox [AMP4ADS]' => [
+                $this->tags['amp-lightbox [AMP4ADS]'],
+            ],
+            'amp-link-rewriter extension .json script' => [
+                $this->tags['amp-link-rewriter extension .json script'],
+            ],
+            'AMP-LIST (AMP4EMAIL)' => [
+                $this->tags['AMP-LIST (AMP4EMAIL)'],
+            ],
+            'amp-list-load-more button[load-more-clickable]' => [
+                $this->tags['amp-list-load-more button[load-more-clickable]'],
+            ],
+            'AMP-LIST DIV [fetch-error]' => [
+                $this->tags['AMP-LIST DIV [fetch-error]'],
+            ],
+            'AMP-LIVE-LIST [items]' => [
+                $this->tags['AMP-LIVE-LIST [items]'],
+            ],
+            'AMP-LIVE-LIST [items] item' => [
+                $this->tags['AMP-LIVE-LIST [items] item'],
+            ],
+            'AMP-LIVE-LIST [pagination]' => [
+                $this->tags['AMP-LIVE-LIST [pagination]'],
+            ],
+            'AMP-LIVE-LIST [update]' => [
+                $this->tags['AMP-LIVE-LIST [update]'],
+            ],
+            'AMP-MEGA-MENU > AMP-LIST' => [
+                $this->tags['AMP-MEGA-MENU > AMP-LIST'],
+            ],
+            'AMP-MEGA-MENU > AMP-LIST > TEMPLATE' => [
+                $this->tags['AMP-MEGA-MENU > AMP-LIST > TEMPLATE'],
+            ],
+            'AMP-MEGA-MENU > NAV' => [
+                $this->tags['AMP-MEGA-MENU > NAV'],
+            ],
+            'AMP-MEGA-MENU item-content' => [
+                $this->tags['AMP-MEGA-MENU item-content'],
+            ],
+            'AMP-MEGA-MENU item-heading' => [
+                $this->tags['AMP-MEGA-MENU item-heading'],
+            ],
+            'AMP-MEGA-MENU NAV > UL/OL' => [
+                $this->tags['AMP-MEGA-MENU NAV > UL/OL'],
+            ],
+            'AMP-MEGA-MENU NAV > UL/OL > LI' => [
+                $this->tags['AMP-MEGA-MENU NAV > UL/OL > LI'],
+            ],
+            'amp-megaphone [data-episode]' => [
+                $this->tags['amp-megaphone [data-episode]'],
+            ],
+            'amp-megaphone [data-playlist]' => [
+                $this->tags['amp-megaphone [data-playlist]'],
+            ],
+            'AMP-NEXT-PAGE > SCRIPT[type=application/json]' => [
+                $this->tags['AMP-NEXT-PAGE > SCRIPT[type=application/json]'],
+            ],
+            'AMP-NEXT-PAGE > [footer]' => [
+                $this->tags['AMP-NEXT-PAGE > [footer]'],
+            ],
+            'AMP-NEXT-PAGE > [recommendation-box]' => [
+                $this->tags['AMP-NEXT-PAGE > [recommendation-box]'],
+            ],
+            'AMP-NEXT-PAGE > [separator]' => [
+                $this->tags['AMP-NEXT-PAGE > [separator]'],
+            ],
+            'amp-next-page with inline config' => [
+                $this->tags['amp-next-page with inline config'],
+            ],
+            'amp-next-page with src attribute' => [
+                $this->tags['amp-next-page with src attribute'],
+            ],
+            'amp-next-page [type=adsense]' => [
+                $this->tags['amp-next-page [type=adsense]'],
+            ],
+            'amp-script extension local script' => [
+                $this->tags['amp-script extension local script'],
+            ],
+            'AMP-SELECTOR child' => [
+                $this->tags['AMP-SELECTOR child'],
+            ],
+            'AMP-SELECTOR option' => [
+                $this->tags['AMP-SELECTOR option'],
+            ],
+            'amp-sidebar' => [
+                $this->tags['amp-sidebar'],
+            ],
+            'amp-sidebar (AMP4EMAIL)' => [
+                $this->tags['amp-sidebar (AMP4EMAIL)'],
+            ],
+            'amp-sidebar > nav' => [
+                $this->tags['amp-sidebar > nav'],
+            ],
+            'amp-state' => [
+                $this->tags['amp-state'],
+            ],
+            'amp-state (AMP4EMAIL)' => [
+                $this->tags['amp-state (AMP4EMAIL)'],
+            ],
+            'amp-story-animation json script' => [
+                $this->tags['amp-story-animation json script'],
+            ],
+            'amp-story-auto-ads > template' => [
+                $this->tags['amp-story-auto-ads > template'],
+            ],
+            'amp-story-auto-ads config script' => [
+                $this->tags['amp-story-auto-ads config script'],
+            ],
+            'amp-story-bookend extension .json script' => [
+                $this->tags['amp-story-bookend extension .json script'],
+            ],
+            'amp-story-consent extension .json script' => [
+                $this->tags['amp-story-consent extension .json script'],
+            ],
+            'AMP-STORY-CTA-LAYER animate-in' => [
+                $this->tags['AMP-STORY-CTA-LAYER animate-in'],
+            ],
+            'AMP-STORY-GRID-LAYER animate-in' => [
+                $this->tags['AMP-STORY-GRID-LAYER animate-in'],
+            ],
+            'AMP-STORY-GRID-LAYER default' => [
+                $this->tags['AMP-STORY-GRID-LAYER default'],
+            ],
+            'amp-story-page-attachment' => [
+                $this->tags['amp-story-page-attachment'],
+            ],
+            'amp-story-page-attachment[href]' => [
+                $this->tags['amp-story-page-attachment[href]'],
+            ],
+            'amp-story >> amp-audio' => [
+                $this->tags['amp-story >> amp-audio'],
+            ],
+            'amp-story >> amp-sidebar' => [
+                $this->tags['amp-story >> amp-sidebar'],
+            ],
+            'amp-story >> amp-story-page-attachment >> amp-video' => [
+                $this->tags['amp-story >> amp-story-page-attachment >> amp-video'],
+            ],
+            'amp-story >> amp-video' => [
+                $this->tags['amp-story >> amp-video'],
+            ],
+            'amp-subscriptions extension .json script' => [
+                $this->tags['amp-subscriptions extension .json script'],
+            ],
+            'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]' => [
+                $this->tags['AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]'],
+            ],
+            'AMP-VIDEO-IFRAME > [placeholder]' => [
+                $this->tags['AMP-VIDEO-IFRAME > [placeholder]'],
+            ],
+            'AMP-VIDEO-IFRAME with [placeholder]' => [
+                $this->tags['AMP-VIDEO-IFRAME with [placeholder]'],
+            ],
+            'AMP-VIDEO-IFRAME with [placeholder] (transformed)' => [
+                $this->tags['AMP-VIDEO-IFRAME with [placeholder] (transformed)'],
+            ],
+            'AMP-VIDEO-IFRAME[poster]' => [
+                $this->tags['AMP-VIDEO-IFRAME[poster]'],
+            ],
+            'amp-video > source' => [
+                $this->tags['amp-video > source'],
+            ],
+            'amp-video > track' => [
+                $this->tags['amp-video > track'],
+            ],
+            'amp-video > track[kind=subtitles]' => [
+                $this->tags['amp-video > track[kind=subtitles]'],
+            ],
+            'amp-video extension script' => [
+                $this->tags['amp-video extension script'],
+            ],
+            'amp4ads engine script' => [
+                $this->tags['amp4ads engine script'],
+            ],
+            'amphtml engine script' => [
+                $this->tags['amphtml engine script'],
+            ],
+            'amphtml engine script (LTS)' => [
+                $this->tags['amphtml engine script (LTS)'],
+            ],
+            'amphtml engine script [AMP4EMAIL]' => [
+                $this->tags['amphtml engine script [AMP4EMAIL]'],
+            ],
+            'audio > source' => [
+                $this->tags['audio > source'],
+            ],
+            'audio > track' => [
+                $this->tags['audio > track'],
+            ],
+            'audio > track[kind=subtitles]' => [
+                $this->tags['audio > track[kind=subtitles]'],
+            ],
+            'button amp-nested-menu' => [
+                $this->tags['button amp-nested-menu'],
+            ],
+            'cryptokeys .json script' => [
+                $this->tags['cryptokeys .json script'],
+            ],
+            'div amp-nested-menu' => [
+                $this->tags['div amp-nested-menu'],
+            ],
+            'FORM DIV [submit-error]' => [
+                $this->tags['FORM DIV [submit-error]'],
+            ],
+            'FORM DIV [submit-error][template]' => [
+                $this->tags['FORM DIV [submit-error][template]'],
+            ],
+            'FORM DIV [submit-success]' => [
+                $this->tags['FORM DIV [submit-success]'],
+            ],
+            'FORM DIV [submit-success][template]' => [
+                $this->tags['FORM DIV [submit-success][template]'],
+            ],
+            'FORM DIV [submitting]' => [
+                $this->tags['FORM DIV [submitting]'],
+            ],
+            'FORM DIV [submitting][template]' => [
+                $this->tags['FORM DIV [submitting][template]'],
+            ],
+            'FORM DIV [verify-error]' => [
+                $this->tags['FORM DIV [verify-error]'],
+            ],
+            'FORM DIV [verify-error][template]' => [
+                $this->tags['FORM DIV [verify-error][template]'],
+            ],
+            'FORM [method=GET]' => [
+                $this->tags['FORM [method=GET]'],
+            ],
+            'FORM [method=GET] (AMP4EMAIL)' => [
+                $this->tags['FORM [method=GET] (AMP4EMAIL)'],
+            ],
+            'FORM [method=POST]' => [
+                $this->tags['FORM [method=POST]'],
+            ],
+            'FORM [method=POST] (AMP4EMAIL)' => [
+                $this->tags['FORM [method=POST] (AMP4EMAIL)'],
+            ],
+            'h2 amp-nested-menu' => [
+                $this->tags['h2 amp-nested-menu'],
+            ],
+            'h3 amp-nested-menu' => [
+                $this->tags['h3 amp-nested-menu'],
+            ],
+            'h4 amp-nested-menu' => [
+                $this->tags['h4 amp-nested-menu'],
+            ],
+            'h5 amp-nested-menu' => [
+                $this->tags['h5 amp-nested-menu'],
+            ],
+            'h6 amp-nested-menu' => [
+                $this->tags['h6 amp-nested-menu'],
+            ],
+            'head > style[amp-boilerplate]' => [
+                $this->tags['head > style[amp-boilerplate]'],
+            ],
+            'head > style[amp-boilerplate] (transformed)' => [
+                $this->tags['head > style[amp-boilerplate] (transformed)'],
+            ],
+            'head > style[amp4ads-boilerplate]' => [
+                $this->tags['head > style[amp4ads-boilerplate]'],
+            ],
+            'head > style[amp4email-boilerplate]' => [
+                $this->tags['head > style[amp4email-boilerplate]'],
+            ],
+            'html (transformed)' => [
+                $this->tags['html (transformed)'],
+            ],
+            'html doctype' => [
+                $this->tags['html doctype'],
+            ],
+            'html doctype (AMP4ADS)' => [
+                $this->tags['html doctype (AMP4ADS)'],
+            ],
+            'I-AMPHTML-SIZER-INTRINSIC' => [
+                $this->tags['I-AMPHTML-SIZER-INTRINSIC'],
+            ],
+            'I-AMPHTML-SIZER-RESPONSIVE' => [
+                $this->tags['I-AMPHTML-SIZER-RESPONSIVE'],
+            ],
+            'IMG-I-AMPHTML-INTRINSIC-SIZER' => [
+                $this->tags['IMG-I-AMPHTML-INTRINSIC-SIZER'],
+            ],
+            'input [mask=date-dd-mm-yyyy]' => [
+                $this->tags['input [mask=date-dd-mm-yyyy]'],
+            ],
+            'input [mask=date-mm-dd-yyyy]' => [
+                $this->tags['input [mask=date-mm-dd-yyyy]'],
+            ],
+            'input [mask=date-mm-yy]' => [
+                $this->tags['input [mask=date-mm-yy]'],
+            ],
+            'input [mask=date-yyyy-mm-dd]' => [
+                $this->tags['input [mask=date-yyyy-mm-dd]'],
+            ],
+            'input [mask=payment-card]' => [
+                $this->tags['input [mask=payment-card]'],
+            ],
+            'input [mask] (custom mask)' => [
+                $this->tags['input [mask] (custom mask)'],
+            ],
+            'INPUT [type=file]' => [
+                $this->tags['INPUT [type=file]'],
+            ],
+            'INPUT [type=password]' => [
+                $this->tags['INPUT [type=password]'],
+            ],
+            'lineargradient > stop' => [
+                $this->tags['lineargradient > stop'],
+            ],
+            'link itemprop=' => [
+                $this->tags['link itemprop='],
+            ],
+            'link itemprop=sameAs' => [
+                $this->tags['link itemprop=sameAs'],
+            ],
+            'link property=' => [
+                $this->tags['link property='],
+            ],
+            'link rel=' => [
+                $this->tags['link rel='],
+            ],
+            'link rel=canonical' => [
+                $this->tags['link rel=canonical'],
+            ],
+            'link rel=manifest' => [
+                $this->tags['link rel=manifest'],
+            ],
+            'link rel=preload' => [
+                $this->tags['link rel=preload'],
+            ],
+            'link rel=stylesheet for fonts' => [
+                $this->tags['link rel=stylesheet for fonts'],
+            ],
+            'meta charset=utf-8' => [
+                $this->tags['meta charset=utf-8'],
+            ],
+            'meta http-equiv=content-language' => [
+                $this->tags['meta http-equiv=content-language'],
+            ],
+            'meta http-equiv=Content-Script-Type' => [
+                $this->tags['meta http-equiv=Content-Script-Type'],
+            ],
+            'meta http-equiv=Content-Style-Type' => [
+                $this->tags['meta http-equiv=Content-Style-Type'],
+            ],
+            'meta http-equiv=Content-Type' => [
+                $this->tags['meta http-equiv=Content-Type'],
+            ],
+            'meta http-equiv=imagetoolbar' => [
+                $this->tags['meta http-equiv=imagetoolbar'],
+            ],
+            'meta http-equiv=origin-trial' => [
+                $this->tags['meta http-equiv=origin-trial'],
+            ],
+            'meta http-equiv=pics-label' => [
+                $this->tags['meta http-equiv=pics-label'],
+            ],
+            'meta http-equiv=resource-type' => [
+                $this->tags['meta http-equiv=resource-type'],
+            ],
+            'meta http-equiv=x-dns-prefetch-control' => [
+                $this->tags['meta http-equiv=x-dns-prefetch-control'],
+            ],
+            'meta http-equiv=X-UA-Compatible' => [
+                $this->tags['meta http-equiv=X-UA-Compatible'],
+            ],
+            'meta name=amp-3p-iframe-src' => [
+                $this->tags['meta name=amp-3p-iframe-src'],
+            ],
+            'meta name=amp-ad-doubleclick-sra' => [
+                $this->tags['meta name=amp-ad-doubleclick-sra'],
+            ],
+            'meta name=amp-ad-enable-refresh' => [
+                $this->tags['meta name=amp-ad-enable-refresh'],
+            ],
+            'meta name=amp-consent-blocking' => [
+                $this->tags['meta name=amp-consent-blocking'],
+            ],
+            'meta name=amp-cta-landing-page-type' => [
+                $this->tags['meta name=amp-cta-landing-page-type'],
+            ],
+            'meta name=amp-cta-type' => [
+                $this->tags['meta name=amp-cta-type'],
+            ],
+            'meta name=amp-cta-url' => [
+                $this->tags['meta name=amp-cta-url'],
+            ],
+            'meta name=amp-experiment-token' => [
+                $this->tags['meta name=amp-experiment-token'],
+            ],
+            'meta name=amp-experiments-opt-in' => [
+                $this->tags['meta name=amp-experiments-opt-in'],
+            ],
+            'meta name=amp-google-clientid-id-api' => [
+                $this->tags['meta name=amp-google-clientid-id-api'],
+            ],
+            'meta name=amp-link-variable-allowed-origin' => [
+                $this->tags['meta name=amp-link-variable-allowed-origin'],
+            ],
+            'meta name=amp-list-load-more' => [
+                $this->tags['meta name=amp-list-load-more'],
+            ],
+            'meta name=amp-recaptcha-input' => [
+                $this->tags['meta name=amp-recaptcha-input'],
+            ],
+            'meta name=amp-script-src' => [
+                $this->tags['meta name=amp-script-src'],
+            ],
+            'meta name=amp-story-generator-name' => [
+                $this->tags['meta name=amp-story-generator-name'],
+            ],
+            'meta name=amp-story-generator-version' => [
+                $this->tags['meta name=amp-story-generator-version'],
+            ],
+            'meta name=amp-to-amp-navigation' => [
+                $this->tags['meta name=amp-to-amp-navigation'],
+            ],
+            'meta name=amp4ads-id' => [
+                $this->tags['meta name=amp4ads-id'],
+            ],
+            'meta name=amp4ads-vars-*' => [
+                $this->tags['meta name=amp4ads-vars-*'],
+            ],
+            'meta name= and content=' => [
+                $this->tags['meta name= and content='],
+            ],
+            'meta name=apple-itunes-app' => [
+                $this->tags['meta name=apple-itunes-app'],
+            ],
+            'meta name=viewport' => [
+                $this->tags['meta name=viewport'],
+            ],
+            'noscript > img' => [
+                $this->tags['noscript > img'],
+            ],
+            'noscript > style[amp-boilerplate]' => [
+                $this->tags['noscript > style[amp-boilerplate]'],
+            ],
+            'noscript > style[amp-boilerplate] (transformed)' => [
+                $this->tags['noscript > style[amp-boilerplate] (transformed)'],
+            ],
+            'noscript enclosure for boilerplate' => [
+                $this->tags['noscript enclosure for boilerplate'],
+            ],
+            'noscript enclosure for boilerplate (transformed)' => [
+                $this->tags['noscript enclosure for boilerplate (transformed)'],
+            ],
+            'picture > source' => [
+                $this->tags['picture > source'],
+            ],
+            'radialgradient > stop' => [
+                $this->tags['radialgradient > stop'],
+            ],
+            'script id=amp-rtc' => [
+                $this->tags['script id=amp-rtc'],
+            ],
+            'script type=application/ld+json' => [
+                $this->tags['script type=application/ld+json'],
+            ],
+            'SCRIPT type=text/plain' => [
+                $this->tags['SCRIPT type=text/plain'],
+            ],
+            'SCRIPT type=text/plain (AMP4EMAIL)' => [
+                $this->tags['SCRIPT type=text/plain (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-autocomplete] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-autocomplete] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-bind] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-bind] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-fit-text] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-fit-text] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-form] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-form] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-image-lightbox] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-image-lightbox] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-lightbox] (AMP4ADS)' => [
+                $this->tags['SCRIPT[custom-element=amp-lightbox] (AMP4ADS)'],
+            ],
+            'SCRIPT[custom-element=amp-lightbox] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-lightbox] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-list] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-list] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-selector] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-selector] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-sidebar] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-sidebar] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-element=amp-timeago] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-element=amp-timeago] (AMP4EMAIL)'],
+            ],
+            'SCRIPT[custom-template=amp-mustache] (AMP4ADS)' => [
+                $this->tags['SCRIPT[custom-template=amp-mustache] (AMP4ADS)'],
+            ],
+            'SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)' => [
+                $this->tags['SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)'],
+            ],
+            'section (AMP4EMAIL)' => [
+                $this->tags['section (AMP4EMAIL)'],
+            ],
+            'span amp-nested-menu' => [
+                $this->tags['span amp-nested-menu'],
+            ],
+            'span swg_amp_cache_nonce' => [
+                $this->tags['span swg_amp_cache_nonce'],
+            ],
+            'style amp-custom' => [
+                $this->tags['style amp-custom'],
+            ],
+            'style amp-custom (AMP4ADS)' => [
+                $this->tags['style amp-custom (AMP4ADS)'],
+            ],
+            'style amp-custom (AMP4EMAIL)' => [
+                $this->tags['style amp-custom (AMP4EMAIL)'],
+            ],
+            'style amp-custom (css-strict)' => [
+                $this->tags['style amp-custom (css-strict)'],
+            ],
+            'style amp-custom-length-check' => [
+                $this->tags['style amp-custom-length-check'],
+            ],
+            'style[amp-keyframes]' => [
+                $this->tags['style[amp-keyframes]'],
+            ],
+            'style[amp-runtime] (transformed)' => [
+                $this->tags['style[amp-runtime] (transformed)'],
+            ],
+            'subscriptions-section content swg_amp_cache_nonce' => [
+                $this->tags['subscriptions-section content swg_amp_cache_nonce'],
+            ],
+            'subscriptions script ciphertext' => [
+                $this->tags['subscriptions script ciphertext'],
+            ],
+            'svg title' => [
+                $this->tags['svg title'],
+            ],
+            'TEMPLATE (AMP4EMAIL)' => [
+                $this->tags['TEMPLATE (AMP4EMAIL)'],
+            ],
+            'title' => [
+                $this->tags['title'],
+            ],
+            'title [AMP4EMAIL]' => [
+                $this->tags['title [AMP4EMAIL]'],
+            ],
+            'video > source' => [
+                $this->tags['video > source'],
+            ],
+            'video > track' => [
+                $this->tags['video > track'],
+            ],
+            'video > track[kind=subtitles]' => [
+                $this->tags['video > track[kind=subtitles]'],
+            ],
+        ];
     }
 }

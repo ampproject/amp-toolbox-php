@@ -2,6 +2,8 @@
 
 namespace AmpProject\Validator\Spec;
 
+use LogicException;
+
 final class Tag
 {
     /** @var string[] */
@@ -118,7 +120,7 @@ final class Tag
     {
         foreach ($attributes as $key => $value) {
             if (!property_exists($this, $key)) {
-                throw new \LogicException("Missing property {$key} in Tag class");
+                throw new LogicException("Missing property {$key} in Tag class");
             }
 
             $this->$key = $value;

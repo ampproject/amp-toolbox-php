@@ -18,6 +18,20 @@ final class Tags implements Section
     private $tags = [];
 
     /**
+     * Provide hashed access to tags by tag name.
+     *
+     * @var array
+     */
+    private $byTagName = [];
+
+    /**
+     * Provide hashed access to tags by spec name.
+     *
+     * @var array
+     */
+    private $bySpecName = [];
+
+    /**
      * Process a section.
      *
      * @param string       $rootNamespace Root namespace to generate the PHP validator spec under.
@@ -31,6 +45,14 @@ final class Tags implements Section
         $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
 
         $class->addProperty('tags')
+              ->setValue([])
+              ->setPrivate();
+
+        $class->addProperty('byTagName')
+              ->setValue([])
+              ->setPrivate();
+
+        $class->addProperty('bySpecName')
               ->setValue([])
               ->setPrivate();
 
@@ -53,7 +75,43 @@ final class Tags implements Section
 
             $constructor->addBody('    ]');
             $constructor->addBody(');');
+
+            if (array_key_exists('tagName', $this->tags[$tagId])) {
+                $tagName = $this->tags[$tagId]['tagName'];
+                if (!array_key_exists($tagName, $this->byTagName)) {
+                    $this->byTagName[$tagName] = [];
+                }
+                $this->byTagName[$tagName][$tagId] = $this->tags[$tagId];
+            }
+
+            if (array_key_exists('specName', $this->tags[$tagId])) {
+                $specName = $this->tags[$tagId]['specName'];
+                if (!array_key_exists($specName, $this->bySpecName)) {
+                    $this->bySpecName[$specName] = [];
+                }
+                $this->bySpecName[$specName][$tagId] = $this->tags[$tagId];
+            }
         }
+
+        $constructor->addBody('$this->byTagName = [');
+        foreach ($this->byTagName as $tagName => $tags) {
+            $constructor->addBody("    '{$tagName}' => [");
+            foreach ($tags as $tagId => $attributes) {
+                $constructor->addBody("        \$this->tags['{$tagId}'],");
+            }
+            $constructor->addBody('    ],');
+        }
+        $constructor->addBody('];');
+
+        $constructor->addBody('$this->bySpecName = [');
+        foreach ($this->bySpecName as $specName => $tags) {
+            $constructor->addBody("    '{$specName}' => [");
+            foreach ($tags as $tagId => $attributes) {
+                $constructor->addBody("        \$this->tags['{$tagId}'],");
+            }
+            $constructor->addBody('    ],');
+        }
+        $constructor->addBody('];');
     }
 
     private function dump($variable, $level)
@@ -82,7 +140,7 @@ final class Tags implements Section
         $tagId = $specName;
         $index = 1;
 
-        while(array_key_exists($tagId, $this->tags)) {
+        while (array_key_exists($tagId, $this->tags)) {
             $index++;
             $tagId = "{$specName} ({$index})";
         }
