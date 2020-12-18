@@ -121,6 +121,13 @@ final class Tags implements Section
         $constructor->addBody('];');
     }
 
+    /**
+     * Dump a variable so it can be used for code generation.
+     *
+     * @param mixed $variable Variable to dump.
+     * @param int   $level    Indentation level to use.
+     * @return string Dump of the provided variable.
+     */
     private function dump($variable, $level)
     {
         $dumper = new Dumper();
