@@ -74,16 +74,18 @@ final class Tags implements Section
         $tagIds = array_keys($this->tags);
         natcasesort($tagIds);
 
+        $constructor->addBody('$this->tags = [');
+
         foreach ($tagIds as $tagId) {
-            $constructor->addBody('$this->tags[?] = new Tag(', [$tagId]);
-            $constructor->addBody('    [');
+            $constructor->addBody('    ? => new Tag(', [$tagId]);
+            $constructor->addBody('        [');
 
             foreach ($this->tags[$tagId] as $key => $attribute) {
-                $constructor->addBody("        '{$key}' => {$this->dump($attribute, 2)},");
+                $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
             }
 
-            $constructor->addBody('    ]');
-            $constructor->addBody(');');
+            $constructor->addBody('        ]');
+            $constructor->addBody('    ),');
 
             if (array_key_exists('tagName', $this->tags[$tagId])) {
                 $tagName = $this->tags[$tagId]['tagName'];
@@ -101,6 +103,8 @@ final class Tags implements Section
                 $this->bySpecName[$specName][$tagId] = $this->tags[$tagId];
             }
         }
+
+        $constructor->addBody('];');
 
         $constructor->addBody('$this->byTagName = [');
         foreach ($this->byTagName as $tagName => $tags) {

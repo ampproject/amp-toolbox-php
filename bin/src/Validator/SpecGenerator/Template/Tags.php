@@ -34,6 +34,6 @@ final class Tags
             return [];
         }
 
-        return $this->byTagName[$specName];
+        return $this->bySpecName[$specName];
     }
 }
