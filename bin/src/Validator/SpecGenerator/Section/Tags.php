@@ -14,21 +14,21 @@ final class Tags implements Section
     /**
      * Associative array of tags and their attributes.
      *
-     * @var array<string, array>
+     * @var array<string,array>
      */
     private $tags = [];
 
     /**
      * Provide hashed access to tags by tag name.
      *
-     * @var array<string, array<int, array>>
+     * @var array<string,array<int,array>>
      */
     private $byTagName = [];
 
     /**
      * Provide hashed access to tags by spec name.
      *
-     * @var array<string, array<int, array>>
+     * @var array<string,string>
      */
     private $bySpecName = [];
 
@@ -48,6 +48,7 @@ final class Tags implements Section
             $class->addMember($method);
         }
 
+        $namespace->addUse("AmpProject\\Exception\\InvalidSpecName");
         $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
 
         $class->addProperty('tags')
@@ -63,7 +64,7 @@ final class Tags implements Section
         $class->addProperty('bySpecName')
               ->setValue([])
               ->setPrivate()
-              ->addComment('@var array<string,array<int,Tag>>');
+              ->addComment('@var array<string,Tag>');
 
         $constructor = $class->addMethod('__construct');
 
@@ -96,11 +97,8 @@ final class Tags implements Section
             }
 
             if (array_key_exists('specName', $this->tags[$tagId])) {
-                $specName = $this->tags[$tagId]['specName'];
-                if (!array_key_exists($specName, $this->bySpecName)) {
-                    $this->bySpecName[$specName] = [];
-                }
-                $this->bySpecName[$specName][$tagId] = $this->tags[$tagId];
+                $specName                    = $this->tags[$tagId]['specName'];
+                $this->bySpecName[$specName] = $tagId;
             }
         }
 
@@ -117,12 +115,8 @@ final class Tags implements Section
         $constructor->addBody('];');
 
         $constructor->addBody('$this->bySpecName = [');
-        foreach ($this->bySpecName as $specName => $tags) {
-            $constructor->addBody("    '{$specName}' => [");
-            foreach ($tags as $tagId => $attributes) {
-                $constructor->addBody("        \$this->tags['{$tagId}'],");
-            }
-            $constructor->addBody('    ],');
+        foreach ($this->bySpecName as $specName => $tagId) {
+            $constructor->addBody("    '{$specName}' => \$this->tags['{$tagId}'],");
         }
         $constructor->addBody('];');
     }

@@ -2,6 +2,7 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
+use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Tests\TestCase;
 use AmpProject\Validator\Spec;
 
@@ -39,18 +40,26 @@ class TagsTest extends TestCase
         $this->assertEquals('radialgradient > stop', $tags[1]->specName());
     }
 
-    public function testBySpecName()
+    public function testByTagNameReturnsEmptyArrayForUnknownTagName()
     {
-        $tags = $this->tags->bySpecName('picture > source');
+        $tags = $this->tags->byTagName('utter nonsense');
 
         $this->assertIsArray($tags);
-        $this->assertCount(1, $tags);
+        $this->assertCount(0, $tags);
+    }
 
-        foreach ($tags as $tag) {
-            $this->assertInstanceOf(Spec\Tag::class, $tag);
-            $this->assertEquals('picture > source', $tag->specName());
-        }
+    public function testBySpecName()
+    {
+        $tag = $this->tags->bySpecName('picture > source');
 
-        $this->assertEquals('SOURCE', $tags[0]->tagName());
+        $this->assertInstanceOf(Spec\Tag::class, $tag);
+        $this->assertEquals('picture > source', $tag->specName());
+        $this->assertEquals('SOURCE', $tag->tagName());
+    }
+
+    public function testBySpecNameThrowsExceptionForUnknownSpecName()
+    {
+        $this->expectException(InvalidSpecName::class);
+        $tags = $this->tags->bySpecName('utter nonsense');
     }
 }

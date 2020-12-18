@@ -2,6 +2,8 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
+use AmpProject\Exception\InvalidSpecName;
+
 final class Tags
 {
     private $byTagName  = [];
@@ -23,15 +25,16 @@ final class Tags
     }
 
     /**
-     * Get a collection of tags by spec name.
+     * Get the tag for a given spec name.
      *
-     * @param string $specName Spec name to get the collection of tags for.
-     * @return array<Tag> Array of tags. Empty array if spec name not found.
+     * @param string $specName Spec name to get the tag for.
+     * @return Tag Tag with the given spec name.
+     * @throws InvalidSpecName If an invalid spec name is requested.
      */
     public function bySpecName($specName)
     {
         if (!array_key_exists($specName, $this->bySpecName)) {
-            return [];
+            throw InvalidSpecName::forSpecName($specName);
         }
 
         return $this->bySpecName[$specName];
