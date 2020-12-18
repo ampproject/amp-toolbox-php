@@ -22,7 +22,6 @@ final class Tags
         return $this->byTagName[$tagName];
     }
 
-
     /**
      * Get a collection of tags by spec name.
      *

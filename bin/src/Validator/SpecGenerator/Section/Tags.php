@@ -53,17 +53,17 @@ final class Tags implements Section
         $class->addProperty('tags')
               ->setValue([])
               ->setPrivate()
-              ->addComment("@var array<string, \\{$rootNamespace}\\Spec\\Tag>");
+              ->addComment('@var array<string,Tag>');
 
         $class->addProperty('byTagName')
               ->setValue([])
               ->setPrivate()
-              ->addComment("@var array<string, array<int, \\{$rootNamespace}\\Spec\\Tag>>");
+              ->addComment('@var array<string,array<int,Tag>>');
 
         $class->addProperty('bySpecName')
               ->setValue([])
               ->setPrivate()
-              ->addComment("@var array<string, array<int, \\{$rootNamespace}\\Spec\\Tag>>");
+              ->addComment('@var array<string,array<int,Tag>>');
 
         $constructor = $class->addMethod('__construct');
 

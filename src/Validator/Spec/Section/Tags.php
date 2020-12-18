@@ -11,13 +11,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Tags
 {
-    /** @var array<string, \AmpProject\Validator\Spec\Tag> */
+    /** @var array<string,Tag> */
     private $tags = [];
 
-    /** @var array<string, array<int, \AmpProject\Validator\Spec\Tag>> */
+    /** @var array<string, array<int,Tag>> */
     private $byTagName = [];
 
-    /** @var array<string, array<int, \AmpProject\Validator\Spec\Tag>> */
+    /** @var array<string, array<int,Tag>> */
     private $bySpecName = [];
 
     /**
