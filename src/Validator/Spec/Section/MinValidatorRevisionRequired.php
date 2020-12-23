@@ -9,4 +9,11 @@ namespace AmpProject\Validator\Spec\Section;
 
 final class MinValidatorRevisionRequired
 {
+    /** @var int */
+    public $minValidatorRevisionRequired;
+
+    public function __construct()
+    {
+        $this->minValidatorRevisionRequired = 475;
+    }
 }

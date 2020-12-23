@@ -9,4 +9,11 @@ namespace AmpProject\Validator\Spec\Section;
 
 final class SpecFileRevision
 {
+    /** @var int */
+    public $specFileRevision;
+
+    public function __construct()
+    {
+        $this->specFileRevision = 1131;
+    }
 }

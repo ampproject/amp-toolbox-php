@@ -9,4 +9,17 @@ namespace AmpProject\Validator\Spec\Section;
 
 final class Doc
 {
+    /** @var array */
+    public $doc;
+
+    public function __construct()
+    {
+        $this->doc = [
+            0 => [
+                    'htmlFormat' => ['AMP4EMAIL'],
+                    'maxBytes' => 200000,
+                    'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-format/?format=email',
+                ],
+        ];
+    }
 }

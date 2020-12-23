@@ -4,12 +4,13 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
+use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
-use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\PhpNamespace;
 
 final class Tags implements Section
 {
+    use VariableDumping;
 
     /**
      * Associative array of tags and their attributes.
@@ -43,26 +44,23 @@ final class Tags implements Section
      */
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
+        $namespace->addUse("AmpProject\\Exception\\InvalidSpecName");
+        $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
+
         $tagsTemplateClass = ClassType::withBodiesFrom(Template\Tags::class);
         foreach ($tagsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
 
-        $namespace->addUse("AmpProject\\Exception\\InvalidSpecName");
-        $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
-
         $class->addProperty('tags')
-              ->setValue([])
               ->setPrivate()
               ->addComment('@var array<string,Tag>');
 
         $class->addProperty('byTagName')
-              ->setValue([])
               ->setPrivate()
               ->addComment('@var array<string,array<int,Tag>>');
 
         $class->addProperty('bySpecName')
-              ->setValue([])
               ->setPrivate()
               ->addComment('@var array<string,Tag>');
 
@@ -121,19 +119,6 @@ final class Tags implements Section
         $constructor->addBody('];');
     }
 
-    /**
-     * Dump a variable so it can be used for code generation.
-     *
-     * @param mixed $variable Variable to dump.
-     * @param int   $level    Indentation level to use.
-     * @return string Dump of the provided variable.
-     */
-    private function dump($variable, $level)
-    {
-        $dumper = new Dumper();
-        $extraIndentation = str_pad('', $level * 4, ' ');
-        return str_replace("\n", "\n{$extraIndentation}", $dumper->dump($variable));
-    }
 
     /**
      * Get a unique tag ID.

@@ -28,6 +28,8 @@ final class SpecGenerator
     public function generate($jsonSpec, $rootNamespace, $destination)
     {
         $printer = new PsrPrinter();
+        $printer->setTypeResolving(false);
+
         $this->ensureDirectoriesExist($destination);
 
         $specFile      = $this->createNewFile();

@@ -9,4 +9,11 @@ namespace AmpProject\Validator\Spec\Section;
 
 final class TemplateSpecUrl
 {
+    /** @var string */
+    public $templateSpecUrl;
+
+    public function __construct()
+    {
+        $this->templateSpecUrl = 'https://amp.dev/documentation/components/amp-mustache';
+    }
 }

@@ -13,13 +13,13 @@ use AmpProject\Validator\Spec\Tag;
 final class Tags
 {
     /** @var array<string,Tag> */
-    private $tags = [];
+    private $tags;
 
     /** @var array<string,array<int,Tag>> */
-    private $byTagName = [];
+    private $byTagName;
 
     /** @var array<string,Tag> */
-    private $bySpecName = [];
+    private $bySpecName;
 
     /**
      * Get a collection of tags by tag name.
