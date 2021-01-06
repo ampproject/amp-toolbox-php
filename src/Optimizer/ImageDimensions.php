@@ -165,14 +165,14 @@ final class ImageDimensions
         // Try to convert absolute units into their equivalent pixel value.
         if (!empty($widthUnit)) {
             $numericWidth = $this->getNumericWidth();
-            if ($numericWidth) {
+            if (false !== $numericWidth) {
                 $width     = $numericWidth;
                 $widthUnit = '';
             }
         }
         if (!empty($heightUnit)) {
             $numericHeight = $this->getNumericHeight();
-            if ($numericHeight) {
+            if (false !== $numericHeight) {
                 $height     = $numericHeight;
                 $heightUnit = '';
             }

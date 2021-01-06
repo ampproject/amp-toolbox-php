@@ -196,6 +196,9 @@ final class LengthUnit
      */
     public static function convertIntoPixels($value, $unit)
     {
+        if ( 0 === $value ) {
+            return 0;
+        }
         switch ($unit) {
             case self::CM:
                 return $value * self::PPI / self::CM_PER_IN;
