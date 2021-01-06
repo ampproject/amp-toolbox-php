@@ -183,7 +183,7 @@ final class LengthUnit
     /**
      * Centimeters per inch.
      *
-     * @var float;
+     * @var float
      */
     const CM_PER_IN = 2.54;
 
