@@ -196,7 +196,7 @@ final class LengthUnit
      */
     public static function convertIntoPixels($value, $unit)
     {
-        if ( 0 === $value ) {
+        if (0 === $value) {
             return 0;
         }
         switch ($unit) {
