@@ -17,7 +17,7 @@
     "dealerdirect/phpcodesniffer-composer-installer": "0.7.1",
     "nette/php-generator": "^3.5",
     "php-parallel-lint/php-parallel-lint": "^1.2",
-    "phpcompatibility/phpcompatibility-wp": "2.1.1",
+    "phpcompatibility/php-compatibility": "^9",
     "phpunit/phpunit": "^5 || ^6 || ^7 || ^8 || ^9",
     "roave/security-advisories": "dev-master",
     "sirbrillig/phpcs-variable-analysis": "2.11.0",
@@ -56,13 +56,15 @@
   },
   "scripts": {
     "cbf": "phpcbf",
+    "compat": "if [ -z $TEST_SKIP_PHPCOMPAT ]; then phpcs --standard=PHPCompatibility -s -p src --runtime-set testVersion 5.6; fi",
     "cs": "if [ -z $TEST_SKIP_PHPCS ]; then phpcs; fi",
     "lint": "if [ -z $TEST_SKIP_LINTING ]; then parallel-lint -j 10 --colors --exclude vendor .; fi",
     "test": [
       "@lint",
       "@unit",
       "@cs",
-      "@analyze"
+      "@analyze",
+      "@compat"
     ],
     "analyze": "if [ -z $TEST_SKIP_PHPSTAN ]; then phpstan --version; phpstan analyze --ansi; fi",
     "unit": "if [ -z $TEST_SKIP_PHPUNIT ]; then phpunit --colors=always; fi",
