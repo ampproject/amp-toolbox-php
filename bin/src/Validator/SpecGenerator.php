@@ -98,17 +98,6 @@ final class SpecGenerator
     }
 
     /**
-     * Get the constant name for a given value.
-     *
-     * @param string $value Value to get the constant name for.
-     * @return string Constant name to use.
-     */
-    private function getConstantName($value)
-    {
-        return strtoupper(preg_replace('/([a-z])([A-Z])/', '$1_$2', $value));
-    }
-
-    /**
      * Get the class name for a given value.
      *
      * @param string $value Value to get the class name for.

@@ -2,6 +2,7 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
+use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
@@ -10,6 +11,7 @@ use Nette\PhpGenerator\PhpNamespace;
 
 final class Tags implements Section
 {
+    use ConstantNames;
     use VariableDumping;
 
     /**
@@ -45,6 +47,9 @@ final class Tags implements Section
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
         $namespace->addUse("AmpProject\\Exception\\InvalidSpecName");
+        $namespace->addUse('AmpProject\\Extension');
+        $namespace->addUse('AmpProject\\Internal');
+        $namespace->addUse('AmpProject\\Tag', 'Element');
         $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
 
         $tagsTemplateClass = ClassType::withBodiesFrom(Template\Tags::class);
@@ -80,7 +85,18 @@ final class Tags implements Section
             $constructor->addBody('        [');
 
             foreach ($this->tags[$tagId] as $key => $attribute) {
-                $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
+                switch ($key) {
+                    case 'tagName':
+                        if (strpos($attribute, '$') === 0) {
+                            $constructor->addBody("        'tagName' => {$this->dump($attribute, 3)},");
+                        } else {
+                            $constant = $this->getTagConstant($this->getConstantName($attribute));
+                            $constructor->addBody("        'tagName' => {$constant},");
+                        }
+                        break;
+                    default:
+                        $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
+                }
             }
 
             $constructor->addBody('        ]');

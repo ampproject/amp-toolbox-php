@@ -33,7 +33,7 @@ class TagsTest extends TestCase
 
         foreach ($tags as $tag) {
             $this->assertInstanceOf(Spec\Tag::class, $tag);
-            $this->assertEquals('STOP', $tag->tagName());
+            $this->assertEquals('stop', $tag->tagName());
         }
 
         $this->assertEquals('lineargradient > stop', $tags[0]->specName());
@@ -54,7 +54,7 @@ class TagsTest extends TestCase
 
         $this->assertInstanceOf(Spec\Tag::class, $tag);
         $this->assertEquals('picture > source', $tag->specName());
-        $this->assertEquals('SOURCE', $tag->tagName());
+        $this->assertEquals('source', $tag->tagName());
     }
 
     public function testBySpecNameThrowsExceptionForUnknownSpecName()

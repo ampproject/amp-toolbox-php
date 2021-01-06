@@ -8,6 +8,9 @@
 namespace AmpProject\Validator\Spec\Section;
 
 use AmpProject\Exception\InvalidSpecName;
+use AmpProject\Extension;
+use AmpProject\Internal;
+use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\Tag;
 
 final class Tags
@@ -57,7 +60,7 @@ final class Tags
         $this->tags = [
             'A' => new Tag(
                 [
-                'tagName' => 'A',
+                'tagName' => Element::A,
                 'attrs' => [
                         ['name' => 'border'],
                         ['name' => 'download'],
@@ -119,7 +122,7 @@ final class Tags
             ),
             'A (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'A',
+                'tagName' => Element::A,
                 'specName' => 'A (AMP4EMAIL)',
                 'attrs' => [
                         ['name' => 'border'],
@@ -140,25 +143,25 @@ final class Tags
             ),
             'ABBR' => new Tag(
                 [
-                'tagName' => 'ABBR',
+                'tagName' => Element::ABBR,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'ACRONYM' => new Tag(
                 [
-                'tagName' => 'ACRONYM',
+                'tagName' => Element::ACRONYM,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'ADDRESS' => new Tag(
                 [
-                'tagName' => 'ADDRESS',
+                'tagName' => Element::ADDRESS,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'AMP-3D-GLTF' => new Tag(
                 [
-                'tagName' => 'AMP-3D-GLTF',
+                'tagName' => Extension::_3D_GLTF,
                 'attrs' => [
                         ['name' => 'alpha', 'value' => ['false', 'true']],
                         ['name' => 'antialiasing', 'value' => ['false', 'true']],
@@ -176,7 +179,7 @@ final class Tags
             ),
             'AMP-3Q-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-3Q-PLAYER',
+                'tagName' => Extension::_3Q_PLAYER,
                 'attrs' => [['name' => 'autoplay', 'value' => ['']], ['name' => 'data-id', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FLEX_ITEM', 'RESPONSIVE']],
@@ -186,7 +189,7 @@ final class Tags
             ),
             'amp-access extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-access extension .json script',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -202,7 +205,7 @@ final class Tags
             ),
             'AMP-ACCORDION' => new Tag(
                 [
-                'tagName' => 'AMP-ACCORDION',
+                'tagName' => Extension::ACCORDION,
                 'attrs' => [
                         ['name' => 'animate', 'value' => ['']],
                         ['name' => 'disable-session-states', 'value' => [''], 'disabledBy' => ['amp4email']],
@@ -218,7 +221,7 @@ final class Tags
             ),
             'amp-accordion > section' => new Tag(
                 [
-                'tagName' => 'SECTION',
+                'tagName' => Element::SECTION,
                 'specName' => 'amp-accordion > section',
                 'mandatoryParent' => 'AMP-ACCORDION',
                 'attrs' => [
@@ -233,7 +236,7 @@ final class Tags
             ),
             'AMP-ACTION-MACRO' => new Tag(
                 [
-                'tagName' => 'AMP-ACTION-MACRO',
+                'tagName' => Extension::ACTION_MACRO,
                 'attrs' => [['name' => 'arguments'], ['name' => 'execute', 'mandatory' => true]],
                 'attrLists' => ['mandatory-id-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-action-macro/',
@@ -243,7 +246,7 @@ final class Tags
             ),
             'AMP-AD' => new Tag(
                 [
-                'tagName' => 'AMP-AD',
+                'tagName' => Extension::AD,
                 'attrs' => [
                         ['name' => 'alt'],
                         ['name' => 'json'],
@@ -268,7 +271,7 @@ final class Tags
             ),
             'AMP-AD-CUSTOM' => new Tag(
                 [
-                'tagName' => 'AMP-AD-CUSTOM',
+                'tagName' => Extension::AD_CUSTOM,
                 'attrs' => [
                         [
                             'name' => 'src',
@@ -286,7 +289,7 @@ final class Tags
             ),
             'AMP-AD-EXIT' => new Tag(
                 [
-                'tagName' => 'AMP-AD-EXIT',
+                'tagName' => Extension::AD_EXIT,
                 'attrLists' => ['extended-amp-global', 'mandatory-id-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-ad-exit/',
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY', 'CONTAINER']],
@@ -298,7 +301,7 @@ final class Tags
             ),
             'amp-ad-exit configuration JSON' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-ad-exit configuration JSON',
                 'mandatoryParent' => 'AMP-AD-EXIT',
                 'attrs' => [
@@ -318,7 +321,7 @@ final class Tags
             ),
             'AMP-ADDTHIS' => new Tag(
                 [
-                'tagName' => 'AMP-ADDTHIS',
+                'tagName' => Extension::ADDTHIS,
                 'attrs' => [
                         ['name' => 'data-product-code', 'mandatoryOneof' => '[\'data-product-code\', \'data-widget-id\']'],
                         ['name' => 'data-share-media', 'valueUrl' => ['protocol' => ['http', 'https'], 'allowEmpty' => true]],
@@ -337,7 +340,7 @@ final class Tags
             ),
             'amp-ad extension script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-ad extension script',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
@@ -351,7 +354,7 @@ final class Tags
             ),
             'amp-ad with data-enable-refresh attribute' => new Tag(
                 [
-                'tagName' => 'AMP-AD',
+                'tagName' => Extension::AD,
                 'specName' => 'amp-ad with data-enable-refresh attribute',
                 'attrs' => [
                         ['name' => 'alt'],
@@ -375,7 +378,7 @@ final class Tags
             ),
             'amp-ad with data-multi-size attribute' => new Tag(
                 [
-                'tagName' => 'AMP-AD',
+                'tagName' => Extension::AD,
                 'specName' => 'amp-ad with data-multi-size attribute',
                 'attrs' => [
                         ['name' => 'alt'],
@@ -400,7 +403,7 @@ final class Tags
             ),
             'amp-ad with type=custom' => new Tag(
                 [
-                'tagName' => 'AMP-AD',
+                'tagName' => Extension::AD,
                 'specName' => 'amp-ad with type=custom',
                 'attrs' => [
                         ['name' => 'data-url', 'mandatory' => true, 'valueUrl' => ['protocol' => ['https']]],
@@ -418,7 +421,7 @@ final class Tags
             ),
             'AMP-ANALYTICS' => new Tag(
                 [
-                'tagName' => 'AMP-ANALYTICS',
+                'tagName' => Extension::ANALYTICS,
                 'attrs' => [
                         [
                             'name' => 'config',
@@ -434,7 +437,7 @@ final class Tags
             ),
             'amp-analytics extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-analytics extension .json script',
                 'mandatoryParent' => 'AMP-ANALYTICS',
                 'attrs' => [
@@ -455,7 +458,7 @@ final class Tags
             ),
             'AMP-ANIM' => new Tag(
                 [
-                'tagName' => 'AMP-ANIM',
+                'tagName' => Extension::ANIM,
                 'attrs' => [['name' => 'alt'], ['name' => 'attribution'], ['name' => 'object-fit'], ['name' => 'object-position']],
                 'attrLists' => ['extended-amp-global', 'mandatory-src-or-srcset'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-anim/',
@@ -466,7 +469,7 @@ final class Tags
             ),
             'AMP-ANIM (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'AMP-ANIM',
+                'tagName' => Extension::ANIM,
                 'specName' => 'AMP-ANIM (AMP4EMAIL)',
                 'attrs' => [['name' => 'alt'], ['name' => 'attribution']],
                 'attrLists' => ['extended-amp-global', 'mandatory-src-amp4email'],
@@ -478,7 +481,7 @@ final class Tags
             ),
             'AMP-ANIMATION' => new Tag(
                 [
-                'tagName' => 'AMP-ANIMATION',
+                'tagName' => Extension::ANIMATION,
                 'attrs' => [['name' => 'trigger', 'value' => ['visibility']]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -490,7 +493,7 @@ final class Tags
             ),
             'amp-animation extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-animation extension .json script',
                 'mandatoryParent' => 'AMP-ANIMATION',
                 'attrs' => [
@@ -510,7 +513,7 @@ final class Tags
             ),
             'amp-anim extension script (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-anim extension script (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -519,7 +522,7 @@ final class Tags
             ),
             'AMP-APESTER-MEDIA' => new Tag(
                 [
-                'tagName' => 'AMP-APESTER-MEDIA',
+                'tagName' => Extension::APESTER_MEDIA,
                 'attrs' => [
                         [
                             'name' => 'data-apester-channel-token',
@@ -541,7 +544,7 @@ final class Tags
             ),
             'AMP-APP-BANNER' => new Tag(
                 [
-                'tagName' => 'AMP-APP-BANNER',
+                'tagName' => Extension::APP_BANNER,
                 'unique' => true,
                 'mandatoryParent' => 'BODY',
                 'attrLists' => ['extended-amp-global', 'mandatory-id-attr'],
@@ -554,7 +557,7 @@ final class Tags
             ),
             'amp-app-banner button[open-button]' => new Tag(
                 [
-                'tagName' => 'BUTTON',
+                'tagName' => Element::BUTTON,
                 'specName' => 'amp-app-banner button[open-button]',
                 'attrs' => [
                         ['name' => 'open-button', 'value' => ['']],
@@ -571,7 +574,7 @@ final class Tags
             ),
             'AMP-AUDIO' => new Tag(
                 [
-                'tagName' => 'AMP-AUDIO',
+                'tagName' => Extension::AUDIO,
                 'attrs' => [['name' => 'autoplay', 'value' => ['']], ['name' => 'preload', 'valueCasei' => ['auto', 'metadata', 'none']]],
                 'attrLists' => ['amp-audio-common', 'extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-audio/',
@@ -587,7 +590,7 @@ final class Tags
             ),
             'amp-audio (A4A)' => new Tag(
                 [
-                'tagName' => 'AMP-AUDIO',
+                'tagName' => Extension::AUDIO,
                 'specName' => 'amp-audio (A4A)',
                 'attrLists' => ['amp-audio-common', 'extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-audio/',
@@ -602,7 +605,7 @@ final class Tags
             ),
             'amp-audio > source' => new Tag(
                 [
-                'tagName' => 'SOURCE',
+                'tagName' => Element::SOURCE,
                 'specName' => 'amp-audio > source',
                 'mandatoryParent' => 'AMP-AUDIO',
                 'attrs' => [
@@ -622,7 +625,7 @@ final class Tags
             ),
             'amp-audio > track' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'amp-audio > track',
                 'mandatoryParent' => 'AMP-AUDIO',
                 'attrs' => [['name' => '[label]'], ['name' => '[src]'], ['name' => '[srclang]']],
@@ -632,7 +635,7 @@ final class Tags
             ),
             'amp-audio > track[kind=subtitles]' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'amp-audio > track[kind=subtitles]',
                 'mandatoryParent' => 'AMP-AUDIO',
                 'attrs' => [['name' => '[label]'], ['name' => '[src]'], ['name' => '[srclang]']],
@@ -642,7 +645,7 @@ final class Tags
             ),
             'AMP-AUTO-ADS' => new Tag(
                 [
-                'tagName' => 'AMP-AUTO-ADS',
+                'tagName' => Extension::AUTO_ADS,
                 'attrs' => [['name' => 'type', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-auto-ads/',
@@ -653,7 +656,7 @@ final class Tags
             ),
             'amp-autocomplete' => new Tag(
                 [
-                'tagName' => 'AMP-AUTOCOMPLETE',
+                'tagName' => Extension::AUTOCOMPLETE,
                 'specName' => 'amp-autocomplete',
                 'attrs' => [
                         [
@@ -687,7 +690,7 @@ final class Tags
             ),
             'AMP-AUTOCOMPLETE (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'AMP-AUTOCOMPLETE',
+                'tagName' => Extension::AUTOCOMPLETE,
                 'specName' => 'AMP-AUTOCOMPLETE (AMP4EMAIL)',
                 'attrs' => [
                         ['name' => 'highlight-user-entry'],
@@ -716,7 +719,7 @@ final class Tags
             ),
             'amp-autocomplete > input' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'amp-autocomplete > input',
                 'mandatoryParent' => 'AMP-AUTOCOMPLETE',
                 'attrs' => [['name' => 'type', 'mandatory' => true, 'valueCasei' => ['search', 'text']]],
@@ -726,7 +729,7 @@ final class Tags
             ),
             'amp-autocomplete JSON' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-autocomplete JSON',
                 'mandatoryParent' => 'AMP-AUTOCOMPLETE',
                 'attrs' => [
@@ -745,7 +748,7 @@ final class Tags
             ),
             'AMP-BASE-CAROUSEL' => new Tag(
                 [
-                'tagName' => 'AMP-BASE-CAROUSEL',
+                'tagName' => Extension::BASE_CAROUSEL,
                 'attrLists' => ['amp-base-carousel-common', 'extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-base-carousel/',
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'INTRINSIC', 'NODISPLAY', 'RESPONSIVE']],
@@ -771,7 +774,7 @@ final class Tags
             ),
             'AMP-BASE-CAROUSEL [lightbox]' => new Tag(
                 [
-                'tagName' => 'AMP-BASE-CAROUSEL',
+                'tagName' => Extension::BASE_CAROUSEL,
                 'specName' => 'AMP-BASE-CAROUSEL [lightbox]',
                 'attrs' => [['name' => 'lightbox', 'mandatory' => true]],
                 'attrLists' => ['amp-base-carousel-common', 'extended-amp-global'],
@@ -787,7 +790,7 @@ final class Tags
             ),
             'AMP-BEOPINION' => new Tag(
                 [
-                'tagName' => 'AMP-BEOPINION',
+                'tagName' => Extension::BEOPINION,
                 'attrs' => [
                         ['name' => 'data-account', 'mandatory' => true, 'valueRegexCasei' => '[0-9a-f]{24}'],
                         ['name' => 'data-content', 'valueRegexCasei' => '[0-9a-f]{24}'],
@@ -802,7 +805,7 @@ final class Tags
             ),
             'AMP-BIND-MACRO' => new Tag(
                 [
-                'tagName' => 'AMP-BIND-MACRO',
+                'tagName' => Extension::BIND_MACRO,
                 'attrs' => [['name' => 'arguments'], ['name' => 'expression', 'mandatory' => true]],
                 'attrLists' => ['mandatory-id-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-bind/',
@@ -812,7 +815,7 @@ final class Tags
             ),
             'amp-bind extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-bind extension .json script',
                 'mandatoryParent' => 'AMP-STATE',
                 'attrs' => [
@@ -836,7 +839,7 @@ final class Tags
             ),
             'AMP-BODYMOVIN-ANIMATION' => new Tag(
                 [
-                'tagName' => 'AMP-BODYMOVIN-ANIMATION',
+                'tagName' => Extension::BODYMOVIN_ANIMATION,
                 'attrs' => [
                         ['name' => 'loop', 'valueRegexCasei' => '[1-9][0-9]*|false|true'],
                         ['name' => 'noautoplay', 'value' => ['']],
@@ -851,7 +854,7 @@ final class Tags
             ),
             'AMP-BRID-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-BRID-PLAYER',
+                'tagName' => Extension::BRID_PLAYER,
                 'attrs' => [
                         ['name' => 'autoplay'],
                         ['name' => 'data-dynamic', 'valueRegex' => '[a-z]+'],
@@ -883,7 +886,7 @@ final class Tags
             ),
             'AMP-BRIGHTCOVE' => new Tag(
                 [
-                'tagName' => 'AMP-BRIGHTCOVE',
+                'tagName' => Extension::BRIGHTCOVE,
                 'attrs' => [
                         ['name' => 'autoplay', 'value' => ['']],
                         ['name' => 'data-account', 'mandatory' => true],
@@ -905,7 +908,7 @@ final class Tags
             ),
             'AMP-BYSIDE-CONTENT' => new Tag(
                 [
-                'tagName' => 'AMP-BYSIDE-CONTENT',
+                'tagName' => Extension::BYSIDE_CONTENT,
                 'attrs' => [['name' => 'data-label', 'mandatory' => true], ['name' => 'data-webcare-id', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -915,7 +918,7 @@ final class Tags
             ),
             'AMP-CALL-TRACKING' => new Tag(
                 [
-                'tagName' => 'AMP-CALL-TRACKING',
+                'tagName' => Extension::CALL_TRACKING,
                 'attrs' => [
                         [
                             'name' => 'config',
@@ -934,7 +937,7 @@ final class Tags
             ),
             'AMP-CAROUSEL' => new Tag(
                 [
-                'tagName' => 'AMP-CAROUSEL',
+                'tagName' => Extension::CAROUSEL,
                 'specName' => 'AMP-CAROUSEL',
                 'attrLists' => ['amp-carousel-common', 'extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-carousel/',
@@ -945,7 +948,7 @@ final class Tags
             ),
             'AMP-CAROUSEL lightbox' => new Tag(
                 [
-                'tagName' => 'AMP-CAROUSEL',
+                'tagName' => Extension::CAROUSEL,
                 'specName' => 'AMP-CAROUSEL lightbox',
                 'attrs' => [['name' => 'lightbox', 'mandatory' => true]],
                 'attrLists' => ['amp-carousel-common', 'extended-amp-global'],
@@ -974,7 +977,7 @@ final class Tags
             ),
             'AMP-CONNATIX-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-CONNATIX-PLAYER',
+                'tagName' => Extension::CONNATIX_PLAYER,
                 'attrs' => [['name' => 'data-player-id', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-connatix-player/',
@@ -985,7 +988,7 @@ final class Tags
             ),
             'AMP-CONSENT' => new Tag(
                 [
-                'tagName' => 'AMP-CONSENT',
+                'tagName' => Extension::CONSENT,
                 'unique' => true,
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -997,7 +1000,7 @@ final class Tags
             ),
             'amp-consent extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-consent extension .json script',
                 'unique' => true,
                 'mandatoryParent' => 'AMP-CONSENT',
@@ -1018,7 +1021,7 @@ final class Tags
             ),
             'amp-consent [type]' => new Tag(
                 [
-                'tagName' => 'AMP-CONSENT',
+                'tagName' => Extension::CONSENT,
                 'specName' => 'amp-consent [type]',
                 'unique' => true,
                 'attrs' => [['name' => 'type', 'mandatory' => true]],
@@ -1032,7 +1035,7 @@ final class Tags
             ),
             'AMP-DAILYMOTION' => new Tag(
                 [
-                'tagName' => 'AMP-DAILYMOTION',
+                'tagName' => Extension::DAILYMOTION,
                 'attrs' => [
                         ['name' => 'autoplay'],
                         ['name' => 'data-endscreen-enable', 'value' => ['false', 'true']],
@@ -1054,7 +1057,7 @@ final class Tags
             ),
             'AMP-DATE-COUNTDOWN' => new Tag(
                 [
-                'tagName' => 'AMP-DATE-COUNTDOWN',
+                'tagName' => Extension::DATE_COUNTDOWN,
                 'attrs' => [
                         ['name' => 'biggest-unit', 'valueCasei' => ['days', 'hours', 'minutes', 'seconds']],
                         ['name' => 'data-count-up', 'value' => ['']],
@@ -1111,7 +1114,7 @@ final class Tags
             ),
             'AMP-DATE-DISPLAY' => new Tag(
                 [
-                'tagName' => 'AMP-DATE-DISPLAY',
+                'tagName' => Extension::DATE_DISPLAY,
                 'attrs' => [
                         [
                             'name' => 'datetime',
@@ -1141,7 +1144,7 @@ final class Tags
             ),
             'amp-date-picker > template [date-template]' => new Tag(
                 [
-                'tagName' => 'TEMPLATE',
+                'tagName' => Element::TEMPLATE,
                 'specName' => 'amp-date-picker > template [date-template]',
                 'mandatoryParent' => 'AMP-DATE-PICKER',
                 'attrs' => [
@@ -1156,7 +1159,7 @@ final class Tags
             ),
             'amp-date-picker > template [info-template]' => new Tag(
                 [
-                'tagName' => 'TEMPLATE',
+                'tagName' => Element::TEMPLATE,
                 'specName' => 'amp-date-picker > template [info-template]',
                 'mandatoryParent' => 'AMP-DATE-PICKER',
                 'attrs' => [
@@ -1169,7 +1172,7 @@ final class Tags
             ),
             'amp-date-picker[type=range][mode=overlay]' => new Tag(
                 [
-                'tagName' => 'AMP-DATE-PICKER',
+                'tagName' => Extension::DATE_PICKER,
                 'specName' => 'amp-date-picker[type=range][mode=overlay]',
                 'attrs' => [
                         ['name' => 'mode', 'mandatory' => true, 'dispatchKey' => 'NAME_VALUE_DISPATCH', 'valueCasei' => ['overlay']],
@@ -1188,7 +1191,7 @@ final class Tags
             ),
             'amp-date-picker[type=range][mode=static]' => new Tag(
                 [
-                'tagName' => 'AMP-DATE-PICKER',
+                'tagName' => Extension::DATE_PICKER,
                 'specName' => 'amp-date-picker[type=range][mode=static]',
                 'attrs' => [['name' => 'mode', 'valueCasei' => ['static']], ['name' => 'type', 'mandatory' => true, 'valueCasei' => ['range']]],
                 'attrLists' => [
@@ -1204,7 +1207,7 @@ final class Tags
             ),
             'amp-date-picker[type=single][mode=overlay]' => new Tag(
                 [
-                'tagName' => 'AMP-DATE-PICKER',
+                'tagName' => Extension::DATE_PICKER,
                 'specName' => 'amp-date-picker[type=single][mode=overlay]',
                 'attrs' => [
                         ['name' => 'mode', 'mandatory' => true, 'dispatchKey' => 'NAME_VALUE_DISPATCH', 'valueCasei' => ['overlay']],
@@ -1223,7 +1226,7 @@ final class Tags
             ),
             'amp-date-picker[type=single][mode=static]' => new Tag(
                 [
-                'tagName' => 'AMP-DATE-PICKER',
+                'tagName' => Extension::DATE_PICKER,
                 'specName' => 'amp-date-picker[type=single][mode=static]',
                 'attrs' => [['name' => 'mode', 'valueCasei' => ['static']], ['name' => 'type', 'valueCasei' => ['single']]],
                 'attrLists' => [
@@ -1239,7 +1242,7 @@ final class Tags
             ),
             'AMP-DELIGHT-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-DELIGHT-PLAYER',
+                'tagName' => Extension::DELIGHT_PLAYER,
                 'attrs' => [['name' => 'data-content-id', 'mandatory' => true], ['name' => 'dock', 'requiresExtension' => ['amp-video-docking']]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -1249,7 +1252,7 @@ final class Tags
             ),
             'AMP-EMBED' => new Tag(
                 [
-                'tagName' => 'AMP-EMBED',
+                'tagName' => Extension::EMBED,
                 'attrs' => [
                         ['name' => 'alt'],
                         ['name' => 'json'],
@@ -1272,7 +1275,7 @@ final class Tags
             ),
             'AMP-EMBEDLY-CARD' => new Tag(
                 [
-                'tagName' => 'AMP-EMBEDLY-CARD',
+                'tagName' => Extension::EMBEDLY_CARD,
                 'attrs' => [['name' => 'data-url', 'mandatory' => true, 'valueUrl' => ['protocol' => ['https'], 'allowRelative' => false]]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-embedly-card/',
@@ -1283,7 +1286,7 @@ final class Tags
             ),
             'AMP-EMBEDLY-KEY' => new Tag(
                 [
-                'tagName' => 'AMP-EMBEDLY-KEY',
+                'tagName' => Extension::EMBEDLY_KEY,
                 'unique' => true,
                 'attrs' => [['name' => 'value', 'mandatory' => true]],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -1293,7 +1296,7 @@ final class Tags
             ),
             'amp-embed with data-multi-size attribute' => new Tag(
                 [
-                'tagName' => 'AMP-EMBED',
+                'tagName' => Extension::EMBED,
                 'specName' => 'amp-embed with data-multi-size attribute',
                 'attrs' => [
                         ['name' => 'alt'],
@@ -1318,7 +1321,7 @@ final class Tags
             ),
             'AMP-EXPERIMENT' => new Tag(
                 [
-                'tagName' => 'AMP-EXPERIMENT',
+                'tagName' => Extension::EXPERIMENT,
                 'unique' => true,
                 'specUrl' => 'https://amp.dev/documentation/components/amp-experiment/',
                 'htmlFormat' => ['AMP'],
@@ -1327,7 +1330,7 @@ final class Tags
             ),
             'amp-experiment extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-experiment extension .json script',
                 'mandatoryParent' => 'AMP-EXPERIMENT',
                 'attrs' => [
@@ -1350,7 +1353,7 @@ final class Tags
             ),
             'amp-experiment story extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-experiment story extension .json script',
                 'mandatoryParent' => 'AMP-EXPERIMENT',
                 'attrs' => [
@@ -1373,7 +1376,7 @@ final class Tags
             ),
             'AMP-FACEBOOK' => new Tag(
                 [
-                'tagName' => 'AMP-FACEBOOK',
+                'tagName' => Extension::FACEBOOK,
                 'attrs' => [['name' => 'data-href', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -1383,7 +1386,7 @@ final class Tags
             ),
             'AMP-FACEBOOK-COMMENTS' => new Tag(
                 [
-                'tagName' => 'AMP-FACEBOOK-COMMENTS',
+                'tagName' => Extension::FACEBOOK_COMMENTS,
                 'attrs' => [['name' => 'data-href', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -1393,7 +1396,7 @@ final class Tags
             ),
             'AMP-FACEBOOK-LIKE' => new Tag(
                 [
-                'tagName' => 'AMP-FACEBOOK-LIKE',
+                'tagName' => Extension::FACEBOOK_LIKE,
                 'attrs' => [
                         [
                             'name' => 'data-href',
@@ -1409,7 +1412,7 @@ final class Tags
             ),
             'AMP-FACEBOOK-PAGE' => new Tag(
                 [
-                'tagName' => 'AMP-FACEBOOK-PAGE',
+                'tagName' => Extension::FACEBOOK_PAGE,
                 'attrs' => [
                         [
                             'name' => 'data-href',
@@ -1425,7 +1428,7 @@ final class Tags
             ),
             'AMP-FIT-TEXT' => new Tag(
                 [
-                'tagName' => 'AMP-FIT-TEXT',
+                'tagName' => Extension::FIT_TEXT,
                 'attrs' => [['name' => 'max-font-size'], ['name' => 'min-font-size']],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'INTRINSIC', 'NODISPLAY', 'RESPONSIVE']],
@@ -1435,7 +1438,7 @@ final class Tags
             ),
             'AMP-FONT' => new Tag(
                 [
-                'tagName' => 'AMP-FONT',
+                'tagName' => Extension::FONT,
                 'attrs' => [
                         ['name' => 'font-family', 'mandatory' => true],
                         ['name' => 'font-style'],
@@ -1455,7 +1458,7 @@ final class Tags
             ),
             'AMP-FX-FLYING-CARPET' => new Tag(
                 [
-                'tagName' => 'AMP-FX-FLYING-CARPET',
+                'tagName' => Extension::FX_FLYING_CARPET,
                 'attrs' => [['name' => 'height', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'htmlFormat' => ['AMP'],
@@ -1464,7 +1467,7 @@ final class Tags
             ),
             'AMP-GEO' => new Tag(
                 [
-                'tagName' => 'AMP-GEO',
+                'tagName' => Extension::GEO,
                 'unique' => true,
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -1475,7 +1478,7 @@ final class Tags
             ),
             'amp-geo extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-geo extension .json script',
                 'mandatoryParent' => 'AMP-GEO',
                 'attrs' => [
@@ -1495,7 +1498,7 @@ final class Tags
             ),
             'AMP-GFYCAT' => new Tag(
                 [
-                'tagName' => 'AMP-GFYCAT',
+                'tagName' => Extension::GFYCAT,
                 'attrs' => [['name' => 'data-gfyid', 'mandatory' => true], ['name' => 'noautoplay', 'value' => ['']]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-gfycat/',
@@ -1506,7 +1509,7 @@ final class Tags
             ),
             'AMP-GIST' => new Tag(
                 [
-                'tagName' => 'AMP-GIST',
+                'tagName' => Extension::GIST,
                 'attrs' => [['name' => 'data-gistid', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-gist/',
@@ -1517,7 +1520,7 @@ final class Tags
             ),
             'AMP-GOOGLE-DOCUMENT-EMBED' => new Tag(
                 [
-                'tagName' => 'AMP-GOOGLE-DOCUMENT-EMBED',
+                'tagName' => Extension::GOOGLE_DOCUMENT_EMBED,
                 'attrs' => [
                         [
                             'name' => 'src',
@@ -1537,7 +1540,7 @@ final class Tags
             ),
             'AMP-GWD-ANIMATION' => new Tag(
                 [
-                'tagName' => 'AMP-GWD-ANIMATION',
+                'tagName' => Extension::GWD_ANIMATION,
                 'attrs' => [['name' => 'timeline-event-prefix']],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -1547,7 +1550,7 @@ final class Tags
             ),
             'AMP-HULU' => new Tag(
                 [
-                'tagName' => 'AMP-HULU',
+                'tagName' => Extension::HULU,
                 'attrs' => [['name' => 'data-eid', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-hulu/',
@@ -1558,7 +1561,7 @@ final class Tags
             ),
             'AMP-IFRAME' => new Tag(
                 [
-                'tagName' => 'AMP-IFRAME',
+                'tagName' => Extension::IFRAME,
                 'attrs' => [
                         ['name' => 'allow'],
                         ['name' => 'allowfullscreen', 'value' => ['']],
@@ -1587,7 +1590,7 @@ final class Tags
             ),
             'AMP-IMA-VIDEO' => new Tag(
                 [
-                'tagName' => 'AMP-IMA-VIDEO',
+                'tagName' => Extension::IMA_VIDEO,
                 'attrs' => [
                         ['name' => 'autoplay', 'value' => ['']],
                         [
@@ -1608,7 +1611,7 @@ final class Tags
             ),
             'amp-ima-video > script[type=application/json]' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-ima-video > script[type=application/json]',
                 'mandatoryParent' => 'AMP-IMA-VIDEO',
                 'attrs' => [
@@ -1626,7 +1629,7 @@ final class Tags
             ),
             'amp-ima-video > source' => new Tag(
                 [
-                'tagName' => 'SOURCE',
+                'tagName' => Element::SOURCE,
                 'specName' => 'amp-ima-video > source',
                 'mandatoryParent' => 'AMP-IMA-VIDEO',
                 'attrs' => [
@@ -1646,7 +1649,7 @@ final class Tags
             ),
             'amp-ima-video > track' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'amp-ima-video > track',
                 'mandatoryParent' => 'AMP-IMA-VIDEO',
                 'attrs' => [['name' => '[label]'], ['name' => '[src]'], ['name' => '[srclang]']],
@@ -1656,7 +1659,7 @@ final class Tags
             ),
             'amp-ima-video > track[kind=subtitles]' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'amp-ima-video > track[kind=subtitles]',
                 'mandatoryParent' => 'AMP-IMA-VIDEO',
                 'attrs' => [['name' => '[label]'], ['name' => '[src]'], ['name' => '[srclang]']],
@@ -1667,7 +1670,7 @@ final class Tags
             ),
             'AMP-IMAGE-LIGHTBOX' => new Tag(
                 [
-                'tagName' => 'AMP-IMAGE-LIGHTBOX',
+                'tagName' => Extension::IMAGE_LIGHTBOX,
                 'attrs' => [['name' => 'controls']],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -1677,7 +1680,7 @@ final class Tags
             ),
             'AMP-IMAGE-SLIDER' => new Tag(
                 [
-                'tagName' => 'AMP-IMAGE-SLIDER',
+                'tagName' => Extension::IMAGE_SLIDER,
                 'attrs' => [
                         ['name' => 'disable-hint-reappear'],
                         ['name' => 'initial-slider-position', 'valueRegex' => '0(\.[0-9]+)?|1(\.0+)?'],
@@ -1694,7 +1697,7 @@ final class Tags
             ),
             'amp-image-slider (transformed)' => new Tag(
                 [
-                'tagName' => 'AMP-IMAGE-SLIDER',
+                'tagName' => Extension::IMAGE_SLIDER,
                 'specName' => 'amp-image-slider (transformed)',
                 'attrs' => [
                         ['name' => 'disable-hint-reappear'],
@@ -1712,7 +1715,7 @@ final class Tags
             ),
             'AMP-IMAGE-SLIDER > DIV [first]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'AMP-IMAGE-SLIDER > DIV [first]',
                 'mandatoryParent' => 'AMP-IMAGE-SLIDER',
                 'attrs' => [['name' => 'first', 'mandatory' => true]],
@@ -1722,7 +1725,7 @@ final class Tags
             ),
             'AMP-IMAGE-SLIDER > DIV [second]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'AMP-IMAGE-SLIDER > DIV [second]',
                 'mandatoryParent' => 'AMP-IMAGE-SLIDER',
                 'attrs' => [['name' => 'second', 'mandatory' => true]],
@@ -1732,7 +1735,7 @@ final class Tags
             ),
             'AMP-IMG' => new Tag(
                 [
-                'tagName' => 'AMP-IMG',
+                'tagName' => Extension::IMG,
                 'attrs' => [
                         ['name' => 'alt'],
                         ['name' => 'attribution'],
@@ -1754,7 +1757,7 @@ final class Tags
             ),
             'AMP-IMG (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'AMP-IMG',
+                'tagName' => Extension::IMG,
                 'specName' => 'AMP-IMG (AMP4EMAIL)',
                 'attrs' => [
                         ['name' => 'alt'],
@@ -1771,7 +1774,7 @@ final class Tags
             ),
             'amp-img (transformed)' => new Tag(
                 [
-                'tagName' => 'AMP-IMG',
+                'tagName' => Extension::IMG,
                 'specName' => 'amp-img (transformed)',
                 'attrs' => [
                         ['name' => 'i-amphtml-ssr', 'mandatory' => true, 'dispatchKey' => 'NAME_DISPATCH'],
@@ -1795,7 +1798,7 @@ final class Tags
             ),
             'amp-img > img (transformed)' => new Tag(
                 [
-                'tagName' => 'IMG',
+                'tagName' => Element::IMG,
                 'specName' => 'amp-img > img (transformed)',
                 'mandatoryParent' => 'amp-img (transformed)',
                 'attrs' => [
@@ -1821,7 +1824,7 @@ final class Tags
             ),
             'amp-img > img[placeholder] (transformed)' => new Tag(
                 [
-                'tagName' => 'IMG',
+                'tagName' => Element::IMG,
                 'specName' => 'amp-img > img[placeholder] (transformed)',
                 'mandatoryParent' => 'amp-img (transformed)',
                 'attrs' => [
@@ -1842,7 +1845,7 @@ final class Tags
             ),
             'AMP-IMGUR' => new Tag(
                 [
-                'tagName' => 'AMP-IMGUR',
+                'tagName' => Extension::IMGUR,
                 'attrs' => [['name' => 'data-imgur-id', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -1852,7 +1855,7 @@ final class Tags
             ),
             'AMP-INLINE-GALLERY' => new Tag(
                 [
-                'tagName' => 'AMP-INLINE-GALLERY',
+                'tagName' => Extension::INLINE_GALLERY,
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
                 'ampLayout' => ['supportedLayouts' => ['CONTAINER']],
@@ -1862,7 +1865,7 @@ final class Tags
             ),
             'amp-inline-gallery-pagination' => new Tag(
                 [
-                'tagName' => 'AMP-INLINE-GALLERY-PAGINATION',
+                'tagName' => Extension::INLINE_GALLERY_PAGINATION,
                 'specName' => 'amp-inline-gallery-pagination',
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
@@ -1874,7 +1877,7 @@ final class Tags
             ),
             'amp-inline-gallery-pagination [inset]' => new Tag(
                 [
-                'tagName' => 'AMP-INLINE-GALLERY-PAGINATION',
+                'tagName' => Extension::INLINE_GALLERY_PAGINATION,
                 'specName' => 'amp-inline-gallery-pagination [inset]',
                 'attrs' => [['name' => 'inset', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
@@ -1887,7 +1890,7 @@ final class Tags
             ),
             'AMP-INLINE-GALLERY-THUMBNAILS' => new Tag(
                 [
-                'tagName' => 'AMP-INLINE-GALLERY-THUMBNAILS',
+                'tagName' => Extension::INLINE_GALLERY_THUMBNAILS,
                 'attrs' => [
                         [
                             'name' => 'aspect-ratio-height',
@@ -1913,7 +1916,7 @@ final class Tags
             ),
             'AMP-INSTAGRAM' => new Tag(
                 [
-                'tagName' => 'AMP-INSTAGRAM',
+                'tagName' => Extension::INSTAGRAM,
                 'attrs' => [['name' => 'alt'], ['name' => 'data-shortcode', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -1923,7 +1926,7 @@ final class Tags
             ),
             'AMP-INSTALL-SERVICEWORKER' => new Tag(
                 [
-                'tagName' => 'AMP-INSTALL-SERVICEWORKER',
+                'tagName' => Extension::INSTALL_SERVICEWORKER,
                 'attrs' => [
                         [
                             'name' => 'data-iframe-src',
@@ -1944,7 +1947,7 @@ final class Tags
             ),
             'AMP-IZLESENE' => new Tag(
                 [
-                'tagName' => 'AMP-IZLESENE',
+                'tagName' => Extension::IZLESENE,
                 'attrs' => [['name' => 'data-videoid', 'mandatory' => true, 'valueRegex' => '[0-9]+']],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'RESPONSIVE']],
@@ -1954,7 +1957,7 @@ final class Tags
             ),
             'AMP-JWPLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-JWPLAYER',
+                'tagName' => Extension::JWPLAYER,
                 'attrs' => [
                         ['name' => 'autoplay', 'value' => ['']],
                         [
@@ -1978,7 +1981,7 @@ final class Tags
             ),
             'AMP-KALTURA-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-KALTURA-PLAYER',
+                'tagName' => Extension::KALTURA_PLAYER,
                 'attrs' => [['name' => 'data-partner', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -1988,7 +1991,7 @@ final class Tags
             ),
             'AMP-LAYOUT' => new Tag(
                 [
-                'tagName' => 'AMP-LAYOUT',
+                'tagName' => Extension::LAYOUT,
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-layout/',
                 'ampLayout' => [
@@ -2008,7 +2011,7 @@ final class Tags
             ),
             'AMP-LIGHTBOX' => new Tag(
                 [
-                'tagName' => 'AMP-LIGHTBOX',
+                'tagName' => Extension::LIGHTBOX,
                 'attrs' => [
                         ['name' => 'animate-in', 'valueCasei' => ['fade-in', 'fly-in-bottom', 'fly-in-top']],
                         ['name' => 'controls'],
@@ -2024,7 +2027,7 @@ final class Tags
             ),
             'amp-lightbox [AMP4ADS]' => new Tag(
                 [
-                'tagName' => 'AMP-LIGHTBOX',
+                'tagName' => Extension::LIGHTBOX,
                 'specName' => 'amp-lightbox [AMP4ADS]',
                 'attrs' => [
                         ['name' => 'animate-in', 'valueCasei' => ['fade-in', 'fly-in-bottom', 'fly-in-top']],
@@ -2040,7 +2043,7 @@ final class Tags
             ),
             'AMP-LINK-REWRITER' => new Tag(
                 [
-                'tagName' => 'AMP-LINK-REWRITER',
+                'tagName' => Extension::LINK_REWRITER,
                 'unique' => true,
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
                 'childTags' => ['mandatoryNumChildTags' => 1, 'firstChildTagNameOneof' => ['SCRIPT']],
@@ -2050,7 +2053,7 @@ final class Tags
             ),
             'amp-link-rewriter extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-link-rewriter extension .json script',
                 'mandatoryParent' => 'AMP-LINK-REWRITER',
                 'attrs' => [
@@ -2069,7 +2072,7 @@ final class Tags
             ),
             'AMP-LIST' => new Tag(
                 [
-                'tagName' => 'AMP-LIST',
+                'tagName' => Extension::LIST_,
                 'attrs' => [
                         [
                             'name' => 'auto-resize',
@@ -2106,7 +2109,7 @@ final class Tags
             ),
             'AMP-LIST (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'AMP-LIST',
+                'tagName' => Extension::LIST_,
                 'specName' => 'AMP-LIST (AMP4EMAIL)',
                 'attrs' => [
                         ['name' => 'binding', 'value' => ['always', 'no', 'refresh', 'refresh-evaluate']],
@@ -2133,7 +2136,7 @@ final class Tags
             ),
             'AMP-LIST-LOAD-MORE' => new Tag(
                 [
-                'tagName' => 'AMP-LIST-LOAD-MORE',
+                'tagName' => Extension::LIST_LOAD_MORE,
                 'mandatoryParent' => 'AMP-LIST',
                 'attrs' => [
                         [
@@ -2163,7 +2166,7 @@ final class Tags
             ),
             'amp-list-load-more button[load-more-clickable]' => new Tag(
                 [
-                'tagName' => 'BUTTON',
+                'tagName' => Element::BUTTON,
                 'specName' => 'amp-list-load-more button[load-more-clickable]',
                 'mandatoryParent' => 'AMP-LIST-LOAD-MORE',
                 'attrs' => [
@@ -2181,7 +2184,7 @@ final class Tags
             ),
             'AMP-LIST DIV [fetch-error]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'AMP-LIST DIV [fetch-error]',
                 'attrs' => [['name' => 'align'], ['name' => 'fetch-error', 'mandatory' => true]],
                 'mandatoryAncestor' => 'AMP-LIST',
@@ -2190,7 +2193,7 @@ final class Tags
             ),
             'AMP-LIVE-LIST' => new Tag(
                 [
-                'tagName' => 'AMP-LIVE-LIST',
+                'tagName' => Extension::LIVE_LIST,
                 'attrs' => [
                         ['name' => 'data-max-items-per-page', 'mandatory' => true, 'valueRegex' => '\d+'],
                         ['name' => 'data-poll-interval', 'valueRegex' => '\d{5,}'],
@@ -2252,7 +2255,7 @@ final class Tags
             ),
             'AMP-MATHML' => new Tag(
                 [
-                'tagName' => 'AMP-MATHML',
+                'tagName' => Extension::MATHML,
                 'attrs' => [['name' => 'data-formula', 'mandatory' => true], ['name' => 'inline']],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['CONTAINER']],
@@ -2262,7 +2265,7 @@ final class Tags
             ),
             'AMP-MEGA-MENU' => new Tag(
                 [
-                'tagName' => 'AMP-MEGA-MENU',
+                'tagName' => Extension::MEGA_MENU,
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-mega-menu/',
                 'ampLayout' => ['supportedLayouts' => ['FIXED_HEIGHT']],
@@ -2356,7 +2359,7 @@ final class Tags
             ),
             'amp-megaphone [data-episode]' => new Tag(
                 [
-                'tagName' => 'AMP-MEGAPHONE',
+                'tagName' => Extension::MEGAPHONE,
                 'specName' => 'amp-megaphone [data-episode]',
                 'attrs' => [
                         ['name' => 'data-episode', 'mandatory' => true, 'dispatchKey' => 'NAME_DISPATCH', 'valueRegex' => '[A-Za-z0-9]+'],
@@ -2371,7 +2374,7 @@ final class Tags
             ),
             'amp-megaphone [data-playlist]' => new Tag(
                 [
-                'tagName' => 'AMP-MEGAPHONE',
+                'tagName' => Extension::MEGAPHONE,
                 'specName' => 'amp-megaphone [data-playlist]',
                 'attrs' => [
                         ['name' => 'data-playlist', 'mandatory' => true, 'dispatchKey' => 'NAME_DISPATCH', 'valueRegex' => '[A-Za-z0-9]+'],
@@ -2385,7 +2388,7 @@ final class Tags
             ),
             'AMP-MINUTE-MEDIA-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-MINUTE-MEDIA-PLAYER',
+                'tagName' => Extension::MINUTE_MEDIA_PLAYER,
                 'attrs' => [
                         ['name' => 'autoplay'],
                         ['name' => 'data-content-id'],
@@ -2406,7 +2409,7 @@ final class Tags
             ),
             'AMP-MOWPLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-MOWPLAYER',
+                'tagName' => Extension::MOWPLAYER,
                 'attrs' => [['name' => 'autoplay'], ['name' => 'data-mediaid', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -2416,7 +2419,7 @@ final class Tags
             ),
             'AMP-NESTED-MENU' => new Tag(
                 [
-                'tagName' => 'AMP-NESTED-MENU',
+                'tagName' => Extension::NESTED_MENU,
                 'attrs' => [['name' => 'side', 'value' => ['left', 'right']]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-nested-menu/',
@@ -2429,7 +2432,7 @@ final class Tags
             ),
             'AMP-NEXT-PAGE > SCRIPT[type=application/json]' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'AMP-NEXT-PAGE > SCRIPT[type=application/json]',
                 'mandatoryParent' => 'AMP-NEXT-PAGE',
                 'attrs' => [
@@ -2474,7 +2477,7 @@ final class Tags
             ),
             'amp-next-page with inline config' => new Tag(
                 [
-                'tagName' => 'AMP-NEXT-PAGE',
+                'tagName' => Extension::NEXT_PAGE,
                 'specName' => 'amp-next-page with inline config',
                 'unique' => true,
                 'attrs' => [['name' => 'deep-parsing'], ['name' => 'max-pages']],
@@ -2491,7 +2494,7 @@ final class Tags
             ),
             'amp-next-page with src attribute' => new Tag(
                 [
-                'tagName' => 'AMP-NEXT-PAGE',
+                'tagName' => Extension::NEXT_PAGE,
                 'specName' => 'amp-next-page with src attribute',
                 'unique' => true,
                 'attrs' => [
@@ -2518,7 +2521,7 @@ final class Tags
             ),
             'amp-next-page [type=adsense]' => new Tag(
                 [
-                'tagName' => 'AMP-NEXT-PAGE',
+                'tagName' => Extension::NEXT_PAGE,
                 'specName' => 'amp-next-page [type=adsense]',
                 'unique' => true,
                 'attrs' => [
@@ -2541,7 +2544,7 @@ final class Tags
             ),
             'AMP-NEXXTV-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-NEXXTV-PLAYER',
+                'tagName' => Extension::NEXXTV_PLAYER,
                 'attrs' => [
                         ['name' => 'data-client', 'mandatory' => true],
                         ['name' => 'data-mediaid', 'mandatory' => true, 'valueRegex' => '[^=/?:]+'],
@@ -2557,7 +2560,7 @@ final class Tags
             ),
             'AMP-O2-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-O2-PLAYER',
+                'tagName' => Extension::O2_PLAYER,
                 'attrs' => [['name' => 'data-bcid', 'mandatory' => true], ['name' => 'data-pid', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -2567,7 +2570,7 @@ final class Tags
             ),
             'AMP-ONETAP-GOOGLE' => new Tag(
                 [
-                'tagName' => 'AMP-ONETAP-GOOGLE',
+                'tagName' => Extension::ONETAP_GOOGLE,
                 'unique' => true,
                 'attrs' => [['name' => 'data-src', 'mandatory' => true, 'valueUrl' => ['protocol' => ['https']]]],
                 'attrLists' => ['extended-amp-global'],
@@ -2578,7 +2581,7 @@ final class Tags
             ),
             'AMP-OOYALA-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-OOYALA-PLAYER',
+                'tagName' => Extension::OOYALA_PLAYER,
                 'attrs' => [
                         ['name' => 'data-embedcode', 'mandatory' => true],
                         ['name' => 'data-pcode', 'mandatory' => true],
@@ -2592,7 +2595,7 @@ final class Tags
             ),
             'AMP-ORIENTATION-OBSERVER' => new Tag(
                 [
-                'tagName' => 'AMP-ORIENTATION-OBSERVER',
+                'tagName' => Extension::ORIENTATION_OBSERVER,
                 'attrs' => [
                         ['name' => 'alpha-range', 'valueRegex' => '(\d+)\s{1}(\d+)'],
                         ['name' => 'beta-range', 'valueRegex' => '(\d+)\s{1}(\d+)'],
@@ -2607,7 +2610,7 @@ final class Tags
             ),
             'AMP-PAN-ZOOM' => new Tag(
                 [
-                'tagName' => 'AMP-PAN-ZOOM',
+                'tagName' => Extension::PAN_ZOOM,
                 'attrs' => [
                         ['name' => 'disable-double-tap', 'value' => ['']],
                         ['name' => 'initial-scale', 'valueRegex' => '[0-9]+(\.[0-9]+)?'],
@@ -2624,7 +2627,7 @@ final class Tags
             ),
             'AMP-PINTEREST' => new Tag(
                 [
-                'tagName' => 'AMP-PINTEREST',
+                'tagName' => Extension::PINTEREST,
                 'attrs' => [['name' => 'alt'], ['name' => 'data-do', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-pinterest/',
@@ -2635,7 +2638,7 @@ final class Tags
             ),
             'AMP-PIXEL' => new Tag(
                 [
-                'tagName' => 'AMP-PIXEL',
+                'tagName' => Extension::PIXEL,
                 'attrs' => [
                         ['name' => 'allow-ssr-img'],
                         ['name' => 'referrerpolicy', 'value' => ['no-referrer']],
@@ -2654,7 +2657,7 @@ final class Tags
             ),
             'AMP-PLAYBUZZ' => new Tag(
                 [
-                'tagName' => 'AMP-PLAYBUZZ',
+                'tagName' => Extension::PLAYBUZZ,
                 'attrs' => [
                         ['name' => 'data-comments', 'valueCasei' => ['false', 'true']],
                         ['name' => 'data-item', 'mandatoryOneof' => '[\'data-item\', \'src\']'],
@@ -2670,7 +2673,7 @@ final class Tags
             ),
             'AMP-POSITION-OBSERVER' => new Tag(
                 [
-                'tagName' => 'AMP-POSITION-OBSERVER',
+                'tagName' => Extension::POSITION_OBSERVER,
                 'attrs' => [
                         ['name' => 'intersection-ratios', 'valueRegex' => '^([0]*?\.\d*$|1$|0$)|([0]*?\.\d*|1|0)\s{1}([0]*?\.\d*$|1$|0$)'],
                         ['name' => 'once', 'value' => ['']],
@@ -2688,7 +2691,7 @@ final class Tags
             ),
             'AMP-POWR-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-POWR-PLAYER',
+                'tagName' => Extension::POWR_PLAYER,
                 'attrs' => [
                         ['name' => 'autoplay'],
                         ['name' => 'data-account', 'mandatory' => true, 'valueRegex' => '[0-9a-zA-Z-]+'],
@@ -2706,7 +2709,7 @@ final class Tags
             ),
             'AMP-REACH-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-REACH-PLAYER',
+                'tagName' => Extension::REACH_PLAYER,
                 'attrs' => [['name' => 'data-embed-id', 'mandatory' => true, 'valueRegex' => '[0-9a-z-]+']],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'RESPONSIVE']],
@@ -2716,7 +2719,7 @@ final class Tags
             ),
             'AMP-RECAPTCHA-INPUT' => new Tag(
                 [
-                'tagName' => 'AMP-RECAPTCHA-INPUT',
+                'tagName' => Extension::RECAPTCHA_INPUT,
                 'attrs' => [['name' => 'data-sitekey', 'mandatory' => true], ['name' => 'data-action', 'mandatory' => true]],
                 'attrLists' => ['mandatory-name-attr'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -2727,7 +2730,7 @@ final class Tags
             ),
             'AMP-REDBULL-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-REDBULL-PLAYER',
+                'tagName' => Extension::REDBULL_PLAYER,
                 'attrs' => [['name' => 'data-param-videoid', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FIXED', 'FIXED_HEIGHT', 'RESPONSIVE', 'FILL', 'FLEX_ITEM', 'FLUID', 'INTRINSIC']],
@@ -2737,7 +2740,7 @@ final class Tags
             ),
             'AMP-REDDIT' => new Tag(
                 [
-                'tagName' => 'AMP-REDDIT',
+                'tagName' => Extension::REDDIT,
                 'attrs' => [
                         ['name' => 'data-embedlive', 'valueCasei' => ['false', 'true']],
                         ['name' => 'data-embedparent', 'valueCasei' => ['false', 'true']],
@@ -2752,7 +2755,7 @@ final class Tags
             ),
             'AMP-RIDDLE-QUIZ' => new Tag(
                 [
-                'tagName' => 'AMP-RIDDLE-QUIZ',
+                'tagName' => Extension::RIDDLE_QUIZ,
                 'attrs' => [['name' => 'data-riddle-id', 'mandatory' => true, 'valueRegex' => '[0-9]+']],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-riddle-quiz/',
@@ -2763,7 +2766,7 @@ final class Tags
             ),
             'AMP-SCRIPT' => new Tag(
                 [
-                'tagName' => 'AMP-SCRIPT',
+                'tagName' => Extension::SCRIPT,
                 'attrs' => [
                         ['name' => 'data-ampdevmode', 'value' => ['false'], 'disallowedValueRegex' => 'false'],
                         ['name' => 'max-age', 'valueRegex' => '[0-9]+', 'trigger' => ['alsoRequiresAttr' => ['script']]],
@@ -2797,7 +2800,7 @@ final class Tags
             ),
             'amp-script extension local script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-script extension local script',
                 'attrs' => [
                         [
@@ -2822,7 +2825,7 @@ final class Tags
             ),
             'AMP-SELECTOR' => new Tag(
                 [
-                'tagName' => 'AMP-SELECTOR',
+                'tagName' => Extension::SELECTOR,
                 'attrs' => [
                         ['name' => 'disabled', 'value' => ['']],
                         ['name' => 'form'],
@@ -2862,7 +2865,7 @@ final class Tags
             ),
             'amp-sidebar' => new Tag(
                 [
-                'tagName' => 'AMP-SIDEBAR',
+                'tagName' => Extension::SIDEBAR,
                 'specName' => 'amp-sidebar',
                 'attrs' => [['name' => 'side', 'value' => ['left', 'right']]],
                 'attrLists' => ['extended-amp-global'],
@@ -2876,7 +2879,7 @@ final class Tags
             ),
             'amp-sidebar (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'AMP-SIDEBAR',
+                'tagName' => Extension::SIDEBAR,
                 'specName' => 'amp-sidebar (AMP4EMAIL)',
                 'attrs' => [['name' => 'side', 'value' => ['left', 'right']]],
                 'attrLists' => ['extended-amp-global'],
@@ -2888,7 +2891,7 @@ final class Tags
             ),
             'amp-sidebar > nav' => new Tag(
                 [
-                'tagName' => 'NAV',
+                'tagName' => Element::NAV,
                 'specName' => 'amp-sidebar > nav',
                 'mandatoryParent' => 'AMP-SIDEBAR',
                 'attrs' => [
@@ -2901,7 +2904,7 @@ final class Tags
             ),
             'AMP-SKIMLINKS' => new Tag(
                 [
-                'tagName' => 'AMP-SKIMLINKS',
+                'tagName' => Extension::SKIMLINKS,
                 'attrs' => [
                         ['name' => 'custom-redirect-domain'],
                         ['name' => 'custom-tracking-id', 'valueRegexCasei' => '^.{0,50}$'],
@@ -2918,7 +2921,7 @@ final class Tags
             ),
             'AMP-SMARTLINKS' => new Tag(
                 [
-                'tagName' => 'AMP-SMARTLINKS',
+                'tagName' => Extension::SMARTLINKS,
                 'attrs' => [
                         ['name' => 'exclusive-links', 'value' => ['']],
                         ['name' => 'link-attribute'],
@@ -2934,7 +2937,7 @@ final class Tags
             ),
             'AMP-SOCIAL-SHARE' => new Tag(
                 [
-                'tagName' => 'AMP-SOCIAL-SHARE',
+                'tagName' => Extension::SOCIAL_SHARE,
                 'attrs' => [
                         [
                             'name' => 'data-share-endpoint',
@@ -2973,7 +2976,7 @@ final class Tags
             ),
             'AMP-SOUNDCLOUD' => new Tag(
                 [
-                'tagName' => 'AMP-SOUNDCLOUD',
+                'tagName' => Extension::SOUNDCLOUD,
                 'attrs' => [
                         ['name' => 'data-color', 'valueRegexCasei' => '([0-9a-f]{3}){1,2}'],
                         [
@@ -2993,7 +2996,7 @@ final class Tags
             ),
             'AMP-SPRINGBOARD-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-SPRINGBOARD-PLAYER',
+                'tagName' => Extension::SPRINGBOARD_PLAYER,
                 'attrs' => [
                         ['name' => 'data-content-id', 'mandatory' => true],
                         ['name' => 'data-domain', 'mandatory' => true],
@@ -3010,7 +3013,7 @@ final class Tags
             ),
             'amp-state' => new Tag(
                 [
-                'tagName' => 'AMP-STATE',
+                'tagName' => Extension::STATE,
                 'specName' => 'amp-state',
                 'attrs' => [
                         ['name' => 'credentials'],
@@ -3031,7 +3034,7 @@ final class Tags
             ),
             'amp-state (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'AMP-STATE',
+                'tagName' => Extension::STATE,
                 'specName' => 'amp-state (AMP4EMAIL)',
                 'attrLists' => ['mandatory-id-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-bind/',
@@ -3043,7 +3046,7 @@ final class Tags
             ),
             'AMP-STICKY-AD' => new Tag(
                 [
-                'tagName' => 'AMP-STICKY-AD',
+                'tagName' => Extension::STICKY_AD,
                 'unique' => true,
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -3055,7 +3058,7 @@ final class Tags
             ),
             'AMP-STORY' => new Tag(
                 [
-                'tagName' => 'AMP-STORY',
+                'tagName' => Extension::STORY,
                 'mandatoryParent' => 'BODY',
                 'attrs' => [
                         ['name' => 'background-audio', 'valueUrl' => ['protocol' => ['http', 'https']]],
@@ -3094,7 +3097,7 @@ final class Tags
             ),
             'AMP-STORY-360' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-360',
+                'tagName' => Extension::STORY_360,
                 'attrs' => [
                         ['name' => 'controls', 'value' => ['gyroscope']],
                         ['name' => 'duration', 'valueRegex' => '([0-9\.]+)\s*(s|ms)'],
@@ -3118,7 +3121,7 @@ final class Tags
             ),
             'AMP-STORY-ANIMATION' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-ANIMATION',
+                'tagName' => Extension::STORY_ANIMATION,
                 'mandatoryParent' => 'AMP-STORY-PAGE',
                 'attrs' => [['name' => 'animate-in-after'], ['name' => 'trigger', 'mandatory' => true, 'value' => ['visibility']]],
                 'attrLists' => ['extended-amp-global'],
@@ -3131,7 +3134,7 @@ final class Tags
             ),
             'amp-story-animation json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-story-animation json script',
                 'mandatoryParent' => 'AMP-STORY-ANIMATION',
                 'attrs' => [
@@ -3150,7 +3153,7 @@ final class Tags
             ),
             'AMP-STORY-AUTO-ADS' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-AUTO-ADS',
+                'tagName' => Extension::STORY_AUTO_ADS,
                 'unique' => true,
                 'mandatoryParent' => 'AMP-STORY',
                 'specUrl' => 'https://amp.dev/documentation/components/amp-story-auto-ads/',
@@ -3160,7 +3163,7 @@ final class Tags
             ),
             'amp-story-auto-ads > template' => new Tag(
                 [
-                'tagName' => 'TEMPLATE',
+                'tagName' => Element::TEMPLATE,
                 'specName' => 'amp-story-auto-ads > template',
                 'mandatoryParent' => 'AMP-STORY-AUTO-ADS',
                 'attrs' => [['name' => 'type', 'mandatory' => true, 'value' => ['amp-mustache'], 'dispatchKey' => 'NAME_VALUE_PARENT_DISPATCH']],
@@ -3172,7 +3175,7 @@ final class Tags
             ),
             'amp-story-auto-ads config script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-story-auto-ads config script',
                 'mandatoryParent' => 'AMP-STORY-AUTO-ADS',
                 'attrs' => [
@@ -3192,7 +3195,7 @@ final class Tags
             ),
             'AMP-STORY-BOOKEND' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-BOOKEND',
+                'tagName' => Extension::STORY_BOOKEND,
                 'attrs' => [
                         ['name' => 'layout', 'mandatory' => true, 'value' => ['nodisplay']],
                         ['name' => 'src', 'valueUrl' => ['protocol' => ['http', 'https']]],
@@ -3205,7 +3208,7 @@ final class Tags
             ),
             'amp-story-bookend extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-story-bookend extension .json script',
                 'unique' => true,
                 'mandatoryParent' => 'AMP-STORY-BOOKEND',
@@ -3226,7 +3229,7 @@ final class Tags
             ),
             'AMP-STORY-CONSENT' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-CONSENT',
+                'tagName' => Extension::STORY_CONSENT,
                 'mandatoryParent' => 'AMP-CONSENT',
                 'attrLists' => ['mandatory-id-attr'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
@@ -3238,7 +3241,7 @@ final class Tags
             ),
             'amp-story-consent extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-story-consent extension .json script',
                 'unique' => true,
                 'mandatoryParent' => 'AMP-STORY-CONSENT',
@@ -3259,7 +3262,7 @@ final class Tags
             ),
             'AMP-STORY-CTA-LAYER' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-CTA-LAYER',
+                'tagName' => Extension::STORY_CTA_LAYER,
                 'mandatoryAncestor' => 'AMP-STORY-PAGE',
                 'referencePoints' => [['tagSpecName' => 'AMP-STORY-CTA-LAYER animate-in']],
                 'htmlFormat' => ['AMP'],
@@ -3313,7 +3316,7 @@ final class Tags
             ),
             'AMP-STORY-GRID-LAYER' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-GRID-LAYER',
+                'tagName' => Extension::STORY_GRID_LAYER,
                 'attrs' => [
                         ['name' => 'template', 'mandatory' => true, 'value' => ['fill', 'horizontal', 'thirds', 'vertical']],
                         ['name' => 'position', 'value' => ['landscape-half-left', 'landscape-half-right']],
@@ -3434,7 +3437,7 @@ final class Tags
             ),
             'AMP-STORY-INTERACTIVE-BINARY-POLL' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-INTERACTIVE-BINARY-POLL',
+                'tagName' => Extension::STORY_INTERACTIVE_BINARY_POLL,
                 'attrs' => [
                         ['name' => 'option-1-text', 'mandatory' => true],
                         ['name' => 'option-2-text', 'mandatory' => true],
@@ -3449,7 +3452,7 @@ final class Tags
             ),
             'AMP-STORY-INTERACTIVE-POLL' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-INTERACTIVE-POLL',
+                'tagName' => Extension::STORY_INTERACTIVE_POLL,
                 'attrLists' => [
                         'interactive-options-text-attrs',
                         'interactive-options-confetti-attrs',
@@ -3463,7 +3466,7 @@ final class Tags
             ),
             'AMP-STORY-INTERACTIVE-QUIZ' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-INTERACTIVE-QUIZ',
+                'tagName' => Extension::STORY_INTERACTIVE_QUIZ,
                 'attrs' => [
                         [
                             'name' => 'option-1-correct',
@@ -3492,7 +3495,7 @@ final class Tags
             ),
             'AMP-STORY-INTERACTIVE-RESULTS' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-INTERACTIVE-RESULTS',
+                'tagName' => Extension::STORY_INTERACTIVE_RESULTS,
                 'attrs' => [
                         ['name' => 'option-1-results-category', 'mandatory' => true],
                         ['name' => 'option-2-results-category', 'mandatory' => true],
@@ -3529,7 +3532,7 @@ final class Tags
             ),
             'AMP-STORY-PAGE' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-PAGE',
+                'tagName' => Extension::STORY_PAGE,
                 'mandatoryParent' => 'AMP-STORY',
                 'attrs' => [
                         ['name' => 'auto-advance-after'],
@@ -3555,7 +3558,7 @@ final class Tags
             ),
             'amp-story-page-attachment' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-PAGE-ATTACHMENT',
+                'tagName' => Extension::STORY_PAGE_ATTACHMENT,
                 'specName' => 'amp-story-page-attachment',
                 'attrs' => [
                         ['name' => 'layout', 'mandatory' => true, 'value' => ['nodisplay']],
@@ -3569,7 +3572,7 @@ final class Tags
             ),
             'amp-story-page-attachment[href]' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-PAGE-ATTACHMENT',
+                'tagName' => Extension::STORY_PAGE_ATTACHMENT,
                 'specName' => 'amp-story-page-attachment[href]',
                 'attrs' => [
                         ['name' => 'layout', 'mandatory' => true, 'value' => ['nodisplay']],
@@ -3584,7 +3587,7 @@ final class Tags
             ),
             'AMP-STORY-PANNING-MEDIA' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-PANNING-MEDIA',
+                'tagName' => Extension::STORY_PANNING_MEDIA,
                 'specUrl' => 'https://amp.dev/documentation/components/amp-story-panning-media',
                 'ampLayout' => ['supportedLayouts' => ['FILL']],
                 'mandatoryAncestor' => 'AMP-STORY-GRID-LAYER',
@@ -3594,7 +3597,7 @@ final class Tags
             ),
             'AMP-STORY-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-STORY-PLAYER',
+                'tagName' => Extension::STORY_PLAYER,
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'RESPONSIVE', 'INTRINSIC']],
                 'htmlFormat' => ['AMP'],
                 'requiresExtension' => ['amp-story-player'],
@@ -3603,7 +3606,7 @@ final class Tags
             ),
             'amp-story >> amp-audio' => new Tag(
                 [
-                'tagName' => 'AMP-AUDIO',
+                'tagName' => Extension::AUDIO,
                 'specName' => 'amp-story >> amp-audio',
                 'attrs' => [['name' => 'autoplay', 'mandatory' => true, 'value' => ['']]],
                 'attrLists' => ['amp-audio-common', 'extended-amp-global'],
@@ -3616,7 +3619,7 @@ final class Tags
             ),
             'amp-story >> amp-sidebar' => new Tag(
                 [
-                'tagName' => 'AMP-SIDEBAR',
+                'tagName' => Extension::SIDEBAR,
                 'specName' => 'amp-story >> amp-sidebar',
                 'mandatoryParent' => 'AMP-STORY',
                 'specUrl' => 'https://amp.dev/documentation/components/amp-sidebar/',
@@ -3628,7 +3631,7 @@ final class Tags
             ),
             'amp-story >> amp-story-page-attachment >> amp-video' => new Tag(
                 [
-                'tagName' => 'AMP-VIDEO',
+                'tagName' => Extension::VIDEO,
                 'specName' => 'amp-story >> amp-story-page-attachment >> amp-video',
                 'attrs' => [['name' => 'poster']],
                 'attrLists' => ['extended-amp-global', 'amp-video-common', 'lightboxable-elements'],
@@ -3641,7 +3644,7 @@ final class Tags
             ),
             'amp-story >> amp-video' => new Tag(
                 [
-                'tagName' => 'AMP-VIDEO',
+                'tagName' => Extension::VIDEO,
                 'specName' => 'amp-story >> amp-video',
                 'attrs' => [
                         ['name' => 'autoplay', 'mandatory' => true, 'value' => ['']],
@@ -3668,7 +3671,7 @@ final class Tags
             ),
             'amp-subscriptions extension .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-subscriptions extension .json script',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -3684,7 +3687,7 @@ final class Tags
             ),
             'AMP-TIMEAGO' => new Tag(
                 [
-                'tagName' => 'AMP-TIMEAGO',
+                'tagName' => Extension::TIMEAGO,
                 'attrs' => [
                         ['name' => 'cutoff', 'valueRegex' => '\d+'],
                         [
@@ -3705,7 +3708,7 @@ final class Tags
             ),
             'AMP-TRUNCATE-TEXT' => new Tag(
                 [
-                'tagName' => 'AMP-TRUNCATE-TEXT',
+                'tagName' => Extension::TRUNCATE_TEXT,
                 'attrs' => [['name' => 'overflow-style', 'value' => ['right', 'default']]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-truncate-text/',
@@ -3727,7 +3730,7 @@ final class Tags
             ),
             'AMP-TWITTER' => new Tag(
                 [
-                'tagName' => 'AMP-TWITTER',
+                'tagName' => Extension::TWITTER,
                 'attrs' => [
                         ['name' => 'data-cards', 'trigger' => ['alsoRequiresAttr' => ['data-tweetid']]],
                         ['name' => 'data-conversation', 'trigger' => ['alsoRequiresAttr' => ['data-tweetid']]],
@@ -3773,7 +3776,7 @@ final class Tags
             ),
             'AMP-USER-NOTIFICATION' => new Tag(
                 [
-                'tagName' => 'AMP-USER-NOTIFICATION',
+                'tagName' => Extension::USER_NOTIFICATION,
                 'attrs' => [
                         [
                             'name' => 'data-dismiss-href',
@@ -3793,7 +3796,7 @@ final class Tags
             ),
             'AMP-VIDEO' => new Tag(
                 [
-                'tagName' => 'AMP-VIDEO',
+                'tagName' => Extension::VIDEO,
                 'attrs' => [['name' => 'poster']],
                 'attrLists' => ['extended-amp-global', 'amp-video-common', 'lightboxable-elements'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-video/',
@@ -3832,7 +3835,7 @@ final class Tags
             ),
             'AMP-VIDEO-IFRAME with [placeholder]' => new Tag(
                 [
-                'tagName' => 'AMP-VIDEO-IFRAME',
+                'tagName' => Extension::VIDEO_IFRAME,
                 'specName' => 'AMP-VIDEO-IFRAME with [placeholder]',
                 'attrLists' => ['extended-amp-global', 'amp-video-iframe-common', 'lightboxable-elements'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-video-iframe/',
@@ -3845,7 +3848,7 @@ final class Tags
             ),
             'AMP-VIDEO-IFRAME with [placeholder] (transformed)' => new Tag(
                 [
-                'tagName' => 'AMP-VIDEO-IFRAME',
+                'tagName' => Extension::VIDEO_IFRAME,
                 'specName' => 'AMP-VIDEO-IFRAME with [placeholder] (transformed)',
                 'attrLists' => ['extended-amp-global', 'amp-video-iframe-common', 'lightboxable-elements'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-video-iframe/',
@@ -3861,7 +3864,7 @@ final class Tags
             ),
             'AMP-VIDEO-IFRAME[poster]' => new Tag(
                 [
-                'tagName' => 'AMP-VIDEO-IFRAME',
+                'tagName' => Extension::VIDEO_IFRAME,
                 'specName' => 'AMP-VIDEO-IFRAME[poster]',
                 'attrs' => [['name' => 'poster', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global', 'amp-video-iframe-common', 'lightboxable-elements'],
@@ -3873,7 +3876,7 @@ final class Tags
             ),
             'amp-video > source' => new Tag(
                 [
-                'tagName' => 'SOURCE',
+                'tagName' => Element::SOURCE,
                 'specName' => 'amp-video > source',
                 'mandatoryParent' => 'AMP-VIDEO',
                 'attrs' => [
@@ -3893,7 +3896,7 @@ final class Tags
             ),
             'amp-video > track' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'amp-video > track',
                 'mandatoryParent' => 'AMP-VIDEO',
                 'attrs' => [['name' => '[label]'], ['name' => '[src]'], ['name' => '[srclang]']],
@@ -3903,7 +3906,7 @@ final class Tags
             ),
             'amp-video > track[kind=subtitles]' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'amp-video > track[kind=subtitles]',
                 'mandatoryParent' => 'AMP-VIDEO',
                 'attrs' => [['name' => '[label]'], ['name' => '[src]'], ['name' => '[srclang]']],
@@ -3913,7 +3916,7 @@ final class Tags
             ),
             'amp-video extension script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp-video extension script',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
@@ -3922,7 +3925,7 @@ final class Tags
             ),
             'AMP-VIMEO' => new Tag(
                 [
-                'tagName' => 'AMP-VIMEO',
+                'tagName' => Extension::VIMEO,
                 'attrs' => [['name' => 'autoplay', 'value' => ['']], ['name' => 'data-videoid', 'mandatory' => true, 'valueRegex' => '[0-9]+']],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'RESPONSIVE']],
@@ -3932,7 +3935,7 @@ final class Tags
             ),
             'AMP-VINE' => new Tag(
                 [
-                'tagName' => 'AMP-VINE',
+                'tagName' => Extension::VINE,
                 'attrs' => [['name' => 'data-vineid', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
@@ -3942,7 +3945,7 @@ final class Tags
             ),
             'AMP-VIQEO-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-VIQEO-PLAYER',
+                'tagName' => Extension::VIQEO_PLAYER,
                 'attrs' => [
                         ['name' => 'autoplay'],
                         ['name' => 'data-profileid', 'mandatory' => true, 'valueRegex' => '[0-9a-f]*'],
@@ -3956,7 +3959,7 @@ final class Tags
             ),
             'AMP-VK' => new Tag(
                 [
-                'tagName' => 'AMP-VK',
+                'tagName' => Extension::VK,
                 'attrs' => [['name' => 'data-embedtype', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'ampLayout' => ['supportedLayouts' => ['FIXED', 'FLEX_ITEM', 'RESPONSIVE']],
@@ -3966,7 +3969,7 @@ final class Tags
             ),
             'AMP-WEB-PUSH' => new Tag(
                 [
-                'tagName' => 'AMP-WEB-PUSH',
+                'tagName' => Extension::WEB_PUSH,
                 'attrs' => [
                         [
                             'name' => 'helper-iframe-url',
@@ -3995,7 +3998,7 @@ final class Tags
             ),
             'AMP-WEB-PUSH-WIDGET' => new Tag(
                 [
-                'tagName' => 'AMP-WEB-PUSH-WIDGET',
+                'tagName' => Extension::WEB_PUSH_WIDGET,
                 'attrs' => [['name' => 'visibility', 'mandatory' => true, 'value' => ['blocked', 'subscribed', 'unsubscribed']]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-web-push/',
@@ -4006,7 +4009,7 @@ final class Tags
             ),
             'AMP-WISTIA-PLAYER' => new Tag(
                 [
-                'tagName' => 'AMP-WISTIA-PLAYER',
+                'tagName' => Extension::WISTIA_PLAYER,
                 'attrs' => [
                         ['name' => 'data-media-hashed-id', 'mandatory' => true, 'valueRegex' => '[0-9a-zA-Z]+'],
                         ['name' => 'rotate-to-fullscreen', 'value' => ['']],
@@ -4019,7 +4022,7 @@ final class Tags
             ),
             'AMP-YOTPO' => new Tag(
                 [
-                'tagName' => 'AMP-YOTPO',
+                'tagName' => Extension::YOTPO,
                 'attrs' => [['name' => 'data-app-key', 'mandatory' => true], ['name' => 'data-widget-type', 'mandatory' => true]],
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-yotpo/',
@@ -4030,7 +4033,7 @@ final class Tags
             ),
             'AMP-YOUTUBE' => new Tag(
                 [
-                'tagName' => 'AMP-YOUTUBE',
+                'tagName' => Extension::YOUTUBE,
                 'attrs' => [
                         ['name' => 'autoplay'],
                         ['name' => 'loop'],
@@ -4056,7 +4059,7 @@ final class Tags
             ),
             'amp4ads engine script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amp4ads engine script',
                 'mandatory' => true,
                 'unique' => true,
@@ -4078,7 +4081,7 @@ final class Tags
             ),
             'amphtml engine script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amphtml engine script',
                 'mandatoryAlternatives' => 'amphtml engine script',
                 'unique' => true,
@@ -4100,7 +4103,7 @@ final class Tags
             ),
             'amphtml engine script (LTS)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amphtml engine script (LTS)',
                 'mandatoryAlternatives' => 'amphtml engine script',
                 'unique' => true,
@@ -4122,7 +4125,7 @@ final class Tags
             ),
             'amphtml engine script [AMP4EMAIL]' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'amphtml engine script [AMP4EMAIL]',
                 'mandatory' => true,
                 'unique' => true,
@@ -4144,19 +4147,19 @@ final class Tags
             ),
             'ARTICLE' => new Tag(
                 [
-                'tagName' => 'ARTICLE',
+                'tagName' => Element::ARTICLE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'ASIDE' => new Tag(
                 [
-                'tagName' => 'ASIDE',
+                'tagName' => Element::ASIDE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'AUDIO' => new Tag(
                 [
-                'tagName' => 'AUDIO',
+                'tagName' => Element::AUDIO,
                 'attrs' => [
                         ['name' => 'autoplay'],
                         ['name' => 'controls'],
@@ -4177,7 +4180,7 @@ final class Tags
             ),
             'audio > source' => new Tag(
                 [
-                'tagName' => 'SOURCE',
+                'tagName' => Element::SOURCE,
                 'specName' => 'audio > source',
                 'mandatoryParent' => 'AUDIO',
                 'attrs' => [
@@ -4196,7 +4199,7 @@ final class Tags
             ),
             'audio > track' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'audio > track',
                 'mandatoryParent' => 'AUDIO',
                 'attrLists' => ['track-attrs-no-subtitles'],
@@ -4205,7 +4208,7 @@ final class Tags
             ),
             'audio > track[kind=subtitles]' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'audio > track[kind=subtitles]',
                 'mandatoryParent' => 'AUDIO',
                 'attrLists' => ['track-attrs-subtitles'],
@@ -4214,13 +4217,13 @@ final class Tags
             ),
             'B' => new Tag(
                 [
-                'tagName' => 'B',
+                'tagName' => Element::B,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'BASE' => new Tag(
                 [
-                'tagName' => 'BASE',
+                'tagName' => Element::BASE,
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [['name' => 'href', 'value' => ['/']], ['name' => 'target', 'valueCasei' => ['_blank', '_self', '_top']]],
@@ -4229,26 +4232,26 @@ final class Tags
             ),
             'BDI' => new Tag(
                 [
-                'tagName' => 'BDI',
+                'tagName' => Element::BDI,
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
             'BDO' => new Tag(
                 [
-                'tagName' => 'BDO',
+                'tagName' => Element::BDO,
                 'attrs' => [['name' => 'dir']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'BIG' => new Tag(
                 [
-                'tagName' => 'BIG',
+                'tagName' => Element::BIG,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'BLOCKQUOTE' => new Tag(
                 [
-                'tagName' => 'BLOCKQUOTE',
+                'tagName' => Element::BLOCKQUOTE,
                 'attrs' => [['name' => 'align']],
                 'attrLists' => ['cite-attr'],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -4256,7 +4259,7 @@ final class Tags
             ),
             'BODY' => new Tag(
                 [
-                'tagName' => 'BODY',
+                'tagName' => Element::BODY,
                 'mandatory' => true,
                 'unique' => true,
                 'mandatoryParent' => 'HTML',
@@ -4266,13 +4269,13 @@ final class Tags
             ),
             'BR' => new Tag(
                 [
-                'tagName' => 'BR',
+                'tagName' => Element::BR,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'BUTTON' => new Tag(
                 [
-                'tagName' => 'BUTTON',
+                'tagName' => Element::BUTTON,
                 'attrs' => [
                         ['name' => 'disabled', 'value' => ['']],
                         ['name' => 'role', 'implicit' => true],
@@ -4289,7 +4292,7 @@ final class Tags
             ),
             'button amp-nested-menu' => new Tag(
                 [
-                'tagName' => 'BUTTON',
+                'tagName' => Element::BUTTON,
                 'specName' => 'button amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
                 'mandatoryAncestor' => 'AMP-NESTED-MENU',
@@ -4298,7 +4301,7 @@ final class Tags
             ),
             'CANVAS' => new Tag(
                 [
-                'tagName' => 'CANVAS',
+                'tagName' => Element::CANVAS,
                 'attrs' => [['name' => 'height'], ['name' => 'width']],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
                 'mandatoryAncestor' => 'AMP-SCRIPT',
@@ -4308,19 +4311,19 @@ final class Tags
             ),
             'CAPTION' => new Tag(
                 [
-                'tagName' => 'CAPTION',
+                'tagName' => Element::CAPTION,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'CENTER' => new Tag(
                 [
-                'tagName' => 'CENTER',
+                'tagName' => Element::CENTER,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'CIRCLE' => new Tag(
                 [
-                'tagName' => 'CIRCLE',
+                'tagName' => Element::CIRCLE,
                 'attrs' => [
                         ['name' => 'cx'],
                         ['name' => 'cy'],
@@ -4337,13 +4340,13 @@ final class Tags
             ),
             'CITE' => new Tag(
                 [
-                'tagName' => 'CITE',
+                'tagName' => Element::CITE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'CLIPPATH' => new Tag(
                 [
-                'tagName' => 'CLIPPATH',
+                'tagName' => Element::CLIPPATH,
                 'attrs' => [['name' => 'clippathunits'], ['name' => 'externalresourcesrequired'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -4353,27 +4356,27 @@ final class Tags
             ),
             'CODE' => new Tag(
                 [
-                'tagName' => 'CODE',
+                'tagName' => Element::CODE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'COL' => new Tag(
                 [
-                'tagName' => 'COL',
+                'tagName' => Element::COL,
                 'attrs' => [['name' => 'span']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'COLGROUP' => new Tag(
                 [
-                'tagName' => 'COLGROUP',
+                'tagName' => Element::COLGROUP,
                 'attrs' => [['name' => 'span']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'cryptokeys .json script' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'cryptokeys .json script',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -4388,26 +4391,26 @@ final class Tags
             ),
             'DATA' => new Tag(
                 [
-                'tagName' => 'DATA',
+                'tagName' => Element::DATA,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'DATALIST' => new Tag(
                 [
-                'tagName' => 'DATALIST',
+                'tagName' => Element::DATALIST,
                 'specUrl' => 'https://amp.dev/documentation/components/amp-form/',
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'DD' => new Tag(
                 [
-                'tagName' => 'DD',
+                'tagName' => Element::DD,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'DEFS' => new Tag(
                 [
-                'tagName' => 'DEFS',
+                'tagName' => Element::DEFS,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -4417,7 +4420,7 @@ final class Tags
             ),
             'DEL' => new Tag(
                 [
-                'tagName' => 'DEL',
+                'tagName' => Element::DEL,
                 'attrs' => [['name' => 'datetime']],
                 'attrLists' => ['cite-attr'],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -4425,7 +4428,7 @@ final class Tags
             ),
             'DESC' => new Tag(
                 [
-                'tagName' => 'DESC',
+                'tagName' => Element::DESC,
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
                 'mandatoryAncestor' => 'SVG',
@@ -4434,33 +4437,33 @@ final class Tags
             ),
             'DETAILS' => new Tag(
                 [
-                'tagName' => 'DETAILS',
+                'tagName' => Element::DETAILS,
                 'attrs' => [['name' => 'open', 'value' => ['']], ['name' => '[open]']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'DFN' => new Tag(
                 [
-                'tagName' => 'DFN',
+                'tagName' => Element::DFN,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'DIR' => new Tag(
                 [
-                'tagName' => 'DIR',
+                'tagName' => Element::DIR,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'DIV' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'div amp-nested-menu' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'div amp-nested-menu',
                 'attrs' => [
                         [
@@ -4483,19 +4486,19 @@ final class Tags
             ),
             'DL' => new Tag(
                 [
-                'tagName' => 'DL',
+                'tagName' => Element::DL,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'DT' => new Tag(
                 [
-                'tagName' => 'DT',
+                'tagName' => Element::DT,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'ELLIPSE' => new Tag(
                 [
-                'tagName' => 'ELLIPSE',
+                'tagName' => Element::ELLIPSE,
                 'attrs' => [
                         ['name' => 'cx'],
                         ['name' => 'cy'],
@@ -4513,13 +4516,13 @@ final class Tags
             ),
             'EM' => new Tag(
                 [
-                'tagName' => 'EM',
+                'tagName' => Element::EM,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'FECOLORMATRIX' => new Tag(
                 [
-                'tagName' => 'FECOLORMATRIX',
+                'tagName' => Element::FECOLORMATRIX,
                 'attrs' => [['name' => 'in'], ['name' => 'type'], ['name' => 'values']],
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -4529,7 +4532,7 @@ final class Tags
             ),
             'FECOMPOSITE' => new Tag(
                 [
-                'tagName' => 'FECOMPOSITE',
+                'tagName' => Element::FECOMPOSITE,
                 'attrs' => [
                         ['name' => 'in'],
                         ['name' => 'in2'],
@@ -4547,7 +4550,7 @@ final class Tags
             ),
             'FEFLOOD' => new Tag(
                 [
-                'tagName' => 'FEFLOOD',
+                'tagName' => Element::FEFLOOD,
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
                 'mandatoryAncestor' => 'SVG',
@@ -4556,7 +4559,7 @@ final class Tags
             ),
             'FEGAUSSIANBLUR' => new Tag(
                 [
-                'tagName' => 'FEGAUSSIANBLUR',
+                'tagName' => Element::FEGAUSSIANBLUR,
                 'attrs' => [['name' => 'edgemode'], ['name' => 'in'], ['name' => 'stddeviation']],
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -4566,7 +4569,7 @@ final class Tags
             ),
             'FEMERGE' => new Tag(
                 [
-                'tagName' => 'FEMERGE',
+                'tagName' => Element::FEMERGE,
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
                 'mandatoryAncestor' => 'SVG',
@@ -4575,7 +4578,7 @@ final class Tags
             ),
             'FEMERGENODE' => new Tag(
                 [
-                'tagName' => 'FEMERGENODE',
+                'tagName' => Element::FEMERGENODE,
                 'attrs' => [['name' => 'in']],
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -4585,7 +4588,7 @@ final class Tags
             ),
             'FEOFFSET' => new Tag(
                 [
-                'tagName' => 'FEOFFSET',
+                'tagName' => Element::FEOFFSET,
                 'attrs' => [['name' => 'dx'], ['name' => 'dy'], ['name' => 'in']],
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -4595,7 +4598,7 @@ final class Tags
             ),
             'FIELDSET' => new Tag(
                 [
-                'tagName' => 'FIELDSET',
+                'tagName' => Element::FIELDSET,
                 'attrs' => [['name' => 'disabled'], ['name' => '[disabled]']],
                 'attrLists' => ['name-attr'],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -4603,19 +4606,19 @@ final class Tags
             ),
             'FIGCAPTION' => new Tag(
                 [
-                'tagName' => 'FIGCAPTION',
+                'tagName' => Element::FIGCAPTION,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'FIGURE' => new Tag(
                 [
-                'tagName' => 'FIGURE',
+                'tagName' => Element::FIGURE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'FILTER' => new Tag(
                 [
-                'tagName' => 'FILTER',
+                'tagName' => Element::FILTER,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'filterres'],
@@ -4634,13 +4637,13 @@ final class Tags
             ),
             'FOOTER' => new Tag(
                 [
-                'tagName' => 'FOOTER',
+                'tagName' => Element::FOOTER,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'FORM DIV [submit-error]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submit-error]',
                 'attrs' => [['name' => 'align'], ['name' => 'submit-error', 'mandatory' => true]],
                 'mandatoryAncestor' => 'FORM',
@@ -4649,7 +4652,7 @@ final class Tags
             ),
             'FORM DIV [submit-error][template]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submit-error][template]',
                 'attrs' => [['name' => 'align'], ['name' => 'submit-error', 'mandatory' => true], ['name' => 'template', 'mandatory' => true]],
                 'mandatoryAncestor' => 'FORM',
@@ -4658,7 +4661,7 @@ final class Tags
             ),
             'FORM DIV [submit-success]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submit-success]',
                 'attrs' => [['name' => 'align'], ['name' => 'submit-success', 'mandatory' => true]],
                 'mandatoryAncestor' => 'FORM',
@@ -4667,7 +4670,7 @@ final class Tags
             ),
             'FORM DIV [submit-success][template]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submit-success][template]',
                 'attrs' => [['name' => 'align'], ['name' => 'submit-success', 'mandatory' => true], ['name' => 'template', 'mandatory' => true]],
                 'mandatoryAncestor' => 'FORM',
@@ -4676,7 +4679,7 @@ final class Tags
             ),
             'FORM DIV [submitting]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submitting]',
                 'attrs' => [['name' => 'align'], ['name' => 'submitting', 'mandatory' => true]],
                 'mandatoryAncestor' => 'FORM',
@@ -4685,7 +4688,7 @@ final class Tags
             ),
             'FORM DIV [submitting][template]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submitting][template]',
                 'attrs' => [['name' => 'align'], ['name' => 'submitting', 'mandatory' => true], ['name' => 'template', 'mandatory' => true]],
                 'mandatoryAncestor' => 'FORM',
@@ -4694,7 +4697,7 @@ final class Tags
             ),
             'FORM DIV [verify-error]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [verify-error]',
                 'attrs' => [['name' => 'align'], ['name' => 'verify-error', 'mandatory' => true]],
                 'mandatoryAncestor' => 'FORM',
@@ -4703,7 +4706,7 @@ final class Tags
             ),
             'FORM DIV [verify-error][template]' => new Tag(
                 [
-                'tagName' => 'DIV',
+                'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [verify-error][template]',
                 'attrs' => [['name' => 'align'], ['name' => 'verify-error', 'mandatory' => true], ['name' => 'template', 'mandatory' => true]],
                 'mandatoryAncestor' => 'FORM',
@@ -4712,7 +4715,7 @@ final class Tags
             ),
             'FORM [method=GET]' => new Tag(
                 [
-                'tagName' => 'FORM',
+                'tagName' => Element::FORM,
                 'specName' => 'FORM [method=GET]',
                 'attrs' => [
                         ['name' => 'accept'],
@@ -4743,7 +4746,7 @@ final class Tags
             ),
             'FORM [method=GET] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'FORM',
+                'tagName' => Element::FORM,
                 'specName' => 'FORM [method=GET] (AMP4EMAIL)',
                 'attrs' => [
                         ['name' => 'accept'],
@@ -4769,7 +4772,7 @@ final class Tags
             ),
             'FORM [method=POST]' => new Tag(
                 [
-                'tagName' => 'FORM',
+                'tagName' => Element::FORM,
                 'specName' => 'FORM [method=POST]',
                 'attrs' => [
                         ['name' => 'accept'],
@@ -4799,7 +4802,7 @@ final class Tags
             ),
             'FORM [method=POST] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'FORM',
+                'tagName' => Element::FORM,
                 'specName' => 'FORM [method=POST] (AMP4EMAIL)',
                 'attrs' => [
                         ['name' => 'accept'],
@@ -4826,7 +4829,7 @@ final class Tags
             ),
             'G' => new Tag(
                 [
-                'tagName' => 'G',
+                'tagName' => Element::G,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -4836,7 +4839,7 @@ final class Tags
             ),
             'GLYPH' => new Tag(
                 [
-                'tagName' => 'GLYPH',
+                'tagName' => Element::GLYPH,
                 'attrs' => [
                         ['name' => 'arabic-form'],
                         ['name' => 'd'],
@@ -4856,7 +4859,7 @@ final class Tags
             ),
             'GLYPHREF' => new Tag(
                 [
-                'tagName' => 'GLYPHREF',
+                'tagName' => Element::GLYPHREF,
                 'attrs' => [['name' => 'dx'], ['name' => 'dy'], ['name' => 'format'], ['name' => 'glyphref'], ['name' => 'x'], ['name' => 'y']],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr', 'svg-xlink-attributes'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -4866,21 +4869,21 @@ final class Tags
             ),
             'H1' => new Tag(
                 [
-                'tagName' => 'H1',
+                'tagName' => Element::H1,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'H2' => new Tag(
                 [
-                'tagName' => 'H2',
+                'tagName' => Element::H2,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'h2 amp-nested-menu' => new Tag(
                 [
-                'tagName' => 'H2',
+                'tagName' => Element::H2,
                 'specName' => 'h2 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
                 'mandatoryAncestor' => 'AMP-NESTED-MENU',
@@ -4889,14 +4892,14 @@ final class Tags
             ),
             'H3' => new Tag(
                 [
-                'tagName' => 'H3',
+                'tagName' => Element::H3,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'h3 amp-nested-menu' => new Tag(
                 [
-                'tagName' => 'H3',
+                'tagName' => Element::H3,
                 'specName' => 'h3 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
                 'mandatoryAncestor' => 'AMP-NESTED-MENU',
@@ -4905,14 +4908,14 @@ final class Tags
             ),
             'H4' => new Tag(
                 [
-                'tagName' => 'H4',
+                'tagName' => Element::H4,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'h4 amp-nested-menu' => new Tag(
                 [
-                'tagName' => 'H4',
+                'tagName' => Element::H4,
                 'specName' => 'h4 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
                 'mandatoryAncestor' => 'AMP-NESTED-MENU',
@@ -4921,14 +4924,14 @@ final class Tags
             ),
             'H5' => new Tag(
                 [
-                'tagName' => 'H5',
+                'tagName' => Element::H5,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'h5 amp-nested-menu' => new Tag(
                 [
-                'tagName' => 'H5',
+                'tagName' => Element::H5,
                 'specName' => 'h5 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
                 'mandatoryAncestor' => 'AMP-NESTED-MENU',
@@ -4937,14 +4940,14 @@ final class Tags
             ),
             'H6' => new Tag(
                 [
-                'tagName' => 'H6',
+                'tagName' => Element::H6,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'h6 amp-nested-menu' => new Tag(
                 [
-                'tagName' => 'H6',
+                'tagName' => Element::H6,
                 'specName' => 'h6 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
                 'mandatoryAncestor' => 'AMP-NESTED-MENU',
@@ -4953,7 +4956,7 @@ final class Tags
             ),
             'HEAD' => new Tag(
                 [
-                'tagName' => 'HEAD',
+                'tagName' => Element::HEAD,
                 'mandatory' => true,
                 'unique' => true,
                 'mandatoryParent' => 'HTML',
@@ -4963,7 +4966,7 @@ final class Tags
             ),
             'head > style[amp-boilerplate]' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'head > style[amp-boilerplate]',
                 'mandatory' => true,
                 'unique' => true,
@@ -4982,7 +4985,7 @@ final class Tags
             ),
             'head > style[amp-boilerplate] (transformed)' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'head > style[amp-boilerplate] (transformed)',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -5000,7 +5003,7 @@ final class Tags
             ),
             'head > style[amp4ads-boilerplate]' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'head > style[amp4ads-boilerplate]',
                 'mandatory' => true,
                 'unique' => true,
@@ -5022,7 +5025,7 @@ final class Tags
             ),
             'head > style[amp4email-boilerplate]' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'head > style[amp4email-boilerplate]',
                 'mandatory' => true,
                 'unique' => true,
@@ -5043,19 +5046,19 @@ final class Tags
             ),
             'HEADER' => new Tag(
                 [
-                'tagName' => 'HEADER',
+                'tagName' => Element::HEADER,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'HGROUP' => new Tag(
                 [
-                'tagName' => 'HGROUP',
+                'tagName' => Element::HGROUP,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'HKERN' => new Tag(
                 [
-                'tagName' => 'HKERN',
+                'tagName' => Element::HKERN,
                 'attrs' => [['name' => 'g1'], ['name' => 'g2'], ['name' => 'k'], ['name' => 'u1'], ['name' => 'u2']],
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -5065,13 +5068,13 @@ final class Tags
             ),
             'HR' => new Tag(
                 [
-                'tagName' => 'HR',
+                'tagName' => Element::HR,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'HTML' => new Tag(
                 [
-                'tagName' => 'HTML',
+                'tagName' => Element::HTML,
                 'mandatory' => true,
                 'unique' => true,
                 'mandatoryParent' => '!DOCTYPE',
@@ -5083,7 +5086,7 @@ final class Tags
             ),
             'html (transformed)' => new Tag(
                 [
-                'tagName' => 'HTML',
+                'tagName' => Element::HTML,
                 'specName' => 'html (transformed)',
                 'mandatory' => true,
                 'unique' => true,
@@ -5096,7 +5099,7 @@ final class Tags
             ),
             'html doctype' => new Tag(
                 [
-                'tagName' => '!DOCTYPE',
+                'tagName' => Element::_DOCTYPE,
                 'specName' => 'html doctype',
                 'mandatory' => true,
                 'unique' => true,
@@ -5110,7 +5113,7 @@ final class Tags
             ),
             'html doctype (AMP4ADS)' => new Tag(
                 [
-                'tagName' => '!DOCTYPE',
+                'tagName' => Element::_DOCTYPE,
                 'specName' => 'html doctype (AMP4ADS)',
                 'mandatory' => true,
                 'unique' => true,
@@ -5123,13 +5126,13 @@ final class Tags
             ),
             'I' => new Tag(
                 [
-                'tagName' => 'I',
+                'tagName' => Element::I,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'I-AMPHTML-SIZER-INTRINSIC' => new Tag(
                 [
-                'tagName' => 'I-AMPHTML-SIZER',
+                'tagName' => Internal::SIZER,
                 'specName' => 'I-AMPHTML-SIZER-INTRINSIC',
                 'attrs' => [['name' => 'class', 'mandatory' => true, 'value' => ['i-amphtml-sizer'], 'dispatchKey' => 'NAME_DISPATCH']],
                 'htmlFormat' => ['AMP'],
@@ -5139,7 +5142,7 @@ final class Tags
             ),
             'I-AMPHTML-SIZER-RESPONSIVE' => new Tag(
                 [
-                'tagName' => 'I-AMPHTML-SIZER',
+                'tagName' => Internal::SIZER,
                 'specName' => 'I-AMPHTML-SIZER-RESPONSIVE',
                 'attrs' => [
                         [
@@ -5157,7 +5160,7 @@ final class Tags
             ),
             'IFRAME' => new Tag(
                 [
-                'tagName' => 'IFRAME',
+                'tagName' => Element::IFRAME,
                 'attrs' => [
                         ['name' => 'frameborder', 'value' => ['0', '1']],
                         ['name' => 'height'],
@@ -5183,7 +5186,7 @@ final class Tags
             ),
             'IMAGE' => new Tag(
                 [
-                'tagName' => 'IMAGE',
+                'tagName' => Element::IMAGE,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'height'],
@@ -5213,7 +5216,7 @@ final class Tags
             ),
             'IMG-I-AMPHTML-INTRINSIC-SIZER' => new Tag(
                 [
-                'tagName' => 'IMG',
+                'tagName' => Element::IMG,
                 'specName' => 'IMG-I-AMPHTML-INTRINSIC-SIZER',
                 'mandatoryParent' => 'I-AMPHTML-SIZER-INTRINSIC',
                 'attrs' => [
@@ -5233,7 +5236,7 @@ final class Tags
             ),
             'INPUT' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'attrs' => [
                         ['name' => 'no-verify', 'value' => [''], 'disabledBy' => ['amp4email']],
                         ['name' => 'type', 'disallowedValueRegex' => '(^|\s)(file|image|password|)(\s|$)'],
@@ -5246,7 +5249,7 @@ final class Tags
             ),
             'input [mask=date-dd-mm-yyyy]' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'input [mask=date-dd-mm-yyyy]',
                 'attrs' => [['name' => 'mask', 'mandatory' => true, 'value' => ['date-dd-mm-yyyy'], 'dispatchKey' => 'NAME_VALUE_DISPATCH']],
                 'attrLists' => ['amp-inputmask-common-attr', 'input-common-attr', 'name-attr'],
@@ -5257,7 +5260,7 @@ final class Tags
             ),
             'input [mask=date-mm-dd-yyyy]' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'input [mask=date-mm-dd-yyyy]',
                 'attrs' => [['name' => 'mask', 'mandatory' => true, 'value' => ['date-mm-dd-yyyy'], 'dispatchKey' => 'NAME_VALUE_DISPATCH']],
                 'attrLists' => ['amp-inputmask-common-attr', 'input-common-attr', 'name-attr'],
@@ -5268,7 +5271,7 @@ final class Tags
             ),
             'input [mask=date-mm-yy]' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'input [mask=date-mm-yy]',
                 'attrs' => [['name' => 'mask', 'mandatory' => true, 'value' => ['date-mm-yy'], 'dispatchKey' => 'NAME_VALUE_DISPATCH']],
                 'attrLists' => ['amp-inputmask-common-attr', 'input-common-attr', 'name-attr'],
@@ -5279,7 +5282,7 @@ final class Tags
             ),
             'input [mask=date-yyyy-mm-dd]' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'input [mask=date-yyyy-mm-dd]',
                 'attrs' => [['name' => 'mask', 'mandatory' => true, 'value' => ['date-yyyy-mm-dd'], 'dispatchKey' => 'NAME_VALUE_DISPATCH']],
                 'attrLists' => ['amp-inputmask-common-attr', 'input-common-attr', 'name-attr'],
@@ -5290,7 +5293,7 @@ final class Tags
             ),
             'input [mask=payment-card]' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'input [mask=payment-card]',
                 'attrs' => [['name' => 'mask', 'mandatory' => true, 'value' => ['payment-card'], 'dispatchKey' => 'NAME_VALUE_DISPATCH']],
                 'attrLists' => ['amp-inputmask-common-attr', 'input-common-attr', 'name-attr'],
@@ -5301,7 +5304,7 @@ final class Tags
             ),
             'input [mask] (custom mask)' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'input [mask] (custom mask)',
                 'attrs' => [
                         [
@@ -5321,7 +5324,7 @@ final class Tags
             ),
             'INPUT [type=file]' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'INPUT [type=file]',
                 'attrs' => [
                         ['name' => 'no-verify', 'value' => [''], 'disabledBy' => ['amp4email']],
@@ -5336,7 +5339,7 @@ final class Tags
             ),
             'INPUT [type=password]' => new Tag(
                 [
-                'tagName' => 'INPUT',
+                'tagName' => Element::INPUT,
                 'specName' => 'INPUT [type=password]',
                 'attrs' => [
                         ['name' => 'type', 'mandatory' => true, 'dispatchKey' => 'NAME_VALUE_DISPATCH', 'valueCasei' => ['password']],
@@ -5350,7 +5353,7 @@ final class Tags
             ),
             'INS' => new Tag(
                 [
-                'tagName' => 'INS',
+                'tagName' => Element::INS,
                 'attrs' => [['name' => 'datetime']],
                 'attrLists' => ['cite-attr'],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -5358,13 +5361,13 @@ final class Tags
             ),
             'KBD' => new Tag(
                 [
-                'tagName' => 'KBD',
+                'tagName' => Element::KBD,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'LABEL' => new Tag(
                 [
-                'tagName' => 'LABEL',
+                'tagName' => Element::LABEL,
                 'attrs' => [['name' => 'for']],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-form/',
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -5372,20 +5375,20 @@ final class Tags
             ),
             'LEGEND' => new Tag(
                 [
-                'tagName' => 'LEGEND',
+                'tagName' => Element::LEGEND,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'LI' => new Tag(
                 [
-                'tagName' => 'LI',
+                'tagName' => Element::LI,
                 'attrs' => [['name' => 'value', 'valueRegex' => '[0-9]*']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'LINE' => new Tag(
                 [
-                'tagName' => 'LINE',
+                'tagName' => Element::LINE,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'sketch:type'],
@@ -5403,7 +5406,7 @@ final class Tags
             ),
             'LINEARGRADIENT' => new Tag(
                 [
-                'tagName' => 'LINEARGRADIENT',
+                'tagName' => Element::LINEARGRADIENT,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'gradienttransform'],
@@ -5422,7 +5425,7 @@ final class Tags
             ),
             'lineargradient > stop' => new Tag(
                 [
-                'tagName' => 'STOP',
+                'tagName' => Element::STOP,
                 'specName' => 'lineargradient > stop',
                 'attrs' => [['name' => 'offset'], ['name' => 'stop-color'], ['name' => 'stop-opacity']],
                 'attrLists' => ['svg-style-attr'],
@@ -5433,7 +5436,7 @@ final class Tags
             ),
             'link itemprop=' => new Tag(
                 [
-                'tagName' => 'LINK',
+                'tagName' => Element::LINK,
                 'specName' => 'link itemprop=',
                 'attrs' => [['name' => 'href', 'mandatory' => true], ['name' => 'itemprop', 'mandatory' => true]],
                 'attrLists' => ['common-link-attrs'],
@@ -5444,7 +5447,7 @@ final class Tags
             ),
             'link itemprop=sameAs' => new Tag(
                 [
-                'tagName' => 'LINK',
+                'tagName' => Element::LINK,
                 'specName' => 'link itemprop=sameAs',
                 'attrs' => [
                         ['name' => 'href', 'mandatory' => true],
@@ -5458,7 +5461,7 @@ final class Tags
             ),
             'link property=' => new Tag(
                 [
-                'tagName' => 'LINK',
+                'tagName' => Element::LINK,
                 'specName' => 'link property=',
                 'attrs' => [['name' => 'href', 'mandatory' => true], ['name' => 'property', 'mandatory' => true]],
                 'attrLists' => ['common-link-attrs'],
@@ -5469,7 +5472,7 @@ final class Tags
             ),
             'link rel=' => new Tag(
                 [
-                'tagName' => 'LINK',
+                'tagName' => Element::LINK,
                 'specName' => 'link rel=',
                 'attrs' => [
                         ['name' => 'href'],
@@ -5487,7 +5490,7 @@ final class Tags
             ),
             'link rel=canonical' => new Tag(
                 [
-                'tagName' => 'LINK',
+                'tagName' => Element::LINK,
                 'specName' => 'link rel=canonical',
                 'mandatory' => true,
                 'unique' => true,
@@ -5509,7 +5512,7 @@ final class Tags
             ),
             'link rel=manifest' => new Tag(
                 [
-                'tagName' => 'LINK',
+                'tagName' => Element::LINK,
                 'specName' => 'link rel=manifest',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -5530,7 +5533,7 @@ final class Tags
             ),
             'link rel=preload' => new Tag(
                 [
-                'tagName' => 'LINK',
+                'tagName' => Element::LINK,
                 'specName' => 'link rel=preload',
                 'attrs' => [
                         ['name' => 'as'],
@@ -5552,7 +5555,7 @@ final class Tags
             ),
             'link rel=stylesheet for fonts' => new Tag(
                 [
-                'tagName' => 'LINK',
+                'tagName' => Element::LINK,
                 'specName' => 'link rel=stylesheet for fonts',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -5577,25 +5580,25 @@ final class Tags
             ),
             'LISTING' => new Tag(
                 [
-                'tagName' => 'LISTING',
+                'tagName' => Element::LISTING,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'MAIN' => new Tag(
                 [
-                'tagName' => 'MAIN',
+                'tagName' => Element::MAIN,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'MARK' => new Tag(
                 [
-                'tagName' => 'MARK',
+                'tagName' => Element::MARK,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'MARKER' => new Tag(
                 [
-                'tagName' => 'MARKER',
+                'tagName' => Element::MARKER,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'markerheight'],
@@ -5616,7 +5619,7 @@ final class Tags
             ),
             'MASK' => new Tag(
                 [
-                'tagName' => 'MASK',
+                'tagName' => Element::MASK,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'height'],
@@ -5634,7 +5637,7 @@ final class Tags
             ),
             'meta charset=utf-8' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta charset=utf-8',
                 'mandatory' => true,
                 'unique' => true,
@@ -5647,7 +5650,7 @@ final class Tags
             ),
             'METADATA' => new Tag(
                 [
-                'tagName' => 'METADATA',
+                'tagName' => Element::METADATA,
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
                 'mandatoryAncestor' => 'SVG',
@@ -5656,7 +5659,7 @@ final class Tags
             ),
             'meta http-equiv=content-language' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=content-language',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true],
@@ -5674,7 +5677,7 @@ final class Tags
             ),
             'meta http-equiv=Content-Script-Type' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=Content-Script-Type',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true, 'valueCasei' => ['text/javascript']],
@@ -5692,7 +5695,7 @@ final class Tags
             ),
             'meta http-equiv=Content-Style-Type' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=Content-Style-Type',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true, 'valueCasei' => ['text/css']],
@@ -5710,7 +5713,7 @@ final class Tags
             ),
             'meta http-equiv=Content-Type' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=Content-Type',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true, 'valueCasei' => ['text/html; charset=utf-8']],
@@ -5728,7 +5731,7 @@ final class Tags
             ),
             'meta http-equiv=imagetoolbar' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=imagetoolbar',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true],
@@ -5746,7 +5749,7 @@ final class Tags
             ),
             'meta http-equiv=origin-trial' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=origin-trial',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true],
@@ -5764,7 +5767,7 @@ final class Tags
             ),
             'meta http-equiv=pics-label' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=pics-label',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true],
@@ -5782,7 +5785,7 @@ final class Tags
             ),
             'meta http-equiv=resource-type' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=resource-type',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true],
@@ -5800,7 +5803,7 @@ final class Tags
             ),
             'meta http-equiv=x-dns-prefetch-control' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=x-dns-prefetch-control',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true, 'valueCasei' => ['off', 'on']],
@@ -5818,7 +5821,7 @@ final class Tags
             ),
             'meta http-equiv=X-UA-Compatible' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta http-equiv=X-UA-Compatible',
                 'attrs' => [
                         [
@@ -5843,7 +5846,7 @@ final class Tags
             ),
             'meta name=amp-3p-iframe-src' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-3p-iframe-src',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -5861,7 +5864,7 @@ final class Tags
             ),
             'meta name=amp-ad-doubleclick-sra' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-ad-doubleclick-sra',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -5877,7 +5880,7 @@ final class Tags
             ),
             'meta name=amp-ad-enable-refresh' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-ad-enable-refresh',
                 'attrs' => [
                         ['name' => 'content', 'mandatory' => true],
@@ -5894,7 +5897,7 @@ final class Tags
             ),
             'meta name=amp-consent-blocking' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-consent-blocking',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -5913,7 +5916,7 @@ final class Tags
             ),
             'meta name=amp-cta-landing-page-type' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-cta-landing-page-type',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -5931,7 +5934,7 @@ final class Tags
             ),
             'meta name=amp-cta-type' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-cta-type',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -5944,7 +5947,7 @@ final class Tags
             ),
             'meta name=amp-cta-url' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-cta-url',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -5957,7 +5960,7 @@ final class Tags
             ),
             'meta name=amp-experiment-token' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-experiment-token',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -5974,7 +5977,7 @@ final class Tags
             ),
             'meta name=amp-experiments-opt-in' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-experiments-opt-in',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -5991,7 +5994,7 @@ final class Tags
             ),
             'meta name=amp-google-clientid-id-api' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-google-clientid-id-api',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -6008,7 +6011,7 @@ final class Tags
             ),
             'meta name=amp-link-variable-allowed-origin' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-link-variable-allowed-origin',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -6025,7 +6028,7 @@ final class Tags
             ),
             'meta name=amp-list-load-more' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-list-load-more',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -6042,7 +6045,7 @@ final class Tags
             ),
             'meta name=amp-recaptcha-input' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-recaptcha-input',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -6059,7 +6062,7 @@ final class Tags
             ),
             'meta name=amp-script-src' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-script-src',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -6071,7 +6074,7 @@ final class Tags
             ),
             'meta name=amp-story-generator-name' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-story-generator-name',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -6084,7 +6087,7 @@ final class Tags
             ),
             'meta name=amp-story-generator-version' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-story-generator-version',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -6097,7 +6100,7 @@ final class Tags
             ),
             'meta name=amp-to-amp-navigation' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp-to-amp-navigation',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -6115,7 +6118,7 @@ final class Tags
             ),
             'meta name=amp4ads-id' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp4ads-id',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -6127,7 +6130,7 @@ final class Tags
             ),
             'meta name=amp4ads-vars-*' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=amp4ads-vars-*',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -6139,7 +6142,7 @@ final class Tags
             ),
             'meta name= and content=' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name= and content=',
                 'attrs' => [
                         ['name' => 'content'],
@@ -6156,7 +6159,7 @@ final class Tags
             ),
             'meta name=apple-itunes-app' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=apple-itunes-app',
                 'mandatoryParent' => 'HEAD',
                 'attrs' => [
@@ -6175,7 +6178,7 @@ final class Tags
             ),
             'meta name=viewport' => new Tag(
                 [
-                'tagName' => 'META',
+                'tagName' => Element::META,
                 'specName' => 'meta name=viewport',
                 'mandatory' => true,
                 'unique' => true,
@@ -6206,7 +6209,7 @@ final class Tags
             ),
             'METER' => new Tag(
                 [
-                'tagName' => 'METER',
+                'tagName' => Element::METER,
                 'attrs' => [
                         ['name' => 'high'],
                         ['name' => 'low'],
@@ -6220,31 +6223,31 @@ final class Tags
             ),
             'MULTICOL' => new Tag(
                 [
-                'tagName' => 'MULTICOL',
+                'tagName' => Element::MULTICOL,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'NAV' => new Tag(
                 [
-                'tagName' => 'NAV',
+                'tagName' => Element::NAV,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'NEXTID' => new Tag(
                 [
-                'tagName' => 'NEXTID',
+                'tagName' => Element::NEXTID,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'NOBR' => new Tag(
                 [
-                'tagName' => 'NOBR',
+                'tagName' => Element::NOBR,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'NOSCRIPT' => new Tag(
                 [
-                'tagName' => 'NOSCRIPT',
+                'tagName' => Element::NOSCRIPT,
                 'disallowedAncestor' => ['NOSCRIPT'],
                 'mandatoryAncestor' => 'BODY',
                 'htmlFormat' => ['AMP'],
@@ -6252,7 +6255,7 @@ final class Tags
             ),
             'noscript > img' => new Tag(
                 [
-                'tagName' => 'IMG',
+                'tagName' => Element::IMG,
                 'specName' => 'noscript > img',
                 'attrs' => [
                         ['name' => 'alt'],
@@ -6282,7 +6285,7 @@ final class Tags
             ),
             'noscript > style[amp-boilerplate]' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'noscript > style[amp-boilerplate]',
                 'mandatory' => true,
                 'unique' => true,
@@ -6302,7 +6305,7 @@ final class Tags
             ),
             'noscript > style[amp-boilerplate] (transformed)' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'noscript > style[amp-boilerplate] (transformed)',
                 'unique' => true,
                 'mandatoryParent' => 'NOSCRIPT',
@@ -6321,7 +6324,7 @@ final class Tags
             ),
             'noscript enclosure for boilerplate' => new Tag(
                 [
-                'tagName' => 'NOSCRIPT',
+                'tagName' => Element::NOSCRIPT,
                 'specName' => 'noscript enclosure for boilerplate',
                 'mandatory' => true,
                 'unique' => true,
@@ -6334,7 +6337,7 @@ final class Tags
             ),
             'noscript enclosure for boilerplate (transformed)' => new Tag(
                 [
-                'tagName' => 'NOSCRIPT',
+                'tagName' => Element::NOSCRIPT,
                 'specName' => 'noscript enclosure for boilerplate (transformed)',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -6346,13 +6349,13 @@ final class Tags
             ),
             'O:P' => new Tag(
                 [
-                'tagName' => 'O:P',
+                'tagName' => Element::O_P,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'OL' => new Tag(
                 [
-                'tagName' => 'OL',
+                'tagName' => Element::OL,
                 'attrs' => [
                         ['name' => 'reversed', 'value' => ['']],
                         ['name' => 'start', 'valueRegex' => '[0-9]*'],
@@ -6363,7 +6366,7 @@ final class Tags
             ),
             'OPTGROUP' => new Tag(
                 [
-                'tagName' => 'OPTGROUP',
+                'tagName' => Element::OPTGROUP,
                 'mandatoryParent' => 'SELECT',
                 'attrs' => [['name' => 'disabled'], ['name' => 'label'], ['name' => '[disabled]'], ['name' => '[label]']],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-form/',
@@ -6372,7 +6375,7 @@ final class Tags
             ),
             'OPTION' => new Tag(
                 [
-                'tagName' => 'OPTION',
+                'tagName' => Element::OPTION,
                 'attrs' => [
                         ['name' => 'disabled'],
                         ['name' => 'label'],
@@ -6389,7 +6392,7 @@ final class Tags
             ),
             'OUTPUT' => new Tag(
                 [
-                'tagName' => 'OUTPUT',
+                'tagName' => Element::OUTPUT,
                 'attrs' => [['name' => 'for'], ['name' => 'form']],
                 'attrLists' => ['name-attr'],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -6397,14 +6400,14 @@ final class Tags
             ),
             'P' => new Tag(
                 [
-                'tagName' => 'P',
+                'tagName' => Element::P,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'PATH' => new Tag(
                 [
-                'tagName' => 'PATH',
+                'tagName' => Element::PATH,
                 'attrs' => [
                         ['name' => 'd'],
                         ['name' => 'externalresourcesrequired'],
@@ -6420,7 +6423,7 @@ final class Tags
             ),
             'PATTERN' => new Tag(
                 [
-                'tagName' => 'PATTERN',
+                'tagName' => Element::PATTERN,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'height'],
@@ -6447,7 +6450,7 @@ final class Tags
             ),
             'PICTURE' => new Tag(
                 [
-                'tagName' => 'PICTURE',
+                'tagName' => Element::PICTURE,
                 'mandatoryParent' => 'NOSCRIPT',
                 'specUrl' => 'https://amp.dev/documentation/components/amp-img/',
                 'htmlFormat' => ['AMP'],
@@ -6455,7 +6458,7 @@ final class Tags
             ),
             'picture > source' => new Tag(
                 [
-                'tagName' => 'SOURCE',
+                'tagName' => Element::SOURCE,
                 'specName' => 'picture > source',
                 'mandatoryParent' => 'PICTURE',
                 'attrs' => [
@@ -6474,7 +6477,7 @@ final class Tags
             ),
             'POLYGON' => new Tag(
                 [
-                'tagName' => 'POLYGON',
+                'tagName' => Element::POLYGON,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'points'], ['name' => 'sketch:type'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -6484,7 +6487,7 @@ final class Tags
             ),
             'POLYLINE' => new Tag(
                 [
-                'tagName' => 'POLYLINE',
+                'tagName' => Element::POLYLINE,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'points'], ['name' => 'sketch:type'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -6494,27 +6497,27 @@ final class Tags
             ),
             'PRE' => new Tag(
                 [
-                'tagName' => 'PRE',
+                'tagName' => Element::PRE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'PROGRESS' => new Tag(
                 [
-                'tagName' => 'PROGRESS',
+                'tagName' => Element::PROGRESS,
                 'attrs' => [['name' => 'max'], ['name' => 'value']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'Q' => new Tag(
                 [
-                'tagName' => 'Q',
+                'tagName' => Element::Q,
                 'attrLists' => ['cite-attr'],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'RADIALGRADIENT' => new Tag(
                 [
-                'tagName' => 'RADIALGRADIENT',
+                'tagName' => Element::RADIALGRADIENT,
                 'attrs' => [
                         ['name' => 'cx'],
                         ['name' => 'cy'],
@@ -6535,7 +6538,7 @@ final class Tags
             ),
             'radialgradient > stop' => new Tag(
                 [
-                'tagName' => 'STOP',
+                'tagName' => Element::STOP,
                 'specName' => 'radialgradient > stop',
                 'attrs' => [['name' => 'offset'], ['name' => 'stop-color'], ['name' => 'stop-opacity']],
                 'attrLists' => ['svg-style-attr'],
@@ -6546,13 +6549,13 @@ final class Tags
             ),
             'RB' => new Tag(
                 [
-                'tagName' => 'RB',
+                'tagName' => Element::RB,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'RECT' => new Tag(
                 [
-                'tagName' => 'RECT',
+                'tagName' => Element::RECT,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'height'],
@@ -6572,43 +6575,43 @@ final class Tags
             ),
             'RP' => new Tag(
                 [
-                'tagName' => 'RP',
+                'tagName' => Element::RP,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'RT' => new Tag(
                 [
-                'tagName' => 'RT',
+                'tagName' => Element::RT,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'RTC' => new Tag(
                 [
-                'tagName' => 'RTC',
+                'tagName' => Element::RTC,
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
             'RUBY' => new Tag(
                 [
-                'tagName' => 'RUBY',
+                'tagName' => Element::RUBY,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'S' => new Tag(
                 [
-                'tagName' => 'S',
+                'tagName' => Element::S,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'SAMP' => new Tag(
                 [
-                'tagName' => 'SAMP',
+                'tagName' => Element::SAMP,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'SCRIPT' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-3d-gltf', 'version' => ['0.1', 'latest']],
@@ -6616,7 +6619,7 @@ final class Tags
             ),
             'SCRIPT (2)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-3q-player', 'version' => ['0.1', 'latest']],
@@ -6624,7 +6627,7 @@ final class Tags
             ),
             'SCRIPT (3)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-access-laterpay', 'version' => ['0.1', '0.2', 'latest'], 'requiresUsage' => 'NONE'],
@@ -6633,7 +6636,7 @@ final class Tags
             ),
             'SCRIPT (4)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-access-poool', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
@@ -6642,7 +6645,7 @@ final class Tags
             ),
             'SCRIPT (5)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-access-scroll', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
@@ -6651,7 +6654,7 @@ final class Tags
             ),
             'SCRIPT (6)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -6664,7 +6667,7 @@ final class Tags
             ),
             'SCRIPT (7)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -6677,7 +6680,7 @@ final class Tags
             ),
             'SCRIPT (8)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-action-macro', 'version' => ['0.1', 'latest']],
@@ -6685,7 +6688,7 @@ final class Tags
             ),
             'SCRIPT (9)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-ad-custom', 'version' => ['0.1', 'latest']],
@@ -6693,7 +6696,7 @@ final class Tags
             ),
             'SCRIPT (10)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4ADS'],
                 'extensionSpec' => ['name' => 'amp-ad-exit', 'version' => ['0.1', 'latest']],
@@ -6701,7 +6704,7 @@ final class Tags
             ),
             'SCRIPT (11)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-addthis', 'version' => ['0.1', 'latest']],
@@ -6709,7 +6712,7 @@ final class Tags
             ),
             'SCRIPT (12)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -6722,7 +6725,7 @@ final class Tags
             ),
             'SCRIPT (13)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -6735,7 +6738,7 @@ final class Tags
             ),
             'SCRIPT (14)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => ['name' => 'amp-animation', 'version' => ['0.1', 'latest']],
@@ -6743,7 +6746,7 @@ final class Tags
             ),
             'SCRIPT (15)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -6756,7 +6759,7 @@ final class Tags
             ),
             'SCRIPT (16)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-app-banner', 'version' => ['0.1', 'latest'], 'deprecatedAllowDuplicates' => true],
@@ -6764,7 +6767,7 @@ final class Tags
             ),
             'SCRIPT (17)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -6777,7 +6780,7 @@ final class Tags
             ),
             'SCRIPT (18)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-auto-ads', 'version' => ['0.1', 'latest']],
@@ -6785,7 +6788,7 @@ final class Tags
             ),
             'SCRIPT (19)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-autocomplete', 'version' => ['0.1', 'latest']],
@@ -6793,7 +6796,7 @@ final class Tags
             ),
             'SCRIPT (20)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-base-carousel', 'version' => ['0.1', 'latest']],
@@ -6801,7 +6804,7 @@ final class Tags
             ),
             'SCRIPT (21)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-beopinion', 'version' => ['0.1', 'latest']],
@@ -6809,7 +6812,7 @@ final class Tags
             ),
             'SCRIPT (22)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => ['name' => 'amp-bind', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
@@ -6817,7 +6820,7 @@ final class Tags
             ),
             'SCRIPT (23)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-bodymovin-animation', 'version' => ['0.1', 'latest']],
@@ -6825,7 +6828,7 @@ final class Tags
             ),
             'SCRIPT (24)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -6838,7 +6841,7 @@ final class Tags
             ),
             'SCRIPT (25)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -6851,7 +6854,7 @@ final class Tags
             ),
             'SCRIPT (26)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-byside-content', 'version' => ['0.1', 'latest']],
@@ -6859,7 +6862,7 @@ final class Tags
             ),
             'SCRIPT (27)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-call-tracking', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'EXEMPTED'],
@@ -6867,7 +6870,7 @@ final class Tags
             ),
             'SCRIPT (28)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -6880,7 +6883,7 @@ final class Tags
             ),
             'SCRIPT (29)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-connatix-player', 'version' => ['0.1', 'latest']],
@@ -6888,7 +6891,7 @@ final class Tags
             ),
             'SCRIPT (30)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-consent', 'version' => ['0.1', 'latest']],
@@ -6896,7 +6899,7 @@ final class Tags
             ),
             'SCRIPT (31)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -6909,7 +6912,7 @@ final class Tags
             ),
             'SCRIPT (32)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-date-countdown', 'version' => ['0.1', 'latest']],
@@ -6917,7 +6920,7 @@ final class Tags
             ),
             'SCRIPT (33)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-date-display', 'version' => ['0.1', 'latest']],
@@ -6925,7 +6928,7 @@ final class Tags
             ),
             'SCRIPT (34)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-date-picker', 'version' => ['0.1', 'latest']],
@@ -6933,7 +6936,7 @@ final class Tags
             ),
             'SCRIPT (35)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-delight-player', 'version' => ['0.1', 'latest']],
@@ -6941,7 +6944,7 @@ final class Tags
             ),
             'SCRIPT (36)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -6954,7 +6957,7 @@ final class Tags
             ),
             'SCRIPT (37)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-embedly-card', 'version' => ['0.1', 'latest']],
@@ -6962,7 +6965,7 @@ final class Tags
             ),
             'SCRIPT (38)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -6975,7 +6978,7 @@ final class Tags
             ),
             'SCRIPT (39)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-facebook-comments', 'version' => ['0.1', 'latest']],
@@ -6983,7 +6986,7 @@ final class Tags
             ),
             'SCRIPT (40)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-facebook-like', 'version' => ['0.1', 'latest']],
@@ -6991,7 +6994,7 @@ final class Tags
             ),
             'SCRIPT (41)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-facebook-page', 'version' => ['0.1', 'latest']],
@@ -6999,7 +7002,7 @@ final class Tags
             ),
             'SCRIPT (42)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7012,7 +7015,7 @@ final class Tags
             ),
             'SCRIPT (43)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -7025,7 +7028,7 @@ final class Tags
             ),
             'SCRIPT (44)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -7038,7 +7041,7 @@ final class Tags
             ),
             'SCRIPT (45)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -7051,7 +7054,7 @@ final class Tags
             ),
             'SCRIPT (46)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-fx-collection', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
@@ -7059,7 +7062,7 @@ final class Tags
             ),
             'SCRIPT (47)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7072,7 +7075,7 @@ final class Tags
             ),
             'SCRIPT (48)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-geo', 'version' => ['0.1', 'latest']],
@@ -7080,7 +7083,7 @@ final class Tags
             ),
             'SCRIPT (49)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7093,7 +7096,7 @@ final class Tags
             ),
             'SCRIPT (50)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-gist', 'version' => ['0.1', 'latest']],
@@ -7101,7 +7104,7 @@ final class Tags
             ),
             'SCRIPT (51)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-google-document-embed', 'version' => ['0.1', 'latest']],
@@ -7109,7 +7112,7 @@ final class Tags
             ),
             'SCRIPT (52)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4ADS'],
                 'extensionSpec' => ['name' => 'amp-gwd-animation', 'version' => ['0.1', 'latest']],
@@ -7117,7 +7120,7 @@ final class Tags
             ),
             'SCRIPT (53)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-hulu', 'version' => ['0.1', 'latest']],
@@ -7125,7 +7128,7 @@ final class Tags
             ),
             'SCRIPT (54)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7138,7 +7141,7 @@ final class Tags
             ),
             'SCRIPT (55)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-ima-video', 'version' => ['0.1', 'latest']],
@@ -7146,7 +7149,7 @@ final class Tags
             ),
             'SCRIPT (56)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7159,7 +7162,7 @@ final class Tags
             ),
             'SCRIPT (57)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-image-slider', 'version' => ['0.1', 'latest']],
@@ -7167,7 +7170,7 @@ final class Tags
             ),
             'SCRIPT (58)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-imgur', 'version' => ['0.1', 'latest']],
@@ -7175,7 +7178,7 @@ final class Tags
             ),
             'SCRIPT (59)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-inline-gallery', 'version' => ['0.1', 'latest']],
@@ -7183,7 +7186,7 @@ final class Tags
             ),
             'SCRIPT (60)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-inputmask', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
@@ -7191,7 +7194,7 @@ final class Tags
             ),
             'SCRIPT (61)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7204,7 +7207,7 @@ final class Tags
             ),
             'SCRIPT (62)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7217,7 +7220,7 @@ final class Tags
             ),
             'SCRIPT (63)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-izlesene', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'EXEMPTED'],
@@ -7225,7 +7228,7 @@ final class Tags
             ),
             'SCRIPT (64)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7238,7 +7241,7 @@ final class Tags
             ),
             'SCRIPT (65)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7251,7 +7254,7 @@ final class Tags
             ),
             'SCRIPT (66)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-lightbox-gallery', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
@@ -7259,7 +7262,7 @@ final class Tags
             ),
             'SCRIPT (67)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7272,7 +7275,7 @@ final class Tags
             ),
             'SCRIPT (68)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'satisfies' => ['amp-link-rewriter'],
@@ -7282,7 +7285,7 @@ final class Tags
             ),
             'SCRIPT (69)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7295,7 +7298,7 @@ final class Tags
             ),
             'SCRIPT (70)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'mandatoryParent' => 'HEAD',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
@@ -7305,7 +7308,7 @@ final class Tags
             ),
             'SCRIPT (71)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-mathml', 'version' => ['0.1', 'latest']],
@@ -7313,7 +7316,7 @@ final class Tags
             ),
             'SCRIPT (72)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-mega-menu', 'version' => ['0.1', 'latest']],
@@ -7321,7 +7324,7 @@ final class Tags
             ),
             'SCRIPT (73)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-megaphone', 'version' => ['0.1', 'latest']],
@@ -7329,7 +7332,7 @@ final class Tags
             ),
             'SCRIPT (74)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-minute-media-player', 'version' => ['0.1', 'latest']],
@@ -7337,7 +7340,7 @@ final class Tags
             ),
             'SCRIPT (75)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-mowplayer', 'version' => ['0.1', 'latest']],
@@ -7345,7 +7348,7 @@ final class Tags
             ),
             'SCRIPT (76)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrs' => [['name' => 'no-fallback']],
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4ADS'],
@@ -7354,7 +7357,7 @@ final class Tags
             ),
             'SCRIPT (77)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7369,7 +7372,7 @@ final class Tags
             ),
             'SCRIPT (78)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-nested-menu', 'version' => ['0.1', 'latest']],
@@ -7377,7 +7380,7 @@ final class Tags
             ),
             'SCRIPT (79)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-next-page', 'version' => ['0.1', '1.0', 'latest']],
@@ -7385,7 +7388,7 @@ final class Tags
             ),
             'SCRIPT (80)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-nexxtv-player', 'version' => ['0.1', 'latest']],
@@ -7393,7 +7396,7 @@ final class Tags
             ),
             'SCRIPT (81)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7406,7 +7409,7 @@ final class Tags
             ),
             'SCRIPT (82)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-onetap-google', 'version' => ['0.1', 'latest']],
@@ -7414,7 +7417,7 @@ final class Tags
             ),
             'SCRIPT (83)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-ooyala-player', 'version' => ['0.1', 'latest']],
@@ -7422,7 +7425,7 @@ final class Tags
             ),
             'SCRIPT (84)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-orientation-observer', 'version' => ['0.1', 'latest']],
@@ -7430,7 +7433,7 @@ final class Tags
             ),
             'SCRIPT (85)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-pan-zoom', 'version' => ['0.1', 'latest']],
@@ -7438,7 +7441,7 @@ final class Tags
             ),
             'SCRIPT (86)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7451,7 +7454,7 @@ final class Tags
             ),
             'SCRIPT (87)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-playbuzz', 'version' => ['0.1', 'latest']],
@@ -7459,7 +7462,7 @@ final class Tags
             ),
             'SCRIPT (88)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => ['name' => 'amp-position-observer', 'version' => ['0.1', 'latest']],
@@ -7467,7 +7470,7 @@ final class Tags
             ),
             'SCRIPT (89)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-powr-player', 'version' => ['0.1', 'latest']],
@@ -7475,7 +7478,7 @@ final class Tags
             ),
             'SCRIPT (90)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7488,7 +7491,7 @@ final class Tags
             ),
             'SCRIPT (91)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-recaptcha-input', 'version' => ['0.1', 'latest']],
@@ -7496,7 +7499,7 @@ final class Tags
             ),
             'SCRIPT (92)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-redbull-player', 'version' => ['0.1', 'latest']],
@@ -7504,7 +7507,7 @@ final class Tags
             ),
             'SCRIPT (93)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-reddit', 'version' => ['0.1', 'latest'], 'deprecatedAllowDuplicates' => true],
@@ -7512,7 +7515,7 @@ final class Tags
             ),
             'SCRIPT (94)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-riddle-quiz', 'version' => ['0.1', 'latest']],
@@ -7520,7 +7523,7 @@ final class Tags
             ),
             'SCRIPT (95)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-script', 'version' => ['0.1', 'latest']],
@@ -7528,7 +7531,7 @@ final class Tags
             ),
             'SCRIPT (96)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => ['name' => 'amp-selector', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'EXEMPTED'],
@@ -7536,7 +7539,7 @@ final class Tags
             ),
             'SCRIPT (97)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7549,7 +7552,7 @@ final class Tags
             ),
             'SCRIPT (98)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'satisfies' => ['amp-skimlinks'],
@@ -7559,7 +7562,7 @@ final class Tags
             ),
             'SCRIPT (99)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'deprecation' => 'amp-carousel',
                 'deprecationUrl' => 'https://www.ampproject.org/docs/reference/components/amp-carousel',
@@ -7574,7 +7577,7 @@ final class Tags
             ),
             'SCRIPT (100)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'satisfies' => ['amp-smartlinks'],
@@ -7584,7 +7587,7 @@ final class Tags
             ),
             'SCRIPT (101)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 'extensionSpec' => [
@@ -7597,7 +7600,7 @@ final class Tags
             ),
             'SCRIPT (102)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7610,7 +7613,7 @@ final class Tags
             ),
             'SCRIPT (103)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7623,7 +7626,7 @@ final class Tags
             ),
             'SCRIPT (104)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7636,7 +7639,7 @@ final class Tags
             ),
             'SCRIPT (105)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-story-360', 'version' => ['0.1', 'latest']],
@@ -7644,7 +7647,7 @@ final class Tags
             ),
             'SCRIPT (106)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-story-auto-ads', 'version' => ['0.1', 'latest']],
@@ -7652,7 +7655,7 @@ final class Tags
             ),
             'SCRIPT (107)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-story-interactive', 'version' => ['0.1', 'latest']],
@@ -7660,7 +7663,7 @@ final class Tags
             ),
             'SCRIPT (108)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-story-panning-media', 'version' => ['0.1', 'latest']],
@@ -7668,7 +7671,7 @@ final class Tags
             ),
             'SCRIPT (109)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-story-player', 'version' => ['0.1', 'latest']],
@@ -7676,7 +7679,7 @@ final class Tags
             ),
             'SCRIPT (110)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-story', 'version' => ['1.0', 'latest']],
@@ -7684,7 +7687,7 @@ final class Tags
             ),
             'SCRIPT (111)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-subscriptions', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
@@ -7692,7 +7695,7 @@ final class Tags
             ),
             'SCRIPT (112)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-subscriptions-google', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
@@ -7701,7 +7704,7 @@ final class Tags
             ),
             'SCRIPT (113)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-timeago', 'version' => ['0.1', 'latest']],
@@ -7709,7 +7712,7 @@ final class Tags
             ),
             'SCRIPT (114)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-truncate-text', 'version' => ['0.1', 'latest']],
@@ -7717,7 +7720,7 @@ final class Tags
             ),
             'SCRIPT (115)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7730,7 +7733,7 @@ final class Tags
             ),
             'SCRIPT (116)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7743,7 +7746,7 @@ final class Tags
             ),
             'SCRIPT (117)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-video-docking', 'version' => ['0.1', 'latest']],
@@ -7751,7 +7754,7 @@ final class Tags
             ),
             'SCRIPT (118)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-video-iframe', 'version' => ['0.1', 'latest']],
@@ -7759,7 +7762,7 @@ final class Tags
             ),
             'SCRIPT (119)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7772,7 +7775,7 @@ final class Tags
             ),
             'SCRIPT (120)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7785,7 +7788,7 @@ final class Tags
             ),
             'SCRIPT (121)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-viqeo-player', 'version' => ['0.1', 'latest']],
@@ -7793,7 +7796,7 @@ final class Tags
             ),
             'SCRIPT (122)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-vk', 'version' => ['0.1', 'latest']],
@@ -7801,7 +7804,7 @@ final class Tags
             ),
             'SCRIPT (123)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-web-push', 'version' => ['0.1', 'latest']],
@@ -7809,7 +7812,7 @@ final class Tags
             ),
             'SCRIPT (124)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => ['name' => 'amp-wistia-player', 'version' => ['0.1', 'latest']],
@@ -7817,7 +7820,7 @@ final class Tags
             ),
             'SCRIPT (125)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-yotpo/',
                 'htmlFormat' => ['AMP'],
@@ -7826,7 +7829,7 @@ final class Tags
             ),
             'SCRIPT (126)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP'],
                 'extensionSpec' => [
@@ -7839,7 +7842,7 @@ final class Tags
             ),
             'script id=amp-rtc' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'script id=amp-rtc',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -7854,7 +7857,7 @@ final class Tags
             ),
             'script type=application/ld+json' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'script type=application/ld+json',
                 'attrs' => [
                         [
@@ -7872,7 +7875,7 @@ final class Tags
             ),
             'SCRIPT type=text/plain' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT type=text/plain',
                 'attrs' => [
                         [
@@ -7899,7 +7902,7 @@ final class Tags
             ),
             'SCRIPT type=text/plain (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT type=text/plain (AMP4EMAIL)',
                 'attrs' => [
                         [
@@ -7927,7 +7930,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -7936,7 +7939,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-autocomplete] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-autocomplete] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -7945,7 +7948,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-bind] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-bind] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -7954,7 +7957,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -7963,7 +7966,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-fit-text] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-fit-text] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -7972,7 +7975,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-form] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-form] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -7981,7 +7984,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-image-lightbox] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-image-lightbox] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'deprecation' => 'amp-image-lightbox cannot be properly positioned in emails and will soon be invalid in AMP4EMAIL.',
@@ -7992,7 +7995,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-lightbox] (AMP4ADS)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-lightbox] (AMP4ADS)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4ADS'],
@@ -8001,7 +8004,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-lightbox] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-lightbox] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'deprecation' => 'amp-lightbox cannot be properly positioned in emails and will soon be invalid in AMP4EMAIL.',
@@ -8012,7 +8015,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-list] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-list] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -8021,7 +8024,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-selector] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-selector] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -8030,7 +8033,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-sidebar] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-sidebar] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -8039,7 +8042,7 @@ final class Tags
             ),
             'SCRIPT[custom-element=amp-timeago] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-element=amp-timeago] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -8048,7 +8051,7 @@ final class Tags
             ),
             'SCRIPT[custom-template=amp-mustache] (AMP4ADS)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-template=amp-mustache] (AMP4ADS)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4ADS'],
@@ -8062,7 +8065,7 @@ final class Tags
             ),
             'SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)',
                 'attrLists' => ['common-extension-attrs'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -8076,7 +8079,7 @@ final class Tags
             ),
             'SECTION' => new Tag(
                 [
-                'tagName' => 'SECTION',
+                'tagName' => Element::SECTION,
                 'attrLists' => ['poool-access-attrs'],
                 'disallowedAncestor' => ['AMP-ACCORDION'],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
@@ -8084,7 +8087,7 @@ final class Tags
             ),
             'section (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'SECTION',
+                'tagName' => Element::SECTION,
                 'specName' => 'section (AMP4EMAIL)',
                 'disallowedAncestor' => ['AMP-ACCORDION'],
                 'htmlFormat' => ['AMP4EMAIL'],
@@ -8092,7 +8095,7 @@ final class Tags
             ),
             'SELECT' => new Tag(
                 [
-                'tagName' => 'SELECT',
+                'tagName' => Element::SELECT,
                 'attrs' => [
                         ['name' => 'autofocus', 'disabledBy' => ['amp4email']],
                         ['name' => 'disabled'],
@@ -8113,20 +8116,20 @@ final class Tags
             ),
             'SLOT' => new Tag(
                 [
-                'tagName' => 'SLOT',
+                'tagName' => Element::SLOT,
                 'attrLists' => ['name-attr'],
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'SMALL' => new Tag(
                 [
-                'tagName' => 'SMALL',
+                'tagName' => Element::SMALL,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'SOLIDCOLOR' => new Tag(
                 [
-                'tagName' => 'SOLIDCOLOR',
+                'tagName' => Element::SOLIDCOLOR,
                 'attrs' => [['name' => 'solid-color'], ['name' => 'solid-opacity']],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -8136,19 +8139,19 @@ final class Tags
             ),
             'SPACER' => new Tag(
                 [
-                'tagName' => 'SPACER',
+                'tagName' => Element::SPACER,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'SPAN' => new Tag(
                 [
-                'tagName' => 'SPAN',
+                'tagName' => Element::SPAN,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'span amp-nested-menu' => new Tag(
                 [
-                'tagName' => 'SPAN',
+                'tagName' => Element::SPAN,
                 'specName' => 'span amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
                 'mandatoryAncestor' => 'AMP-NESTED-MENU',
@@ -8157,7 +8160,7 @@ final class Tags
             ),
             'span swg_amp_cache_nonce' => new Tag(
                 [
-                'tagName' => 'SPAN',
+                'tagName' => Element::SPAN,
                 'specName' => 'span swg_amp_cache_nonce',
                 'attrs' => [['name' => 'swg_amp_cache_nonce', 'mandatory' => true, 'dispatchKey' => 'NAME_DISPATCH']],
                 'mandatoryAncestor' => 'BODY',
@@ -8169,19 +8172,19 @@ final class Tags
             ),
             'STRIKE' => new Tag(
                 [
-                'tagName' => 'STRIKE',
+                'tagName' => Element::STRIKE,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'STRONG' => new Tag(
                 [
-                'tagName' => 'STRONG',
+                'tagName' => Element::STRONG,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'style amp-custom' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'style amp-custom',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -8213,7 +8216,7 @@ final class Tags
             ),
             'style amp-custom (AMP4ADS)' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'style amp-custom (AMP4ADS)',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -8251,7 +8254,7 @@ final class Tags
             ),
             'style amp-custom (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'style amp-custom (AMP4EMAIL)',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -8299,7 +8302,7 @@ final class Tags
             ),
             'style amp-custom (css-strict)' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'style amp-custom (css-strict)',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -8419,7 +8422,7 @@ final class Tags
             ),
             'style amp-custom-length-check' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'style amp-custom-length-check',
                 'unique' => true,
                 'mandatoryParent' => 'HEAD',
@@ -8435,7 +8438,7 @@ final class Tags
             ),
             'style[amp-keyframes]' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'style[amp-keyframes]',
                 'unique' => true,
                 'mandatoryParent' => 'BODY',
@@ -8457,7 +8460,7 @@ final class Tags
             ),
             'style[amp-runtime] (transformed)' => new Tag(
                 [
-                'tagName' => 'STYLE',
+                'tagName' => Element::STYLE,
                 'specName' => 'style[amp-runtime] (transformed)',
                 'mandatory' => true,
                 'unique' => true,
@@ -8475,13 +8478,13 @@ final class Tags
             ),
             'SUB' => new Tag(
                 [
-                'tagName' => 'SUB',
+                'tagName' => Element::SUB,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'subscriptions-section content swg_amp_cache_nonce' => new Tag(
                 [
-                'tagName' => 'SECTION',
+                'tagName' => Element::SECTION,
                 'specName' => 'subscriptions-section content swg_amp_cache_nonce',
                 'attrs' => [
                         ['name' => 'encrypted', 'mandatory' => true, 'dispatchKey' => 'NAME_DISPATCH'],
@@ -8496,7 +8499,7 @@ final class Tags
             ),
             'subscriptions script ciphertext' => new Tag(
                 [
-                'tagName' => 'SCRIPT',
+                'tagName' => Element::SCRIPT,
                 'specName' => 'subscriptions script ciphertext',
                 'mandatoryParent' => 'subscriptions-section content swg_amp_cache_nonce',
                 'attrs' => [
@@ -8510,20 +8513,20 @@ final class Tags
             ),
             'SUMMARY' => new Tag(
                 [
-                'tagName' => 'SUMMARY',
+                'tagName' => Element::SUMMARY,
                 'mandatoryParent' => 'DETAILS',
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'SUP' => new Tag(
                 [
-                'tagName' => 'SUP',
+                'tagName' => Element::SUP,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'SVG' => new Tag(
                 [
-                'tagName' => 'SVG',
+                'tagName' => Element::SVG,
                 'attrs' => [
                         ['name' => 'contentscripttype'],
                         ['name' => 'contentstyletype'],
@@ -8544,7 +8547,7 @@ final class Tags
             ),
             'svg title' => new Tag(
                 [
-                'tagName' => 'TITLE',
+                'tagName' => Element::TITLE,
                 'specName' => 'svg title',
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -8554,7 +8557,7 @@ final class Tags
             ),
             'SWITCH' => new Tag(
                 [
-                'tagName' => 'SWITCH',
+                'tagName' => Element::SWITCH_,
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
                 'mandatoryAncestor' => 'SVG',
@@ -8563,7 +8566,7 @@ final class Tags
             ),
             'SYMBOL' => new Tag(
                 [
-                'tagName' => 'SYMBOL',
+                'tagName' => Element::SYMBOL,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'height'],
@@ -8579,7 +8582,7 @@ final class Tags
             ),
             'TABLE' => new Tag(
                 [
-                'tagName' => 'TABLE',
+                'tagName' => Element::TABLE,
                 'attrs' => [
                         ['name' => 'align'],
                         ['name' => 'bgcolor'],
@@ -8594,13 +8597,13 @@ final class Tags
             ),
             'TBODY' => new Tag(
                 [
-                'tagName' => 'TBODY',
+                'tagName' => Element::TBODY,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'TD' => new Tag(
                 [
-                'tagName' => 'TD',
+                'tagName' => Element::TD,
                 'attrs' => [
                         ['name' => 'align'],
                         ['name' => 'bgcolor'],
@@ -8616,7 +8619,7 @@ final class Tags
             ),
             'TEMPLATE' => new Tag(
                 [
-                'tagName' => 'TEMPLATE',
+                'tagName' => Element::TEMPLATE,
                 'attrs' => [
                         [
                             'name' => 'id',
@@ -8641,7 +8644,7 @@ final class Tags
             ),
             'TEMPLATE (AMP4EMAIL)' => new Tag(
                 [
-                'tagName' => 'TEMPLATE',
+                'tagName' => Element::TEMPLATE,
                 'specName' => 'TEMPLATE (AMP4EMAIL)',
                 'attrs' => [
                         [
@@ -8667,7 +8670,7 @@ final class Tags
             ),
             'TEXT' => new Tag(
                 [
-                'tagName' => 'TEXT',
+                'tagName' => Element::TEXT,
                 'attrs' => [
                         ['name' => 'dx'],
                         ['name' => 'dy'],
@@ -8688,7 +8691,7 @@ final class Tags
             ),
             'TEXTAREA' => new Tag(
                 [
-                'tagName' => 'TEXTAREA',
+                'tagName' => Element::TEXTAREA,
                 'attrs' => [
                         ['name' => 'autocomplete'],
                         ['name' => 'autoexpand', 'requiresExtension' => ['amp-form']],
@@ -8733,7 +8736,7 @@ final class Tags
             ),
             'TEXTPATH' => new Tag(
                 [
-                'tagName' => 'TEXTPATH',
+                'tagName' => Element::TEXTPATH,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'method'], ['name' => 'spacing'], ['name' => 'startoffset']],
                 'attrLists' => [
                         'svg-conditional-processing-attributes',
@@ -8749,13 +8752,13 @@ final class Tags
             ),
             'TFOOT' => new Tag(
                 [
-                'tagName' => 'TFOOT',
+                'tagName' => Element::TFOOT,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'TH' => new Tag(
                 [
-                'tagName' => 'TH',
+                'tagName' => Element::TH,
                 'attrs' => [
                         ['name' => 'abbr'],
                         ['name' => 'align'],
@@ -8774,20 +8777,20 @@ final class Tags
             ),
             'THEAD' => new Tag(
                 [
-                'tagName' => 'THEAD',
+                'tagName' => Element::THEAD,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'TIME' => new Tag(
                 [
-                'tagName' => 'TIME',
+                'tagName' => Element::TIME,
                 'attrs' => [['name' => 'datetime'], ['name' => 'pubdate', 'value' => ['']]],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'title' => new Tag(
                 [
-                'tagName' => 'TITLE',
+                'tagName' => Element::TITLE,
                 'specName' => 'title',
                 'attrs' => [['name' => '[text]']],
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
@@ -8795,7 +8798,7 @@ final class Tags
             ),
             'title [AMP4EMAIL]' => new Tag(
                 [
-                'tagName' => 'TITLE',
+                'tagName' => Element::TITLE,
                 'specName' => 'title [AMP4EMAIL]',
                 'attrs' => [['name' => '[text]']],
                 'deprecation' => 'Title tags in email have no meaning. This tag may become invalid in the future.',
@@ -8805,14 +8808,14 @@ final class Tags
             ),
             'TR' => new Tag(
                 [
-                'tagName' => 'TR',
+                'tagName' => Element::TR,
                 'attrs' => [['name' => 'align'], ['name' => 'bgcolor'], ['name' => 'height'], ['name' => 'valign']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'TREF' => new Tag(
                 [
-                'tagName' => 'TREF',
+                'tagName' => Element::TREF,
                 'attrs' => [['name' => 'externalresourcesrequired']],
                 'attrLists' => [
                         'svg-conditional-processing-attributes',
@@ -8828,7 +8831,7 @@ final class Tags
             ),
             'TSPAN' => new Tag(
                 [
-                'tagName' => 'TSPAN',
+                'tagName' => Element::TSPAN,
                 'attrs' => [
                         ['name' => 'dx'],
                         ['name' => 'dy'],
@@ -8847,25 +8850,25 @@ final class Tags
             ),
             'TT' => new Tag(
                 [
-                'tagName' => 'TT',
+                'tagName' => Element::TT,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
             'U' => new Tag(
                 [
-                'tagName' => 'U',
+                'tagName' => Element::U,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'UL' => new Tag(
                 [
-                'tagName' => 'UL',
+                'tagName' => Element::UL,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'USE' => new Tag(
                 [
-                'tagName' => 'USE',
+                'tagName' => Element::USE_,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'height'],
@@ -8888,13 +8891,13 @@ final class Tags
             ),
             'VAR' => new Tag(
                 [
-                'tagName' => 'VAR',
+                'tagName' => Element::VAR_,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
             'VIDEO' => new Tag(
                 [
-                'tagName' => 'VIDEO',
+                'tagName' => Element::VIDEO,
                 'attrs' => [
                         ['name' => 'autoplay'],
                         ['name' => 'controls'],
@@ -8923,7 +8926,7 @@ final class Tags
             ),
             'video > source' => new Tag(
                 [
-                'tagName' => 'SOURCE',
+                'tagName' => Element::SOURCE,
                 'specName' => 'video > source',
                 'mandatoryParent' => 'VIDEO',
                 'attrs' => [
@@ -8942,7 +8945,7 @@ final class Tags
             ),
             'video > track' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'video > track',
                 'mandatoryParent' => 'VIDEO',
                 'attrLists' => ['track-attrs-no-subtitles'],
@@ -8951,7 +8954,7 @@ final class Tags
             ),
             'video > track[kind=subtitles]' => new Tag(
                 [
-                'tagName' => 'TRACK',
+                'tagName' => Element::TRACK,
                 'specName' => 'video > track[kind=subtitles]',
                 'mandatoryParent' => 'VIDEO',
                 'attrLists' => ['track-attrs-subtitles'],
@@ -8960,7 +8963,7 @@ final class Tags
             ),
             'VIEW' => new Tag(
                 [
-                'tagName' => 'VIEW',
+                'tagName' => Element::VIEW,
                 'attrs' => [
                         ['name' => 'externalresourcesrequired'],
                         ['name' => 'preserveaspectratio'],
@@ -8976,7 +8979,7 @@ final class Tags
             ),
             'VKERN' => new Tag(
                 [
-                'tagName' => 'VKERN',
+                'tagName' => Element::VKERN,
                 'attrs' => [['name' => 'g1'], ['name' => 'g2'], ['name' => 'k'], ['name' => 'u1'], ['name' => 'u2']],
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
@@ -8986,7 +8989,7 @@ final class Tags
             ),
             'WBR' => new Tag(
                 [
-                'tagName' => 'WBR',
+                'tagName' => Element::WBR,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
