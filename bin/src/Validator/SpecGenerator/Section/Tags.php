@@ -50,6 +50,7 @@ final class Tags implements Section
     {
         $namespace->addUse("AmpProject\\Exception\\InvalidSpecName");
         $namespace->addUse('AmpProject\\Extension');
+        $namespace->addUse('AmpProject\\Format');
         $namespace->addUse('AmpProject\\Internal');
         $namespace->addUse('AmpProject\\Tag', 'Element');
         $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
@@ -96,6 +97,15 @@ final class Tags implements Section
                             $constant = $this->getTagConstant($this->getConstantName($attribute));
                             $constructor->addBody("        'tagName' => {$constant},");
                         }
+                        break;
+                    case 'htmlFormat':
+                        $formats = [];
+                        foreach ($attribute as $format) {
+                            $constant = $this->getFormatConstant($format);
+                            $formats[] = $constant === $format ? "'{$format}'" : $constant;
+                        }
+                        $formatsString = implode(', ', $formats);
+                        $constructor->addBody("        'htmlFormat' => [{$formatsString}],");
                         break;
                     default:
                         $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");

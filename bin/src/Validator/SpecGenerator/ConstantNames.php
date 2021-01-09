@@ -2,6 +2,8 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator;
 
+use AmpProject\Amp;
+
 trait ConstantNames
 {
 
@@ -69,5 +71,20 @@ trait ConstantNames
     private function prefixLeadingDigits($constant)
     {
         return preg_replace('/^(\d)/', '_$1', $constant);
+    }
+
+    /**
+     * Get the AMP HTML format constant.
+     *
+     * @param string $format Format to get the constant for.
+     * @return string Format constant.
+     */
+    private function getFormatConstant($format)
+    {
+        if (!in_array($format, Amp::FORMATS)) {
+            return $format;
+        }
+
+        return "Format::{$format}";
     }
 }
