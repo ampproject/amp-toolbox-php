@@ -2,6 +2,7 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
+use AmpProject\Tooling\Validator\SpecGenerator\ArrayKeyFirstPolyfill;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
@@ -11,6 +12,7 @@ use Nette\PhpGenerator\PhpNamespace;
 
 final class Tags implements Section
 {
+    use ArrayKeyFirstPolyfill;
     use ConstantNames;
     use VariableDumping;
 
@@ -104,10 +106,12 @@ final class Tags implements Section
 
             if (array_key_exists('tagName', $this->tags[$tagId])) {
                 $tagName = $this->tags[$tagId]['tagName'];
-                if (!array_key_exists($tagName, $this->byTagName)) {
-                    $this->byTagName[$tagName] = [];
+                if (strpos($tagName, '$') !== 0) {
+                    if (!array_key_exists($tagName, $this->byTagName)) {
+                        $this->byTagName[$tagName] = [];
+                    }
+                    $this->byTagName[$tagName][$tagId] = $this->tags[$tagId];
                 }
-                $this->byTagName[$tagName][$tagId] = $this->tags[$tagId];
             }
 
             if (array_key_exists('specName', $this->tags[$tagId])) {
@@ -120,11 +124,16 @@ final class Tags implements Section
 
         $constructor->addBody('$this->byTagName = [');
         foreach ($this->byTagName as $tagName => $tags) {
-            $constructor->addBody("    '{$tagName}' => [");
-            foreach ($tags as $tagId => $attributes) {
-                $constructor->addBody("        \$this->tags['{$tagId}'],");
+            $constant = $this->getTagConstant($this->getConstantName($tagName));
+            if (count($tags) > 1) {
+                $constructor->addBody("    {$constant} => [");
+                foreach ($tags as $tagId => $attributes) {
+                    $constructor->addBody("        \$this->tags['{$tagId}'],");
+                }
+                $constructor->addBody('    ],');
+            } else {
+                $constructor->addBody("    {$constant} => \$this->tags['{$this->arrayKeyFirst($tags)}'],");
             }
-            $constructor->addBody('    ],');
         }
         $constructor->addBody('];');
 

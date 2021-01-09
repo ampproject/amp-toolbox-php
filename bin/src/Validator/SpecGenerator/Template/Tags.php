@@ -17,11 +17,13 @@ final class Tags
      */
     public function byTagName($tagName)
     {
+        $tagName = strtolower($tagName);
+
         if (!array_key_exists($tagName, $this->byTagName)) {
             return [];
         }
 
-        return $this->byTagName[$tagName];
+        return (array)$this->byTagName[$tagName];
     }
 
     /**
