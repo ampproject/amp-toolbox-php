@@ -60,7 +60,7 @@ final class Tags
     public function __construct()
     {
         $this->tags = [
-            'A' => new Tag(
+            Element::A => new Tag(
                 [
                 'tagName' => Element::A,
                 'attrs' => [
@@ -143,25 +143,25 @@ final class Tags
                 'htmlFormat' => ['AMP4EMAIL'],
                 ]
             ),
-            'ABBR' => new Tag(
+            Element::ABBR => new Tag(
                 [
                 'tagName' => Element::ABBR,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'ACRONYM' => new Tag(
+            Element::ACRONYM => new Tag(
                 [
                 'tagName' => Element::ACRONYM,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'ADDRESS' => new Tag(
+            Element::ADDRESS => new Tag(
                 [
                 'tagName' => Element::ADDRESS,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'AMP-3D-GLTF' => new Tag(
+            Extension::_3D_GLTF => new Tag(
                 [
                 'tagName' => Extension::_3D_GLTF,
                 'attrs' => [
@@ -179,7 +179,7 @@ final class Tags
                 'requiresExtension' => ['amp-3d-gltf'],
                 ]
             ),
-            'AMP-3Q-PLAYER' => new Tag(
+            Extension::_3Q_PLAYER => new Tag(
                 [
                 'tagName' => Extension::_3Q_PLAYER,
                 'attrs' => [['name' => 'autoplay', 'value' => ['']], ['name' => 'data-id', 'mandatory' => true]],
@@ -205,7 +205,7 @@ final class Tags
                 'requiresExtension' => ['amp-access'],
                 ]
             ),
-            'AMP-ACCORDION' => new Tag(
+            Extension::ACCORDION => new Tag(
                 [
                 'tagName' => Extension::ACCORDION,
                 'attrs' => [
@@ -236,7 +236,7 @@ final class Tags
                 'descriptiveName' => 'amp-accordion > section',
                 ]
             ),
-            'AMP-ACTION-MACRO' => new Tag(
+            Extension::ACTION_MACRO => new Tag(
                 [
                 'tagName' => Extension::ACTION_MACRO,
                 'attrs' => [['name' => 'arguments'], ['name' => 'execute', 'mandatory' => true]],
@@ -246,7 +246,7 @@ final class Tags
                 'requiresExtension' => ['amp-action-macro'],
                 ]
             ),
-            'AMP-AD' => new Tag(
+            Extension::AD => new Tag(
                 [
                 'tagName' => Extension::AD,
                 'attrs' => [
@@ -271,7 +271,7 @@ final class Tags
                 'requiresExtension' => ['amp-ad'],
                 ]
             ),
-            'AMP-AD-CUSTOM' => new Tag(
+            Extension::AD_CUSTOM => new Tag(
                 [
                 'tagName' => Extension::AD_CUSTOM,
                 'attrs' => [
@@ -289,7 +289,7 @@ final class Tags
                 'requiresExtension' => ['amp-ad-custom'],
                 ]
             ),
-            'AMP-AD-EXIT' => new Tag(
+            Extension::AD_EXIT => new Tag(
                 [
                 'tagName' => Extension::AD_EXIT,
                 'attrLists' => ['extended-amp-global', 'mandatory-id-attr'],
@@ -321,7 +321,7 @@ final class Tags
                 'requiresExtension' => ['amp-ad-exit'],
                 ]
             ),
-            'AMP-ADDTHIS' => new Tag(
+            Extension::ADDTHIS => new Tag(
                 [
                 'tagName' => Extension::ADDTHIS,
                 'attrs' => [
@@ -421,7 +421,7 @@ final class Tags
                 'requiresExtension' => ['amp-ad'],
                 ]
             ),
-            'AMP-ANALYTICS' => new Tag(
+            Extension::ANALYTICS => new Tag(
                 [
                 'tagName' => Extension::ANALYTICS,
                 'attrs' => [
@@ -458,7 +458,7 @@ final class Tags
                 'descriptiveName' => 'amp-analytics extension .json script',
                 ]
             ),
-            'AMP-ANIM' => new Tag(
+            Extension::ANIM => new Tag(
                 [
                 'tagName' => Extension::ANIM,
                 'attrs' => [['name' => 'alt'], ['name' => 'attribution'], ['name' => 'object-fit'], ['name' => 'object-position']],
@@ -481,7 +481,7 @@ final class Tags
                 'requiresExtension' => ['amp-anim'],
                 ]
             ),
-            'AMP-ANIMATION' => new Tag(
+            Extension::ANIMATION => new Tag(
                 [
                 'tagName' => Extension::ANIMATION,
                 'attrs' => [['name' => 'trigger', 'value' => ['visibility']]],
@@ -522,7 +522,7 @@ final class Tags
                 'extensionSpec' => ['name' => 'amp-anim', 'version' => ['0.1']],
                 ]
             ),
-            'AMP-APESTER-MEDIA' => new Tag(
+            Extension::APESTER_MEDIA => new Tag(
                 [
                 'tagName' => Extension::APESTER_MEDIA,
                 'attrs' => [
@@ -544,7 +544,7 @@ final class Tags
                 'requiresExtension' => ['amp-apester-media'],
                 ]
             ),
-            'AMP-APP-BANNER' => new Tag(
+            Extension::APP_BANNER => new Tag(
                 [
                 'tagName' => Extension::APP_BANNER,
                 'unique' => true,
@@ -574,7 +574,7 @@ final class Tags
                 'satisfies' => ['amp-app-banner button[open-button]'],
                 ]
             ),
-            'AMP-AUDIO' => new Tag(
+            Extension::AUDIO => new Tag(
                 [
                 'tagName' => Extension::AUDIO,
                 'attrs' => [['name' => 'autoplay', 'value' => ['']], ['name' => 'preload', 'valueCasei' => ['auto', 'metadata', 'none']]],
@@ -645,7 +645,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'AMP-AUTO-ADS' => new Tag(
+            Extension::AUTO_ADS => new Tag(
                 [
                 'tagName' => Extension::AUTO_ADS,
                 'attrs' => [['name' => 'type', 'mandatory' => true]],
@@ -748,7 +748,7 @@ final class Tags
                 'requiresExtension' => ['amp-autocomplete'],
                 ]
             ),
-            'AMP-BASE-CAROUSEL' => new Tag(
+            Extension::BASE_CAROUSEL => new Tag(
                 [
                 'tagName' => Extension::BASE_CAROUSEL,
                 'attrLists' => ['amp-base-carousel-common', 'extended-amp-global'],
@@ -790,7 +790,7 @@ final class Tags
                 'requiresExtension' => ['amp-base-carousel', 'amp-lightbox-gallery'],
                 ]
             ),
-            'AMP-BEOPINION' => new Tag(
+            Extension::BEOPINION => new Tag(
                 [
                 'tagName' => Extension::BEOPINION,
                 'attrs' => [
@@ -805,7 +805,7 @@ final class Tags
                 'requiresExtension' => ['amp-beopinion'],
                 ]
             ),
-            'AMP-BIND-MACRO' => new Tag(
+            Extension::BIND_MACRO => new Tag(
                 [
                 'tagName' => Extension::BIND_MACRO,
                 'attrs' => [['name' => 'arguments'], ['name' => 'expression', 'mandatory' => true]],
@@ -839,7 +839,7 @@ final class Tags
                 'requiresExtension' => ['amp-bind'],
                 ]
             ),
-            'AMP-BODYMOVIN-ANIMATION' => new Tag(
+            Extension::BODYMOVIN_ANIMATION => new Tag(
                 [
                 'tagName' => Extension::BODYMOVIN_ANIMATION,
                 'attrs' => [
@@ -854,7 +854,7 @@ final class Tags
                 'requiresExtension' => ['amp-bodymovin-animation'],
                 ]
             ),
-            'AMP-BRID-PLAYER' => new Tag(
+            Extension::BRID_PLAYER => new Tag(
                 [
                 'tagName' => Extension::BRID_PLAYER,
                 'attrs' => [
@@ -886,7 +886,7 @@ final class Tags
                 'requiresExtension' => ['amp-brid-player'],
                 ]
             ),
-            'AMP-BRIGHTCOVE' => new Tag(
+            Extension::BRIGHTCOVE => new Tag(
                 [
                 'tagName' => Extension::BRIGHTCOVE,
                 'attrs' => [
@@ -908,7 +908,7 @@ final class Tags
                 'requiresExtension' => ['amp-brightcove'],
                 ]
             ),
-            'AMP-BYSIDE-CONTENT' => new Tag(
+            Extension::BYSIDE_CONTENT => new Tag(
                 [
                 'tagName' => Extension::BYSIDE_CONTENT,
                 'attrs' => [['name' => 'data-label', 'mandatory' => true], ['name' => 'data-webcare-id', 'mandatory' => true]],
@@ -918,7 +918,7 @@ final class Tags
                 'requiresExtension' => ['amp-byside-content'],
                 ]
             ),
-            'AMP-CALL-TRACKING' => new Tag(
+            Extension::CALL_TRACKING => new Tag(
                 [
                 'tagName' => Extension::CALL_TRACKING,
                 'attrs' => [
@@ -937,7 +937,7 @@ final class Tags
                 'requiresExtension' => ['amp-call-tracking'],
                 ]
             ),
-            'AMP-CAROUSEL' => new Tag(
+            Extension::CAROUSEL => new Tag(
                 [
                 'tagName' => Extension::CAROUSEL,
                 'specName' => 'AMP-CAROUSEL',
@@ -977,7 +977,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'AMP-CONNATIX-PLAYER' => new Tag(
+            Extension::CONNATIX_PLAYER => new Tag(
                 [
                 'tagName' => Extension::CONNATIX_PLAYER,
                 'attrs' => [['name' => 'data-player-id', 'mandatory' => true]],
@@ -988,7 +988,7 @@ final class Tags
                 'requiresExtension' => ['amp-connatix-player'],
                 ]
             ),
-            'AMP-CONSENT' => new Tag(
+            Extension::CONSENT => new Tag(
                 [
                 'tagName' => Extension::CONSENT,
                 'unique' => true,
@@ -1035,7 +1035,7 @@ final class Tags
                 'requiresExtension' => ['amp-consent'],
                 ]
             ),
-            'AMP-DAILYMOTION' => new Tag(
+            Extension::DAILYMOTION => new Tag(
                 [
                 'tagName' => Extension::DAILYMOTION,
                 'attrs' => [
@@ -1057,7 +1057,7 @@ final class Tags
                 'requiresExtension' => ['amp-dailymotion'],
                 ]
             ),
-            'AMP-DATE-COUNTDOWN' => new Tag(
+            Extension::DATE_COUNTDOWN => new Tag(
                 [
                 'tagName' => Extension::DATE_COUNTDOWN,
                 'attrs' => [
@@ -1114,7 +1114,7 @@ final class Tags
                 'requiresExtension' => ['amp-date-countdown'],
                 ]
             ),
-            'AMP-DATE-DISPLAY' => new Tag(
+            Extension::DATE_DISPLAY => new Tag(
                 [
                 'tagName' => Extension::DATE_DISPLAY,
                 'attrs' => [
@@ -1242,7 +1242,7 @@ final class Tags
                 'requiresExtension' => ['amp-date-picker'],
                 ]
             ),
-            'AMP-DELIGHT-PLAYER' => new Tag(
+            Extension::DELIGHT_PLAYER => new Tag(
                 [
                 'tagName' => Extension::DELIGHT_PLAYER,
                 'attrs' => [['name' => 'data-content-id', 'mandatory' => true], ['name' => 'dock', 'requiresExtension' => ['amp-video-docking']]],
@@ -1252,7 +1252,7 @@ final class Tags
                 'requiresExtension' => ['amp-delight-player'],
                 ]
             ),
-            'AMP-EMBED' => new Tag(
+            Extension::EMBED => new Tag(
                 [
                 'tagName' => Extension::EMBED,
                 'attrs' => [
@@ -1275,7 +1275,7 @@ final class Tags
                 'requiresExtension' => ['amp-ad'],
                 ]
             ),
-            'AMP-EMBEDLY-CARD' => new Tag(
+            Extension::EMBEDLY_CARD => new Tag(
                 [
                 'tagName' => Extension::EMBEDLY_CARD,
                 'attrs' => [['name' => 'data-url', 'mandatory' => true, 'valueUrl' => ['protocol' => ['https'], 'allowRelative' => false]]],
@@ -1286,7 +1286,7 @@ final class Tags
                 'requiresExtension' => ['amp-embedly-card'],
                 ]
             ),
-            'AMP-EMBEDLY-KEY' => new Tag(
+            Extension::EMBEDLY_KEY => new Tag(
                 [
                 'tagName' => Extension::EMBEDLY_KEY,
                 'unique' => true,
@@ -1321,7 +1321,7 @@ final class Tags
                 'requiresExtension' => ['amp-ad'],
                 ]
             ),
-            'AMP-EXPERIMENT' => new Tag(
+            Extension::EXPERIMENT => new Tag(
                 [
                 'tagName' => Extension::EXPERIMENT,
                 'unique' => true,
@@ -1376,7 +1376,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'AMP-FACEBOOK' => new Tag(
+            Extension::FACEBOOK => new Tag(
                 [
                 'tagName' => Extension::FACEBOOK,
                 'attrs' => [['name' => 'data-href', 'mandatory' => true]],
@@ -1386,7 +1386,7 @@ final class Tags
                 'requiresExtension' => ['amp-facebook'],
                 ]
             ),
-            'AMP-FACEBOOK-COMMENTS' => new Tag(
+            Extension::FACEBOOK_COMMENTS => new Tag(
                 [
                 'tagName' => Extension::FACEBOOK_COMMENTS,
                 'attrs' => [['name' => 'data-href', 'mandatory' => true]],
@@ -1396,7 +1396,7 @@ final class Tags
                 'requiresExtension' => ['amp-facebook-comments'],
                 ]
             ),
-            'AMP-FACEBOOK-LIKE' => new Tag(
+            Extension::FACEBOOK_LIKE => new Tag(
                 [
                 'tagName' => Extension::FACEBOOK_LIKE,
                 'attrs' => [
@@ -1412,7 +1412,7 @@ final class Tags
                 'requiresExtension' => ['amp-facebook-like'],
                 ]
             ),
-            'AMP-FACEBOOK-PAGE' => new Tag(
+            Extension::FACEBOOK_PAGE => new Tag(
                 [
                 'tagName' => Extension::FACEBOOK_PAGE,
                 'attrs' => [
@@ -1428,7 +1428,7 @@ final class Tags
                 'requiresExtension' => ['amp-facebook-page'],
                 ]
             ),
-            'AMP-FIT-TEXT' => new Tag(
+            Extension::FIT_TEXT => new Tag(
                 [
                 'tagName' => Extension::FIT_TEXT,
                 'attrs' => [['name' => 'max-font-size'], ['name' => 'min-font-size']],
@@ -1438,7 +1438,7 @@ final class Tags
                 'requiresExtension' => ['amp-fit-text'],
                 ]
             ),
-            'AMP-FONT' => new Tag(
+            Extension::FONT => new Tag(
                 [
                 'tagName' => Extension::FONT,
                 'attrs' => [
@@ -1458,7 +1458,7 @@ final class Tags
                 'requiresExtension' => ['amp-font'],
                 ]
             ),
-            'AMP-FX-FLYING-CARPET' => new Tag(
+            Extension::FX_FLYING_CARPET => new Tag(
                 [
                 'tagName' => Extension::FX_FLYING_CARPET,
                 'attrs' => [['name' => 'height', 'mandatory' => true]],
@@ -1467,7 +1467,7 @@ final class Tags
                 'requiresExtension' => ['amp-fx-flying-carpet'],
                 ]
             ),
-            'AMP-GEO' => new Tag(
+            Extension::GEO => new Tag(
                 [
                 'tagName' => Extension::GEO,
                 'unique' => true,
@@ -1498,7 +1498,7 @@ final class Tags
                 'requiresExtension' => ['amp-geo'],
                 ]
             ),
-            'AMP-GFYCAT' => new Tag(
+            Extension::GFYCAT => new Tag(
                 [
                 'tagName' => Extension::GFYCAT,
                 'attrs' => [['name' => 'data-gfyid', 'mandatory' => true], ['name' => 'noautoplay', 'value' => ['']]],
@@ -1509,7 +1509,7 @@ final class Tags
                 'requiresExtension' => ['amp-gfycat'],
                 ]
             ),
-            'AMP-GIST' => new Tag(
+            Extension::GIST => new Tag(
                 [
                 'tagName' => Extension::GIST,
                 'attrs' => [['name' => 'data-gistid', 'mandatory' => true]],
@@ -1520,7 +1520,7 @@ final class Tags
                 'requiresExtension' => ['amp-gist'],
                 ]
             ),
-            'AMP-GOOGLE-DOCUMENT-EMBED' => new Tag(
+            Extension::GOOGLE_DOCUMENT_EMBED => new Tag(
                 [
                 'tagName' => Extension::GOOGLE_DOCUMENT_EMBED,
                 'attrs' => [
@@ -1540,7 +1540,7 @@ final class Tags
                 'requiresExtension' => ['amp-google-document-embed'],
                 ]
             ),
-            'AMP-GWD-ANIMATION' => new Tag(
+            Extension::GWD_ANIMATION => new Tag(
                 [
                 'tagName' => Extension::GWD_ANIMATION,
                 'attrs' => [['name' => 'timeline-event-prefix']],
@@ -1550,7 +1550,7 @@ final class Tags
                 'requiresExtension' => ['amp-gwd-animation'],
                 ]
             ),
-            'AMP-HULU' => new Tag(
+            Extension::HULU => new Tag(
                 [
                 'tagName' => Extension::HULU,
                 'attrs' => [['name' => 'data-eid', 'mandatory' => true]],
@@ -1561,7 +1561,7 @@ final class Tags
                 'requiresExtension' => ['amp-hulu'],
                 ]
             ),
-            'AMP-IFRAME' => new Tag(
+            Extension::IFRAME => new Tag(
                 [
                 'tagName' => Extension::IFRAME,
                 'attrs' => [
@@ -1590,7 +1590,7 @@ final class Tags
                 'requiresExtension' => ['amp-iframe'],
                 ]
             ),
-            'AMP-IMA-VIDEO' => new Tag(
+            Extension::IMA_VIDEO => new Tag(
                 [
                 'tagName' => Extension::IMA_VIDEO,
                 'attrs' => [
@@ -1670,7 +1670,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'AMP-IMAGE-LIGHTBOX' => new Tag(
+            Extension::IMAGE_LIGHTBOX => new Tag(
                 [
                 'tagName' => Extension::IMAGE_LIGHTBOX,
                 'attrs' => [['name' => 'controls']],
@@ -1680,7 +1680,7 @@ final class Tags
                 'requiresExtension' => ['amp-image-lightbox'],
                 ]
             ),
-            'AMP-IMAGE-SLIDER' => new Tag(
+            Extension::IMAGE_SLIDER => new Tag(
                 [
                 'tagName' => Extension::IMAGE_SLIDER,
                 'attrs' => [
@@ -1735,7 +1735,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'AMP-IMG' => new Tag(
+            Extension::IMG => new Tag(
                 [
                 'tagName' => Extension::IMG,
                 'attrs' => [
@@ -1845,7 +1845,7 @@ final class Tags
                 'enabledBy' => ['transformed'],
                 ]
             ),
-            'AMP-IMGUR' => new Tag(
+            Extension::IMGUR => new Tag(
                 [
                 'tagName' => Extension::IMGUR,
                 'attrs' => [['name' => 'data-imgur-id', 'mandatory' => true]],
@@ -1855,7 +1855,7 @@ final class Tags
                 'requiresExtension' => ['amp-imgur'],
                 ]
             ),
-            'AMP-INLINE-GALLERY' => new Tag(
+            Extension::INLINE_GALLERY => new Tag(
                 [
                 'tagName' => Extension::INLINE_GALLERY,
                 'attrLists' => ['extended-amp-global'],
@@ -1890,7 +1890,7 @@ final class Tags
                 'requiresExtension' => ['amp-inline-gallery'],
                 ]
             ),
-            'AMP-INLINE-GALLERY-THUMBNAILS' => new Tag(
+            Extension::INLINE_GALLERY_THUMBNAILS => new Tag(
                 [
                 'tagName' => Extension::INLINE_GALLERY_THUMBNAILS,
                 'attrs' => [
@@ -1916,7 +1916,7 @@ final class Tags
                 'requiresExtension' => ['amp-inline-gallery'],
                 ]
             ),
-            'AMP-INSTAGRAM' => new Tag(
+            Extension::INSTAGRAM => new Tag(
                 [
                 'tagName' => Extension::INSTAGRAM,
                 'attrs' => [['name' => 'alt'], ['name' => 'data-shortcode', 'mandatory' => true]],
@@ -1926,7 +1926,7 @@ final class Tags
                 'requiresExtension' => ['amp-instagram'],
                 ]
             ),
-            'AMP-INSTALL-SERVICEWORKER' => new Tag(
+            Extension::INSTALL_SERVICEWORKER => new Tag(
                 [
                 'tagName' => Extension::INSTALL_SERVICEWORKER,
                 'attrs' => [
@@ -1947,7 +1947,7 @@ final class Tags
                 'requiresExtension' => ['amp-install-serviceworker'],
                 ]
             ),
-            'AMP-IZLESENE' => new Tag(
+            Extension::IZLESENE => new Tag(
                 [
                 'tagName' => Extension::IZLESENE,
                 'attrs' => [['name' => 'data-videoid', 'mandatory' => true, 'valueRegex' => '[0-9]+']],
@@ -1957,7 +1957,7 @@ final class Tags
                 'requiresExtension' => ['amp-izlesene'],
                 ]
             ),
-            'AMP-JWPLAYER' => new Tag(
+            Extension::JWPLAYER => new Tag(
                 [
                 'tagName' => Extension::JWPLAYER,
                 'attrs' => [
@@ -1981,7 +1981,7 @@ final class Tags
                 'requiresExtension' => ['amp-jwplayer'],
                 ]
             ),
-            'AMP-KALTURA-PLAYER' => new Tag(
+            Extension::KALTURA_PLAYER => new Tag(
                 [
                 'tagName' => Extension::KALTURA_PLAYER,
                 'attrs' => [['name' => 'data-partner', 'mandatory' => true]],
@@ -1991,7 +1991,7 @@ final class Tags
                 'requiresExtension' => ['amp-kaltura-player'],
                 ]
             ),
-            'AMP-LAYOUT' => new Tag(
+            Extension::LAYOUT => new Tag(
                 [
                 'tagName' => Extension::LAYOUT,
                 'attrLists' => ['extended-amp-global'],
@@ -2011,7 +2011,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'AMP-LIGHTBOX' => new Tag(
+            Extension::LIGHTBOX => new Tag(
                 [
                 'tagName' => Extension::LIGHTBOX,
                 'attrs' => [
@@ -2043,7 +2043,7 @@ final class Tags
                 'requiresExtension' => ['amp-lightbox'],
                 ]
             ),
-            'AMP-LINK-REWRITER' => new Tag(
+            Extension::LINK_REWRITER => new Tag(
                 [
                 'tagName' => Extension::LINK_REWRITER,
                 'unique' => true,
@@ -2072,7 +2072,7 @@ final class Tags
                 'requiresExtension' => ['amp-link-rewriter'],
                 ]
             ),
-            'AMP-LIST' => new Tag(
+            Extension::LIST_ => new Tag(
                 [
                 'tagName' => Extension::LIST_,
                 'attrs' => [
@@ -2136,7 +2136,7 @@ final class Tags
                 'requiresExtension' => ['amp-list'],
                 ]
             ),
-            'AMP-LIST-LOAD-MORE' => new Tag(
+            Extension::LIST_LOAD_MORE => new Tag(
                 [
                 'tagName' => Extension::LIST_LOAD_MORE,
                 'mandatoryParent' => 'AMP-LIST',
@@ -2193,7 +2193,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'AMP-LIVE-LIST' => new Tag(
+            Extension::LIVE_LIST => new Tag(
                 [
                 'tagName' => Extension::LIVE_LIST,
                 'attrs' => [
@@ -2255,7 +2255,7 @@ final class Tags
                 'descriptiveName' => 'amp-live-list [update]',
                 ]
             ),
-            'AMP-MATHML' => new Tag(
+            Extension::MATHML => new Tag(
                 [
                 'tagName' => Extension::MATHML,
                 'attrs' => [['name' => 'data-formula', 'mandatory' => true], ['name' => 'inline']],
@@ -2265,7 +2265,7 @@ final class Tags
                 'requiresExtension' => ['amp-mathml'],
                 ]
             ),
-            'AMP-MEGA-MENU' => new Tag(
+            Extension::MEGA_MENU => new Tag(
                 [
                 'tagName' => Extension::MEGA_MENU,
                 'attrLists' => ['extended-amp-global'],
@@ -2388,7 +2388,7 @@ final class Tags
                 'requiresExtension' => ['amp-megaphone'],
                 ]
             ),
-            'AMP-MINUTE-MEDIA-PLAYER' => new Tag(
+            Extension::MINUTE_MEDIA_PLAYER => new Tag(
                 [
                 'tagName' => Extension::MINUTE_MEDIA_PLAYER,
                 'attrs' => [
@@ -2409,7 +2409,7 @@ final class Tags
                 'requiresExtension' => ['amp-minute-media-player'],
                 ]
             ),
-            'AMP-MOWPLAYER' => new Tag(
+            Extension::MOWPLAYER => new Tag(
                 [
                 'tagName' => Extension::MOWPLAYER,
                 'attrs' => [['name' => 'autoplay'], ['name' => 'data-mediaid', 'mandatory' => true]],
@@ -2419,7 +2419,7 @@ final class Tags
                 'requiresExtension' => ['amp-mowplayer'],
                 ]
             ),
-            'AMP-NESTED-MENU' => new Tag(
+            Extension::NESTED_MENU => new Tag(
                 [
                 'tagName' => Extension::NESTED_MENU,
                 'attrs' => [['name' => 'side', 'value' => ['left', 'right']]],
@@ -2544,7 +2544,7 @@ final class Tags
                 'requiresExtension' => ['amp-next-page'],
                 ]
             ),
-            'AMP-NEXXTV-PLAYER' => new Tag(
+            Extension::NEXXTV_PLAYER => new Tag(
                 [
                 'tagName' => Extension::NEXXTV_PLAYER,
                 'attrs' => [
@@ -2560,7 +2560,7 @@ final class Tags
                 'requiresExtension' => ['amp-nexxtv-player'],
                 ]
             ),
-            'AMP-O2-PLAYER' => new Tag(
+            Extension::O2_PLAYER => new Tag(
                 [
                 'tagName' => Extension::O2_PLAYER,
                 'attrs' => [['name' => 'data-bcid', 'mandatory' => true], ['name' => 'data-pid', 'mandatory' => true]],
@@ -2570,7 +2570,7 @@ final class Tags
                 'requiresExtension' => ['amp-o2-player'],
                 ]
             ),
-            'AMP-ONETAP-GOOGLE' => new Tag(
+            Extension::ONETAP_GOOGLE => new Tag(
                 [
                 'tagName' => Extension::ONETAP_GOOGLE,
                 'unique' => true,
@@ -2581,7 +2581,7 @@ final class Tags
                 'requiresExtension' => ['amp-onetap-google'],
                 ]
             ),
-            'AMP-OOYALA-PLAYER' => new Tag(
+            Extension::OOYALA_PLAYER => new Tag(
                 [
                 'tagName' => Extension::OOYALA_PLAYER,
                 'attrs' => [
@@ -2595,7 +2595,7 @@ final class Tags
                 'requiresExtension' => ['amp-ooyala-player'],
                 ]
             ),
-            'AMP-ORIENTATION-OBSERVER' => new Tag(
+            Extension::ORIENTATION_OBSERVER => new Tag(
                 [
                 'tagName' => Extension::ORIENTATION_OBSERVER,
                 'attrs' => [
@@ -2610,7 +2610,7 @@ final class Tags
                 'requiresExtension' => ['amp-orientation-observer'],
                 ]
             ),
-            'AMP-PAN-ZOOM' => new Tag(
+            Extension::PAN_ZOOM => new Tag(
                 [
                 'tagName' => Extension::PAN_ZOOM,
                 'attrs' => [
@@ -2627,7 +2627,7 @@ final class Tags
                 'requiresExtension' => ['amp-pan-zoom'],
                 ]
             ),
-            'AMP-PINTEREST' => new Tag(
+            Extension::PINTEREST => new Tag(
                 [
                 'tagName' => Extension::PINTEREST,
                 'attrs' => [['name' => 'alt'], ['name' => 'data-do', 'mandatory' => true]],
@@ -2638,7 +2638,7 @@ final class Tags
                 'requiresExtension' => ['amp-pinterest'],
                 ]
             ),
-            'AMP-PIXEL' => new Tag(
+            Extension::PIXEL => new Tag(
                 [
                 'tagName' => Extension::PIXEL,
                 'attrs' => [
@@ -2657,7 +2657,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'AMP-PLAYBUZZ' => new Tag(
+            Extension::PLAYBUZZ => new Tag(
                 [
                 'tagName' => Extension::PLAYBUZZ,
                 'attrs' => [
@@ -2673,7 +2673,7 @@ final class Tags
                 'requiresExtension' => ['amp-playbuzz'],
                 ]
             ),
-            'AMP-POSITION-OBSERVER' => new Tag(
+            Extension::POSITION_OBSERVER => new Tag(
                 [
                 'tagName' => Extension::POSITION_OBSERVER,
                 'attrs' => [
@@ -2691,7 +2691,7 @@ final class Tags
                 'requiresExtension' => ['amp-position-observer'],
                 ]
             ),
-            'AMP-POWR-PLAYER' => new Tag(
+            Extension::POWR_PLAYER => new Tag(
                 [
                 'tagName' => Extension::POWR_PLAYER,
                 'attrs' => [
@@ -2709,7 +2709,7 @@ final class Tags
                 'requiresExtension' => ['amp-powr-player'],
                 ]
             ),
-            'AMP-REACH-PLAYER' => new Tag(
+            Extension::REACH_PLAYER => new Tag(
                 [
                 'tagName' => Extension::REACH_PLAYER,
                 'attrs' => [['name' => 'data-embed-id', 'mandatory' => true, 'valueRegex' => '[0-9a-z-]+']],
@@ -2719,7 +2719,7 @@ final class Tags
                 'requiresExtension' => ['amp-reach-player'],
                 ]
             ),
-            'AMP-RECAPTCHA-INPUT' => new Tag(
+            Extension::RECAPTCHA_INPUT => new Tag(
                 [
                 'tagName' => Extension::RECAPTCHA_INPUT,
                 'attrs' => [['name' => 'data-sitekey', 'mandatory' => true], ['name' => 'data-action', 'mandatory' => true]],
@@ -2730,7 +2730,7 @@ final class Tags
                 'requiresExtension' => ['amp-form', 'amp-recaptcha-input'],
                 ]
             ),
-            'AMP-REDBULL-PLAYER' => new Tag(
+            Extension::REDBULL_PLAYER => new Tag(
                 [
                 'tagName' => Extension::REDBULL_PLAYER,
                 'attrs' => [['name' => 'data-param-videoid', 'mandatory' => true]],
@@ -2740,7 +2740,7 @@ final class Tags
                 'requiresExtension' => ['amp-redbull-player'],
                 ]
             ),
-            'AMP-REDDIT' => new Tag(
+            Extension::REDDIT => new Tag(
                 [
                 'tagName' => Extension::REDDIT,
                 'attrs' => [
@@ -2755,7 +2755,7 @@ final class Tags
                 'requiresExtension' => ['amp-reddit'],
                 ]
             ),
-            'AMP-RIDDLE-QUIZ' => new Tag(
+            Extension::RIDDLE_QUIZ => new Tag(
                 [
                 'tagName' => Extension::RIDDLE_QUIZ,
                 'attrs' => [['name' => 'data-riddle-id', 'mandatory' => true, 'valueRegex' => '[0-9]+']],
@@ -2766,7 +2766,7 @@ final class Tags
                 'requiresExtension' => ['amp-riddle-quiz'],
                 ]
             ),
-            'AMP-SCRIPT' => new Tag(
+            Extension::SCRIPT => new Tag(
                 [
                 'tagName' => Extension::SCRIPT,
                 'attrs' => [
@@ -2825,7 +2825,7 @@ final class Tags
                 'requiresExtension' => ['amp-script'],
                 ]
             ),
-            'AMP-SELECTOR' => new Tag(
+            Extension::SELECTOR => new Tag(
                 [
                 'tagName' => Extension::SELECTOR,
                 'attrs' => [
@@ -2904,7 +2904,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4EMAIL'],
                 ]
             ),
-            'AMP-SKIMLINKS' => new Tag(
+            Extension::SKIMLINKS => new Tag(
                 [
                 'tagName' => Extension::SKIMLINKS,
                 'attrs' => [
@@ -2921,7 +2921,7 @@ final class Tags
                 'requiresExtension' => ['amp-skimlinks'],
                 ]
             ),
-            'AMP-SMARTLINKS' => new Tag(
+            Extension::SMARTLINKS => new Tag(
                 [
                 'tagName' => Extension::SMARTLINKS,
                 'attrs' => [
@@ -2937,7 +2937,7 @@ final class Tags
                 'requiresExtension' => ['amp-smartlinks'],
                 ]
             ),
-            'AMP-SOCIAL-SHARE' => new Tag(
+            Extension::SOCIAL_SHARE => new Tag(
                 [
                 'tagName' => Extension::SOCIAL_SHARE,
                 'attrs' => [
@@ -2976,7 +2976,7 @@ final class Tags
                 'requiresExtension' => ['amp-social-share'],
                 ]
             ),
-            'AMP-SOUNDCLOUD' => new Tag(
+            Extension::SOUNDCLOUD => new Tag(
                 [
                 'tagName' => Extension::SOUNDCLOUD,
                 'attrs' => [
@@ -2996,7 +2996,7 @@ final class Tags
                 'requiresExtension' => ['amp-soundcloud'],
                 ]
             ),
-            'AMP-SPRINGBOARD-PLAYER' => new Tag(
+            Extension::SPRINGBOARD_PLAYER => new Tag(
                 [
                 'tagName' => Extension::SPRINGBOARD_PLAYER,
                 'attrs' => [
@@ -3046,7 +3046,7 @@ final class Tags
                 'requiresExtension' => ['amp-bind'],
                 ]
             ),
-            'AMP-STICKY-AD' => new Tag(
+            Extension::STICKY_AD => new Tag(
                 [
                 'tagName' => Extension::STICKY_AD,
                 'unique' => true,
@@ -3058,7 +3058,7 @@ final class Tags
                 'requiresExtension' => ['amp-sticky-ad'],
                 ]
             ),
-            'AMP-STORY' => new Tag(
+            Extension::STORY => new Tag(
                 [
                 'tagName' => Extension::STORY,
                 'mandatoryParent' => 'BODY',
@@ -3097,7 +3097,7 @@ final class Tags
                 'siblingsDisallowed' => true,
                 ]
             ),
-            'AMP-STORY-360' => new Tag(
+            Extension::STORY_360 => new Tag(
                 [
                 'tagName' => Extension::STORY_360,
                 'attrs' => [
@@ -3121,7 +3121,7 @@ final class Tags
                 'requiresExtension' => ['amp-story-360'],
                 ]
             ),
-            'AMP-STORY-ANIMATION' => new Tag(
+            Extension::STORY_ANIMATION => new Tag(
                 [
                 'tagName' => Extension::STORY_ANIMATION,
                 'mandatoryParent' => 'AMP-STORY-PAGE',
@@ -3153,7 +3153,7 @@ final class Tags
                 'satisfies' => ['amp-story-animation json script'],
                 ]
             ),
-            'AMP-STORY-AUTO-ADS' => new Tag(
+            Extension::STORY_AUTO_ADS => new Tag(
                 [
                 'tagName' => Extension::STORY_AUTO_ADS,
                 'unique' => true,
@@ -3195,7 +3195,7 @@ final class Tags
                 'requiresExtension' => ['amp-story-auto-ads'],
                 ]
             ),
-            'AMP-STORY-BOOKEND' => new Tag(
+            Extension::STORY_BOOKEND => new Tag(
                 [
                 'tagName' => Extension::STORY_BOOKEND,
                 'attrs' => [
@@ -3229,7 +3229,7 @@ final class Tags
                 'mandatoryLastChild' => true,
                 ]
             ),
-            'AMP-STORY-CONSENT' => new Tag(
+            Extension::STORY_CONSENT => new Tag(
                 [
                 'tagName' => Extension::STORY_CONSENT,
                 'mandatoryParent' => 'AMP-CONSENT',
@@ -3262,7 +3262,7 @@ final class Tags
                 'requiresExtension' => ['amp-consent', 'amp-story'],
                 ]
             ),
-            'AMP-STORY-CTA-LAYER' => new Tag(
+            Extension::STORY_CTA_LAYER => new Tag(
                 [
                 'tagName' => Extension::STORY_CTA_LAYER,
                 'mandatoryAncestor' => 'AMP-STORY-PAGE',
@@ -3316,7 +3316,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'AMP-STORY-GRID-LAYER' => new Tag(
+            Extension::STORY_GRID_LAYER => new Tag(
                 [
                 'tagName' => Extension::STORY_GRID_LAYER,
                 'attrs' => [
@@ -3437,7 +3437,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'AMP-STORY-INTERACTIVE-BINARY-POLL' => new Tag(
+            Extension::STORY_INTERACTIVE_BINARY_POLL => new Tag(
                 [
                 'tagName' => Extension::STORY_INTERACTIVE_BINARY_POLL,
                 'attrs' => [
@@ -3452,7 +3452,7 @@ final class Tags
                 'requiresExtension' => ['amp-story-interactive'],
                 ]
             ),
-            'AMP-STORY-INTERACTIVE-POLL' => new Tag(
+            Extension::STORY_INTERACTIVE_POLL => new Tag(
                 [
                 'tagName' => Extension::STORY_INTERACTIVE_POLL,
                 'attrLists' => [
@@ -3466,7 +3466,7 @@ final class Tags
                 'requiresExtension' => ['amp-story-interactive'],
                 ]
             ),
-            'AMP-STORY-INTERACTIVE-QUIZ' => new Tag(
+            Extension::STORY_INTERACTIVE_QUIZ => new Tag(
                 [
                 'tagName' => Extension::STORY_INTERACTIVE_QUIZ,
                 'attrs' => [
@@ -3495,7 +3495,7 @@ final class Tags
                 'requiresExtension' => ['amp-story-interactive'],
                 ]
             ),
-            'AMP-STORY-INTERACTIVE-RESULTS' => new Tag(
+            Extension::STORY_INTERACTIVE_RESULTS => new Tag(
                 [
                 'tagName' => Extension::STORY_INTERACTIVE_RESULTS,
                 'attrs' => [
@@ -3532,7 +3532,7 @@ final class Tags
                 'requiresExtension' => ['amp-story-interactive'],
                 ]
             ),
-            'AMP-STORY-PAGE' => new Tag(
+            Extension::STORY_PAGE => new Tag(
                 [
                 'tagName' => Extension::STORY_PAGE,
                 'mandatoryParent' => 'AMP-STORY',
@@ -3587,7 +3587,7 @@ final class Tags
                 'mandatoryLastChild' => true,
                 ]
             ),
-            'AMP-STORY-PANNING-MEDIA' => new Tag(
+            Extension::STORY_PANNING_MEDIA => new Tag(
                 [
                 'tagName' => Extension::STORY_PANNING_MEDIA,
                 'specUrl' => 'https://amp.dev/documentation/components/amp-story-panning-media',
@@ -3597,7 +3597,7 @@ final class Tags
                 'requiresExtension' => ['amp-story-panning-media'],
                 ]
             ),
-            'AMP-STORY-PLAYER' => new Tag(
+            Extension::STORY_PLAYER => new Tag(
                 [
                 'tagName' => Extension::STORY_PLAYER,
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'RESPONSIVE', 'INTRINSIC']],
@@ -3687,7 +3687,7 @@ final class Tags
                 'requiresExtension' => ['amp-subscriptions'],
                 ]
             ),
-            'AMP-TIMEAGO' => new Tag(
+            Extension::TIMEAGO => new Tag(
                 [
                 'tagName' => Extension::TIMEAGO,
                 'attrs' => [
@@ -3708,7 +3708,7 @@ final class Tags
                 'requiresExtension' => ['amp-timeago'],
                 ]
             ),
-            'AMP-TRUNCATE-TEXT' => new Tag(
+            Extension::TRUNCATE_TEXT => new Tag(
                 [
                 'tagName' => Extension::TRUNCATE_TEXT,
                 'attrs' => [['name' => 'overflow-style', 'value' => ['right', 'default']]],
@@ -3730,7 +3730,7 @@ final class Tags
                 'requiresExtension' => ['amp-truncate-text'],
                 ]
             ),
-            'AMP-TWITTER' => new Tag(
+            Extension::TWITTER => new Tag(
                 [
                 'tagName' => Extension::TWITTER,
                 'attrs' => [
@@ -3776,7 +3776,7 @@ final class Tags
                 'requiresExtension' => ['amp-twitter'],
                 ]
             ),
-            'AMP-USER-NOTIFICATION' => new Tag(
+            Extension::USER_NOTIFICATION => new Tag(
                 [
                 'tagName' => Extension::USER_NOTIFICATION,
                 'attrs' => [
@@ -3796,7 +3796,7 @@ final class Tags
                 'requiresExtension' => ['amp-user-notification'],
                 ]
             ),
-            'AMP-VIDEO' => new Tag(
+            Extension::VIDEO => new Tag(
                 [
                 'tagName' => Extension::VIDEO,
                 'attrs' => [['name' => 'poster']],
@@ -3925,7 +3925,7 @@ final class Tags
                 'extensionSpec' => ['name' => 'amp-video', 'version' => ['0.1', 'latest'], 'requiresUsage' => 'NONE'],
                 ]
             ),
-            'AMP-VIMEO' => new Tag(
+            Extension::VIMEO => new Tag(
                 [
                 'tagName' => Extension::VIMEO,
                 'attrs' => [['name' => 'autoplay', 'value' => ['']], ['name' => 'data-videoid', 'mandatory' => true, 'valueRegex' => '[0-9]+']],
@@ -3935,7 +3935,7 @@ final class Tags
                 'requiresExtension' => ['amp-vimeo'],
                 ]
             ),
-            'AMP-VINE' => new Tag(
+            Extension::VINE => new Tag(
                 [
                 'tagName' => Extension::VINE,
                 'attrs' => [['name' => 'data-vineid', 'mandatory' => true]],
@@ -3945,7 +3945,7 @@ final class Tags
                 'requiresExtension' => ['amp-vine'],
                 ]
             ),
-            'AMP-VIQEO-PLAYER' => new Tag(
+            Extension::VIQEO_PLAYER => new Tag(
                 [
                 'tagName' => Extension::VIQEO_PLAYER,
                 'attrs' => [
@@ -3959,7 +3959,7 @@ final class Tags
                 'requiresExtension' => ['amp-viqeo-player'],
                 ]
             ),
-            'AMP-VK' => new Tag(
+            Extension::VK => new Tag(
                 [
                 'tagName' => Extension::VK,
                 'attrs' => [['name' => 'data-embedtype', 'mandatory' => true]],
@@ -3969,7 +3969,7 @@ final class Tags
                 'requiresExtension' => ['amp-vk'],
                 ]
             ),
-            'AMP-WEB-PUSH' => new Tag(
+            Extension::WEB_PUSH => new Tag(
                 [
                 'tagName' => Extension::WEB_PUSH,
                 'attrs' => [
@@ -3998,7 +3998,7 @@ final class Tags
                 'requiresExtension' => ['amp-web-push'],
                 ]
             ),
-            'AMP-WEB-PUSH-WIDGET' => new Tag(
+            Extension::WEB_PUSH_WIDGET => new Tag(
                 [
                 'tagName' => Extension::WEB_PUSH_WIDGET,
                 'attrs' => [['name' => 'visibility', 'mandatory' => true, 'value' => ['blocked', 'subscribed', 'unsubscribed']]],
@@ -4009,7 +4009,7 @@ final class Tags
                 'requiresExtension' => ['amp-web-push'],
                 ]
             ),
-            'AMP-WISTIA-PLAYER' => new Tag(
+            Extension::WISTIA_PLAYER => new Tag(
                 [
                 'tagName' => Extension::WISTIA_PLAYER,
                 'attrs' => [
@@ -4022,7 +4022,7 @@ final class Tags
                 'requiresExtension' => ['amp-wistia-player'],
                 ]
             ),
-            'AMP-YOTPO' => new Tag(
+            Extension::YOTPO => new Tag(
                 [
                 'tagName' => Extension::YOTPO,
                 'attrs' => [['name' => 'data-app-key', 'mandatory' => true], ['name' => 'data-widget-type', 'mandatory' => true]],
@@ -4033,7 +4033,7 @@ final class Tags
                 'requiresExtension' => ['amp-yotpo'],
                 ]
             ),
-            'AMP-YOUTUBE' => new Tag(
+            Extension::YOUTUBE => new Tag(
                 [
                 'tagName' => Extension::YOUTUBE,
                 'attrs' => [
@@ -4147,19 +4147,19 @@ final class Tags
                 'descriptiveName' => 'amphtml engine script',
                 ]
             ),
-            'ARTICLE' => new Tag(
+            Element::ARTICLE => new Tag(
                 [
                 'tagName' => Element::ARTICLE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'ASIDE' => new Tag(
+            Element::ASIDE => new Tag(
                 [
                 'tagName' => Element::ASIDE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'AUDIO' => new Tag(
+            Element::AUDIO => new Tag(
                 [
                 'tagName' => Element::AUDIO,
                 'attrs' => [
@@ -4217,13 +4217,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'B' => new Tag(
+            Element::B => new Tag(
                 [
                 'tagName' => Element::B,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'BASE' => new Tag(
+            Element::BASE => new Tag(
                 [
                 'tagName' => Element::BASE,
                 'unique' => true,
@@ -4232,26 +4232,26 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'BDI' => new Tag(
+            Element::BDI => new Tag(
                 [
                 'tagName' => Element::BDI,
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'BDO' => new Tag(
+            Element::BDO => new Tag(
                 [
                 'tagName' => Element::BDO,
                 'attrs' => [['name' => 'dir']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'BIG' => new Tag(
+            Element::BIG => new Tag(
                 [
                 'tagName' => Element::BIG,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'BLOCKQUOTE' => new Tag(
+            Element::BLOCKQUOTE => new Tag(
                 [
                 'tagName' => Element::BLOCKQUOTE,
                 'attrs' => [['name' => 'align']],
@@ -4259,7 +4259,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'BODY' => new Tag(
+            Element::BODY => new Tag(
                 [
                 'tagName' => Element::BODY,
                 'mandatory' => true,
@@ -4269,13 +4269,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'BR' => new Tag(
+            Element::BR => new Tag(
                 [
                 'tagName' => Element::BR,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'BUTTON' => new Tag(
+            Element::BUTTON => new Tag(
                 [
                 'tagName' => Element::BUTTON,
                 'attrs' => [
@@ -4301,7 +4301,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'CANVAS' => new Tag(
+            Element::CANVAS => new Tag(
                 [
                 'tagName' => Element::CANVAS,
                 'attrs' => [['name' => 'height'], ['name' => 'width']],
@@ -4311,19 +4311,19 @@ final class Tags
                 'requiresExtension' => ['amp-script'],
                 ]
             ),
-            'CAPTION' => new Tag(
+            Element::CAPTION => new Tag(
                 [
                 'tagName' => Element::CAPTION,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'CENTER' => new Tag(
+            Element::CENTER => new Tag(
                 [
                 'tagName' => Element::CENTER,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'CIRCLE' => new Tag(
+            Element::CIRCLE => new Tag(
                 [
                 'tagName' => Element::CIRCLE,
                 'attrs' => [
@@ -4340,13 +4340,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'CITE' => new Tag(
+            Element::CITE => new Tag(
                 [
                 'tagName' => Element::CITE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'CLIPPATH' => new Tag(
+            Element::CLIPPATH => new Tag(
                 [
                 'tagName' => Element::CLIPPATH,
                 'attrs' => [['name' => 'clippathunits'], ['name' => 'externalresourcesrequired'], ['name' => 'transform']],
@@ -4356,20 +4356,20 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'CODE' => new Tag(
+            Element::CODE => new Tag(
                 [
                 'tagName' => Element::CODE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'COL' => new Tag(
+            Element::COL => new Tag(
                 [
                 'tagName' => Element::COL,
                 'attrs' => [['name' => 'span']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'COLGROUP' => new Tag(
+            Element::COLGROUP => new Tag(
                 [
                 'tagName' => Element::COLGROUP,
                 'attrs' => [['name' => 'span']],
@@ -4391,26 +4391,26 @@ final class Tags
                 'requiresExtension' => ['amp-subscriptions'],
                 ]
             ),
-            'DATA' => new Tag(
+            Element::DATA => new Tag(
                 [
                 'tagName' => Element::DATA,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'DATALIST' => new Tag(
+            Element::DATALIST => new Tag(
                 [
                 'tagName' => Element::DATALIST,
                 'specUrl' => 'https://amp.dev/documentation/components/amp-form/',
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'DD' => new Tag(
+            Element::DD => new Tag(
                 [
                 'tagName' => Element::DD,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'DEFS' => new Tag(
+            Element::DEFS => new Tag(
                 [
                 'tagName' => Element::DEFS,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'transform']],
@@ -4420,7 +4420,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'DEL' => new Tag(
+            Element::DEL => new Tag(
                 [
                 'tagName' => Element::DEL,
                 'attrs' => [['name' => 'datetime']],
@@ -4428,7 +4428,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'DESC' => new Tag(
+            Element::DESC => new Tag(
                 [
                 'tagName' => Element::DESC,
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
@@ -4437,26 +4437,26 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'DETAILS' => new Tag(
+            Element::DETAILS => new Tag(
                 [
                 'tagName' => Element::DETAILS,
                 'attrs' => [['name' => 'open', 'value' => ['']], ['name' => '[open]']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'DFN' => new Tag(
+            Element::DFN => new Tag(
                 [
                 'tagName' => Element::DFN,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'DIR' => new Tag(
+            Element::DIR => new Tag(
                 [
                 'tagName' => Element::DIR,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'DIV' => new Tag(
+            Element::DIV => new Tag(
                 [
                 'tagName' => Element::DIV,
                 'attrs' => [['name' => 'align']],
@@ -4486,19 +4486,19 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'DL' => new Tag(
+            Element::DL => new Tag(
                 [
                 'tagName' => Element::DL,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'DT' => new Tag(
+            Element::DT => new Tag(
                 [
                 'tagName' => Element::DT,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'ELLIPSE' => new Tag(
+            Element::ELLIPSE => new Tag(
                 [
                 'tagName' => Element::ELLIPSE,
                 'attrs' => [
@@ -4516,13 +4516,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'EM' => new Tag(
+            Element::EM => new Tag(
                 [
                 'tagName' => Element::EM,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'FECOLORMATRIX' => new Tag(
+            Element::FECOLORMATRIX => new Tag(
                 [
                 'tagName' => Element::FECOLORMATRIX,
                 'attrs' => [['name' => 'in'], ['name' => 'type'], ['name' => 'values']],
@@ -4532,7 +4532,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'FECOMPOSITE' => new Tag(
+            Element::FECOMPOSITE => new Tag(
                 [
                 'tagName' => Element::FECOMPOSITE,
                 'attrs' => [
@@ -4550,7 +4550,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'FEFLOOD' => new Tag(
+            Element::FEFLOOD => new Tag(
                 [
                 'tagName' => Element::FEFLOOD,
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
@@ -4559,7 +4559,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'FEGAUSSIANBLUR' => new Tag(
+            Element::FEGAUSSIANBLUR => new Tag(
                 [
                 'tagName' => Element::FEGAUSSIANBLUR,
                 'attrs' => [['name' => 'edgemode'], ['name' => 'in'], ['name' => 'stddeviation']],
@@ -4569,7 +4569,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'FEMERGE' => new Tag(
+            Element::FEMERGE => new Tag(
                 [
                 'tagName' => Element::FEMERGE,
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
@@ -4578,7 +4578,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'FEMERGENODE' => new Tag(
+            Element::FEMERGENODE => new Tag(
                 [
                 'tagName' => Element::FEMERGENODE,
                 'attrs' => [['name' => 'in']],
@@ -4588,7 +4588,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'FEOFFSET' => new Tag(
+            Element::FEOFFSET => new Tag(
                 [
                 'tagName' => Element::FEOFFSET,
                 'attrs' => [['name' => 'dx'], ['name' => 'dy'], ['name' => 'in']],
@@ -4598,7 +4598,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'FIELDSET' => new Tag(
+            Element::FIELDSET => new Tag(
                 [
                 'tagName' => Element::FIELDSET,
                 'attrs' => [['name' => 'disabled'], ['name' => '[disabled]']],
@@ -4606,19 +4606,19 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'FIGCAPTION' => new Tag(
+            Element::FIGCAPTION => new Tag(
                 [
                 'tagName' => Element::FIGCAPTION,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'FIGURE' => new Tag(
+            Element::FIGURE => new Tag(
                 [
                 'tagName' => Element::FIGURE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'FILTER' => new Tag(
+            Element::FILTER => new Tag(
                 [
                 'tagName' => Element::FILTER,
                 'attrs' => [
@@ -4637,7 +4637,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'FOOTER' => new Tag(
+            Element::FOOTER => new Tag(
                 [
                 'tagName' => Element::FOOTER,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -4829,7 +4829,7 @@ final class Tags
                 'requiresExtension' => ['amp-form'],
                 ]
             ),
-            'G' => new Tag(
+            Element::G => new Tag(
                 [
                 'tagName' => Element::G,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'transform']],
@@ -4839,7 +4839,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'GLYPH' => new Tag(
+            Element::GLYPH => new Tag(
                 [
                 'tagName' => Element::GLYPH,
                 'attrs' => [
@@ -4859,7 +4859,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'GLYPHREF' => new Tag(
+            Element::GLYPHREF => new Tag(
                 [
                 'tagName' => Element::GLYPHREF,
                 'attrs' => [['name' => 'dx'], ['name' => 'dy'], ['name' => 'format'], ['name' => 'glyphref'], ['name' => 'x'], ['name' => 'y']],
@@ -4869,14 +4869,14 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'H1' => new Tag(
+            Element::H1 => new Tag(
                 [
                 'tagName' => Element::H1,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'H2' => new Tag(
+            Element::H2 => new Tag(
                 [
                 'tagName' => Element::H2,
                 'attrs' => [['name' => 'align']],
@@ -4892,7 +4892,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'H3' => new Tag(
+            Element::H3 => new Tag(
                 [
                 'tagName' => Element::H3,
                 'attrs' => [['name' => 'align']],
@@ -4908,7 +4908,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'H4' => new Tag(
+            Element::H4 => new Tag(
                 [
                 'tagName' => Element::H4,
                 'attrs' => [['name' => 'align']],
@@ -4924,7 +4924,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'H5' => new Tag(
+            Element::H5 => new Tag(
                 [
                 'tagName' => Element::H5,
                 'attrs' => [['name' => 'align']],
@@ -4940,7 +4940,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'H6' => new Tag(
+            Element::H6 => new Tag(
                 [
                 'tagName' => Element::H6,
                 'attrs' => [['name' => 'align']],
@@ -4956,7 +4956,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'HEAD' => new Tag(
+            Element::HEAD => new Tag(
                 [
                 'tagName' => Element::HEAD,
                 'mandatory' => true,
@@ -5046,19 +5046,19 @@ final class Tags
                 'descriptiveName' => 'head > style[amp4email-boilerplate]',
                 ]
             ),
-            'HEADER' => new Tag(
+            Element::HEADER => new Tag(
                 [
                 'tagName' => Element::HEADER,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'HGROUP' => new Tag(
+            Element::HGROUP => new Tag(
                 [
                 'tagName' => Element::HGROUP,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'HKERN' => new Tag(
+            Element::HKERN => new Tag(
                 [
                 'tagName' => Element::HKERN,
                 'attrs' => [['name' => 'g1'], ['name' => 'g2'], ['name' => 'k'], ['name' => 'u1'], ['name' => 'u2']],
@@ -5068,13 +5068,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'HR' => new Tag(
+            Element::HR => new Tag(
                 [
                 'tagName' => Element::HR,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'HTML' => new Tag(
+            Element::HTML => new Tag(
                 [
                 'tagName' => Element::HTML,
                 'mandatory' => true,
@@ -5126,7 +5126,7 @@ final class Tags
                 'descriptiveName' => 'html !doctype',
                 ]
             ),
-            'I' => new Tag(
+            Element::I => new Tag(
                 [
                 'tagName' => Element::I,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -5160,7 +5160,7 @@ final class Tags
                 'enabledBy' => ['transformed'],
                 ]
             ),
-            'IFRAME' => new Tag(
+            Element::IFRAME => new Tag(
                 [
                 'tagName' => Element::IFRAME,
                 'attrs' => [
@@ -5186,7 +5186,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'IMAGE' => new Tag(
+            Element::IMAGE => new Tag(
                 [
                 'tagName' => Element::IMAGE,
                 'attrs' => [
@@ -5236,7 +5236,7 @@ final class Tags
                 'enabledBy' => ['transformed'],
                 ]
             ),
-            'INPUT' => new Tag(
+            Element::INPUT => new Tag(
                 [
                 'tagName' => Element::INPUT,
                 'attrs' => [
@@ -5353,7 +5353,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'INS' => new Tag(
+            Element::INS => new Tag(
                 [
                 'tagName' => Element::INS,
                 'attrs' => [['name' => 'datetime']],
@@ -5361,13 +5361,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'KBD' => new Tag(
+            Element::KBD => new Tag(
                 [
                 'tagName' => Element::KBD,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'LABEL' => new Tag(
+            Element::LABEL => new Tag(
                 [
                 'tagName' => Element::LABEL,
                 'attrs' => [['name' => 'for']],
@@ -5375,20 +5375,20 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'LEGEND' => new Tag(
+            Element::LEGEND => new Tag(
                 [
                 'tagName' => Element::LEGEND,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'LI' => new Tag(
+            Element::LI => new Tag(
                 [
                 'tagName' => Element::LI,
                 'attrs' => [['name' => 'value', 'valueRegex' => '[0-9]*']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'LINE' => new Tag(
+            Element::LINE => new Tag(
                 [
                 'tagName' => Element::LINE,
                 'attrs' => [
@@ -5406,7 +5406,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'LINEARGRADIENT' => new Tag(
+            Element::LINEARGRADIENT => new Tag(
                 [
                 'tagName' => Element::LINEARGRADIENT,
                 'attrs' => [
@@ -5580,25 +5580,25 @@ final class Tags
                 'descriptiveName' => 'link rel=stylesheet for fonts',
                 ]
             ),
-            'LISTING' => new Tag(
+            Element::LISTING => new Tag(
                 [
                 'tagName' => Element::LISTING,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'MAIN' => new Tag(
+            Element::MAIN => new Tag(
                 [
                 'tagName' => Element::MAIN,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'MARK' => new Tag(
+            Element::MARK => new Tag(
                 [
                 'tagName' => Element::MARK,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'MARKER' => new Tag(
+            Element::MARKER => new Tag(
                 [
                 'tagName' => Element::MARKER,
                 'attrs' => [
@@ -5619,7 +5619,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'MASK' => new Tag(
+            Element::MASK => new Tag(
                 [
                 'tagName' => Element::MASK,
                 'attrs' => [
@@ -5650,7 +5650,7 @@ final class Tags
                 'descriptiveName' => 'meta charset=utf-8',
                 ]
             ),
-            'METADATA' => new Tag(
+            Element::METADATA => new Tag(
                 [
                 'tagName' => Element::METADATA,
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
@@ -6209,7 +6209,7 @@ final class Tags
                 'descriptiveName' => 'meta name=viewport',
                 ]
             ),
-            'METER' => new Tag(
+            Element::METER => new Tag(
                 [
                 'tagName' => Element::METER,
                 'attrs' => [
@@ -6223,31 +6223,31 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'MULTICOL' => new Tag(
+            Element::MULTICOL => new Tag(
                 [
                 'tagName' => Element::MULTICOL,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'NAV' => new Tag(
+            Element::NAV => new Tag(
                 [
                 'tagName' => Element::NAV,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'NEXTID' => new Tag(
+            Element::NEXTID => new Tag(
                 [
                 'tagName' => Element::NEXTID,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'NOBR' => new Tag(
+            Element::NOBR => new Tag(
                 [
                 'tagName' => Element::NOBR,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'NOSCRIPT' => new Tag(
+            Element::NOSCRIPT => new Tag(
                 [
                 'tagName' => Element::NOSCRIPT,
                 'disallowedAncestor' => ['NOSCRIPT'],
@@ -6349,13 +6349,13 @@ final class Tags
                 'descriptiveName' => 'noscript enclosure for boilerplate',
                 ]
             ),
-            'O:P' => new Tag(
+            Element::O_P => new Tag(
                 [
                 'tagName' => Element::O_P,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'OL' => new Tag(
+            Element::OL => new Tag(
                 [
                 'tagName' => Element::OL,
                 'attrs' => [
@@ -6366,7 +6366,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'OPTGROUP' => new Tag(
+            Element::OPTGROUP => new Tag(
                 [
                 'tagName' => Element::OPTGROUP,
                 'mandatoryParent' => 'SELECT',
@@ -6375,7 +6375,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'OPTION' => new Tag(
+            Element::OPTION => new Tag(
                 [
                 'tagName' => Element::OPTION,
                 'attrs' => [
@@ -6392,7 +6392,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'OUTPUT' => new Tag(
+            Element::OUTPUT => new Tag(
                 [
                 'tagName' => Element::OUTPUT,
                 'attrs' => [['name' => 'for'], ['name' => 'form']],
@@ -6400,14 +6400,14 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'P' => new Tag(
+            Element::P => new Tag(
                 [
                 'tagName' => Element::P,
                 'attrs' => [['name' => 'align']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'PATH' => new Tag(
+            Element::PATH => new Tag(
                 [
                 'tagName' => Element::PATH,
                 'attrs' => [
@@ -6423,7 +6423,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'PATTERN' => new Tag(
+            Element::PATTERN => new Tag(
                 [
                 'tagName' => Element::PATTERN,
                 'attrs' => [
@@ -6450,7 +6450,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'PICTURE' => new Tag(
+            Element::PICTURE => new Tag(
                 [
                 'tagName' => Element::PICTURE,
                 'mandatoryParent' => 'NOSCRIPT',
@@ -6477,7 +6477,7 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'POLYGON' => new Tag(
+            Element::POLYGON => new Tag(
                 [
                 'tagName' => Element::POLYGON,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'points'], ['name' => 'sketch:type'], ['name' => 'transform']],
@@ -6487,7 +6487,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'POLYLINE' => new Tag(
+            Element::POLYLINE => new Tag(
                 [
                 'tagName' => Element::POLYLINE,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'points'], ['name' => 'sketch:type'], ['name' => 'transform']],
@@ -6497,27 +6497,27 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'PRE' => new Tag(
+            Element::PRE => new Tag(
                 [
                 'tagName' => Element::PRE,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'PROGRESS' => new Tag(
+            Element::PROGRESS => new Tag(
                 [
                 'tagName' => Element::PROGRESS,
                 'attrs' => [['name' => 'max'], ['name' => 'value']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'Q' => new Tag(
+            Element::Q => new Tag(
                 [
                 'tagName' => Element::Q,
                 'attrLists' => ['cite-attr'],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'RADIALGRADIENT' => new Tag(
+            Element::RADIALGRADIENT => new Tag(
                 [
                 'tagName' => Element::RADIALGRADIENT,
                 'attrs' => [
@@ -6549,13 +6549,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'RB' => new Tag(
+            Element::RB => new Tag(
                 [
                 'tagName' => Element::RB,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'RECT' => new Tag(
+            Element::RECT => new Tag(
                 [
                 'tagName' => Element::RECT,
                 'attrs' => [
@@ -6575,43 +6575,43 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'RP' => new Tag(
+            Element::RP => new Tag(
                 [
                 'tagName' => Element::RP,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'RT' => new Tag(
+            Element::RT => new Tag(
                 [
                 'tagName' => Element::RT,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'RTC' => new Tag(
+            Element::RTC => new Tag(
                 [
                 'tagName' => Element::RTC,
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'RUBY' => new Tag(
+            Element::RUBY => new Tag(
                 [
                 'tagName' => Element::RUBY,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'S' => new Tag(
+            Element::S => new Tag(
                 [
                 'tagName' => Element::S,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'SAMP' => new Tag(
+            Element::SAMP => new Tag(
                 [
                 'tagName' => Element::SAMP,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'SCRIPT' => new Tag(
+            Element::SCRIPT => new Tag(
                 [
                 'tagName' => Element::SCRIPT,
                 'attrLists' => ['common-extension-attrs'],
@@ -8079,7 +8079,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SECTION' => new Tag(
+            Element::SECTION => new Tag(
                 [
                 'tagName' => Element::SECTION,
                 'attrLists' => ['poool-access-attrs'],
@@ -8095,7 +8095,7 @@ final class Tags
                 'htmlFormat' => ['AMP4EMAIL'],
                 ]
             ),
-            'SELECT' => new Tag(
+            Element::SELECT => new Tag(
                 [
                 'tagName' => Element::SELECT,
                 'attrs' => [
@@ -8116,20 +8116,20 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'SLOT' => new Tag(
+            Element::SLOT => new Tag(
                 [
                 'tagName' => Element::SLOT,
                 'attrLists' => ['name-attr'],
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'SMALL' => new Tag(
+            Element::SMALL => new Tag(
                 [
                 'tagName' => Element::SMALL,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'SOLIDCOLOR' => new Tag(
+            Element::SOLIDCOLOR => new Tag(
                 [
                 'tagName' => Element::SOLIDCOLOR,
                 'attrs' => [['name' => 'solid-color'], ['name' => 'solid-opacity']],
@@ -8139,13 +8139,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'SPACER' => new Tag(
+            Element::SPACER => new Tag(
                 [
                 'tagName' => Element::SPACER,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'SPAN' => new Tag(
+            Element::SPAN => new Tag(
                 [
                 'tagName' => Element::SPAN,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -8172,13 +8172,13 @@ final class Tags
                 'requiresExtension' => ['amp-subscriptions'],
                 ]
             ),
-            'STRIKE' => new Tag(
+            Element::STRIKE => new Tag(
                 [
                 'tagName' => Element::STRIKE,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'STRONG' => new Tag(
+            Element::STRONG => new Tag(
                 [
                 'tagName' => Element::STRONG,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -8478,7 +8478,7 @@ final class Tags
                 'descriptiveName' => 'style[amp-runtime]',
                 ]
             ),
-            'SUB' => new Tag(
+            Element::SUB => new Tag(
                 [
                 'tagName' => Element::SUB,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
@@ -8513,20 +8513,20 @@ final class Tags
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'SUMMARY' => new Tag(
+            Element::SUMMARY => new Tag(
                 [
                 'tagName' => Element::SUMMARY,
                 'mandatoryParent' => 'DETAILS',
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'SUP' => new Tag(
+            Element::SUP => new Tag(
                 [
                 'tagName' => Element::SUP,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'SVG' => new Tag(
+            Element::SVG => new Tag(
                 [
                 'tagName' => Element::SVG,
                 'attrs' => [
@@ -8557,7 +8557,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'SWITCH' => new Tag(
+            Element::SWITCH_ => new Tag(
                 [
                 'tagName' => Element::SWITCH_,
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
@@ -8566,7 +8566,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'SYMBOL' => new Tag(
+            Element::SYMBOL => new Tag(
                 [
                 'tagName' => Element::SYMBOL,
                 'attrs' => [
@@ -8582,7 +8582,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'TABLE' => new Tag(
+            Element::TABLE => new Tag(
                 [
                 'tagName' => Element::TABLE,
                 'attrs' => [
@@ -8597,13 +8597,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'TBODY' => new Tag(
+            Element::TBODY => new Tag(
                 [
                 'tagName' => Element::TBODY,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'TD' => new Tag(
+            Element::TD => new Tag(
                 [
                 'tagName' => Element::TD,
                 'attrs' => [
@@ -8619,7 +8619,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'TEMPLATE' => new Tag(
+            Element::TEMPLATE => new Tag(
                 [
                 'tagName' => Element::TEMPLATE,
                 'attrs' => [
@@ -8670,7 +8670,7 @@ final class Tags
                 'requiresExtension' => ['amp-mustache'],
                 ]
             ),
-            'TEXT' => new Tag(
+            Element::TEXT => new Tag(
                 [
                 'tagName' => Element::TEXT,
                 'attrs' => [
@@ -8691,7 +8691,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'TEXTAREA' => new Tag(
+            Element::TEXTAREA => new Tag(
                 [
                 'tagName' => Element::TEXTAREA,
                 'attrs' => [
@@ -8736,7 +8736,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'TEXTPATH' => new Tag(
+            Element::TEXTPATH => new Tag(
                 [
                 'tagName' => Element::TEXTPATH,
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'method'], ['name' => 'spacing'], ['name' => 'startoffset']],
@@ -8752,13 +8752,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'TFOOT' => new Tag(
+            Element::TFOOT => new Tag(
                 [
                 'tagName' => Element::TFOOT,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'TH' => new Tag(
+            Element::TH => new Tag(
                 [
                 'tagName' => Element::TH,
                 'attrs' => [
@@ -8777,13 +8777,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'THEAD' => new Tag(
+            Element::THEAD => new Tag(
                 [
                 'tagName' => Element::THEAD,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'TIME' => new Tag(
+            Element::TIME => new Tag(
                 [
                 'tagName' => Element::TIME,
                 'attrs' => [['name' => 'datetime'], ['name' => 'pubdate', 'value' => ['']]],
@@ -8808,14 +8808,14 @@ final class Tags
                 'htmlFormat' => ['AMP4EMAIL'],
                 ]
             ),
-            'TR' => new Tag(
+            Element::TR => new Tag(
                 [
                 'tagName' => Element::TR,
                 'attrs' => [['name' => 'align'], ['name' => 'bgcolor'], ['name' => 'height'], ['name' => 'valign']],
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'TREF' => new Tag(
+            Element::TREF => new Tag(
                 [
                 'tagName' => Element::TREF,
                 'attrs' => [['name' => 'externalresourcesrequired']],
@@ -8831,7 +8831,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'TSPAN' => new Tag(
+            Element::TSPAN => new Tag(
                 [
                 'tagName' => Element::TSPAN,
                 'attrs' => [
@@ -8850,25 +8850,25 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'TT' => new Tag(
+            Element::TT => new Tag(
                 [
                 'tagName' => Element::TT,
                 'htmlFormat' => ['AMP'],
                 ]
             ),
-            'U' => new Tag(
+            Element::U => new Tag(
                 [
                 'tagName' => Element::U,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'UL' => new Tag(
+            Element::UL => new Tag(
                 [
                 'tagName' => Element::UL,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'USE' => new Tag(
+            Element::USE_ => new Tag(
                 [
                 'tagName' => Element::USE_,
                 'attrs' => [
@@ -8891,13 +8891,13 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'VAR' => new Tag(
+            Element::VAR_ => new Tag(
                 [
                 'tagName' => Element::VAR_,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],
                 ]
             ),
-            'VIDEO' => new Tag(
+            Element::VIDEO => new Tag(
                 [
                 'tagName' => Element::VIDEO,
                 'attrs' => [
@@ -8963,7 +8963,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'VIEW' => new Tag(
+            Element::VIEW => new Tag(
                 [
                 'tagName' => Element::VIEW,
                 'attrs' => [
@@ -8979,7 +8979,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'VKERN' => new Tag(
+            Element::VKERN => new Tag(
                 [
                 'tagName' => Element::VKERN,
                 'attrs' => [['name' => 'g1'], ['name' => 'g2'], ['name' => 'k'], ['name' => 'u1'], ['name' => 'u2']],
@@ -8989,7 +8989,7 @@ final class Tags
                 'htmlFormat' => ['AMP', 'AMP4ADS'],
                 ]
             ),
-            'WBR' => new Tag(
+            Element::WBR => new Tag(
                 [
                 'tagName' => Element::WBR,
                 'htmlFormat' => ['AMP', 'AMP4ADS', 'AMP4EMAIL'],

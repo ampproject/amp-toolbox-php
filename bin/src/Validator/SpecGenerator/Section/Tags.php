@@ -83,7 +83,8 @@ final class Tags implements Section
         $constructor->addBody('$this->tags = [');
 
         foreach ($tagIds as $tagId) {
-            $constructor->addBody('    ? => new Tag(', [$tagId]);
+            $keyString = $this->getKeyString($tagId);
+            $constructor->addBody("    {$keyString} => new Tag(");
             $constructor->addBody('        [');
 
             foreach ($this->tags[$tagId] as $key => $attribute) {
@@ -170,5 +171,22 @@ final class Tags implements Section
         }
 
         return $tagId;
+    }
+
+    /**
+     * Get the string to use as key for the tag.
+     *
+     * This automatically reuses existing constant to reduce memory consumption.
+     *
+     * @param string $tagId Tag ID to produce a key string for.
+     * @return string Key string to use.
+     */
+    private function getKeyString($tagId)
+    {
+        if (array_key_exists('tagName', $this->tags[$tagId]) && $this->tags[$tagId]['tagName'] === $tagId) {
+            return $this->getTagConstant($this->getConstantName($tagId));
+        }
+
+        return "'{$tagId}'";
     }
 }
