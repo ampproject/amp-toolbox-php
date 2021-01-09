@@ -9737,7 +9737,7 @@ final class Tags
             'AMP-BASE-CAROUSEL lightbox [lightbox-exclude]' => $this->tags['AMP-BASE-CAROUSEL lightbox [lightbox-exclude]'],
             'AMP-BASE-CAROUSEL [lightbox]' => $this->tags['AMP-BASE-CAROUSEL [lightbox]'],
             'amp-bind extension .json script' => $this->tags['amp-bind extension .json script'],
-            'AMP-CAROUSEL' => $this->tags['AMP-CAROUSEL'],
+            'AMP-CAROUSEL' => $this->tags[Extension::CAROUSEL],
             'AMP-CAROUSEL lightbox' => $this->tags['AMP-CAROUSEL lightbox'],
             'AMP-CAROUSEL lightbox [child]' => $this->tags['AMP-CAROUSEL lightbox [child]'],
             'AMP-CAROUSEL lightbox [lightbox-exclude]' => $this->tags['AMP-CAROUSEL lightbox [lightbox-exclude]'],

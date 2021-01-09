@@ -142,7 +142,8 @@ final class Tags implements Section
 
         $constructor->addBody('$this->bySpecName = [');
         foreach ($this->bySpecName as $specName => $tagId) {
-            $constructor->addBody("    '{$specName}' => \$this->tags['{$tagId}'],");
+            $keyString = $this->getKeyString($tagId);
+            $constructor->addBody("    '{$specName}' => \$this->tags[{$keyString}],");
         }
         $constructor->addBody('];');
     }
