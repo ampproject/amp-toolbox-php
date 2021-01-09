@@ -129,11 +129,13 @@ final class Tags implements Section
             if (count($tags) > 1) {
                 $constructor->addBody("    {$constant} => [");
                 foreach ($tags as $tagId => $attributes) {
-                    $constructor->addBody("        \$this->tags['{$tagId}'],");
+                    $keyString = $this->getKeyString($tagId);
+                    $constructor->addBody("        \$this->tags[{$keyString}],");
                 }
                 $constructor->addBody('    ],');
             } else {
-                $constructor->addBody("    {$constant} => \$this->tags['{$this->arrayKeyFirst($tags)}'],");
+                $keyString = $this->getKeyString($this->arrayKeyFirst($tags));
+                $constructor->addBody("    {$constant} => \$this->tags[{$keyString}],");
             }
         }
         $constructor->addBody('];');
