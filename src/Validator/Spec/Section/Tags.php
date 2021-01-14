@@ -4177,7 +4177,7 @@ final class Tags
                     ],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-audio/',
                 'mandatoryAncestor' => Element::NOSCRIPT,
-                'mandatoryAncestorSuggestedAlternative' => 'AMP-AUDIO',
+                'mandatoryAncestorSuggestedAlternative' => Extension::AUDIO,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -5183,7 +5183,7 @@ final class Tags
                 'attrLists' => ['name-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-iframe/',
                 'mandatoryAncestor' => Element::NOSCRIPT,
-                'mandatoryAncestorSuggestedAlternative' => 'AMP-IFRAME',
+                'mandatoryAncestorSuggestedAlternative' => Extension::IFRAME,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -6281,7 +6281,7 @@ final class Tags
                 'attrLists' => ['mandatory-src-or-srcset'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-img/',
                 'mandatoryAncestor' => Element::NOSCRIPT,
-                'mandatoryAncestorSuggestedAlternative' => 'AMP-IMG',
+                'mandatoryAncestorSuggestedAlternative' => Extension::IMG,
                 'htmlFormat' => [Format::AMP],
                 'descriptiveName' => 'img',
                 ]
@@ -8923,7 +8923,7 @@ final class Tags
                     ],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-video/',
                 'mandatoryAncestor' => Element::NOSCRIPT,
-                'mandatoryAncestorSuggestedAlternative' => 'AMP-VIDEO',
+                'mandatoryAncestorSuggestedAlternative' => Extension::VIDEO,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),

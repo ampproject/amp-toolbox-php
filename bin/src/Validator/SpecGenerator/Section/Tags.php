@@ -91,6 +91,7 @@ final class Tags implements Section
             foreach ($this->tags[$tagId] as $key => $attribute) {
                 switch ($key) {
                     case 'mandatoryAncestor':
+                    case 'mandatoryAncestorSuggestedAlternative':
                     case 'mandatoryParent':
                     case 'tagName':
                         if (strpos($attribute, '$') === 0) {
