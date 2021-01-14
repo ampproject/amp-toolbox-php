@@ -1803,7 +1803,7 @@ final class Tags
                 [
                 'tagName' => Element::IMG,
                 'specName' => 'amp-img > img (transformed)',
-                'mandatoryParent' => Extension::IMG (TRANSFORMED),
+                'mandatoryParent' => 'amp-img (transformed)',
                 'attrs' => [
                         ['name' => 'alt'],
                         ['name' => 'attribution'],
@@ -1829,7 +1829,7 @@ final class Tags
                 [
                 'tagName' => Element::IMG,
                 'specName' => 'amp-img > img[placeholder] (transformed)',
-                'mandatoryParent' => Extension::IMG (TRANSFORMED),
+                'mandatoryParent' => 'amp-img (transformed)',
                 'attrs' => [
                         ['name' => 'alt'],
                         ['name' => 'attribution'],
@@ -5336,7 +5336,7 @@ final class Tags
                     ],
                 'attrLists' => ['input-common-attr', 'name-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-form/',
-                'mandatoryAncestor' => Element::FORM [METHOD=POST],
+                'mandatoryAncestor' => 'FORM [method=POST]',
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -5350,7 +5350,7 @@ final class Tags
                     ],
                 'attrLists' => ['input-common-attr', 'name-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-form/',
-                'mandatoryAncestor' => Element::FORM [METHOD=POST],
+                'mandatoryAncestor' => 'FORM [method=POST]',
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -8504,7 +8504,7 @@ final class Tags
                 [
                 'tagName' => Element::SCRIPT,
                 'specName' => 'subscriptions script ciphertext',
-                'mandatoryParent' => Element::SUBSCRIPTIONS_SECTION CONTENT SWG_AMP_CACHE_NONCE,
+                'mandatoryParent' => 'subscriptions-section content swg_amp_cache_nonce',
                 'attrs' => [
                         ['name' => 'ciphertext', 'mandatory' => true, 'dispatchKey' => 'NAME_DISPATCH'],
                         ['name' => 'type', 'mandatory' => true, 'valueCasei' => ['application/octet-stream']],

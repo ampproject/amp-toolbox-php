@@ -94,7 +94,7 @@ final class Tags implements Section
                     case 'mandatoryAncestorSuggestedAlternative':
                     case 'mandatoryParent':
                     case 'tagName':
-                        if (strpos($attribute, '$') === 0) {
+                        if (strpos($attribute, '$') === 0 || strpos($attribute, ' ') !== false) {
                             $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
                         } else {
                             $constant = $this->getTagConstant($this->getConstantName($attribute));
@@ -108,7 +108,7 @@ final class Tags implements Section
                             $formats[] = $constant === $format ? "'{$format}'" : $constant;
                         }
                         $formatsString = implode(', ', $formats);
-                        $constructor->addBody("        'htmlFormat' => [{$formatsString}],");
+                        $constructor->addBody("        '{$key}' => [{$formatsString}],");
                         break;
                     default:
                         $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
