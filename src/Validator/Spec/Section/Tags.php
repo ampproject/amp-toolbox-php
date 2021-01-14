@@ -570,7 +570,7 @@ final class Tags
                         ['name' => 'value'],
                     ],
                 'attrLists' => ['name-attr'],
-                'mandatoryAncestor' => 'AMP-APP-BANNER',
+                'mandatoryAncestor' => Extension::APP_BANNER,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 'satisfies' => ['amp-app-banner button[open-button]'],
                 ]
@@ -1873,7 +1873,7 @@ final class Tags
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'INTRINSIC', 'NODISPLAY', 'RESPONSIVE']],
-                'mandatoryAncestor' => 'AMP-INLINE-GALLERY',
+                'mandatoryAncestor' => Extension::INLINE_GALLERY,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-inline-gallery'],
                 ]
@@ -1886,7 +1886,7 @@ final class Tags
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
-                'mandatoryAncestor' => 'AMP-INLINE-GALLERY',
+                'mandatoryAncestor' => Extension::INLINE_GALLERY,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-inline-gallery'],
                 ]
@@ -1912,7 +1912,7 @@ final class Tags
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'INTRINSIC', 'NODISPLAY', 'RESPONSIVE']],
-                'mandatoryAncestor' => 'AMP-INLINE-GALLERY',
+                'mandatoryAncestor' => Extension::INLINE_GALLERY,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-inline-gallery'],
                 ]
@@ -2190,7 +2190,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'AMP-LIST DIV [fetch-error]',
                 'attrs' => [['name' => 'align'], ['name' => 'fetch-error', 'mandatory' => true]],
-                'mandatoryAncestor' => 'AMP-LIST',
+                'mandatoryAncestor' => Extension::LIST_,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS, Format::AMP4EMAIL],
                 ]
             ),
@@ -2427,7 +2427,7 @@ final class Tags
                 'attrLists' => ['extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-nested-menu/',
                 'ampLayout' => ['supportedLayouts' => ['FILL']],
-                'mandatoryAncestor' => 'AMP-SIDEBAR',
+                'mandatoryAncestor' => Extension::SIDEBAR,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-sidebar'],
                 'descendantTagList' => 'amp-nested-menu-allowed-descendants',
@@ -2726,7 +2726,7 @@ final class Tags
                 'attrs' => [['name' => 'data-sitekey', 'mandatory' => true], ['name' => 'data-action', 'mandatory' => true]],
                 'attrLists' => ['mandatory-name-attr'],
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-form', 'amp-recaptcha-input'],
                 ]
@@ -3116,7 +3116,7 @@ final class Tags
                     ],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-story-360',
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY']],
-                'mandatoryAncestor' => 'AMP-STORY',
+                'mandatoryAncestor' => Extension::STORY,
                 'childTags' => ['mandatoryNumChildTags' => 1, 'childTagNameOneof' => ['AMP-IMG', 'AMP-VIDEO']],
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-story-360'],
@@ -3203,7 +3203,7 @@ final class Tags
                         ['name' => 'layout', 'mandatory' => true, 'value' => ['nodisplay']],
                         ['name' => 'src', 'valueUrl' => ['protocol' => ['http', 'https']]],
                     ],
-                'mandatoryAncestor' => 'AMP-STORY',
+                'mandatoryAncestor' => Extension::STORY,
                 'htmlFormat' => [Format::AMP],
                 'descendantTagList' => 'amp-story-bookend-allowed-descendants',
                 'mandatoryLastChild' => true,
@@ -3266,7 +3266,7 @@ final class Tags
             Extension::STORY_CTA_LAYER => new Tag(
                 [
                 'tagName' => Extension::STORY_CTA_LAYER,
-                'mandatoryAncestor' => 'AMP-STORY-PAGE',
+                'mandatoryAncestor' => Extension::STORY_PAGE,
                 'referencePoints' => [['tagSpecName' => 'AMP-STORY-CTA-LAYER animate-in']],
                 'htmlFormat' => [Format::AMP],
                 'descendantTagList' => 'amp-story-cta-layer-allowed-descendants',
@@ -3325,7 +3325,7 @@ final class Tags
                         ['name' => 'position', 'value' => ['landscape-half-left', 'landscape-half-right']],
                         ['name' => 'aspect-ratio', 'valueRegex' => '\d+:\d+'],
                     ],
-                'mandatoryAncestor' => 'AMP-STORY-PAGE',
+                'mandatoryAncestor' => Extension::STORY_PAGE,
                 'referencePoints' => [['tagSpecName' => 'AMP-STORY-GRID-LAYER default'], ['tagSpecName' => 'AMP-STORY-GRID-LAYER animate-in']],
                 'htmlFormat' => [Format::AMP],
                 'descendantTagList' => 'amp-story-grid-layer-allowed-descendants',
@@ -3448,7 +3448,7 @@ final class Tags
                         ['name' => 'option-2-confetti'],
                     ],
                 'attrLists' => ['interactive-shared-configs-attrs'],
-                'mandatoryAncestor' => 'AMP-STORY-GRID-LAYER',
+                'mandatoryAncestor' => Extension::STORY_GRID_LAYER,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-story-interactive'],
                 ]
@@ -3462,7 +3462,7 @@ final class Tags
                         'interactive-options-results-category-attrs',
                         'interactive-shared-configs-attrs',
                     ],
-                'mandatoryAncestor' => 'AMP-STORY-GRID-LAYER',
+                'mandatoryAncestor' => Extension::STORY_GRID_LAYER,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-story-interactive'],
                 ]
@@ -3491,7 +3491,7 @@ final class Tags
                         ],
                     ],
                 'attrLists' => ['interactive-options-text-attrs', 'interactive-options-confetti-attrs', 'interactive-shared-configs-attrs'],
-                'mandatoryAncestor' => 'AMP-STORY-GRID-LAYER',
+                'mandatoryAncestor' => Extension::STORY_GRID_LAYER,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-story-interactive'],
                 ]
@@ -3528,7 +3528,7 @@ final class Tags
                         ['name' => 'theme', 'value' => ['light', 'dark']],
                         ['name' => 'chip-style', 'value' => ['flat', 'transparent']],
                     ],
-                'mandatoryAncestor' => 'AMP-STORY-GRID-LAYER',
+                'mandatoryAncestor' => Extension::STORY_GRID_LAYER,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-story-interactive'],
                 ]
@@ -3567,7 +3567,7 @@ final class Tags
                         ['name' => 'layout', 'mandatory' => true, 'value' => ['nodisplay']],
                         ['name' => 'theme', 'value' => ['dark', 'light']],
                     ],
-                'mandatoryAncestor' => 'AMP-STORY-PAGE',
+                'mandatoryAncestor' => Extension::STORY_PAGE,
                 'htmlFormat' => [Format::AMP],
                 'descendantTagList' => 'amp-story-page-attachment-allowed-descendants',
                 'mandatoryLastChild' => true,
@@ -3582,7 +3582,7 @@ final class Tags
                         ['name' => 'theme', 'value' => ['dark', 'light']],
                         ['name' => 'href', 'mandatory' => true, 'valueUrl' => ['protocol' => ['http', 'https']]],
                     ],
-                'mandatoryAncestor' => 'AMP-STORY-PAGE',
+                'mandatoryAncestor' => Extension::STORY_PAGE,
                 'childTags' => ['mandatoryNumChildTags' => 0],
                 'htmlFormat' => [Format::AMP],
                 'mandatoryLastChild' => true,
@@ -3593,7 +3593,7 @@ final class Tags
                 'tagName' => Extension::STORY_PANNING_MEDIA,
                 'specUrl' => 'https://amp.dev/documentation/components/amp-story-panning-media',
                 'ampLayout' => ['supportedLayouts' => ['FILL']],
-                'mandatoryAncestor' => 'AMP-STORY-GRID-LAYER',
+                'mandatoryAncestor' => Extension::STORY_GRID_LAYER,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-story-panning-media'],
                 ]
@@ -3615,7 +3615,7 @@ final class Tags
                 'attrLists' => ['amp-audio-common', 'extended-amp-global'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-audio/',
                 'ampLayout' => ['supportedLayouts' => ['NODISPLAY']],
-                'mandatoryAncestor' => 'AMP-STORY',
+                'mandatoryAncestor' => Extension::STORY,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-audio'],
                 ]
@@ -3640,7 +3640,7 @@ final class Tags
                 'attrLists' => ['extended-amp-global', 'amp-video-common', 'lightboxable-elements'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-video/',
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'INTRINSIC', 'NODISPLAY', 'RESPONSIVE']],
-                'mandatoryAncestor' => 'AMP-STORY-PAGE-ATTACHMENT',
+                'mandatoryAncestor' => Extension::STORY_PAGE_ATTACHMENT,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 'alsoRequiresTagWarning' => ['amp-video extension script'],
                 ]
@@ -3667,7 +3667,7 @@ final class Tags
                 'attrLists' => ['extended-amp-global', 'amp-video-common'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-video/',
                 'ampLayout' => ['supportedLayouts' => ['FILL', 'FIXED', 'FIXED_HEIGHT', 'FLEX_ITEM', 'NODISPLAY', 'RESPONSIVE']],
-                'mandatoryAncestor' => 'AMP-STORY',
+                'mandatoryAncestor' => Extension::STORY,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 'requiresExtension' => ['amp-video'],
                 ]
@@ -4176,7 +4176,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-audio/',
-                'mandatoryAncestor' => 'NOSCRIPT',
+                'mandatoryAncestor' => Element::NOSCRIPT,
                 'mandatoryAncestorSuggestedAlternative' => 'AMP-AUDIO',
                 'htmlFormat' => [Format::AMP],
                 ]
@@ -4298,7 +4298,7 @@ final class Tags
                 'tagName' => Element::BUTTON,
                 'specName' => 'button amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
-                'mandatoryAncestor' => 'AMP-NESTED-MENU',
+                'mandatoryAncestor' => Extension::NESTED_MENU,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -4307,7 +4307,7 @@ final class Tags
                 'tagName' => Element::CANVAS,
                 'attrs' => [['name' => 'height'], ['name' => 'width']],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'AMP-SCRIPT',
+                'mandatoryAncestor' => Extension::SCRIPT,
                 'htmlFormat' => [Format::AMP],
                 'requiresExtension' => ['amp-script'],
                 ]
@@ -4337,7 +4337,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4353,7 +4353,7 @@ final class Tags
                 'attrs' => [['name' => 'clippathunits'], ['name' => 'externalresourcesrequired'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4417,7 +4417,7 @@ final class Tags
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4434,7 +4434,7 @@ final class Tags
                 'tagName' => Element::DESC,
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4483,7 +4483,7 @@ final class Tags
                         ],
                     ],
                 'disallowedAncestor' => ['AMP-ACCORDION'],
-                'mandatoryAncestor' => 'AMP-NESTED-MENU',
+                'mandatoryAncestor' => Extension::NESTED_MENU,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -4513,7 +4513,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4529,7 +4529,7 @@ final class Tags
                 'attrs' => [['name' => 'in'], ['name' => 'type'], ['name' => 'values']],
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4547,7 +4547,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4556,7 +4556,7 @@ final class Tags
                 'tagName' => Element::FEFLOOD,
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4566,7 +4566,7 @@ final class Tags
                 'attrs' => [['name' => 'edgemode'], ['name' => 'in'], ['name' => 'stddeviation']],
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4575,7 +4575,7 @@ final class Tags
                 'tagName' => Element::FEMERGE,
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4585,7 +4585,7 @@ final class Tags
                 'attrs' => [['name' => 'in']],
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4595,7 +4595,7 @@ final class Tags
                 'attrs' => [['name' => 'dx'], ['name' => 'dy'], ['name' => 'in']],
                 'attrLists' => ['svg-core-attributes', 'svg-filter-primitive-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4634,7 +4634,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr', 'svg-xlink-attributes'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4649,7 +4649,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submit-error]',
                 'attrs' => [['name' => 'align'], ['name' => 'submit-error', 'mandatory' => true]],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS, Format::AMP4EMAIL],
                 ]
             ),
@@ -4658,7 +4658,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submit-error][template]',
                 'attrs' => [['name' => 'align'], ['name' => 'submit-error', 'mandatory' => true], ['name' => 'template', 'mandatory' => true]],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS, Format::AMP4EMAIL],
                 ]
             ),
@@ -4667,7 +4667,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submit-success]',
                 'attrs' => [['name' => 'align'], ['name' => 'submit-success', 'mandatory' => true]],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS, Format::AMP4EMAIL],
                 ]
             ),
@@ -4676,7 +4676,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submit-success][template]',
                 'attrs' => [['name' => 'align'], ['name' => 'submit-success', 'mandatory' => true], ['name' => 'template', 'mandatory' => true]],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS, Format::AMP4EMAIL],
                 ]
             ),
@@ -4685,7 +4685,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submitting]',
                 'attrs' => [['name' => 'align'], ['name' => 'submitting', 'mandatory' => true]],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS, Format::AMP4EMAIL],
                 ]
             ),
@@ -4694,7 +4694,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [submitting][template]',
                 'attrs' => [['name' => 'align'], ['name' => 'submitting', 'mandatory' => true], ['name' => 'template', 'mandatory' => true]],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4703,7 +4703,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [verify-error]',
                 'attrs' => [['name' => 'align'], ['name' => 'verify-error', 'mandatory' => true]],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4712,7 +4712,7 @@ final class Tags
                 'tagName' => Element::DIV,
                 'specName' => 'FORM DIV [verify-error][template]',
                 'attrs' => [['name' => 'align'], ['name' => 'verify-error', 'mandatory' => true], ['name' => 'template', 'mandatory' => true]],
-                'mandatoryAncestor' => 'FORM',
+                'mandatoryAncestor' => Element::FORM,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4836,7 +4836,7 @@ final class Tags
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4856,7 +4856,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4866,7 +4866,7 @@ final class Tags
                 'attrs' => [['name' => 'dx'], ['name' => 'dy'], ['name' => 'format'], ['name' => 'glyphref'], ['name' => 'x'], ['name' => 'y']],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr', 'svg-xlink-attributes'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -4889,7 +4889,7 @@ final class Tags
                 'tagName' => Element::H2,
                 'specName' => 'h2 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
-                'mandatoryAncestor' => 'AMP-NESTED-MENU',
+                'mandatoryAncestor' => Extension::NESTED_MENU,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -4905,7 +4905,7 @@ final class Tags
                 'tagName' => Element::H3,
                 'specName' => 'h3 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
-                'mandatoryAncestor' => 'AMP-NESTED-MENU',
+                'mandatoryAncestor' => Extension::NESTED_MENU,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -4921,7 +4921,7 @@ final class Tags
                 'tagName' => Element::H4,
                 'specName' => 'h4 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
-                'mandatoryAncestor' => 'AMP-NESTED-MENU',
+                'mandatoryAncestor' => Extension::NESTED_MENU,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -4937,7 +4937,7 @@ final class Tags
                 'tagName' => Element::H5,
                 'specName' => 'h5 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
-                'mandatoryAncestor' => 'AMP-NESTED-MENU',
+                'mandatoryAncestor' => Extension::NESTED_MENU,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -4953,7 +4953,7 @@ final class Tags
                 'tagName' => Element::H6,
                 'specName' => 'h6 amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
-                'mandatoryAncestor' => 'AMP-NESTED-MENU',
+                'mandatoryAncestor' => Extension::NESTED_MENU,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -5065,7 +5065,7 @@ final class Tags
                 'attrs' => [['name' => 'g1'], ['name' => 'g2'], ['name' => 'k'], ['name' => 'u1'], ['name' => 'u2']],
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5182,7 +5182,7 @@ final class Tags
                     ],
                 'attrLists' => ['name-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-iframe/',
-                'mandatoryAncestor' => 'NOSCRIPT',
+                'mandatoryAncestor' => Element::NOSCRIPT,
                 'mandatoryAncestorSuggestedAlternative' => 'AMP-IFRAME',
                 'htmlFormat' => [Format::AMP],
                 ]
@@ -5213,7 +5213,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5336,7 +5336,7 @@ final class Tags
                     ],
                 'attrLists' => ['input-common-attr', 'name-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-form/',
-                'mandatoryAncestor' => 'FORM [method=POST]',
+                'mandatoryAncestor' => Element::FORM [METHOD=POST],
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -5350,7 +5350,7 @@ final class Tags
                     ],
                 'attrLists' => ['input-common-attr', 'name-attr'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-form/',
-                'mandatoryAncestor' => 'FORM [method=POST]',
+                'mandatoryAncestor' => Element::FORM [METHOD=POST],
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -5403,7 +5403,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5422,7 +5422,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr', 'svg-xlink-attributes'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5433,7 +5433,7 @@ final class Tags
                 'attrs' => [['name' => 'offset'], ['name' => 'stop-color'], ['name' => 'stop-opacity']],
                 'attrLists' => ['svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'LINEARGRADIENT',
+                'mandatoryAncestor' => Element::LINEARGRADIENT,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5616,7 +5616,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5634,7 +5634,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5656,7 +5656,7 @@ final class Tags
                 'tagName' => Element::METADATA,
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5674,7 +5674,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5692,7 +5692,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5710,7 +5710,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5728,7 +5728,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5746,7 +5746,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5764,7 +5764,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5782,7 +5782,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5800,7 +5800,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -5818,7 +5818,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -5842,7 +5842,7 @@ final class Tags
                         ],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 'descriptiveName' => 'meta http-equiv=X-UA-Compatible',
                 ]
@@ -5894,7 +5894,7 @@ final class Tags
                             'valueCasei' => ['amp-ad-enable-refresh'],
                         ],
                     ],
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -6252,7 +6252,7 @@ final class Tags
                 [
                 'tagName' => Element::NOSCRIPT,
                 'disallowedAncestor' => ['NOSCRIPT'],
-                'mandatoryAncestor' => 'BODY',
+                'mandatoryAncestor' => Element::BODY,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -6280,7 +6280,7 @@ final class Tags
                     ],
                 'attrLists' => ['mandatory-src-or-srcset'],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-img/',
-                'mandatoryAncestor' => 'NOSCRIPT',
+                'mandatoryAncestor' => Element::NOSCRIPT,
                 'mandatoryAncestorSuggestedAlternative' => 'AMP-IMG',
                 'htmlFormat' => [Format::AMP],
                 'descriptiveName' => 'img',
@@ -6300,7 +6300,7 @@ final class Tags
                         'cdataRegex' => '\s*body\s*{\s*-webkit-animation:\s*none;\s*-moz-animation:\s*none;\s*-ms-animation:\s*none;\s*animation:\s*none;?\s*}\s*',
                         'docCssBytes' => false,
                     ],
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP],
                 'disabledBy' => ['transformed'],
                 'descriptiveName' => 'noscript > style[amp-boilerplate]',
@@ -6319,7 +6319,7 @@ final class Tags
                         'cdataRegex' => '\s*body\s*{\s*-webkit-animation:\s*none;\s*-moz-animation:\s*none;\s*-ms-animation:\s*none;\s*animation:\s*none;?\s*}\s*',
                         'docCssBytes' => false,
                     ],
-                'mandatoryAncestor' => 'HEAD',
+                'mandatoryAncestor' => Element::HEAD,
                 'htmlFormat' => [Format::AMP],
                 'enabledBy' => ['transformed'],
                 'descriptiveName' => 'noscript > style[amp-boilerplate]',
@@ -6420,7 +6420,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -6447,7 +6447,7 @@ final class Tags
                         'svg-xlink-attributes',
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -6484,7 +6484,7 @@ final class Tags
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'points'], ['name' => 'sketch:type'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -6494,7 +6494,7 @@ final class Tags
                 'attrs' => [['name' => 'externalresourcesrequired'], ['name' => 'points'], ['name' => 'sketch:type'], ['name' => 'transform']],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -6535,7 +6535,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr', 'svg-xlink-attributes'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -6546,7 +6546,7 @@ final class Tags
                 'attrs' => [['name' => 'offset'], ['name' => 'stop-color'], ['name' => 'stop-opacity']],
                 'attrLists' => ['svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'RADIALGRADIENT',
+                'mandatoryAncestor' => Element::RADIALGRADIENT,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -6572,7 +6572,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8136,7 +8136,7 @@ final class Tags
                 'attrs' => [['name' => 'solid-color'], ['name' => 'solid-opacity']],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8157,7 +8157,7 @@ final class Tags
                 'tagName' => Element::SPAN,
                 'specName' => 'span amp-nested-menu',
                 'attrLists' => ['amp-nested-menu-actions'],
-                'mandatoryAncestor' => 'AMP-NESTED-MENU',
+                'mandatoryAncestor' => Extension::NESTED_MENU,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -8166,7 +8166,7 @@ final class Tags
                 'tagName' => Element::SPAN,
                 'specName' => 'span swg_amp_cache_nonce',
                 'attrs' => [['name' => 'swg_amp_cache_nonce', 'mandatory' => true, 'dispatchKey' => 'NAME_DISPATCH']],
-                'mandatoryAncestor' => 'BODY',
+                'mandatoryAncestor' => Element::BODY,
                 'htmlFormat' => [Format::AMP],
                 'satisfies' => ['span swg_amp_cache_nonce'],
                 'requires' => ['subscriptions-section content swg_amp_cache_nonce'],
@@ -8494,7 +8494,7 @@ final class Tags
                         ['name' => 'subscriptions-section', 'valueCasei' => ['content']],
                         ['name' => 'swg_amp_cache_nonce', 'mandatory' => true],
                     ],
-                'mandatoryAncestor' => 'BODY',
+                'mandatoryAncestor' => Element::BODY,
                 'htmlFormat' => [Format::AMP],
                 'satisfies' => ['subscriptions-section content swg_amp_cache_nonce'],
                 'requires' => ['span swg_amp_cache_nonce'],
@@ -8510,7 +8510,7 @@ final class Tags
                         ['name' => 'type', 'mandatory' => true, 'valueCasei' => ['application/octet-stream']],
                     ],
                 'cdata' => ['disallowedCdataRegex' => [['regex' => '<!--', 'errorMessage' => 'html comments']]],
-                'mandatoryAncestor' => 'BODY',
+                'mandatoryAncestor' => Element::BODY,
                 'htmlFormat' => [Format::AMP],
                 ]
             ),
@@ -8554,7 +8554,7 @@ final class Tags
                 'specName' => 'svg title',
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8563,7 +8563,7 @@ final class Tags
                 'tagName' => Element::SWITCH_,
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8579,7 +8579,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8640,7 +8640,7 @@ final class Tags
                         'FORM DIV [submitting][template]',
                         'FORM DIV [verify-error][template]',
                     ],
-                'mandatoryAncestor' => 'BODY',
+                'mandatoryAncestor' => Element::BODY,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 'requiresExtension' => ['amp-mustache'],
                 ]
@@ -8666,7 +8666,7 @@ final class Tags
                         'FORM DIV [verify-error][template]',
                         'FORM DIV [submitting]',
                     ],
-                'mandatoryAncestor' => 'BODY',
+                'mandatoryAncestor' => Element::BODY,
                 'htmlFormat' => [Format::AMP4EMAIL],
                 'requiresExtension' => ['amp-mustache'],
                 ]
@@ -8688,7 +8688,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8749,7 +8749,7 @@ final class Tags
                         'svg-xlink-attributes',
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8828,7 +8828,7 @@ final class Tags
                         'svg-xlink-attributes',
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8847,7 +8847,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-conditional-processing-attributes', 'svg-core-attributes', 'svg-presentation-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8888,7 +8888,7 @@ final class Tags
                         'svg-xlink-attributes',
                     ],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8922,7 +8922,7 @@ final class Tags
                         ['name' => 'width'],
                     ],
                 'specUrl' => 'https://amp.dev/documentation/components/amp-video/',
-                'mandatoryAncestor' => 'NOSCRIPT',
+                'mandatoryAncestor' => Element::NOSCRIPT,
                 'mandatoryAncestorSuggestedAlternative' => 'AMP-VIDEO',
                 'htmlFormat' => [Format::AMP],
                 ]
@@ -8976,7 +8976,7 @@ final class Tags
                     ],
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),
@@ -8986,7 +8986,7 @@ final class Tags
                 'attrs' => [['name' => 'g1'], ['name' => 'g2'], ['name' => 'k'], ['name' => 'u1'], ['name' => 'u2']],
                 'attrLists' => ['svg-core-attributes', 'svg-style-attr'],
                 'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
-                'mandatoryAncestor' => 'SVG',
+                'mandatoryAncestor' => Element::SVG,
                 'htmlFormat' => [Format::AMP, Format::AMP4ADS],
                 ]
             ),

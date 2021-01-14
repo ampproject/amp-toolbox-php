@@ -90,8 +90,9 @@ final class Tags implements Section
 
             foreach ($this->tags[$tagId] as $key => $attribute) {
                 switch ($key) {
-                    case 'tagName':
+                    case 'mandatoryAncestor':
                     case 'mandatoryParent':
+                    case 'tagName':
                         if (strpos($attribute, '$') === 0) {
                             $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
                         } else {
