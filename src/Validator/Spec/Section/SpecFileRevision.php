@@ -14,6 +14,6 @@ final class SpecFileRevision
 
     public function __construct()
     {
-        $this->specFileRevision = 1131;
+        $this->specFileRevision = 1132;
     }
 }

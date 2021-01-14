@@ -48,7 +48,7 @@ final class Tags implements Section
      */
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
-        $namespace->addUse("AmpProject\\Exception\\InvalidSpecName");
+        $namespace->addUse('AmpProject\\Exception\\InvalidSpecName');
         $namespace->addUse('AmpProject\\Extension');
         $namespace->addUse('AmpProject\\Format');
         $namespace->addUse('AmpProject\\Internal');
@@ -91,11 +91,12 @@ final class Tags implements Section
             foreach ($this->tags[$tagId] as $key => $attribute) {
                 switch ($key) {
                     case 'tagName':
+                    case 'mandatoryParent':
                         if (strpos($attribute, '$') === 0) {
-                            $constructor->addBody("        'tagName' => {$this->dump($attribute, 3)},");
+                            $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
                         } else {
                             $constant = $this->getTagConstant($this->getConstantName($attribute));
-                            $constructor->addBody("        'tagName' => {$constant},");
+                            $constructor->addBody("        '{$key}' => {$constant},");
                         }
                         break;
                     case 'htmlFormat':
