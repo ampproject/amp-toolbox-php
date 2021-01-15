@@ -2,7 +2,6 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
-use AmpProject\Tooling\Validator\SpecGenerator\ArrayImport;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;

@@ -52,6 +52,7 @@ interface Extension
     const FACEBOOK_PAGE                 = 'amp-facebook-page';
     const FIT_TEXT                      = 'amp-fit-text';
     const FONT                          = 'amp-font';
+    const FX_COLLECTION                 = 'amp-fx-collection';
     const FX_FLYING_CARPET              = 'amp-flying-carpet';
     const GEO                           = 'amp-geo';
     const GFYCAT                        = 'amp-gfycat';
