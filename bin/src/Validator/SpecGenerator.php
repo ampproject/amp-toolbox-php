@@ -2,6 +2,7 @@
 
 namespace AmpProject\Tooling\Validator;
 
+use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -11,6 +12,7 @@ use Nette\PhpGenerator\PsrPrinter;
 
 final class SpecGenerator
 {
+    use ConstantNames;
 
     /**
      * Namespace under which to find the spec generator files.
@@ -41,6 +43,7 @@ final class SpecGenerator
         $specNamespace->addUse("{$rootNamespace}\\Spec");
 
         $this->generateTagClass($rootNamespace, $destination, $printer);
+        $this->generateErrorCodeInterface($jsonSpec, $rootNamespace, $destination, $printer);
 
         foreach ($jsonSpec as $section => $sectionSpec) {
             $sectionClassName = $this->generateSectionClass(
@@ -161,5 +164,35 @@ final class SpecGenerator
         );
 
         return $sectionClassName;
+    }
+
+    /**
+     * Generate the ErrorCode interface.
+     *
+     * @param array   $jsonSpec      JSON spec that contains the spec details.
+     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
+     * @param string  $destination   Destination folder to store the PHP validator spec under.
+     * @param Printer $printer       Source code printer instance to use.
+     */
+    private function generateErrorCodeInterface($jsonSpec, $rootNamespace, $destination, Printer $printer)
+    {
+        $errorCodeFile      = $this->createNewFile();
+        $errorCodeNamespace = $errorCodeFile->addNamespace($rootNamespace);
+        $errorCodeInterface = $errorCodeNamespace->addInterface('ErrorCode');
+
+        $errorCodes = array_unique(
+            array_merge(
+                array_column($jsonSpec['errorFormats'], 'code'),
+                array_column($jsonSpec['errorSpecificity'], 'code')
+            )
+        );
+
+        sort($errorCodes);
+
+        foreach ($errorCodes as $errorCode) {
+            $errorCodeInterface->addConstant($this->getConstantName($errorCode), $errorCode);
+        }
+
+        file_put_contents("{$destination}/ErrorCode.php", $printer->printFile($errorCodeFile));
     }
 }
