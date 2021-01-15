@@ -6,6 +6,7 @@ use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpFile;
+use Nette\PhpGenerator\Printer;
 use Nette\PhpGenerator\PsrPrinter;
 
 final class SpecGenerator
@@ -39,30 +40,15 @@ final class SpecGenerator
 
         $specNamespace->addUse("{$rootNamespace}\\Spec");
 
-        $tagFile      = new PhpFile();
-        $tagNamespace = $tagFile->addNamespace("{$rootNamespace}\\Spec");
-        $tagClass     = ClassType::withBodiesFrom(Template\Tag::class);
-        $tagNamespace->add($tagClass);
-        file_put_contents("{$destination}/Spec/Tag.php", $printer->printFile($tagFile));
+        $this->generateTagClass($rootNamespace, $destination, $printer);
 
         foreach ($jsonSpec as $section => $sectionSpec) {
-            $sectionFile      = $this->createNewFile();
-            $sectionNamespace = $sectionFile->addNamespace("{$rootNamespace}\\Spec\\Section");
-            $sectionClassName = $this->getClassName($section);
-            $sectionClass     = $sectionNamespace->addClass($sectionClassName)
-                                                 ->setFinal();
-
-            $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$sectionClassName}";
-
-            if (class_exists($sectionProcessorClass)) {
-                /** @var Section $sectionProcessor */
-                $sectionProcessor = new $sectionProcessorClass();
-                $sectionProcessor->process($rootNamespace, $sectionSpec, $sectionNamespace, $sectionClass);
-            }
-
-            file_put_contents(
-                "{$destination}/Spec/Section/{$sectionClassName}.php",
-                $printer->printFile($sectionFile)
+            $sectionClassName = $this->generateSectionClass(
+                $section,
+                $sectionSpec,
+                $rootNamespace,
+                $destination,
+                $printer
             );
 
             $specClass->addProperty($section)
@@ -125,5 +111,55 @@ final class SpecGenerator
                 mkdir($folder);
             }
         }
+    }
+
+    /**
+     * Generate the Tag class.
+     *
+     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
+     * @param string  $destination   Destination folder to store the PHP validator spec under.
+     * @param Printer $printer       Source code printer instance to use.
+     */
+    private function generateTagClass($rootNamespace, $destination, Printer $printer)
+    {
+        $tagFile      = new PhpFile();
+        $tagNamespace = $tagFile->addNamespace("{$rootNamespace}\\Spec");
+        $tagClass     = ClassType::withBodiesFrom(Template\Tag::class);
+        $tagNamespace->add($tagClass);
+        file_put_contents("{$destination}/Spec/Tag.php", $printer->printFile($tagFile));
+    }
+
+    /**
+     * Generate a Section class.
+     *
+     * @param string  $section       Key of the section to generate.
+     * @param mixed   $sectionSpec   Spec data of the section to be generated.
+     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
+     * @param string  $destination   Destination folder to store the PHP validator spec under.
+     * @param Printer $printer       Source code printer instance to use.
+     * @return string Section class name.
+     */
+    private function generateSectionClass($section, $sectionSpec, $rootNamespace, $destination, Printer $printer)
+    {
+        $sectionFile      = $this->createNewFile();
+        $sectionNamespace = $sectionFile->addNamespace("{$rootNamespace}\\Spec\\Section");
+        $sectionClassName = $this->getClassName($section);
+        $sectionClass     = $sectionNamespace->addClass($sectionClassName)
+                                             ->setFinal();
+
+        $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$sectionClassName}";
+
+        if (class_exists($sectionProcessorClass)) {
+            /** @var Section $sectionProcessor */
+            $sectionProcessor = new $sectionProcessorClass();
+            $sectionProcessor->process($rootNamespace, $sectionSpec, $sectionNamespace, $sectionClass);
+        }
+
+        file_put_contents(
+            "{$destination}/Spec/Section/{$sectionClassName}.php",
+            $printer->printFile($sectionFile)
+        );
+
+        return $sectionClassName;
     }
 }
