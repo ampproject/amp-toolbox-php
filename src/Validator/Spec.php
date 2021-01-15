@@ -36,11 +36,11 @@ final class Spec
     /** @var Spec\Section\Css */
     private $css;
 
-    /** @var Spec\Section\DeclarationList */
-    private $declarationList;
-
     /** @var Spec\Section\Doc */
     private $doc;
+
+    /** @var Spec\Section\DeclarationLists */
+    private $declarationLists;
 
     /** @var Spec\Section\Errors */
     private $errors;
@@ -130,17 +130,6 @@ final class Spec
     }
 
     /**
-     * @return Spec\Section\DeclarationList
-     */
-    public function declarationList()
-    {
-        if ($this->declarationList === null) {
-            $this->declarationList = new Spec\Section\DeclarationList();
-        }
-        return $this->declarationList;
-    }
-
-    /**
      * @return Spec\Section\Doc
      */
     public function doc()
@@ -149,6 +138,17 @@ final class Spec
             $this->doc = new Spec\Section\Doc();
         }
         return $this->doc;
+    }
+
+    /**
+     * @return Spec\Section\DeclarationLists
+     */
+    public function declarationLists()
+    {
+        if ($this->declarationLists === null) {
+            $this->declarationLists = new Spec\Section\DeclarationLists();
+        }
+        return $this->declarationLists;
     }
 
     /**

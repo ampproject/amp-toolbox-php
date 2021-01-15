@@ -43,6 +43,7 @@ final class SpecGenerator
         $specNamespace->addUse("{$rootNamespace}\\Spec");
 
         $this->generateTagClass($rootNamespace, $destination, $printer);
+        $this->generateDeclarationListClass($rootNamespace, $destination, $printer);
         $this->generateErrorCodeInterface($jsonSpec, $rootNamespace, $destination, $printer);
 
         $jsonSpec = $this->adaptJsonSpec($jsonSpec);
@@ -159,6 +160,22 @@ final class SpecGenerator
     }
 
     /**
+     * Generate the DeclarationList class.
+     *
+     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
+     * @param string  $destination   Destination folder to store the PHP validator spec under.
+     * @param Printer $printer       Source code printer instance to use.
+     */
+    private function generateDeclarationListClass($rootNamespace, $destination, Printer $printer)
+    {
+        $tagFile      = $this->createNewFile();
+        $tagNamespace = $tagFile->addNamespace("{$rootNamespace}\\Spec");
+        $tagClass     = ClassType::withBodiesFrom(Template\DeclarationList::class);
+        $tagNamespace->add($tagClass);
+        file_put_contents("{$destination}/Spec/DeclarationList.php", $printer->printFile($tagFile));
+    }
+
+    /**
      * Generate a Section class.
      *
      * @param string  $section       Key of the section to generate.
@@ -232,6 +249,9 @@ final class SpecGenerator
      */
     private function adaptJsonSpec($jsonSpec)
     {
+        $jsonSpec['declarationLists'] = $jsonSpec['declarationList'];
+        unset($jsonSpec['declarationList']);
+
         $errorArray = [
             'format'      => $jsonSpec['errorFormats'],
             'specificity' => $jsonSpec['errorSpecificity'],

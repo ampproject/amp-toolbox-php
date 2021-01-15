@@ -1,15 +1,15 @@
 <?php
 
-namespace AmpProject\Tooling\Validator\SpecGenerator;
+namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
+use AmpProject\Tooling\Validator\SpecGenerator\Section;
+use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
-trait ArrayImport
+final class DeclarationLists implements Section
 {
-
-    /** @var array */
-    private $data;
+    use VariableDumping;
 
     /**
      * Process a section.
@@ -22,26 +22,28 @@ trait ArrayImport
      */
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
+        $namespace->addUse("{$rootNamespace}\\Spec");
+
         $this->data   = $this->adaptSpec($spec);
         $propertyName = lcfirst($class->getName());
 
         $class->addProperty($propertyName)
-              ->addComment('@var array');
+              ->addComment('@var array<Spec\DeclarationList>');
 
         $constructor = $class->addMethod('__construct');
 
         $constructor->addBody('$this->? = [', [$propertyName]);
 
         foreach ($this->data as $key => $value) {
-            if (is_string($key)) {
+            $constructor->addBody("    '{$key}' => new Spec\DeclarationList(");
+            $constructor->addBody('        [');
+            foreach ($value as $subKey => $subValue) {
                 $constructor->addBody(
-                    "    {$this->dumpWithKey($key, $value, 1, [$this, 'filterValueStrings'])}"
-                );
-            } else {
-                $constructor->addBody(
-                    "    {$this->dump($value, 1, [$this, 'filterValueStrings'])}"
+                    "            {$this->dumpWithKey($subKey, $subValue, 3, [$this, 'filterValueStrings'])}"
                 );
             }
+            $constructor->addBody('        ]');
+            $constructor->addBody("    ),");
         }
 
         $constructor->addBody('];');
@@ -55,6 +57,21 @@ trait ArrayImport
      */
     protected function adaptSpec($jsonSpec)
     {
-        return $jsonSpec;
+        $declarationList = [];
+
+        foreach ($jsonSpec as $entry) {
+            $key  = $entry['name'];
+            $data = $entry['declaration'];
+
+            $declarationList[$key] = [];
+
+            foreach ($data as $datum) {
+                $name = $datum['name'];
+                unset($datum['name']);
+                $declarationList[$key][$name] = $datum;
+            }
+        }
+
+        return $declarationList;
     }
 }

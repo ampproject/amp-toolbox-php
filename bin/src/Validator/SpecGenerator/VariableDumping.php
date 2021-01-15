@@ -61,6 +61,10 @@ trait VariableDumping
         $extraIndentation = str_pad('', $level * 4, ' ');
 
         if (is_array($value)) {
+            if (count($value) === 0) {
+                return "'{$key}' => [],";
+            }
+
             $line = '';
             foreach ($value as $subKey => $subValue) {
                 if (is_string($subKey)) {
@@ -69,6 +73,7 @@ trait VariableDumping
                     $line .= "{$extraIndentation}    {$this->dump($subValue, $level + 1, $callback)}\n";
                 }
             }
+
             return "'{$key}' => [\n" . $line . "{$extraIndentation}],";
         }
 

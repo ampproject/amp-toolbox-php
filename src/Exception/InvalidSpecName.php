@@ -13,7 +13,7 @@ final class InvalidSpecName extends OutOfRangeException implements AmpException
 {
 
     /**
-     * Instantiate an InvalidSpecName exception for a spec known that s not found within the spec name index.
+     * Instantiate an InvalidSpecName exception for a spec that is not found within the spec name index.
      *
      * @param string $specName Spec name that was requested.
      * @return self
