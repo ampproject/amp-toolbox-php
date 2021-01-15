@@ -45,6 +45,8 @@ final class SpecGenerator
         $this->generateTagClass($rootNamespace, $destination, $printer);
         $this->generateErrorCodeInterface($jsonSpec, $rootNamespace, $destination, $printer);
 
+        $jsonSpec = $this->adaptJsonSpec($jsonSpec);
+
         foreach ($jsonSpec as $section => $sectionSpec) {
             $sectionClassName = $this->generateSectionClass(
                 $section,
@@ -180,6 +182,8 @@ final class SpecGenerator
         $errorCodeNamespace = $errorCodeFile->addNamespace($rootNamespace);
         $errorCodeInterface = $errorCodeNamespace->addInterface('ErrorCode');
 
+        $errorCodeInterface->addComment('phpcs:disable Generic.Files.LineLength.TooLong');
+
         $errorCodes = array_unique(
             array_merge(
                 array_column($jsonSpec['errorFormats'], 'code'),
@@ -194,5 +198,31 @@ final class SpecGenerator
         }
 
         file_put_contents("{$destination}/ErrorCode.php", $printer->printFile($errorCodeFile));
+    }
+
+    /**
+     * Adapt JSON spec data.
+     *
+     * @param array $jsonSpec JSON spec data to adapt.
+     * @return array Adapted JSON spec data.
+     */
+    private function adaptJsonSpec($jsonSpec)
+    {
+        $errorArray = [
+            'format'      => $jsonSpec['errorFormats'],
+            'specificity' => $jsonSpec['errorSpecificity'],
+        ];
+
+        $jsonSpec['errors'] = [];
+
+        foreach ($errorArray as $key => $errors) {
+            foreach ($errors as $error) {
+                $jsonSpec['errors'][$error['code']][$key] = $error[$key];
+            }
+        }
+
+        unset($jsonSpec['errorFormats'], $jsonSpec['errorSpecificity']);
+
+        return $jsonSpec;
     }
 }

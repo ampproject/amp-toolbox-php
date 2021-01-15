@@ -24,12 +24,6 @@ final class Spec
     /** @var Spec\Section\TemplateSpecUrl */
     private $templateSpecUrl;
 
-    /** @var Spec\Section\ErrorFormats */
-    private $errorFormats;
-
-    /** @var Spec\Section\ErrorSpecificity */
-    private $errorSpecificity;
-
     /** @var Spec\Section\StylesSpecUrl */
     private $stylesSpecUrl;
 
@@ -47,6 +41,9 @@ final class Spec
 
     /** @var Spec\Section\Doc */
     private $doc;
+
+    /** @var Spec\Section\Errors */
+    private $errors;
 
     /**
      * @return Spec\Section\Tags
@@ -101,28 +98,6 @@ final class Spec
             $this->templateSpecUrl = new Spec\Section\TemplateSpecUrl();
         }
         return $this->templateSpecUrl;
-    }
-
-    /**
-     * @return Spec\Section\ErrorFormats
-     */
-    public function errorFormats()
-    {
-        if ($this->errorFormats === null) {
-            $this->errorFormats = new Spec\Section\ErrorFormats();
-        }
-        return $this->errorFormats;
-    }
-
-    /**
-     * @return Spec\Section\ErrorSpecificity
-     */
-    public function errorSpecificity()
-    {
-        if ($this->errorSpecificity === null) {
-            $this->errorSpecificity = new Spec\Section\ErrorSpecificity();
-        }
-        return $this->errorSpecificity;
     }
 
     /**
@@ -189,5 +164,16 @@ final class Spec
             $this->doc = new Spec\Section\Doc();
         }
         return $this->doc;
+    }
+
+    /**
+     * @return Spec\Section\Errors
+     */
+    public function errors()
+    {
+        if ($this->errors === null) {
+            $this->errors = new Spec\Section\Errors();
+        }
+        return $this->errors;
     }
 }

@@ -123,4 +123,15 @@ trait ConstantNames
 
         return "Attribute::{$attribute}";
     }
+
+    /**
+     * Get the error code constant.
+     *
+     * @param string $errorCode Error code to get the constant for.
+     * @return string Error code constant.
+     */
+    private function getErrorCodeConstant($errorCode)
+    {
+        return "ErrorCode::{$errorCode}";
+    }
 }

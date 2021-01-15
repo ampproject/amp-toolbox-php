@@ -117,6 +117,8 @@ trait VariableDumping
             ||
             strpos($value, 'Element::') === 0
             ||
+            strpos($value, 'ErrorCode::') === 0
+            ||
             strpos($value, 'Extension::') === 0
             ||
             strpos($value, 'Format::') === 0

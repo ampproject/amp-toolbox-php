@@ -55,18 +55,11 @@ class SpecTest extends TestCase
         $this->assertInstanceOf(Section\Doc::class, $tags);
     }
 
-    public function testItCanProvideTheErrorFormatsSection()
+    public function testItCanProvideTheErrorsSection()
     {
         $spec = new Spec();
-        $tags = $spec->errorFormats();
-        $this->assertInstanceOf(Section\ErrorFormats::class, $tags);
-    }
-
-    public function testItCanProvideTheErrorSpecificitySection()
-    {
-        $spec = new Spec();
-        $tags = $spec->errorSpecificity();
-        $this->assertInstanceOf(Section\ErrorSpecificity::class, $tags);
+        $tags = $spec->errors();
+        $this->assertInstanceOf(Section\Errors::class, $tags);
     }
 
     public function testItCanProvideTheMinValidatorRevisionRequiredSection()
