@@ -122,7 +122,7 @@ final class SpecGenerator
      */
     private function generateTagClass($rootNamespace, $destination, Printer $printer)
     {
-        $tagFile      = new PhpFile();
+        $tagFile      = $this->createNewFile();
         $tagNamespace = $tagFile->addNamespace("{$rootNamespace}\\Spec");
         $tagClass     = ClassType::withBodiesFrom(Template\Tag::class);
         $tagNamespace->add($tagClass);
