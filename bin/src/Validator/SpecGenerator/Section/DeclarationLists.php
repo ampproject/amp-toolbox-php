@@ -3,6 +3,7 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
+use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
@@ -22,17 +23,18 @@ final class DeclarationLists implements Section
      */
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
+        $namespace->addUse('AmpProject\Exception\InvalidDeclarationListName');
         $namespace->addUse("{$rootNamespace}\\Spec");
 
         $this->data   = $this->adaptSpec($spec);
-        $propertyName = lcfirst($class->getName());
 
-        $class->addProperty($propertyName)
+        $class->addProperty('declarations')
+              ->setPrivate()
               ->addComment('@var array<Spec\DeclarationList>');
 
         $constructor = $class->addMethod('__construct');
 
-        $constructor->addBody('$this->? = [', [$propertyName]);
+        $constructor->addBody('$this->? = [', ['declarations']);
 
         foreach ($this->data as $key => $value) {
             $constructor->addBody("    '{$key}' => new Spec\DeclarationList(");
@@ -47,6 +49,11 @@ final class DeclarationLists implements Section
         }
 
         $constructor->addBody('];');
+
+        $declarationListsTemplateClass = ClassType::withBodiesFrom(Template\DeclarationLists::class);
+        foreach ($declarationListsTemplateClass->getMethods() as $method) {
+            $class->addMember($method);
+        }
     }
 
     /**

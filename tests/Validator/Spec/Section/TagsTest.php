@@ -60,6 +60,6 @@ class TagsTest extends TestCase
     public function testBySpecNameThrowsExceptionForUnknownSpecName()
     {
         $this->expectException(InvalidSpecName::class);
-        $tags = $this->tags->bySpecName('utter nonsense');
+        $this->tags->bySpecName('utter nonsense');
     }
 }

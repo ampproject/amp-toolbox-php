@@ -35,7 +35,6 @@ final class DeclarationList
         return array_key_exists($declaration, $this->declarations);
     }
 
-
     /**
      * Get a specific declaration.
      *
