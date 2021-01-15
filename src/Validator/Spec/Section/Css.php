@@ -15,81 +15,169 @@ final class Css
     public function __construct()
     {
         $this->css = [
-            0 => [
-                    'htmlFormat' => ['AMP'],
-                    'disabledBy' => ['transformed'],
-                    'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets',
-                    'maxBytes' => 75000,
-                    'maxBytesPerInlineStyle' => 1000,
-                    'urlBytesIncluded' => true,
-                    'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                    'allowAllDeclarationInStyleTag' => true,
-                    'declarationList' => ['BASIC_DECLARATIONS', 'AMP_ONLY_DECLARATIONS'],
-                    'declarationListSvg' => ['SVG_BASIC_DECLARATIONS'],
-                    'imageUrlSpec' => ['protocol' => ['https', 'http', 'data'], 'allowEmpty' => true],
-                    'fontUrlSpec' => ['protocol' => ['https', 'http', 'data'], 'allowEmpty' => true],
-                    'allowImportant' => false,
-                    'expandVendorPrefixes' => true,
+            [
+                'htmlFormat' => [
+                    'AMP',
                 ],
-            1 => [
-                    'htmlFormat' => ['AMP'],
-                    'enabledBy' => ['transformed'],
-                    'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets',
-                    'maxBytes' => 75000,
-                    'maxBytesPerInlineStyle' => 1000,
-                    'urlBytesIncluded' => false,
-                    'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                    'allowAllDeclarationInStyleTag' => true,
-                    'declarationList' => ['BASIC_DECLARATIONS', 'AMP_ONLY_DECLARATIONS'],
-                    'declarationListSvg' => ['SVG_BASIC_DECLARATIONS'],
-                    'imageUrlSpec' => ['protocol' => ['https', 'http', 'data'], 'allowEmpty' => true],
-                    'fontUrlSpec' => ['protocol' => ['https', 'http', 'data'], 'allowEmpty' => true],
-                    'allowImportant' => false,
-                    'expandVendorPrefixes' => true,
+                'disabledBy' => [
+                    'transformed',
                 ],
-            2 => [
-                    'htmlFormat' => ['AMP4ADS'],
-                    'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
-                    'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
-                    'allowAllDeclarationInStyleTag' => true,
-                    'declarationList' => ['BASIC_DECLARATIONS'],
-                    'declarationListSvg' => ['SVG_BASIC_DECLARATIONS'],
-                    'imageUrlSpec' => ['protocol' => ['https', 'http', 'data'], 'allowEmpty' => true],
-                    'fontUrlSpec' => ['protocol' => ['https', 'http', 'data'], 'allowEmpty' => true],
-                    'allowImportant' => false,
-                    'expandVendorPrefixes' => true,
+                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets',
+                'maxBytes' => 75000,
+                'maxBytesPerInlineStyle' => 1000,
+                'urlBytesIncluded' => true,
+                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                'allowAllDeclarationInStyleTag' => true,
+                'declarationList' => [
+                    'BASIC_DECLARATIONS',
+                    'AMP_ONLY_DECLARATIONS',
                 ],
-            3 => [
-                    'htmlFormat' => ['AMP4EMAIL'],
-                    'disabledBy' => ['data-css-strict'],
-                    'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css',
-                    'maxBytes' => 75000,
-                    'maxBytesPerInlineStyle' => 1000,
-                    'urlBytesIncluded' => true,
-                    'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                    'allowAllDeclarationInStyleTag' => true,
-                    'declarationList' => ['BASIC_DECLARATIONS'],
-                    'declarationListSvg' => ['SVG_BASIC_DECLARATIONS'],
-                    'imageUrlSpec' => ['protocol' => ['https']],
-                    'allowImportant' => false,
-                    'maxBytesIsWarning' => true,
-                    'expandVendorPrefixes' => true,
+                'declarationListSvg' => [
+                    'SVG_BASIC_DECLARATIONS',
                 ],
-            4 => [
-                    'htmlFormat' => ['AMP4EMAIL'],
-                    'enabledBy' => ['data-css-strict'],
-                    'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css',
-                    'maxBytes' => 75000,
-                    'maxBytesPerInlineStyle' => 1000,
-                    'urlBytesIncluded' => true,
-                    'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                    'allowAllDeclarationInStyleTag' => false,
-                    'declarationList' => ['EMAIL_SPECIFIC_DECLARATIONS'],
-                    'imageUrlSpec' => ['protocol' => ['https']],
-                    'allowImportant' => false,
-                    'maxBytesIsWarning' => false,
-                    'expandVendorPrefixes' => false,
+                'imageUrlSpec' => [
+                    'protocol' => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    'allowEmpty' => true,
                 ],
+                'fontUrlSpec' => [
+                    'protocol' => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    'allowEmpty' => true,
+                ],
+                'allowImportant' => false,
+                'expandVendorPrefixes' => true,
+            ],
+            [
+                'htmlFormat' => [
+                    'AMP',
+                ],
+                'enabledBy' => [
+                    'transformed',
+                ],
+                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets',
+                'maxBytes' => 75000,
+                'maxBytesPerInlineStyle' => 1000,
+                'urlBytesIncluded' => false,
+                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                'allowAllDeclarationInStyleTag' => true,
+                'declarationList' => [
+                    'BASIC_DECLARATIONS',
+                    'AMP_ONLY_DECLARATIONS',
+                ],
+                'declarationListSvg' => [
+                    'SVG_BASIC_DECLARATIONS',
+                ],
+                'imageUrlSpec' => [
+                    'protocol' => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    'allowEmpty' => true,
+                ],
+                'fontUrlSpec' => [
+                    'protocol' => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    'allowEmpty' => true,
+                ],
+                'allowImportant' => false,
+                'expandVendorPrefixes' => true,
+            ],
+            [
+                'htmlFormat' => [
+                    'AMP4ADS',
+                ],
+                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
+                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
+                'allowAllDeclarationInStyleTag' => true,
+                'declarationList' => [
+                    'BASIC_DECLARATIONS',
+                ],
+                'declarationListSvg' => [
+                    'SVG_BASIC_DECLARATIONS',
+                ],
+                'imageUrlSpec' => [
+                    'protocol' => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    'allowEmpty' => true,
+                ],
+                'fontUrlSpec' => [
+                    'protocol' => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    'allowEmpty' => true,
+                ],
+                'allowImportant' => false,
+                'expandVendorPrefixes' => true,
+            ],
+            [
+                'htmlFormat' => [
+                    'AMP4EMAIL',
+                ],
+                'disabledBy' => [
+                    'data-css-strict',
+                ],
+                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css',
+                'maxBytes' => 75000,
+                'maxBytesPerInlineStyle' => 1000,
+                'urlBytesIncluded' => true,
+                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                'allowAllDeclarationInStyleTag' => true,
+                'declarationList' => [
+                    'BASIC_DECLARATIONS',
+                ],
+                'declarationListSvg' => [
+                    'SVG_BASIC_DECLARATIONS',
+                ],
+                'imageUrlSpec' => [
+                    'protocol' => [
+                        'https',
+                    ],
+                ],
+                'allowImportant' => false,
+                'maxBytesIsWarning' => true,
+                'expandVendorPrefixes' => true,
+            ],
+            [
+                'htmlFormat' => [
+                    'AMP4EMAIL',
+                ],
+                'enabledBy' => [
+                    'data-css-strict',
+                ],
+                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css',
+                'maxBytes' => 75000,
+                'maxBytesPerInlineStyle' => 1000,
+                'urlBytesIncluded' => true,
+                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                'allowAllDeclarationInStyleTag' => false,
+                'declarationList' => [
+                    'EMAIL_SPECIFIC_DECLARATIONS',
+                ],
+                'imageUrlSpec' => [
+                    'protocol' => [
+                        'https',
+                    ],
+                ],
+                'allowImportant' => false,
+                'maxBytesIsWarning' => false,
+                'expandVendorPrefixes' => false,
+            ],
         ];
     }
 }

@@ -87,4 +87,29 @@ trait ConstantNames
 
         return "Format::{$format}";
     }
+
+    /**
+     * Get the attribute constant.
+     *
+     * @param string $attribute Attribute to get the constant for.
+     * @return string Attribute constant.
+     */
+    private function getAttributeConstant($attribute)
+    {
+        if (strpos($attribute, '[') === 0) {
+            return $attribute;
+        }
+
+        $languageConstructs = [
+            'AS',
+            'DEFAULT',
+            'FOR',
+        ];
+
+        if (in_array($attribute, $languageConstructs, true)) {
+            $attribute .= '_';
+        }
+
+        return "Attribute::{$attribute}";
+    }
 }

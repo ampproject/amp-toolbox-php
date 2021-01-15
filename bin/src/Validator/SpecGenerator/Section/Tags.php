@@ -49,6 +49,7 @@ final class Tags implements Section
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
         $namespace->addUse('AmpProject\\Exception\\InvalidSpecName');
+        $namespace->addUse('AmpProject\\Attribute');
         $namespace->addUse('AmpProject\\Extension');
         $namespace->addUse('AmpProject\\Format');
         $namespace->addUse('AmpProject\\Internal');
@@ -88,30 +89,46 @@ final class Tags implements Section
             $constructor->addBody("    {$keyString} => new Tag(");
             $constructor->addBody('        [');
 
-            foreach ($this->tags[$tagId] as $key => $attribute) {
+            $indent = '            ';
+            foreach ($this->tags[$tagId] as $key => $value) {
                 switch ($key) {
+                    case 'attrs':
+                        $attributeArrays = [];
+                        foreach ($value as $attributeArray) {
+                            $constant = $this->getAttributeConstant($this->getConstantName($attributeArray['name']));
+                            $attributeArray['name'] = $constant === $attributeArray['name']
+                                ? "'{$attributeArray['name']}'"
+                                : $constant;
+                            $attributeArrays[] = $attributeArray;
+                        }
+                        $constructor->addBody(
+                            "{$indent}{$this->dumpWithKey($key, $attributeArrays, 3, [$this, 'filterValueStrings'])}"
+                        );
+                        break;
                     case 'mandatoryAncestor':
                     case 'mandatoryAncestorSuggestedAlternative':
                     case 'mandatoryParent':
                     case 'tagName':
-                        if (strpos($attribute, '$') === 0 || strpos($attribute, ' ') !== false) {
-                            $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
-                        } else {
-                            $constant = $this->getTagConstant($this->getConstantName($attribute));
-                            $constructor->addBody("        '{$key}' => {$constant},");
+                        $constant = $value;
+                        if (strpos($value, '$') !== 0 && strpos($value, ' ') === false) {
+                            $constant = $this->getTagConstant($this->getConstantName($value));
                         }
+                        $constructor->addBody(
+                            "{$indent}{$this->dumpWithKey($key, $constant, 3, [$this, 'filterValueStrings'])}"
+                        );
                         break;
                     case 'htmlFormat':
                         $formats = [];
-                        foreach ($attribute as $format) {
+                        foreach ($value as $format) {
                             $constant = $this->getFormatConstant($format);
                             $formats[] = $constant === $format ? "'{$format}'" : $constant;
                         }
-                        $formatsString = implode(', ', $formats);
-                        $constructor->addBody("        '{$key}' => [{$formatsString}],");
+                        $constructor->addBody(
+                            "{$indent}{$this->dumpWithKey($key, $formats, 3, [$this, 'filterValueStrings'])}"
+                        );
                         break;
                     default:
-                        $constructor->addBody("        '{$key}' => {$this->dump($attribute, 3)},");
+                        $constructor->addBody("{$indent}{$this->dumpWithKey($key, $value, 3)}");
                 }
             }
 

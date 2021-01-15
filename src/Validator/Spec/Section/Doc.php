@@ -15,11 +15,13 @@ final class Doc
     public function __construct()
     {
         $this->doc = [
-            0 => [
-                    'htmlFormat' => ['AMP4EMAIL'],
-                    'maxBytes' => 200000,
-                    'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-format/?format=email',
+            [
+                'htmlFormat' => [
+                    'AMP4EMAIL',
                 ],
+                'maxBytes' => 200000,
+                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-format/?format=email',
+            ],
         ];
     }
 }

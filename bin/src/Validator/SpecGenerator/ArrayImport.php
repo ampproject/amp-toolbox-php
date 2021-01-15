@@ -33,10 +33,14 @@ trait ArrayImport
         $constructor->addBody('$this->? = [', [$propertyName]);
 
         foreach ($spec as $key => $value) {
-            if (is_numeric($key)) {
-                $constructor->addBody("    {$key} => {$this->dump($value, 2)},");
+            if (is_string($key)) {
+                $constructor->addBody(
+                    "    {$this->dumpWithKey($key, $value, 1, [$this, 'filterValueStrings'])}"
+                );
             } else {
-                $constructor->addBody("    '{$key}' => {$this->dump($value, 2)},");
+                $constructor->addBody(
+                    "    {$this->dump($value, 1, [$this, 'filterValueStrings'])}"
+                );
             }
         }
 
