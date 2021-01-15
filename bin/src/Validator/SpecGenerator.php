@@ -48,24 +48,48 @@ final class SpecGenerator
         $jsonSpec = $this->adaptJsonSpec($jsonSpec);
 
         foreach ($jsonSpec as $section => $sectionSpec) {
-            $sectionClassName = $this->generateSectionClass(
-                $section,
-                $sectionSpec,
-                $rootNamespace,
-                $destination,
-                $printer
-            );
+            switch ($section) {
+                case 'minValidatorRevisionRequired':
+                case 'specFileRevision':
+                    $specClass->addProperty($section, $sectionSpec)
+                        ->setPrivate()
+                        ->addComment("@var int");
 
-            $specClass->addProperty($section)
-                      ->setPrivate()
-                      ->addComment("@var Spec\\Section\\{$sectionClassName}");
+                    $specClass->addMethod($section)
+                              ->addBody('return $this->?;', [$section])
+                              ->addComment("@return int");
+                    break;
+                case 'scriptSpecUrl':
+                case 'stylesSpecUrl':
+                case 'templateSpecUrl':
+                    $specClass->addProperty($section, $sectionSpec)
+                              ->setPrivate()
+                              ->addComment("@var string");
 
-            $specClass->addMethod($section)
-                      ->addBody('if ($this->? === null) {', [$section])
-                      ->addBody("    \$this->? = new Spec\\Section\\{$sectionClassName}();", [$section])
-                      ->addBody('}')
-                      ->addBody('return $this->?;', [$section])
-                      ->addComment("@return Spec\\Section\\{$sectionClassName}");
+                    $specClass->addMethod($section)
+                              ->addBody('return $this->?;', [$section])
+                              ->addComment("@return string");
+                    break;
+                default:
+                    $sectionClassName = $this->generateSectionClass(
+                        $section,
+                        $sectionSpec,
+                        $rootNamespace,
+                        $destination,
+                        $printer
+                    );
+
+                    $specClass->addProperty($section)
+                        ->setPrivate()
+                        ->addComment("@var Spec\\Section\\{$sectionClassName}");
+
+                    $specClass->addMethod($section)
+                              ->addBody('if ($this->? === null) {', [$section])
+                              ->addBody("    \$this->? = new Spec\\Section\\{$sectionClassName}();", [$section])
+                              ->addBody('}')
+                              ->addBody('return $this->?;', [$section])
+                              ->addComment("@return Spec\\Section\\{$sectionClassName}");
+            }
         }
 
         file_put_contents("{$destination}/Spec.php", $printer->printFile($specFile));

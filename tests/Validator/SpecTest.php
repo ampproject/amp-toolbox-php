@@ -22,72 +22,72 @@ class SpecTest extends TestCase
 
     public function testItCanProvideTheAttrListsSection()
     {
-        $spec = new Spec();
-        $tags = $spec->attrLists();
-        $this->assertInstanceOf(Section\AttrLists::class, $tags);
+        $spec      = new Spec();
+        $attrsList = $spec->attrLists();
+        $this->assertInstanceOf(Section\AttrLists::class, $attrsList);
     }
 
     public function testItCanProvideTheCssSection()
     {
         $spec = new Spec();
-        $tags = $spec->css();
-        $this->assertInstanceOf(Section\Css::class, $tags);
+        $css  = $spec->css();
+        $this->assertInstanceOf(Section\Css::class, $css);
     }
 
     public function testItCanProvideTheDeclarationListSection()
     {
-        $spec = new Spec();
-        $tags = $spec->declarationList();
-        $this->assertInstanceOf(Section\DeclarationList::class, $tags);
+        $spec            = new Spec();
+        $declarationList = $spec->declarationList();
+        $this->assertInstanceOf(Section\DeclarationList::class, $declarationList);
     }
 
     public function testItCanProvideTheDescendantTagListSection()
     {
-        $spec = new Spec();
-        $tags = $spec->descendantTagList();
-        $this->assertInstanceOf(Section\DescendantTagList::class, $tags);
+        $spec              = new Spec();
+        $descendantTagList = $spec->descendantTagList();
+        $this->assertInstanceOf(Section\DescendantTagList::class, $descendantTagList);
     }
 
     public function testItCanProvideTheDocSection()
     {
         $spec = new Spec();
-        $tags = $spec->doc();
-        $this->assertInstanceOf(Section\Doc::class, $tags);
+        $doc  = $spec->doc();
+        $this->assertInstanceOf(Section\Doc::class, $doc);
     }
 
     public function testItCanProvideTheErrorsSection()
     {
-        $spec = new Spec();
-        $tags = $spec->errors();
-        $this->assertInstanceOf(Section\Errors::class, $tags);
+        $spec   = new Spec();
+        $errors = $spec->errors();
+        $this->assertInstanceOf(Section\Errors::class, $errors);
     }
 
     public function testItCanProvideTheMinValidatorRevisionRequiredSection()
     {
-        $spec = new Spec();
-        $tags = $spec->minValidatorRevisionRequired();
-        $this->assertInstanceOf(Section\MinValidatorRevisionRequired::class, $tags);
+        $spec                         = new Spec();
+        $minValidatorRevisionRequired = $spec->minValidatorRevisionRequired();
+        $this->assertIsInt($minValidatorRevisionRequired);
     }
 
     public function testItCanProvideTheScriptSpecUrlSection()
     {
-        $spec = new Spec();
-        $tags = $spec->scriptSpecUrl();
-        $this->assertInstanceOf(Section\ScriptSpecUrl::class, $tags);
+        $spec          = new Spec();
+        $scriptSpecUrl = $spec->scriptSpecUrl();
+        $this->assertIsString($scriptSpecUrl);
     }
 
     public function testItCanProvideTheSpecFileRevisionSection()
     {
-        $spec = new Spec();
-        $tags = $spec->specFileRevision();
-        $this->assertInstanceOf(Section\SpecFileRevision::class, $tags);
+        $spec             = new Spec();
+        $specFileRevision = $spec->specFileRevision();
+        $this->assertIsInt($specFileRevision);
     }
 
     public function testItCanProvideTheStylesSpecUrlSection()
     {
-        $spec = new Spec();
-        $tags = $spec->stylesSpecUrl();
-        $this->assertInstanceOf(Section\StylesSpecUrl::class, $tags);
+        $spec          = new Spec();
+        $stylesSpecUrl = $spec->stylesSpecUrl();
+        $this->assertIsString($stylesSpecUrl);
     }
 
     public function testItCanProvideTheTagsSection()
@@ -99,8 +99,8 @@ class SpecTest extends TestCase
 
     public function testItCanProvideTheTemplateSpecUrlSection()
     {
-        $spec = new Spec();
-        $tags = $spec->templateSpecUrl();
-        $this->assertInstanceOf(Section\TemplateSpecUrl::class, $tags);
+        $spec            = new Spec();
+        $templateSpecUrl = $spec->templateSpecUrl();
+        $this->assertIsString($templateSpecUrl);
     }
 }

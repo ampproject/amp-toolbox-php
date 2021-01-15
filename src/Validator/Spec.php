@@ -12,26 +12,26 @@ final class Spec
     /** @var Spec\Section\Tags */
     private $tags;
 
-    /** @var Spec\Section\MinValidatorRevisionRequired */
-    private $minValidatorRevisionRequired;
+    /** @var int */
+    private $minValidatorRevisionRequired = 475;
 
-    /** @var Spec\Section\SpecFileRevision */
-    private $specFileRevision;
+    /** @var int */
+    private $specFileRevision = 1132;
 
     /** @var Spec\Section\AttrLists */
     private $attrLists;
 
-    /** @var Spec\Section\TemplateSpecUrl */
-    private $templateSpecUrl;
+    /** @var string */
+    private $templateSpecUrl = 'https://amp.dev/documentation/components/amp-mustache';
 
-    /** @var Spec\Section\StylesSpecUrl */
-    private $stylesSpecUrl;
+    /** @var string */
+    private $stylesSpecUrl = 'https://amp.dev/documentation/guides-and-tutorials/develop/style_and_layout/style_pages/';
 
     /** @var Spec\Section\DescendantTagList */
     private $descendantTagList;
 
-    /** @var Spec\Section\ScriptSpecUrl */
-    private $scriptSpecUrl;
+    /** @var string */
+    private $scriptSpecUrl = 'https://amp.dev/documentation/guides-and-tutorials/learn/validation-workflow/validation_errors/#custom-javascript-is-not-allowed';
 
     /** @var Spec\Section\Css */
     private $css;
@@ -57,24 +57,18 @@ final class Spec
     }
 
     /**
-     * @return Spec\Section\MinValidatorRevisionRequired
+     * @return int
      */
     public function minValidatorRevisionRequired()
     {
-        if ($this->minValidatorRevisionRequired === null) {
-            $this->minValidatorRevisionRequired = new Spec\Section\MinValidatorRevisionRequired();
-        }
         return $this->minValidatorRevisionRequired;
     }
 
     /**
-     * @return Spec\Section\SpecFileRevision
+     * @return int
      */
     public function specFileRevision()
     {
-        if ($this->specFileRevision === null) {
-            $this->specFileRevision = new Spec\Section\SpecFileRevision();
-        }
         return $this->specFileRevision;
     }
 
@@ -90,24 +84,18 @@ final class Spec
     }
 
     /**
-     * @return Spec\Section\TemplateSpecUrl
+     * @return string
      */
     public function templateSpecUrl()
     {
-        if ($this->templateSpecUrl === null) {
-            $this->templateSpecUrl = new Spec\Section\TemplateSpecUrl();
-        }
         return $this->templateSpecUrl;
     }
 
     /**
-     * @return Spec\Section\StylesSpecUrl
+     * @return string
      */
     public function stylesSpecUrl()
     {
-        if ($this->stylesSpecUrl === null) {
-            $this->stylesSpecUrl = new Spec\Section\StylesSpecUrl();
-        }
         return $this->stylesSpecUrl;
     }
 
@@ -123,13 +111,10 @@ final class Spec
     }
 
     /**
-     * @return Spec\Section\ScriptSpecUrl
+     * @return string
      */
     public function scriptSpecUrl()
     {
-        if ($this->scriptSpecUrl === null) {
-            $this->scriptSpecUrl = new Spec\Section\ScriptSpecUrl();
-        }
         return $this->scriptSpecUrl;
     }
 
