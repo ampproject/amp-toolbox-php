@@ -53,6 +53,7 @@ final class Tags implements Section
         $namespace->addUse('AmpProject\\Extension');
         $namespace->addUse('AmpProject\\Format');
         $namespace->addUse('AmpProject\\Internal');
+        $namespace->addUse('AmpProject\\Layout');
         $namespace->addUse('AmpProject\\Tag', 'Element');
         $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
 
@@ -92,6 +93,18 @@ final class Tags implements Section
             $indent = '            ';
             foreach ($this->tags[$tagId] as $key => $value) {
                 switch ($key) {
+                    case 'ampLayout':
+                        if (array_key_exists('supportedLayouts', $value)) {
+                            foreach ($value['supportedLayouts'] as $index => $layout) {
+                                $value['supportedLayouts'][$index] = $this->getLayoutConstant(
+                                    $this->getConstantName($layout)
+                                );
+                            }
+                        }
+                        $constructor->addBody(
+                            "{$indent}{$this->dumpWithKey($key, $value, 3, [$this, 'filterValueStrings'])}"
+                        );
+                        break;
                     case 'attrs':
                         $attributeArrays = [];
                         foreach ($value as $attributeArray) {
@@ -105,6 +118,16 @@ final class Tags implements Section
                             "{$indent}{$this->dumpWithKey($key, $attributeArrays, 3, [$this, 'filterValueStrings'])}"
                         );
                         break;
+                    case 'htmlFormat':
+                        $formats = [];
+                        foreach ($value as $format) {
+                            $constant = $this->getFormatConstant($format);
+                            $formats[] = $constant === $format ? "'{$format}'" : $constant;
+                        }
+                        $constructor->addBody(
+                            "{$indent}{$this->dumpWithKey($key, $formats, 3, [$this, 'filterValueStrings'])}"
+                        );
+                        break;
                     case 'mandatoryAncestor':
                     case 'mandatoryAncestorSuggestedAlternative':
                     case 'mandatoryParent':
@@ -115,16 +138,6 @@ final class Tags implements Section
                         }
                         $constructor->addBody(
                             "{$indent}{$this->dumpWithKey($key, $constant, 3, [$this, 'filterValueStrings'])}"
-                        );
-                        break;
-                    case 'htmlFormat':
-                        $formats = [];
-                        foreach ($value as $format) {
-                            $constant = $this->getFormatConstant($format);
-                            $formats[] = $constant === $format ? "'{$format}'" : $constant;
-                        }
-                        $constructor->addBody(
-                            "{$indent}{$this->dumpWithKey($key, $formats, 3, [$this, 'filterValueStrings'])}"
                         );
                         break;
                     default:

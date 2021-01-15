@@ -89,6 +89,17 @@ trait ConstantNames
     }
 
     /**
+     * Get the layout constant.
+     *
+     * @param string $layout Layout to get the constant for.
+     * @return string Layout constant.
+     */
+    private function getLayoutConstant($layout)
+    {
+        return "Layout::{$layout}";
+    }
+
+    /**
      * Get the attribute constant.
      *
      * @param string $attribute Attribute to get the constant for.

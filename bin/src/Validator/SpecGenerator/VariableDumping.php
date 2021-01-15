@@ -122,6 +122,8 @@ trait VariableDumping
             strpos($value, 'Format::') === 0
             ||
             strpos($value, 'Internal::') === 0
+            ||
+            strpos($value, 'Layout::') === 0
         ) {
             return $value;
         }

@@ -12,6 +12,7 @@ use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Internal;
+use AmpProject\Layout;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\Tag;
 
@@ -301,11 +302,11 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -336,10 +337,10 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -424,7 +425,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-accordion/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
+                            Layout::CONTAINER,
                         ],
                     ],
                     'childTags' => [
@@ -554,14 +555,14 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-ad/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'FLUID',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -599,14 +600,14 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'FLUID',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -630,8 +631,8 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-ad-exit/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
-                            'CONTAINER',
+                            Layout::NODISPLAY,
+                            Layout::CONTAINER,
                         ],
                     ],
                     'childTags' => [
@@ -724,12 +725,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -801,14 +802,14 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-ad/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'FLUID',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -870,14 +871,14 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-ad/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'FLUID',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -930,14 +931,14 @@ final class Tags
                     'specUrl' => 'https://github.com/ampproject/amphtml/blob/master/ads/custom.md',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'FLUID',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -1044,13 +1045,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-anim/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -1081,12 +1082,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-anim/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -1113,7 +1114,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'childTags' => [
@@ -1211,12 +1212,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-apester-media/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -1239,7 +1240,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-app-banner/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -1319,9 +1320,9 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-audio/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'NODISPLAY',
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::NODISPLAY,
                         ],
                         'definesDefaultWidth' => true,
                         'definesDefaultHeight' => true,
@@ -1348,9 +1349,9 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-audio/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'NODISPLAY',
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::NODISPLAY,
                         ],
                         'definesDefaultWidth' => true,
                         'definesDefaultHeight' => true,
@@ -1562,7 +1563,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-autocomplete/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
+                            Layout::CONTAINER,
                         ],
                     ],
                     'htmlFormat' => [
@@ -1631,7 +1632,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
+                            Layout::CONTAINER,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -1715,13 +1716,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-base-carousel/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -1779,13 +1780,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-base-carousel/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'referencePoints' => [
@@ -1834,13 +1835,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -1950,12 +1951,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-bodymovin-animation/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2015,12 +2016,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-brid-player/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2079,12 +2080,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-brightcove/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2113,12 +2114,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2151,12 +2152,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-call-tracking/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::CONTAINER,
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'childTags' => [
@@ -2184,13 +2185,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-carousel/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2220,13 +2221,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-carousel/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'referencePoints' => [
@@ -2291,12 +2292,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-connatix-player/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2316,7 +2317,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2387,7 +2388,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2473,11 +2474,11 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-dailymotion/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2569,12 +2570,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2627,12 +2628,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2735,8 +2736,8 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
-                            'NODISPLAY',
+                            Layout::CONTAINER,
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2774,13 +2775,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2819,8 +2820,8 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
-                            'NODISPLAY',
+                            Layout::CONTAINER,
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2857,13 +2858,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2894,12 +2895,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -2944,14 +2945,14 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-ad/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'FLUID',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -2989,7 +2990,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-embedly-card/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'RESPONSIVE',
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3012,7 +3013,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3066,14 +3067,14 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-ad/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'FLUID',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -3189,12 +3190,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3219,12 +3220,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3256,12 +3257,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3293,12 +3294,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3325,13 +3326,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3383,7 +3384,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3424,7 +3425,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'childTags' => [
@@ -3496,11 +3497,11 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-gfycat/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3526,7 +3527,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-gist/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED_HEIGHT',
+                            Layout::FIXED_HEIGHT,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3565,13 +3566,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-google-document-embed/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3595,7 +3596,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3621,11 +3622,11 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-hulu/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3722,13 +3723,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3788,11 +3789,11 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-ima-video/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3932,7 +3933,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -3966,10 +3967,10 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-image-slider/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FIXED,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'childTags' => [
@@ -4013,10 +4014,10 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-image-slider/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FIXED,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'childTags' => [
@@ -4118,13 +4119,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-img/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4161,12 +4162,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-img/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4223,13 +4224,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-img/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4366,12 +4367,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4391,7 +4392,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
+                            Layout::CONTAINER,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4412,13 +4413,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::INLINE_GALLERY,
@@ -4446,7 +4447,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::INLINE_GALLERY,
@@ -4496,13 +4497,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-inline-gallery/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::INLINE_GALLERY,
@@ -4531,12 +4532,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4575,7 +4576,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4601,11 +4602,11 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4651,12 +4652,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-jwplayer/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4681,12 +4682,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4706,14 +4707,14 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-layout/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
-                            'CONTAINER',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
+                            Layout::CONTAINER,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4756,7 +4757,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4797,7 +4798,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -4814,7 +4815,7 @@ final class Tags
                     'unique' => true,
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'childTags' => [
@@ -4963,12 +4964,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -5035,13 +5036,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::CONTAINER,
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -5197,8 +5198,8 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
-                            'FIXED_HEIGHT',
+                            Layout::CONTAINER,
+                            Layout::FIXED_HEIGHT,
                         ],
                     ],
                     'referencePoints' => [
@@ -5324,7 +5325,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
+                            Layout::CONTAINER,
                         ],
                     ],
                     'htmlFormat' => [
@@ -5344,7 +5345,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-mega-menu/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED_HEIGHT',
+                            Layout::FIXED_HEIGHT,
                         ],
                     ],
                     'childTags' => [
@@ -5570,8 +5571,8 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'FIXED_HEIGHT',
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
                         ],
                     ],
                     'htmlFormat' => [
@@ -5604,8 +5605,8 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'FIXED_HEIGHT',
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
                         ],
                     ],
                     'htmlFormat' => [
@@ -5668,11 +5669,11 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-minute-media-player/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -5700,12 +5701,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -5734,7 +5735,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-nested-menu/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
+                            Layout::FILL,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::SIDEBAR,
@@ -6016,12 +6017,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6050,12 +6051,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6086,7 +6087,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6119,10 +6120,10 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6159,7 +6160,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6208,10 +6209,10 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6240,12 +6241,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-pinterest/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6288,8 +6289,8 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-pixel/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'NODISPLAY',
+                            Layout::FIXED,
+                            Layout::NODISPLAY,
                         ],
                         'definesDefaultWidth' => true,
                         'definesDefaultHeight' => true,
@@ -6339,8 +6340,8 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'RESPONSIVE',
-                            'FIXED_HEIGHT',
+                            Layout::RESPONSIVE,
+                            Layout::FIXED_HEIGHT,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6378,7 +6379,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6426,12 +6427,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-powr-player/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6457,11 +6458,11 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6490,7 +6491,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'mandatoryAncestor' => Element::FORM,
@@ -6517,13 +6518,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'RESPONSIVE',
-                            'FILL',
-                            'FLEX_ITEM',
-                            'FLUID',
-                            'INTRINSIC',
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::RESPONSIVE,
+                            Layout::FILL,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6570,12 +6571,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6602,7 +6603,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-riddle-quiz/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'RESPONSIVE',
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6664,14 +6665,14 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::CONTAINER,
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -6775,12 +6776,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'NODISPLAY',
-                            'RESPONSIVE',
-                            'CONTAINER',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
+                            Layout::CONTAINER,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -6872,7 +6873,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-sidebar/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -6910,7 +6911,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-sidebar/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -6985,7 +6986,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -7028,7 +7029,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -7080,13 +7081,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::CONTAINER,
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -7133,13 +7134,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -7190,10 +7191,10 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -7282,7 +7283,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -7503,11 +7504,11 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-story-360',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::STORY,
@@ -7547,7 +7548,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'childTags' => [
@@ -7749,7 +7750,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'childTags' => [
@@ -8517,7 +8518,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-story-panning-media',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
+                            Layout::FILL,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::STORY_GRID_LAYER,
@@ -8534,12 +8535,12 @@ final class Tags
                     'tagName' => Extension::STORY_PLAYER,
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
-                            'INTRINSIC',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
+                            Layout::INTRINSIC,
                         ],
                     ],
                     'htmlFormat' => [
@@ -8571,7 +8572,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-audio/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::STORY,
@@ -8591,7 +8592,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-sidebar/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -8624,13 +8625,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-video/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::STORY_PAGE_ATTACHMENT,
@@ -8680,12 +8681,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-video/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'mandatoryAncestor' => Extension::STORY,
@@ -8769,9 +8770,9 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-timeago/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'RESPONSIVE',
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -8801,14 +8802,14 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-truncate-text/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'CONTAINER',
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::CONTAINER,
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -8926,13 +8927,13 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -8979,7 +8980,7 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9006,13 +9007,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-video/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'disallowedAncestor' => [
@@ -9087,13 +9088,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-video-iframe/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'referencePoints' => [
@@ -9126,13 +9127,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-video-iframe/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'referencePoints' => [
@@ -9174,13 +9175,13 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-video-iframe/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'INTRINSIC',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9319,11 +9320,11 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9348,12 +9349,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9386,11 +9387,11 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9415,9 +9416,9 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FIXED,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9484,7 +9485,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-web-push/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'NODISPLAY',
+                            Layout::NODISPLAY,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9515,7 +9516,7 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-web-push/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FIXED',
+                            Layout::FIXED,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9547,11 +9548,11 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9581,12 +9582,12 @@ final class Tags
                     'specUrl' => 'https://amp.dev/documentation/components/amp-yotpo/',
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
@@ -9640,12 +9641,12 @@ final class Tags
                     ],
                     'ampLayout' => [
                         'supportedLayouts' => [
-                            'FILL',
-                            'FIXED',
-                            'FIXED_HEIGHT',
-                            'FLEX_ITEM',
-                            'NODISPLAY',
-                            'RESPONSIVE',
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                     ],
                     'htmlFormat' => [
