@@ -43,6 +43,7 @@ final class SpecGenerator
         $specNamespace->addUse("{$rootNamespace}\\Spec");
 
         $this->generateTagClass($rootNamespace, $destination, $printer);
+        $this->generateAttributeListClass($rootNamespace, $destination, $printer);
         $this->generateDeclarationListClass($rootNamespace, $destination, $printer);
         $this->generateErrorCodeInterface($jsonSpec, $rootNamespace, $destination, $printer);
 
@@ -161,6 +162,22 @@ final class SpecGenerator
     }
 
     /**
+     * Generate the AttributeList class.
+     *
+     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
+     * @param string  $destination   Destination folder to store the PHP validator spec under.
+     * @param Printer $printer       Source code printer instance to use.
+     */
+    private function generateAttributeListClass($rootNamespace, $destination, Printer $printer)
+    {
+        $attributeListFile      = $this->createNewFile();
+        $attributeListNamespace = $attributeListFile->addNamespace("{$rootNamespace}\\Spec");
+        $attributeListClass     = ClassType::withBodiesFrom(Template\AttributeList::class);
+        $attributeListNamespace->add($attributeListClass);
+        file_put_contents("{$destination}/Spec/AttributeList.php", $printer->printFile($attributeListFile));
+    }
+
+    /**
      * Generate the DeclarationList class.
      *
      * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
@@ -169,11 +186,11 @@ final class SpecGenerator
      */
     private function generateDeclarationListClass($rootNamespace, $destination, Printer $printer)
     {
-        $tagFile      = $this->createNewFile();
-        $tagNamespace = $tagFile->addNamespace("{$rootNamespace}\\Spec");
-        $tagClass     = ClassType::withBodiesFrom(Template\DeclarationList::class);
-        $tagNamespace->add($tagClass);
-        file_put_contents("{$destination}/Spec/DeclarationList.php", $printer->printFile($tagFile));
+        $declarationListFile      = $this->createNewFile();
+        $declarationListNamespace = $declarationListFile->addNamespace("{$rootNamespace}\\Spec");
+        $declarationListClass     = ClassType::withBodiesFrom(Template\DeclarationList::class);
+        $declarationListNamespace->add($declarationListClass);
+        file_put_contents("{$destination}/Spec/DeclarationList.php", $printer->printFile($declarationListFile));
     }
 
     /**
@@ -224,8 +241,6 @@ final class SpecGenerator
         $errorCodeNamespace = $errorCodeFile->addNamespace($rootNamespace);
         $errorCodeInterface = $errorCodeNamespace->addInterface('ErrorCode');
 
-        $errorCodeInterface->addComment('phpcs:disable Generic.Files.LineLength.TooLong');
-
         $errorCodes = array_unique(
             array_merge(
                 array_column($jsonSpec['errorFormats'], 'code'),
@@ -250,6 +265,9 @@ final class SpecGenerator
      */
     private function adaptJsonSpec($jsonSpec)
     {
+        $jsonSpec['attributeLists'] = $jsonSpec['attrLists'];
+        unset($jsonSpec['attrLists']);
+
         $jsonSpec['declarationLists'] = $jsonSpec['declarationList'];
         unset($jsonSpec['declarationList']);
 

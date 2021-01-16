@@ -115,6 +115,7 @@ trait ConstantNames
             'AS',
             'DEFAULT',
             'FOR',
+            'LIST',
         ];
 
         if (in_array($attribute, $languageConstructs, true)) {

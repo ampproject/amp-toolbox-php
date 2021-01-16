@@ -18,9 +18,6 @@ final class Spec
     /** @var int */
     private $specFileRevision = 1132;
 
-    /** @var Spec\Section\AttrLists */
-    private $attrLists;
-
     /** @var string */
     private $templateSpecUrl = 'https://amp.dev/documentation/components/amp-mustache';
 
@@ -38,6 +35,9 @@ final class Spec
 
     /** @var Spec\Section\Doc */
     private $doc;
+
+    /** @var Spec\Section\AttributeLists */
+    private $attributeLists;
 
     /** @var Spec\Section\DeclarationLists */
     private $declarationLists;
@@ -70,17 +70,6 @@ final class Spec
     public function specFileRevision()
     {
         return $this->specFileRevision;
-    }
-
-    /**
-     * @return Spec\Section\AttrLists
-     */
-    public function attrLists()
-    {
-        if ($this->attrLists === null) {
-            $this->attrLists = new Spec\Section\AttrLists();
-        }
-        return $this->attrLists;
     }
 
     /**
@@ -138,6 +127,17 @@ final class Spec
             $this->doc = new Spec\Section\Doc();
         }
         return $this->doc;
+    }
+
+    /**
+     * @return Spec\Section\AttributeLists
+     */
+    public function attributeLists()
+    {
+        if ($this->attributeLists === null) {
+            $this->attributeLists = new Spec\Section\AttributeLists();
+        }
+        return $this->attributeLists;
     }
 
     /**

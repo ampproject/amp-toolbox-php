@@ -28,6 +28,10 @@ trait VariableDumping
         $extraIndentation = str_pad('', $level * 4, ' ');
 
         if (is_array($variable)) {
+            if (count($variable) === 0) {
+                return "[],";
+            }
+
             $line = '';
             foreach ($variable as $key => $value) {
                 if (is_string($key)) {

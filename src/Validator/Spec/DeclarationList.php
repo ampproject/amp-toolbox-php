@@ -46,7 +46,7 @@ final class DeclarationList
     public function get($declaration)
     {
         if (!$this->has($declaration)) {
-            throw \AmpProject\Exception\InvalidDeclarationName::forDeclarationName($declaration);
+            throw \AmpProject\Exception\InvalidAttributeName::forAttribute($declaration);
         }
 
         return $this->declarations[$declaration];

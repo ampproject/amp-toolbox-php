@@ -2,14 +2,16 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
+use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
-final class DeclarationLists implements Section
+final class AttributeLists implements Section
 {
+    use ConstantNames;
     use VariableDumping;
 
     /**
@@ -23,25 +25,28 @@ final class DeclarationLists implements Section
      */
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
+        $namespace->addUse('AmpProject\Attribute');
         $namespace->addUse('AmpProject\Exception\InvalidListName');
         $namespace->addUse("{$rootNamespace}\\Spec");
 
         $this->data = $this->adaptSpec($spec);
 
-        $class->addProperty('declarations')
+        $class->addProperty('attributes')
               ->setPrivate()
-              ->addComment('@var array<Spec\DeclarationList>');
+              ->addComment('@var array<Spec\AttributeList>');
 
         $constructor = $class->addMethod('__construct');
 
-        $constructor->addBody('$this->? = [', ['declarations']);
+        $constructor->addBody('$this->? = [', ['attributes']);
 
         foreach ($this->data as $key => $value) {
-            $constructor->addBody("    '{$key}' => new Spec\DeclarationList(");
+            $constructor->addBody("    '{$key}' => new Spec\AttributeList(");
             $constructor->addBody('        [');
             foreach ($value as $subKey => $subValue) {
+                $constant  = $this->getAttributeConstant($this->getConstantName($subKey));
+                $keyString = strpos($constant, 'Attribute::') === 0 ? $constant : "'{$subKey}'";
                 $constructor->addBody(
-                    "            {$this->dumpWithKey($subKey, $subValue, 3, [$this, 'filterValueStrings'])}"
+                    "            {$keyString} => {$this->dump($subValue, 3, [$this, 'filterValueStrings'])}"
                 );
             }
             $constructor->addBody('        ]');
@@ -50,8 +55,8 @@ final class DeclarationLists implements Section
 
         $constructor->addBody('];');
 
-        $declarationListsTemplateClass = ClassType::withBodiesFrom(Template\DeclarationLists::class);
-        foreach ($declarationListsTemplateClass->getMethods() as $method) {
+        $attributeListsTemplateClass = ClassType::withBodiesFrom(Template\AttributeLists::class);
+        foreach ($attributeListsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
     }
@@ -64,21 +69,21 @@ final class DeclarationLists implements Section
      */
     protected function adaptSpec($jsonSpec)
     {
-        $declarationList = [];
+        $attributeList = [];
 
         foreach ($jsonSpec as $entry) {
             $key  = $entry['name'];
-            $data = $entry['declaration'];
+            $data = $entry['attrs'];
 
-            $declarationList[$key] = [];
+            $attributeList[$key] = [];
 
             foreach ($data as $datum) {
                 $name = $datum['name'];
                 unset($datum['name']);
-                $declarationList[$key][$name] = $datum;
+                $attributeList[$key][$name] = $datum;
             }
         }
 
-        return $declarationList;
+        return $attributeList;
     }
 }

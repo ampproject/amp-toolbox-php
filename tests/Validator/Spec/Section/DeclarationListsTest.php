@@ -2,7 +2,7 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
-use AmpProject\Exception\InvalidDeclarationListName;
+use AmpProject\Exception\InvalidListName;
 use AmpProject\Tests\TestCase;
 use AmpProject\Validator\Spec;
 
@@ -33,7 +33,7 @@ class DeclarationListsTest extends TestCase
 
     public function testGetThrowsExceptionForUnknownDeclarationListName()
     {
-        $this->expectException(InvalidDeclarationListName::class);
+        $this->expectException(InvalidListName::class);
         $this->declarationLists->get('utter nonsense');
     }
 }

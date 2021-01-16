@@ -2,7 +2,7 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
-use AmpProject\Exception\InvalidDeclarationName;
+use AmpProject\Exception\InvalidAttributeName;
 
 final class DeclarationList
 {
@@ -44,7 +44,7 @@ final class DeclarationList
     public function get($declaration)
     {
         if (!$this->has($declaration)) {
-            throw InvalidDeclarationName::forDeclarationName($declaration);
+            throw InvalidAttributeName::forAttribute($declaration);
         }
 
         return $this->declarations[$declaration];

@@ -7,9 +7,6 @@
 
 namespace AmpProject\Validator;
 
-/**
- * phpcs:disable Generic.Files.LineLength.TooLong
- */
 interface ErrorCode
 {
     const ATTR_DISALLOWED_BY_IMPLIED_LAYOUT = 'ATTR_DISALLOWED_BY_IMPLIED_LAYOUT';

@@ -22,9 +22,9 @@ class SpecTest extends TestCase
 
     public function testItCanProvideTheAttrListsSection()
     {
-        $spec      = new Spec();
-        $attrsList = $spec->attrLists();
-        $this->assertInstanceOf(Section\AttrLists::class, $attrsList);
+        $spec          = new Spec();
+        $attributeList = $spec->attributeLists();
+        $this->assertInstanceOf(Section\AttributeLists::class, $attributeList);
     }
 
     public function testItCanProvideTheCssSection()
