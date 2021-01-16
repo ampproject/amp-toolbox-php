@@ -55,6 +55,7 @@ final class Tags implements Section
         $namespace->addUse('AmpProject\\Internal');
         $namespace->addUse('AmpProject\\Layout');
         $namespace->addUse('AmpProject\\Tag', 'Element');
+        $namespace->addUse("{$rootNamespace}\\Spec\\SpecRule");
         $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
 
         $tagsTemplateClass = ClassType::withBodiesFrom(Template\Tags::class);
@@ -102,21 +103,32 @@ final class Tags implements Section
                             }
                         }
                         $constructor->addBody(
-                            "{$indent}{$this->dumpWithKey($key, $value, 3, [$this, 'filterValueStrings'])}"
+                            "{$indent}{$this->dumpWithSpecRuleKey($key, $value, 3, [$this, 'filterValueStrings'])}"
                         );
                         break;
                     case 'attrs':
-                        $attributeArrays = [];
+                        $constructor->addBody("{$indent}SpecRule::ATTRS => [");
                         foreach ($value as $attributeArray) {
                             $constant = $this->getAttributeConstant($this->getConstantName($attributeArray['name']));
                             $attributeArray['name'] = $constant === $attributeArray['name']
                                 ? "'{$attributeArray['name']}'"
                                 : $constant;
-                            $attributeArrays[] = $attributeArray;
+                            $constructor->addBody("{$indent}    [");
+                            foreach ($attributeArray as $attributeKey => $attributeData) {
+                                $line = $this->dumpWithSpecRuleKey(
+                                    $attributeKey,
+                                    $attributeData,
+                                    5,
+                                    [
+                                        $this,
+                                        'filterValueStrings'
+                                    ]
+                                );
+                                $constructor->addBody("        {$indent}{$line}");
+                            }
+                            $constructor->addBody("{$indent}    ],");
                         }
-                        $constructor->addBody(
-                            "{$indent}{$this->dumpWithKey($key, $attributeArrays, 3, [$this, 'filterValueStrings'])}"
-                        );
+                        $constructor->addBody("{$indent}],");
                         break;
                     case 'htmlFormat':
                         $formats = [];
@@ -125,7 +137,7 @@ final class Tags implements Section
                             $formats[] = $constant === $format ? "'{$format}'" : $constant;
                         }
                         $constructor->addBody(
-                            "{$indent}{$this->dumpWithKey($key, $formats, 3, [$this, 'filterValueStrings'])}"
+                            "{$indent}{$this->dumpWithSpecRuleKey($key, $formats, 3, [$this, 'filterValueStrings'])}"
                         );
                         break;
                     case 'mandatoryAncestor':
@@ -137,11 +149,11 @@ final class Tags implements Section
                             $constant = $this->getTagConstant($this->getConstantName($value));
                         }
                         $constructor->addBody(
-                            "{$indent}{$this->dumpWithKey($key, $constant, 3, [$this, 'filterValueStrings'])}"
+                            "{$indent}{$this->dumpWithSpecRuleKey($key, $constant, 3, [$this, 'filterValueStrings'])}"
                         );
                         break;
                     default:
-                        $constructor->addBody("{$indent}{$this->dumpWithKey($key, $value, 3)}");
+                        $constructor->addBody("{$indent}{$this->dumpWithSpecRuleKey($key, $value, 3)}");
                 }
             }
 

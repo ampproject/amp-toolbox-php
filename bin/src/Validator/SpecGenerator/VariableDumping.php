@@ -84,6 +84,47 @@ trait VariableDumping
         return "'{$key}' => {$this->getValueString($value, $callback)},";
     }
 
+
+    /**
+     * Dump a key-value pair so it can be used for code generation.
+     *
+     * @param string        $key      Key to dump.
+     * @param mixed         $value    Value to dump.
+     * @param int           $level    Indentation level to use.
+     * @param callable|null $callback Optional. Callback used to filter individual values. Returns a string
+     *                                representation of the value, or false if no special representation needed.
+     * @return string Dump of the provided variable.
+     */
+    private function dumpWithSpecRuleKey($key, $value, $level, $callback = null)
+    {
+        if ($this->dumper === null) {
+            $this->dumper = new Dumper();
+        }
+
+        $specRuleConstant = "SpecRule::{$this->getConstantName($key)}";
+
+        $extraIndentation = str_pad('', $level * 4, ' ');
+
+        if (is_array($value)) {
+            if (count($value) === 0) {
+                return "{$specRuleConstant} => [],";
+            }
+
+            $line = '';
+            foreach ($value as $subKey => $subValue) {
+                if (is_string($subKey)) {
+                    $line .= "{$extraIndentation}    {$this->dumpWithKey($subKey, $subValue, $level + 1, $callback)}\n";
+                } else {
+                    $line .= "{$extraIndentation}    {$this->dump($subValue, $level + 1, $callback)}\n";
+                }
+            }
+
+            return "{$specRuleConstant} => [\n" . $line . "{$extraIndentation}],";
+        }
+
+        return "{$specRuleConstant} => {$this->getValueString($value, $callback)},";
+    }
+
     /**
      * Get the string representation of a value.
      *

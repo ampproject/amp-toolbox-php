@@ -42,12 +42,15 @@ final class SpecGenerator
 
         $specNamespace->addUse("{$rootNamespace}\\Spec");
 
+        $jsonSpec = $this->adaptJsonSpec($jsonSpec);
+
+        $specRuleKeys = $this->collectSpecRuleKeys($jsonSpec);
+
         $this->generateTagClass($rootNamespace, $destination, $printer);
         $this->generateAttributeListClass($rootNamespace, $destination, $printer);
         $this->generateDeclarationListClass($rootNamespace, $destination, $printer);
         $this->generateErrorCodeInterface($jsonSpec, $rootNamespace, $destination, $printer);
-
-        $jsonSpec = $this->adaptJsonSpec($jsonSpec);
+        $this->generateSpecRuleInterface($specRuleKeys, $rootNamespace, $destination, $printer);
 
         foreach ($jsonSpec as $section => $sectionSpec) {
             switch ($section) {
@@ -228,6 +231,27 @@ final class SpecGenerator
     }
 
     /**
+     * Generate a SpecRule interface.
+     *
+     * @param array   $specRuleKeys  Array of spec rule keys to create constants for.
+     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
+     * @param string  $destination   Destination folder to store the PHP validator spec under.
+     * @param Printer $printer       Source code printer instance to use.
+     */
+    private function generateSpecRuleInterface($specRuleKeys, $rootNamespace, $destination, Printer $printer)
+    {
+        $specRuleFile      = $this->createNewFile();
+        $specRuleNamespace = $specRuleFile->addNamespace("{$rootNamespace}\\Spec");
+        $specRuleInterface = $specRuleNamespace->addInterface('SpecRule');
+
+        foreach ($specRuleKeys as $specRuleKey) {
+            $specRuleInterface->addConstant($this->getConstantName($specRuleKey), $specRuleKey);
+        }
+
+        file_put_contents("{$destination}/Spec/SpecRule.php", $printer->printFile($specRuleFile));
+    }
+
+    /**
      * Generate the ErrorCode interface.
      *
      * @param array   $jsonSpec      JSON spec that contains the spec details.
@@ -241,12 +265,7 @@ final class SpecGenerator
         $errorCodeNamespace = $errorCodeFile->addNamespace($rootNamespace);
         $errorCodeInterface = $errorCodeNamespace->addInterface('ErrorCode');
 
-        $errorCodes = array_unique(
-            array_merge(
-                array_column($jsonSpec['errorFormats'], 'code'),
-                array_column($jsonSpec['errorSpecificity'], 'code')
-            )
-        );
+        $errorCodes = array_unique(array_keys($jsonSpec['errors']));
 
         sort($errorCodes);
 
@@ -287,5 +306,67 @@ final class SpecGenerator
         unset($jsonSpec['errorFormats'], $jsonSpec['errorSpecificity']);
 
         return $jsonSpec;
+    }
+
+    /**
+     * Collect all spec rule keys.
+     *
+     * @param array $jsonSpec JSON spec data.
+     * @return array Array of spec rule keys.
+     */
+    private function collectSpecRuleKeys($jsonSpec)
+    {
+        $specRuleKeys = [];
+        foreach ($jsonSpec as $sectionKey => $sectionData) {
+            switch ($sectionKey) {
+                case 'attributeLists':
+                    $attributeLists = array_column($sectionData, 'attrs');
+                    foreach ($attributeLists as $attributeList) {
+                        foreach ($attributeList as $attributeEntry) {
+                            foreach (array_keys($attributeEntry) as $specRuleKey) {
+                                $specRuleKeys[$specRuleKey] = $specRuleKey;
+                            }
+                        }
+                    }
+                    break;
+                case 'css':
+                case 'doc':
+                    foreach ($sectionData as $ruleset) {
+                        foreach (array_keys($ruleset) as $specRuleKey) {
+                            $specRuleKeys[$specRuleKey] = $specRuleKey;
+                        }
+                    }
+                    break;
+                case 'declarationLists':
+                    $declarationLists = array_column($sectionData, 'declaration');
+                    foreach ($declarationLists as $declarationList) {
+                        foreach ($declarationList as $declarationEntry) {
+                            foreach (array_keys($declarationEntry) as $specRuleKey) {
+                                $specRuleKeys[$specRuleKey] = $specRuleKey;
+                            }
+                        }
+                    }
+                    break;
+                case 'tags':
+                    foreach ($sectionData as $ruleset) {
+                        foreach (array_keys($ruleset) as $specRuleKey) {
+                            $specRuleKeys[$specRuleKey] = $specRuleKey;
+                        }
+                        if (array_key_exists('attrs', $ruleset)) {
+                            foreach ($ruleset['attrs'] as $attributeEntry) {
+                                foreach (array_keys($attributeEntry) as $specRuleKey) {
+                                    $specRuleKeys[$specRuleKey] = $specRuleKey;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                default:
+            }
+        }
+
+        ksort($specRuleKeys);
+
+        return $specRuleKeys;
     }
 }

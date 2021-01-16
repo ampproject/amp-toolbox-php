@@ -2,6 +2,7 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
+use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
@@ -10,6 +11,7 @@ use Nette\PhpGenerator\PhpNamespace;
 
 final class DeclarationLists implements Section
 {
+    use ConstantNames;
     use VariableDumping;
 
     /**
@@ -23,8 +25,10 @@ final class DeclarationLists implements Section
      */
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
+        $namespace->addUse('AmpProject\Attribute');
         $namespace->addUse('AmpProject\Exception\InvalidListName');
         $namespace->addUse("{$rootNamespace}\\Spec");
+        $namespace->addUse("{$rootNamespace}\\Spec\\SpecRule");
 
         $this->data = $this->adaptSpec($spec);
 
@@ -40,9 +44,18 @@ final class DeclarationLists implements Section
             $constructor->addBody("    '{$key}' => new Spec\DeclarationList(");
             $constructor->addBody('        [');
             foreach ($value as $subKey => $subValue) {
-                $constructor->addBody(
-                    "            {$this->dumpWithKey($subKey, $subValue, 3, [$this, 'filterValueStrings'])}"
-                );
+                $constant  = $this->getAttributeConstant($this->getConstantName($subKey));
+                $keyString = strpos($constant, 'Attribute::') === 0 ? $constant : "'{$subKey}'";
+                if (count($subValue) === 0) {
+                    $constructor->addBody("            {$keyString} => [],");
+                } else {
+                    $constructor->addBody("            {$keyString} => [");
+                    foreach ($subValue as $specRuleKey => $specRule) {
+                        $line = $this->dumpWithSpecRuleKey($specRuleKey, $specRule, 4, [$this, 'filterValueStrings']);
+                        $constructor->addBody("                {$line}");
+                    }
+                    $constructor->addBody("            ],");
+                }
             }
             $constructor->addBody('        ]');
             $constructor->addBody("    ),");
