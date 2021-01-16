@@ -132,6 +132,7 @@ final class SpecGenerator
     private function ensureDirectoriesExist($destination)
     {
         $folders = [
+            $destination,
             "{$destination}/Spec",
             "{$destination}/Spec/Section",
         ];
@@ -249,9 +250,6 @@ final class SpecGenerator
      */
     private function adaptJsonSpec($jsonSpec)
     {
-        $jsonSpec['cssRules'] = $jsonSpec['css'];
-        unset($jsonSpec['css']);
-
         $jsonSpec['declarationLists'] = $jsonSpec['declarationList'];
         unset($jsonSpec['declarationList']);
 

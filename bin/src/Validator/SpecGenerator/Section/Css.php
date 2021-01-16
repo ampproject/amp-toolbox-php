@@ -10,7 +10,7 @@ use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
-final class CssRules implements Section
+final class Css implements Section
 {
     use ArrayKeyFirstPolyfill;
     use ConstantNames;
@@ -37,12 +37,12 @@ final class CssRules implements Section
         $namespace->addUse('AmpProject\\Attribute');
         $namespace->addUse('AmpProject\\Format');
 
-        $tagsTemplateClass = ClassType::withBodiesFrom(Template\CssRules::class);
+        $tagsTemplateClass = ClassType::withBodiesFrom(Template\Css::class);
         foreach ($tagsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
 
-        $class->addProperty('cssRules')
+        $class->addProperty('css')
               ->setPrivate()
               ->addComment('@var array<array>');
 
@@ -54,7 +54,7 @@ final class CssRules implements Section
 
         $constructor = $class->addMethod('__construct');
 
-        $constructor->addBody('$this->cssRules = [');
+        $constructor->addBody('$this->css = [');
 
         foreach ($spec as $ruleSet) {
             $name = $this->getNameForRuleSet($ruleSet);
@@ -111,7 +111,7 @@ final class CssRules implements Section
             $constant = $this->getFormatConstant($this->getConstantName($format));
             $constructor->addBody("    {$constant} => [");
             foreach ($ruleSetNames as $ruleSetName) {
-                $constructor->addBody("        \$this->cssRules['{$ruleSetName}'],");
+                $constructor->addBody("        \$this->css['{$ruleSetName}'],");
             }
             $constructor->addBody('    ],');
         }
