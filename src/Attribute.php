@@ -440,6 +440,7 @@ interface Attribute
     const TOOLBAR_TARGET              = 'toolbar-target';
     const TRACKING                    = 'tracking';
     const TRANSFORM                   = 'transform';
+    const TRANSFORMED                 = 'transformed';
     const TRANSLATE_X                 = 'translate-x';
     const TRANSLATE_Y                 = 'translate-y';
     const TRIGGER                     = 'trigger';
@@ -527,6 +528,7 @@ interface Attribute
     const DATA_CONTENT_TYPE                = 'data-content-type';
     const DATA_CONVERSATION                = 'data-conversation';
     const DATA_COUNT_UP                    = 'data-count-up';
+    const DATA_CSS_STRICT                  = 'data-css-strict';
     const DATA_DISMISS_HREF                = 'data-dismiss-href';
     const DATA_DO                          = 'data-do';
     const DATA_DOMAIN                      = 'data-domain';

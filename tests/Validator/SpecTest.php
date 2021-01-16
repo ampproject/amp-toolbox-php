@@ -30,8 +30,8 @@ class SpecTest extends TestCase
     public function testItCanProvideTheCssSection()
     {
         $spec = new Spec();
-        $css  = $spec->css();
-        $this->assertInstanceOf(Section\Css::class, $css);
+        $css  = $spec->cssRules();
+        $this->assertInstanceOf(Section\CssRules::class, $css);
     }
 
     public function testItCanProvideTheDeclarationListsSection()

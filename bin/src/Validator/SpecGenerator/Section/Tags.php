@@ -191,7 +191,6 @@ final class Tags implements Section
         $constructor->addBody('];');
     }
 
-
     /**
      * Get a unique tag ID.
      *
