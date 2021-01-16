@@ -55,11 +55,11 @@ final class AttributeLists
                     Attribute::CITE => [
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'http',
                                 'https',
                             ],
-                            'allowEmpty' => true,
+                            SpecRule::ALLOW_EMPTY => true,
                         ],
                     ],
                 ]
@@ -84,10 +84,10 @@ final class AttributeLists
                         SpecRule::MANDATORY => true,
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                            'allowRelative' => false,
+                            SpecRule::ALLOW_RELATIVE => false,
                         ],
                     ],
                     Attribute::SRCLANG => [],
@@ -111,10 +111,10 @@ final class AttributeLists
                         SpecRule::MANDATORY => true,
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                            'allowRelative' => false,
+                            SpecRule::ALLOW_RELATIVE => false,
                         ],
                     ],
                     Attribute::SRCLANG => [
@@ -231,11 +231,11 @@ final class AttributeLists
                             'href',
                         ],
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'http',
                                 'https',
                             ],
-                            'allowEmpty' => false,
+                            SpecRule::ALLOW_EMPTY => false,
                         ],
                     ],
                     Attribute::XLINK_ROLE => [],
@@ -417,7 +417,7 @@ final class AttributeLists
                         SpecRule::MANDATORY => true,
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'data',
                                 'http',
                                 'https',
@@ -432,10 +432,10 @@ final class AttributeLists
                         SpecRule::MANDATORY => true,
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                            'allowRelative' => false,
+                            SpecRule::ALLOW_RELATIVE => false,
                         ],
                     ],
                 ]
@@ -445,10 +445,10 @@ final class AttributeLists
                     Attribute::SRC => [
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                            'allowRelative' => false,
+                            SpecRule::ALLOW_RELATIVE => false,
                         ],
                     ],
                 ]
@@ -830,10 +830,10 @@ final class AttributeLists
                     Attribute::SRC => [
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                            'allowRelative' => true,
+                            SpecRule::ALLOW_RELATIVE => true,
                         ],
                     ],
                     '[album]' => [],
@@ -989,10 +989,10 @@ final class AttributeLists
                     Attribute::SRC => [
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                            'allowRelative' => false,
+                            SpecRule::ALLOW_RELATIVE => false,
                         ],
                     ],
                     Attribute::WEEK_DAY_FORMAT => [],
@@ -1099,11 +1099,11 @@ final class AttributeLists
                     Attribute::ENDPOINT => [
                         SpecRule::MANDATORY => true,
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                            'allowRelative' => false,
-                            'allowEmpty' => false,
+                            SpecRule::ALLOW_RELATIVE => false,
+                            SpecRule::ALLOW_EMPTY => false,
                         ],
                     ],
                     Attribute::THEME => [
@@ -1225,7 +1225,7 @@ final class AttributeLists
                         SpecRule::MANDATORY => true,
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
                         ],
@@ -1296,10 +1296,10 @@ final class AttributeLists
                     Attribute::SRC => [
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
-                            'protocol' => [
+                            SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                            'allowRelative' => true,
+                            SpecRule::ALLOW_RELATIVE => true,
                         ],
                     ],
                     '[album]' => [],

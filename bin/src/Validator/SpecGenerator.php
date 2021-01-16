@@ -352,11 +352,23 @@ final class SpecGenerator
                         foreach (array_keys($ruleset) as $specRuleKey) {
                             $specRuleKeys[$specRuleKey] = $specRuleKey;
                         }
+
                         if (array_key_exists('attrs', $ruleset)) {
                             foreach ($ruleset['attrs'] as $attributeEntry) {
                                 foreach (array_keys($attributeEntry) as $specRuleKey) {
                                     $specRuleKeys[$specRuleKey] = $specRuleKey;
                                 }
+                                if (array_key_exists('valueUrl', $attributeEntry)) {
+                                    foreach ($attributeEntry['valueUrl'] as $valueUrlKey => $valueUrlData) {
+                                        $specRuleKeys[$valueUrlKey] = $valueUrlKey;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (array_key_exists('cdata', $ruleset)) {
+                            foreach ($ruleset['cdata'] as $cdataKey => $cdataValue) {
+                                $specRuleKeys[$cdataKey] = $cdataKey;
                             }
                         }
                     }

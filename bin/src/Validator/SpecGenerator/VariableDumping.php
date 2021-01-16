@@ -34,10 +34,11 @@ trait VariableDumping
 
             $line = '';
             foreach ($variable as $key => $value) {
+                $line .= "{$extraIndentation}    ";
                 if (is_string($key)) {
-                    $line .= "{$extraIndentation}    {$this->dumpWithKey($key, $value, $level + 1, $callback)}\n";
+                    $line .= "{$this->dumpWithKey($key, $value, $level + 1, $callback)}\n";
                 } else {
-                    $line .= "{$extraIndentation}    {$this->dump($value, $level + 1, $callback)}\n";
+                    $line .= "{$this->dump($value, $level + 1, $callback)}\n";
                 }
             }
             return "[\n" . $line . "{$extraIndentation}],";
@@ -71,10 +72,11 @@ trait VariableDumping
 
             $line = '';
             foreach ($value as $subKey => $subValue) {
+                $line .= "{$extraIndentation}    ";
                 if (is_string($subKey)) {
-                    $line .= "{$extraIndentation}    {$this->dumpWithKey($subKey, $subValue, $level + 1, $callback)}\n";
+                    $line .= "{$this->dumpWithKey($subKey, $subValue, $level + 1, $callback)}\n";
                 } else {
-                    $line .= "{$extraIndentation}    {$this->dump($subValue, $level + 1, $callback)}\n";
+                    $line .= "{$this->dump($subValue, $level + 1, $callback)}\n";
                 }
             }
 
@@ -102,6 +104,10 @@ trait VariableDumping
         }
 
         $specRuleConstant = "SpecRule::{$this->getConstantName($key)}";
+        $specRuleSubKeys  = [
+            'cdata',
+            'valueUrl',
+        ];
 
         $extraIndentation = str_pad('', $level * 4, ' ');
 
@@ -112,10 +118,15 @@ trait VariableDumping
 
             $line = '';
             foreach ($value as $subKey => $subValue) {
+                $line .= "{$extraIndentation}    ";
                 if (is_string($subKey)) {
-                    $line .= "{$extraIndentation}    {$this->dumpWithKey($subKey, $subValue, $level + 1, $callback)}\n";
+                    if (in_array($key, $specRuleSubKeys, true)) {
+                        $line .= "{$this->dumpWithSpecRuleKey($subKey, $subValue, $level + 1, $callback)}\n";
+                    } else {
+                        $line .= "{$this->dumpWithKey($subKey, $subValue, $level + 1, $callback)}\n";
+                    }
                 } else {
-                    $line .= "{$extraIndentation}    {$this->dump($subValue, $level + 1, $callback)}\n";
+                    $line .= "{$this->dump($subValue, $level + 1, $callback)}\n";
                 }
             }
 

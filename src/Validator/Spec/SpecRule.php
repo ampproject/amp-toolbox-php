@@ -11,15 +11,19 @@ interface SpecRule
 {
     const ADD_VALUE_TO_SET = 'addValueToSet';
     const ALLOW_ALL_DECLARATION_IN_STYLE_TAG = 'allowAllDeclarationInStyleTag';
+    const ALLOW_EMPTY = 'allowEmpty';
     const ALLOW_IMPORTANT = 'allowImportant';
+    const ALLOW_RELATIVE = 'allowRelative';
     const ALSO_REQUIRES_TAG_WARNING = 'alsoRequiresTagWarning';
     const ALTERNATIVE_NAMES = 'alternativeNames';
     const AMP_LAYOUT = 'ampLayout';
     const ATTR_LISTS = 'attrLists';
     const ATTRS = 'attrs';
     const CDATA = 'cdata';
+    const CDATA_REGEX = 'cdataRegex';
     const CHILD_TAGS = 'childTags';
     const CSS_DECLARATION = 'cssDeclaration';
+    const CSS_SPEC = 'cssSpec';
     const DECLARATION_LIST = 'declarationList';
     const DECLARATION_LIST_SVG = 'declarationListSvg';
     const DEPRECATION = 'deprecation';
@@ -28,8 +32,10 @@ interface SpecRule
     const DESCRIPTIVE_NAME = 'descriptiveName';
     const DISABLED_BY = 'disabledBy';
     const DISALLOWED_ANCESTOR = 'disallowedAncestor';
+    const DISALLOWED_CDATA_REGEX = 'disallowedCdataRegex';
     const DISALLOWED_VALUE_REGEX = 'disallowedValueRegex';
     const DISPATCH_KEY = 'dispatchKey';
+    const DOC_CSS_BYTES = 'docCssBytes';
     const ENABLED_BY = 'enabledBy';
     const EXCLUDES = 'excludes';
     const EXPAND_VENDOR_PREFIXES = 'expandVendorPrefixes';
@@ -54,6 +60,7 @@ interface SpecRule
     const MAX_BYTES_SPEC_URL = 'maxBytesSpecUrl';
     const NAME = 'name';
     const NAMED_ID = 'namedId';
+    const PROTOCOL = 'protocol';
     const REFERENCE_POINTS = 'referencePoints';
     const REQUIRES = 'requires';
     const REQUIRES_ANCESTOR = 'requiresAncestor';

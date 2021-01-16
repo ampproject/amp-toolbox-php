@@ -78,7 +78,7 @@ final class Tags
                             SpecRule::NAME => Attribute::HREF,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'ftp',
                                     'geo',
                                     'http',
@@ -108,7 +108,7 @@ final class Tags
                                     'wh',
                                     'whatsapp',
                                 ],
-                                'allowEmpty' => true,
+                                SpecRule::ALLOW_EMPTY => true,
                             ],
                         ],
                         [
@@ -180,13 +180,13 @@ final class Tags
                             SpecRule::NAME => Attribute::HREF,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                     'mailto',
                                     'tel',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -292,7 +292,7 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -379,7 +379,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -530,10 +530,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -589,10 +589,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                     ],
@@ -694,21 +694,21 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::DATA_SHARE_MEDIA,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
-                                'allowEmpty' => true,
+                                SpecRule::ALLOW_EMPTY => true,
                             ],
                         ],
                         [
                             SpecRule::NAME => Attribute::DATA_SHARE_URL,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
-                                'allowEmpty' => true,
+                                SpecRule::ALLOW_EMPTY => true,
                             ],
                         ],
                         [
@@ -786,10 +786,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -855,10 +855,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -909,7 +909,7 @@ final class Tags
                             SpecRule::NAME => Attribute::DATA_URL,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -964,11 +964,11 @@ final class Tags
                             SpecRule::NAME => Attribute::CONFIG,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
-                                'allowEmpty' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
+                                SpecRule::ALLOW_EMPTY => true,
                             ],
                         ],
                         [
@@ -1005,7 +1005,7 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-analytics/',
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -1155,7 +1155,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -1378,10 +1378,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -1539,10 +1539,10 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -1617,10 +1617,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -1692,7 +1692,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -1898,9 +1898,9 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-bind/',
                     SpecRule::CDATA => [
-                        'maxBytes' => 100000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/components/amp-bind#state',
-                        'disallowedCdataRegex' => [
+                        SpecRule::MAX_BYTES => 100000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/components/amp-bind#state',
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -1935,10 +1935,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -2140,10 +2140,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                     ],
@@ -2355,7 +2355,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -2929,10 +2929,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -2978,10 +2978,10 @@ final class Tags
                             SpecRule::NAME => Attribute::DATA_URL,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                     ],
@@ -3051,10 +3051,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -3129,9 +3129,9 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-experiment/',
                     SpecRule::CDATA => [
-                        'maxBytes' => 15000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/components/amp-experiment/#configuration',
-                        'disallowedCdataRegex' => [
+                        SpecRule::MAX_BYTES => 15000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/components/amp-experiment/#configuration',
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -3163,9 +3163,9 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-experiment/',
                     SpecRule::CDATA => [
-                        'maxBytes' => 15000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/components/amp-experiment/#configuration',
-                        'disallowedCdataRegex' => [
+                        SpecRule::MAX_BYTES => 15000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/components/amp-experiment/#configuration',
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -3245,11 +3245,11 @@ final class Tags
                             SpecRule::NAME => Attribute::DATA_HREF,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                     ],
@@ -3282,11 +3282,11 @@ final class Tags
                             SpecRule::NAME => Attribute::DATA_HREF,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                     ],
@@ -3462,7 +3462,7 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-geo/',
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -3548,10 +3548,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -3699,11 +3699,11 @@ final class Tags
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'data',
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -3755,20 +3755,20 @@ final class Tags
                             SpecRule::NAME => Attribute::DATA_SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
                             SpecRule::NAME => Attribute::DATA_TAG,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -3821,7 +3821,7 @@ final class Tags
                         ],
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -3847,10 +3847,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -4557,10 +4557,10 @@ final class Tags
                             SpecRule::NAME => Attribute::DATA_IFRAME_SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -4568,10 +4568,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                     ],
@@ -4852,7 +4852,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -4936,12 +4936,12 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                     'amp-state',
                                     'amp-script',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                             SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
                         ],
@@ -5015,10 +5015,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -5879,10 +5879,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -5994,11 +5994,11 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::DATA_ORIGIN,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                     'http',
                                 ],
-                                'allowEmpty' => true,
+                                SpecRule::ALLOW_EMPTY => true,
                             ],
                         ],
                         [
@@ -6077,7 +6077,7 @@ final class Tags
                             SpecRule::NAME => Attribute::DATA_SRC,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -6276,11 +6276,11 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
-                                'allowEmpty' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
+                                SpecRule::ALLOW_EMPTY => true,
                             ],
                         ],
                     ],
@@ -6654,10 +6654,10 @@ final class Tags
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                     ],
@@ -6720,9 +6720,9 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-script/',
                     SpecRule::CDATA => [
-                        'maxBytes' => 10000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/components/amp-script/#faq',
-                        'disallowedCdataRegex' => [
+                        SpecRule::MAX_BYTES => 10000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/components/amp-script/#faq',
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -7049,7 +7049,7 @@ final class Tags
                             SpecRule::NAME => Attribute::DATA_SHARE_ENDPOINT,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'ftp',
                                     'http',
                                     'https',
@@ -7069,7 +7069,7 @@ final class Tags
                                     'wh',
                                     'whatsapp',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -7221,10 +7221,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -7312,7 +7312,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::BACKGROUND_AUDIO,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -7324,7 +7324,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::ENTITY_LOGO_SRC,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -7333,7 +7333,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::ENTITY_URL,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -7342,7 +7342,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::POSTER_LANDSCAPE_SRC,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -7352,7 +7352,7 @@ final class Tags
                             SpecRule::NAME => Attribute::POSTER_PORTRAIT_SRC,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -7361,7 +7361,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::POSTER_SQUARE_SRC,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -7375,7 +7375,7 @@ final class Tags
                             SpecRule::NAME => Attribute::PUBLISHER_LOGO_SRC,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -7588,7 +7588,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -7669,7 +7669,7 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-auto-ads/',
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -7698,7 +7698,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -7792,7 +7792,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -7977,7 +7977,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::DATA_TOOLTIP_ICON,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                     'data',
@@ -8056,7 +8056,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::DATA_TOOLTIP_ICON,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                     'data',
@@ -8410,7 +8410,7 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::BACKGROUND_AUDIO,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -8496,7 +8496,7 @@ final class Tags
                             SpecRule::NAME => Attribute::HREF,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -8727,7 +8727,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -8894,11 +8894,11 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::DATA_TIMELINE_URL,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                             SpecRule::TRIGGER => [
                                 'alsoRequiresAttr' => [
@@ -8952,21 +8952,21 @@ final class Tags
                         [
                             SpecRule::NAME => Attribute::DATA_DISMISS_HREF,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
-                                'allowEmpty' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
+                                SpecRule::ALLOW_EMPTY => false,
                             ],
                         ],
                         [
                             SpecRule::NAME => Attribute::DATA_SHOW_IF_HREF,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
-                                'allowEmpty' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
+                                SpecRule::ALLOW_EMPTY => false,
                             ],
                         ],
                         [
@@ -9206,10 +9206,10 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -9438,10 +9438,10 @@ final class Tags
                             SpecRule::NAME => Attribute::HELPER_IFRAME_URL,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -9455,26 +9455,26 @@ final class Tags
                             SpecRule::NAME => Attribute::PERMISSION_DIALOG_URL,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
                             SpecRule::NAME => Attribute::SERVICE_WORKER_URL,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
                             SpecRule::NAME => Attribute::SERVICE_WORKER_SCOPE,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -9681,7 +9681,7 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '.',
                                 'errorMessage' => 'contents',
@@ -9717,7 +9717,7 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '.',
                                 'errorMessage' => 'contents',
@@ -9753,7 +9753,7 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '.',
                                 'errorMessage' => 'contents',
@@ -9789,7 +9789,7 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '.',
                                 'errorMessage' => 'contents',
@@ -9845,11 +9845,11 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'data',
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                     ],
@@ -9875,10 +9875,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -10990,7 +10990,7 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -10999,7 +10999,7 @@ final class Tags
                             SpecRule::NAME => Attribute::ACTION_XHR,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -11040,7 +11040,7 @@ final class Tags
                             SpecRule::NAME => Attribute::VERIFY_XHR,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -11076,10 +11076,10 @@ final class Tags
                             SpecRule::NAME => Attribute::ACTION_XHR,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -11134,7 +11134,7 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -11176,7 +11176,7 @@ final class Tags
                             SpecRule::NAME => Attribute::VERIFY_XHR,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -11213,10 +11213,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -11555,8 +11555,8 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',
                     SpecRule::CDATA => [
-                        'cdataRegex' => '\s*body\s*{\s*-webkit-animation:\s*-amp-start\s+8s\s+steps\(1,\s*end\)\s+0s\s+1\s+normal\s+both;\s*-moz-animation:\s*-amp-start\s+8s\s+steps\s*\(1\s*,\s*end\s*\)\s+0s\s+1\s+normal\s+both;\s*-ms-animation:\s*-amp-start\s+8s\s+steps\s*\(1\s*,\s*end\s*\)\s+0s\s+1\s+normal\s+both;\s*animation:\s*-amp-start\s+8s\s+steps\(1,\s*end\)\s+0s\s+1\s+normal\s+both;?\s*}\s*@-webkit-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-moz-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-ms-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-o-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*',
-                        'docCssBytes' => false,
+                        SpecRule::CDATA_REGEX => '\s*body\s*{\s*-webkit-animation:\s*-amp-start\s+8s\s+steps\(1,\s*end\)\s+0s\s+1\s+normal\s+both;\s*-moz-animation:\s*-amp-start\s+8s\s+steps\s*\(1\s*,\s*end\s*\)\s+0s\s+1\s+normal\s+both;\s*-ms-animation:\s*-amp-start\s+8s\s+steps\s*\(1\s*,\s*end\s*\)\s+0s\s+1\s+normal\s+both;\s*animation:\s*-amp-start\s+8s\s+steps\(1,\s*end\)\s+0s\s+1\s+normal\s+both;?\s*}\s*@-webkit-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-moz-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-ms-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-o-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*',
+                        SpecRule::DOC_CSS_BYTES => false,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP,
@@ -11588,8 +11588,8 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',
                     SpecRule::CDATA => [
-                        'cdataRegex' => '\s*body\s*{\s*-webkit-animation:\s*-amp-start\s+8s\s+steps\(1,\s*end\)\s+0s\s+1\s+normal\s+both;\s*-moz-animation:\s*-amp-start\s+8s\s+steps\s*\(1\s*,\s*end\s*\)\s+0s\s+1\s+normal\s+both;\s*-ms-animation:\s*-amp-start\s+8s\s+steps\s*\(1\s*,\s*end\s*\)\s+0s\s+1\s+normal\s+both;\s*animation:\s*-amp-start\s+8s\s+steps\(1,\s*end\)\s+0s\s+1\s+normal\s+both;?\s*}\s*@-webkit-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-moz-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-ms-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-o-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*',
-                        'docCssBytes' => false,
+                        SpecRule::CDATA_REGEX => '\s*body\s*{\s*-webkit-animation:\s*-amp-start\s+8s\s+steps\(1,\s*end\)\s+0s\s+1\s+normal\s+both;\s*-moz-animation:\s*-amp-start\s+8s\s+steps\s*\(1\s*,\s*end\s*\)\s+0s\s+1\s+normal\s+both;\s*-ms-animation:\s*-amp-start\s+8s\s+steps\s*\(1\s*,\s*end\s*\)\s+0s\s+1\s+normal\s+both;\s*animation:\s*-amp-start\s+8s\s+steps\(1,\s*end\)\s+0s\s+1\s+normal\s+both;?\s*}\s*@-webkit-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-moz-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-ms-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@-o-keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*@keyframes\s+-amp-start\s*{\s*from\s*{\s*visibility:\s*hidden;?\s*}\s*to\s*{\s*visibility:\s*visible;?\s*}\s*}\s*',
+                        SpecRule::DOC_CSS_BYTES => false,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP,
@@ -11622,8 +11622,8 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/?format=ads#boilerplate',
                     SpecRule::CDATA => [
-                        'cdataRegex' => '\s*body\s*{\s*visibility:\s*hidden;?\s*}\s*',
-                        'docCssBytes' => false,
+                        SpecRule::CDATA_REGEX => '\s*body\s*{\s*visibility:\s*hidden;?\s*}\s*',
+                        SpecRule::DOC_CSS_BYTES => false,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP4ADS,
@@ -11650,8 +11650,8 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-format/?format=email#required-markup',
                     SpecRule::CDATA => [
-                        'cdataRegex' => '\s*body\s*{\s*visibility:\s*hidden;?\s*}\s*',
-                        'docCssBytes' => false,
+                        SpecRule::CDATA_REGEX => '\s*body\s*{\s*visibility:\s*hidden;?\s*}\s*',
+                        SpecRule::DOC_CSS_BYTES => false,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP4EMAIL,
@@ -11930,11 +11930,11 @@ final class Tags
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'data',
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -11991,12 +11991,12 @@ final class Tags
                             ],
                             SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)data:image\/svg\+xml',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'data',
                                     'http',
                                     'https',
                                 ],
-                                'allowEmpty' => false,
+                                SpecRule::ALLOW_EMPTY => false,
                             ],
                         ],
                         [
@@ -12655,7 +12655,7 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -12691,7 +12691,7 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -12742,7 +12742,7 @@ final class Tags
                             SpecRule::NAME => Attribute::IMAGESRCSET,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -13268,7 +13268,7 @@ final class Tags
                             SpecRule::NAME => Attribute::CONTENT,
                             SpecRule::MANDATORY => true,
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
                             ],
@@ -13963,7 +13963,7 @@ final class Tags
                             SpecRule::NAME => Attribute::LONGDESC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'http',
                                     'https',
                                 ],
@@ -14010,8 +14010,8 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',
                     SpecRule::CDATA => [
-                        'cdataRegex' => '\s*body\s*{\s*-webkit-animation:\s*none;\s*-moz-animation:\s*none;\s*-ms-animation:\s*none;\s*animation:\s*none;?\s*}\s*',
-                        'docCssBytes' => false,
+                        SpecRule::CDATA_REGEX => '\s*body\s*{\s*-webkit-animation:\s*none;\s*-moz-animation:\s*none;\s*-ms-animation:\s*none;\s*animation:\s*none;?\s*}\s*',
+                        SpecRule::DOC_CSS_BYTES => false,
                     ],
                     SpecRule::MANDATORY_ANCESTOR => Element::HEAD,
                     SpecRule::HTML_FORMAT => [
@@ -14044,8 +14044,8 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',
                     SpecRule::CDATA => [
-                        'cdataRegex' => '\s*body\s*{\s*-webkit-animation:\s*none;\s*-moz-animation:\s*none;\s*-ms-animation:\s*none;\s*animation:\s*none;?\s*}\s*',
-                        'docCssBytes' => false,
+                        SpecRule::CDATA_REGEX => '\s*body\s*{\s*-webkit-animation:\s*none;\s*-moz-animation:\s*none;\s*-ms-animation:\s*none;\s*animation:\s*none;?\s*}\s*',
+                        SpecRule::DOC_CSS_BYTES => false,
                     ],
                     SpecRule::MANDATORY_ANCESTOR => Element::HEAD,
                     SpecRule::HTML_FORMAT => [
@@ -14333,12 +14333,12 @@ final class Tags
                             SpecRule::NAME => Attribute::SRCSET,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'data',
                                     'http',
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
@@ -17106,7 +17106,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -17136,7 +17136,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -17181,7 +17181,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -17235,7 +17235,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -17789,9 +17789,9 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets',
                     SpecRule::CDATA => [
-                        'maxBytes' => 75000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                        'disallowedCdataRegex' => [
+                        SpecRule::MAX_BYTES => 75000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -17801,7 +17801,7 @@ final class Tags
                                 'errorMessage' => 'CSS i-amphtml- name prefix',
                             ],
                         ],
-                        'cssSpec' => [
+                        SpecRule::CSS_SPEC => [
                             'atRuleSpec' => [
                                 [
                                     'name' => 'font-face',
@@ -17820,7 +17820,7 @@ final class Tags
                                 ],
                             ],
                         ],
-                        'docCssBytes' => true,
+                        SpecRule::DOC_CSS_BYTES => true,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP,
@@ -17855,9 +17855,9 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
                     SpecRule::CDATA => [
-                        'maxBytes' => 20000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                        'disallowedCdataRegex' => [
+                        SpecRule::MAX_BYTES => 20000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -17867,7 +17867,7 @@ final class Tags
                                 'errorMessage' => 'CSS i-amphtml- name prefix',
                             ],
                         ],
-                        'cssSpec' => [
+                        SpecRule::CSS_SPEC => [
                             'atRuleSpec' => [
                                 [
                                     'name' => 'font-face',
@@ -17900,7 +17900,7 @@ final class Tags
                             ],
                             'validateAmp4ads' => true,
                         ],
-                        'docCssBytes' => true,
+                        SpecRule::DOC_CSS_BYTES => true,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP4ADS,
@@ -17931,9 +17931,9 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css',
                     SpecRule::CDATA => [
-                        'maxBytes' => 75000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                        'disallowedCdataRegex' => [
+                        SpecRule::MAX_BYTES => 75000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -17943,7 +17943,7 @@ final class Tags
                                 'errorMessage' => 'CSS i-amphtml- name prefix',
                             ],
                         ],
-                        'cssSpec' => [
+                        SpecRule::CSS_SPEC => [
                             'atRuleSpec' => [
                                 [
                                     'name' => 'media',
@@ -17974,7 +17974,7 @@ final class Tags
                                 ],
                             ],
                         ],
-                        'docCssBytes' => true,
+                        SpecRule::DOC_CSS_BYTES => true,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP4EMAIL,
@@ -18008,9 +18008,9 @@ final class Tags
                     ],
                     SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css',
                     SpecRule::CDATA => [
-                        'maxBytes' => 75000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                        'disallowedCdataRegex' => [
+                        SpecRule::MAX_BYTES => 75000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -18020,7 +18020,7 @@ final class Tags
                                 'errorMessage' => 'CSS i-amphtml- name prefix',
                             ],
                         ],
-                        'cssSpec' => [
+                        SpecRule::CSS_SPEC => [
                             'atRuleSpec' => [
                                 [
                                     'name' => 'media',
@@ -18121,7 +18121,7 @@ final class Tags
                                 ],
                             ],
                         ],
-                        'docCssBytes' => true,
+                        SpecRule::DOC_CSS_BYTES => true,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP4EMAIL,
@@ -18158,7 +18158,7 @@ final class Tags
                         'nonce-attr',
                     ],
                     SpecRule::CDATA => [
-                        'maxBytes' => -1,
+                        SpecRule::MAX_BYTES => -1,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP,
@@ -18185,9 +18185,9 @@ final class Tags
                         ],
                     ],
                     SpecRule::CDATA => [
-                        'maxBytes' => 500000,
-                        'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#keyframes-stylesheet',
-                        'cssSpec' => [
+                        SpecRule::MAX_BYTES => 500000,
+                        SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#keyframes-stylesheet',
+                        SpecRule::CSS_SPEC => [
                             'atRuleSpec' => [
                                 [
                                     'name' => 'keyframes',
@@ -18208,7 +18208,7 @@ final class Tags
                                 'visibility',
                             ],
                         ],
-                        'docCssBytes' => false,
+                        SpecRule::DOC_CSS_BYTES => false,
                     ],
                     SpecRule::HTML_FORMAT => [
                         Format::AMP,
@@ -18316,7 +18316,7 @@ final class Tags
                         ],
                     ],
                     SpecRule::CDATA => [
-                        'disallowedCdataRegex' => [
+                        SpecRule::DISALLOWED_CDATA_REGEX => [
                             [
                                 'regex' => '<!--',
                                 'errorMessage' => 'html comments',
@@ -19184,11 +19184,11 @@ final class Tags
                             SpecRule::NAME => Attribute::SRC,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'data',
                                     'https',
                                 ],
-                                'allowRelative' => false,
+                                SpecRule::ALLOW_RELATIVE => false,
                             ],
                         ],
                         [
@@ -19217,10 +19217,10 @@ final class Tags
                             SpecRule::MANDATORY => true,
                             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                             SpecRule::VALUE_URL => [
-                                'protocol' => [
+                                SpecRule::PROTOCOL => [
                                     'https',
                                 ],
-                                'allowRelative' => true,
+                                SpecRule::ALLOW_RELATIVE => true,
                             ],
                         ],
                         [
