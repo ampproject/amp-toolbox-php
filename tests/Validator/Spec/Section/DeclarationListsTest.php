@@ -31,7 +31,7 @@ class DeclarationListsTest extends TestCase
         $this->assertInstanceOf(Spec\DeclarationList::class, $declarationList);
     }
 
-    public function testGetThrowsExceptionForUnknownDeclarationName()
+    public function testGetThrowsExceptionForUnknownDeclarationListName()
     {
         $this->expectException(InvalidDeclarationListName::class);
         $this->declarationLists->get('utter nonsense');
