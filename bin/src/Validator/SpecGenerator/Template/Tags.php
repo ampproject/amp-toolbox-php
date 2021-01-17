@@ -2,12 +2,14 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
+use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 
 final class Tags
 {
     private $byTagName  = [];
     private $bySpecName = [];
+    private $byFormat   = [];
 
     /**
      * Get a collection of tags by tag name.
@@ -40,5 +42,21 @@ final class Tags
         }
 
         return $this->bySpecName[$specName];
+    }
+
+    /**
+     * Get a collection of tags for a given AMP HTML format name.
+     *
+     * @param string $format AMP HTML format to get the tags for.
+     * @return array<Tag> Array of tags matching the requested AMP HTML format.
+     * @throws InvalidSpecName If an invalid AMP HTML format is requested.
+     */
+    public function byFormat($format)
+    {
+        if (!array_key_exists($format, $this->byFormat)) {
+            throw InvalidFormat::forFormat($format);
+        }
+
+        return $this->byFormat[$format];
     }
 }

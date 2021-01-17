@@ -26,7 +26,7 @@ final class Tags implements Section
     /**
      * Provide hashed access to tags by tag name.
      *
-     * @var array<string,array<int,array>>
+     * @var array<string,array<int,string>>
      */
     private $byTagName = [];
 
@@ -36,6 +36,13 @@ final class Tags implements Section
      * @var array<string,string>
      */
     private $bySpecName = [];
+
+    /**
+     * Provide hashed access to tags by AMP HTML format.
+     *
+     * @var array<string,array<int,string>>
+     */
+    private $byFormat = [];
 
     /**
      * Process a section.
@@ -74,6 +81,10 @@ final class Tags implements Section
         $class->addProperty('bySpecName')
               ->setPrivate()
               ->addComment('@var array<string,Tag>');
+
+        $class->addProperty('byFormat')
+              ->setPrivate()
+              ->addComment('@var array<string,array<int,Tag>>');
 
         $constructor = $class->addMethod('__construct');
 
@@ -174,6 +185,16 @@ final class Tags implements Section
                 $specName                    = $this->tags[$tagId]['specName'];
                 $this->bySpecName[$specName] = $tagId;
             }
+
+            if (array_key_exists('htmlFormat', $this->tags[$tagId])) {
+                $formats = $this->tags[$tagId]['htmlFormat'];
+                foreach ($formats as $format) {
+                    if (!array_key_exists($format, $this->byFormat)) {
+                        $this->byFormat[$format] = [];
+                    }
+                    $this->byFormat[$format][] = $tagId;
+                }
+            }
         }
 
         $constructor->addBody('];');
@@ -199,6 +220,23 @@ final class Tags implements Section
         foreach ($this->bySpecName as $specName => $tagId) {
             $keyString = $this->getKeyString($tagId);
             $constructor->addBody("    '{$specName}' => \$this->tags[{$keyString}],");
+        }
+        $constructor->addBody('];');
+
+        $constructor->addBody('$this->byFormat = [');
+        foreach ($this->byFormat as $tagName => $tags) {
+            $constant = $this->getFormatConstant($this->getConstantName($tagName));
+            if (count($tags) > 1) {
+                $constructor->addBody("    {$constant} => [");
+                foreach ($tags as $tagId) {
+                    $keyString = $this->getKeyString($tagId);
+                    $constructor->addBody("        \$this->tags[{$keyString}],");
+                }
+                $constructor->addBody('    ],');
+            } else {
+                $keyString = $this->getKeyString($this->arrayKeyFirst($tags));
+                $constructor->addBody("    {$constant} => \$this->tags[{$keyString}],");
+            }
         }
         $constructor->addBody('];');
     }
