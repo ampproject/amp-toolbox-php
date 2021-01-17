@@ -9,9 +9,27 @@ use AmpProject\Dom\Element;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Tag;
+use AmpProject\Validator\Spec;
 
 final class AutoExtensions implements Transformer
 {
+
+    /**
+     * Validator spec instance.
+     *
+     * @var Spec
+     */
+    private $spec;
+
+    /**
+     * AutoExtensions constructor.
+     *
+     * @param Spec $spec Validator spec instance.
+     */
+    public function __construct(Spec $spec)
+    {
+        $this->spec = $spec;
+    }
 
     /**
      * Apply transformations to the provided DOM document.
@@ -52,11 +70,11 @@ final class AutoExtensions implements Transformer
             }
 
             if (Amp::isRuntimeScript($script)) {
-                $extensionScripts[ Amp::RUNTIME ] = $script;
+                $extensionScripts[Amp::RUNTIME] = $script;
             } elseif ($script->hasAttribute(Attribute::CUSTOM_ELEMENT)) {
-                $extensionScripts[ $script->getAttribute(Attribute::CUSTOM_ELEMENT) ] = $script;
+                $extensionScripts[$script->getAttribute(Attribute::CUSTOM_ELEMENT)] = $script;
             } elseif ($script->hasAttribute(Attribute::CUSTOM_TEMPLATE)) {
-                $extensionScripts[ $script->getAttribute(Attribute::CUSTOM_TEMPLATE) ] = $script;
+                $extensionScripts[$script->getAttribute(Attribute::CUSTOM_TEMPLATE)] = $script;
             } else {
                 continue;
             }
