@@ -2,7 +2,9 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
+use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
+use AmpProject\Format;
 use AmpProject\Tests\TestCase;
 use AmpProject\Validator\Spec;
 
@@ -61,5 +63,24 @@ class TagsTest extends TestCase
     {
         $this->expectException(InvalidSpecName::class);
         $this->tags->bySpecName('utter nonsense');
+    }
+
+    public function testByFormat()
+    {
+        $tags = $this->tags->byFormat(Format::AMP);
+
+        $this->assertIsArray($tags);
+        $this->assertGreaterThan(1, $tags);
+
+        foreach ($tags as $tag) {
+            $this->assertInstanceOf(Spec\Tag::class, $tag);
+            $this->assertContains(Format::AMP, $tag->htmlFormat());
+        }
+    }
+
+    public function testByFormatThrowsExceptionForUnknownFormat()
+    {
+        $this->expectException(InvalidFormat::class);
+        $this->tags->byFormat('utter nonsense');
     }
 }
