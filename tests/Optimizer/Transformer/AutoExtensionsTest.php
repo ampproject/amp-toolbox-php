@@ -27,9 +27,14 @@ final class AutoExtensionsTest extends TestCase
     public function dataTransform()
     {
         return [
-            'dummy test for now' => [
+            'keep html without extensions clean' => [
                 TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET . '</head><body></body></html>',
                 TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET . '</head><body></body></html>',
+            ],
+
+            'add missing extensions' => [
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET . '</head><body><amp-anim></amp-anim></body></html>',
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET . '</head><body><amp-anim></amp-anim></body></html>',
             ],
         ];
     }

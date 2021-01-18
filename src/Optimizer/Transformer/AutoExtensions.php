@@ -6,6 +6,8 @@ use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
+use AmpProject\Dom\NodeWalker;
+use AmpProject\Format;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Tag;
@@ -95,8 +97,34 @@ final class AutoExtensions implements Transformer
      */
     private function addMissingExtensions(Document $document, $extensionScripts)
     {
-        // TODO: Add logic.
-        // This requires access to the AMP validator specification.
+        $node = $document->body;
+
+        while ($node !== null) {
+            if (! $node instanceof Element) {
+                $node = NodeWalker::nextNode($node);
+                continue;
+            }
+
+            $tagSpecs = $this->spec->tags()->byTagName($node->tagName);
+
+            if (empty($tagSpecs)) {
+                continue;
+            }
+
+            foreach ($tagSpecs as $tagSpec) {
+                $requiredExtensions = $tagSpec->requiresExtension();
+
+                if (empty($requiredExtensions)) {
+                    continue;
+                }
+
+                foreach ($requiredExtensions as $requiredExtension) {
+                    $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiredExtension);
+                }
+            }
+
+            $node = NodeWalker::nextNode($node);
+        }
 
         return $extensionScripts;
     }
@@ -137,5 +165,33 @@ final class AutoExtensions implements Transformer
     private function renderExtensionScripts(Document $document, array $extensionScripts)
     {
         // TODO: Add logic.
+    }
+
+    /**
+     * Maybe add a required extension to the list of extension scripts.
+     *
+     * @param Document $document          Document to render the extension scripts into.
+     * @param array    $extensionScripts  Existing list of extension scripts.
+     * @param string   $requiredExtension Required extension to check for.
+     * @return array Adapted list of extension scripts.
+     */
+    private function maybeAddExtension(Document $document, $extensionScripts, $requiredExtension)
+    {
+        if (!array_key_exists($requiredExtension, $extensionScripts)) {
+            $requiredScript = $document->createElement(Tag::SCRIPT);
+            $requiredScript->setAttribute(Attribute::SRC, $this->getScriptSrcForExtension($requiredExtension));
+        }
+        return $extensionScripts;
+    }
+
+    /**
+     * Get the URL to use for the extension script's src attribute.
+     *
+     * @param string $requiredExtension Required extension to get the URL for.
+     * @return string URL to use for extension script.
+     */
+    private function getScriptSrcForExtension($requiredExtension)
+    {
+        return Amp::CACHE_ROOT_URL . ;
     }
 }
