@@ -45,7 +45,8 @@ final class Tags
             return [];
         }
 
-        return (array)$this->byTagName[$tagName];
+        $tags = $this->byTagName[$tagName];
+        return is_array($tags) ? $tags : [$tags];
     }
 
     /**
@@ -77,7 +78,8 @@ final class Tags
             throw \AmpProject\Exception\InvalidFormat::forFormat($format);
         }
 
-        return $this->byFormat[$format];
+        $tags = $this->byFormat[$format];
+        return is_array($tags) ? $tags : [$tags];
     }
 
     public function __construct()

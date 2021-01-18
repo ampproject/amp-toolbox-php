@@ -25,7 +25,8 @@ final class Tags
             return [];
         }
 
-        return (array)$this->byTagName[$tagName];
+        $tags = $this->byTagName[$tagName];
+        return is_array($tags) ? $tags : [$tags];
     }
 
     /**
@@ -57,6 +58,7 @@ final class Tags
             throw InvalidFormat::forFormat($format);
         }
 
-        return $this->byFormat[$format];
+        $tags = $this->byFormat[$format];
+        return is_array($tags) ? $tags : [$tags];
     }
 }
