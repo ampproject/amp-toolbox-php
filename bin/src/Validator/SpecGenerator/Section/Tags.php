@@ -4,6 +4,7 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ArrayKeyFirstPolyfill;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
+use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
@@ -19,13 +20,13 @@ final class Tags implements Section
     /**
      * Process a section.
      *
-     * @param string       $rootNamespace Root namespace to generate the PHP validator spec under.
-     * @param array        $spec          Associative array of spec data that was decoded from the JSON file.
-     * @param PhpNamespace $namespace     Namespace object of the section.
-     * @param ClassType    $class         Class object of the section.
+     * @param FileManager  $fileManager FileManager instance to use.
+     * @param array        $spec        Associative array of spec data that was decoded from the JSON file.
+     * @param PhpNamespace $namespace   Namespace object of the section.
+     * @param ClassType    $class       Class object of the section.
      * @return void
      */
-    public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
+    public function process(FileManager $fileManager, $spec, PhpNamespace $namespace, ClassType $class)
     {
         $tags       = [];
         $byTagName  = [];
@@ -39,8 +40,8 @@ final class Tags implements Section
         $namespace->addUse('AmpProject\\Internal');
         $namespace->addUse('AmpProject\\Layout');
         $namespace->addUse('AmpProject\\Tag', 'Element');
-        $namespace->addUse("{$rootNamespace}\\Spec\\SpecRule");
-        $namespace->addUse("{$rootNamespace}\\Spec\\Tag");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
 
         $tagsTemplateClass = ClassType::withBodiesFrom(Template\Tags::class);
         foreach ($tagsTemplateClass->getMethods() as $method) {
@@ -49,19 +50,19 @@ final class Tags implements Section
 
         $class->addProperty('tags')
               ->setPrivate()
-              ->addComment('@var array<string,Tag>');
+              ->addComment('@var array<Tag>');
 
         $class->addProperty('byTagName')
               ->setPrivate()
-              ->addComment('@var array<string,array<int,Tag>>');
+              ->addComment('@var array<array<int,Tag>>');
 
         $class->addProperty('bySpecName')
               ->setPrivate()
-              ->addComment('@var array<string,Tag>');
+              ->addComment('@var array<Tag>');
 
         $class->addProperty('byFormat')
               ->setPrivate()
-              ->addComment('@var array<string,array<int,Tag>>');
+              ->addComment('@var array<array<int,Tag>>');
 
         foreach ($spec as $attributes) {
             $tagId        = $this->getTagId($tags, $attributes);
@@ -70,6 +71,8 @@ final class Tags implements Section
 
         $tagIds = array_keys($tags);
         natcasesort($tagIds);
+
+        $class->addConstant('TAGS', $this->getTagsMapping($tags));
 
         $constructor = $class->addMethod('__construct');
 
@@ -267,5 +270,35 @@ final class Tags implements Section
         }
 
         return "'{$tagId}'";
+    }
+
+    /**
+     * Get the tag mappings that map tag names to tag implementations.
+     *
+     * @param array $tags Array of tags that were collected.
+     */
+    private function getTagsMapping($tags)
+    {
+        $tagMappings = [];
+
+        foreach ($tags as $tagId => $attributes) {
+            $tagMappings[$tagId] = $this->getTagClassFromTagId($tagId);
+        }
+
+        return $tagMappings;
+    }
+
+    /**
+     * Get a valid PHP class name from the tag ID string.
+     *
+     * @param string $tagId Tag ID to get a valid PHP class name from.
+     * @return string Valid PHP class name.
+     */
+    private function getTagClassFromTagId($tagId)
+    {
+        $className = str_replace(['(', ')', '[', ']', '-', '=', '>', '.', '_'], ' ', $tagId);
+        $className = preg_replace('/\s+/', ' ', trim($className));
+
+        return str_replace(' ', '', ucwords(strtolower($className)));
     }
 }

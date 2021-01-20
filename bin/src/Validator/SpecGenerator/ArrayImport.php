@@ -14,13 +14,13 @@ trait ArrayImport
     /**
      * Process a section.
      *
-     * @param string       $rootNamespace Root namespace to generate the PHP validator spec under.
-     * @param array        $spec          Associative array of spec data that was decoded from the JSON file.
-     * @param PhpNamespace $namespace     Namespace object of the section.
-     * @param ClassType    $class         Class object of the section.
+     * @param FileManager  $fileManager FileManager instance to use.
+     * @param array        $spec        Associative array of spec data that was decoded from the JSON file.
+     * @param PhpNamespace $namespace   Namespace object of the section.
+     * @param ClassType    $class       Class object of the section.
      * @return void
      */
-    public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
+    public function process(FileManager $fileManager, $spec, PhpNamespace $namespace, ClassType $class)
     {
         $this->data   = $this->adaptSpec($spec);
         $propertyName = lcfirst($class->getName());

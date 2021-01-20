@@ -15,7 +15,7 @@ final class Css
     /** @var array<array> */
     private $css;
 
-    /** @var array<string,array> */
+    /** @var array<array> */
     private $byFormat;
 
     /**

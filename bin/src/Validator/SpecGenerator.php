@@ -3,11 +3,10 @@
 namespace AmpProject\Tooling\Validator;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
+use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
-use Nette\PhpGenerator\PhpFile;
-use Nette\PhpGenerator\Printer;
 use Nette\PhpGenerator\PsrPrinter;
 
 final class SpecGenerator
@@ -33,62 +32,58 @@ final class SpecGenerator
         $printer = new PsrPrinter();
         $printer->setTypeResolving(false);
 
-        $this->ensureDirectoriesExist($destination);
+        $fileManager = new FileManager($rootNamespace, $destination, $printer);
 
-        $specFile      = $this->createNewFile();
-        $specNamespace = $specFile->addNamespace($rootNamespace);
-        $specClass     = $specNamespace->addClass('Spec')
-                                       ->setFinal();
+        $fileManager->ensureDirectoriesExist();
 
-        $specNamespace->addUse("{$rootNamespace}\\Spec");
+        list($file, $namespace) = $fileManager->createNewNamespacedFile();
+
+        $class = $namespace->addClass('Spec')
+                           ->setFinal();
+
+        $namespace->addUse("{$rootNamespace}\\Spec");
 
         $jsonSpec = $this->adaptJsonSpec($jsonSpec);
 
         $specRuleKeys = $this->collectSpecRuleKeys($jsonSpec);
 
-        $this->generateTagClass($rootNamespace, $destination, $printer);
-        $this->generateAttributeListClass($rootNamespace, $destination, $printer);
-        $this->generateDeclarationListClass($rootNamespace, $destination, $printer);
-        $this->generateErrorCodeInterface($jsonSpec, $rootNamespace, $destination, $printer);
-        $this->generateSpecRuleInterface($specRuleKeys, $rootNamespace, $destination, $printer);
+        $this->generateTagClass($fileManager);
+        $this->generateAttributeListClass($fileManager);
+        $this->generateDeclarationListClass($fileManager);
+        $this->generateErrorCodeInterface($jsonSpec, $fileManager);
+        $this->generateSpecRuleInterface($specRuleKeys, $fileManager);
 
         foreach ($jsonSpec as $section => $sectionSpec) {
             switch ($section) {
                 case 'minValidatorRevisionRequired':
                 case 'specFileRevision':
-                    $specClass->addProperty($section, $sectionSpec)
+                    $class->addProperty($section, $sectionSpec)
                         ->setPrivate()
                         ->addComment("@var int");
 
-                    $specClass->addMethod($section)
+                    $class->addMethod($section)
                               ->addBody('return $this->?;', [$section])
                               ->addComment("@return int");
                     break;
                 case 'scriptSpecUrl':
                 case 'stylesSpecUrl':
                 case 'templateSpecUrl':
-                    $specClass->addProperty($section, $sectionSpec)
+                    $class->addProperty($section, $sectionSpec)
                               ->setPrivate()
                               ->addComment("@var string");
 
-                    $specClass->addMethod($section)
+                    $class->addMethod($section)
                               ->addBody('return $this->?;', [$section])
                               ->addComment("@return string");
                     break;
                 default:
-                    $sectionClassName = $this->generateSectionClass(
-                        $section,
-                        $sectionSpec,
-                        $rootNamespace,
-                        $destination,
-                        $printer
-                    );
+                    $sectionClassName = $this->generateSectionClass($section, $sectionSpec, $fileManager);
 
-                    $specClass->addProperty($section)
+                    $class->addProperty($section)
                         ->setPrivate()
                         ->addComment("@var Spec\\Section\\{$sectionClassName}");
 
-                    $specClass->addMethod($section)
+                    $class->addMethod($section)
                               ->addBody('if ($this->? === null) {', [$section])
                               ->addBody("    \$this->? = new Spec\\Section\\{$sectionClassName}();", [$section])
                               ->addBody('}')
@@ -97,24 +92,7 @@ final class SpecGenerator
             }
         }
 
-        file_put_contents("{$destination}/Spec.php", $printer->printFile($specFile));
-    }
-
-    /**
-     * Create a new PHP file.
-     *
-     * This creates the standard file header.
-     *
-     * @return PhpFile New PHP file.
-     */
-    private function createNewFile()
-    {
-        $file = new PhpFile();
-
-        $file->addComment('DO NOT EDIT!');
-        $file->addComment('This file was automatically generated via bin/generate-validator-spec.php.');
-
-        return $file;
+        $fileManager->saveFile($file, 'Spec.php');
     }
 
     /**
@@ -129,151 +107,110 @@ final class SpecGenerator
     }
 
     /**
-     * Ensure all the required subfolders exist.
-     *
-     * @param string $destination Destination folder to create the subfolders in.
-     */
-    private function ensureDirectoriesExist($destination)
-    {
-        $folders = [
-            $destination,
-            "{$destination}/Spec",
-            "{$destination}/Spec/Section",
-        ];
-
-        foreach ($folders as $folder) {
-            if (!is_dir($folder)) {
-                mkdir($folder);
-            }
-        }
-    }
-
-    /**
      * Generate the Tag class.
      *
-     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
-     * @param string  $destination   Destination folder to store the PHP validator spec under.
-     * @param Printer $printer       Source code printer instance to use.
+     * @param FileManager $fileManager FileManager instance to use.
      */
-    private function generateTagClass($rootNamespace, $destination, Printer $printer)
+    private function generateTagClass(FileManager $fileManager)
     {
-        $tagFile      = $this->createNewFile();
-        $tagNamespace = $tagFile->addNamespace("{$rootNamespace}\\Spec");
-        $tagClass     = ClassType::withBodiesFrom(Template\Tag::class);
-        $tagNamespace->add($tagClass);
-        file_put_contents("{$destination}/Spec/Tag.php", $printer->printFile($tagFile));
+        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
+        $class     = ClassType::withBodiesFrom(Template\Tag::class);
+        $namespace->add($class);
+        $fileManager->saveFile($file, 'Spec/Tag.php');
     }
 
     /**
      * Generate the AttributeList class.
      *
-     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
-     * @param string  $destination   Destination folder to store the PHP validator spec under.
-     * @param Printer $printer       Source code printer instance to use.
+     * @param FileManager $fileManager FileManager instance to use.
      */
-    private function generateAttributeListClass($rootNamespace, $destination, Printer $printer)
+    private function generateAttributeListClass(FileManager $fileManager)
     {
-        $attributeListFile      = $this->createNewFile();
-        $attributeListNamespace = $attributeListFile->addNamespace("{$rootNamespace}\\Spec");
-        $attributeListClass     = ClassType::withBodiesFrom(Template\AttributeList::class);
-        $attributeListNamespace->add($attributeListClass);
-        file_put_contents("{$destination}/Spec/AttributeList.php", $printer->printFile($attributeListFile));
+        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
+        $class     = ClassType::withBodiesFrom(Template\AttributeList::class);
+        $namespace->add($class);
+        $fileManager->saveFile($file, 'Spec/AttributeList.php');
     }
 
     /**
      * Generate the DeclarationList class.
      *
-     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
-     * @param string  $destination   Destination folder to store the PHP validator spec under.
-     * @param Printer $printer       Source code printer instance to use.
+     * @param FileManager $fileManager FileManager instance to use.
      */
-    private function generateDeclarationListClass($rootNamespace, $destination, Printer $printer)
+    private function generateDeclarationListClass(FileManager $fileManager)
     {
-        $declarationListFile      = $this->createNewFile();
-        $declarationListNamespace = $declarationListFile->addNamespace("{$rootNamespace}\\Spec");
-        $declarationListClass     = ClassType::withBodiesFrom(Template\DeclarationList::class);
-        $declarationListNamespace->add($declarationListClass);
-        file_put_contents("{$destination}/Spec/DeclarationList.php", $printer->printFile($declarationListFile));
+        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
+        $class     = ClassType::withBodiesFrom(Template\DeclarationList::class);
+        $namespace->add($class);
+        $fileManager->saveFile($file, 'Spec/DeclarationList.php');
     }
 
     /**
      * Generate a Section class.
      *
-     * @param string  $section       Key of the section to generate.
-     * @param mixed   $sectionSpec   Spec data of the section to be generated.
-     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
-     * @param string  $destination   Destination folder to store the PHP validator spec under.
-     * @param Printer $printer       Source code printer instance to use.
+     * @param string      $section     Key of the section to generate.
+     * @param mixed       $sectionSpec Spec data of the section to be generated.
+     * @param FileManager $fileManager FileManager instance to use.
      * @return string Section class name.
      */
-    private function generateSectionClass($section, $sectionSpec, $rootNamespace, $destination, Printer $printer)
+    private function generateSectionClass($section, $sectionSpec, FileManager $fileManager)
     {
-        $sectionFile      = $this->createNewFile();
-        $sectionNamespace = $sectionFile->addNamespace("{$rootNamespace}\\Spec\\Section");
-        $sectionClassName = $this->getClassName($section);
-        $sectionClass     = $sectionNamespace->addClass($sectionClassName)
+        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\Section');
+        $className = $this->getClassName($section);
+        $class     = $namespace->addClass($className)
                                              ->setFinal();
 
-        $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$sectionClassName}";
+        $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$className}";
 
         if (class_exists($sectionProcessorClass)) {
             /** @var Section $sectionProcessor */
             $sectionProcessor = new $sectionProcessorClass();
-            $sectionProcessor->process($rootNamespace, $sectionSpec, $sectionNamespace, $sectionClass);
+            $sectionProcessor->process($fileManager, $sectionSpec, $namespace, $class);
         }
 
-        file_put_contents(
-            "{$destination}/Spec/Section/{$sectionClassName}.php",
-            $printer->printFile($sectionFile)
-        );
+        $fileManager->saveFile($file, "Spec/Section/{$className}.php");
 
-        return $sectionClassName;
+        return $className;
     }
 
     /**
      * Generate a SpecRule interface.
      *
-     * @param array   $specRuleKeys  Array of spec rule keys to create constants for.
-     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
-     * @param string  $destination   Destination folder to store the PHP validator spec under.
-     * @param Printer $printer       Source code printer instance to use.
+     * @param array       $specRuleKeys Array of spec rule keys to create constants for.
+     * @param FileManager $fileManager  FileManager instance to use.
      */
-    private function generateSpecRuleInterface($specRuleKeys, $rootNamespace, $destination, Printer $printer)
+    private function generateSpecRuleInterface($specRuleKeys, FileManager $fileManager)
     {
-        $specRuleFile      = $this->createNewFile();
-        $specRuleNamespace = $specRuleFile->addNamespace("{$rootNamespace}\\Spec");
-        $specRuleInterface = $specRuleNamespace->addInterface('SpecRule');
+        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
+        $interface = $namespace->addInterface('SpecRule');
 
         foreach ($specRuleKeys as $specRuleKey) {
-            $specRuleInterface->addConstant($this->getConstantName($specRuleKey), $specRuleKey);
+            $interface->addConstant($this->getConstantName($specRuleKey), $specRuleKey);
         }
 
-        file_put_contents("{$destination}/Spec/SpecRule.php", $printer->printFile($specRuleFile));
+        $fileManager->saveFile($file, 'Spec/SpecRule.php');
     }
 
     /**
      * Generate the ErrorCode interface.
      *
-     * @param array   $jsonSpec      JSON spec that contains the spec details.
-     * @param string  $rootNamespace Root namespace to generate the PHP validator spec under.
-     * @param string  $destination   Destination folder to store the PHP validator spec under.
-     * @param Printer $printer       Source code printer instance to use.
+     * @param array       $jsonSpec    JSON spec that contains the spec details.
+     * @param FileManager $fileManager FileManager instance to use.
      */
-    private function generateErrorCodeInterface($jsonSpec, $rootNamespace, $destination, Printer $printer)
+    private function generateErrorCodeInterface($jsonSpec, FileManager $fileManager)
     {
-        $errorCodeFile      = $this->createNewFile();
-        $errorCodeNamespace = $errorCodeFile->addNamespace($rootNamespace);
-        $errorCodeInterface = $errorCodeNamespace->addInterface('ErrorCode');
+        list($file, $namespace) = $fileManager->createNewNamespacedFile();
+        $interface = $namespace->addInterface('ErrorCode');
 
         $errorCodes = array_unique(array_keys($jsonSpec['errors']));
 
         sort($errorCodes);
 
         foreach ($errorCodes as $errorCode) {
-            $errorCodeInterface->addConstant($this->getConstantName($errorCode), $errorCode);
+            $interface->addConstant($this->getConstantName($errorCode), $errorCode);
         }
 
-        file_put_contents("{$destination}/ErrorCode.php", $printer->printFile($errorCodeFile));
+        $fileManager->saveFile($file, 'ErrorCode.php');
     }
 
     /**
