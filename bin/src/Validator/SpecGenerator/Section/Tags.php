@@ -17,34 +17,6 @@ final class Tags implements Section
     use VariableDumping;
 
     /**
-     * Associative array of tags and their attributes.
-     *
-     * @var array<string,array>
-     */
-    private $tags = [];
-
-    /**
-     * Provide hashed access to tags by tag name.
-     *
-     * @var array<string,array<int,string>>
-     */
-    private $byTagName = [];
-
-    /**
-     * Provide hashed access to tags by spec name.
-     *
-     * @var array<string,string>
-     */
-    private $bySpecName = [];
-
-    /**
-     * Provide hashed access to tags by AMP HTML format.
-     *
-     * @var array<string,array<int,string>>
-     */
-    private $byFormat = [];
-
-    /**
      * Process a section.
      *
      * @param string       $rootNamespace Root namespace to generate the PHP validator spec under.
@@ -55,6 +27,11 @@ final class Tags implements Section
      */
     public function process($rootNamespace, $spec, PhpNamespace $namespace, ClassType $class)
     {
+        $tags       = [];
+        $byTagName  = [];
+        $bySpecName = [];
+        $byFormat   = [];
+
         $namespace->addUse('AmpProject\\Exception\\InvalidSpecName');
         $namespace->addUse('AmpProject\\Attribute');
         $namespace->addUse('AmpProject\\Extension');
@@ -86,24 +63,25 @@ final class Tags implements Section
               ->setPrivate()
               ->addComment('@var array<string,array<int,Tag>>');
 
-        $constructor = $class->addMethod('__construct');
-
         foreach ($spec as $attributes) {
-            $this->tags[$this->getTagId($attributes)] = $attributes;
+            $tagId        = $this->getTagId($tags, $attributes);
+            $tags[$tagId] = $attributes;
         }
 
-        $tagIds = array_keys($this->tags);
+        $tagIds = array_keys($tags);
         natcasesort($tagIds);
+
+        $constructor = $class->addMethod('__construct');
 
         $constructor->addBody('$this->tags = [');
 
         foreach ($tagIds as $tagId) {
-            $keyString = $this->getKeyString($tagId);
+            $keyString = $this->getKeyString($tags, $tagId);
             $constructor->addBody("    {$keyString} => new Tag(");
             $constructor->addBody('        [');
 
             $indent = '            ';
-            foreach ($this->tags[$tagId] as $key => $value) {
+            foreach ($tags[$tagId] as $key => $value) {
                 switch ($key) {
                     case 'ampLayout':
                         if (array_key_exists('supportedLayouts', $value)) {
@@ -171,28 +149,28 @@ final class Tags implements Section
             $constructor->addBody('        ]');
             $constructor->addBody('    ),');
 
-            if (array_key_exists('tagName', $this->tags[$tagId])) {
-                $tagName = $this->tags[$tagId]['tagName'];
+            if (array_key_exists('tagName', $tags[$tagId])) {
+                $tagName = $tags[$tagId]['tagName'];
                 if (strpos($tagName, '$') !== 0) {
-                    if (!array_key_exists($tagName, $this->byTagName)) {
-                        $this->byTagName[$tagName] = [];
+                    if (!array_key_exists($tagName, $byTagName)) {
+                        $byTagName[$tagName] = [];
                     }
-                    $this->byTagName[$tagName][$tagId] = $this->tags[$tagId];
+                    $byTagName[$tagName][$tagId] = $tags[$tagId];
                 }
             }
 
-            if (array_key_exists('specName', $this->tags[$tagId])) {
-                $specName                    = $this->tags[$tagId]['specName'];
-                $this->bySpecName[$specName] = $tagId;
+            if (array_key_exists('specName', $tags[$tagId])) {
+                $specName                    = $tags[$tagId]['specName'];
+                $bySpecName[$specName] = $tagId;
             }
 
-            if (array_key_exists('htmlFormat', $this->tags[$tagId])) {
-                $formats = $this->tags[$tagId]['htmlFormat'];
+            if (array_key_exists('htmlFormat', $tags[$tagId])) {
+                $formats = $tags[$tagId]['htmlFormat'];
                 foreach ($formats as $format) {
-                    if (!array_key_exists($format, $this->byFormat)) {
-                        $this->byFormat[$format] = [];
+                    if (!array_key_exists($format, $byFormat)) {
+                        $byFormat[$format] = [];
                     }
-                    $this->byFormat[$format][] = $tagId;
+                    $byFormat[$format][] = $tagId;
                 }
             }
         }
@@ -200,41 +178,41 @@ final class Tags implements Section
         $constructor->addBody('];');
 
         $constructor->addBody('$this->byTagName = [');
-        foreach ($this->byTagName as $tagName => $tags) {
+        foreach ($byTagName as $tagName => $tagData) {
             $constant = $this->getTagConstant($this->getConstantName($tagName));
-            if (count($tags) > 1) {
+            if (count($tagData) > 1) {
                 $constructor->addBody("    {$constant} => [");
-                foreach ($tags as $tagId => $attributes) {
-                    $keyString = $this->getKeyString($tagId);
+                foreach ($tagData as $tagId => $attributes) {
+                    $keyString = $this->getKeyString($tags, $tagId);
                     $constructor->addBody("        \$this->tags[{$keyString}],");
                 }
                 $constructor->addBody('    ],');
             } else {
-                $keyString = $this->getKeyString($this->arrayKeyFirst($tags));
+                $keyString = $this->getKeyString($tags, $this->arrayKeyFirst($tagData));
                 $constructor->addBody("    {$constant} => \$this->tags[{$keyString}],");
             }
         }
         $constructor->addBody('];');
 
         $constructor->addBody('$this->bySpecName = [');
-        foreach ($this->bySpecName as $specName => $tagId) {
-            $keyString = $this->getKeyString($tagId);
+        foreach ($bySpecName as $specName => $tagId) {
+            $keyString = $this->getKeyString($tags, $tagId);
             $constructor->addBody("    '{$specName}' => \$this->tags[{$keyString}],");
         }
         $constructor->addBody('];');
 
         $constructor->addBody('$this->byFormat = [');
-        foreach ($this->byFormat as $tagName => $tags) {
+        foreach ($byFormat as $tagName => $tagIds) {
             $constant = $this->getFormatConstant($this->getConstantName($tagName));
-            if (count($tags) > 1) {
+            if (count($tagIds) > 1) {
                 $constructor->addBody("    {$constant} => [");
-                foreach ($tags as $tagId) {
-                    $keyString = $this->getKeyString($tagId);
+                foreach ($tagIds as $tagId) {
+                    $keyString = $this->getKeyString($tags, $tagId);
                     $constructor->addBody("        \$this->tags[{$keyString}],");
                 }
                 $constructor->addBody('    ],');
             } else {
-                $keyString = $this->getKeyString($this->arrayKeyFirst($tags));
+                $keyString = $this->getKeyString($tags, $this->arrayKeyFirst($tagIds));
                 $constructor->addBody("    {$constant} => \$this->tags[{$keyString}],");
             }
         }
@@ -244,10 +222,11 @@ final class Tags implements Section
     /**
      * Get a unique tag ID.
      *
+     * @param array $tags       Array of tags that were collected.
      * @param array $attributes Attributes array to get the tag ID for.
      * @return string Tag ID.
      */
-    private function getTagId($attributes)
+    private function getTagId($tags, $attributes)
     {
         if (array_key_exists('specName', $attributes)) {
             $specName = $attributes['specName'];
@@ -257,10 +236,14 @@ final class Tags implements Section
             $specName = 'unnamed';
         }
 
+        if ($specName === 'SCRIPT' && array_key_exists('extensionSpec', $attributes)) {
+            $specName .= " ({$attributes['extensionSpec']['name']})";
+        }
+
         $tagId = $specName;
         $index = 1;
 
-        while (array_key_exists($tagId, $this->tags)) {
+        while (array_key_exists($tagId, $tags)) {
             $index++;
             $tagId = "{$specName} ({$index})";
         }
@@ -273,12 +256,13 @@ final class Tags implements Section
      *
      * This automatically reuses existing constant to reduce memory consumption.
      *
+     * @param array  $tags  Array of tags that were collected.
      * @param string $tagId Tag ID to produce a key string for.
      * @return string Key string to use.
      */
-    private function getKeyString($tagId)
+    private function getKeyString($tags, $tagId)
     {
-        if (array_key_exists('tagName', $this->tags[$tagId]) && $this->tags[$tagId]['tagName'] === $tagId) {
+        if (array_key_exists('tagName', $tags[$tagId]) && $tags[$tagId]['tagName'] === $tagId) {
             return $this->getTagConstant($this->getConstantName($tagId));
         }
 

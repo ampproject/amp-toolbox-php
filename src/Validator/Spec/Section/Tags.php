@@ -14665,7 +14665,7 @@ final class Tags
                     ],
                 ]
             ),
-            Element::SCRIPT => new Tag(
+            'SCRIPT (amp-3d-gltf)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14683,7 +14683,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (2)' => new Tag(
+            'SCRIPT (amp-3q-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14701,7 +14701,27 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (3)' => new Tag(
+            'SCRIPT (amp-access)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-access',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                        'deprecatedAllowDuplicates' => true,
+                        'requiresUsage' => 'EXEMPTED',
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-access-laterpay)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14724,7 +14744,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (4)' => new Tag(
+            'SCRIPT (amp-access-poool)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14746,7 +14766,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (5)' => new Tag(
+            'SCRIPT (amp-access-scroll)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14768,27 +14788,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (6)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-access',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                        'deprecatedAllowDuplicates' => true,
-                        'requiresUsage' => 'EXEMPTED',
-                    ],
-                ]
-            ),
-            'SCRIPT (7)' => new Tag(
+            'SCRIPT (amp-accordion)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14809,7 +14809,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (8)' => new Tag(
+            'SCRIPT (amp-action-macro)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14827,7 +14827,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (9)' => new Tag(
+            'SCRIPT (amp-ad-custom)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14845,7 +14845,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (10)' => new Tag(
+            'SCRIPT (amp-ad-exit)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14863,7 +14863,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (11)' => new Tag(
+            'SCRIPT (amp-addthis)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14881,7 +14881,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (12)' => new Tag(
+            'SCRIPT (amp-analytics)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14902,7 +14902,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (13)' => new Tag(
+            'SCRIPT (amp-anim)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14923,7 +14923,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (14)' => new Tag(
+            'SCRIPT (amp-animation)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14942,7 +14942,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (15)' => new Tag(
+            'SCRIPT (amp-apester-media)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14962,7 +14962,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (16)' => new Tag(
+            'SCRIPT (amp-app-banner)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -14981,7 +14981,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (17)' => new Tag(
+            'SCRIPT (amp-audio)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15002,7 +15002,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (18)' => new Tag(
+            'SCRIPT (amp-auto-ads)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15020,7 +15020,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (19)' => new Tag(
+            'SCRIPT (amp-autocomplete)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15038,7 +15038,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (20)' => new Tag(
+            'SCRIPT (amp-base-carousel)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15056,7 +15056,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (21)' => new Tag(
+            'SCRIPT (amp-beopinion)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15074,7 +15074,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (22)' => new Tag(
+            'SCRIPT (amp-bind)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15094,7 +15094,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (23)' => new Tag(
+            'SCRIPT (amp-bodymovin-animation)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15112,7 +15112,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (24)' => new Tag(
+            'SCRIPT (amp-brid-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15132,7 +15132,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (25)' => new Tag(
+            'SCRIPT (amp-brightcove)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15152,7 +15152,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (26)' => new Tag(
+            'SCRIPT (amp-byside-content)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15170,7 +15170,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (27)' => new Tag(
+            'SCRIPT (amp-call-tracking)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15189,7 +15189,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (28)' => new Tag(
+            'SCRIPT (amp-carousel)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15211,7 +15211,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (29)' => new Tag(
+            'SCRIPT (amp-connatix-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15229,7 +15229,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (30)' => new Tag(
+            'SCRIPT (amp-consent)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15247,7 +15247,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (31)' => new Tag(
+            'SCRIPT (amp-dailymotion)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15267,7 +15267,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (32)' => new Tag(
+            'SCRIPT (amp-date-countdown)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15285,7 +15285,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (33)' => new Tag(
+            'SCRIPT (amp-date-display)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15303,7 +15303,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (34)' => new Tag(
+            'SCRIPT (amp-date-picker)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15321,7 +15321,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (35)' => new Tag(
+            'SCRIPT (amp-delight-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15339,7 +15339,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (36)' => new Tag(
+            'SCRIPT (amp-dynamic-css-classes)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15359,7 +15359,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (37)' => new Tag(
+            'SCRIPT (amp-embedly-card)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15377,7 +15377,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (38)' => new Tag(
+            'SCRIPT (amp-experiment)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15398,61 +15398,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (39)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-facebook-comments',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                    ],
-                ]
-            ),
-            'SCRIPT (40)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-facebook-like',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                    ],
-                ]
-            ),
-            'SCRIPT (41)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-facebook-page',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                    ],
-                ]
-            ),
-            'SCRIPT (42)' => new Tag(
+            'SCRIPT (amp-facebook)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15472,7 +15418,61 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (43)' => new Tag(
+            'SCRIPT (amp-facebook-comments)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-facebook-comments',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-facebook-like)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-facebook-like',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-facebook-page)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-facebook-page',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-fit-text)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15493,7 +15493,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (44)' => new Tag(
+            'SCRIPT (amp-font)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15514,7 +15514,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (45)' => new Tag(
+            'SCRIPT (amp-form)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15535,7 +15535,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (46)' => new Tag(
+            'SCRIPT (amp-fx-collection)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15554,7 +15554,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (47)' => new Tag(
+            'SCRIPT (amp-fx-flying-carpet)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15574,7 +15574,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (48)' => new Tag(
+            'SCRIPT (amp-geo)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15592,7 +15592,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (49)' => new Tag(
+            'SCRIPT (amp-gfycat)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15612,7 +15612,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (50)' => new Tag(
+            'SCRIPT (amp-gist)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15630,7 +15630,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (51)' => new Tag(
+            'SCRIPT (amp-google-document-embed)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15648,7 +15648,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (52)' => new Tag(
+            'SCRIPT (amp-gwd-animation)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15666,7 +15666,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (53)' => new Tag(
+            'SCRIPT (amp-hulu)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15684,7 +15684,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (54)' => new Tag(
+            'SCRIPT (amp-iframe)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15704,7 +15704,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (55)' => new Tag(
+            'SCRIPT (amp-ima-video)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15722,7 +15722,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (56)' => new Tag(
+            'SCRIPT (amp-image-lightbox)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15742,7 +15742,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (57)' => new Tag(
+            'SCRIPT (amp-image-slider)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15760,7 +15760,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (58)' => new Tag(
+            'SCRIPT (amp-imgur)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15778,7 +15778,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (59)' => new Tag(
+            'SCRIPT (amp-inline-gallery)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15796,7 +15796,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (60)' => new Tag(
+            'SCRIPT (amp-inputmask)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15815,7 +15815,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (61)' => new Tag(
+            'SCRIPT (amp-instagram)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15835,7 +15835,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (62)' => new Tag(
+            'SCRIPT (amp-install-serviceworker)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15855,7 +15855,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (63)' => new Tag(
+            'SCRIPT (amp-izlesene)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15874,7 +15874,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (64)' => new Tag(
+            'SCRIPT (amp-jwplayer)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15894,7 +15894,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (65)' => new Tag(
+            'SCRIPT (amp-kaltura-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15914,26 +15914,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (66)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-lightbox-gallery',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                        'requiresUsage' => 'NONE',
-                    ],
-                ]
-            ),
-            'SCRIPT (67)' => new Tag(
+            'SCRIPT (amp-lightbox)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15953,7 +15934,26 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (68)' => new Tag(
+            'SCRIPT (amp-lightbox-gallery)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-lightbox-gallery',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                        'requiresUsage' => 'NONE',
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-link-rewriter)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15978,7 +15978,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (69)' => new Tag(
+            'SCRIPT (amp-list)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -15998,7 +15998,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (70)' => new Tag(
+            'SCRIPT (amp-live-list)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::MANDATORY_PARENT => Element::HEAD,
@@ -16019,7 +16019,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (71)' => new Tag(
+            'SCRIPT (amp-mathml)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16037,7 +16037,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (72)' => new Tag(
+            'SCRIPT (amp-mega-menu)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16055,7 +16055,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (73)' => new Tag(
+            'SCRIPT (amp-megaphone)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16073,7 +16073,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (74)' => new Tag(
+            'SCRIPT (amp-minute-media-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16091,7 +16091,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (75)' => new Tag(
+            'SCRIPT (amp-mowplayer)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16109,7 +16109,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (76)' => new Tag(
+            'SCRIPT (amp-mraid)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTRS => [
@@ -16134,7 +16134,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (77)' => new Tag(
+            'SCRIPT (amp-mustache)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16159,7 +16159,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (78)' => new Tag(
+            'SCRIPT (amp-nested-menu)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16177,7 +16177,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (79)' => new Tag(
+            'SCRIPT (amp-next-page)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16196,7 +16196,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (80)' => new Tag(
+            'SCRIPT (amp-nexxtv-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16214,7 +16214,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (81)' => new Tag(
+            'SCRIPT (amp-o2-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16234,7 +16234,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (82)' => new Tag(
+            'SCRIPT (amp-onetap-google)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16252,7 +16252,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (83)' => new Tag(
+            'SCRIPT (amp-ooyala-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16270,7 +16270,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (84)' => new Tag(
+            'SCRIPT (amp-orientation-observer)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16288,7 +16288,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (85)' => new Tag(
+            'SCRIPT (amp-pan-zoom)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16306,7 +16306,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (86)' => new Tag(
+            'SCRIPT (amp-pinterest)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16326,7 +16326,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (87)' => new Tag(
+            'SCRIPT (amp-playbuzz)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16344,7 +16344,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (88)' => new Tag(
+            'SCRIPT (amp-position-observer)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16363,7 +16363,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (89)' => new Tag(
+            'SCRIPT (amp-powr-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16381,7 +16381,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (90)' => new Tag(
+            'SCRIPT (amp-reach-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16401,7 +16401,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (91)' => new Tag(
+            'SCRIPT (amp-recaptcha-input)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16419,7 +16419,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (92)' => new Tag(
+            'SCRIPT (amp-redbull-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16437,7 +16437,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (93)' => new Tag(
+            'SCRIPT (amp-reddit)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16456,7 +16456,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (94)' => new Tag(
+            'SCRIPT (amp-riddle-quiz)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16474,7 +16474,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (95)' => new Tag(
+            'SCRIPT (amp-script)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16492,7 +16492,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (96)' => new Tag(
+            'SCRIPT (amp-selector)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16512,7 +16512,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (97)' => new Tag(
+            'SCRIPT (amp-sidebar)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16532,7 +16532,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (98)' => new Tag(
+            'SCRIPT (amp-skimlinks)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16557,7 +16557,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (99)' => new Tag(
+            'SCRIPT (amp-slides)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16579,7 +16579,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (100)' => new Tag(
+            'SCRIPT (amp-smartlinks)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16604,7 +16604,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (101)' => new Tag(
+            'SCRIPT (amp-social-share)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16625,7 +16625,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (102)' => new Tag(
+            'SCRIPT (amp-soundcloud)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16645,7 +16645,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (103)' => new Tag(
+            'SCRIPT (amp-springboard-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16665,7 +16665,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (104)' => new Tag(
+            'SCRIPT (amp-sticky-ad)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16688,97 +16688,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (105)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-story-360',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                    ],
-                ]
-            ),
-            'SCRIPT (106)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-story-auto-ads',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                    ],
-                ]
-            ),
-            'SCRIPT (107)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-story-interactive',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                    ],
-                ]
-            ),
-            'SCRIPT (108)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-story-panning-media',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                    ],
-                ]
-            ),
-            'SCRIPT (109)' => new Tag(
-                [
-                    SpecRule::TAG_NAME => Element::SCRIPT,
-                    SpecRule::ATTR_LISTS => [
-                        'common-extension-attrs',
-                    ],
-                    SpecRule::HTML_FORMAT => [
-                        Format::AMP,
-                    ],
-                    SpecRule::EXTENSION_SPEC => [
-                        'name' => 'amp-story-player',
-                        'version' => [
-                            '0.1',
-                            'latest',
-                        ],
-                    ],
-                ]
-            ),
-            'SCRIPT (110)' => new Tag(
+            'SCRIPT (amp-story)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16796,7 +16706,97 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (111)' => new Tag(
+            'SCRIPT (amp-story-360)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-story-360',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-story-auto-ads)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-story-auto-ads',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-story-interactive)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-story-interactive',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-story-panning-media)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-story-panning-media',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-story-player)' => new Tag(
+                [
+                    SpecRule::TAG_NAME => Element::SCRIPT,
+                    SpecRule::ATTR_LISTS => [
+                        'common-extension-attrs',
+                    ],
+                    SpecRule::HTML_FORMAT => [
+                        Format::AMP,
+                    ],
+                    SpecRule::EXTENSION_SPEC => [
+                        'name' => 'amp-story-player',
+                        'version' => [
+                            '0.1',
+                            'latest',
+                        ],
+                    ],
+                ]
+            ),
+            'SCRIPT (amp-subscriptions)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16815,7 +16815,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (112)' => new Tag(
+            'SCRIPT (amp-subscriptions-google)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16837,7 +16837,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (113)' => new Tag(
+            'SCRIPT (amp-timeago)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16855,7 +16855,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (114)' => new Tag(
+            'SCRIPT (amp-truncate-text)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16873,7 +16873,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (115)' => new Tag(
+            'SCRIPT (amp-twitter)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16893,7 +16893,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (116)' => new Tag(
+            'SCRIPT (amp-user-notification)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16913,7 +16913,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (117)' => new Tag(
+            'SCRIPT (amp-video-docking)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16931,7 +16931,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (118)' => new Tag(
+            'SCRIPT (amp-video-iframe)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16949,7 +16949,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (119)' => new Tag(
+            'SCRIPT (amp-vimeo)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16969,7 +16969,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (120)' => new Tag(
+            'SCRIPT (amp-vine)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -16989,7 +16989,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (121)' => new Tag(
+            'SCRIPT (amp-viqeo-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -17007,7 +17007,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (122)' => new Tag(
+            'SCRIPT (amp-vk)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -17025,7 +17025,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (123)' => new Tag(
+            'SCRIPT (amp-web-push)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -17043,7 +17043,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (124)' => new Tag(
+            'SCRIPT (amp-wistia-player)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -17061,7 +17061,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (125)' => new Tag(
+            'SCRIPT (amp-yotpo)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -17080,7 +17080,7 @@ final class Tags
                     ],
                 ]
             ),
-            'SCRIPT (126)' => new Tag(
+            'SCRIPT (amp-youtube)' => new Tag(
                 [
                     SpecRule::TAG_NAME => Element::SCRIPT,
                     SpecRule::ATTR_LISTS => [
@@ -19397,132 +19397,132 @@ final class Tags
                 $this->tags['amphtml engine script (LTS)'],
                 $this->tags['amphtml engine script [AMP4EMAIL]'],
                 $this->tags['cryptokeys .json script'],
-                $this->tags[Element::SCRIPT],
-                $this->tags['SCRIPT (2)'],
-                $this->tags['SCRIPT (3)'],
-                $this->tags['SCRIPT (4)'],
-                $this->tags['SCRIPT (5)'],
-                $this->tags['SCRIPT (6)'],
-                $this->tags['SCRIPT (7)'],
-                $this->tags['SCRIPT (8)'],
-                $this->tags['SCRIPT (9)'],
-                $this->tags['SCRIPT (10)'],
-                $this->tags['SCRIPT (11)'],
-                $this->tags['SCRIPT (12)'],
-                $this->tags['SCRIPT (13)'],
-                $this->tags['SCRIPT (14)'],
-                $this->tags['SCRIPT (15)'],
-                $this->tags['SCRIPT (16)'],
-                $this->tags['SCRIPT (17)'],
-                $this->tags['SCRIPT (18)'],
-                $this->tags['SCRIPT (19)'],
-                $this->tags['SCRIPT (20)'],
-                $this->tags['SCRIPT (21)'],
-                $this->tags['SCRIPT (22)'],
-                $this->tags['SCRIPT (23)'],
-                $this->tags['SCRIPT (24)'],
-                $this->tags['SCRIPT (25)'],
-                $this->tags['SCRIPT (26)'],
-                $this->tags['SCRIPT (27)'],
-                $this->tags['SCRIPT (28)'],
-                $this->tags['SCRIPT (29)'],
-                $this->tags['SCRIPT (30)'],
-                $this->tags['SCRIPT (31)'],
-                $this->tags['SCRIPT (32)'],
-                $this->tags['SCRIPT (33)'],
-                $this->tags['SCRIPT (34)'],
-                $this->tags['SCRIPT (35)'],
-                $this->tags['SCRIPT (36)'],
-                $this->tags['SCRIPT (37)'],
-                $this->tags['SCRIPT (38)'],
-                $this->tags['SCRIPT (39)'],
-                $this->tags['SCRIPT (40)'],
-                $this->tags['SCRIPT (41)'],
-                $this->tags['SCRIPT (42)'],
-                $this->tags['SCRIPT (43)'],
-                $this->tags['SCRIPT (44)'],
-                $this->tags['SCRIPT (45)'],
-                $this->tags['SCRIPT (46)'],
-                $this->tags['SCRIPT (47)'],
-                $this->tags['SCRIPT (48)'],
-                $this->tags['SCRIPT (49)'],
-                $this->tags['SCRIPT (50)'],
-                $this->tags['SCRIPT (51)'],
-                $this->tags['SCRIPT (52)'],
-                $this->tags['SCRIPT (53)'],
-                $this->tags['SCRIPT (54)'],
-                $this->tags['SCRIPT (55)'],
-                $this->tags['SCRIPT (56)'],
-                $this->tags['SCRIPT (57)'],
-                $this->tags['SCRIPT (58)'],
-                $this->tags['SCRIPT (59)'],
-                $this->tags['SCRIPT (60)'],
-                $this->tags['SCRIPT (61)'],
-                $this->tags['SCRIPT (62)'],
-                $this->tags['SCRIPT (63)'],
-                $this->tags['SCRIPT (64)'],
-                $this->tags['SCRIPT (65)'],
-                $this->tags['SCRIPT (66)'],
-                $this->tags['SCRIPT (67)'],
-                $this->tags['SCRIPT (68)'],
-                $this->tags['SCRIPT (69)'],
-                $this->tags['SCRIPT (70)'],
-                $this->tags['SCRIPT (71)'],
-                $this->tags['SCRIPT (72)'],
-                $this->tags['SCRIPT (73)'],
-                $this->tags['SCRIPT (74)'],
-                $this->tags['SCRIPT (75)'],
-                $this->tags['SCRIPT (76)'],
-                $this->tags['SCRIPT (77)'],
-                $this->tags['SCRIPT (78)'],
-                $this->tags['SCRIPT (79)'],
-                $this->tags['SCRIPT (80)'],
-                $this->tags['SCRIPT (81)'],
-                $this->tags['SCRIPT (82)'],
-                $this->tags['SCRIPT (83)'],
-                $this->tags['SCRIPT (84)'],
-                $this->tags['SCRIPT (85)'],
-                $this->tags['SCRIPT (86)'],
-                $this->tags['SCRIPT (87)'],
-                $this->tags['SCRIPT (88)'],
-                $this->tags['SCRIPT (89)'],
-                $this->tags['SCRIPT (90)'],
-                $this->tags['SCRIPT (91)'],
-                $this->tags['SCRIPT (92)'],
-                $this->tags['SCRIPT (93)'],
-                $this->tags['SCRIPT (94)'],
-                $this->tags['SCRIPT (95)'],
-                $this->tags['SCRIPT (96)'],
-                $this->tags['SCRIPT (97)'],
-                $this->tags['SCRIPT (98)'],
-                $this->tags['SCRIPT (99)'],
-                $this->tags['SCRIPT (100)'],
-                $this->tags['SCRIPT (101)'],
-                $this->tags['SCRIPT (102)'],
-                $this->tags['SCRIPT (103)'],
-                $this->tags['SCRIPT (104)'],
-                $this->tags['SCRIPT (105)'],
-                $this->tags['SCRIPT (106)'],
-                $this->tags['SCRIPT (107)'],
-                $this->tags['SCRIPT (108)'],
-                $this->tags['SCRIPT (109)'],
-                $this->tags['SCRIPT (110)'],
-                $this->tags['SCRIPT (111)'],
-                $this->tags['SCRIPT (112)'],
-                $this->tags['SCRIPT (113)'],
-                $this->tags['SCRIPT (114)'],
-                $this->tags['SCRIPT (115)'],
-                $this->tags['SCRIPT (116)'],
-                $this->tags['SCRIPT (117)'],
-                $this->tags['SCRIPT (118)'],
-                $this->tags['SCRIPT (119)'],
-                $this->tags['SCRIPT (120)'],
-                $this->tags['SCRIPT (121)'],
-                $this->tags['SCRIPT (122)'],
-                $this->tags['SCRIPT (123)'],
-                $this->tags['SCRIPT (124)'],
-                $this->tags['SCRIPT (125)'],
-                $this->tags['SCRIPT (126)'],
+                $this->tags['SCRIPT (amp-3d-gltf)'],
+                $this->tags['SCRIPT (amp-3q-player)'],
+                $this->tags['SCRIPT (amp-access)'],
+                $this->tags['SCRIPT (amp-access-laterpay)'],
+                $this->tags['SCRIPT (amp-access-poool)'],
+                $this->tags['SCRIPT (amp-access-scroll)'],
+                $this->tags['SCRIPT (amp-accordion)'],
+                $this->tags['SCRIPT (amp-action-macro)'],
+                $this->tags['SCRIPT (amp-ad-custom)'],
+                $this->tags['SCRIPT (amp-ad-exit)'],
+                $this->tags['SCRIPT (amp-addthis)'],
+                $this->tags['SCRIPT (amp-analytics)'],
+                $this->tags['SCRIPT (amp-anim)'],
+                $this->tags['SCRIPT (amp-animation)'],
+                $this->tags['SCRIPT (amp-apester-media)'],
+                $this->tags['SCRIPT (amp-app-banner)'],
+                $this->tags['SCRIPT (amp-audio)'],
+                $this->tags['SCRIPT (amp-auto-ads)'],
+                $this->tags['SCRIPT (amp-autocomplete)'],
+                $this->tags['SCRIPT (amp-base-carousel)'],
+                $this->tags['SCRIPT (amp-beopinion)'],
+                $this->tags['SCRIPT (amp-bind)'],
+                $this->tags['SCRIPT (amp-bodymovin-animation)'],
+                $this->tags['SCRIPT (amp-brid-player)'],
+                $this->tags['SCRIPT (amp-brightcove)'],
+                $this->tags['SCRIPT (amp-byside-content)'],
+                $this->tags['SCRIPT (amp-call-tracking)'],
+                $this->tags['SCRIPT (amp-carousel)'],
+                $this->tags['SCRIPT (amp-connatix-player)'],
+                $this->tags['SCRIPT (amp-consent)'],
+                $this->tags['SCRIPT (amp-dailymotion)'],
+                $this->tags['SCRIPT (amp-date-countdown)'],
+                $this->tags['SCRIPT (amp-date-display)'],
+                $this->tags['SCRIPT (amp-date-picker)'],
+                $this->tags['SCRIPT (amp-delight-player)'],
+                $this->tags['SCRIPT (amp-dynamic-css-classes)'],
+                $this->tags['SCRIPT (amp-embedly-card)'],
+                $this->tags['SCRIPT (amp-experiment)'],
+                $this->tags['SCRIPT (amp-facebook)'],
+                $this->tags['SCRIPT (amp-facebook-comments)'],
+                $this->tags['SCRIPT (amp-facebook-like)'],
+                $this->tags['SCRIPT (amp-facebook-page)'],
+                $this->tags['SCRIPT (amp-fit-text)'],
+                $this->tags['SCRIPT (amp-font)'],
+                $this->tags['SCRIPT (amp-form)'],
+                $this->tags['SCRIPT (amp-fx-collection)'],
+                $this->tags['SCRIPT (amp-fx-flying-carpet)'],
+                $this->tags['SCRIPT (amp-geo)'],
+                $this->tags['SCRIPT (amp-gfycat)'],
+                $this->tags['SCRIPT (amp-gist)'],
+                $this->tags['SCRIPT (amp-google-document-embed)'],
+                $this->tags['SCRIPT (amp-gwd-animation)'],
+                $this->tags['SCRIPT (amp-hulu)'],
+                $this->tags['SCRIPT (amp-iframe)'],
+                $this->tags['SCRIPT (amp-ima-video)'],
+                $this->tags['SCRIPT (amp-image-lightbox)'],
+                $this->tags['SCRIPT (amp-image-slider)'],
+                $this->tags['SCRIPT (amp-imgur)'],
+                $this->tags['SCRIPT (amp-inline-gallery)'],
+                $this->tags['SCRIPT (amp-inputmask)'],
+                $this->tags['SCRIPT (amp-instagram)'],
+                $this->tags['SCRIPT (amp-install-serviceworker)'],
+                $this->tags['SCRIPT (amp-izlesene)'],
+                $this->tags['SCRIPT (amp-jwplayer)'],
+                $this->tags['SCRIPT (amp-kaltura-player)'],
+                $this->tags['SCRIPT (amp-lightbox)'],
+                $this->tags['SCRIPT (amp-lightbox-gallery)'],
+                $this->tags['SCRIPT (amp-link-rewriter)'],
+                $this->tags['SCRIPT (amp-list)'],
+                $this->tags['SCRIPT (amp-live-list)'],
+                $this->tags['SCRIPT (amp-mathml)'],
+                $this->tags['SCRIPT (amp-mega-menu)'],
+                $this->tags['SCRIPT (amp-megaphone)'],
+                $this->tags['SCRIPT (amp-minute-media-player)'],
+                $this->tags['SCRIPT (amp-mowplayer)'],
+                $this->tags['SCRIPT (amp-mraid)'],
+                $this->tags['SCRIPT (amp-mustache)'],
+                $this->tags['SCRIPT (amp-nested-menu)'],
+                $this->tags['SCRIPT (amp-next-page)'],
+                $this->tags['SCRIPT (amp-nexxtv-player)'],
+                $this->tags['SCRIPT (amp-o2-player)'],
+                $this->tags['SCRIPT (amp-onetap-google)'],
+                $this->tags['SCRIPT (amp-ooyala-player)'],
+                $this->tags['SCRIPT (amp-orientation-observer)'],
+                $this->tags['SCRIPT (amp-pan-zoom)'],
+                $this->tags['SCRIPT (amp-pinterest)'],
+                $this->tags['SCRIPT (amp-playbuzz)'],
+                $this->tags['SCRIPT (amp-position-observer)'],
+                $this->tags['SCRIPT (amp-powr-player)'],
+                $this->tags['SCRIPT (amp-reach-player)'],
+                $this->tags['SCRIPT (amp-recaptcha-input)'],
+                $this->tags['SCRIPT (amp-redbull-player)'],
+                $this->tags['SCRIPT (amp-reddit)'],
+                $this->tags['SCRIPT (amp-riddle-quiz)'],
+                $this->tags['SCRIPT (amp-script)'],
+                $this->tags['SCRIPT (amp-selector)'],
+                $this->tags['SCRIPT (amp-sidebar)'],
+                $this->tags['SCRIPT (amp-skimlinks)'],
+                $this->tags['SCRIPT (amp-slides)'],
+                $this->tags['SCRIPT (amp-smartlinks)'],
+                $this->tags['SCRIPT (amp-social-share)'],
+                $this->tags['SCRIPT (amp-soundcloud)'],
+                $this->tags['SCRIPT (amp-springboard-player)'],
+                $this->tags['SCRIPT (amp-sticky-ad)'],
+                $this->tags['SCRIPT (amp-story)'],
+                $this->tags['SCRIPT (amp-story-360)'],
+                $this->tags['SCRIPT (amp-story-auto-ads)'],
+                $this->tags['SCRIPT (amp-story-interactive)'],
+                $this->tags['SCRIPT (amp-story-panning-media)'],
+                $this->tags['SCRIPT (amp-story-player)'],
+                $this->tags['SCRIPT (amp-subscriptions)'],
+                $this->tags['SCRIPT (amp-subscriptions-google)'],
+                $this->tags['SCRIPT (amp-timeago)'],
+                $this->tags['SCRIPT (amp-truncate-text)'],
+                $this->tags['SCRIPT (amp-twitter)'],
+                $this->tags['SCRIPT (amp-user-notification)'],
+                $this->tags['SCRIPT (amp-video-docking)'],
+                $this->tags['SCRIPT (amp-video-iframe)'],
+                $this->tags['SCRIPT (amp-vimeo)'],
+                $this->tags['SCRIPT (amp-vine)'],
+                $this->tags['SCRIPT (amp-viqeo-player)'],
+                $this->tags['SCRIPT (amp-vk)'],
+                $this->tags['SCRIPT (amp-web-push)'],
+                $this->tags['SCRIPT (amp-wistia-player)'],
+                $this->tags['SCRIPT (amp-yotpo)'],
+                $this->tags['SCRIPT (amp-youtube)'],
                 $this->tags['script id=amp-rtc'],
                 $this->tags['script type=application/ld+json'],
                 $this->tags['SCRIPT type=text/plain'],
@@ -20736,129 +20736,129 @@ final class Tags
                 $this->tags[Element::RUBY],
                 $this->tags[Element::S],
                 $this->tags[Element::SAMP],
-                $this->tags[Element::SCRIPT],
-                $this->tags['SCRIPT (2)'],
-                $this->tags['SCRIPT (3)'],
-                $this->tags['SCRIPT (4)'],
-                $this->tags['SCRIPT (5)'],
-                $this->tags['SCRIPT (6)'],
-                $this->tags['SCRIPT (7)'],
-                $this->tags['SCRIPT (8)'],
-                $this->tags['SCRIPT (9)'],
-                $this->tags['SCRIPT (11)'],
-                $this->tags['SCRIPT (12)'],
-                $this->tags['SCRIPT (13)'],
-                $this->tags['SCRIPT (14)'],
-                $this->tags['SCRIPT (15)'],
-                $this->tags['SCRIPT (16)'],
-                $this->tags['SCRIPT (17)'],
-                $this->tags['SCRIPT (18)'],
-                $this->tags['SCRIPT (19)'],
-                $this->tags['SCRIPT (20)'],
-                $this->tags['SCRIPT (21)'],
-                $this->tags['SCRIPT (22)'],
-                $this->tags['SCRIPT (23)'],
-                $this->tags['SCRIPT (24)'],
-                $this->tags['SCRIPT (25)'],
-                $this->tags['SCRIPT (26)'],
-                $this->tags['SCRIPT (27)'],
-                $this->tags['SCRIPT (28)'],
-                $this->tags['SCRIPT (29)'],
-                $this->tags['SCRIPT (30)'],
-                $this->tags['SCRIPT (31)'],
-                $this->tags['SCRIPT (32)'],
-                $this->tags['SCRIPT (33)'],
-                $this->tags['SCRIPT (34)'],
-                $this->tags['SCRIPT (35)'],
-                $this->tags['SCRIPT (36)'],
-                $this->tags['SCRIPT (37)'],
-                $this->tags['SCRIPT (38)'],
-                $this->tags['SCRIPT (39)'],
-                $this->tags['SCRIPT (40)'],
-                $this->tags['SCRIPT (41)'],
-                $this->tags['SCRIPT (42)'],
-                $this->tags['SCRIPT (43)'],
-                $this->tags['SCRIPT (44)'],
-                $this->tags['SCRIPT (45)'],
-                $this->tags['SCRIPT (46)'],
-                $this->tags['SCRIPT (47)'],
-                $this->tags['SCRIPT (48)'],
-                $this->tags['SCRIPT (49)'],
-                $this->tags['SCRIPT (50)'],
-                $this->tags['SCRIPT (51)'],
-                $this->tags['SCRIPT (53)'],
-                $this->tags['SCRIPT (54)'],
-                $this->tags['SCRIPT (55)'],
-                $this->tags['SCRIPT (56)'],
-                $this->tags['SCRIPT (57)'],
-                $this->tags['SCRIPT (58)'],
-                $this->tags['SCRIPT (59)'],
-                $this->tags['SCRIPT (60)'],
-                $this->tags['SCRIPT (61)'],
-                $this->tags['SCRIPT (62)'],
-                $this->tags['SCRIPT (63)'],
-                $this->tags['SCRIPT (64)'],
-                $this->tags['SCRIPT (65)'],
-                $this->tags['SCRIPT (66)'],
-                $this->tags['SCRIPT (67)'],
-                $this->tags['SCRIPT (68)'],
-                $this->tags['SCRIPT (69)'],
-                $this->tags['SCRIPT (70)'],
-                $this->tags['SCRIPT (71)'],
-                $this->tags['SCRIPT (72)'],
-                $this->tags['SCRIPT (73)'],
-                $this->tags['SCRIPT (74)'],
-                $this->tags['SCRIPT (75)'],
-                $this->tags['SCRIPT (77)'],
-                $this->tags['SCRIPT (78)'],
-                $this->tags['SCRIPT (79)'],
-                $this->tags['SCRIPT (80)'],
-                $this->tags['SCRIPT (81)'],
-                $this->tags['SCRIPT (82)'],
-                $this->tags['SCRIPT (83)'],
-                $this->tags['SCRIPT (84)'],
-                $this->tags['SCRIPT (85)'],
-                $this->tags['SCRIPT (86)'],
-                $this->tags['SCRIPT (87)'],
-                $this->tags['SCRIPT (88)'],
-                $this->tags['SCRIPT (89)'],
-                $this->tags['SCRIPT (90)'],
-                $this->tags['SCRIPT (91)'],
-                $this->tags['SCRIPT (92)'],
-                $this->tags['SCRIPT (93)'],
-                $this->tags['SCRIPT (94)'],
-                $this->tags['SCRIPT (95)'],
-                $this->tags['SCRIPT (96)'],
-                $this->tags['SCRIPT (97)'],
-                $this->tags['SCRIPT (98)'],
-                $this->tags['SCRIPT (99)'],
-                $this->tags['SCRIPT (100)'],
-                $this->tags['SCRIPT (101)'],
-                $this->tags['SCRIPT (102)'],
-                $this->tags['SCRIPT (103)'],
-                $this->tags['SCRIPT (104)'],
-                $this->tags['SCRIPT (105)'],
-                $this->tags['SCRIPT (106)'],
-                $this->tags['SCRIPT (107)'],
-                $this->tags['SCRIPT (108)'],
-                $this->tags['SCRIPT (109)'],
-                $this->tags['SCRIPT (110)'],
-                $this->tags['SCRIPT (111)'],
-                $this->tags['SCRIPT (112)'],
-                $this->tags['SCRIPT (113)'],
-                $this->tags['SCRIPT (114)'],
-                $this->tags['SCRIPT (115)'],
-                $this->tags['SCRIPT (116)'],
-                $this->tags['SCRIPT (117)'],
-                $this->tags['SCRIPT (118)'],
-                $this->tags['SCRIPT (119)'],
-                $this->tags['SCRIPT (120)'],
-                $this->tags['SCRIPT (121)'],
-                $this->tags['SCRIPT (122)'],
-                $this->tags['SCRIPT (123)'],
-                $this->tags['SCRIPT (124)'],
-                $this->tags['SCRIPT (125)'],
-                $this->tags['SCRIPT (126)'],
+                $this->tags['SCRIPT (amp-3d-gltf)'],
+                $this->tags['SCRIPT (amp-3q-player)'],
+                $this->tags['SCRIPT (amp-access)'],
+                $this->tags['SCRIPT (amp-access-laterpay)'],
+                $this->tags['SCRIPT (amp-access-poool)'],
+                $this->tags['SCRIPT (amp-access-scroll)'],
+                $this->tags['SCRIPT (amp-accordion)'],
+                $this->tags['SCRIPT (amp-action-macro)'],
+                $this->tags['SCRIPT (amp-ad-custom)'],
+                $this->tags['SCRIPT (amp-addthis)'],
+                $this->tags['SCRIPT (amp-analytics)'],
+                $this->tags['SCRIPT (amp-anim)'],
+                $this->tags['SCRIPT (amp-animation)'],
+                $this->tags['SCRIPT (amp-apester-media)'],
+                $this->tags['SCRIPT (amp-app-banner)'],
+                $this->tags['SCRIPT (amp-audio)'],
+                $this->tags['SCRIPT (amp-auto-ads)'],
+                $this->tags['SCRIPT (amp-autocomplete)'],
+                $this->tags['SCRIPT (amp-base-carousel)'],
+                $this->tags['SCRIPT (amp-beopinion)'],
+                $this->tags['SCRIPT (amp-bind)'],
+                $this->tags['SCRIPT (amp-bodymovin-animation)'],
+                $this->tags['SCRIPT (amp-brid-player)'],
+                $this->tags['SCRIPT (amp-brightcove)'],
+                $this->tags['SCRIPT (amp-byside-content)'],
+                $this->tags['SCRIPT (amp-call-tracking)'],
+                $this->tags['SCRIPT (amp-carousel)'],
+                $this->tags['SCRIPT (amp-connatix-player)'],
+                $this->tags['SCRIPT (amp-consent)'],
+                $this->tags['SCRIPT (amp-dailymotion)'],
+                $this->tags['SCRIPT (amp-date-countdown)'],
+                $this->tags['SCRIPT (amp-date-display)'],
+                $this->tags['SCRIPT (amp-date-picker)'],
+                $this->tags['SCRIPT (amp-delight-player)'],
+                $this->tags['SCRIPT (amp-dynamic-css-classes)'],
+                $this->tags['SCRIPT (amp-embedly-card)'],
+                $this->tags['SCRIPT (amp-experiment)'],
+                $this->tags['SCRIPT (amp-facebook)'],
+                $this->tags['SCRIPT (amp-facebook-comments)'],
+                $this->tags['SCRIPT (amp-facebook-like)'],
+                $this->tags['SCRIPT (amp-facebook-page)'],
+                $this->tags['SCRIPT (amp-fit-text)'],
+                $this->tags['SCRIPT (amp-font)'],
+                $this->tags['SCRIPT (amp-form)'],
+                $this->tags['SCRIPT (amp-fx-collection)'],
+                $this->tags['SCRIPT (amp-fx-flying-carpet)'],
+                $this->tags['SCRIPT (amp-geo)'],
+                $this->tags['SCRIPT (amp-gfycat)'],
+                $this->tags['SCRIPT (amp-gist)'],
+                $this->tags['SCRIPT (amp-google-document-embed)'],
+                $this->tags['SCRIPT (amp-hulu)'],
+                $this->tags['SCRIPT (amp-iframe)'],
+                $this->tags['SCRIPT (amp-ima-video)'],
+                $this->tags['SCRIPT (amp-image-lightbox)'],
+                $this->tags['SCRIPT (amp-image-slider)'],
+                $this->tags['SCRIPT (amp-imgur)'],
+                $this->tags['SCRIPT (amp-inline-gallery)'],
+                $this->tags['SCRIPT (amp-inputmask)'],
+                $this->tags['SCRIPT (amp-instagram)'],
+                $this->tags['SCRIPT (amp-install-serviceworker)'],
+                $this->tags['SCRIPT (amp-izlesene)'],
+                $this->tags['SCRIPT (amp-jwplayer)'],
+                $this->tags['SCRIPT (amp-kaltura-player)'],
+                $this->tags['SCRIPT (amp-lightbox)'],
+                $this->tags['SCRIPT (amp-lightbox-gallery)'],
+                $this->tags['SCRIPT (amp-link-rewriter)'],
+                $this->tags['SCRIPT (amp-list)'],
+                $this->tags['SCRIPT (amp-live-list)'],
+                $this->tags['SCRIPT (amp-mathml)'],
+                $this->tags['SCRIPT (amp-mega-menu)'],
+                $this->tags['SCRIPT (amp-megaphone)'],
+                $this->tags['SCRIPT (amp-minute-media-player)'],
+                $this->tags['SCRIPT (amp-mowplayer)'],
+                $this->tags['SCRIPT (amp-mustache)'],
+                $this->tags['SCRIPT (amp-nested-menu)'],
+                $this->tags['SCRIPT (amp-next-page)'],
+                $this->tags['SCRIPT (amp-nexxtv-player)'],
+                $this->tags['SCRIPT (amp-o2-player)'],
+                $this->tags['SCRIPT (amp-onetap-google)'],
+                $this->tags['SCRIPT (amp-ooyala-player)'],
+                $this->tags['SCRIPT (amp-orientation-observer)'],
+                $this->tags['SCRIPT (amp-pan-zoom)'],
+                $this->tags['SCRIPT (amp-pinterest)'],
+                $this->tags['SCRIPT (amp-playbuzz)'],
+                $this->tags['SCRIPT (amp-position-observer)'],
+                $this->tags['SCRIPT (amp-powr-player)'],
+                $this->tags['SCRIPT (amp-reach-player)'],
+                $this->tags['SCRIPT (amp-recaptcha-input)'],
+                $this->tags['SCRIPT (amp-redbull-player)'],
+                $this->tags['SCRIPT (amp-reddit)'],
+                $this->tags['SCRIPT (amp-riddle-quiz)'],
+                $this->tags['SCRIPT (amp-script)'],
+                $this->tags['SCRIPT (amp-selector)'],
+                $this->tags['SCRIPT (amp-sidebar)'],
+                $this->tags['SCRIPT (amp-skimlinks)'],
+                $this->tags['SCRIPT (amp-slides)'],
+                $this->tags['SCRIPT (amp-smartlinks)'],
+                $this->tags['SCRIPT (amp-social-share)'],
+                $this->tags['SCRIPT (amp-soundcloud)'],
+                $this->tags['SCRIPT (amp-springboard-player)'],
+                $this->tags['SCRIPT (amp-sticky-ad)'],
+                $this->tags['SCRIPT (amp-story)'],
+                $this->tags['SCRIPT (amp-story-360)'],
+                $this->tags['SCRIPT (amp-story-auto-ads)'],
+                $this->tags['SCRIPT (amp-story-interactive)'],
+                $this->tags['SCRIPT (amp-story-panning-media)'],
+                $this->tags['SCRIPT (amp-story-player)'],
+                $this->tags['SCRIPT (amp-subscriptions)'],
+                $this->tags['SCRIPT (amp-subscriptions-google)'],
+                $this->tags['SCRIPT (amp-timeago)'],
+                $this->tags['SCRIPT (amp-truncate-text)'],
+                $this->tags['SCRIPT (amp-twitter)'],
+                $this->tags['SCRIPT (amp-user-notification)'],
+                $this->tags['SCRIPT (amp-video-docking)'],
+                $this->tags['SCRIPT (amp-video-iframe)'],
+                $this->tags['SCRIPT (amp-vimeo)'],
+                $this->tags['SCRIPT (amp-vine)'],
+                $this->tags['SCRIPT (amp-viqeo-player)'],
+                $this->tags['SCRIPT (amp-vk)'],
+                $this->tags['SCRIPT (amp-web-push)'],
+                $this->tags['SCRIPT (amp-wistia-player)'],
+                $this->tags['SCRIPT (amp-yotpo)'],
+                $this->tags['SCRIPT (amp-youtube)'],
                 $this->tags['script id=amp-rtc'],
                 $this->tags['script type=application/ld+json'],
                 $this->tags['SCRIPT type=text/plain'],
@@ -21095,22 +21095,22 @@ final class Tags
                 $this->tags[Element::RUBY],
                 $this->tags[Element::S],
                 $this->tags[Element::SAMP],
-                $this->tags['SCRIPT (7)'],
-                $this->tags['SCRIPT (10)'],
-                $this->tags['SCRIPT (12)'],
-                $this->tags['SCRIPT (13)'],
-                $this->tags['SCRIPT (14)'],
-                $this->tags['SCRIPT (17)'],
-                $this->tags['SCRIPT (22)'],
-                $this->tags['SCRIPT (28)'],
-                $this->tags['SCRIPT (43)'],
-                $this->tags['SCRIPT (44)'],
-                $this->tags['SCRIPT (45)'],
-                $this->tags['SCRIPT (52)'],
-                $this->tags['SCRIPT (76)'],
-                $this->tags['SCRIPT (88)'],
-                $this->tags['SCRIPT (96)'],
-                $this->tags['SCRIPT (101)'],
+                $this->tags['SCRIPT (amp-accordion)'],
+                $this->tags['SCRIPT (amp-ad-exit)'],
+                $this->tags['SCRIPT (amp-analytics)'],
+                $this->tags['SCRIPT (amp-anim)'],
+                $this->tags['SCRIPT (amp-animation)'],
+                $this->tags['SCRIPT (amp-audio)'],
+                $this->tags['SCRIPT (amp-bind)'],
+                $this->tags['SCRIPT (amp-carousel)'],
+                $this->tags['SCRIPT (amp-fit-text)'],
+                $this->tags['SCRIPT (amp-font)'],
+                $this->tags['SCRIPT (amp-form)'],
+                $this->tags['SCRIPT (amp-gwd-animation)'],
+                $this->tags['SCRIPT (amp-mraid)'],
+                $this->tags['SCRIPT (amp-position-observer)'],
+                $this->tags['SCRIPT (amp-selector)'],
+                $this->tags['SCRIPT (amp-social-share)'],
                 $this->tags['script type=application/ld+json'],
                 $this->tags['SCRIPT type=text/plain'],
                 $this->tags['SCRIPT[custom-element=amp-lightbox] (AMP4ADS)'],
