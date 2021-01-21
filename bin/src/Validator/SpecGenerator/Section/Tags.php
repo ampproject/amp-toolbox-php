@@ -4,10 +4,10 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ArrayKeyFirstPolyfill;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
+use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
-use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
@@ -15,7 +15,25 @@ final class Tags implements Section
 {
     use ArrayKeyFirstPolyfill;
     use ConstantNames;
-    use VariableDumping;
+
+    const PHP_KEYWORDS = [
+        'A',
+    ];
+
+    /**
+     * Dumper instance to use.
+     *
+     * @var Dumper
+     */
+    private $dumper;
+
+    /**
+     * Tags constructor.
+     */
+    public function __construct()
+    {
+        $this->dumper = new Dumper();
+    }
 
     /**
      * Process a section.
@@ -48,21 +66,21 @@ final class Tags implements Section
             $class->addMember($method);
         }
 
-        $class->addProperty('tags')
+        $class->addProperty('tagsCache')
               ->setPrivate()
               ->addComment('@var array<Tag>');
 
         $class->addProperty('byTagName')
               ->setPrivate()
-              ->addComment('@var array<array<int,Tag>>');
+              ->addComment('@var array<array>');
 
         $class->addProperty('bySpecName')
               ->setPrivate()
-              ->addComment('@var array<Tag>');
+              ->addComment('@var array');
 
         $class->addProperty('byFormat')
               ->setPrivate()
-              ->addComment('@var array<array<int,Tag>>');
+              ->addComment('@var array<array>');
 
         foreach ($spec as $attributes) {
             $tagId        = $this->getTagId($tags, $attributes);
@@ -74,83 +92,8 @@ final class Tags implements Section
 
         $class->addConstant('TAGS', $this->getTagsMapping($tags));
 
-        $constructor = $class->addMethod('__construct');
-
-        $constructor->addBody('$this->tags = [');
-
         foreach ($tagIds as $tagId) {
-            $keyString = $this->getKeyString($tags, $tagId);
-            $constructor->addBody("    {$keyString} => new Tag(");
-            $constructor->addBody('        [');
-
-            $indent = '            ';
-            foreach ($tags[$tagId] as $key => $value) {
-                switch ($key) {
-                    case 'ampLayout':
-                        if (array_key_exists('supportedLayouts', $value)) {
-                            foreach ($value['supportedLayouts'] as $index => $layout) {
-                                $value['supportedLayouts'][$index] = $this->getLayoutConstant(
-                                    $this->getConstantName($layout)
-                                );
-                            }
-                        }
-                        $constructor->addBody(
-                            "{$indent}{$this->dumpWithSpecRuleKey($key, $value, 3, [$this, 'filterValueStrings'])}"
-                        );
-                        break;
-                    case 'attrs':
-                        $constructor->addBody("{$indent}SpecRule::ATTRS => [");
-                        foreach ($value as $attributeArray) {
-                            $constant = $this->getAttributeConstant($this->getConstantName($attributeArray['name']));
-                            $attributeArray['name'] = $constant === $attributeArray['name']
-                                ? "'{$attributeArray['name']}'"
-                                : $constant;
-                            $constructor->addBody("{$indent}    [");
-                            foreach ($attributeArray as $attributeKey => $attributeData) {
-                                $line = $this->dumpWithSpecRuleKey(
-                                    $attributeKey,
-                                    $attributeData,
-                                    5,
-                                    [
-                                        $this,
-                                        'filterValueStrings'
-                                    ]
-                                );
-                                $constructor->addBody("        {$indent}{$line}");
-                            }
-                            $constructor->addBody("{$indent}    ],");
-                        }
-                        $constructor->addBody("{$indent}],");
-                        break;
-                    case 'htmlFormat':
-                        $formats = [];
-                        foreach ($value as $format) {
-                            $constant = $this->getFormatConstant($format);
-                            $formats[] = $constant === $format ? "'{$format}'" : $constant;
-                        }
-                        $constructor->addBody(
-                            "{$indent}{$this->dumpWithSpecRuleKey($key, $formats, 3, [$this, 'filterValueStrings'])}"
-                        );
-                        break;
-                    case 'mandatoryAncestor':
-                    case 'mandatoryAncestorSuggestedAlternative':
-                    case 'mandatoryParent':
-                    case 'tagName':
-                        $constant = $value;
-                        if (strpos($value, '$') !== 0 && strpos($value, ' ') === false) {
-                            $constant = $this->getTagConstant($this->getConstantName($value));
-                        }
-                        $constructor->addBody(
-                            "{$indent}{$this->dumpWithSpecRuleKey($key, $constant, 3, [$this, 'filterValueStrings'])}"
-                        );
-                        break;
-                    default:
-                        $constructor->addBody("{$indent}{$this->dumpWithSpecRuleKey($key, $value, 3)}");
-                }
-            }
-
-            $constructor->addBody('        ]');
-            $constructor->addBody('    ),');
+            $this->generateTagSpecificClass($tagId, $tags[$tagId], $fileManager);
 
             if (array_key_exists('tagName', $tags[$tagId])) {
                 $tagName = $tags[$tagId]['tagName'];
@@ -178,9 +121,7 @@ final class Tags implements Section
             }
         }
 
-        $constructor->addBody('];');
-
-        $constructor->addBody('$this->byTagName = [');
+/*        $constructor->addBody('$this->byTagName = [');
         foreach ($byTagName as $tagName => $tagData) {
             $constant = $this->getTagConstant($this->getConstantName($tagName));
             if (count($tagData) > 1) {
@@ -219,7 +160,7 @@ final class Tags implements Section
                 $constructor->addBody("    {$constant} => \$this->tags[{$keyString}],");
             }
         }
-        $constructor->addBody('];');
+        $constructor->addBody('];');*/
     }
 
     /**
@@ -276,6 +217,7 @@ final class Tags implements Section
      * Get the tag mappings that map tag names to tag implementations.
      *
      * @param array $tags Array of tags that were collected.
+     * @return array Tags mapping information.
      */
     private function getTagsMapping($tags)
     {
@@ -296,9 +238,89 @@ final class Tags implements Section
      */
     private function getTagClassFromTagId($tagId)
     {
-        $className = str_replace(['(', ')', '[', ']', '-', '=', '>', '.', '_'], ' ', $tagId);
+        $className = str_replace(['(', ')', '[', ']', '-', '=', '>', '.', '_', '/', '*', ':', '+'], ' ', $tagId);
         $className = preg_replace('/\s+/', ' ', trim($className));
+        $className = str_replace(' ', '', ucwords(strtolower($className)));
 
-        return str_replace(' ', '', ucwords(strtolower($className)));
+        if (in_array($className, self::PHP_KEYWORDS, true)) {
+            $className = "{$className}_";
+        }
+
+        return $className;
+    }
+
+    /**
+     * Generate the tag-specific class file.
+     *
+     * @param string      $tagId       ID of the tag to generate the class for.
+     * @param array       $jsonSpec    Array of spec data for the tag.
+     * @param FileManager $fileManager File manager instance to use.
+     */
+    private function generateTagSpecificClass($tagId, $jsonSpec, FileManager $fileManager)
+    {
+        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\Tag');
+
+        $className = $this->getTagClassFromTagId($tagId);
+
+        /** @var ClassType $class */
+        $class = $namespace->addClass($className)
+                           ->setFinal();
+
+        $tagSpec = "[\n";
+        foreach ($jsonSpec as $key => $value) {
+            switch ($key) {
+                case 'ampLayout':
+                    if (array_key_exists('supportedLayouts', $value)) {
+                        foreach ($value['supportedLayouts'] as $index => $layout) {
+                            $value['supportedLayouts'][$index] = $this->getLayoutConstant(
+                                $this->getConstantName($layout)
+                            );
+                        }
+                    }
+                    $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $value, 3)}\n";
+                    break;
+                case 'attrs':
+                    $tagSpec .= "SpecRule::ATTRS => [\n";
+                    foreach ($value as $attributeArray) {
+                        $constant = $this->getAttributeConstant($this->getConstantName($attributeArray['name']));
+                        $attributeArray['name'] = $constant === $attributeArray['name']
+                            ? "'{$attributeArray['name']}'"
+                            : $constant;
+                        $tagSpec .= "    [\n";
+                        foreach ($attributeArray as $attributeKey => $attributeData) {
+                            $line = $this->dumper->dumpWithSpecRuleKey($attributeKey, $attributeData, 5);
+                            $tagSpec .= "        {$line}\n";
+                        }
+                        $tagSpec .= "    ],\n";
+                    }
+                    $tagSpec .= "],\n";
+                    break;
+                case 'htmlFormat':
+                    $formats = [];
+                    foreach ($value as $format) {
+                        $constant = $this->getFormatConstant($format);
+                        $formats[] = $constant === $format ? "'{$format}'" : $constant;
+                    }
+                    $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $formats, 3)}\n";
+                    break;
+                case 'mandatoryAncestor':
+                case 'mandatoryAncestorSuggestedAlternative':
+                case 'mandatoryParent':
+                case 'tagName':
+                    $constant = $value;
+                    if (strpos($value, '$') !== 0 && strpos($value, ' ') === false) {
+                        $constant = $this->getTagConstant($this->getConstantName($value));
+                    }
+                    $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $constant, 3)}\n";
+                    break;
+                default:
+                    $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $value, 3)}\n";
+            }
+        }
+        $tagSpec .= "];";
+
+        $class->addConstant('SPEC', $tagSpec);
+
+        $fileManager->saveFile($file, "Spec/Tag/{$className}.php");
     }
 }

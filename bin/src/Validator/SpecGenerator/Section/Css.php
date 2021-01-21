@@ -4,10 +4,10 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ArrayKeyFirstPolyfill;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
+use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
-use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
@@ -15,7 +15,6 @@ final class Css implements Section
 {
     use ArrayKeyFirstPolyfill;
     use ConstantNames;
-    use VariableDumping;
 
     /**
      * Associative array of tags and their attributes.
@@ -23,6 +22,21 @@ final class Css implements Section
      * @var array<string,array>
      */
     private $css = [];
+
+    /**
+     * Dumper instance to use.
+     *
+     * @var Dumper
+     */
+    private $dumper;
+
+    /**
+     * Css constructor.
+     */
+    public function __construct()
+    {
+        $this->dumper = new Dumper();
+    }
 
     /**
      * Process a section.
@@ -76,7 +90,7 @@ final class Css implements Section
                             $attributeArray[] = $attribute;
                         }
                         $constructor->addBody(
-                            "{$indent}{$this->dumpWithKey($key, $attributeArray, 3, [$this, 'filterValueStrings'])}"
+                            "{$indent}{$this->dumper->dumpWithKey($key, $attributeArray, 3)}"
                         );
                         break;
                     case 'htmlFormat':
@@ -86,11 +100,11 @@ final class Css implements Section
                             $formats[] = $constant === $format ? "'{$format}'" : $constant;
                         }
                         $constructor->addBody(
-                            "{$indent}{$this->dumpWithKey($key, $formats, 3, [$this, 'filterValueStrings'])}"
+                            "{$indent}{$this->dumper->dumpWithKey($key, $formats, 3)}"
                         );
                         break;
                     default:
-                        $constructor->addBody("{$indent}{$this->dumpWithKey($key, $value, 3)}");
+                        $constructor->addBody("{$indent}{$this->dumper->dumpWithKey($key, $value, 3)}");
                 }
             }
             $constructor->addBody('    ],');

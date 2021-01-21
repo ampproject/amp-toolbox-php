@@ -2,12 +2,14 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator;
 
-use Nette\PhpGenerator\Dumper;
+use Nette\PhpGenerator\Dumper as NetteDumper;
 
-trait VariableDumping
+final class Dumper
 {
 
-    /** @var Dumper */
+    use ConstantNames;
+
+    /** @var NetteDumper */
     private $dumper;
 
     /**
@@ -19,10 +21,10 @@ trait VariableDumping
      *                                representation of the value, or false if no special representation needed.
      * @return string Dump of the provided variable.
      */
-    private function dump($variable, $level, $callback = null)
+    public function dump($variable, $level, $callback = null)
     {
         if ($this->dumper === null) {
-            $this->dumper = new Dumper();
+            $this->dumper = new NetteDumper();
         }
 
         $extraIndentation = str_pad('', $level * 4, ' ');
@@ -57,10 +59,10 @@ trait VariableDumping
      *                                representation of the value, or false if no special representation needed.
      * @return string Dump of the provided variable.
      */
-    private function dumpWithKey($key, $value, $level, $callback = null)
+    public function dumpWithKey($key, $value, $level, $callback = null)
     {
         if ($this->dumper === null) {
-            $this->dumper = new Dumper();
+            $this->dumper = new NetteDumper();
         }
 
         $extraIndentation = str_pad('', $level * 4, ' ');
@@ -97,10 +99,10 @@ trait VariableDumping
      *                                representation of the value, or false if no special representation needed.
      * @return string Dump of the provided variable.
      */
-    private function dumpWithSpecRuleKey($key, $value, $level, $callback = null)
+    public function dumpWithSpecRuleKey($key, $value, $level, $callback = null)
     {
         if ($this->dumper === null) {
-            $this->dumper = new Dumper();
+            $this->dumper = new NetteDumper();
         }
 
         $specRuleConstant = "SpecRule::{$this->getConstantName($key)}";
@@ -150,9 +152,11 @@ trait VariableDumping
     {
         $valueString = false;
 
-        if (is_callable($callback)) {
-            $valueString = $callback($value);
+        if (!is_callable($callback)) {
+            $callback = [$this, 'filterValueStrings'];
         }
+
+        $valueString = $callback($value);
 
         if ($valueString === false) {
             $valueString = $this->dumper->dump($value);

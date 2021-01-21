@@ -12,6 +12,21 @@ trait ArrayImport
     private $data;
 
     /**
+     * Dumper instance to use.
+     *
+     * @var Dumper
+     */
+    private $dumper;
+
+    /**
+     * Doc constructor.
+     */
+    public function __construct()
+    {
+        $this->dumper = new Dumper();
+    }
+
+    /**
      * Process a section.
      *
      * @param FileManager  $fileManager FileManager instance to use.
@@ -35,11 +50,11 @@ trait ArrayImport
         foreach ($this->data as $key => $value) {
             if (is_string($key)) {
                 $constructor->addBody(
-                    "    {$this->dumpWithKey($key, $value, 1, [$this, 'filterValueStrings'])}"
+                    "    {$this->dumper->dumpWithKey($key, $value, 1)}"
                 );
             } else {
                 $constructor->addBody(
-                    "    {$this->dump($value, 1, [$this, 'filterValueStrings'])}"
+                    "    {$this->dumper->dump($value, 1)}"
                 );
             }
         }

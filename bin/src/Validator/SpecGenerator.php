@@ -5,9 +5,9 @@ namespace AmpProject\Tooling\Validator;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
+use AmpProject\Tooling\Validator\SpecGenerator\SpecPrinter;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
-use Nette\PhpGenerator\PsrPrinter;
 
 final class SpecGenerator
 {
@@ -29,7 +29,7 @@ final class SpecGenerator
      */
     public function generate($jsonSpec, $rootNamespace, $destination)
     {
-        $printer = new PsrPrinter();
+        $printer = new SpecPrinter();
         $printer->setTypeResolving(false);
 
         $fileManager = new FileManager($rootNamespace, $destination, $printer);

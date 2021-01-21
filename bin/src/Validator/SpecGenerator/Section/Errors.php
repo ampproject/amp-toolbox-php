@@ -3,16 +3,30 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
+use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
-use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
 final class Errors implements Section
 {
     use ConstantNames;
-    use VariableDumping;
+
+    /**
+     * Dumper instance to use.
+     *
+     * @var Dumper
+     */
+    private $dumper;
+
+    /**
+     * Errors constructor.
+     */
+    public function __construct()
+    {
+        $this->dumper = new Dumper();
+    }
 
     /**
      * Process a section.
@@ -45,7 +59,7 @@ final class Errors implements Section
         $constructor->addBody('$this->? = [', [$propertyName]);
 
         foreach ($errorData as $key => $value) {
-            $constructor->addBody("    {$key} => {$this->dump($value, 1, [$this, 'filterValueStrings'])}");
+            $constructor->addBody("    {$key} => {$this->dumper->dump($value, 1)}");
         }
 
         $constructor->addBody('];');

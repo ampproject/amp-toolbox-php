@@ -3,7 +3,6 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator;
 
 use Nette\PhpGenerator\PhpFile;
-use Nette\PhpGenerator\PhpNamespace;
 use Nette\PhpGenerator\Printer;
 
 final class FileManager

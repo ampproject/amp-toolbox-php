@@ -4,9 +4,13 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
+use AmpProject\Exception\InvalidTagId;
 
 final class Tags
 {
+    const TAGS = [];
+
+    private $tagsCache  = [];
     private $byTagName  = [];
     private $bySpecName = [];
     private $byFormat   = [];
@@ -25,8 +29,17 @@ final class Tags
             return [];
         }
 
-        $tags = $this->byTagName[$tagName];
-        return is_array($tags) ? $tags : [$tags];
+        $tagIds = $this->byTagName[$tagName];
+        if (!is_array($tagIds)) {
+            $tagIds = [$tagIds];
+        }
+
+        $tags = [];
+        foreach ($tagIds as $tagId) {
+            $tags[$tagId] = $this->byTagId($tagId);
+        }
+
+        return $tags;
     }
 
     /**
@@ -60,5 +73,29 @@ final class Tags
 
         $tags = $this->byFormat[$format];
         return is_array($tags) ? $tags : [$tags];
+    }
+
+    /**
+     * Get a tag by its tag ID.
+     *
+     * @param string $tagId Tag ID for which to get the tag.
+     * @return Tag Tag object.
+     */
+    public function byTagId($tagId)
+    {
+        if (array_key_exists($tagId, $this->tagsCache)) {
+            return $this->tagsCache[$tagId];
+        }
+
+        if (!array_key_exists($tagId, self::TAGS)) {
+            throw InvalidTagId::forTagId($tagId);
+        }
+
+        $tagClassName = self::TAGS[$tagId];
+        $tag          = new $tagClassName();
+
+        $this->tagsCache[$tagId] = $tag;
+
+        return $tag;
     }
 }

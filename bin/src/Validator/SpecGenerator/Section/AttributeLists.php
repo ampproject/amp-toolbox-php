@@ -3,17 +3,31 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
+use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
-use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
 final class AttributeLists implements Section
 {
     use ConstantNames;
-    use VariableDumping;
+
+    /**
+     * Dumper instance to use.
+     *
+     * @var Dumper
+     */
+    private $dumper;
+
+    /**
+     * AttributeLists constructor.
+     */
+    public function __construct()
+    {
+        $this->dumper = new Dumper();
+    }
 
     /**
      * Process a section.
@@ -52,7 +66,7 @@ final class AttributeLists implements Section
                 } else {
                     $constructor->addBody("            {$keyString} => [");
                     foreach ($subValue as $specRuleKey => $specRule) {
-                        $line = $this->dumpWithSpecRuleKey($specRuleKey, $specRule, 4, [$this, 'filterValueStrings']);
+                        $line = $this->dumper->dumpWithSpecRuleKey($specRuleKey, $specRule, 4);
                         $constructor->addBody("                {$line}");
                     }
                     $constructor->addBody("            ],");

@@ -3,16 +3,30 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
+use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
-use AmpProject\Tooling\Validator\SpecGenerator\VariableDumping;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
 final class DescendantTagList implements Section
 {
     use ConstantNames;
-    use VariableDumping;
+
+    /**
+     * Dumper instance to use.
+     *
+     * @var Dumper
+     */
+    private $dumper;
+
+    /**
+     * DescendantTagList constructor.
+     */
+    public function __construct()
+    {
+        $this->dumper = new Dumper();
+    }
 
     /**
      * Process a section.
@@ -43,7 +57,7 @@ final class DescendantTagList implements Section
             foreach ($data['tag'] as $tag) {
                 $tags[] = $this->getTagConstant($this->getConstantName($tag));
             }
-            $constructor->addBody("    '{$key}' => {$this->dump($tags, 1, [$this, 'filterValueStrings'])}");
+            $constructor->addBody("    {$this->dumper->dumpWithKey($key, $tags, 1)}");
         }
 
         $constructor->addBody('];');
