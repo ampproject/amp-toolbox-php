@@ -7,7 +7,23 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class NoscriptEnclosureForBoilerplateTransformed
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class NoscriptEnclosureForBoilerplateTransformed extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::NOSCRIPT,\nSpecRule::SPEC_NAME => 'noscript enclosure for boilerplate (transformed)',\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::ENABLED_BY => [\n                'transformed',\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'noscript enclosure for boilerplate',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::NOSCRIPT,
+        SpecRule::SPEC_NAME => 'noscript enclosure for boilerplate (transformed)',
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::ENABLED_BY => [
+            'transformed',
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'noscript enclosure for boilerplate',
+    ];
 }

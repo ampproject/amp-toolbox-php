@@ -7,7 +7,70 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpNexxtvPlayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpNexxtvPlayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::NEXXTV_PLAYER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_CLIENT,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_MEDIAID,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX => '[^=/?:]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_MODE,\n        SpecRule::VALUE => [\n                        'api',\n                        'static',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_ORIGIN,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                            'http',\n                        ],\n                        SpecRule::ALLOW_EMPTY => true,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_STREAMTYPE,\n        SpecRule::VALUE => [\n                        'album',\n                        'audio',\n                        'live',\n                        'playlist',\n                        'playlist-marked',\n                        'video',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-nexxtv-player',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::NEXXTV_PLAYER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-client',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'data-mediaid',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX => '[^=/?:]+',
+            ],
+            [
+                SpecRule::NAME => 'data-mode',
+                SpecRule::VALUE => [
+                    'api',
+                    'static',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                        'http',
+                    ],
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-streamtype',
+                SpecRule::VALUE => [
+                    'album',
+                    'audio',
+                    'live',
+                    'playlist',
+                    'playlist-marked',
+                    'video',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-nexxtv-player',
+        ],
+    ];
 }

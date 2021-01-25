@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAdExitConfigurationJson
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAdExitConfigurationJson extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'amp-ad-exit configuration JSON',\nSpecRule::MANDATORY_PARENT => Extension::AD_EXIT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'application/json',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad-exit/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP4ADS,\n            ],\nSpecRule::SATISFIES => [\n                'amp-ad-exit configuration JSON',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-ad-exit',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'amp-ad-exit configuration JSON',
+        SpecRule::MANDATORY_PARENT => Extension::AD_EXIT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'application/json',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad-exit/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4ADS,
+        ],
+        SpecRule::SATISFIES => [
+            'amp-ad-exit configuration JSON',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-ad-exit',
+        ],
+    ];
 }

@@ -7,7 +7,32 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class MetaNameAmpAdEnableRefresh
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class MetaNameAmpAdEnableRefresh extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::META,\nSpecRule::SPEC_NAME => 'meta name=amp-ad-enable-refresh',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::CONTENT,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::NAME,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'amp-ad-enable-refresh',\n                    ],\n    ],\n],\nSpecRule::MANDATORY_ANCESTOR => Element::HEAD,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::META,
+        SpecRule::SPEC_NAME => 'meta name=amp-ad-enable-refresh',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'content',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'name',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'amp-ad-enable-refresh',
+                ],
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Element::HEAD,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

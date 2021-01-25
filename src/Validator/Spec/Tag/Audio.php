@@ -7,7 +7,46 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Audio
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Audio extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::AUDIO,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n    ],\n    [\n        SpecRule::NAME => Attribute::CONTROLS,\n    ],\n    [\n        SpecRule::NAME => Attribute::LOOP,\n    ],\n    [\n        SpecRule::NAME => Attribute::MUTED,\n    ],\n    [\n        SpecRule::NAME => Attribute::PRELOAD,\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'data',\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',\nSpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,\nSpecRule::MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE => Extension::AUDIO,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::AUDIO,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+            ],
+            [
+                SpecRule::NAME => 'controls',
+            ],
+            [
+                SpecRule::NAME => 'loop',
+            ],
+            [
+                SpecRule::NAME => 'muted',
+            ],
+            [
+                SpecRule::NAME => 'preload',
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'data',
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',
+        SpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,
+        SpecRule::MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE => Extension::AUDIO,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

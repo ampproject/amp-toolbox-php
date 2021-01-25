@@ -7,7 +7,34 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAppBanner
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAppBanner extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::APP_BANNER,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::BODY,\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n                'mandatory-id-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-app-banner/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES => [\n                'amp-app-banner data source',\n                'amp-app-banner button[open-button]',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-app-banner',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::APP_BANNER,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::BODY,
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+            'mandatory-id-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-app-banner/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES => [
+            'amp-app-banner data source',
+            'amp-app-banner button[open-button]',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-app-banner',
+        ],
+    ];
 }

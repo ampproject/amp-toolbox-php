@@ -7,7 +7,15 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Center
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Center extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::CENTER,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::CENTER,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

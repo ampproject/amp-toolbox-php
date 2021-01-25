@@ -7,7 +7,74 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpMinuteMediaPlayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpMinuteMediaPlayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::MINUTE_MEDIA_PLAYER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_CONTENT_ID,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_CONTENT_TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'curated',\n                        'semantic',\n                        'specific',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_MINIMUM_DATE_FACTOR,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_SCANNED_ELEMENT,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_SCANNED_ELEMENT_TYPE,\n        SpecRule::VALUE => [\n                        'className',\n                        'id',\n                        'tag',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_SCOPED_KEYWORDS,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TAGS,\n    ],\n    [\n        SpecRule::NAME => Attribute::DOCK,\n        SpecRule::REQUIRES_EXTENSION => [\n                        'amp-video-docking',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-minute-media-player/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-minute-media-player',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::MINUTE_MEDIA_PLAYER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+            ],
+            [
+                SpecRule::NAME => 'data-content-id',
+            ],
+            [
+                SpecRule::NAME => 'data-content-type',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'curated',
+                    'semantic',
+                    'specific',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-minimum-date-factor',
+            ],
+            [
+                SpecRule::NAME => 'data-scanned-element',
+            ],
+            [
+                SpecRule::NAME => 'data-scanned-element-type',
+                SpecRule::VALUE => [
+                    'className',
+                    'id',
+                    'tag',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-scoped-keywords',
+            ],
+            [
+                SpecRule::NAME => 'data-tags',
+            ],
+            [
+                SpecRule::NAME => 'dock',
+                SpecRule::REQUIRES_EXTENSION => [
+                    'amp-video-docking',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-minute-media-player/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-minute-media-player',
+        ],
+    ];
 }

@@ -7,7 +7,55 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpImageSliderTransformed
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpImageSliderTransformed extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::IMAGE_SLIDER,\nSpecRule::SPEC_NAME => 'amp-image-slider (transformed)',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DISABLE_HINT_REAPPEAR,\n    ],\n    [\n        SpecRule::NAME => Attribute::INITIAL_SLIDER_POSITION,\n        SpecRule::VALUE_REGEX => '0(\\.[0-9]+)?|1(\\.0+)?',\n    ],\n    [\n        SpecRule::NAME => Attribute::STEP_SIZE,\n        SpecRule::VALUE_REGEX => '0(\\.[0-9]+)?|1(\\.0+)?',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-image-slider/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::CHILD_TAGS => [\n                'childTagNameOneof' => [\n                    'AMP-IMG',\n                    'DIV',\n                    'I-AMPHTML-SIZER',\n                ],\n                'mandatoryMinNumChildTags' => 2,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-image-slider',\n            ],\nSpecRule::ENABLED_BY => [\n                'transformed',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::IMAGE_SLIDER,
+        SpecRule::SPEC_NAME => 'amp-image-slider (transformed)',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'disable-hint-reappear',
+            ],
+            [
+                SpecRule::NAME => 'initial-slider-position',
+                SpecRule::VALUE_REGEX => '0(\.[0-9]+)?|1(\.0+)?',
+            ],
+            [
+                SpecRule::NAME => 'step-size',
+                SpecRule::VALUE_REGEX => '0(\.[0-9]+)?|1(\.0+)?',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-image-slider/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'childTagNameOneof' => [
+                'AMP-IMG',
+                'DIV',
+                'I-AMPHTML-SIZER',
+            ],
+            'mandatoryMinNumChildTags' => 2,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-image-slider',
+        ],
+        SpecRule::ENABLED_BY => [
+            'transformed',
+        ],
+    ];
 }

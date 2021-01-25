@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpHulu
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpHulu extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::HULU,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_EID,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-hulu/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-hulu',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::HULU,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-eid',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-hulu/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-hulu',
+        ],
+    ];
 }

@@ -7,7 +7,47 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryPageAttachmentHref
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryPageAttachmentHref extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_PAGE_ATTACHMENT,\nSpecRule::SPEC_NAME => 'amp-story-page-attachment[href]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::LAYOUT,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'nodisplay',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::THEME,\n        SpecRule::VALUE => [\n                        'dark',\n                        'light',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::HREF,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 0,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::MANDATORY_LAST_CHILD => true,\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_PAGE_ATTACHMENT,
+        SpecRule::SPEC_NAME => 'amp-story-page-attachment[href]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'layout',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'nodisplay',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'theme',
+                SpecRule::VALUE => [
+                    'dark',
+                    'light',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'href',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 0,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::MANDATORY_LAST_CHILD => true,
+    ];
 }

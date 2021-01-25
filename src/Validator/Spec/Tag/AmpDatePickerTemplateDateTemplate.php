@@ -7,7 +7,43 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpDatePickerTemplateDateTemplate
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpDatePickerTemplateDateTemplate extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TEMPLATE,\nSpecRule::SPEC_NAME => 'amp-date-picker > template [date-template]',\nSpecRule::MANDATORY_PARENT => Extension::DATE_PICKER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATE_TEMPLATE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n    ],\n    [\n        SpecRule::NAME => Attribute::DEFAULT_,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATES,\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'amp-mustache',\n                    ],\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-mustache',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TEMPLATE,
+        SpecRule::SPEC_NAME => 'amp-date-picker > template [date-template]',
+        SpecRule::MANDATORY_PARENT => Extension::DATE_PICKER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'date-template',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+            ],
+            [
+                SpecRule::NAME => 'default',
+            ],
+            [
+                SpecRule::NAME => 'dates',
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'amp-mustache',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-mustache',
+        ],
+    ];
 }

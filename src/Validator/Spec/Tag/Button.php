@@ -7,7 +7,54 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Button
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Button extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::BUTTON,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DISABLED,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ROLE,\n        SpecRule::IMPLICIT => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TABINDEX,\n        SpecRule::IMPLICIT => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n    ],\n    [\n        SpecRule::NAME => Attribute::VALUE,\n    ],\n    [\n        SpecRule::NAME => '[DISABLED]',\n    ],\n    [\n        SpecRule::NAME => '[TYPE]',\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[VALUE]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'name-attr',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::BUTTON,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'disabled',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'role',
+                SpecRule::IMPLICIT => true,
+            ],
+            [
+                SpecRule::NAME => 'tabindex',
+                SpecRule::IMPLICIT => true,
+            ],
+            [
+                SpecRule::NAME => 'type',
+            ],
+            [
+                SpecRule::NAME => 'value',
+            ],
+            [
+                SpecRule::NAME => '[disabled]',
+            ],
+            [
+                SpecRule::NAME => '[type]',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[value]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'name-attr',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

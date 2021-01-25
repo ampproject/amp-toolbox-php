@@ -7,7 +7,23 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpVideoIframePlaceholder
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpVideoIframePlaceholder extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME > [placeholder]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::PLACEHOLDER,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video-iframe/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME > [placeholder]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'placeholder',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video-iframe/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

@@ -7,7 +7,49 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAnim
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAnim extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::ANIM,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALT,\n    ],\n    [\n        SpecRule::NAME => Attribute::ATTRIBUTION,\n    ],\n    [\n        SpecRule::NAME => Attribute::OBJECT_FIT,\n    ],\n    [\n        SpecRule::NAME => Attribute::OBJECT_POSITION,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n                'mandatory-src-or-srcset',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-anim/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-anim',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::ANIM,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'alt',
+            ],
+            [
+                SpecRule::NAME => 'attribution',
+            ],
+            [
+                SpecRule::NAME => 'object-fit',
+            ],
+            [
+                SpecRule::NAME => 'object-position',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+            'mandatory-src-or-srcset',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-anim/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-anim',
+        ],
+    ];
 }

@@ -7,7 +7,52 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpGoogleDocumentEmbed
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpGoogleDocumentEmbed extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::GOOGLE_DOCUMENT_EMBED,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[SRC]',\n    ],\n    [\n        SpecRule::NAME => '[TITLE]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-google-document-embed/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-google-document-embed',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::GOOGLE_DOCUMENT_EMBED,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => '[src]',
+            ],
+            [
+                SpecRule::NAME => '[title]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-google-document-embed/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-google-document-embed',
+        ],
+    ];
 }

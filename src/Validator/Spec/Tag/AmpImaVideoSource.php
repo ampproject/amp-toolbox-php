@@ -7,7 +7,45 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpImaVideoSource
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpImaVideoSource extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SOURCE,\nSpecRule::SPEC_NAME => 'amp-ima-video > source',\nSpecRule::MANDATORY_PARENT => Extension::IMA_VIDEO,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::MEDIA,\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => true,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n    ],\n    [\n        SpecRule::NAME => '[SRC]',\n    ],\n    [\n        SpecRule::NAME => '[TYPE]',\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-ima-video',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SOURCE,
+        SpecRule::SPEC_NAME => 'amp-ima-video > source',
+        SpecRule::MANDATORY_PARENT => Extension::IMA_VIDEO,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'media',
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => true,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'type',
+            ],
+            [
+                SpecRule::NAME => '[src]',
+            ],
+            [
+                SpecRule::NAME => '[type]',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-ima-video',
+        ],
+    ];
 }

@@ -7,7 +7,40 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptTypeApplicationLdJson
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptTypeApplicationLdJson extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'script type=application/ld+json',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'application/ld+json',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n            ],\nSpecRule::CDATA => [\n                SpecRule::DISALLOWED_CDATA_REGEX => [\n                    [\n                        'regex' => '<!--',\n                        'errorMessage' => 'html comments',\n                    ],\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'script type=application/ld+json',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'script type=application/ld+json',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'application/ld+json',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+        ],
+        SpecRule::CDATA => [
+            SpecRule::DISALLOWED_CDATA_REGEX => [
+                [
+                    'regex' => '<!--',
+                    'errorMessage' => 'html comments',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'script type=application/ld+json',
+    ];
 }

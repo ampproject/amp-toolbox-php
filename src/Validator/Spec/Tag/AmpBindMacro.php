@@ -7,7 +7,32 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpBindMacro
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpBindMacro extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::BIND_MACRO,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ARGUMENTS,\n    ],\n    [\n        SpecRule::NAME => Attribute::EXPRESSION,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'mandatory-id-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-bind/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4EMAIL,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-bind',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::BIND_MACRO,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'arguments',
+            ],
+            [
+                SpecRule::NAME => 'expression',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'mandatory-id-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-bind/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-bind',
+        ],
+    ];
 }

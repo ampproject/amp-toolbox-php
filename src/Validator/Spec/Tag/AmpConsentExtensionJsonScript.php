@@ -7,7 +7,45 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpConsentExtensionJsonScript
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpConsentExtensionJsonScript extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'amp-consent extension .json script',\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Extension::CONSENT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'application/json',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n            ],\nSpecRule::CDATA => [\n                SpecRule::DISALLOWED_CDATA_REGEX => [\n                    [\n                        'regex' => '<!--',\n                        'errorMessage' => 'html comments',\n                    ],\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::SATISFIES => [\n                'amp-consent extension .json script',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-consent',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'amp-consent extension .json script',
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Extension::CONSENT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'application/json',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+        ],
+        SpecRule::CDATA => [
+            SpecRule::DISALLOWED_CDATA_REGEX => [
+                [
+                    'regex' => '<!--',
+                    'errorMessage' => 'html comments',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::SATISFIES => [
+            'amp-consent extension .json script',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-consent',
+        ],
+    ];
 }

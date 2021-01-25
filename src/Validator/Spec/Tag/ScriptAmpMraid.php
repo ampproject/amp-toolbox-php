@@ -7,7 +7,32 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpMraid
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptAmpMraid extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::NO_FALLBACK,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'common-extension-attrs',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4ADS,\n            ],\nSpecRule::EXTENSION_SPEC => [\n                'name' => 'amp-mraid',\n                'version' => [\n                    '0.1',\n                    'latest',\n                ],\n                'requiresUsage' => 'NONE',\n                'extensionType' => 'HOST_SERVICE',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'no-fallback',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'common-extension-attrs',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4ADS,
+        ],
+        SpecRule::EXTENSION_SPEC => [
+            SpecRule::NAME => 'amp-mraid',
+            SpecRule::VERSION => [
+                '0.1',
+                'latest',
+            ],
+            SpecRule::REQUIRES_USAGE => 'NONE',
+            SpecRule::EXTENSION_TYPE => 'HOST_SERVICE',
+        ],
+    ];
 }

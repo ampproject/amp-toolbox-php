@@ -7,7 +7,29 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpSlides
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptAmpSlides extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::ATTR_LISTS => [\n                'common-extension-attrs',\n            ],\nSpecRule::DEPRECATION => 'amp-carousel',\nSpecRule::DEPRECATION_URL => 'https://www.ampproject.org/docs/reference/components/amp-carousel',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::EXTENSION_SPEC => [\n                'name' => 'amp-slides',\n                'version' => [\n                    '0.1',\n                    'latest',\n                ],\n                'deprecatedAllowDuplicates' => true,\n                'requiresUsage' => 'NONE',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::ATTR_LISTS => [
+            'common-extension-attrs',
+        ],
+        SpecRule::DEPRECATION => 'amp-carousel',
+        SpecRule::DEPRECATION_URL => 'https://www.ampproject.org/docs/reference/components/amp-carousel',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::EXTENSION_SPEC => [
+            SpecRule::NAME => 'amp-slides',
+            SpecRule::VERSION => [
+                '0.1',
+                'latest',
+            ],
+            SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+            SpecRule::REQUIRES_USAGE => 'NONE',
+        ],
+    ];
 }

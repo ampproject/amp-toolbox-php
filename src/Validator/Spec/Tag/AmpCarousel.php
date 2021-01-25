@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpCarousel
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpCarousel extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::CAROUSEL,\nSpecRule::SPEC_NAME => 'AMP-CAROUSEL',\nSpecRule::ATTR_LISTS => [\n                'amp-carousel-common',\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-carousel/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-carousel',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::CAROUSEL,
+        SpecRule::SPEC_NAME => 'AMP-CAROUSEL',
+        SpecRule::ATTR_LISTS => [
+            'amp-carousel-common',
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-carousel/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-carousel',
+        ],
+    ];
 }

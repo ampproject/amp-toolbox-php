@@ -7,7 +7,48 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryAnimation
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryAnimation extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_ANIMATION,\nSpecRule::MANDATORY_PARENT => Extension::STORY_PAGE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ANIMATE_IN_AFTER,\n    ],\n    [\n        SpecRule::NAME => Attribute::TRIGGER,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'visibility',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'SCRIPT',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES => [\n                'amp-story-animation json script',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_ANIMATION,
+        SpecRule::MANDATORY_PARENT => Extension::STORY_PAGE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'animate-in-after',
+            ],
+            [
+                SpecRule::NAME => 'trigger',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'visibility',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'SCRIPT',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES => [
+            'amp-story-animation json script',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story',
+        ],
+    ];
 }

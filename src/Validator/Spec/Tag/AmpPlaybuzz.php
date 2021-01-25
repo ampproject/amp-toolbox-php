@@ -7,7 +7,58 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpPlaybuzz
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpPlaybuzz extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::PLAYBUZZ,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_COMMENTS,\n        SpecRule::VALUE_CASEI => [\n                        'false',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_ITEM,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-item\\', \\'src\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_ITEM_INFO,\n        SpecRule::VALUE_CASEI => [\n                        'false',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_SHARE_BUTTONS,\n        SpecRule::VALUE_CASEI => [\n                        'false',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-item\\', \\'src\\']',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::RESPONSIVE,\n                    Layout::FIXED_HEIGHT,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-playbuzz',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::PLAYBUZZ,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-comments',
+                SpecRule::VALUE_CASEI => [
+                    'false',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-item',
+                SpecRule::MANDATORY_ONEOF => '[\'data-item\', \'src\']',
+            ],
+            [
+                SpecRule::NAME => 'data-item-info',
+                SpecRule::VALUE_CASEI => [
+                    'false',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-share-buttons',
+                SpecRule::VALUE_CASEI => [
+                    'false',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY_ONEOF => '[\'data-item\', \'src\']',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::RESPONSIVE,
+                Layout::FIXED_HEIGHT,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-playbuzz',
+        ],
+    ];
 }

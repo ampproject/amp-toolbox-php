@@ -7,7 +7,43 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmphtmlEngineScriptAmp4email
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmphtmlEngineScriptAmp4email extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'amphtml engine script [AMP4EMAIL]',\nSpecRule::MANDATORY => true,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'https://cdn.ampproject.org/v0.js',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n                'amphtml-engine-attrs',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',\nSpecRule::CDATA => [\n                SpecRule::DISALLOWED_CDATA_REGEX => [\n                    [\n                        'regex' => '.',\n                        'errorMessage' => 'contents',\n                    ],\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4EMAIL,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'amphtml engine script',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'amphtml engine script [AMP4EMAIL]',
+        SpecRule::MANDATORY => true,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'https://cdn.ampproject.org/v0.js',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+            'amphtml-engine-attrs',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
+        SpecRule::CDATA => [
+            SpecRule::DISALLOWED_CDATA_REGEX => [
+                [
+                    'regex' => '.',
+                    'errorMessage' => 'contents',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'amphtml engine script',
+    ];
 }

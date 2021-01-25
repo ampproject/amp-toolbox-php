@@ -7,7 +7,47 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Fecomposite
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Fecomposite extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::FECOMPOSITE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::IN,\n    ],\n    [\n        SpecRule::NAME => Attribute::IN2,\n    ],\n    [\n        SpecRule::NAME => Attribute::K1,\n    ],\n    [\n        SpecRule::NAME => Attribute::K2,\n    ],\n    [\n        SpecRule::NAME => Attribute::K3,\n    ],\n    [\n        SpecRule::NAME => Attribute::K4,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPERATOR,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-core-attributes',\n                'svg-filter-primitive-attributes',\n                'svg-presentation-attributes',\n                'svg-style-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::SVG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::FECOMPOSITE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'in',
+            ],
+            [
+                SpecRule::NAME => 'in2',
+            ],
+            [
+                SpecRule::NAME => 'k1',
+            ],
+            [
+                SpecRule::NAME => 'k2',
+            ],
+            [
+                SpecRule::NAME => 'k3',
+            ],
+            [
+                SpecRule::NAME => 'k4',
+            ],
+            [
+                SpecRule::NAME => 'operator',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-core-attributes',
+            'svg-filter-primitive-attributes',
+            'svg-presentation-attributes',
+            'svg-style-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::SVG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

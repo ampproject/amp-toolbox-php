@@ -7,7 +7,111 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class A_
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class A_ extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::A,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::BORDER,\n    ],\n    [\n        SpecRule::NAME => Attribute::DOWNLOAD,\n    ],\n    [\n        SpecRule::NAME => Attribute::HREF,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'ftp',\n                            'geo',\n                            'http',\n                            'https',\n                            'mailto',\n                            'maps',\n                            'bip',\n                            'bbmi',\n                            'chrome',\n                            'itms-services',\n                            'facetime',\n                            'fb-me',\n                            'fb-messenger',\n                            'feed',\n                            'intent',\n                            'line',\n                            'skype',\n                            'sms',\n                            'snapchat',\n                            'tel',\n                            'tg',\n                            'threema',\n                            'twitter',\n                            'viber',\n                            'webcal',\n                            'web+mastodon',\n                            'wh',\n                            'whatsapp',\n                        ],\n                        SpecRule::ALLOW_EMPTY => true,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::HREFLANG,\n    ],\n    [\n        SpecRule::NAME => Attribute::MEDIA,\n    ],\n    [\n        SpecRule::NAME => Attribute::REFERRERPOLICY,\n    ],\n    [\n        SpecRule::NAME => Attribute::REL,\n        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\\s)(components|dns-prefetch|import|manifest|preconnect|prefetch|preload|prerender|serviceworker|stylesheet|subresource)(\\s|\$)',\n    ],\n    [\n        SpecRule::NAME => Attribute::ROLE,\n        SpecRule::IMPLICIT => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TABINDEX,\n        SpecRule::IMPLICIT => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TARGET,\n        SpecRule::VALUE => [\n                        '_blank',\n                        '_self',\n                        '_top',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::VALUE_CASEI => [\n                        'text/html',\n                        'application/rss+xml',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SHOW_TOOLTIP,\n        SpecRule::VALUE => [\n                        'auto',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[HREF]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'name-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#links',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::A,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'border',
+            ],
+            [
+                SpecRule::NAME => 'download',
+            ],
+            [
+                SpecRule::NAME => 'href',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'ftp',
+                        'geo',
+                        'http',
+                        'https',
+                        'mailto',
+                        'maps',
+                        'bip',
+                        'bbmi',
+                        'chrome',
+                        'itms-services',
+                        'facetime',
+                        'fb-me',
+                        'fb-messenger',
+                        'feed',
+                        'intent',
+                        'line',
+                        'skype',
+                        'sms',
+                        'snapchat',
+                        'tel',
+                        'tg',
+                        'threema',
+                        'twitter',
+                        'viber',
+                        'webcal',
+                        'web+mastodon',
+                        'wh',
+                        'whatsapp',
+                    ],
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'hreflang',
+            ],
+            [
+                SpecRule::NAME => 'media',
+            ],
+            [
+                SpecRule::NAME => 'referrerpolicy',
+            ],
+            [
+                SpecRule::NAME => 'rel',
+                SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(components|dns-prefetch|import|manifest|preconnect|prefetch|preload|prerender|serviceworker|stylesheet|subresource)(\s|$)',
+            ],
+            [
+                SpecRule::NAME => 'role',
+                SpecRule::IMPLICIT => true,
+            ],
+            [
+                SpecRule::NAME => 'tabindex',
+                SpecRule::IMPLICIT => true,
+            ],
+            [
+                SpecRule::NAME => 'target',
+                SpecRule::VALUE => [
+                    '_blank',
+                    '_self',
+                    '_top',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::VALUE_CASEI => [
+                    'text/html',
+                    'application/rss+xml',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'show-tooltip',
+                SpecRule::VALUE => [
+                    'auto',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[href]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'name-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#links',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

@@ -2,339 +2,76 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
-use LogicException;
+use AmpProject\Exception\InvalidSpecRuleName;
+use AmpProject\Validator\Spec\SpecRule;
 
-final class Tag
+/**
+ * Class Tag
+ *
+ * @package AmpProject\Tooling\Validator\SpecGenerator\Template
+ *
+ * @property-read array<string> $alsoRequiresTagWarning
+ * @property-read array $ampLayout
+ * @property-read array<string> $attrLists
+ * @property-read array $attrs
+ * @property-read array $cdata
+ * @property-read array $childTags
+ * @property-read string $deprecation
+ * @property-read string $deprecationUrl
+ * @property-read string $descendantTagList
+ * @property-read string $descriptiveName
+ * @property-read array<string> $disabledBy
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $enabledBy
+ * @property-read array<string> $excludes
+ * @property-read bool $explicitAttrsOnly
+ * @property-read array $extensionSpec
+ * @property-read array<string> $htmlFormat
+ * @property-read bool $mandatory
+ * @property-read string $mandatoryAlternatives
+ * @property-read string $mandatoryAncestor
+ * @property-read string $mandatoryAncestorSuggestedAlternative
+ * @property-read bool $mandatoryLastChild
+ * @property-read string $mandatoryParent
+ * @property-read array $markDescendants
+ * @property-read string $namedId
+ * @property-read array<array> $referencePoints
+ * @property-read array<string> $requires
+ * @property-read array<string> $requiresExtension
+ * @property-read array<string> $satisfies
+ * @property-read bool $siblingsDisallowed
+ * @property-read string $specName
+ * @property-read string $specUrl
+ * @property-read string $tagName
+ * @property-read bool $unique
+ * @property-read bool $uniqueWarning
+ */
+class Tag
 {
 
-    /** @var array<string> */
-    private $alsoRequiresTagWarning;
-
-    /** @var array */
-    private $ampLayout;
-
-    /** @var array<string> */
-    private $attrLists;
-
-    /** @var array */
-    private $attrs;
-
-    /** @var array */
-    private $cdata;
-
-    /** @var array */
-    private $childTags;
-
-    /** @var string */
-    private $deprecation;
-
-    /** @var string */
-    private $deprecationUrl;
-
-    /** @var string */
-    private $descendantTagList;
-
-    /** @var string */
-    private $descriptiveName;
-
-    /** @var array<string> */
-    private $disabledBy;
-
-    /** @var array<string> */
-    private $disallowedAncestor;
-
-    /** @var array<string> */
-    private $enabledBy;
-
-    /** @var array<string> */
-    private $excludes;
-
-    /** @var bool */
-    private $explicitAttrsOnly;
-
-    /** @var array */
-    private $extensionSpec;
-
-    /** @var array<string> */
-    private $htmlFormat;
-
-    /** @var bool */
-    private $mandatory;
-
-    /** @var string */
-    private $mandatoryAlternatives;
-
-    /** @var string */
-    private $mandatoryAncestor;
-
-    /** @var string */
-    private $mandatoryAncestorSuggestedAlternative;
-
-    /** @var bool */
-    private $mandatoryLastChild;
-
-    /** @var string */
-    private $mandatoryParent;
-
-    /** @var array */
-    private $markDescendants;
-
-    /** @var string */
-    private $namedId;
-
-    /** @var array<array> */
-    private $referencePoints;
-
-    /** @var array<string> */
-    private $requires;
-
-    /** @var array<string> */
-    private $requiresExtension;
-
-    /** @var array<string> */
-    private $satisfies;
-
-    /** @var bool */
-    private $siblingsDisallowed;
-
-    /** @var string */
-    private $specName;
-
-    /** @var string */
-    private $specUrl;
-
-    /** @var string */
-    private $tagName;
-
-    /** @var bool */
-    private $unique;
-
-    /** @var bool */
-    private $uniqueWarning;
-
     /**
-     * Tag constructor.
+     * Spec data of the tag.
      *
-     * @param array $attributes Attributes to hydrate the tag with.
+     * @var array
      */
-    public function __construct($attributes)
-    {
-        foreach ($attributes as $key => $value) {
-            if (!property_exists($this, $key)) {
-                throw new LogicException("Missing property {$key} in Tag class");
-            }
+    const SPEC = [];
 
-            $this->$key = $value;
+    public function __get($specRuleName)
+    {
+        switch ($specRuleName) {
+            case SpecRule::EXPLICIT_ATTRS_ONLY:
+            case SpecRule::MANDATORY:
+            case SpecRule::MANDATORY_LAST_CHILD:
+            case SpecRule::SIBLINGS_DISALLOWED:
+            case SpecRule::UNIQUE:
+            case SpecRule::UNIQUE_WARNING:
+                return array_key_exists($specRuleName, static::SPEC) ? static::SPEC[$specRuleName] : false;
+            default:
+                if (!array_key_exists($specRuleName, static::SPEC)) {
+                    throw InvalidSpecRuleName::forSpecRuleName($specRuleName);
+                }
+
+                return static::SPEC[$specRuleName];
         }
-    }
-
-    /** @return array<string> */
-    public function alsoRequiresTagWarning()
-    {
-        return $this->alsoRequiresTagWarning;
-    }
-
-    /** @return array */
-    public function ampLayout()
-    {
-        return $this->ampLayout;
-    }
-
-    /** @return array<string> */
-    public function attrLists()
-    {
-        return $this->attrLists;
-    }
-
-    /** @return array */
-    public function attrs()
-    {
-        return $this->attrs;
-    }
-
-    /** @return array */
-    public function cdata()
-    {
-        return $this->cdata;
-    }
-
-    /** @return array */
-    public function childTags()
-    {
-        return $this->childTags;
-    }
-
-    /** @return string */
-    public function deprecation()
-    {
-        return $this->deprecation;
-    }
-
-    /** @return string */
-    public function deprecationUrl()
-    {
-        return $this->deprecationUrl;
-    }
-
-    /** @return string */
-    public function descendantTagList()
-    {
-        return $this->descendantTagList;
-    }
-
-    /** @return string */
-    public function descriptiveName()
-    {
-        return $this->descriptiveName;
-    }
-
-    /** @return array<string> */
-    public function disabledBy()
-    {
-        return $this->disabledBy;
-    }
-
-    /** @return array<string> */
-    public function disallowedAncestor()
-    {
-        return $this->disallowedAncestor;
-    }
-
-    /** @return array<string> */
-    public function enabledBy()
-    {
-        return $this->enabledBy;
-    }
-
-    /** @return array<string> */
-    public function excludes()
-    {
-        return $this->excludes;
-    }
-
-    /** @return bool */
-    public function explicitAttrsOnly()
-    {
-        return $this->explicitAttrsOnly;
-    }
-
-    /** @return array */
-    public function extensionSpec()
-    {
-        return $this->extensionSpec;
-    }
-
-        /** @return array<string> */
-    public function htmlFormat()
-    {
-        return $this->htmlFormat;
-    }
-
-    /** @return bool */
-    public function mandatory()
-    {
-        return $this->mandatory;
-    }
-
-    /** @return string */
-    public function mandatoryAlternatives()
-    {
-        return $this->mandatoryAlternatives;
-    }
-
-    /** @return string */
-    public function mandatoryAncestor()
-    {
-        return $this->mandatoryAncestor;
-    }
-
-    /** @return string */
-    public function mandatoryAncestorSuggestedAlternative()
-    {
-        return $this->mandatoryAncestorSuggestedAlternative;
-    }
-
-    /** @return bool */
-    public function mandatoryLastChild()
-    {
-        return $this->mandatoryLastChild;
-    }
-
-    /** @return string */
-    public function mandatoryParent()
-    {
-        return $this->mandatoryParent;
-    }
-
-    /** @return array */
-    public function markDescendants()
-    {
-        return $this->markDescendants;
-    }
-
-        /** @return string */
-    public function namedId()
-    {
-        return $this->namedId;
-    }
-
-    /** @return array<array> */
-    public function referencePoints()
-    {
-        return $this->referencePoints;
-    }
-
-        /** @return array<string> */
-    public function requires()
-    {
-        return $this->requires;
-    }
-
-    /** @return array<string> */
-    public function requiresExtension()
-    {
-        return $this->requiresExtension;
-    }
-
-    /** @return array<string> */
-    public function satisfies()
-    {
-        return $this->satisfies;
-    }
-
-    /** @return bool */
-    public function siblingsDisallowed()
-    {
-        return $this->siblingsDisallowed;
-    }
-
-    /** @return string */
-    public function specName()
-    {
-        return $this->specName;
-    }
-
-    /** @return string */
-    public function specUrl()
-    {
-        return $this->specUrl;
-    }
-
-    /** @return string */
-    public function tagName()
-    {
-        return $this->tagName;
-    }
-
-    /** @return bool */
-    public function unique()
-    {
-        return $this->unique;
-    }
-
-    /** @return bool */
-    public function uniqueWarning()
-    {
-        return $this->uniqueWarning;
     }
 }

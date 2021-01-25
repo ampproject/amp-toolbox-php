@@ -7,7 +7,45 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSidebar
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSidebar extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::SIDEBAR,\nSpecRule::SPEC_NAME => 'amp-sidebar',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SIDE,\n        SpecRule::VALUE => [\n                        'left',\n                        'right',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-sidebar/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-STORY',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-sidebar',\n            ],\nSpecRule::MARK_DESCENDANTS => [\n                'marker' => [\n                    'AUTOSCROLL',\n                ],\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::SIDEBAR,
+        SpecRule::SPEC_NAME => 'amp-sidebar',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'side',
+                SpecRule::VALUE => [
+                    'left',
+                    'right',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-sidebar/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-STORY',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-sidebar',
+        ],
+        SpecRule::MARK_DESCENDANTS => [
+            'marker' => [
+                'AUTOSCROLL',
+            ],
+        ],
+    ];
 }

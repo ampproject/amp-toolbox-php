@@ -7,7 +7,42 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class CryptokeysJsonScript
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class CryptokeysJsonScript extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'cryptokeys .json script',\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::CRYPTOKEYS,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n    ],\n    [\n        SpecRule::NAME => Attribute::SHA_256_HASH,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_CASEI => [\n                        'application/json',\n                    ],\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-subscriptions',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'cryptokeys .json script',
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'cryptokeys',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+            ],
+            [
+                SpecRule::NAME => 'sha-256-hash',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_CASEI => [
+                    'application/json',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-subscriptions',
+        ],
+    ];
 }

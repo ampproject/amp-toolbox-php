@@ -7,7 +7,16 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Bdi
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Bdi extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::BDI,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::BDI,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

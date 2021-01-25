@@ -7,7 +7,15 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Nextid
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Nextid extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::NEXTID,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::NEXTID,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

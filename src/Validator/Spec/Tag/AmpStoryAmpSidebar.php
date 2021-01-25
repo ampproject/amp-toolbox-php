@@ -7,7 +7,31 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryAmpSidebar
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryAmpSidebar extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::SIDEBAR,\nSpecRule::SPEC_NAME => 'amp-story >> amp-sidebar',\nSpecRule::MANDATORY_PARENT => Extension::STORY,\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-sidebar/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-sidebar',\n            ],\nSpecRule::MARK_DESCENDANTS => [\n                'marker' => [\n                    'AUTOSCROLL',\n                ],\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::SIDEBAR,
+        SpecRule::SPEC_NAME => 'amp-story >> amp-sidebar',
+        SpecRule::MANDATORY_PARENT => Extension::STORY,
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-sidebar/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-sidebar',
+        ],
+        SpecRule::MARK_DESCENDANTS => [
+            'marker' => [
+                'AUTOSCROLL',
+            ],
+        ],
+    ];
 }

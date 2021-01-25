@@ -7,7 +7,21 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class VideoTrackKindSubtitles
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class VideoTrackKindSubtitles extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TRACK,\nSpecRule::SPEC_NAME => 'video > track[kind=subtitles]',\nSpecRule::MANDATORY_PARENT => Element::VIDEO,\nSpecRule::ATTR_LISTS => [\n                'track-attrs-subtitles',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TRACK,
+        SpecRule::SPEC_NAME => 'video > track[kind=subtitles]',
+        SpecRule::MANDATORY_PARENT => Element::VIDEO,
+        SpecRule::ATTR_LISTS => [
+            'track-attrs-subtitles',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

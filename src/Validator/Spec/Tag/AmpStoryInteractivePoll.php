@@ -7,7 +7,25 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryInteractivePoll
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryInteractivePoll extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_POLL,\nSpecRule::ATTR_LISTS => [\n                'interactive-options-text-attrs',\n                'interactive-options-confetti-attrs',\n                'interactive-options-results-category-attrs',\n                'interactive-shared-configs-attrs',\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story-interactive',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_POLL,
+        SpecRule::ATTR_LISTS => [
+            'interactive-options-text-attrs',
+            'interactive-options-confetti-attrs',
+            'interactive-options-results-category-attrs',
+            'interactive-shared-configs-attrs',
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story-interactive',
+        ],
+    ];
 }

@@ -7,7 +7,23 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryCtaLayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryCtaLayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_CTA_LAYER,\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-STORY-CTA-LAYER animate-in',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCENDANT_TAG_LIST => 'amp-story-cta-layer-allowed-descendants',\nSpecRule::MANDATORY_LAST_CHILD => true,\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_CTA_LAYER,
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-STORY-CTA-LAYER animate-in',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCENDANT_TAG_LIST => 'amp-story-cta-layer-allowed-descendants',
+        SpecRule::MANDATORY_LAST_CHILD => true,
+    ];
 }

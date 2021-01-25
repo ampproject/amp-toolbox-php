@@ -7,7 +7,99 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStory360
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStory360 extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_360,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::CONTROLS,\n        SpecRule::VALUE => [\n                        'gyroscope',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DURATION,\n        SpecRule::VALUE_REGEX => '([0-9\\.]+)\\s*(s|ms)',\n    ],\n    [\n        SpecRule::NAME => Attribute::HEADING_END,\n        SpecRule::VALUE_REGEX => '-?\\d+\\.?\\d*',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'duration',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::HEADING_START,\n        SpecRule::VALUE_REGEX => '-?\\d+\\.?\\d*',\n    ],\n    [\n        SpecRule::NAME => Attribute::PITCH_END,\n        SpecRule::VALUE_REGEX => '-?\\d+\\.?\\d*',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'duration',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::PITCH_START,\n        SpecRule::VALUE_REGEX => '-?\\d+\\.?\\d*',\n    ],\n    [\n        SpecRule::NAME => Attribute::SCENE_HEADING,\n        SpecRule::VALUE_REGEX => '-?\\d+\\.?\\d*',\n    ],\n    [\n        SpecRule::NAME => Attribute::SCENE_PITCH,\n        SpecRule::VALUE_REGEX => '-?\\d+\\.?\\d*',\n    ],\n    [\n        SpecRule::NAME => Attribute::SCENE_ROLL,\n        SpecRule::VALUE_REGEX => '-?\\d+\\.?\\d*',\n    ],\n    [\n        SpecRule::NAME => Attribute::ZOOM_END,\n        SpecRule::VALUE_REGEX => '\\d+\\.?\\d*',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'duration',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ZOOM_START,\n        SpecRule::VALUE_REGEX => '\\d+\\.?\\d*',\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-360',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY,\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'AMP-IMG',\n                    'AMP-VIDEO',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story-360',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_360,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'controls',
+                SpecRule::VALUE => [
+                    'gyroscope',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'duration',
+                SpecRule::VALUE_REGEX => '([0-9\.]+)\s*(s|ms)',
+            ],
+            [
+                SpecRule::NAME => 'heading-end',
+                SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'duration',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'heading-start',
+                SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
+            ],
+            [
+                SpecRule::NAME => 'pitch-end',
+                SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'duration',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'pitch-start',
+                SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
+            ],
+            [
+                SpecRule::NAME => 'scene-heading',
+                SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
+            ],
+            [
+                SpecRule::NAME => 'scene-pitch',
+                SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
+            ],
+            [
+                SpecRule::NAME => 'scene-roll',
+                SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
+            ],
+            [
+                SpecRule::NAME => 'zoom-end',
+                SpecRule::VALUE_REGEX => '\d+\.?\d*',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'duration',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'zoom-start',
+                SpecRule::VALUE_REGEX => '\d+\.?\d*',
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-360',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY,
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'AMP-IMG',
+                'AMP-VIDEO',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story-360',
+        ],
+    ];
 }

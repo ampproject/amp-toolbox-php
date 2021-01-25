@@ -7,7 +7,15 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Listing
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Listing extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::LISTING,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::LISTING,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

@@ -262,11 +262,15 @@ final class Tags implements Section
 
         $className = $this->getTagClassFromTagId($tagId);
 
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
+
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
-                           ->setFinal();
+                           ->setFinal()
+                           ->addExtend('AmpProject\Validator\Spec\Tag');
 
-        $tagSpec = "[\n";
+/*        $tagSpec = [];
         foreach ($jsonSpec as $key => $value) {
             switch ($key) {
                 case 'ampLayout':
@@ -316,10 +320,9 @@ final class Tags implements Section
                 default:
                     $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $value, 3)}\n";
             }
-        }
-        $tagSpec .= "];";
+        }*/
 
-        $class->addConstant('SPEC', $tagSpec);
+        $class->addConstant('SPEC', $jsonSpec);
 
         $fileManager->saveFile($file, "Spec/Tag/{$className}.php");
     }

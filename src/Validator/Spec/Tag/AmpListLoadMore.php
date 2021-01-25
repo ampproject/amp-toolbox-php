@@ -7,7 +7,49 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpListLoadMore
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpListLoadMore extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::LIST_LOAD_MORE,\nSpecRule::MANDATORY_PARENT => Extension::LIST_,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::LOAD_MORE_BUTTON,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::MANDATORY_ONEOF => '[\\'load-more-button\\', \\'load-more-failed\\', \\'load-more-end\\', \\'load-more-loading\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::LOAD_MORE_FAILED,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::MANDATORY_ONEOF => '[\\'load-more-button\\', \\'load-more-failed\\', \\'load-more-end\\', \\'load-more-loading\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::LOAD_MORE_LOADING,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::MANDATORY_ONEOF => '[\\'load-more-button\\', \\'load-more-failed\\', \\'load-more-end\\', \\'load-more-loading\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::LOAD_MORE_END,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::MANDATORY_ONEOF => '[\\'load-more-button\\', \\'load-more-failed\\', \\'load-more-end\\', \\'load-more-loading\\']',\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-list',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::LIST_LOAD_MORE,
+        SpecRule::MANDATORY_PARENT => Extension::LIST_,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'load-more-button',
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+            ],
+            [
+                SpecRule::NAME => 'load-more-failed',
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+            ],
+            [
+                SpecRule::NAME => 'load-more-loading',
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+            ],
+            [
+                SpecRule::NAME => 'load-more-end',
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-list',
+        ],
+    ];
 }

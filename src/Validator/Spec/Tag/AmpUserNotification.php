@@ -7,7 +7,54 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpUserNotification
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpUserNotification extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::USER_NOTIFICATION,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_DISMISS_HREF,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                        SpecRule::ALLOW_EMPTY => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_SHOW_IF_HREF,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                        SpecRule::ALLOW_EMPTY => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ENCTYPE,\n        SpecRule::VALUE => [\n                        'application/x-www-form-urlencoded',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-user-notification',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::USER_NOTIFICATION,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-dismiss-href',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                    SpecRule::ALLOW_EMPTY => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-show-if-href',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                    SpecRule::ALLOW_EMPTY => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'enctype',
+                SpecRule::VALUE => [
+                    'application/x-www-form-urlencoded',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-user-notification',
+        ],
+    ];
 }

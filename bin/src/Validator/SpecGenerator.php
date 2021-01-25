@@ -47,9 +47,9 @@ final class SpecGenerator
 
         $specRuleKeys = $this->collectSpecRuleKeys($jsonSpec);
 
-        $this->generateTagClass($fileManager);
-        $this->generateAttributeListClass($fileManager);
-        $this->generateDeclarationListClass($fileManager);
+        $this->generateEntityClass('Tag', $fileManager);
+        $this->generateEntityClass('AttributeList', $fileManager);
+        $this->generateEntityClass('DeclarationList', $fileManager);
         $this->generateErrorCodeInterface($jsonSpec, $fileManager);
         $this->generateSpecRuleInterface($specRuleKeys, $fileManager);
 
@@ -107,42 +107,17 @@ final class SpecGenerator
     }
 
     /**
-     * Generate the Tag class.
+     * Generate an entity class.
      *
+     * @param string      $entity      Entity name to generate the class for.
      * @param FileManager $fileManager FileManager instance to use.
      */
-    private function generateTagClass(FileManager $fileManager)
+    private function generateEntityClass($entity, FileManager $fileManager)
     {
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
-        $class     = ClassType::withBodiesFrom(Template\Tag::class);
+        $class     = ClassType::withBodiesFrom("AmpProject\\Tooling\\Validator\\SpecGenerator\\Template\\{$entity}");
         $namespace->add($class);
-        $fileManager->saveFile($file, 'Spec/Tag.php');
-    }
-
-    /**
-     * Generate the AttributeList class.
-     *
-     * @param FileManager $fileManager FileManager instance to use.
-     */
-    private function generateAttributeListClass(FileManager $fileManager)
-    {
-        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
-        $class     = ClassType::withBodiesFrom(Template\AttributeList::class);
-        $namespace->add($class);
-        $fileManager->saveFile($file, 'Spec/AttributeList.php');
-    }
-
-    /**
-     * Generate the DeclarationList class.
-     *
-     * @param FileManager $fileManager FileManager instance to use.
-     */
-    private function generateDeclarationListClass(FileManager $fileManager)
-    {
-        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
-        $class     = ClassType::withBodiesFrom(Template\DeclarationList::class);
-        $namespace->add($class);
-        $fileManager->saveFile($file, 'Spec/DeclarationList.php');
+        $fileManager->saveFile($file, "Spec/{$entity}.php");
     }
 
     /**
@@ -303,9 +278,11 @@ final class SpecGenerator
                             }
                         }
 
-                        if (array_key_exists('cdata', $ruleset)) {
-                            foreach ($ruleset['cdata'] as $cdataKey => $cdataValue) {
-                                $specRuleKeys[$cdataKey] = $cdataKey;
+                        foreach (['ampLayout', 'cdata', 'extensionSpec', 'childTags', 'cssSpec', 'valueProperties'] as $attribute) {
+                            if (array_key_exists($attribute, $ruleset)) {
+                                foreach ($ruleset[$attribute] as $attributeKey => $attributeValue) {
+                                    $specRuleKeys[$attributeKey] = $attributeKey;
+                                }
                             }
                         }
                     }

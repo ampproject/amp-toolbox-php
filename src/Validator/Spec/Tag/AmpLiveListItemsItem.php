@@ -7,7 +7,33 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveListItemsItem
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpLiveListItemsItem extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items] item',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_SORT_TIME,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TOMBSTONE,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_UPDATE_TIME,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'mandatory-id-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#items',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'amp-live-list [items] item',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items] item',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-sort-time',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'data-tombstone',
+            ],
+            [
+                SpecRule::NAME => 'data-update-time',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'mandatory-id-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#items',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-live-list [items] item',
+    ];
 }

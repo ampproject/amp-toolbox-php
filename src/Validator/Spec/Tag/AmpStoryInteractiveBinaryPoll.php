@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryInteractiveBinaryPoll
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryInteractiveBinaryPoll extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_BINARY_POLL,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::OPTION_1_TEXT,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_2_TEXT,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_1_CONFETTI,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_2_CONFETTI,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'interactive-shared-configs-attrs',\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story-interactive',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_BINARY_POLL,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'option-1-text',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'option-2-text',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'option-1-confetti',
+            ],
+            [
+                SpecRule::NAME => 'option-2-confetti',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'interactive-shared-configs-attrs',
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story-interactive',
+        ],
+    ];
 }

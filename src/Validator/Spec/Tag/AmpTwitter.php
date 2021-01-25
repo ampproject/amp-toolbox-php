@@ -7,7 +7,131 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpTwitter
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpTwitter extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::TWITTER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_CARDS,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-tweetid',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_CONVERSATION,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-tweetid',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_LIMIT,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-momentid',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_MOMENTID,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-momentid\\', \\'data-timeline-source-type\\', \\'data-tweetid\\']',\n        SpecRule::VALUE_REGEX => '\\d+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TIMELINE_ID,\n        SpecRule::VALUE_REGEX => '\\d+',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-timeline-source-type',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TIMELINE_OWNER_SCREEN_NAME,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-timeline-source-type',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TIMELINE_SLUG,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-timeline-source-type',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TIMELINE_SOURCE_TYPE,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-momentid\\', \\'data-timeline-source-type\\', \\'data-tweetid\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TIMELINE_SCREEN_NAME,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-timeline-source-type',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TIMELINE_URL,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-timeline-source-type',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TIMELINE_USER_ID,\n        SpecRule::VALUE_REGEX => '\\d+',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'data-timeline-source-type',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TWEETID,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-momentid\\', \\'data-timeline-source-type\\', \\'data-tweetid\\']',\n    ],\n    [\n        SpecRule::NAME => '[DATA_TWEETID]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-twitter',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::TWITTER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-cards',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-tweetid',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-conversation',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-tweetid',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-limit',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-momentid',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-momentid',
+                SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
+                SpecRule::VALUE_REGEX => '\d+',
+            ],
+            [
+                SpecRule::NAME => 'data-timeline-id',
+                SpecRule::VALUE_REGEX => '\d+',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-timeline-source-type',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-timeline-owner-screen-name',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-timeline-source-type',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-timeline-slug',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-timeline-source-type',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-timeline-source-type',
+                SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
+            ],
+            [
+                SpecRule::NAME => 'data-timeline-screen-name',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-timeline-source-type',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-timeline-url',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-timeline-source-type',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-timeline-user-id',
+                SpecRule::VALUE_REGEX => '\d+',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'data-timeline-source-type',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-tweetid',
+                SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
+            ],
+            [
+                SpecRule::NAME => '[data-tweetid]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-twitter',
+        ],
+    ];
 }

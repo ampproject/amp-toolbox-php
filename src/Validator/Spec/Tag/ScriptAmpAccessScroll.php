@@ -7,7 +7,29 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpAccessScroll
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptAmpAccessScroll extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::ATTR_LISTS => [\n                'common-extension-attrs',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::EXTENSION_SPEC => [\n                'name' => 'amp-access-scroll',\n                'version' => [\n                    '0.1',\n                    'latest',\n                ],\n                'requiresUsage' => 'NONE',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-access',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::ATTR_LISTS => [
+            'common-extension-attrs',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::EXTENSION_SPEC => [
+            SpecRule::NAME => 'amp-access-scroll',
+            SpecRule::VERSION => [
+                '0.1',
+                'latest',
+            ],
+            SpecRule::REQUIRES_USAGE => 'NONE',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-access',
+        ],
+    ];
 }

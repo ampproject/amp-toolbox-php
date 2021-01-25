@@ -7,7 +7,24 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpImageSliderDivSecond
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpImageSliderDivSecond extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::DIV,\nSpecRule::SPEC_NAME => 'AMP-IMAGE-SLIDER > DIV [second]',\nSpecRule::MANDATORY_PARENT => Extension::IMAGE_SLIDER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SECOND,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-image-slider/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::DIV,
+        SpecRule::SPEC_NAME => 'AMP-IMAGE-SLIDER > DIV [second]',
+        SpecRule::MANDATORY_PARENT => Extension::IMAGE_SLIDER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'second',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-image-slider/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

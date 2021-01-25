@@ -7,7 +7,25 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Progress
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Progress extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::PROGRESS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::MAX,\n    ],\n    [\n        SpecRule::NAME => Attribute::VALUE,\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::PROGRESS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'max',
+            ],
+            [
+                SpecRule::NAME => 'value',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

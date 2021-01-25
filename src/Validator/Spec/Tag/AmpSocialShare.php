@@ -7,7 +7,66 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSocialShare
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSocialShare extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::SOCIAL_SHARE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_SHARE_ENDPOINT,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'ftp',\n                            'http',\n                            'https',\n                            'mailto',\n                            'bbmi',\n                            'fb-me',\n                            'fb-messenger',\n                            'intent',\n                            'line',\n                            'skype',\n                            'sms',\n                            'snapchat',\n                            'tel',\n                            'tg',\n                            'threema',\n                            'viber',\n                            'wh',\n                            'whatsapp',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::CONTAINER,\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-social-share',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::SOCIAL_SHARE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-share-endpoint',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'ftp',
+                        'http',
+                        'https',
+                        'mailto',
+                        'bbmi',
+                        'fb-me',
+                        'fb-messenger',
+                        'intent',
+                        'line',
+                        'skype',
+                        'sms',
+                        'snapchat',
+                        'tel',
+                        'tg',
+                        'threema',
+                        'viber',
+                        'wh',
+                        'whatsapp',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::CONTAINER,
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-social-share',
+        ],
+    ];
 }

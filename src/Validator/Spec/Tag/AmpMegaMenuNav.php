@@ -7,7 +7,30 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpMegaMenuNav
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpMegaMenuNav extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-MEGA-MENU > NAV',\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'OL',\n                    'UL',\n                ],\n            ],\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-MEGA-MENU NAV > UL/OL',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::SIBLINGS_DISALLOWED => true,\nSpecRule::DESCRIPTIVE_NAME => 'amp-mega-menu > nav',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > NAV',
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'OL',
+                'UL',
+            ],
+        ],
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-MEGA-MENU NAV > UL/OL',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::SIBLINGS_DISALLOWED => true,
+        SpecRule::DESCRIPTIVE_NAME => 'amp-mega-menu > nav',
+    ];
 }

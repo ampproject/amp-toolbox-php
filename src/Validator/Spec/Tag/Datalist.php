@@ -7,7 +7,18 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Datalist
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Datalist extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::DATALIST,\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::DATALIST,
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

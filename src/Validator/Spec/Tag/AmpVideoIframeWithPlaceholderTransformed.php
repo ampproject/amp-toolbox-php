@@ -7,7 +7,49 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpVideoIframeWithPlaceholderTransformed
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpVideoIframeWithPlaceholderTransformed extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::VIDEO_IFRAME,\nSpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME with [placeholder] (transformed)',\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n                'amp-video-iframe-common',\n                'lightboxable-elements',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video-iframe/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-VIDEO-IFRAME > [placeholder]',\n                    'mandatory' => true,\n                    'unique' => true,\n                ],\n                [\n                    'tagSpecName' => 'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-video-iframe',\n            ],\nSpecRule::ENABLED_BY => [\n                'transformed',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::VIDEO_IFRAME,
+        SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME with [placeholder] (transformed)',
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+            'amp-video-iframe-common',
+            'lightboxable-elements',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video-iframe/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-VIDEO-IFRAME > [placeholder]',
+                SpecRule::MANDATORY => true,
+                SpecRule::UNIQUE => true,
+            ],
+            [
+                'tagSpecName' => 'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-video-iframe',
+        ],
+        SpecRule::ENABLED_BY => [
+            'transformed',
+        ],
+    ];
 }

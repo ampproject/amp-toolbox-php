@@ -7,7 +7,36 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAnalytics
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAnalytics extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::ANALYTICS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::CONFIG,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => true,\n                        SpecRule::ALLOW_EMPTY => true,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-analytics/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-analytics',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::ANALYTICS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'config',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => true,
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'type',
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-analytics/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-analytics',
+        ],
+    ];
 }

@@ -7,7 +7,43 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpTruncateText
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpTruncateText extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::TRUNCATE_TEXT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::OVERFLOW_STYLE,\n        SpecRule::VALUE => [\n                        'right',\n                        'default',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-truncate-text/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::CONTAINER,\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-truncate-text',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::TRUNCATE_TEXT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'overflow-style',
+                SpecRule::VALUE => [
+                    'right',
+                    'default',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-truncate-text/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::CONTAINER,
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-truncate-text',
+        ],
+    ];
 }

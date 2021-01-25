@@ -7,7 +7,23 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Li
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Li extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::LI,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::VALUE,\n        SpecRule::VALUE_REGEX => '[0-9]*',\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::LI,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'value',
+                SpecRule::VALUE_REGEX => '[0-9]*',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

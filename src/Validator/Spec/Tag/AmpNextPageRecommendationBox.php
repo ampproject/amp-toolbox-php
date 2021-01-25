@@ -7,7 +7,23 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpNextPageRecommendationBox
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpNextPageRecommendationBox extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [recommendation-box]',\nSpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::RECOMMENDATION_BOX,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [recommendation-box]',
+        SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'recommendation-box',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

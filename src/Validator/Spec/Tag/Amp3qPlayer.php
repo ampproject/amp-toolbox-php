@@ -7,7 +7,41 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Amp3qPlayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Amp3qPlayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::_3Q_PLAYER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_ID,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FLEX_ITEM,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-3q-player',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::_3Q_PLAYER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-id',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FLEX_ITEM,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-3q-player',
+        ],
+    ];
 }

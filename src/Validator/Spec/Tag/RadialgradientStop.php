@@ -7,7 +7,33 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class RadialgradientStop
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class RadialgradientStop extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::STOP,\nSpecRule::SPEC_NAME => 'radialgradient > stop',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::OFFSET,\n    ],\n    [\n        SpecRule::NAME => Attribute::STOP_COLOR,\n    ],\n    [\n        SpecRule::NAME => Attribute::STOP_OPACITY,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-style-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::RADIALGRADIENT,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::STOP,
+        SpecRule::SPEC_NAME => 'radialgradient > stop',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'offset',
+            ],
+            [
+                SpecRule::NAME => 'stop-color',
+            ],
+            [
+                SpecRule::NAME => 'stop-opacity',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-style-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::RADIALGRADIENT,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

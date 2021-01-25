@@ -7,7 +7,27 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpFxFlyingCarpet
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpFxFlyingCarpet extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::FX_FLYING_CARPET,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::HEIGHT,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-fx-flying-carpet',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::FX_FLYING_CARPET,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'height',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-fx-flying-carpet',
+        ],
+    ];
 }

@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpReachPlayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpReachPlayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::REACH_PLAYER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_EMBED_ID,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX => '[0-9a-z-]+',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-reach-player',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::REACH_PLAYER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-embed-id',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX => '[0-9a-z-]+',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-reach-player',
+        ],
+    ];
 }

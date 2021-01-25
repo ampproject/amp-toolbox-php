@@ -7,7 +7,15 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Multicol
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Multicol extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::MULTICOL,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::MULTICOL,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

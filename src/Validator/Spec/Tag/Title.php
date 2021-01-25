@@ -7,7 +7,22 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Title
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Title extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TITLE,\nSpecRule::SPEC_NAME => 'title',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => '[TEXT]',\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TITLE,
+        SpecRule::SPEC_NAME => 'title',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => '[text]',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

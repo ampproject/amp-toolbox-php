@@ -7,7 +7,62 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Svg
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Svg extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SVG,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::CONTENTSCRIPTTYPE,\n    ],\n    [\n        SpecRule::NAME => Attribute::CONTENTSTYLETYPE,\n    ],\n    [\n        SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,\n    ],\n    [\n        SpecRule::NAME => Attribute::HEIGHT,\n    ],\n    [\n        SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,\n    ],\n    [\n        SpecRule::NAME => Attribute::VERSION,\n        SpecRule::VALUE => [\n                        '1.0',\n                        '1.1',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::VIEWBOX,\n    ],\n    [\n        SpecRule::NAME => Attribute::WIDTH,\n    ],\n    [\n        SpecRule::NAME => Attribute::X,\n    ],\n    [\n        SpecRule::NAME => Attribute::Y,\n    ],\n    [\n        SpecRule::NAME => Attribute::ZOOMANDPAN,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-conditional-processing-attributes',\n                'svg-core-attributes',\n                'svg-presentation-attributes',\n                'svg-style-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SVG,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'contentscripttype',
+            ],
+            [
+                SpecRule::NAME => 'contentstyletype',
+            ],
+            [
+                SpecRule::NAME => 'externalresourcesrequired',
+            ],
+            [
+                SpecRule::NAME => 'height',
+            ],
+            [
+                SpecRule::NAME => 'preserveaspectratio',
+            ],
+            [
+                SpecRule::NAME => 'version',
+                SpecRule::VALUE => [
+                    '1.0',
+                    '1.1',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'viewbox',
+            ],
+            [
+                SpecRule::NAME => 'width',
+            ],
+            [
+                SpecRule::NAME => 'x',
+            ],
+            [
+                SpecRule::NAME => 'y',
+            ],
+            [
+                SpecRule::NAME => 'zoomandpan',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-conditional-processing-attributes',
+            'svg-core-attributes',
+            'svg-presentation-attributes',
+            'svg-style-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

@@ -7,7 +7,85 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpListAmp4email
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpListAmp4email extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::LIST_,\nSpecRule::SPEC_NAME => 'AMP-LIST (AMP4EMAIL)',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::BINDING,\n        SpecRule::VALUE => [\n                        'always',\n                        'no',\n                        'refresh',\n                        'refresh-evaluate',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DIFFABLE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ITEMS,\n    ],\n    [\n        SpecRule::NAME => Attribute::MAX_ITEMS,\n    ],\n    [\n        SpecRule::NAME => Attribute::SINGLE_ITEM,\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TEMPLATE,\n        SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',\n    ],\n    [\n        SpecRule::NAME => Attribute::XSSI_PREFIX,\n    ],\n    [\n        SpecRule::NAME => '[IS_LAYOUT_CONTAINER]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::CONTAINER,\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-LIST',\n                'AMP-STATE',\n                'TEMPLATE',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4EMAIL,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-list',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::LIST_,
+        SpecRule::SPEC_NAME => 'AMP-LIST (AMP4EMAIL)',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'binding',
+                SpecRule::VALUE => [
+                    'always',
+                    'no',
+                    'refresh',
+                    'refresh-evaluate',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'diffable',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'items',
+            ],
+            [
+                SpecRule::NAME => 'max-items',
+            ],
+            [
+                SpecRule::NAME => 'single-item',
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'template',
+                SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
+            ],
+            [
+                SpecRule::NAME => 'xssi-prefix',
+            ],
+            [
+                SpecRule::NAME => '[is-layout-container]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::CONTAINER,
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-LIST',
+            'AMP-STATE',
+            'TEMPLATE',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-list',
+        ],
+    ];
 }

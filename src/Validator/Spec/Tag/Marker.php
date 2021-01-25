@@ -7,7 +7,55 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Marker
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Marker extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::MARKER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,\n    ],\n    [\n        SpecRule::NAME => Attribute::MARKERHEIGHT,\n    ],\n    [\n        SpecRule::NAME => Attribute::MARKERUNITS,\n    ],\n    [\n        SpecRule::NAME => Attribute::MARKERWIDTH,\n    ],\n    [\n        SpecRule::NAME => Attribute::ORIENT,\n    ],\n    [\n        SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,\n    ],\n    [\n        SpecRule::NAME => Attribute::REFX,\n    ],\n    [\n        SpecRule::NAME => Attribute::REFY,\n    ],\n    [\n        SpecRule::NAME => Attribute::TRANSFORM,\n    ],\n    [\n        SpecRule::NAME => Attribute::VIEWBOX,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-core-attributes',\n                'svg-presentation-attributes',\n                'svg-style-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::SVG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::MARKER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'externalresourcesrequired',
+            ],
+            [
+                SpecRule::NAME => 'markerheight',
+            ],
+            [
+                SpecRule::NAME => 'markerunits',
+            ],
+            [
+                SpecRule::NAME => 'markerwidth',
+            ],
+            [
+                SpecRule::NAME => 'orient',
+            ],
+            [
+                SpecRule::NAME => 'preserveaspectratio',
+            ],
+            [
+                SpecRule::NAME => 'refx',
+            ],
+            [
+                SpecRule::NAME => 'refy',
+            ],
+            [
+                SpecRule::NAME => 'transform',
+            ],
+            [
+                SpecRule::NAME => 'viewbox',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-core-attributes',
+            'svg-presentation-attributes',
+            'svg-style-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::SVG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

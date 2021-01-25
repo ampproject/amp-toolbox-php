@@ -7,7 +7,36 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryBookendExtensionJsonScript
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryBookendExtensionJsonScript extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'amp-story-bookend extension .json script',\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Extension::STORY_BOOKEND,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'application/json',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story',\n            ],\nSpecRule::SIBLINGS_DISALLOWED => true,\nSpecRule::MANDATORY_LAST_CHILD => true,\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'amp-story-bookend extension .json script',
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Extension::STORY_BOOKEND,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'application/json',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story',
+        ],
+        SpecRule::SIBLINGS_DISALLOWED => true,
+        SpecRule::MANDATORY_LAST_CHILD => true,
+    ];
 }

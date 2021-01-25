@@ -7,7 +7,107 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAutocomplete
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAutocomplete extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::AUTOCOMPLETE,\nSpecRule::SPEC_NAME => 'amp-autocomplete',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::FILTER,\n        SpecRule::MANDATORY => true,\n        SpecRule::TRIGGER => [\n                        'ifValueRegex' => 'custom',\n                        'alsoRequiresAttr' => [\n                            'filter-expr',\n                        ],\n                    ],\n        SpecRule::VALUE_CASEI => [\n                        'custom',\n                        'fuzzy',\n                        'none',\n                        'prefix',\n                        'substring',\n                        'token-prefix',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::FILTER_EXPR,\n        SpecRule::REQUIRES_EXTENSION => [\n                        'amp-bind',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::FILTER_VALUE,\n    ],\n    [\n        SpecRule::NAME => Attribute::HIGHLIGHT_USER_ENTRY,\n    ],\n    [\n        SpecRule::NAME => Attribute::INLINE,\n    ],\n    [\n        SpecRule::NAME => Attribute::ITEMS,\n    ],\n    [\n        SpecRule::NAME => Attribute::MAX_ENTRIES,\n    ],\n    [\n        SpecRule::NAME => Attribute::MAX_ITEMS,\n    ],\n    [\n        SpecRule::NAME => Attribute::MIN_CHARACTERS,\n    ],\n    [\n        SpecRule::NAME => Attribute::PREFETCH,\n    ],\n    [\n        SpecRule::NAME => Attribute::QUERY,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'src',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => true,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SUBMIT_ON_ENTER,\n    ],\n    [\n        SpecRule::NAME => Attribute::SUGGEST_FIRST,\n    ],\n    [\n        SpecRule::NAME => Attribute::TEMPLATE,\n    ],\n    [\n        SpecRule::NAME => '[SRC]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-autocomplete/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::CONTAINER,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-autocomplete',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::AUTOCOMPLETE,
+        SpecRule::SPEC_NAME => 'amp-autocomplete',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'filter',
+                SpecRule::MANDATORY => true,
+                SpecRule::TRIGGER => [
+                    'ifValueRegex' => 'custom',
+                    'alsoRequiresAttr' => [
+                        'filter-expr',
+                    ],
+                ],
+                SpecRule::VALUE_CASEI => [
+                    'custom',
+                    'fuzzy',
+                    'none',
+                    'prefix',
+                    'substring',
+                    'token-prefix',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'filter-expr',
+                SpecRule::REQUIRES_EXTENSION => [
+                    'amp-bind',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'filter-value',
+            ],
+            [
+                SpecRule::NAME => 'highlight-user-entry',
+            ],
+            [
+                SpecRule::NAME => 'inline',
+            ],
+            [
+                SpecRule::NAME => 'items',
+            ],
+            [
+                SpecRule::NAME => 'max-entries',
+            ],
+            [
+                SpecRule::NAME => 'max-items',
+            ],
+            [
+                SpecRule::NAME => 'min-characters',
+            ],
+            [
+                SpecRule::NAME => 'prefetch',
+            ],
+            [
+                SpecRule::NAME => 'query',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'src',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => true,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'submit-on-enter',
+            ],
+            [
+                SpecRule::NAME => 'suggest-first',
+            ],
+            [
+                SpecRule::NAME => 'template',
+            ],
+            [
+                SpecRule::NAME => '[src]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-autocomplete/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::CONTAINER,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-autocomplete',
+        ],
+    ];
 }

@@ -7,7 +7,34 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class DivAmpNestedMenu
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class DivAmpNestedMenu extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::DIV,\nSpecRule::SPEC_NAME => 'div amp-nested-menu',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU,\n        SpecRule::MANDATORY_ONEOF => '[\\'amp-nested-submenu\\', \\'amp-nested-submenu-close\\', \\'amp-nested-submenu-open\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_CLOSE,\n        SpecRule::MANDATORY_ONEOF => '[\\'amp-nested-submenu\\', \\'amp-nested-submenu-close\\', \\'amp-nested-submenu-open\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_OPEN,\n        SpecRule::MANDATORY_ONEOF => '[\\'amp-nested-submenu\\', \\'amp-nested-submenu-close\\', \\'amp-nested-submenu-open\\']',\n    ],\n],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-ACCORDION',\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::NESTED_MENU,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::DIV,
+        SpecRule::SPEC_NAME => 'div amp-nested-menu',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'amp-nested-submenu',
+                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+            ],
+            [
+                SpecRule::NAME => 'amp-nested-submenu-close',
+                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+            ],
+            [
+                SpecRule::NAME => 'amp-nested-submenu-open',
+                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+            ],
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-ACCORDION',
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::NESTED_MENU,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

@@ -7,7 +7,35 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpInlineGalleryPaginationInset
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpInlineGalleryPaginationInset extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::INLINE_GALLERY_PAGINATION,\nSpecRule::SPEC_NAME => 'amp-inline-gallery-pagination [inset]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::INSET,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inline-gallery/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::INLINE_GALLERY,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-inline-gallery',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::INLINE_GALLERY_PAGINATION,
+        SpecRule::SPEC_NAME => 'amp-inline-gallery-pagination [inset]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'inset',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inline-gallery/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::INLINE_GALLERY,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-inline-gallery',
+        ],
+    ];
 }

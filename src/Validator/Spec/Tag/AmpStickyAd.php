@@ -7,7 +7,36 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStickyAd
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStickyAd extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STICKY_AD,\nSpecRule::UNIQUE => true,\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-APP-BANNER',\n            ],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'firstChildTagNameOneof' => [\n                    'AMP-AD',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-sticky-ad',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STICKY_AD,
+        SpecRule::UNIQUE => true,
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-APP-BANNER',
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'firstChildTagNameOneof' => [
+                'AMP-AD',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-sticky-ad',
+        ],
+    ];
 }

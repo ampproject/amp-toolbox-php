@@ -7,7 +7,51 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpPixel
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpPixel extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::PIXEL,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALLOW_SSR_IMG,\n    ],\n    [\n        SpecRule::NAME => Attribute::REFERRERPOLICY,\n        SpecRule::VALUE => [\n                        'no-referrer',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => true,\n                        SpecRule::ALLOW_EMPTY => true,\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-pixel/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                    Layout::NODISPLAY,\n                ],\n                'definesDefaultWidth' => true,\n                'definesDefaultHeight' => true,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::PIXEL,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'allow-ssr-img',
+            ],
+            [
+                SpecRule::NAME => 'referrerpolicy',
+                SpecRule::VALUE => [
+                    'no-referrer',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => true,
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-pixel/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+                Layout::NODISPLAY,
+            ],
+            'definesDefaultWidth' => true,
+            'definesDefaultHeight' => true,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

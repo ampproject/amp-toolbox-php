@@ -7,7 +7,86 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class StyleAmpCustomAmp4ads
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class StyleAmpCustomAmp4ads extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::STYLE,\nSpecRule::SPEC_NAME => 'style amp-custom (AMP4ADS)',\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AMP_CUSTOM,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::VALUE_CASEI => [\n                        'text/css',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',\nSpecRule::CDATA => [\n                SpecRule::MAX_BYTES => 20000,\n                SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',\n                SpecRule::DISALLOWED_CDATA_REGEX => [\n                    [\n                        'regex' => '<!--',\n                        'errorMessage' => 'html comments',\n                    ],\n                    [\n                        'regex' => '(^|\\W)i-amphtml-',\n                        'errorMessage' => 'CSS i-amphtml- name prefix',\n                    ],\n                ],\n                SpecRule::CSS_SPEC => [\n                    'atRuleSpec' => [\n                        [\n                            'name' => 'font-face',\n                        ],\n                        [\n                            'name' => 'keyframes',\n                        ],\n                        [\n                            'name' => 'media',\n                            'mediaQuerySpec' => [\n                                'issuesAsError' => false,\n                                'type' => [\n                                    'all',\n                                    'print',\n                                    'screen',\n                                    'speech',\n                                ],\n                                'feature' => [\n                                    'width',\n                                    'height',\n                                    'aspect-ratio',\n                                    'orientation',\n                                    'resolution',\n                                ],\n                            ],\n                        ],\n                        [\n                            'name' => 'supports',\n                        ],\n                    ],\n                    'validateAmp4ads' => true,\n                ],\n                SpecRule::DOC_CSS_BYTES => true,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4ADS,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'style amp-custom',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::STYLE,
+        SpecRule::SPEC_NAME => 'style amp-custom (AMP4ADS)',
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'amp-custom',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::VALUE_CASEI => [
+                    'text/css',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
+        SpecRule::CDATA => [
+            SpecRule::MAX_BYTES => 20000,
+            SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+            SpecRule::DISALLOWED_CDATA_REGEX => [
+                [
+                    'regex' => '<!--',
+                    'errorMessage' => 'html comments',
+                ],
+                [
+                    'regex' => '(^|\W)i-amphtml-',
+                    'errorMessage' => 'CSS i-amphtml- name prefix',
+                ],
+            ],
+            SpecRule::CSS_SPEC => [
+                'atRuleSpec' => [
+                    [
+                        'name' => 'font-face',
+                    ],
+                    [
+                        'name' => 'keyframes',
+                    ],
+                    [
+                        'name' => 'media',
+                        'mediaQuerySpec' => [
+                            'issuesAsError' => false,
+                            'type' => [
+                                'all',
+                                'print',
+                                'screen',
+                                'speech',
+                            ],
+                            'feature' => [
+                                'width',
+                                'height',
+                                'aspect-ratio',
+                                'orientation',
+                                'resolution',
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'supports',
+                    ],
+                ],
+                'validateAmp4ads' => true,
+            ],
+            SpecRule::DOC_CSS_BYTES => true,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4ADS,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'style amp-custom',
+    ];
 }

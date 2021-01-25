@@ -7,7 +7,46 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpInstallServiceworker
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpInstallServiceworker extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::INSTALL_SERVICEWORKER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_IFRAME_SRC,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => true,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => true,\n                    ],\n    ],\n],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-install-serviceworker',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::INSTALL_SERVICEWORKER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-iframe-src',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => true,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => true,
+                ],
+            ],
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-install-serviceworker',
+        ],
+    ];
 }

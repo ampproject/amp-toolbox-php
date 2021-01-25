@@ -7,7 +7,33 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Html
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Html extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::HTML,\nSpecRule::MANDATORY => true,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::_DOCTYPE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_AMP_AUTOCOMPLETE_OPT_IN,\n        SpecRule::VALUE => [\n                        'false',\n                    ],\n        SpecRule::DISALLOWED_VALUE_REGEX => 'false',\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\nSpecRule::DISABLED_BY => [\n                'transformed',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::HTML,
+        SpecRule::MANDATORY => true,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::_DOCTYPE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-amp-autocomplete-opt-in',
+                SpecRule::VALUE => [
+                    'false',
+                ],
+                SpecRule::DISALLOWED_VALUE_REGEX => 'false',
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::DISABLED_BY => [
+            'transformed',
+        ],
+    ];
 }

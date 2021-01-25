@@ -7,7 +7,35 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class InputMaskDateMmYy
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class InputMaskDateMmYy extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::INPUT,\nSpecRule::SPEC_NAME => 'input [mask=date-mm-yy]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::MASK,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'date-mm-yy',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'amp-inputmask-common-attr',\n                'input-common-attr',\n                'name-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inputmask/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-inputmask',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::INPUT,
+        SpecRule::SPEC_NAME => 'input [mask=date-mm-yy]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'mask',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'date-mm-yy',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'amp-inputmask-common-attr',
+            'input-common-attr',
+            'name-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inputmask/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-inputmask',
+        ],
+    ];
 }

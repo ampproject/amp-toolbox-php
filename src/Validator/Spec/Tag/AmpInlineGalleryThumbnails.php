@@ -7,7 +7,63 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpInlineGalleryThumbnails
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpInlineGalleryThumbnails extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::INLINE_GALLERY_THUMBNAILS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ASPECT_RATIO_HEIGHT,\n        SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\\.0+)?\$',\n        SpecRule::VALUE_REGEX => '\\d+(\\.\\d+)?',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'aspect-ratio-width',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ASPECT_RATIO_WIDTH,\n        SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\\.0+)?\$',\n        SpecRule::VALUE_REGEX => '\\d+(\\.\\d+)?',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'aspect-ratio-height',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::LOOP,\n        SpecRule::VALUE => [\n                        'true',\n                        'false',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inline-gallery/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::INLINE_GALLERY,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-inline-gallery',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::INLINE_GALLERY_THUMBNAILS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'aspect-ratio-height',
+                SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\.0+)?$',
+                SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'aspect-ratio-width',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'aspect-ratio-width',
+                SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\.0+)?$',
+                SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'aspect-ratio-height',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'loop',
+                SpecRule::VALUE => [
+                    'true',
+                    'false',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inline-gallery/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::INLINE_GALLERY,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-inline-gallery',
+        ],
+    ];
 }

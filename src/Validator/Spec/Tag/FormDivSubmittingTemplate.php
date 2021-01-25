@@ -7,7 +7,31 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class FormDivSubmittingTemplate
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class FormDivSubmittingTemplate extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::DIV,\nSpecRule::SPEC_NAME => 'FORM DIV [submitting][template]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALIGN,\n    ],\n    [\n        SpecRule::NAME => Attribute::SUBMITTING,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TEMPLATE,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::MANDATORY_ANCESTOR => Element::FORM,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::DIV,
+        SpecRule::SPEC_NAME => 'FORM DIV [submitting][template]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'align',
+            ],
+            [
+                SpecRule::NAME => 'submitting',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'template',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Element::FORM,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

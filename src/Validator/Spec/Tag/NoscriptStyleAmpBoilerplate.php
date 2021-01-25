@@ -7,7 +7,42 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class NoscriptStyleAmpBoilerplate
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class NoscriptStyleAmpBoilerplate extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::STYLE,\nSpecRule::SPEC_NAME => 'noscript > style[amp-boilerplate]',\nSpecRule::MANDATORY => true,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::NOSCRIPT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AMP_BOILERPLATE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',\nSpecRule::CDATA => [\n                SpecRule::CDATA_REGEX => '\\s*body\\s*{\\s*-webkit-animation:\\s*none;\\s*-moz-animation:\\s*none;\\s*-ms-animation:\\s*none;\\s*animation:\\s*none;?\\s*}\\s*',\n                SpecRule::DOC_CSS_BYTES => false,\n            ],\nSpecRule::MANDATORY_ANCESTOR => Element::HEAD,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DISABLED_BY => [\n                'transformed',\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'noscript > style[amp-boilerplate]',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::STYLE,
+        SpecRule::SPEC_NAME => 'noscript > style[amp-boilerplate]',
+        SpecRule::MANDATORY => true,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::NOSCRIPT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'amp-boilerplate',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',
+        SpecRule::CDATA => [
+            SpecRule::CDATA_REGEX => '\s*body\s*{\s*-webkit-animation:\s*none;\s*-moz-animation:\s*none;\s*-ms-animation:\s*none;\s*animation:\s*none;?\s*}\s*',
+            SpecRule::DOC_CSS_BYTES => false,
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Element::HEAD,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DISABLED_BY => [
+            'transformed',
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'noscript > style[amp-boilerplate]',
+    ];
 }

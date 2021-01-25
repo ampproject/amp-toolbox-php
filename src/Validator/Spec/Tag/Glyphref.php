@@ -7,7 +7,44 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Glyphref
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Glyphref extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::GLYPHREF,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DX,\n    ],\n    [\n        SpecRule::NAME => Attribute::DY,\n    ],\n    [\n        SpecRule::NAME => Attribute::FORMAT,\n    ],\n    [\n        SpecRule::NAME => Attribute::GLYPHREF,\n    ],\n    [\n        SpecRule::NAME => Attribute::X,\n    ],\n    [\n        SpecRule::NAME => Attribute::Y,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-core-attributes',\n                'svg-presentation-attributes',\n                'svg-style-attr',\n                'svg-xlink-attributes',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::SVG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::GLYPHREF,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'dx',
+            ],
+            [
+                SpecRule::NAME => 'dy',
+            ],
+            [
+                SpecRule::NAME => 'format',
+            ],
+            [
+                SpecRule::NAME => 'glyphref',
+            ],
+            [
+                SpecRule::NAME => 'x',
+            ],
+            [
+                SpecRule::NAME => 'y',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-core-attributes',
+            'svg-presentation-attributes',
+            'svg-style-attr',
+            'svg-xlink-attributes',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::SVG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

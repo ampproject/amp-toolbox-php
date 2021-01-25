@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class InputTypePassword
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class InputTypePassword extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::INPUT,\nSpecRule::SPEC_NAME => 'INPUT [type=password]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'password',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[TYPE]',\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'input-common-attr',\n                'name-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',\nSpecRule::MANDATORY_ANCESTOR => 'FORM [method=POST]',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::INPUT,
+        SpecRule::SPEC_NAME => 'INPUT [type=password]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'password',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[type]',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'input-common-attr',
+            'name-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
+        SpecRule::MANDATORY_ANCESTOR => 'FORM [method=POST]',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpWebPushWidget
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpWebPushWidget extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::WEB_PUSH_WIDGET,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::VISIBILITY,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'blocked',\n                        'subscribed',\n                        'unsubscribed',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-web-push/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-web-push',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::WEB_PUSH_WIDGET,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'visibility',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'blocked',
+                    'subscribed',
+                    'unsubscribed',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-web-push/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-web-push',
+        ],
+    ];
 }

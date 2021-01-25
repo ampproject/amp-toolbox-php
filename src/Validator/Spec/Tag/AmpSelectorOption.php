@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSelectorOption
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSelectorOption extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-SELECTOR option',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DISABLED,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::SELECTED,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-selector/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-SELECTOR option',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'disabled',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'option',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'selected',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-selector/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

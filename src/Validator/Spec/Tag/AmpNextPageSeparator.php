@@ -7,7 +7,23 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpNextPageSeparator
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpNextPageSeparator extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [separator]',\nSpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SEPARATOR,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [separator]',
+        SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'separator',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

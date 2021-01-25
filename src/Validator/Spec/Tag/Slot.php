@@ -7,7 +7,18 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Slot
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Slot extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SLOT,\nSpecRule::ATTR_LISTS => [\n                'name-attr',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SLOT,
+        SpecRule::ATTR_LISTS => [
+            'name-attr',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

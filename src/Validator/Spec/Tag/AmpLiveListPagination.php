@@ -7,7 +7,24 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveListPagination
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpLiveListPagination extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-LIVE-LIST [pagination]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::PAGINATION,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#pagination',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'amp-live-list [pagination]',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [pagination]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'pagination',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#pagination',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-live-list [pagination]',
+    ];
 }

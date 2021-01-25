@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpOnetapGoogle
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpOnetapGoogle extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::ONETAP_GOOGLE,\nSpecRule::UNIQUE => true,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-onetap-google',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::ONETAP_GOOGLE,
+        SpecRule::UNIQUE => true,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-src',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-onetap-google',
+        ],
+    ];
 }

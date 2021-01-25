@@ -7,7 +7,47 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Mask
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Mask extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::MASK,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,\n    ],\n    [\n        SpecRule::NAME => Attribute::HEIGHT,\n    ],\n    [\n        SpecRule::NAME => Attribute::MASKCONTENTUNITS,\n    ],\n    [\n        SpecRule::NAME => Attribute::MASKUNITS,\n    ],\n    [\n        SpecRule::NAME => Attribute::WIDTH,\n    ],\n    [\n        SpecRule::NAME => Attribute::X,\n    ],\n    [\n        SpecRule::NAME => Attribute::Y,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-conditional-processing-attributes',\n                'svg-core-attributes',\n                'svg-presentation-attributes',\n                'svg-style-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::SVG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::MASK,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'externalresourcesrequired',
+            ],
+            [
+                SpecRule::NAME => 'height',
+            ],
+            [
+                SpecRule::NAME => 'maskcontentunits',
+            ],
+            [
+                SpecRule::NAME => 'maskunits',
+            ],
+            [
+                SpecRule::NAME => 'width',
+            ],
+            [
+                SpecRule::NAME => 'x',
+            ],
+            [
+                SpecRule::NAME => 'y',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-conditional-processing-attributes',
+            'svg-core-attributes',
+            'svg-presentation-attributes',
+            'svg-style-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::SVG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

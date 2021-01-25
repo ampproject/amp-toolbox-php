@@ -7,7 +7,58 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpJwplayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpJwplayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::JWPLAYER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_MEDIA_ID,\n        SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}|outstream',\n        SpecRule::MANDATORY_ONEOF => '[\\'data-media-id\\', \\'data-playlist-id\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_PLAYER_ID,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_PLAYLIST_ID,\n        SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',\n        SpecRule::MANDATORY_ONEOF => '[\\'data-media-id\\', \\'data-playlist-id\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::DOCK,\n        SpecRule::REQUIRES_EXTENSION => [\n                        'amp-video-docking',\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-jwplayer/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-jwplayer',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::JWPLAYER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-media-id',
+                SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}|outstream',
+                SpecRule::MANDATORY_ONEOF => '[\'data-media-id\', \'data-playlist-id\']',
+            ],
+            [
+                SpecRule::NAME => 'data-player-id',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
+            ],
+            [
+                SpecRule::NAME => 'data-playlist-id',
+                SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
+                SpecRule::MANDATORY_ONEOF => '[\'data-media-id\', \'data-playlist-id\']',
+            ],
+            [
+                SpecRule::NAME => 'dock',
+                SpecRule::REQUIRES_EXTENSION => [
+                    'amp-video-docking',
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-jwplayer/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-jwplayer',
+        ],
+    ];
 }

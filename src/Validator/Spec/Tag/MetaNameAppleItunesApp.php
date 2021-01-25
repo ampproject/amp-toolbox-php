@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class MetaNameAppleItunesApp
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class MetaNameAppleItunesApp extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::META,\nSpecRule::SPEC_NAME => 'meta name=apple-itunes-app',\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::CONTENT,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX => '.*app-id=.*',\n    ],\n    [\n        SpecRule::NAME => Attribute::NAME,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'apple-itunes-app',\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::SATISFIES => [\n                'amp-app-banner data source',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::META,
+        SpecRule::SPEC_NAME => 'meta name=apple-itunes-app',
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'content',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX => '.*app-id=.*',
+            ],
+            [
+                SpecRule::NAME => 'name',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'apple-itunes-app',
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::SATISFIES => [
+            'amp-app-banner data source',
+        ],
+    ];
 }

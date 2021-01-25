@@ -7,7 +7,36 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSidebarNav
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSidebarNav extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::NAV,\nSpecRule::SPEC_NAME => 'amp-sidebar > nav',\nSpecRule::MANDATORY_PARENT => Extension::SIDEBAR,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TOOLBAR,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n    ],\n    [\n        SpecRule::NAME => Attribute::TOOLBAR_TARGET,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'OL',\n                    'UL',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::NAV,
+        SpecRule::SPEC_NAME => 'amp-sidebar > nav',
+        SpecRule::MANDATORY_PARENT => Extension::SIDEBAR,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'toolbar',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+            ],
+            [
+                SpecRule::NAME => 'toolbar-target',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'OL',
+                'UL',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

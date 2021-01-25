@@ -7,7 +7,53 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryPage
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryPage extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_PAGE,\nSpecRule::MANDATORY_PARENT => Extension::STORY,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTO_ADVANCE_AFTER,\n    ],\n    [\n        SpecRule::NAME => Attribute::BACKGROUND_AUDIO,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::NEXT_PAGE_NO_AD,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'mandatory-id-attr',\n            ],\nSpecRule::CHILD_TAGS => [\n                'childTagNameOneof' => [\n                    'AMP-ANALYTICS',\n                    'AMP-PIXEL',\n                    'AMP-STORY-ANIMATION',\n                    'AMP-STORY-CTA-LAYER',\n                    'AMP-STORY-GRID-LAYER',\n                    'AMP-STORY-PAGE-ATTACHMENT',\n                ],\n                'mandatoryMinNumChildTags' => 1,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::SATISFIES => [\n                'amp-story-page',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_PAGE,
+        SpecRule::MANDATORY_PARENT => Extension::STORY,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'auto-advance-after',
+            ],
+            [
+                SpecRule::NAME => 'background-audio',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'next-page-no-ad',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'mandatory-id-attr',
+        ],
+        SpecRule::CHILD_TAGS => [
+            'childTagNameOneof' => [
+                'AMP-ANALYTICS',
+                'AMP-PIXEL',
+                'AMP-STORY-ANIMATION',
+                'AMP-STORY-CTA-LAYER',
+                'AMP-STORY-GRID-LAYER',
+                'AMP-STORY-PAGE-ATTACHMENT',
+            ],
+            'mandatoryMinNumChildTags' => 1,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::SATISFIES => [
+            'amp-story-page',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story',
+        ],
+    ];
 }

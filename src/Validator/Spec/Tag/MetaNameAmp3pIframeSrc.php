@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class MetaNameAmp3pIframeSrc
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class MetaNameAmp3pIframeSrc extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::META,\nSpecRule::SPEC_NAME => 'meta name=amp-3p-iframe-src',\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::CONTENT,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::NAME,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'amp-3p-iframe-src',\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::META,
+        SpecRule::SPEC_NAME => 'meta name=amp-3p-iframe-src',
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'content',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'name',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'amp-3p-iframe-src',
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

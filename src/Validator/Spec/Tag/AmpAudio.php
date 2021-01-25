@@ -7,7 +7,51 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAudio
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAudio extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::AUDIO,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::PRELOAD,\n        SpecRule::VALUE_CASEI => [\n                        'auto',\n                        'metadata',\n                        'none',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'amp-audio-common',\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::NODISPLAY,\n                ],\n                'definesDefaultWidth' => true,\n                'definesDefaultHeight' => true,\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-STORY',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-audio',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::AUDIO,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'preload',
+                SpecRule::VALUE_CASEI => [
+                    'auto',
+                    'metadata',
+                    'none',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'amp-audio-common',
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::NODISPLAY,
+            ],
+            'definesDefaultWidth' => true,
+            'definesDefaultHeight' => true,
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-STORY',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-audio',
+        ],
+    ];
 }

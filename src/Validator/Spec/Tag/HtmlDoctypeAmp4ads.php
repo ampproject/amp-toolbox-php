@@ -7,7 +7,30 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class HtmlDoctypeAmp4ads
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class HtmlDoctypeAmp4ads extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::_DOCTYPE,\nSpecRule::SPEC_NAME => 'html doctype (AMP4ADS)',\nSpecRule::MANDATORY => true,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => '\$ROOT',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::HTML,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',\nSpecRule::HTML_FORMAT => [\n                Format::AMP4ADS,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'html !doctype',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::_DOCTYPE,
+        SpecRule::SPEC_NAME => 'html doctype (AMP4ADS)',
+        SpecRule::MANDATORY => true,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => '$ROOT',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'html',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4ADS,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'html !doctype',
+    ];
 }

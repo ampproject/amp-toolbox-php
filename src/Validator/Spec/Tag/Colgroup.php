@@ -7,7 +7,22 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Colgroup
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Colgroup extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::COLGROUP,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SPAN,\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::COLGROUP,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'span',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

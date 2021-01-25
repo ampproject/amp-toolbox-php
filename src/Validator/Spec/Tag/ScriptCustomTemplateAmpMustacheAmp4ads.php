@@ -7,7 +7,31 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptCustomTemplateAmpMustacheAmp4ads
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptCustomTemplateAmpMustacheAmp4ads extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'SCRIPT[custom-template=amp-mustache] (AMP4ADS)',\nSpecRule::ATTR_LISTS => [\n                'common-extension-attrs',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4ADS,\n            ],\nSpecRule::EXTENSION_SPEC => [\n                'name' => 'amp-mustache',\n                'version' => [\n                    '0.1',\n                    '0.2',\n                    'latest',\n                ],\n                'deprecatedVersion' => [\n                    '0.1',\n                ],\n                'extensionType' => 'CUSTOM_TEMPLATE',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'SCRIPT[custom-template=amp-mustache] (AMP4ADS)',
+        SpecRule::ATTR_LISTS => [
+            'common-extension-attrs',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4ADS,
+        ],
+        SpecRule::EXTENSION_SPEC => [
+            SpecRule::NAME => 'amp-mustache',
+            SpecRule::VERSION => [
+                '0.1',
+                '0.2',
+                'latest',
+            ],
+            SpecRule::DEPRECATED_VERSION => [
+                '0.1',
+            ],
+            SpecRule::EXTENSION_TYPE => 'CUSTOM_TEMPLATE',
+        ],
+    ];
 }

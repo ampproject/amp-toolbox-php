@@ -7,7 +7,161 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Textarea
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Textarea extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TEXTAREA,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOCOMPLETE,\n    ],\n    [\n        SpecRule::NAME => Attribute::AUTOEXPAND,\n        SpecRule::REQUIRES_EXTENSION => [\n                        'amp-form',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::AUTOFOCUS,\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::COLS,\n    ],\n    [\n        SpecRule::NAME => Attribute::DISABLED,\n    ],\n    [\n        SpecRule::NAME => Attribute::MAXLENGTH,\n    ],\n    [\n        SpecRule::NAME => Attribute::MINLENGTH,\n    ],\n    [\n        SpecRule::NAME => Attribute::NO_VERIFY,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::PATTERN,\n    ],\n    [\n        SpecRule::NAME => Attribute::PLACEHOLDER,\n    ],\n    [\n        SpecRule::NAME => Attribute::READONLY,\n    ],\n    [\n        SpecRule::NAME => Attribute::REQUIRED,\n    ],\n    [\n        SpecRule::NAME => Attribute::ROWS,\n    ],\n    [\n        SpecRule::NAME => Attribute::SELECTIONDIRECTION,\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SELECTIONEND,\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SELECTIONSTART,\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SPELLCHECK,\n    ],\n    [\n        SpecRule::NAME => Attribute::WRAP,\n    ],\n    [\n        SpecRule::NAME => '[AUTOCOMPLETE]',\n    ],\n    [\n        SpecRule::NAME => '[AUTOFOCUS]',\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[COLS]',\n    ],\n    [\n        SpecRule::NAME => '[DEFAULTTEXT]',\n    ],\n    [\n        SpecRule::NAME => '[DISABLED]',\n    ],\n    [\n        SpecRule::NAME => '[MAXLENGTH]',\n    ],\n    [\n        SpecRule::NAME => '[MINLENGTH]',\n    ],\n    [\n        SpecRule::NAME => '[PATTERN]',\n    ],\n    [\n        SpecRule::NAME => '[PLACEHOLDER]',\n    ],\n    [\n        SpecRule::NAME => '[READONLY]',\n    ],\n    [\n        SpecRule::NAME => '[REQUIRED]',\n    ],\n    [\n        SpecRule::NAME => '[ROWS]',\n    ],\n    [\n        SpecRule::NAME => '[SELECTIONDIRECTION]',\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[SELECTIONEND]',\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[SELECTIONSTART]',\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[SPELLCHECK]',\n    ],\n    [\n        SpecRule::NAME => '[WRAP]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'name-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TEXTAREA,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autocomplete',
+            ],
+            [
+                SpecRule::NAME => 'autoexpand',
+                SpecRule::REQUIRES_EXTENSION => [
+                    'amp-form',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'autofocus',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'cols',
+            ],
+            [
+                SpecRule::NAME => 'disabled',
+            ],
+            [
+                SpecRule::NAME => 'maxlength',
+            ],
+            [
+                SpecRule::NAME => 'minlength',
+            ],
+            [
+                SpecRule::NAME => 'no-verify',
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'pattern',
+            ],
+            [
+                SpecRule::NAME => 'placeholder',
+            ],
+            [
+                SpecRule::NAME => 'readonly',
+            ],
+            [
+                SpecRule::NAME => 'required',
+            ],
+            [
+                SpecRule::NAME => 'rows',
+            ],
+            [
+                SpecRule::NAME => 'selectiondirection',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'selectionend',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'selectionstart',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'spellcheck',
+            ],
+            [
+                SpecRule::NAME => 'wrap',
+            ],
+            [
+                SpecRule::NAME => '[autocomplete]',
+            ],
+            [
+                SpecRule::NAME => '[autofocus]',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[cols]',
+            ],
+            [
+                SpecRule::NAME => '[defaulttext]',
+            ],
+            [
+                SpecRule::NAME => '[disabled]',
+            ],
+            [
+                SpecRule::NAME => '[maxlength]',
+            ],
+            [
+                SpecRule::NAME => '[minlength]',
+            ],
+            [
+                SpecRule::NAME => '[pattern]',
+            ],
+            [
+                SpecRule::NAME => '[placeholder]',
+            ],
+            [
+                SpecRule::NAME => '[readonly]',
+            ],
+            [
+                SpecRule::NAME => '[required]',
+            ],
+            [
+                SpecRule::NAME => '[rows]',
+            ],
+            [
+                SpecRule::NAME => '[selectiondirection]',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[selectionend]',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[selectionstart]',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[spellcheck]',
+            ],
+            [
+                SpecRule::NAME => '[wrap]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'name-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

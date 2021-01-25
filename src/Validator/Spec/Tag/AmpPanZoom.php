@@ -7,7 +7,59 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpPanZoom
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpPanZoom extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::PAN_ZOOM,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DISABLE_DOUBLE_TAP,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::INITIAL_SCALE,\n        SpecRule::VALUE_REGEX => '[0-9]+(\\.[0-9]+)?',\n    ],\n    [\n        SpecRule::NAME => Attribute::INITIAL_X,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::INITIAL_Y,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::MAX_SCALE,\n        SpecRule::VALUE_REGEX => '[0-9]+(\\.[0-9]+)?',\n    ],\n    [\n        SpecRule::NAME => Attribute::RESET_ON_RESIZE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-pan-zoom',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::PAN_ZOOM,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'disable-double-tap',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'initial-scale',
+                SpecRule::VALUE_REGEX => '[0-9]+(\.[0-9]+)?',
+            ],
+            [
+                SpecRule::NAME => 'initial-x',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'initial-y',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'max-scale',
+                SpecRule::VALUE_REGEX => '[0-9]+(\.[0-9]+)?',
+            ],
+            [
+                SpecRule::NAME => 'reset-on-resize',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-pan-zoom',
+        ],
+    ];
 }

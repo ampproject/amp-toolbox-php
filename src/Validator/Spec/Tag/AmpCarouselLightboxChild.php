@@ -7,7 +7,22 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpCarouselLightboxChild
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpCarouselLightboxChild extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-CAROUSEL lightbox [child]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::LIGHTBOX_THUMBNAIL_ID,\n        SpecRule::VALUE_REGEX_CASEI => '^[a-z][a-z\\d_-]*',\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-CAROUSEL lightbox [child]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'lightbox-thumbnail-id',
+                SpecRule::VALUE_REGEX_CASEI => '^[a-z][a-z\d_-]*',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

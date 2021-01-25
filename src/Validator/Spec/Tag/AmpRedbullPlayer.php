@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpRedbullPlayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpRedbullPlayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::REDBULL_PLAYER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_PARAM_VIDEOID,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::RESPONSIVE,\n                    Layout::FILL,\n                    Layout::FLEX_ITEM,\n                    Layout::FLUID,\n                    Layout::INTRINSIC,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-redbull-player',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::REDBULL_PLAYER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-param-videoid',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::RESPONSIVE,
+                Layout::FILL,
+                Layout::FLEX_ITEM,
+                Layout::FLUID,
+                Layout::INTRINSIC,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-redbull-player',
+        ],
+    ];
 }

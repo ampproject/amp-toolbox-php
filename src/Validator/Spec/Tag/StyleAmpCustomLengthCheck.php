@@ -7,7 +7,43 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class StyleAmpCustomLengthCheck
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class StyleAmpCustomLengthCheck extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::STYLE,\nSpecRule::SPEC_NAME => 'style amp-custom-length-check',\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AMP_CUSTOM_LENGTH_CHECK,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::VALUE_CASEI => [\n                        'text/css',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n            ],\nSpecRule::CDATA => [\n                SpecRule::MAX_BYTES => -1,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'style amp-custom-length-check',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::STYLE,
+        SpecRule::SPEC_NAME => 'style amp-custom-length-check',
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'amp-custom-length-check',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::VALUE_CASEI => [
+                    'text/css',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+        ],
+        SpecRule::CDATA => [
+            SpecRule::MAX_BYTES => -1,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'style amp-custom-length-check',
+    ];
 }

@@ -7,7 +7,25 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryPanningMedia
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryPanningMedia extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_PANNING_MEDIA,\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-panning-media',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                ],\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story-panning-media',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_PANNING_MEDIA,
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-panning-media',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story-panning-media',
+        ],
+    ];
 }

@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class HtmlTransformed
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class HtmlTransformed extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::HTML,\nSpecRule::SPEC_NAME => 'html (transformed)',\nSpecRule::MANDATORY => true,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::_DOCTYPE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::I_AMPHTML_LAYOUT,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::I_AMPHTML_NO_BOILERPLATE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::ENABLED_BY => [\n                'transformed',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::HTML,
+        SpecRule::SPEC_NAME => 'html (transformed)',
+        SpecRule::MANDATORY => true,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::_DOCTYPE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'i-amphtml-layout',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'i-amphtml-no-boilerplate',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::ENABLED_BY => [
+            'transformed',
+        ],
+    ];
 }

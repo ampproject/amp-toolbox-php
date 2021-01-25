@@ -7,7 +7,79 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpScript
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpScript extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::SCRIPT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_AMPDEVMODE,\n        SpecRule::VALUE => [\n                        'false',\n                    ],\n        SpecRule::DISALLOWED_VALUE_REGEX => 'false',\n    ],\n    [\n        SpecRule::NAME => Attribute::MAX_AGE,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'script',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::NODOM,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SANDBOX,\n    ],\n    [\n        SpecRule::NAME => Attribute::SCRIPT,\n        SpecRule::MANDATORY_ONEOF => '[\\'script\\', \\'src\\']',\n        SpecRule::VALUE_ONEOF_SET => 'AMP_SCRIPT_IDS',\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::MANDATORY_ONEOF => '[\\'script\\', \\'src\\']',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::CONTAINER,\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-SCRIPT',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-script',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::SCRIPT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-ampdevmode',
+                SpecRule::VALUE => [
+                    'false',
+                ],
+                SpecRule::DISALLOWED_VALUE_REGEX => 'false',
+            ],
+            [
+                SpecRule::NAME => 'max-age',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'script',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'nodom',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'sandbox',
+            ],
+            [
+                SpecRule::NAME => 'script',
+                SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
+                SpecRule::VALUE_ONEOF_SET => 'AMP_SCRIPT_IDS',
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::CONTAINER,
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-SCRIPT',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-script',
+        ],
+    ];
 }

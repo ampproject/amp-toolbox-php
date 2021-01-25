@@ -7,7 +7,61 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSpringboardPlayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSpringboardPlayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::SPRINGBOARD_PLAYER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_CONTENT_ID,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_DOMAIN,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_ITEMS,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_MODE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_CASEI => [\n                        'playlist',\n                        'video',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_PLAYER_ID,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX_CASEI => '[a-z0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_SITE_ID,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FLEX_ITEM,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-springboard-player',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::SPRINGBOARD_PLAYER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-content-id',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'data-domain',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'data-items',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'data-mode',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_CASEI => [
+                    'playlist',
+                    'video',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-player-id',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX_CASEI => '[a-z0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-site-id',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FLEX_ITEM,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-springboard-player',
+        ],
+    ];
 }

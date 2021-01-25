@@ -7,7 +7,66 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveList
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpLiveList extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::LIVE_LIST,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_MAX_ITEMS_PER_PAGE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX => '\\d+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_POLL_INTERVAL,\n        SpecRule::VALUE_REGEX => '\\d{5,}',\n    ],\n    [\n        SpecRule::NAME => Attribute::DISABLED,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SORT,\n        SpecRule::VALUE => [\n                        'ascending',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'mandatory-id-attr',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::CONTAINER,\n                    Layout::FIXED_HEIGHT,\n                ],\n            ],\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-LIVE-LIST [update]',\n                    'mandatory' => true,\n                    'unique' => true,\n                ],\n                [\n                    'tagSpecName' => 'AMP-LIVE-LIST [items]',\n                    'mandatory' => true,\n                    'unique' => true,\n                ],\n                [\n                    'tagSpecName' => 'AMP-LIVE-LIST [pagination]',\n                    'unique' => true,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-live-list',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::LIVE_LIST,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-max-items-per-page',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX => '\d+',
+            ],
+            [
+                SpecRule::NAME => 'data-poll-interval',
+                SpecRule::VALUE_REGEX => '\d{5,}',
+            ],
+            [
+                SpecRule::NAME => 'disabled',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'sort',
+                SpecRule::VALUE => [
+                    'ascending',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'mandatory-id-attr',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::CONTAINER,
+                Layout::FIXED_HEIGHT,
+            ],
+        ],
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-LIVE-LIST [update]',
+                SpecRule::MANDATORY => true,
+                SpecRule::UNIQUE => true,
+            ],
+            [
+                'tagSpecName' => 'AMP-LIVE-LIST [items]',
+                SpecRule::MANDATORY => true,
+                SpecRule::UNIQUE => true,
+            ],
+            [
+                'tagSpecName' => 'AMP-LIVE-LIST [pagination]',
+                SpecRule::UNIQUE => true,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-live-list',
+        ],
+    ];
 }

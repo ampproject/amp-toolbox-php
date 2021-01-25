@@ -7,7 +7,47 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpLightboxAmp4ads
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpLightboxAmp4ads extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::LIGHTBOX,\nSpecRule::SPEC_NAME => 'amp-lightbox [AMP4ADS]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ANIMATE_IN,\n        SpecRule::VALUE_CASEI => [\n                        'fade-in',\n                        'fly-in-bottom',\n                        'fly-in-top',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::CLOSE_BUTTON,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::CONTROLS,\n    ],\n    [\n        SpecRule::NAME => Attribute::FROM,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-lightbox',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::LIGHTBOX,
+        SpecRule::SPEC_NAME => 'amp-lightbox [AMP4ADS]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'animate-in',
+                SpecRule::VALUE_CASEI => [
+                    'fade-in',
+                    'fly-in-bottom',
+                    'fly-in-top',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'close-button',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'controls',
+            ],
+            [
+                SpecRule::NAME => 'from',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-lightbox',
+        ],
+    ];
 }

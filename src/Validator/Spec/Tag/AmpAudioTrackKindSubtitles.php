@@ -7,7 +7,32 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAudioTrackKindSubtitles
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAudioTrackKindSubtitles extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TRACK,\nSpecRule::SPEC_NAME => 'amp-audio > track[kind=subtitles]',\nSpecRule::MANDATORY_PARENT => Extension::AUDIO,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => '[LABEL]',\n    ],\n    [\n        SpecRule::NAME => '[SRC]',\n    ],\n    [\n        SpecRule::NAME => '[SRCLANG]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'track-attrs-subtitles',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TRACK,
+        SpecRule::SPEC_NAME => 'amp-audio > track[kind=subtitles]',
+        SpecRule::MANDATORY_PARENT => Extension::AUDIO,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => '[label]',
+            ],
+            [
+                SpecRule::NAME => '[src]',
+            ],
+            [
+                SpecRule::NAME => '[srclang]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'track-attrs-subtitles',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

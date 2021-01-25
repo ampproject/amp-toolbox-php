@@ -7,7 +7,21 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryAutoAds
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryAutoAds extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_AUTO_ADS,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Extension::STORY,\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-auto-ads/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story-auto-ads',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_AUTO_ADS,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Extension::STORY,
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-auto-ads/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story-auto-ads',
+        ],
+    ];
 }

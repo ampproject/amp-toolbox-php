@@ -7,7 +7,31 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class FormDivVerifyErrorTemplate
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class FormDivVerifyErrorTemplate extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::DIV,\nSpecRule::SPEC_NAME => 'FORM DIV [verify-error][template]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALIGN,\n    ],\n    [\n        SpecRule::NAME => Attribute::VERIFY_ERROR,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TEMPLATE,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::MANDATORY_ANCESTOR => Element::FORM,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::DIV,
+        SpecRule::SPEC_NAME => 'FORM DIV [verify-error][template]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'align',
+            ],
+            [
+                SpecRule::NAME => 'verify-error',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'template',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Element::FORM,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

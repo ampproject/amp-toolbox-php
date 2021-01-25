@@ -7,7 +7,33 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpGist
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpGist extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::GIST,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_GISTID,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-gist/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED_HEIGHT,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-gist',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::GIST,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-gistid',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-gist/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED_HEIGHT,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-gist',
+        ],
+    ];
 }

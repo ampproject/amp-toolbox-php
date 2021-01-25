@@ -7,7 +7,53 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpBeopinion
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpBeopinion extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::BEOPINION,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_ACCOUNT,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX_CASEI => '[0-9a-f]{24}',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_CONTENT,\n        SpecRule::VALUE_REGEX_CASEI => '[0-9a-f]{24}',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_MY_CONTENT,\n        SpecRule::VALUE => [\n                        '0',\n                        '1',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_NAME,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-beopinion',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::BEOPINION,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-account',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX_CASEI => '[0-9a-f]{24}',
+            ],
+            [
+                SpecRule::NAME => 'data-content',
+                SpecRule::VALUE_REGEX_CASEI => '[0-9a-f]{24}',
+            ],
+            [
+                SpecRule::NAME => 'data-my-content',
+                SpecRule::VALUE => [
+                    '0',
+                    '1',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-name',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-beopinion',
+        ],
+    ];
 }

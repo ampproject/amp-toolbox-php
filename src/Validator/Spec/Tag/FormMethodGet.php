@@ -7,7 +7,94 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class FormMethodGet
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class FormMethodGet extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::FORM,\nSpecRule::SPEC_NAME => 'FORM [method=GET]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ACCEPT,\n    ],\n    [\n        SpecRule::NAME => Attribute::ACCEPT_CHARSET,\n    ],\n    [\n        SpecRule::NAME => Attribute::ACTION,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ACTION_XHR,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::AUTOCOMPLETE,\n    ],\n    [\n        SpecRule::NAME => Attribute::CUSTOM_VALIDATION_REPORTING,\n        SpecRule::VALUE => [\n                        'as-you-go',\n                        'interact-and-submit',\n                        'show-all-on-submit',\n                        'show-first-on-submit',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ENCTYPE,\n    ],\n    [\n        SpecRule::NAME => Attribute::METHOD,\n        SpecRule::VALUE_CASEI => [\n                        'get',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::NOVALIDATE,\n    ],\n    [\n        SpecRule::NAME => Attribute::TARGET,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_CASEI => [\n                        '_blank',\n                        '_top',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::VERIFY_XHR,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'form-name-attr',\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-APP-BANNER',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-form',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::FORM,
+        SpecRule::SPEC_NAME => 'FORM [method=GET]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'accept',
+            ],
+            [
+                SpecRule::NAME => 'accept-charset',
+            ],
+            [
+                SpecRule::NAME => 'action',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'action-xhr',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'autocomplete',
+            ],
+            [
+                SpecRule::NAME => 'custom-validation-reporting',
+                SpecRule::VALUE => [
+                    'as-you-go',
+                    'interact-and-submit',
+                    'show-all-on-submit',
+                    'show-first-on-submit',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'enctype',
+            ],
+            [
+                SpecRule::NAME => 'method',
+                SpecRule::VALUE_CASEI => [
+                    'get',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'novalidate',
+            ],
+            [
+                SpecRule::NAME => 'target',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_CASEI => [
+                    '_blank',
+                    '_top',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'verify-xhr',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'form-name-attr',
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-APP-BANNER',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-form',
+        ],
+    ];
 }

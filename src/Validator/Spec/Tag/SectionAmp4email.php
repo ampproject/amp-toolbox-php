@@ -7,7 +7,19 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class SectionAmp4email
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class SectionAmp4email extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SECTION,\nSpecRule::SPEC_NAME => 'section (AMP4EMAIL)',\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-ACCORDION',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SECTION,
+        SpecRule::SPEC_NAME => 'section (AMP4EMAIL)',
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-ACCORDION',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

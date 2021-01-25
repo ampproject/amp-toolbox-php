@@ -7,7 +7,30 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpEmbedlyKey
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpEmbedlyKey extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::EMBEDLY_KEY,\nSpecRule::UNIQUE => true,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::VALUE,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-embedly-card',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::EMBEDLY_KEY,
+        SpecRule::UNIQUE => true,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'value',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-embedly-card',
+        ],
+    ];
 }

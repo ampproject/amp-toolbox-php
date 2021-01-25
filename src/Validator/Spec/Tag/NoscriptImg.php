@@ -7,7 +7,73 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class NoscriptImg
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class NoscriptImg extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::IMG,\nSpecRule::SPEC_NAME => 'noscript > img',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALT,\n    ],\n    [\n        SpecRule::NAME => Attribute::ATTRIBUTION,\n    ],\n    [\n        SpecRule::NAME => Attribute::BORDER,\n    ],\n    [\n        SpecRule::NAME => Attribute::DECODING,\n        SpecRule::VALUE => [\n                        'async',\n                        'auto',\n                        'sync',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::HEIGHT,\n    ],\n    [\n        SpecRule::NAME => Attribute::IMPORTANCE,\n    ],\n    [\n        SpecRule::NAME => Attribute::ISMAP,\n    ],\n    [\n        SpecRule::NAME => Attribute::INTRINSICSIZE,\n    ],\n    [\n        SpecRule::NAME => Attribute::LOADING,\n    ],\n    [\n        SpecRule::NAME => Attribute::LONGDESC,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SIZES,\n    ],\n    [\n        SpecRule::NAME => Attribute::WIDTH,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'mandatory-src-or-srcset',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',\nSpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,\nSpecRule::MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE => Extension::IMG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'img',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::IMG,
+        SpecRule::SPEC_NAME => 'noscript > img',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'alt',
+            ],
+            [
+                SpecRule::NAME => 'attribution',
+            ],
+            [
+                SpecRule::NAME => 'border',
+            ],
+            [
+                SpecRule::NAME => 'decoding',
+                SpecRule::VALUE => [
+                    'async',
+                    'auto',
+                    'sync',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'height',
+            ],
+            [
+                SpecRule::NAME => 'importance',
+            ],
+            [
+                SpecRule::NAME => 'ismap',
+            ],
+            [
+                SpecRule::NAME => 'intrinsicsize',
+            ],
+            [
+                SpecRule::NAME => 'loading',
+            ],
+            [
+                SpecRule::NAME => 'longdesc',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'sizes',
+            ],
+            [
+                SpecRule::NAME => 'width',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'mandatory-src-or-srcset',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',
+        SpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,
+        SpecRule::MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE => Extension::IMG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'img',
+    ];
 }

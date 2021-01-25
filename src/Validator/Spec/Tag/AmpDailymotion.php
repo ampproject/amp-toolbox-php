@@ -7,7 +7,90 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpDailymotion
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpDailymotion extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::DAILYMOTION,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_ENDSCREEN_ENABLE,\n        SpecRule::VALUE => [\n                        'false',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_INFO,\n        SpecRule::VALUE => [\n                        'false',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_MUTE,\n        SpecRule::VALUE => [\n                        'false',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_SHARING_ENABLE,\n        SpecRule::VALUE => [\n                        'false',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_START,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_UI_HIGHLIGHT,\n        SpecRule::VALUE_REGEX_CASEI => '([0-9a-f]{3}){1,2}',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_UI_LOGO,\n        SpecRule::VALUE => [\n                        'false',\n                        'true',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_VIDEOID,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX_CASEI => '[a-z0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DOCK,\n        SpecRule::REQUIRES_EXTENSION => [\n                        'amp-video-docking',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-dailymotion/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-dailymotion',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::DAILYMOTION,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+            ],
+            [
+                SpecRule::NAME => 'data-endscreen-enable',
+                SpecRule::VALUE => [
+                    'false',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-info',
+                SpecRule::VALUE => [
+                    'false',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-mute',
+                SpecRule::VALUE => [
+                    'false',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-sharing-enable',
+                SpecRule::VALUE => [
+                    'false',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-start',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-ui-highlight',
+                SpecRule::VALUE_REGEX_CASEI => '([0-9a-f]{3}){1,2}',
+            ],
+            [
+                SpecRule::NAME => 'data-ui-logo',
+                SpecRule::VALUE => [
+                    'false',
+                    'true',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-videoid',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX_CASEI => '[a-z0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'dock',
+                SpecRule::REQUIRES_EXTENSION => [
+                    'amp-video-docking',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-dailymotion/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-dailymotion',
+        ],
+    ];
 }

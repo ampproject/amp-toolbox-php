@@ -7,7 +7,20 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class H6AmpNestedMenu
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class H6AmpNestedMenu extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::H6,\nSpecRule::SPEC_NAME => 'h6 amp-nested-menu',\nSpecRule::ATTR_LISTS => [\n                'amp-nested-menu-actions',\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::NESTED_MENU,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::H6,
+        SpecRule::SPEC_NAME => 'h6 amp-nested-menu',
+        SpecRule::ATTR_LISTS => [
+            'amp-nested-menu-actions',
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::NESTED_MENU,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

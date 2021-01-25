@@ -7,7 +7,36 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryBookend
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryBookend extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_BOOKEND,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::LAYOUT,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'nodisplay',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCENDANT_TAG_LIST => 'amp-story-bookend-allowed-descendants',\nSpecRule::MANDATORY_LAST_CHILD => true,\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_BOOKEND,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'layout',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'nodisplay',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCENDANT_TAG_LIST => 'amp-story-bookend-allowed-descendants',
+        SpecRule::MANDATORY_LAST_CHILD => true,
+    ];
 }

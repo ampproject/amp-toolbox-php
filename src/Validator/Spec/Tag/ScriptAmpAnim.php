@@ -7,7 +7,28 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpAnim
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptAmpAnim extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::ATTR_LISTS => [\n                'common-extension-attrs',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::EXTENSION_SPEC => [\n                'name' => 'amp-anim',\n                'version' => [\n                    '0.1',\n                    'latest',\n                ],\n                'deprecatedAllowDuplicates' => true,\n                'requiresUsage' => 'EXEMPTED',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::ATTR_LISTS => [
+            'common-extension-attrs',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::EXTENSION_SPEC => [
+            SpecRule::NAME => 'amp-anim',
+            SpecRule::VERSION => [
+                '0.1',
+                'latest',
+            ],
+            SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+            SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        ],
+    ];
 }

@@ -17,11 +17,11 @@ final class Doc
         $this->doc = [
             [
                 'htmlFormat' => [
-                    'AMP4EMAIL',
+                    Format::AMP4EMAIL,
                 ],
                 'maxBytes' => 200000,
                 'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-format/?format=email',
-            ],
+            ]
         ];
     }
 }

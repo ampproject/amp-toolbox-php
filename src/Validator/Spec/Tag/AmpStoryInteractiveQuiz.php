@@ -7,7 +7,52 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryInteractiveQuiz
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryInteractiveQuiz extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_QUIZ,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::OPTION_1_CORRECT,\n        SpecRule::MANDATORY_ONEOF => '[\\'option-1-correct\\', \\'option-2-correct\\', \\'option-3-correct\\', \\'option-4-correct\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_2_CORRECT,\n        SpecRule::MANDATORY_ONEOF => '[\\'option-1-correct\\', \\'option-2-correct\\', \\'option-3-correct\\', \\'option-4-correct\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_3_CORRECT,\n        SpecRule::MANDATORY_ONEOF => '[\\'option-1-correct\\', \\'option-2-correct\\', \\'option-3-correct\\', \\'option-4-correct\\']',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-3-text',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_4_CORRECT,\n        SpecRule::MANDATORY_ONEOF => '[\\'option-1-correct\\', \\'option-2-correct\\', \\'option-3-correct\\', \\'option-4-correct\\']',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-4-text',\n                        ],\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'interactive-options-text-attrs',\n                'interactive-options-confetti-attrs',\n                'interactive-shared-configs-attrs',\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story-interactive',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_QUIZ,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'option-1-correct',
+                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+            ],
+            [
+                SpecRule::NAME => 'option-2-correct',
+                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+            ],
+            [
+                SpecRule::NAME => 'option-3-correct',
+                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-3-text',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'option-4-correct',
+                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-4-text',
+                    ],
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'interactive-options-text-attrs',
+            'interactive-options-confetti-attrs',
+            'interactive-shared-configs-attrs',
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story-interactive',
+        ],
+    ];
 }

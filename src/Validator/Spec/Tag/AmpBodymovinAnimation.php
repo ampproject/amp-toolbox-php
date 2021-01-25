@@ -7,7 +7,58 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpBodymovinAnimation
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpBodymovinAnimation extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::BODYMOVIN_ANIMATION,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::LOOP,\n        SpecRule::VALUE_REGEX_CASEI => '[1-9][0-9]*|false|true',\n    ],\n    [\n        SpecRule::NAME => Attribute::NOAUTOPLAY,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::RENDERER,\n        SpecRule::VALUE_CASEI => [\n                        'svg',\n                        'html',\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-bodymovin-animation/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-bodymovin-animation',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::BODYMOVIN_ANIMATION,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'loop',
+                SpecRule::VALUE_REGEX_CASEI => '[1-9][0-9]*|false|true',
+            ],
+            [
+                SpecRule::NAME => 'noautoplay',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'renderer',
+                SpecRule::VALUE_CASEI => [
+                    'svg',
+                    'html',
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-bodymovin-animation/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-bodymovin-animation',
+        ],
+    ];
 }

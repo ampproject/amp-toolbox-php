@@ -7,7 +7,41 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpMegaphoneDataPlaylist
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpMegaphoneDataPlaylist extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::MEGAPHONE,\nSpecRule::SPEC_NAME => 'amp-megaphone [data-playlist]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_PLAYLIST,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n        SpecRule::VALUE_REGEX => '[A-Za-z0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_EPISODES,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'amp-megaphone-common',\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-megaphone',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::MEGAPHONE,
+        SpecRule::SPEC_NAME => 'amp-megaphone [data-playlist]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-playlist',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+                SpecRule::VALUE_REGEX => '[A-Za-z0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-episodes',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'amp-megaphone-common',
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-megaphone',
+        ],
+    ];
 }

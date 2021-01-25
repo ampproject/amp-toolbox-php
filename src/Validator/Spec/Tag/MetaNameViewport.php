@@ -7,7 +7,66 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class MetaNameViewport
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class MetaNameViewport extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::META,\nSpecRule::SPEC_NAME => 'meta name=viewport',\nSpecRule::MANDATORY => true,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::CONTENT,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_PROPERTIES => [\n                        'properties' => [\n                            [\n                                'name' => 'width',\n                                'mandatory' => true,\n                                'value' => 'device-width',\n                            ],\n                            [\n                                'name' => 'height',\n                            ],\n                            [\n                                'name' => 'initial-scale',\n                            ],\n                            [\n                                'name' => 'minimum-scale',\n                            ],\n                            [\n                                'name' => 'maximum-scale',\n                            ],\n                            [\n                                'name' => 'shrink-to-fit',\n                            ],\n                            [\n                                'name' => 'user-scalable',\n                            ],\n                            [\n                                'name' => 'viewport-fit',\n                            ],\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::NAME,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'viewport',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'meta name=viewport',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::META,
+        SpecRule::SPEC_NAME => 'meta name=viewport',
+        SpecRule::MANDATORY => true,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'content',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_PROPERTIES => [
+                    'properties' => [
+                        [
+                            'name' => 'width',
+                            'mandatory' => true,
+                            'value' => 'device-width',
+                        ],
+                        [
+                            'name' => 'height',
+                        ],
+                        [
+                            'name' => 'initial-scale',
+                        ],
+                        [
+                            'name' => 'minimum-scale',
+                        ],
+                        [
+                            'name' => 'maximum-scale',
+                        ],
+                        [
+                            'name' => 'shrink-to-fit',
+                        ],
+                        [
+                            'name' => 'user-scalable',
+                        ],
+                        [
+                            'name' => 'viewport-fit',
+                        ],
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'name',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'viewport',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'meta name=viewport',
+    ];
 }

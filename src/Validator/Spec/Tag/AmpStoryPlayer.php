@@ -7,7 +7,29 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryPlayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryPlayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_PLAYER,\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::RESPONSIVE,\n                    Layout::INTRINSIC,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story-player',\n            ],\nSpecRule::DESCENDANT_TAG_LIST => 'amp-story-player-allowed-descendants',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_PLAYER,
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::RESPONSIVE,
+                Layout::INTRINSIC,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story-player',
+        ],
+        SpecRule::DESCENDANT_TAG_LIST => 'amp-story-player-allowed-descendants',
+    ];
 }

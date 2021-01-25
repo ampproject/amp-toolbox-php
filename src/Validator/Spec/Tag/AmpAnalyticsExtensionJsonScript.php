@@ -7,7 +7,44 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAnalyticsExtensionJsonScript
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAnalyticsExtensionJsonScript extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'amp-analytics extension .json script',\nSpecRule::MANDATORY_PARENT => Extension::ANALYTICS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'application/json',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'nonce-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-analytics/',\nSpecRule::CDATA => [\n                SpecRule::DISALLOWED_CDATA_REGEX => [\n                    [\n                        'regex' => '<!--',\n                        'errorMessage' => 'html comments',\n                    ],\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-analytics',\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'amp-analytics extension .json script',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'amp-analytics extension .json script',
+        SpecRule::MANDATORY_PARENT => Extension::ANALYTICS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'application/json',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'nonce-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-analytics/',
+        SpecRule::CDATA => [
+            SpecRule::DISALLOWED_CDATA_REGEX => [
+                [
+                    'regex' => '<!--',
+                    'errorMessage' => 'html comments',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-analytics',
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-analytics extension .json script',
+    ];
 }

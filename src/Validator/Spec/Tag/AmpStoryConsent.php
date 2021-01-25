@@ -7,7 +7,37 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryConsent
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryConsent extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_CONSENT,\nSpecRule::MANDATORY_PARENT => Extension::CONSENT,\nSpecRule::ATTR_LISTS => [\n                'mandatory-id-attr',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'SCRIPT',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES => [\n                'amp-story-consent extension .json script',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-consent',\n                'amp-story',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_CONSENT,
+        SpecRule::MANDATORY_PARENT => Extension::CONSENT,
+        SpecRule::ATTR_LISTS => [
+            'mandatory-id-attr',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'SCRIPT',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES => [
+            'amp-story-consent extension .json script',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-consent',
+            'amp-story',
+        ],
+    ];
 }

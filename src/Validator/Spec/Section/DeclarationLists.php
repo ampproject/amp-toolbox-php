@@ -209,7 +209,7 @@ final class DeclarationLists
                             'initial',
                             'relative',
                             'static',
-                        ],
+                        ]
                     ],
                     Attribute::QUOTES => [],
                     Attribute::RESIZE => [],
@@ -256,7 +256,7 @@ final class DeclarationLists
                     Attribute::WORD_WRAP => [],
                     Attribute::WRITING_MODE => [],
                     Attribute::Z_INDEX => [
-                        SpecRule::VALUE_REGEX_CASEI => 'auto|initial|inherit|[-+]?[0-9]+',
+                        SpecRule::VALUE_REGEX_CASEI => 'auto|initial|inherit|[-+]?[0-9]+'
                     ],
                 ]
             ),
@@ -380,14 +380,14 @@ final class DeclarationLists
                         SpecRule::VALUE_CASEI => [
                             'initial',
                             'pointer',
-                        ],
+                        ]
                     ],
                     Attribute::DIRECTION => [],
                     Attribute::DISPLAY => [],
                     Attribute::ELEVATION => [],
                     Attribute::EMPTY_CELLS => [],
                     Attribute::FILTER => [
-                        SpecRule::VALUE_REGEX_CASEI => '^ *((blur|brightness|contrast|drop-shadow|grayscale|hue-rotate|invert|opacity|saturate|sepia)\(([^() ]*|(rgb|rgba|hsl|hsla)\([^()]*\))( +([^() ]*|(rgb|rgba|hsl|hsla)\([^()]*\)))*\) *)*$',
+                        SpecRule::VALUE_REGEX_CASEI => '^ *((blur|brightness|contrast|drop-shadow|grayscale|hue-rotate|invert|opacity|saturate|sepia)\(([^() ]*|(rgb|rgba|hsl|hsla)\([^()]*\))( +([^() ]*|(rgb|rgba|hsl|hsla)\([^()]*\)))*\) *)*$'
                     ],
                     Attribute::FLEX => [],
                     Attribute::FLEX_BASIS => [],
@@ -490,7 +490,7 @@ final class DeclarationLists
                             'initial',
                             'relative',
                             'static',
-                        ],
+                        ]
                     ],
                     Attribute::QUOTES => [],
                     Attribute::RESIZE => [],
@@ -529,12 +529,12 @@ final class DeclarationLists
                     Attribute::TRANSFORM_ORIGIN => [],
                     Attribute::TRANSFORM_STYLE => [],
                     Attribute::TRANSITION => [
-                        SpecRule::VALUE_REGEX_CASEI => '^ *((initial|unset)|(((none|offset-distance|opacity|transform|visibility)( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(s|ms)( *(linear|(ease|ease-in|ease-out|ease-in-out|cubic-bezier\( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(, *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?){3} *\))|(step-start|step-end|steps\( *(|-|\+)[0-9]+(, *(jump-start|jump-end|jump-none|jump-both|start|end))? *\)))( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(s|ms))?)?)?)(, *((none|offset-distance|opacity|transform|visibility)( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(s|ms)( *(linear|(ease|ease-in|ease-out|ease-in-out|cubic-bezier\( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(, *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?){3} *\))|(step-start|step-end|steps\( *(|-|\+)[0-9]+(, *(jump-start|jump-end|jump-none|jump-both|start|end))? *\)))( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(s|ms))?)?)?))*)) *$',
+                        SpecRule::VALUE_REGEX_CASEI => '^ *((initial|unset)|(((none|offset-distance|opacity|transform|visibility)( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(s|ms)( *(linear|(ease|ease-in|ease-out|ease-in-out|cubic-bezier\( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(, *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?){3} *\))|(step-start|step-end|steps\( *(|-|\+)[0-9]+(, *(jump-start|jump-end|jump-none|jump-both|start|end))? *\)))( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(s|ms))?)?)?)(, *((none|offset-distance|opacity|transform|visibility)( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(s|ms)( *(linear|(ease|ease-in|ease-out|ease-in-out|cubic-bezier\( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(, *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?){3} *\))|(step-start|step-end|steps\( *(|-|\+)[0-9]+(, *(jump-start|jump-end|jump-none|jump-both|start|end))? *\)))( *(|-|\+)([0-9]+|[0-9]*\.[0-9]+)(e(|-|\+)?[0-9]+)?(s|ms))?)?)?))*)) *$'
                     ],
                     Attribute::TRANSITION_DELAY => [],
                     Attribute::TRANSITION_DURATION => [],
                     Attribute::TRANSITION_PROPERTY => [
-                        SpecRule::VALUE_REGEX_CASEI => '^ *(initial|unset|(none|offset-distance|opacity|transform|visibility)(, *(none|offset-distance|opacity|transform|visibility))*) *$',
+                        SpecRule::VALUE_REGEX_CASEI => '^ *(initial|unset|(none|offset-distance|opacity|transform|visibility)(, *(none|offset-distance|opacity|transform|visibility))*) *$'
                     ],
                     Attribute::TRANSITION_TIMING_FUNCTION => [],
                     Attribute::UNICODE_BIDI => [],
@@ -544,7 +544,7 @@ final class DeclarationLists
                             'hidden',
                             'initial',
                             'visible',
-                        ],
+                        ]
                     ],
                     Attribute::VOICE_FAMILY => [],
                     Attribute::WHITE_SPACE => [],
@@ -554,7 +554,7 @@ final class DeclarationLists
                     Attribute::WORD_WRAP => [],
                     Attribute::WRITING_MODE => [],
                     Attribute::Z_INDEX => [
-                        SpecRule::VALUE_REGEX_CASEI => '([-+]?0)|([-+]?100)|([-+]?[1-9][0-9]?)',
+                        SpecRule::VALUE_REGEX_CASEI => '([-+]?0)|([-+]?100)|([-+]?[1-9][0-9]?)'
                     ],
                 ]
             ),

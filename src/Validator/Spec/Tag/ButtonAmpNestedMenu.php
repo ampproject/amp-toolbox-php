@@ -7,7 +7,20 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ButtonAmpNestedMenu
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ButtonAmpNestedMenu extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::BUTTON,\nSpecRule::SPEC_NAME => 'button amp-nested-menu',\nSpecRule::ATTR_LISTS => [\n                'amp-nested-menu-actions',\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::NESTED_MENU,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::BUTTON,
+        SpecRule::SPEC_NAME => 'button amp-nested-menu',
+        SpecRule::ATTR_LISTS => [
+            'amp-nested-menu-actions',
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::NESTED_MENU,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

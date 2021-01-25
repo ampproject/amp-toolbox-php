@@ -7,7 +7,65 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpDateDisplay
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpDateDisplay extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::DATE_DISPLAY,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATETIME,\n        SpecRule::MANDATORY_ONEOF => '[\\'datetime\\', \\'timestamp-ms\\', \\'timestamp-seconds\\']',\n        SpecRule::VALUE_REGEX => 'now|(\\d{4}-[01]\\d-[0-3]\\d(T[0-2]\\d:[0-5]\\d(:[0-6]\\d(\\.\\d\\d?\\d?)?)?(Z|[+-][0-1]\\d:[0-5]\\d)?)?)',\n    ],\n    [\n        SpecRule::NAME => Attribute::DISPLAY_IN,\n        SpecRule::VALUE_CASEI => [\n                        'utc',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OFFSET_SECONDS,\n        SpecRule::VALUE_REGEX => '-?\\d+',\n    ],\n    [\n        SpecRule::NAME => Attribute::LOCALE,\n    ],\n    [\n        SpecRule::NAME => Attribute::TEMPLATE,\n        SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',\n    ],\n    [\n        SpecRule::NAME => Attribute::TIMESTAMP_MS,\n        SpecRule::MANDATORY_ONEOF => '[\\'datetime\\', \\'timestamp-ms\\', \\'timestamp-seconds\\']',\n        SpecRule::VALUE_REGEX => '\\d+',\n    ],\n    [\n        SpecRule::NAME => Attribute::TIMESTAMP_SECONDS,\n        SpecRule::MANDATORY_ONEOF => '[\\'datetime\\', \\'timestamp-ms\\', \\'timestamp-seconds\\']',\n        SpecRule::VALUE_REGEX => '\\d+',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-date-display',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::DATE_DISPLAY,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'datetime',
+                SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::VALUE_REGEX => 'now|(\d{4}-[01]\d-[0-3]\d(T[0-2]\d:[0-5]\d(:[0-6]\d(\.\d\d?\d?)?)?(Z|[+-][0-1]\d:[0-5]\d)?)?)',
+            ],
+            [
+                SpecRule::NAME => 'display-in',
+                SpecRule::VALUE_CASEI => [
+                    'utc',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'offset-seconds',
+                SpecRule::VALUE_REGEX => '-?\d+',
+            ],
+            [
+                SpecRule::NAME => 'locale',
+            ],
+            [
+                SpecRule::NAME => 'template',
+                SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
+            ],
+            [
+                SpecRule::NAME => 'timestamp-ms',
+                SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::VALUE_REGEX => '\d+',
+            ],
+            [
+                SpecRule::NAME => 'timestamp-seconds',
+                SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::VALUE_REGEX => '\d+',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-date-display',
+        ],
+    ];
 }

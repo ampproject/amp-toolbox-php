@@ -7,7 +7,20 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpExperiment
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpExperiment extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::EXPERIMENT,\nSpecRule::UNIQUE => true,\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-experiment/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-experiment',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::EXPERIMENT,
+        SpecRule::UNIQUE => true,
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-experiment/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-experiment',
+        ],
+    ];
 }

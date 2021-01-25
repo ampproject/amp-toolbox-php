@@ -7,7 +7,127 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryInteractiveResults
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryInteractiveResults extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_RESULTS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::OPTION_1_RESULTS_CATEGORY,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_2_RESULTS_CATEGORY,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_3_RESULTS_CATEGORY,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_4_RESULTS_CATEGORY,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-3-results-category',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_1_IMAGE,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_2_IMAGE,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_3_IMAGE,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-3-results-category',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_4_IMAGE,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-4-results-category',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_1_TEXT,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_2_TEXT,\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_3_TEXT,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-3-results-category',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_4_TEXT,\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-4-results-category',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_1_RESULTS_THRESHOLD,\n        SpecRule::VALUE_REGEX => '\\d+(\\.\\d+)?',\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_2_RESULTS_THRESHOLD,\n        SpecRule::VALUE_REGEX => '\\d+(\\.\\d+)?',\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_3_RESULTS_THRESHOLD,\n        SpecRule::VALUE_REGEX => '\\d+(\\.\\d+)?',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-3-results-category',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OPTION_4_RESULTS_THRESHOLD,\n        SpecRule::VALUE_REGEX => '\\d+(\\.\\d+)?',\n        SpecRule::TRIGGER => [\n                        'alsoRequiresAttr' => [\n                            'option-4-results-category',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::PROMPT_TEXT,\n    ],\n    [\n        SpecRule::NAME => Attribute::THEME,\n        SpecRule::VALUE => [\n                        'light',\n                        'dark',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::CHIP_STYLE,\n        SpecRule::VALUE => [\n                        'flat',\n                        'transparent',\n                    ],\n    ],\n],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story-interactive',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_RESULTS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'option-1-results-category',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'option-2-results-category',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'option-3-results-category',
+            ],
+            [
+                SpecRule::NAME => 'option-4-results-category',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-3-results-category',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'option-1-image',
+            ],
+            [
+                SpecRule::NAME => 'option-2-image',
+            ],
+            [
+                SpecRule::NAME => 'option-3-image',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-3-results-category',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'option-4-image',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-4-results-category',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'option-1-text',
+            ],
+            [
+                SpecRule::NAME => 'option-2-text',
+            ],
+            [
+                SpecRule::NAME => 'option-3-text',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-3-results-category',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'option-4-text',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-4-results-category',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'option-1-results-threshold',
+                SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
+            ],
+            [
+                SpecRule::NAME => 'option-2-results-threshold',
+                SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
+            ],
+            [
+                SpecRule::NAME => 'option-3-results-threshold',
+                SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-3-results-category',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'option-4-results-threshold',
+                SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
+                SpecRule::TRIGGER => [
+                    'alsoRequiresAttr' => [
+                        'option-4-results-category',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'prompt-text',
+            ],
+            [
+                SpecRule::NAME => 'theme',
+                SpecRule::VALUE => [
+                    'light',
+                    'dark',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'chip-style',
+                SpecRule::VALUE => [
+                    'flat',
+                    'transparent',
+                ],
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story-interactive',
+        ],
+    ];
 }

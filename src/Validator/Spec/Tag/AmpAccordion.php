@@ -7,7 +7,57 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAccordion
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAccordion extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::ACCORDION,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ANIMATE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DISABLE_SESSION_STATES,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::EXPAND_SINGLE_SECTION,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-accordion/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::CONTAINER,\n                ],\n            ],\nSpecRule::CHILD_TAGS => [\n                'childTagNameOneof' => [\n                    'SECTION',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-accordion',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::ACCORDION,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'animate',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'disable-session-states',
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'expand-single-section',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-accordion/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::CONTAINER,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'childTagNameOneof' => [
+                'SECTION',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-accordion',
+        ],
+    ];
 }

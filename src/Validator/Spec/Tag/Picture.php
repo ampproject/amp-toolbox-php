@@ -7,7 +7,17 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Picture
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Picture extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::PICTURE,\nSpecRule::MANDATORY_PARENT => Element::NOSCRIPT,\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::PICTURE,
+        SpecRule::MANDATORY_PARENT => Element::NOSCRIPT,
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

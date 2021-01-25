@@ -7,7 +7,68 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Select
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Select extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SELECT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOFOCUS,\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DISABLED,\n    ],\n    [\n        SpecRule::NAME => Attribute::MULTIPLE,\n    ],\n    [\n        SpecRule::NAME => Attribute::NO_VERIFY,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::REQUIRED,\n    ],\n    [\n        SpecRule::NAME => Attribute::SIZE,\n    ],\n    [\n        SpecRule::NAME => '[AUTOFOCUS]',\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[DISABLED]',\n    ],\n    [\n        SpecRule::NAME => '[MULTIPLE]',\n    ],\n    [\n        SpecRule::NAME => '[REQUIRED]',\n    ],\n    [\n        SpecRule::NAME => '[SIZE]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'name-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SELECT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autofocus',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'disabled',
+            ],
+            [
+                SpecRule::NAME => 'multiple',
+            ],
+            [
+                SpecRule::NAME => 'no-verify',
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'required',
+            ],
+            [
+                SpecRule::NAME => 'size',
+            ],
+            [
+                SpecRule::NAME => '[autofocus]',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[disabled]',
+            ],
+            [
+                SpecRule::NAME => '[multiple]',
+            ],
+            [
+                SpecRule::NAME => '[required]',
+            ],
+            [
+                SpecRule::NAME => '[size]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'name-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

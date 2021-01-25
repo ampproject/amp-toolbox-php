@@ -7,7 +7,47 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpMegaphoneDataEpisode
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpMegaphoneDataEpisode extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::MEGAPHONE,\nSpecRule::SPEC_NAME => 'amp-megaphone [data-episode]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_EPISODE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n        SpecRule::VALUE_REGEX => '[A-Za-z0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_START,\n        SpecRule::VALUE_REGEX => '\\d+(\\.\\d+)?',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TILE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'amp-megaphone-common',\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-megaphone',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::MEGAPHONE,
+        SpecRule::SPEC_NAME => 'amp-megaphone [data-episode]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-episode',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+                SpecRule::VALUE_REGEX => '[A-Za-z0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-start',
+                SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
+            ],
+            [
+                SpecRule::NAME => 'data-tile',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'amp-megaphone-common',
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-megaphone',
+        ],
+    ];
 }

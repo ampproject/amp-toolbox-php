@@ -7,7 +7,60 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AAmp4email
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AAmp4email extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::A,\nSpecRule::SPEC_NAME => 'A (AMP4EMAIL)',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::BORDER,\n    ],\n    [\n        SpecRule::NAME => Attribute::HREF,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\\s){{|}}(.|\\s)|^{{.*[^}][^}]\$|^[^{][^{].*}}\$|^}}|{{\$|{{#|{{/|{{\\^',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                            'mailto',\n                            'tel',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::HREFLANG,\n    ],\n    [\n        SpecRule::NAME => Attribute::MEDIA,\n    ],\n    [\n        SpecRule::NAME => Attribute::ROLE,\n        SpecRule::IMPLICIT => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TABINDEX,\n        SpecRule::IMPLICIT => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TARGET,\n        SpecRule::VALUE => [\n                        '_blank',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::VALUE_CASEI => [\n                        'text/html',\n                    ],\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::A,
+        SpecRule::SPEC_NAME => 'A (AMP4EMAIL)',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'border',
+            ],
+            [
+                SpecRule::NAME => 'href',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                        'mailto',
+                        'tel',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'hreflang',
+            ],
+            [
+                SpecRule::NAME => 'media',
+            ],
+            [
+                SpecRule::NAME => 'role',
+                SpecRule::IMPLICIT => true,
+            ],
+            [
+                SpecRule::NAME => 'tabindex',
+                SpecRule::IMPLICIT => true,
+            ],
+            [
+                SpecRule::NAME => 'target',
+                SpecRule::VALUE => [
+                    '_blank',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::VALUE_CASEI => [
+                    'text/html',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

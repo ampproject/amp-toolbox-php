@@ -7,7 +7,56 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Text
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Text extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TEXT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DX,\n    ],\n    [\n        SpecRule::NAME => Attribute::DY,\n    ],\n    [\n        SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,\n    ],\n    [\n        SpecRule::NAME => Attribute::LENGTHADJUST,\n    ],\n    [\n        SpecRule::NAME => Attribute::ROTATE,\n    ],\n    [\n        SpecRule::NAME => Attribute::TEXT_ANCHOR,\n    ],\n    [\n        SpecRule::NAME => Attribute::TEXTLENGTH,\n    ],\n    [\n        SpecRule::NAME => Attribute::TRANSFORM,\n    ],\n    [\n        SpecRule::NAME => Attribute::X,\n    ],\n    [\n        SpecRule::NAME => Attribute::Y,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-conditional-processing-attributes',\n                'svg-core-attributes',\n                'svg-presentation-attributes',\n                'svg-style-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::SVG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TEXT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'dx',
+            ],
+            [
+                SpecRule::NAME => 'dy',
+            ],
+            [
+                SpecRule::NAME => 'externalresourcesrequired',
+            ],
+            [
+                SpecRule::NAME => 'lengthadjust',
+            ],
+            [
+                SpecRule::NAME => 'rotate',
+            ],
+            [
+                SpecRule::NAME => 'text-anchor',
+            ],
+            [
+                SpecRule::NAME => 'textlength',
+            ],
+            [
+                SpecRule::NAME => 'transform',
+            ],
+            [
+                SpecRule::NAME => 'x',
+            ],
+            [
+                SpecRule::NAME => 'y',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-conditional-processing-attributes',
+            'svg-core-attributes',
+            'svg-presentation-attributes',
+            'svg-style-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::SVG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

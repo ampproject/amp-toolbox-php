@@ -7,7 +7,66 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpYoutube
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpYoutube extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::YOUTUBE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n    ],\n    [\n        SpecRule::NAME => Attribute::LOOP,\n    ],\n    [\n        SpecRule::NAME => Attribute::CREDENTIALS,\n        SpecRule::VALUE_CASEI => [\n                        'include',\n                        'omit',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_LIVE_CHANNELID,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-live-channelid\\', \\'data-videoid\\']',\n        SpecRule::VALUE_REGEX => '[^=/?:]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_VIDEOID,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-live-channelid\\', \\'data-videoid\\']',\n        SpecRule::VALUE_REGEX => '[^=/?:]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DOCK,\n        SpecRule::REQUIRES_EXTENSION => [\n                        'amp-video-docking',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[DATA_VIDEOID]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n                'lightboxable-elements',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-youtube',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::YOUTUBE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+            ],
+            [
+                SpecRule::NAME => 'loop',
+            ],
+            [
+                SpecRule::NAME => 'credentials',
+                SpecRule::VALUE_CASEI => [
+                    'include',
+                    'omit',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-live-channelid',
+                SpecRule::MANDATORY_ONEOF => '[\'data-live-channelid\', \'data-videoid\']',
+                SpecRule::VALUE_REGEX => '[^=/?:]+',
+            ],
+            [
+                SpecRule::NAME => 'data-videoid',
+                SpecRule::MANDATORY_ONEOF => '[\'data-live-channelid\', \'data-videoid\']',
+                SpecRule::VALUE_REGEX => '[^=/?:]+',
+            ],
+            [
+                SpecRule::NAME => 'dock',
+                SpecRule::REQUIRES_EXTENSION => [
+                    'amp-video-docking',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[data-videoid]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+            'lightboxable-elements',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-youtube',
+        ],
+    ];
 }

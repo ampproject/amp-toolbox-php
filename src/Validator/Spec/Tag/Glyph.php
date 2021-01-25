@@ -7,7 +7,52 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Glyph
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Glyph extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::GLYPH,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ARABIC_FORM,\n    ],\n    [\n        SpecRule::NAME => Attribute::D,\n    ],\n    [\n        SpecRule::NAME => Attribute::GLYPH_NAME,\n    ],\n    [\n        SpecRule::NAME => Attribute::HORIZ_ADV_X,\n    ],\n    [\n        SpecRule::NAME => Attribute::ORIENTATION,\n    ],\n    [\n        SpecRule::NAME => Attribute::UNICODE,\n    ],\n    [\n        SpecRule::NAME => Attribute::VERT_ADV_Y,\n    ],\n    [\n        SpecRule::NAME => Attribute::VERT_ORIGIN_X,\n    ],\n    [\n        SpecRule::NAME => Attribute::VERT_ORIGIN_Y,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-core-attributes',\n                'svg-presentation-attributes',\n                'svg-style-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::SVG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::GLYPH,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'arabic-form',
+            ],
+            [
+                SpecRule::NAME => 'd',
+            ],
+            [
+                SpecRule::NAME => 'glyph-name',
+            ],
+            [
+                SpecRule::NAME => 'horiz-adv-x',
+            ],
+            [
+                SpecRule::NAME => 'orientation',
+            ],
+            [
+                SpecRule::NAME => 'unicode',
+            ],
+            [
+                SpecRule::NAME => 'vert-adv-y',
+            ],
+            [
+                SpecRule::NAME => 'vert-origin-x',
+            ],
+            [
+                SpecRule::NAME => 'vert-origin-y',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-core-attributes',
+            'svg-presentation-attributes',
+            'svg-style-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::SVG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

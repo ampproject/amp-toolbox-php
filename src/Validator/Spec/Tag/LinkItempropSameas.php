@@ -7,7 +7,36 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class LinkItempropSameas
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class LinkItempropSameas extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::LINK,\nSpecRule::SPEC_NAME => 'link itemprop=sameAs',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::HREF,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::ITEMPROP,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'sameas',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'common-link-attrs',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'link itemprop=sameAs',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::LINK,
+        SpecRule::SPEC_NAME => 'link itemprop=sameAs',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'href',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'itemprop',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'sameas',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'common-link-attrs',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'link itemprop=sameAs',
+    ];
 }

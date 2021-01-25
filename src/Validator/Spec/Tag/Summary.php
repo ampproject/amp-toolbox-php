@@ -7,7 +7,18 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Summary
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Summary extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SUMMARY,\nSpecRule::MANDATORY_PARENT => Element::DETAILS,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SUMMARY,
+        SpecRule::MANDATORY_PARENT => Element::DETAILS,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

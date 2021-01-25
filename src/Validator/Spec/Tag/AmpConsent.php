@@ -7,7 +7,33 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpConsent
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpConsent extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::CONSENT,\nSpecRule::UNIQUE => true,\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES => [\n                'amp-consent extension .json script',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-consent',\n            ],\nSpecRule::EXCLUDES => [\n                'amp-consent [type]',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::CONSENT,
+        SpecRule::UNIQUE => true,
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES => [
+            'amp-consent extension .json script',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-consent',
+        ],
+        SpecRule::EXCLUDES => [
+            'amp-consent [type]',
+        ],
+    ];
 }

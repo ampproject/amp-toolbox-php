@@ -7,7 +7,61 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpImgImgPlaceholderTransformed
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpImgImgPlaceholderTransformed extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::IMG,\nSpecRule::SPEC_NAME => 'amp-img > img[placeholder] (transformed)',\nSpecRule::MANDATORY_PARENT => 'amp-img (transformed)',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALT,\n    ],\n    [\n        SpecRule::NAME => Attribute::ATTRIBUTION,\n    ],\n    [\n        SpecRule::NAME => Attribute::CLASS,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'i-amphtml-blurry-placeholder',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OBJECT_FIT,\n    ],\n    [\n        SpecRule::NAME => Attribute::OBJECT_POSITION,\n    ],\n    [\n        SpecRule::NAME => Attribute::PLACEHOLDER,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n    ],\n    [\n        SpecRule::NAME => Attribute::REFERRERPOLICY,\n    ],\n    [\n        SpecRule::NAME => Attribute::SIZES,\n    ],\n    [\n        SpecRule::NAME => Attribute::TITLE,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'mandatory-src-or-srcset',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::ENABLED_BY => [\n                'transformed',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::IMG,
+        SpecRule::SPEC_NAME => 'amp-img > img[placeholder] (transformed)',
+        SpecRule::MANDATORY_PARENT => 'amp-img (transformed)',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'alt',
+            ],
+            [
+                SpecRule::NAME => 'attribution',
+            ],
+            [
+                SpecRule::NAME => 'class',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'i-amphtml-blurry-placeholder',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'object-fit',
+            ],
+            [
+                SpecRule::NAME => 'object-position',
+            ],
+            [
+                SpecRule::NAME => 'placeholder',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+            ],
+            [
+                SpecRule::NAME => 'referrerpolicy',
+            ],
+            [
+                SpecRule::NAME => 'sizes',
+            ],
+            [
+                SpecRule::NAME => 'title',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'mandatory-src-or-srcset',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::ENABLED_BY => [
+            'transformed',
+        ],
+    ];
 }

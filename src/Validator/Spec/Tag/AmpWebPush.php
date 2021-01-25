@@ -7,7 +7,74 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpWebPush
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpWebPush extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::WEB_PUSH,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::HELPER_IFRAME_URL,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ID,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'amp-web-push',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::PERMISSION_DIALOG_URL,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SERVICE_WORKER_URL,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SERVICE_WORKER_SCOPE,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-web-push/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-web-push',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::WEB_PUSH,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'helper-iframe-url',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'id',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'amp-web-push',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'permission-dialog-url',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'service-worker-url',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'service-worker-scope',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-web-push/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-web-push',
+        ],
+    ];
 }

@@ -7,7 +7,104 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpDateCountdown
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpDateCountdown extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::DATE_COUNTDOWN,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::BIGGEST_UNIT,\n        SpecRule::VALUE_CASEI => [\n                        'days',\n                        'hours',\n                        'minutes',\n                        'seconds',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_COUNT_UP,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::END_DATE,\n        SpecRule::MANDATORY_ONEOF => '[\\'end-date\\', \\'timeleft-ms\\', \\'timestamp-ms\\', \\'timestamp-seconds\\']',\n        SpecRule::VALUE_REGEX => '\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d(:[0-5]\\d(\\.\\d+)?)?(Z|[+-][0-1][0-9]:[0-5][0-9])',\n    ],\n    [\n        SpecRule::NAME => Attribute::LOCALE,\n        SpecRule::VALUE_CASEI => [\n                        'de',\n                        'en',\n                        'es',\n                        'fr',\n                        'id',\n                        'it',\n                        'ja',\n                        'ko',\n                        'nl',\n                        'pt',\n                        'ru',\n                        'th',\n                        'tr',\n                        'vi',\n                        'zh-cn',\n                        'zh-tw',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::OFFSET_SECONDS,\n        SpecRule::VALUE_REGEX => '-?\\d+',\n    ],\n    [\n        SpecRule::NAME => Attribute::TEMPLATE,\n        SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',\n    ],\n    [\n        SpecRule::NAME => Attribute::TIMELEFT_MS,\n        SpecRule::MANDATORY_ONEOF => '[\\'end-date\\', \\'timeleft-ms\\', \\'timestamp-ms\\', \\'timestamp-seconds\\']',\n        SpecRule::VALUE_REGEX => '\\d+',\n    ],\n    [\n        SpecRule::NAME => Attribute::TIMESTAMP_MS,\n        SpecRule::MANDATORY_ONEOF => '[\\'end-date\\', \\'timeleft-ms\\', \\'timestamp-ms\\', \\'timestamp-seconds\\']',\n        SpecRule::VALUE_REGEX => '\\d{13}',\n    ],\n    [\n        SpecRule::NAME => Attribute::TIMESTAMP_SECONDS,\n        SpecRule::MANDATORY_ONEOF => '[\\'end-date\\', \\'timeleft-ms\\', \\'timestamp-ms\\', \\'timestamp-seconds\\']',\n        SpecRule::VALUE_REGEX => '\\d{10}',\n    ],\n    [\n        SpecRule::NAME => Attribute::WHEN_ENDED,\n        SpecRule::VALUE_CASEI => [\n                        'continue',\n                        'stop',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-date-countdown',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::DATE_COUNTDOWN,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'biggest-unit',
+                SpecRule::VALUE_CASEI => [
+                    'days',
+                    'hours',
+                    'minutes',
+                    'seconds',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-count-up',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'end-date',
+                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::VALUE_REGEX => '\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(:[0-5]\d(\.\d+)?)?(Z|[+-][0-1][0-9]:[0-5][0-9])',
+            ],
+            [
+                SpecRule::NAME => 'locale',
+                SpecRule::VALUE_CASEI => [
+                    'de',
+                    'en',
+                    'es',
+                    'fr',
+                    'id',
+                    'it',
+                    'ja',
+                    'ko',
+                    'nl',
+                    'pt',
+                    'ru',
+                    'th',
+                    'tr',
+                    'vi',
+                    'zh-cn',
+                    'zh-tw',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'offset-seconds',
+                SpecRule::VALUE_REGEX => '-?\d+',
+            ],
+            [
+                SpecRule::NAME => 'template',
+                SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
+            ],
+            [
+                SpecRule::NAME => 'timeleft-ms',
+                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::VALUE_REGEX => '\d+',
+            ],
+            [
+                SpecRule::NAME => 'timestamp-ms',
+                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::VALUE_REGEX => '\d{13}',
+            ],
+            [
+                SpecRule::NAME => 'timestamp-seconds',
+                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::VALUE_REGEX => '\d{10}',
+            ],
+            [
+                SpecRule::NAME => 'when-ended',
+                SpecRule::VALUE_CASEI => [
+                    'continue',
+                    'stop',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-date-countdown',
+        ],
+    ];
 }

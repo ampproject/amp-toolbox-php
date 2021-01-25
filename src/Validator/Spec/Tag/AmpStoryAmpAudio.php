@@ -7,7 +7,39 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryAmpAudio
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryAmpAudio extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::AUDIO,\nSpecRule::SPEC_NAME => 'amp-story >> amp-audio',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'amp-audio-common',\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::STORY,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-audio',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::AUDIO,
+        SpecRule::SPEC_NAME => 'amp-story >> amp-audio',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'amp-audio-common',
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::STORY,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-audio',
+        ],
+    ];
 }

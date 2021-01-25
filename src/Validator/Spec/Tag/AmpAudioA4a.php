@@ -7,7 +7,33 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAudioA4a
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAudioA4a extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::AUDIO,\nSpecRule::SPEC_NAME => 'amp-audio (A4A)',\nSpecRule::ATTR_LISTS => [\n                'amp-audio-common',\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::NODISPLAY,\n                ],\n                'definesDefaultWidth' => true,\n                'definesDefaultHeight' => true,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-audio',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::AUDIO,
+        SpecRule::SPEC_NAME => 'amp-audio (A4A)',
+        SpecRule::ATTR_LISTS => [
+            'amp-audio-common',
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::NODISPLAY,
+            ],
+            'definesDefaultWidth' => true,
+            'definesDefaultHeight' => true,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-audio',
+        ],
+    ];
 }

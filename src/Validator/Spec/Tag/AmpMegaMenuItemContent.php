@@ -7,7 +7,26 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpMegaMenuItemContent
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpMegaMenuItemContent extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-MEGA-MENU item-content',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ROLE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        'dialog',\n                    ],\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'amp-mega-menu item-content',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-MEGA-MENU item-content',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'role',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'dialog',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-mega-menu item-content',
+    ];
 }

@@ -3,7 +3,6 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator;
 
 use Nette\PhpGenerator\ClassType;
-use Nette\PhpGenerator\Dumper;
 use Nette\PhpGenerator\GlobalFunction;
 use Nette\PhpGenerator\Helpers;
 use Nette\PhpGenerator\Method;
@@ -25,7 +24,7 @@ final class SpecPrinter extends Printer
     /**
      * Dumper instance to use.
      *
-     * @var \AmpProject\Tooling\Validator\SpecGenerator\Dumper
+     * @var Dumper
      */
     private $dumper;
 
@@ -52,11 +51,10 @@ final class SpecPrinter extends Printer
 
         $consts = [];
         foreach ($class->getConstants() as $const) {
-            $def = ($const->getVisibility() ? $const->getVisibility() . ' ' : '') . 'const ' . $const->getName() . ' = ';
             $consts[] = Helpers::formatDocComment((string) $const->getComment())
                 . self::printAttributes($const->getAttributes(), $namespace)
-                . $def
-                . $this->dumper->dump($const->getValue(), strlen($def)) . ";\n";
+                . "const {$const->getName()} = "
+                . $this->dumper->dumpWithSpecRules($const->getValue(), 0) . ";\n";
         }
 
         $properties = [];

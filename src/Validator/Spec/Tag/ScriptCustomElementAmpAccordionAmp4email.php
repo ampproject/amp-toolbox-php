@@ -7,7 +7,27 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptCustomElementAmpAccordionAmp4email
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptCustomElementAmpAccordionAmp4email extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::SPEC_NAME => 'SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)',\nSpecRule::ATTR_LISTS => [\n                'common-extension-attrs',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4EMAIL,\n            ],\nSpecRule::EXTENSION_SPEC => [\n                'name' => 'amp-accordion',\n                'version' => [\n                    '0.1',\n                ],\n                'deprecatedAllowDuplicates' => true,\n                'requiresUsage' => 'EXEMPTED',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)',
+        SpecRule::ATTR_LISTS => [
+            'common-extension-attrs',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::EXTENSION_SPEC => [
+            SpecRule::NAME => 'amp-accordion',
+            SpecRule::VERSION => [
+                '0.1',
+            ],
+            SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+            SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        ],
+    ];
 }

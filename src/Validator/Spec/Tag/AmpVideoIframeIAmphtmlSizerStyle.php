@@ -7,7 +7,39 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpVideoIframeIAmphtmlSizerStyle
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpVideoIframeIAmphtmlSizerStyle extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::STYLE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISALLOWED_VALUE_REGEX => '!\\s*important',\n        SpecRule::CSS_DECLARATION => [\n                        [\n                            'name' => 'display',\n                            'valueCasei' => [\n                                'block',\n                            ],\n                        ],\n                        [\n                            'name' => 'padding-top',\n                        ],\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video-iframe/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::EXPLICIT_ATTRS_ONLY => true,\nSpecRule::ENABLED_BY => [\n                'transformed',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'style',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISALLOWED_VALUE_REGEX => '!\s*important',
+                SpecRule::CSS_DECLARATION => [
+                    [
+                        SpecRule::NAME => 'display',
+                        SpecRule::VALUE_CASEI => [
+                            'block',
+                        ],
+                    ],
+                    [
+                        SpecRule::NAME => 'padding-top',
+                    ],
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video-iframe/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::EXPLICIT_ATTRS_ONLY => true,
+        SpecRule::ENABLED_BY => [
+            'transformed',
+        ],
+    ];
 }

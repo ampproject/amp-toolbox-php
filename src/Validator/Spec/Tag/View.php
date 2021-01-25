@@ -7,7 +7,39 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class View
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class View extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::VIEW,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,\n    ],\n    [\n        SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,\n    ],\n    [\n        SpecRule::NAME => Attribute::VIEWBOX,\n    ],\n    [\n        SpecRule::NAME => Attribute::VIEWTARGET,\n    ],\n    [\n        SpecRule::NAME => Attribute::ZOOMANDPAN,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-core-attributes',\n                'svg-style-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::SVG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::VIEW,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'externalresourcesrequired',
+            ],
+            [
+                SpecRule::NAME => 'preserveaspectratio',
+            ],
+            [
+                SpecRule::NAME => 'viewbox',
+            ],
+            [
+                SpecRule::NAME => 'viewtarget',
+            ],
+            [
+                SpecRule::NAME => 'zoomandpan',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-core-attributes',
+            'svg-style-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::SVG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

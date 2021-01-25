@@ -7,7 +7,39 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class IAmphtmlSizerResponsive
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class IAmphtmlSizerResponsive extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Internal::SIZER,\nSpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-RESPONSIVE',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::STYLE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISALLOWED_VALUE_REGEX => '!\\s*important',\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n        SpecRule::CSS_DECLARATION => [\n                        [\n                            'name' => 'display',\n                            'valueCasei' => [\n                                'block',\n                            ],\n                        ],\n                        [\n                            'name' => 'padding-top',\n                        ],\n                    ],\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::EXPLICIT_ATTRS_ONLY => true,\nSpecRule::ENABLED_BY => [\n                'transformed',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Internal::SIZER,
+        SpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-RESPONSIVE',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'style',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISALLOWED_VALUE_REGEX => '!\s*important',
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+                SpecRule::CSS_DECLARATION => [
+                    [
+                        SpecRule::NAME => 'display',
+                        SpecRule::VALUE_CASEI => [
+                            'block',
+                        ],
+                    ],
+                    [
+                        SpecRule::NAME => 'padding-top',
+                    ],
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::EXPLICIT_ATTRS_ONLY => true,
+        SpecRule::ENABLED_BY => [
+            'transformed',
+        ],
+    ];
 }

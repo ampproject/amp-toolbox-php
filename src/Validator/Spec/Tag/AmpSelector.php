@@ -7,7 +7,76 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSelector
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSelector extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::SELECTOR,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DISABLED,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::FORM,\n    ],\n    [\n        SpecRule::NAME => Attribute::KEYBOARD_SELECT_MODE,\n        SpecRule::VALUE_CASEI => [\n                        'focus',\n                        'none',\n                        'select',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::MULTIPLE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => '[DISABLED]',\n    ],\n    [\n        SpecRule::NAME => '[SELECTED]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n                'name-attr',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                    Layout::CONTAINER,\n                ],\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-SELECTOR',\n            ],\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-SELECTOR option',\n                ],\n                [\n                    'tagSpecName' => 'AMP-SELECTOR child',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-selector',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::SELECTOR,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'disabled',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'form',
+            ],
+            [
+                SpecRule::NAME => 'keyboard-select-mode',
+                SpecRule::VALUE_CASEI => [
+                    'focus',
+                    'none',
+                    'select',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'multiple',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => '[disabled]',
+            ],
+            [
+                SpecRule::NAME => '[selected]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+            'name-attr',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+                Layout::CONTAINER,
+            ],
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-SELECTOR',
+        ],
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-SELECTOR option',
+            ],
+            [
+                'tagSpecName' => 'AMP-SELECTOR child',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-selector',
+        ],
+    ];
 }

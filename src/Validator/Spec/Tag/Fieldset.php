@@ -7,7 +7,28 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Fieldset
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Fieldset extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::FIELDSET,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DISABLED,\n    ],\n    [\n        SpecRule::NAME => '[DISABLED]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'name-attr',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::FIELDSET,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'disabled',
+            ],
+            [
+                SpecRule::NAME => '[disabled]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'name-attr',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

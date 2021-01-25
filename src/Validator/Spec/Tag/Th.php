@@ -7,7 +7,55 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Th
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Th extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TH,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ABBR,\n    ],\n    [\n        SpecRule::NAME => Attribute::ALIGN,\n    ],\n    [\n        SpecRule::NAME => Attribute::BGCOLOR,\n    ],\n    [\n        SpecRule::NAME => Attribute::COLSPAN,\n    ],\n    [\n        SpecRule::NAME => Attribute::HEADERS,\n    ],\n    [\n        SpecRule::NAME => Attribute::HEIGHT,\n    ],\n    [\n        SpecRule::NAME => Attribute::ROWSPAN,\n    ],\n    [\n        SpecRule::NAME => Attribute::SCOPE,\n    ],\n    [\n        SpecRule::NAME => Attribute::SORTED,\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::VALIGN,\n    ],\n    [\n        SpecRule::NAME => Attribute::WIDTH,\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TH,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'abbr',
+            ],
+            [
+                SpecRule::NAME => 'align',
+            ],
+            [
+                SpecRule::NAME => 'bgcolor',
+            ],
+            [
+                SpecRule::NAME => 'colspan',
+            ],
+            [
+                SpecRule::NAME => 'headers',
+            ],
+            [
+                SpecRule::NAME => 'height',
+            ],
+            [
+                SpecRule::NAME => 'rowspan',
+            ],
+            [
+                SpecRule::NAME => 'scope',
+            ],
+            [
+                SpecRule::NAME => 'sorted',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'valign',
+            ],
+            [
+                SpecRule::NAME => 'width',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

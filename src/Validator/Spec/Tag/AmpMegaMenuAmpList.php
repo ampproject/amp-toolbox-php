@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpMegaMenuAmpList
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpMegaMenuAmpList extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-MEGA-MENU > AMP-LIST',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY_ANYOF => '[\\'src\\',\\'[src]\\']',\n    ],\n    [\n        SpecRule::NAME => '[SRC]',\n        SpecRule::MANDATORY_ANYOF => '[\\'src\\',\\'[src]\\']',\n    ],\n],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'TEMPLATE',\n                ],\n            ],\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-MEGA-MENU > AMP-LIST > TEMPLATE',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'amp-mega-menu > amp-list',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > AMP-LIST',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\']',
+            ],
+            [
+                SpecRule::NAME => '[src]',
+                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\']',
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'TEMPLATE',
+            ],
+        ],
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-MEGA-MENU > AMP-LIST > TEMPLATE',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-mega-menu > amp-list',
+    ];
 }

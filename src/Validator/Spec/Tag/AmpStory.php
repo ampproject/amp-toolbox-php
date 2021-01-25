@@ -7,7 +7,139 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStory
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStory extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::STORY,\nSpecRule::MANDATORY_PARENT => Element::BODY,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::BACKGROUND_AUDIO,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ENTITY,\n    ],\n    [\n        SpecRule::NAME => Attribute::ENTITY_LOGO_SRC,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ENTITY_URL,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::POSTER_LANDSCAPE_SRC,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::POSTER_PORTRAIT_SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::POSTER_SQUARE_SRC,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::PUBLISHER,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::PUBLISHER_LOGO_SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::STANDALONE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SUPPORTS_LANDSCAPE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TITLE,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::LIVE_STORY,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::LIVE_STORY_DISABLED,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::CHILD_TAGS => [\n                'childTagNameOneof' => [\n                    'AMP-ANALYTICS',\n                    'AMP-CONSENT',\n                    'AMP-GEO',\n                    'AMP-PIXEL',\n                    'AMP-SIDEBAR',\n                    'AMP-STORY-AUTO-ADS',\n                    'AMP-STORY-BOOKEND',\n                    'AMP-STORY-PAGE',\n                ],\n                'mandatoryMinNumChildTags' => 1,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES => [\n                'amp-story-page',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-story',\n            ],\nSpecRule::SIBLINGS_DISALLOWED => true,\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::STORY,
+        SpecRule::MANDATORY_PARENT => Element::BODY,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'background-audio',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'entity',
+            ],
+            [
+                SpecRule::NAME => 'entity-logo-src',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'entity-url',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'poster-landscape-src',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'poster-portrait-src',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'poster-square-src',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'publisher',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'publisher-logo-src',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'standalone',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'supports-landscape',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'title',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'live-story',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'live-story-disabled',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'childTagNameOneof' => [
+                'AMP-ANALYTICS',
+                'AMP-CONSENT',
+                'AMP-GEO',
+                'AMP-PIXEL',
+                'AMP-SIDEBAR',
+                'AMP-STORY-AUTO-ADS',
+                'AMP-STORY-BOOKEND',
+                'AMP-STORY-PAGE',
+            ],
+            'mandatoryMinNumChildTags' => 1,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES => [
+            'amp-story-page',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-story',
+        ],
+        SpecRule::SIBLINGS_DISALLOWED => true,
+    ];
 }

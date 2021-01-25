@@ -7,7 +7,50 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Lineargradient
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Lineargradient extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::LINEARGRADIENT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,\n    ],\n    [\n        SpecRule::NAME => Attribute::GRADIENTTRANSFORM,\n    ],\n    [\n        SpecRule::NAME => Attribute::GRADIENTUNITS,\n    ],\n    [\n        SpecRule::NAME => Attribute::SPREADMETHOD,\n    ],\n    [\n        SpecRule::NAME => Attribute::X1,\n    ],\n    [\n        SpecRule::NAME => Attribute::X2,\n    ],\n    [\n        SpecRule::NAME => Attribute::Y1,\n    ],\n    [\n        SpecRule::NAME => Attribute::Y2,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'svg-core-attributes',\n                'svg-presentation-attributes',\n                'svg-style-attr',\n                'svg-xlink-attributes',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',\nSpecRule::MANDATORY_ANCESTOR => Element::SVG,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::LINEARGRADIENT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'externalresourcesrequired',
+            ],
+            [
+                SpecRule::NAME => 'gradienttransform',
+            ],
+            [
+                SpecRule::NAME => 'gradientunits',
+            ],
+            [
+                SpecRule::NAME => 'spreadmethod',
+            ],
+            [
+                SpecRule::NAME => 'x1',
+            ],
+            [
+                SpecRule::NAME => 'x2',
+            ],
+            [
+                SpecRule::NAME => 'y1',
+            ],
+            [
+                SpecRule::NAME => 'y2',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'svg-core-attributes',
+            'svg-presentation-attributes',
+            'svg-style-attr',
+            'svg-xlink-attributes',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
+        SpecRule::MANDATORY_ANCESTOR => Element::SVG,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

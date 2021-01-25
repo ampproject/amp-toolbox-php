@@ -7,7 +7,28 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Canvas
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Canvas extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::CANVAS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::HEIGHT,\n    ],\n    [\n        SpecRule::NAME => Attribute::WIDTH,\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',\nSpecRule::MANDATORY_ANCESTOR => Extension::SCRIPT,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-script',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::CANVAS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'height',
+            ],
+            [
+                SpecRule::NAME => 'width',
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
+        SpecRule::MANDATORY_ANCESTOR => Extension::SCRIPT,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-script',
+        ],
+    ];
 }

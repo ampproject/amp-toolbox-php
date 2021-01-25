@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpNestedMenu
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpNestedMenu extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::NESTED_MENU,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SIDE,\n        SpecRule::VALUE => [\n                        'left',\n                        'right',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-nested-menu/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                ],\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::SIDEBAR,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-sidebar',\n            ],\nSpecRule::DESCENDANT_TAG_LIST => 'amp-nested-menu-allowed-descendants',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::NESTED_MENU,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'side',
+                SpecRule::VALUE => [
+                    'left',
+                    'right',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-nested-menu/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::SIDEBAR,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-sidebar',
+        ],
+        SpecRule::DESCENDANT_TAG_LIST => 'amp-nested-menu-allowed-descendants',
+    ];
 }

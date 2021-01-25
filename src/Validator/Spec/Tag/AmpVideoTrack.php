@@ -7,7 +7,32 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpVideoTrack
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpVideoTrack extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TRACK,\nSpecRule::SPEC_NAME => 'amp-video > track',\nSpecRule::MANDATORY_PARENT => Extension::VIDEO,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => '[LABEL]',\n    ],\n    [\n        SpecRule::NAME => '[SRC]',\n    ],\n    [\n        SpecRule::NAME => '[SRCLANG]',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'track-attrs-no-subtitles',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TRACK,
+        SpecRule::SPEC_NAME => 'amp-video > track',
+        SpecRule::MANDATORY_PARENT => Extension::VIDEO,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => '[label]',
+            ],
+            [
+                SpecRule::NAME => '[src]',
+            ],
+            [
+                SpecRule::NAME => '[srclang]',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'track-attrs-no-subtitles',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

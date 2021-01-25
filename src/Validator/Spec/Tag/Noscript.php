@@ -7,7 +7,19 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Noscript
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Noscript extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::NOSCRIPT,\nSpecRule::DISALLOWED_ANCESTOR => [\n                'NOSCRIPT',\n            ],\nSpecRule::MANDATORY_ANCESTOR => Element::BODY,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::NOSCRIPT,
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'NOSCRIPT',
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Element::BODY,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

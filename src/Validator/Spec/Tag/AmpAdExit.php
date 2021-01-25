@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAdExit
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAdExit extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::AD_EXIT,\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n                'mandatory-id-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad-exit/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                    Layout::CONTAINER,\n                ],\n            ],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'SCRIPT',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES => [\n                'amp-ad-exit configuration JSON',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-ad-exit',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::AD_EXIT,
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+            'mandatory-id-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad-exit/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+                Layout::CONTAINER,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'SCRIPT',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES => [
+            'amp-ad-exit configuration JSON',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-ad-exit',
+        ],
+    ];
 }

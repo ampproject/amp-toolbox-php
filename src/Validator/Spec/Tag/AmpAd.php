@@ -7,7 +7,74 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAd
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAd extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::AD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALT,\n    ],\n    [\n        SpecRule::NAME => Attribute::JSON,\n    ],\n    [\n        SpecRule::NAME => Attribute::RTC_CONFIG,\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => true,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TEMPLATE,\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::STICKY,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::FLUID,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-APP-BANNER',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::ALSO_REQUIRES_TAG_WARNING => [\n                'amp-ad extension script',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-ad',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::AD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'alt',
+            ],
+            [
+                SpecRule::NAME => 'json',
+            ],
+            [
+                SpecRule::NAME => 'rtc-config',
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => true,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'template',
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'sticky',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::FLUID,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-APP-BANNER',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::ALSO_REQUIRES_TAG_WARNING => [
+            'amp-ad extension script',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-ad',
+        ],
+    ];
 }

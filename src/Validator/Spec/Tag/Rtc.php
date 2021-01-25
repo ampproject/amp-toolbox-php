@@ -7,7 +7,16 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Rtc
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Rtc extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::RTC,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::RTC,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

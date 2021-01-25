@@ -7,7 +7,24 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveListUpdate
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpLiveListUpdate extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-LIVE-LIST [update]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::UPDATE,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#update',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'amp-live-list [update]',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [update]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'update',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#update',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-live-list [update]',
+    ];
 }

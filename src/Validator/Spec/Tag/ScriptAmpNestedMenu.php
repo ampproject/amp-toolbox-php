@@ -7,7 +7,25 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpNestedMenu
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptAmpNestedMenu extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::ATTR_LISTS => [\n                'common-extension-attrs',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::EXTENSION_SPEC => [\n                'name' => 'amp-nested-menu',\n                'version' => [\n                    '0.1',\n                    'latest',\n                ],\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::ATTR_LISTS => [
+            'common-extension-attrs',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::EXTENSION_SPEC => [
+            SpecRule::NAME => 'amp-nested-menu',
+            SpecRule::VERSION => [
+                '0.1',
+                'latest',
+            ],
+        ],
+    ];
 }

@@ -7,7 +7,72 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpBridPlayer
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpBridPlayer extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::BRID_PLAYER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AUTOPLAY,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_DYNAMIC,\n        SpecRule::VALUE_REGEX => '[a-z]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_OUTSTREAM,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-outstream\\', \\'data-playlist\\', \\'data-video\\']',\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_PARTNER,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_PLAYER,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_PLAYLIST,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-outstream\\', \\'data-playlist\\', \\'data-video\\']',\n        SpecRule::VALUE_REGEX => '.+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_VIDEO,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-outstream\\', \\'data-playlist\\', \\'data-video\\']',\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DOCK,\n        SpecRule::REQUIRES_EXTENSION => [\n                        'amp-video-docking',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-brid-player/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-brid-player',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::BRID_PLAYER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'autoplay',
+            ],
+            [
+                SpecRule::NAME => 'data-dynamic',
+                SpecRule::VALUE_REGEX => '[a-z]+',
+            ],
+            [
+                SpecRule::NAME => 'data-outstream',
+                SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-partner',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-player',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-playlist',
+                SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
+                SpecRule::VALUE_REGEX => '.+',
+            ],
+            [
+                SpecRule::NAME => 'data-video',
+                SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'dock',
+                SpecRule::REQUIRES_EXTENSION => [
+                    'amp-video-docking',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-brid-player/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-brid-player',
+        ],
+    ];
 }

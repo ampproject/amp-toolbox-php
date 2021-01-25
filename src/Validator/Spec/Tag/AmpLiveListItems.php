@@ -7,7 +7,29 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveListItems
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpLiveListItems extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ITEMS,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#items',\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-LIVE-LIST [items] item',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'amp-live-list [items]',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'items',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#items',
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-LIVE-LIST [items] item',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-live-list [items]',
+    ];
 }

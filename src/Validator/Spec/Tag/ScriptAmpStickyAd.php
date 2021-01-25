@@ -7,7 +7,30 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpStickyAd
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class ScriptAmpStickyAd extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SCRIPT,\nSpecRule::ATTR_LISTS => [\n                'common-extension-attrs',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::EXTENSION_SPEC => [\n                'name' => 'amp-sticky-ad',\n                'version' => [\n                    '0.1',\n                    '1.0',\n                    'latest',\n                ],\n                'deprecatedVersion' => [\n                    '0.1',\n                ],\n                'requiresUsage' => 'EXEMPTED',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::ATTR_LISTS => [
+            'common-extension-attrs',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::EXTENSION_SPEC => [
+            SpecRule::NAME => 'amp-sticky-ad',
+            SpecRule::VERSION => [
+                '0.1',
+                '1.0',
+                'latest',
+            ],
+            SpecRule::DEPRECATED_VERSION => [
+                '0.1',
+            ],
+            SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        ],
+    ];
 }

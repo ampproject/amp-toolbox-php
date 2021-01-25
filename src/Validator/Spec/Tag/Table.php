@@ -7,7 +7,47 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Table
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Table extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::TABLE,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALIGN,\n    ],\n    [\n        SpecRule::NAME => Attribute::BGCOLOR,\n    ],\n    [\n        SpecRule::NAME => Attribute::BORDER,\n        SpecRule::VALUE => [\n                        '0',\n                        '1',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::CELLPADDING,\n    ],\n    [\n        SpecRule::NAME => Attribute::CELLSPACING,\n    ],\n    [\n        SpecRule::NAME => Attribute::SORTABLE,\n        SpecRule::DISABLED_BY => [\n                        'amp4email',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::WIDTH,\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::TABLE,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'align',
+            ],
+            [
+                SpecRule::NAME => 'bgcolor',
+            ],
+            [
+                SpecRule::NAME => 'border',
+                SpecRule::VALUE => [
+                    '0',
+                    '1',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'cellpadding',
+            ],
+            [
+                SpecRule::NAME => 'cellspacing',
+            ],
+            [
+                SpecRule::NAME => 'sortable',
+                SpecRule::DISABLED_BY => [
+                    'amp4email',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'width',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

@@ -7,7 +7,34 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpVk
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpVk extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::VK,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_EMBEDTYPE,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED,\n                    Layout::FLEX_ITEM,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-vk',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::VK,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-embedtype',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED,
+                Layout::FLEX_ITEM,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-vk',
+        ],
+    ];
 }

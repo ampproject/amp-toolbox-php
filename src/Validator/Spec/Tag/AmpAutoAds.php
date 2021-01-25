@@ -7,7 +7,31 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAutoAds
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAutoAds extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::AUTO_ADS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-auto-ads/',\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-AUTO-ADS',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-auto-ads',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::AUTO_ADS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-auto-ads/',
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-AUTO-ADS',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-auto-ads',
+        ],
+    ];
 }

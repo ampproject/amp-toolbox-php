@@ -7,7 +7,43 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpMegaMenu
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpMegaMenu extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::MEGA_MENU,\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-mega-menu/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FIXED_HEIGHT,\n                ],\n            ],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'NAV',\n                    'AMP-LIST',\n                ],\n            ],\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-MEGA-MENU > AMP-LIST',\n                ],\n                [\n                    'tagSpecName' => 'AMP-MEGA-MENU > NAV',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-mega-menu',\n            ],\nSpecRule::DESCENDANT_TAG_LIST => 'amp-mega-menu-allowed-descendants',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::MEGA_MENU,
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-mega-menu/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FIXED_HEIGHT,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'NAV',
+                'AMP-LIST',
+            ],
+        ],
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-MEGA-MENU > AMP-LIST',
+            ],
+            [
+                'tagSpecName' => 'AMP-MEGA-MENU > NAV',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-mega-menu',
+        ],
+        SpecRule::DESCENDANT_TAG_LIST => 'amp-mega-menu-allowed-descendants',
+    ];
 }

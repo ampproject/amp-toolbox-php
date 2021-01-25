@@ -7,7 +7,162 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryGridLayerDefault
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpStoryGridLayerDefault extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-STORY-GRID-LAYER default',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALIGN_CONTENT,\n        SpecRule::VALUE => [\n                        'center',\n                        'end',\n                        'space-around',\n                        'space-between',\n                        'space-evenly',\n                        'start',\n                        'stretch',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TARGET,\n        SpecRule::VALUE => [\n                        '_blank',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TOOLTIP_ICON,\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                            'data',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ALIGN_ITEMS,\n        SpecRule::VALUE => [\n                        'center',\n                        'end',\n                        'start',\n                        'stretch',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ALIGN_SELF,\n        SpecRule::VALUE => [\n                        'center',\n                        'end',\n                        'start',\n                        'stretch',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ANIMATE_IN,\n        SpecRule::VALUE => [\n                        'drop',\n                        'fade-in',\n                        'fly-in-bottom',\n                        'fly-in-left',\n                        'fly-in-right',\n                        'fly-in-top',\n                        'pan-down',\n                        'pan-left',\n                        'pan-right',\n                        'pan-up',\n                        'pulse',\n                        'rotate-in-left',\n                        'rotate-in-right',\n                        'scale-fade-down',\n                        'scale-fade-up',\n                        'twirl-in',\n                        'whoosh-in-left',\n                        'whoosh-in-right',\n                        'zoom-in',\n                        'zoom-out',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ANIMATE_IN_AFTER,\n    ],\n    [\n        SpecRule::NAME => Attribute::ANIMATE_IN_DELAY,\n    ],\n    [\n        SpecRule::NAME => Attribute::ANIMATE_IN_DURATION,\n    ],\n    [\n        SpecRule::NAME => Attribute::ANIMATE_IN_TIMING_FUNCTION,\n    ],\n    [\n        SpecRule::NAME => Attribute::GRID_AREA,\n    ],\n    [\n        SpecRule::NAME => Attribute::INTERACTIVE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SCALE_END,\n        SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',\n    ],\n    [\n        SpecRule::NAME => Attribute::SCALE_START,\n        SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',\n    ],\n    [\n        SpecRule::NAME => Attribute::TRANSLATE_X,\n        SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',\n    ],\n    [\n        SpecRule::NAME => Attribute::TRANSLATE_Y,\n        SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',\n    ],\n    [\n        SpecRule::NAME => Attribute::JUSTIFY_CONTENT,\n        SpecRule::VALUE => [\n                        'center',\n                        'end',\n                        'space-around',\n                        'space-between',\n                        'space-evenly',\n                        'start',\n                        'stretch',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::JUSTIFY_ITEMS,\n        SpecRule::VALUE => [\n                        'center',\n                        'end',\n                        'start',\n                        'stretch',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::JUSTIFY_SELF,\n        SpecRule::VALUE => [\n                        'center',\n                        'end',\n                        'start',\n                        'stretch',\n                    ],\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story/',\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-STORY-GRID-LAYER animate-in',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-STORY-GRID-LAYER default',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'align-content',
+                SpecRule::VALUE => [
+                    'center',
+                    'end',
+                    'space-around',
+                    'space-between',
+                    'space-evenly',
+                    'start',
+                    'stretch',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'target',
+                SpecRule::VALUE => [
+                    '_blank',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'data-tooltip-icon',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                        'data',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'align-items',
+                SpecRule::VALUE => [
+                    'center',
+                    'end',
+                    'start',
+                    'stretch',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'align-self',
+                SpecRule::VALUE => [
+                    'center',
+                    'end',
+                    'start',
+                    'stretch',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'animate-in',
+                SpecRule::VALUE => [
+                    'drop',
+                    'fade-in',
+                    'fly-in-bottom',
+                    'fly-in-left',
+                    'fly-in-right',
+                    'fly-in-top',
+                    'pan-down',
+                    'pan-left',
+                    'pan-right',
+                    'pan-up',
+                    'pulse',
+                    'rotate-in-left',
+                    'rotate-in-right',
+                    'scale-fade-down',
+                    'scale-fade-up',
+                    'twirl-in',
+                    'whoosh-in-left',
+                    'whoosh-in-right',
+                    'zoom-in',
+                    'zoom-out',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'animate-in-after',
+            ],
+            [
+                SpecRule::NAME => 'animate-in-delay',
+            ],
+            [
+                SpecRule::NAME => 'animate-in-duration',
+            ],
+            [
+                SpecRule::NAME => 'animate-in-timing-function',
+            ],
+            [
+                SpecRule::NAME => 'grid-area',
+            ],
+            [
+                SpecRule::NAME => 'interactive',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'scale-end',
+                SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',
+            ],
+            [
+                SpecRule::NAME => 'scale-start',
+                SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',
+            ],
+            [
+                SpecRule::NAME => 'translate-x',
+                SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',
+            ],
+            [
+                SpecRule::NAME => 'translate-y',
+                SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',
+            ],
+            [
+                SpecRule::NAME => 'justify-content',
+                SpecRule::VALUE => [
+                    'center',
+                    'end',
+                    'space-around',
+                    'space-between',
+                    'space-evenly',
+                    'start',
+                    'stretch',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'justify-items',
+                SpecRule::VALUE => [
+                    'center',
+                    'end',
+                    'start',
+                    'stretch',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'justify-self',
+                SpecRule::VALUE => [
+                    'center',
+                    'end',
+                    'start',
+                    'stretch',
+                ],
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story/',
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-STORY-GRID-LAYER animate-in',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

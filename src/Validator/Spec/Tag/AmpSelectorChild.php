@@ -7,7 +7,26 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSelectorChild
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSelectorChild extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => '\$REFERENCE_POINT',\nSpecRule::SPEC_NAME => 'AMP-SELECTOR child',\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-SELECTOR option',\n                ],\n                [\n                    'tagSpecName' => 'AMP-SELECTOR child',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => '$REFERENCE_POINT',
+        SpecRule::SPEC_NAME => 'AMP-SELECTOR child',
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-SELECTOR option',
+            ],
+            [
+                'tagSpecName' => 'AMP-SELECTOR child',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

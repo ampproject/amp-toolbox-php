@@ -7,7 +7,27 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpInlineGallery
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpInlineGallery extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::INLINE_GALLERY,\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inline-gallery/',\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::CONTAINER,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-inline-gallery',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::INLINE_GALLERY,
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inline-gallery/',
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::CONTAINER,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-inline-gallery',
+        ],
+    ];
 }

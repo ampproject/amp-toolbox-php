@@ -7,7 +7,34 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Base
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Base extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::BASE,\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::HEAD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::HREF,\n        SpecRule::VALUE => [\n                        '/',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TARGET,\n        SpecRule::VALUE_CASEI => [\n                        '_blank',\n                        '_self',\n                        '_top',\n                    ],\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::BASE,
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'href',
+                SpecRule::VALUE => [
+                    '/',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'target',
+                SpecRule::VALUE_CASEI => [
+                    '_blank',
+                    '_self',
+                    '_top',
+                ],
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

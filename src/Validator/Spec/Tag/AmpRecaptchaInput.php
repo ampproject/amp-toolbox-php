@@ -7,7 +7,38 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpRecaptchaInput
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpRecaptchaInput extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::RECAPTCHA_INPUT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_SITEKEY,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_ACTION,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'mandatory-name-attr',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::MANDATORY_ANCESTOR => Element::FORM,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-form',\n                'amp-recaptcha-input',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::RECAPTCHA_INPUT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-sitekey',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'data-action',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'mandatory-name-attr',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Element::FORM,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-form',
+            'amp-recaptcha-input',
+        ],
+    ];
 }

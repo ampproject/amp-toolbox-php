@@ -7,7 +7,30 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpLinkRewriter
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpLinkRewriter extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::LINK_REWRITER,\nSpecRule::UNIQUE => true,\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'firstChildTagNameOneof' => [\n                    'SCRIPT',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-link-rewriter',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::LINK_REWRITER,
+        SpecRule::UNIQUE => true,
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'firstChildTagNameOneof' => [
+                'SCRIPT',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-link-rewriter',
+        ],
+    ];
 }

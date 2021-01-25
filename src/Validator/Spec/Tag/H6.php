@@ -7,7 +7,22 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class H6
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class H6 extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::H6,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALIGN,\n    ],\n],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::H6,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'align',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

@@ -7,7 +7,51 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpDatePickerTypeRangeModeStatic
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpDatePickerTypeRangeModeStatic extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::DATE_PICKER,\nSpecRule::SPEC_NAME => 'amp-date-picker[type=range][mode=static]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::MODE,\n        SpecRule::VALUE_CASEI => [\n                        'static',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE_CASEI => [\n                        'range',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'amp-date-picker-common-attributes',\n                'amp-date-picker-range-type-attributes',\n                'amp-date-picker-static-mode-attributes',\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-date-picker',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::DATE_PICKER,
+        SpecRule::SPEC_NAME => 'amp-date-picker[type=range][mode=static]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'mode',
+                SpecRule::VALUE_CASEI => [
+                    'static',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'type',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_CASEI => [
+                    'range',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'amp-date-picker-common-attributes',
+            'amp-date-picker-range-type-attributes',
+            'amp-date-picker-static-mode-attributes',
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-date-picker',
+        ],
+    ];
 }

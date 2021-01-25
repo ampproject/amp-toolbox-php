@@ -7,7 +7,54 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class LinkRelPreload
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class LinkRelPreload extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::LINK,\nSpecRule::SPEC_NAME => 'link rel=preload',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AS_,\n    ],\n    [\n        SpecRule::NAME => Attribute::HREF,\n    ],\n    [\n        SpecRule::NAME => Attribute::REL,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',\n        SpecRule::VALUE_CASEI => [\n                        'preload',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::IMAGESRCSET,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'http',\n                            'https',\n                        ],\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::IMAGESIZES,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'common-link-attrs',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',\nSpecRule::DISALLOWED_ANCESTOR => [\n                'TEMPLATE',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::DESCRIPTIVE_NAME => 'link rel=preload',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::LINK,
+        SpecRule::SPEC_NAME => 'link rel=preload',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'as',
+            ],
+            [
+                SpecRule::NAME => 'href',
+            ],
+            [
+                SpecRule::NAME => 'rel',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+                SpecRule::VALUE_CASEI => [
+                    'preload',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'imagesrcset',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'http',
+                        'https',
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => 'imagesizes',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'common-link-attrs',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'TEMPLATE',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::DESCRIPTIVE_NAME => 'link rel=preload',
+    ];
 }

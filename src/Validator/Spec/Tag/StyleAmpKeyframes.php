@@ -7,7 +7,57 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class StyleAmpKeyframes
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class StyleAmpKeyframes extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::STYLE,\nSpecRule::SPEC_NAME => 'style[amp-keyframes]',\nSpecRule::UNIQUE => true,\nSpecRule::MANDATORY_PARENT => Element::BODY,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::AMP_KEYFRAMES,\n        SpecRule::MANDATORY => true,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n    ],\n],\nSpecRule::CDATA => [\n                SpecRule::MAX_BYTES => 500000,\n                SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#keyframes-stylesheet',\n                SpecRule::CSS_SPEC => [\n                    'atRuleSpec' => [\n                        [\n                            'name' => 'keyframes',\n                        ],\n                        [\n                            'name' => 'media',\n                        ],\n                        [\n                            'name' => 'supports',\n                        ],\n                    ],\n                    'validateKeyframes' => true,\n                    'declaration' => [\n                        'animation-timing-function',\n                        'offset-distance',\n                        'opacity',\n                        'transform',\n                        'visibility',\n                    ],\n                ],\n                SpecRule::DOC_CSS_BYTES => false,\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::MANDATORY_LAST_CHILD => true,\nSpecRule::DESCRIPTIVE_NAME => 'style[amp-keyframes]',\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::STYLE,
+        SpecRule::SPEC_NAME => 'style[amp-keyframes]',
+        SpecRule::UNIQUE => true,
+        SpecRule::MANDATORY_PARENT => Element::BODY,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'amp-keyframes',
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+            ],
+        ],
+        SpecRule::CDATA => [
+            SpecRule::MAX_BYTES => 500000,
+            SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#keyframes-stylesheet',
+            SpecRule::CSS_SPEC => [
+                'atRuleSpec' => [
+                    [
+                        'name' => 'keyframes',
+                    ],
+                    [
+                        'name' => 'media',
+                    ],
+                    [
+                        'name' => 'supports',
+                    ],
+                ],
+                'validateKeyframes' => true,
+                'declaration' => [
+                    'animation-timing-function',
+                    'offset-distance',
+                    'opacity',
+                    'transform',
+                    'visibility',
+                ],
+            ],
+            SpecRule::DOC_CSS_BYTES => false,
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::MANDATORY_LAST_CHILD => true,
+        SpecRule::DESCRIPTIVE_NAME => 'style[amp-keyframes]',
+    ];
 }

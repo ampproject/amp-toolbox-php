@@ -7,7 +7,72 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Iframe
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Iframe extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::IFRAME,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::FRAMEBORDER,\n        SpecRule::VALUE => [\n                        '0',\n                        '1',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::HEIGHT,\n    ],\n    [\n        SpecRule::NAME => Attribute::REFERRERPOLICY,\n    ],\n    [\n        SpecRule::NAME => Attribute::RESIZABLE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SANDBOX,\n    ],\n    [\n        SpecRule::NAME => Attribute::SCROLLING,\n        SpecRule::VALUE => [\n                        'auto',\n                        'yes',\n                        'no',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::MANDATORY_ONEOF => '[\\'src\\', \\'srcdoc\\']',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'data',\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::SRCDOC,\n        SpecRule::MANDATORY_ONEOF => '[\\'src\\', \\'srcdoc\\']',\n    ],\n    [\n        SpecRule::NAME => Attribute::WIDTH,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'name-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-iframe/',\nSpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,\nSpecRule::MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE => Extension::IFRAME,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::IFRAME,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'frameborder',
+                SpecRule::VALUE => [
+                    '0',
+                    '1',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'height',
+            ],
+            [
+                SpecRule::NAME => 'referrerpolicy',
+            ],
+            [
+                SpecRule::NAME => 'resizable',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'sandbox',
+            ],
+            [
+                SpecRule::NAME => 'scrolling',
+                SpecRule::VALUE => [
+                    'auto',
+                    'yes',
+                    'no',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'data',
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'srcdoc',
+                SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
+            ],
+            [
+                SpecRule::NAME => 'width',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'name-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-iframe/',
+        SpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,
+        SpecRule::MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE => Extension::IFRAME,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+    ];
 }

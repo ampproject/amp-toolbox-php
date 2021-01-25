@@ -7,7 +7,31 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpActionMacro
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpActionMacro extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::ACTION_MACRO,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ARGUMENTS,\n    ],\n    [\n        SpecRule::NAME => Attribute::EXECUTE,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'mandatory-id-attr',\n            ],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-action-macro/',\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-action-macro',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::ACTION_MACRO,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'arguments',
+            ],
+            [
+                SpecRule::NAME => 'execute',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'mandatory-id-attr',
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-action-macro/',
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-action-macro',
+        ],
+    ];
 }

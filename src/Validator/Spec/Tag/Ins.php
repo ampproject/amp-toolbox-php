@@ -7,7 +7,25 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Ins
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Ins extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::INS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATETIME,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'cite-attr',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n                Format::AMP4EMAIL,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::INS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'datetime',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'cite-attr',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+            Format::AMP4EMAIL,
+        ],
+    ];
 }

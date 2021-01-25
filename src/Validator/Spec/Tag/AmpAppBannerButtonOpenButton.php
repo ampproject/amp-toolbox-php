@@ -7,7 +7,46 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAppBannerButtonOpenButton
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAppBannerButtonOpenButton extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::BUTTON,\nSpecRule::SPEC_NAME => 'amp-app-banner button[open-button]',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::OPEN_BUTTON,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::ROLE,\n        SpecRule::IMPLICIT => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TABINDEX,\n        SpecRule::IMPLICIT => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::TYPE,\n    ],\n    [\n        SpecRule::NAME => Attribute::VALUE,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'name-attr',\n            ],\nSpecRule::MANDATORY_ANCESTOR => Extension::APP_BANNER,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::SATISFIES => [\n                'amp-app-banner button[open-button]',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::BUTTON,
+        SpecRule::SPEC_NAME => 'amp-app-banner button[open-button]',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'open-button',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'role',
+                SpecRule::IMPLICIT => true,
+            ],
+            [
+                SpecRule::NAME => 'tabindex',
+                SpecRule::IMPLICIT => true,
+            ],
+            [
+                SpecRule::NAME => 'type',
+            ],
+            [
+                SpecRule::NAME => 'value',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'name-attr',
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Extension::APP_BANNER,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::SATISFIES => [
+            'amp-app-banner button[open-button]',
+        ],
+    ];
 }

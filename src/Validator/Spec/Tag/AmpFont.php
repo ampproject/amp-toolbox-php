@@ -7,7 +7,58 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpFont
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpFont extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::FONT,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::FONT_FAMILY,\n        SpecRule::MANDATORY => true,\n    ],\n    [\n        SpecRule::NAME => Attribute::FONT_STYLE,\n    ],\n    [\n        SpecRule::NAME => Attribute::FONT_VARIANT,\n    ],\n    [\n        SpecRule::NAME => Attribute::FONT_WEIGHT,\n    ],\n    [\n        SpecRule::NAME => Attribute::ON_ERROR_ADD_CLASS,\n    ],\n    [\n        SpecRule::NAME => Attribute::ON_ERROR_REMOVE_CLASS,\n    ],\n    [\n        SpecRule::NAME => Attribute::ON_LOAD_ADD_CLASS,\n    ],\n    [\n        SpecRule::NAME => Attribute::ON_LOAD_REMOVE_CLASS,\n    ],\n    [\n        SpecRule::NAME => Attribute::TIMEOUT,\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-font',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::FONT,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'font-family',
+                SpecRule::MANDATORY => true,
+            ],
+            [
+                SpecRule::NAME => 'font-style',
+            ],
+            [
+                SpecRule::NAME => 'font-variant',
+            ],
+            [
+                SpecRule::NAME => 'font-weight',
+            ],
+            [
+                SpecRule::NAME => 'on-error-add-class',
+            ],
+            [
+                SpecRule::NAME => 'on-error-remove-class',
+            ],
+            [
+                SpecRule::NAME => 'on-load-add-class',
+            ],
+            [
+                SpecRule::NAME => 'on-load-remove-class',
+            ],
+            [
+                SpecRule::NAME => 'timeout',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-font',
+        ],
+    ];
 }

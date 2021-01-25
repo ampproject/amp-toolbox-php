@@ -7,7 +7,44 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpOrientationObserver
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpOrientationObserver extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::ORIENTATION_OBSERVER,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::ALPHA_RANGE,\n        SpecRule::VALUE_REGEX => '(\\d+)\\s{1}(\\d+)',\n    ],\n    [\n        SpecRule::NAME => Attribute::BETA_RANGE,\n        SpecRule::VALUE_REGEX => '(\\d+)\\s{1}(\\d+)',\n    ],\n    [\n        SpecRule::NAME => Attribute::GAMMA_RANGE,\n        SpecRule::VALUE_REGEX => '(\\d+)\\s{1}(\\d+)',\n    ],\n    [\n        SpecRule::NAME => Attribute::SMOOTHING,\n        SpecRule::VALUE_REGEX => '[0-9]+|',\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-orientation-observer',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::ORIENTATION_OBSERVER,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'alpha-range',
+                SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
+            ],
+            [
+                SpecRule::NAME => 'beta-range',
+                SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
+            ],
+            [
+                SpecRule::NAME => 'gamma-range',
+                SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
+            ],
+            [
+                SpecRule::NAME => 'smoothing',
+                SpecRule::VALUE_REGEX => '[0-9]+|',
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-orientation-observer',
+        ],
+    ];
 }

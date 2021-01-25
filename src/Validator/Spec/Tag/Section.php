@@ -7,7 +7,22 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class Section
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class Section extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SECTION,\nSpecRule::ATTR_LISTS => [\n                'poool-access-attrs',\n            ],\nSpecRule::DISALLOWED_ANCESTOR => [\n                'AMP-ACCORDION',\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SECTION,
+        SpecRule::ATTR_LISTS => [
+            'poool-access-attrs',
+        ],
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-ACCORDION',
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+    ];
 }

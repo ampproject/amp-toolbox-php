@@ -7,7 +7,59 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSoundcloud
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSoundcloud extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::SOUNDCLOUD,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DATA_COLOR,\n        SpecRule::VALUE_REGEX_CASEI => '([0-9a-f]{3}){1,2}',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_PLAYLISTID,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-trackid\\', \\'data-playlistid\\']',\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_SECRET_TOKEN,\n        SpecRule::VALUE_REGEX => '[A-Za-z0-9_-]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_TRACKID,\n        SpecRule::MANDATORY_ONEOF => '[\\'data-trackid\\', \\'data-playlistid\\']',\n        SpecRule::VALUE_REGEX => '[0-9]+',\n    ],\n    [\n        SpecRule::NAME => Attribute::DATA_VISUAL,\n        SpecRule::VALUE_CASEI => [\n                        'false',\n                        'true',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::FILL,\n                    Layout::FIXED,\n                    Layout::FIXED_HEIGHT,\n                    Layout::FLEX_ITEM,\n                    Layout::INTRINSIC,\n                    Layout::NODISPLAY,\n                    Layout::RESPONSIVE,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-soundcloud',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::SOUNDCLOUD,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'data-color',
+                SpecRule::VALUE_REGEX_CASEI => '([0-9a-f]{3}){1,2}',
+            ],
+            [
+                SpecRule::NAME => 'data-playlistid',
+                SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-secret-token',
+                SpecRule::VALUE_REGEX => '[A-Za-z0-9_-]+',
+            ],
+            [
+                SpecRule::NAME => 'data-trackid',
+                SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => 'data-visual',
+                SpecRule::VALUE_CASEI => [
+                    'false',
+                    'true',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::FILL,
+                Layout::FIXED,
+                Layout::FIXED_HEIGHT,
+                Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
+                Layout::NODISPLAY,
+                Layout::RESPONSIVE,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-soundcloud',
+        ],
+    ];
 }

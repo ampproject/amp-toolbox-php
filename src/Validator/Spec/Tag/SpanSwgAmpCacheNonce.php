@@ -7,7 +7,33 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class SpanSwgAmpCacheNonce
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class SpanSwgAmpCacheNonce extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Element::SPAN,\nSpecRule::SPEC_NAME => 'span swg_amp_cache_nonce',\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::SWG_AMP_CACHE_NONCE,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',\n    ],\n],\nSpecRule::MANDATORY_ANCESTOR => Element::BODY,\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::SATISFIES => [\n                'span swg_amp_cache_nonce',\n            ],\nSpecRule::REQUIRES => [\n                'subscriptions-section content swg_amp_cache_nonce',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-subscriptions',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::SPAN,
+        SpecRule::SPEC_NAME => 'span swg_amp_cache_nonce',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'swg_amp_cache_nonce',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+            ],
+        ],
+        SpecRule::MANDATORY_ANCESTOR => Element::BODY,
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::SATISFIES => [
+            'span swg_amp_cache_nonce',
+        ],
+        SpecRule::REQUIRES => [
+            'subscriptions-section content swg_amp_cache_nonce',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-subscriptions',
+        ],
+    ];
 }

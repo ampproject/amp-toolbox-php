@@ -7,7 +7,44 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpAnimation
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpAnimation extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::ANIMATION,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::TRIGGER,\n        SpecRule::VALUE => [\n                        'visibility',\n                    ],\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::CHILD_TAGS => [\n                'mandatoryNumChildTags' => 1,\n                'childTagNameOneof' => [\n                    'SCRIPT',\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n                Format::AMP4ADS,\n            ],\nSpecRule::REQUIRES => [\n                'amp-animation extension .json script',\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-animation',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::ANIMATION,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'trigger',
+                SpecRule::VALUE => [
+                    'visibility',
+                ],
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::CHILD_TAGS => [
+            'mandatoryNumChildTags' => 1,
+            'childTagNameOneof' => [
+                'SCRIPT',
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+            Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES => [
+            'amp-animation extension .json script',
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-animation',
+        ],
+    ];
 }

@@ -7,7 +7,50 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpSmartlinks
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpSmartlinks extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::SMARTLINKS,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::EXCLUSIVE_LINKS,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::LINK_ATTRIBUTE,\n    ],\n    [\n        SpecRule::NAME => Attribute::LINK_SELECTOR,\n    ],\n    [\n        SpecRule::NAME => Attribute::LINKMATE,\n        SpecRule::VALUE => [\n                        '',\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::NRTV_ACCOUNT_NAME,\n        SpecRule::MANDATORY => true,\n    ],\n],\nSpecRule::ATTR_LISTS => [\n                'extended-amp-global',\n            ],\nSpecRule::AMP_LAYOUT => [\n                'supportedLayouts' => [\n                    Layout::NODISPLAY,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-smartlinks',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::SMARTLINKS,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'exclusive-links',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'link-attribute',
+            ],
+            [
+                SpecRule::NAME => 'link-selector',
+            ],
+            [
+                SpecRule::NAME => 'linkmate',
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
+                SpecRule::NAME => 'nrtv-account-name',
+                SpecRule::MANDATORY => true,
+            ],
+        ],
+        SpecRule::ATTR_LISTS => [
+            'extended-amp-global',
+        ],
+        SpecRule::AMP_LAYOUT => [
+            'supportedLayouts' => [
+                Layout::NODISPLAY,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-smartlinks',
+        ],
+    ];
 }

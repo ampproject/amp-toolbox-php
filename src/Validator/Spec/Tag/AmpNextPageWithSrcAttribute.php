@@ -7,7 +7,61 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-final class AmpNextPageWithSrcAttribute
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class AmpNextPageWithSrcAttribute extends Tag
 {
-    const SPEC = "[\nSpecRule::TAG_NAME => Extension::NEXT_PAGE,\nSpecRule::SPEC_NAME => 'amp-next-page with src attribute',\nSpecRule::UNIQUE => true,\nSpecRule::ATTRS => [\n    [\n        SpecRule::NAME => Attribute::DEEP_PARSING,\n    ],\n    [\n        SpecRule::NAME => Attribute::MAX_PAGES,\n    ],\n    [\n        SpecRule::NAME => Attribute::SRC,\n        SpecRule::MANDATORY => true,\n        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',\n        SpecRule::VALUE_URL => [\n                        SpecRule::PROTOCOL => [\n                            'https',\n                        ],\n                        SpecRule::ALLOW_RELATIVE => false,\n                    ],\n    ],\n    [\n        SpecRule::NAME => Attribute::XSSI_PREFIX,\n    ],\n],\nSpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',\nSpecRule::REFERENCE_POINTS => [\n                [\n                    'tagSpecName' => 'AMP-NEXT-PAGE > [separator]',\n                    'unique' => true,\n                ],\n                [\n                    'tagSpecName' => 'AMP-NEXT-PAGE > [recommendation-box]',\n                    'unique' => true,\n                ],\n                [\n                    'tagSpecName' => 'AMP-NEXT-PAGE > [footer]',\n                    'unique' => true,\n                ],\n                [\n                    'tagSpecName' => 'AMP-NEXT-PAGE > SCRIPT[type=application/json]',\n                    'unique' => true,\n                ],\n            ],\nSpecRule::HTML_FORMAT => [\n                Format::AMP,\n            ],\nSpecRule::REQUIRES_EXTENSION => [\n                'amp-next-page',\n            ],\n];";
+    const SPEC = [
+        SpecRule::TAG_NAME => Extension::NEXT_PAGE,
+        SpecRule::SPEC_NAME => 'amp-next-page with src attribute',
+        SpecRule::UNIQUE => true,
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => 'deep-parsing',
+            ],
+            [
+                SpecRule::NAME => 'max-pages',
+            ],
+            [
+                SpecRule::NAME => 'src',
+                SpecRule::MANDATORY => true,
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => 'xssi-prefix',
+            ],
+        ],
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',
+        SpecRule::REFERENCE_POINTS => [
+            [
+                'tagSpecName' => 'AMP-NEXT-PAGE > [separator]',
+                SpecRule::UNIQUE => true,
+            ],
+            [
+                'tagSpecName' => 'AMP-NEXT-PAGE > [recommendation-box]',
+                SpecRule::UNIQUE => true,
+            ],
+            [
+                'tagSpecName' => 'AMP-NEXT-PAGE > [footer]',
+                SpecRule::UNIQUE => true,
+            ],
+            [
+                'tagSpecName' => 'AMP-NEXT-PAGE > SCRIPT[type=application/json]',
+                SpecRule::UNIQUE => true,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            'amp-next-page',
+        ],
+    ];
 }
