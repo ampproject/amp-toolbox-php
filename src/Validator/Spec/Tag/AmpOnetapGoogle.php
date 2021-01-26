@@ -34,7 +34,7 @@ final class AmpOnetapGoogle extends Tag
             'extended-amp-global',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],

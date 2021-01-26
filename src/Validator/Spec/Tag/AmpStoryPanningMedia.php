@@ -19,7 +19,7 @@ final class AmpStoryPanningMedia extends Tag
         SpecRule::TAG_NAME => Extension::STORY_PANNING_MEDIA,
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-panning-media',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FILL,
             ],
         ],

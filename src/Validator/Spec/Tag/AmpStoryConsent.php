@@ -22,13 +22,13 @@ final class AmpStoryConsent extends Tag
             'mandatory-id-attr',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'childTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'SCRIPT',
             ],
         ],

@@ -17,8 +17,8 @@ final class AmpMegaMenuNav extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > NAV',
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'childTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'OL',
                 'UL',
             ],

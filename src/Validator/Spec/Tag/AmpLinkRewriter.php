@@ -19,13 +19,13 @@ final class AmpLinkRewriter extends Tag
         SpecRule::TAG_NAME => Extension::LINK_REWRITER,
         SpecRule::UNIQUE => true,
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'firstChildTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::FIRST_CHILD_TAG_NAME_ONEOF => [
                 'SCRIPT',
             ],
         ],

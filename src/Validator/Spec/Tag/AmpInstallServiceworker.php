@@ -42,7 +42,7 @@ final class AmpInstallServiceworker extends Tag
             ],
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],

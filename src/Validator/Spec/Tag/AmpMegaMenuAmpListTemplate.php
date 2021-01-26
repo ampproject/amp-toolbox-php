@@ -19,8 +19,8 @@ final class AmpMegaMenuAmpListTemplate extends Tag
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > AMP-LIST > TEMPLATE',
         SpecRule::MANDATORY_PARENT => Extension::LIST_,
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'childTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'NAV',
             ],
         ],

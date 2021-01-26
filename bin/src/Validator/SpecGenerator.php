@@ -242,6 +242,7 @@ final class SpecGenerator
                     break;
                 case 'css':
                 case 'doc':
+                case 'errors':
                     foreach ($sectionData as $ruleset) {
                         foreach (array_keys($ruleset) as $specRuleKey) {
                             $specRuleKeys[$specRuleKey] = $specRuleKey;

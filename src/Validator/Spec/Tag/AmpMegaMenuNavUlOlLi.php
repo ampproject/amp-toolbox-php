@@ -17,7 +17,7 @@ final class AmpMegaMenuNavUlOlLi extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU NAV > UL/OL > LI',
         SpecRule::CHILD_TAGS => [
-            'childTagNameOneof' => [
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'A',
                 'BUTTON',
                 'DIV',
@@ -29,7 +29,7 @@ final class AmpMegaMenuNavUlOlLi extends Tag
                 'H6',
                 'SPAN',
             ],
-            'mandatoryMinNumChildTags' => 1,
+            SpecRule::MANDATORY_MIN_NUM_CHILD_TAGS => 1,
         ],
         SpecRule::REFERENCE_POINTS => [
             [

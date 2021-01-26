@@ -39,7 +39,7 @@ final class AmpStoryPage extends Tag
             'mandatory-id-attr',
         ],
         SpecRule::CHILD_TAGS => [
-            'childTagNameOneof' => [
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'AMP-ANALYTICS',
                 'AMP-PIXEL',
                 'AMP-STORY-ANIMATION',
@@ -47,7 +47,7 @@ final class AmpStoryPage extends Tag
                 'AMP-STORY-GRID-LAYER',
                 'AMP-STORY-PAGE-ATTACHMENT',
             ],
-            'mandatoryMinNumChildTags' => 1,
+            SpecRule::MANDATORY_MIN_NUM_CHILD_TAGS => 1,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

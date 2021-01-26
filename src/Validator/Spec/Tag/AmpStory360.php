@@ -82,7 +82,7 @@ final class AmpStory360 extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-360',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FILL,
                 Layout::FIXED,
                 Layout::FIXED_HEIGHT,
@@ -92,8 +92,8 @@ final class AmpStory360 extends Tag
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY,
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'childTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'AMP-IMG',
                 'AMP-VIDEO',
             ],

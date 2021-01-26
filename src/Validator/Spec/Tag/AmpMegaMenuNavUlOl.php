@@ -19,10 +19,10 @@ final class AmpMegaMenuNavUlOl extends Tag
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU NAV > UL/OL',
         SpecRule::MANDATORY_PARENT => Element::NAV,
         SpecRule::CHILD_TAGS => [
-            'childTagNameOneof' => [
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'LI',
             ],
-            'mandatoryMinNumChildTags' => 1,
+            SpecRule::MANDATORY_MIN_NUM_CHILD_TAGS => 1,
         ],
         SpecRule::REFERENCE_POINTS => [
             [

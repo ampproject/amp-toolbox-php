@@ -29,7 +29,7 @@ final class AmpInlineGalleryPaginationInset extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inline-gallery/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],

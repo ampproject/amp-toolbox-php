@@ -22,7 +22,7 @@ final class AmpStickyAd extends Tag
             'extended-amp-global',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],
@@ -30,8 +30,8 @@ final class AmpStickyAd extends Tag
             'AMP-APP-BANNER',
         ],
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'firstChildTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::FIRST_CHILD_TAG_NAME_ONEOF => [
                 'AMP-AD',
             ],
         ],

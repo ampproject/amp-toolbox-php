@@ -22,13 +22,13 @@ final class AmpMegaMenu extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-mega-menu/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FIXED_HEIGHT,
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'childTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'NAV',
                 'AMP-LIST',
             ],

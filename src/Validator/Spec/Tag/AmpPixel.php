@@ -46,12 +46,12 @@ final class AmpPixel extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-pixel/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FIXED,
                 Layout::NODISPLAY,
             ],
-            'definesDefaultWidth' => true,
-            'definesDefaultHeight' => true,
+            SpecRule::DEFINES_DEFAULT_WIDTH => true,
+            SpecRule::DEFINES_DEFAULT_HEIGHT => true,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

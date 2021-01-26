@@ -27,7 +27,7 @@ final class AmpStateAmp4email extends Tag
             'TEMPLATE',
         ],
         SpecRule::CHILD_TAGS => [
-            'firstChildTagNameOneof' => [
+            SpecRule::FIRST_CHILD_TAG_NAME_ONEOF => [
                 'SCRIPT',
             ],
         ],

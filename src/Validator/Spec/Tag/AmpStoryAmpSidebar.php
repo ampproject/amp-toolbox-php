@@ -21,7 +21,7 @@ final class AmpStoryAmpSidebar extends Tag
         SpecRule::MANDATORY_PARENT => Extension::STORY,
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-sidebar/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],

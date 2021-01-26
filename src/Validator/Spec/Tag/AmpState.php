@@ -44,7 +44,7 @@ final class AmpState extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-bind/',
         SpecRule::CHILD_TAGS => [
-            'firstChildTagNameOneof' => [
+            SpecRule::FIRST_CHILD_TAG_NAME_ONEOF => [
                 'SCRIPT',
             ],
         ],

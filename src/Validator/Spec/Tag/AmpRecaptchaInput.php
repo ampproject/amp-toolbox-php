@@ -32,7 +32,7 @@ final class AmpRecaptchaInput extends Tag
             'mandatory-name-attr',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],

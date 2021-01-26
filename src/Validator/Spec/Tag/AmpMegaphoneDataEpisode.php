@@ -41,7 +41,7 @@ final class AmpMegaphoneDataEpisode extends Tag
             'extended-amp-global',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FIXED,
                 Layout::FIXED_HEIGHT,
             ],

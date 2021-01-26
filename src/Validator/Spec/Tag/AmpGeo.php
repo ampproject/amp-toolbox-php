@@ -22,12 +22,12 @@ final class AmpGeo extends Tag
             'extended-amp-global',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'firstChildTagNameOneof' => [
+            SpecRule::FIRST_CHILD_TAG_NAME_ONEOF => [
                 'SCRIPT',
             ],
         ],

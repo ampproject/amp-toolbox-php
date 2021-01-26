@@ -35,7 +35,7 @@ final class AmpImageSlider extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-image-slider/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FIXED,
                 Layout::INTRINSIC,
                 Layout::NODISPLAY,
@@ -43,11 +43,11 @@ final class AmpImageSlider extends Tag
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'childTagNameOneof' => [
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'AMP-IMG',
                 'DIV',
             ],
-            'mandatoryMinNumChildTags' => 2,
+            SpecRule::MANDATORY_MIN_NUM_CHILD_TAGS => 2,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

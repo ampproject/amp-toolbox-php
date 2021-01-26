@@ -46,7 +46,7 @@ final class AmpStoryPageAttachmentHref extends Tag
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 0,
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 0,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

@@ -40,7 +40,7 @@ final class AmpDatePickerTypeRangeModeStatic extends Tag
             'extended-amp-global',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FILL,
                 Layout::FIXED,
                 Layout::FIXED_HEIGHT,

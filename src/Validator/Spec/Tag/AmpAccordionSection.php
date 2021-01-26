@@ -40,8 +40,8 @@ final class AmpAccordionSection extends Tag
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 2,
-            'firstChildTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 2,
+            SpecRule::FIRST_CHILD_TAG_NAME_ONEOF => [
                 'H1',
                 'H2',
                 'H3',

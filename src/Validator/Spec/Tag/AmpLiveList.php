@@ -44,7 +44,7 @@ final class AmpLiveList extends Tag
             'mandatory-id-attr',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::CONTAINER,
                 Layout::FIXED_HEIGHT,
             ],

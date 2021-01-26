@@ -36,7 +36,7 @@ final class AmpCallTracking extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-call-tracking/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::CONTAINER,
                 Layout::FILL,
                 Layout::FIXED,
@@ -46,8 +46,8 @@ final class AmpCallTracking extends Tag
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'childTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'A',
             ],
         ],

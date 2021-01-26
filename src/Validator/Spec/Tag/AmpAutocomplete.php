@@ -103,7 +103,7 @@ final class AmpAutocomplete extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-autocomplete/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::CONTAINER,
             ],
         ],

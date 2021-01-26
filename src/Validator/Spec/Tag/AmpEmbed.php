@@ -48,7 +48,7 @@ final class AmpEmbed extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FILL,
                 Layout::FIXED,
                 Layout::FIXED_HEIGHT,

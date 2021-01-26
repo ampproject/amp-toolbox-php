@@ -26,7 +26,7 @@ final class AmpAppBanner extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-app-banner/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
             ],
         ],

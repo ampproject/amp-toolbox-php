@@ -28,7 +28,7 @@ final class AmpGist extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-gist/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FIXED_HEIGHT,
             ],
         ],

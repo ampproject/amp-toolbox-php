@@ -45,12 +45,12 @@ final class AmpAccordion extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-accordion/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::CONTAINER,
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'childTagNameOneof' => [
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'SECTION',
             ],
         ],

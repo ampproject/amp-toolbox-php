@@ -23,14 +23,14 @@ final class AmpAdExit extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad-exit/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::NODISPLAY,
                 Layout::CONTAINER,
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'mandatoryNumChildTags' => 1,
-            'childTagNameOneof' => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'SCRIPT',
             ],
         ],

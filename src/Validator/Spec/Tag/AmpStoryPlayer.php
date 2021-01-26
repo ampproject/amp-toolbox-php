@@ -18,7 +18,7 @@ final class AmpStoryPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PLAYER,
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FILL,
                 Layout::FIXED,
                 Layout::FIXED_HEIGHT,

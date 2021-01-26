@@ -123,7 +123,7 @@ final class AmpStory extends Tag
             ],
         ],
         SpecRule::CHILD_TAGS => [
-            'childTagNameOneof' => [
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
                 'AMP-ANALYTICS',
                 'AMP-CONSENT',
                 'AMP-GEO',
@@ -133,7 +133,7 @@ final class AmpStory extends Tag
                 'AMP-STORY-BOOKEND',
                 'AMP-STORY-PAGE',
             ],
-            'mandatoryMinNumChildTags' => 1,
+            SpecRule::MANDATORY_MIN_NUM_CHILD_TAGS => 1,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

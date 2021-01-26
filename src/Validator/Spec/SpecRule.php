@@ -49,6 +49,7 @@ interface SpecRule
     const EXTENSION_TYPE = 'extensionType';
     const FIRST_CHILD_TAG_NAME_ONEOF = 'firstChildTagNameOneof';
     const FONT_URL_SPEC = 'fontUrlSpec';
+    const FORMAT = 'format';
     const HTML_FORMAT = 'htmlFormat';
     const IMAGE_URL_SPEC = 'imageUrlSpec';
     const IMPLICIT = 'implicit';
@@ -79,6 +80,7 @@ interface SpecRule
     const SIBLINGS_DISALLOWED = 'siblingsDisallowed';
     const SPEC_NAME = 'specName';
     const SPEC_URL = 'specUrl';
+    const SPECIFICITY = 'specificity';
     const SUPPORTED_LAYOUTS = 'supportedLayouts';
     const TAG_NAME = 'tagName';
     const TRIGGER = 'trigger';

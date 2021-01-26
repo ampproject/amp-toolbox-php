@@ -31,7 +31,7 @@ final class AmpNestedMenu extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-nested-menu/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FILL,
             ],
         ],

@@ -31,7 +31,7 @@ final class AmpTruncateText extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-truncate-text/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::CONTAINER,
                 Layout::FILL,
                 Layout::FIXED,

@@ -29,7 +29,7 @@ final class AmpRiddleQuiz extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-riddle-quiz/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::RESPONSIVE,
             ],
         ],

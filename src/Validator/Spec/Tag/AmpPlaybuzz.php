@@ -52,7 +52,7 @@ final class AmpPlaybuzz extends Tag
             'extended-amp-global',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::RESPONSIVE,
                 Layout::FIXED_HEIGHT,
             ],

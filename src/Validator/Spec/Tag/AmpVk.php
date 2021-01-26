@@ -27,7 +27,7 @@ final class AmpVk extends Tag
             'extended-amp-global',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FIXED,
                 Layout::FLEX_ITEM,
                 Layout::RESPONSIVE,

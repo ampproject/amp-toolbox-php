@@ -72,7 +72,7 @@ final class AmpAutocompleteAmp4email extends Tag
             'extended-amp-global',
         ],
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::CONTAINER,
             ],
         ],

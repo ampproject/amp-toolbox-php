@@ -35,7 +35,7 @@ final class AmpEmbedlyCard extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-embedly-card/',
         SpecRule::AMP_LAYOUT => [
-            'supportedLayouts' => [
+            SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::RESPONSIVE,
             ],
         ],
