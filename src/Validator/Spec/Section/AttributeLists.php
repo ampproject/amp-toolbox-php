@@ -230,7 +230,7 @@ final class AttributeLists
                     Attribute::XLINK_ARCROLE => [],
                     Attribute::XLINK_HREF => [
                         SpecRule::ALTERNATIVE_NAMES => [
-                            'href',
+                            Attribute::HREF,
                         ],
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
@@ -414,7 +414,7 @@ final class AttributeLists
                 [
                     Attribute::SRC => [
                         SpecRule::ALTERNATIVE_NAMES => [
-                            'srcset',
+                            Attribute::SRCSET,
                         ],
                         SpecRule::MANDATORY => true,
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',

@@ -295,6 +295,7 @@ final class Dumper
 
         switch ($specRule) {
             case 'alsoRequiresAttr':
+            case 'alternativeNames':
                 $attributes = [];
                 foreach ($value as $attribute) {
                     $attributes[] = $this->getAttributeConstant($this->getConstantName($attribute));

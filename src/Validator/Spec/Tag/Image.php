@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
@@ -45,7 +46,7 @@ final class Image extends Tag
             [
                 SpecRule::NAME => 'xlink:href',
                 SpecRule::ALTERNATIVE_NAMES => [
-                    'href',
+                    Attribute::HREF,
                 ],
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)data:image\/svg\+xml',
                 SpecRule::VALUE_URL => [
