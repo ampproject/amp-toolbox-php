@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Section;
 use AmpProject\Attribute;
 use AmpProject\Exception\InvalidListName;
 use AmpProject\Extension;
+use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec;
 use AmpProject\Validator\Spec\SpecRule;
@@ -459,15 +460,15 @@ final class AttributeLists
                 [
                     Attribute::I_AMPHTML_LAYOUT => [
                         SpecRule::VALUE_CASEI => [
-                            'container',
-                            'fill',
-                            'fixed',
-                            'fixed-height',
-                            'flex-item',
-                            'fluid',
-                            'intrinsic',
-                            'nodisplay',
-                            'responsive',
+                            Layout::CONTAINER,
+                            Layout::FILL,
+                            Layout::FIXED,
+                            Layout::FIXED_HEIGHT,
+                            Layout::FLEX_ITEM,
+                            Layout::FLUID,
+                            Layout::INTRINSIC,
+                            Layout::NODISPLAY,
+                            Layout::RESPONSIVE,
                         ],
                         SpecRule::ENABLED_BY => [
                             'transformed',

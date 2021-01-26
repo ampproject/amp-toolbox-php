@@ -336,6 +336,14 @@ final class Dumper
                     $extensions[] = $this->getTagConstant($this->getConstantName($extension));
                 }
                 return $extensions;
+            case 'valueCasei':
+                foreach ($value as $index => $layout) {
+                    $constant = $this->getLayoutConstant($this->getConstantName($layout));
+                    if (defined("AmpProject\\{$constant}")) {
+                        $value[$index] = $constant;
+                    }
+                }
+                return $value;
             default:
                 return $value;
         }
