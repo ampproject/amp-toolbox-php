@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,25 +20,25 @@ final class AmpSkimlinks extends Tag
         SpecRule::TAG_NAME => Extension::SKIMLINKS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'custom-redirect-domain',
+                SpecRule::NAME => Attribute::CUSTOM_REDIRECT_DOMAIN,
             ],
             [
-                SpecRule::NAME => 'custom-tracking-id',
+                SpecRule::NAME => Attribute::CUSTOM_TRACKING_ID,
                 SpecRule::VALUE_REGEX_CASEI => '^.{0,50}$',
             ],
             [
-                SpecRule::NAME => 'excluded-domains',
+                SpecRule::NAME => Attribute::EXCLUDED_DOMAINS,
             ],
             [
-                SpecRule::NAME => 'link-selector',
+                SpecRule::NAME => Attribute::LINK_SELECTOR,
             ],
             [
-                SpecRule::NAME => 'publisher-code',
+                SpecRule::NAME => Attribute::PUBLISHER_CODE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '^[0-9]+X[0-9]+$',
             ],
             [
-                SpecRule::NAME => 'tracking',
+                SpecRule::NAME => Attribute::TRACKING,
                 SpecRule::VALUE => [
                     'false',
                     'true',

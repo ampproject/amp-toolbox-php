@@ -21,11 +21,11 @@ final class AmpAddthis extends Tag
         SpecRule::TAG_NAME => Extension::ADDTHIS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-product-code',
+                SpecRule::NAME => Attribute::DATA_PRODUCT_CODE,
                 SpecRule::MANDATORY_ONEOF => '[\'data-product-code\', \'data-widget-id\']',
             ],
             [
-                SpecRule::NAME => 'data-share-media',
+                SpecRule::NAME => Attribute::DATA_SHARE_MEDIA,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -35,7 +35,7 @@ final class AmpAddthis extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-share-url',
+                SpecRule::NAME => Attribute::DATA_SHARE_URL,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -45,7 +45,7 @@ final class AmpAddthis extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-widget-id',
+                SpecRule::NAME => Attribute::DATA_WIDGET_ID,
                 SpecRule::MANDATORY_ONEOF => '[\'data-product-code\', \'data-widget-id\']',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [

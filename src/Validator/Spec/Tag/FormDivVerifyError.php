@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,10 +20,10 @@ final class FormDivVerifyError extends Tag
         SpecRule::SPEC_NAME => 'FORM DIV [verify-error]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
             [
-                SpecRule::NAME => 'verify-error',
+                SpecRule::NAME => Attribute::VERIFY_ERROR,
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,19 +19,19 @@ final class View extends Tag
         SpecRule::TAG_NAME => Element::VIEW,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'preserveaspectratio',
+                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
             ],
             [
-                SpecRule::NAME => 'viewbox',
+                SpecRule::NAME => Attribute::VIEWBOX,
             ],
             [
-                SpecRule::NAME => 'viewtarget',
+                SpecRule::NAME => Attribute::VIEWTARGET,
             ],
             [
-                SpecRule::NAME => 'zoomandpan',
+                SpecRule::NAME => Attribute::ZOOMANDPAN,
             ],
         ],
         SpecRule::ATTR_LISTS => [

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpWebPushWidget extends Tag
         SpecRule::TAG_NAME => Extension::WEB_PUSH_WIDGET,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'visibility',
+                SpecRule::NAME => Attribute::VISIBILITY,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'blocked',

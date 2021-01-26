@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
@@ -19,13 +20,13 @@ final class A extends Tag
         SpecRule::TAG_NAME => Element::A,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'border',
+                SpecRule::NAME => Attribute::BORDER,
             ],
             [
-                SpecRule::NAME => 'download',
+                SpecRule::NAME => Attribute::DOWNLOAD,
             ],
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -62,28 +63,28 @@ final class A extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'hreflang',
+                SpecRule::NAME => Attribute::HREFLANG,
             ],
             [
-                SpecRule::NAME => 'media',
+                SpecRule::NAME => Attribute::MEDIA,
             ],
             [
-                SpecRule::NAME => 'referrerpolicy',
+                SpecRule::NAME => Attribute::REFERRERPOLICY,
             ],
             [
-                SpecRule::NAME => 'rel',
+                SpecRule::NAME => Attribute::REL,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(components|dns-prefetch|import|manifest|preconnect|prefetch|preload|prerender|serviceworker|stylesheet|subresource)(\s|$)',
             ],
             [
-                SpecRule::NAME => 'role',
+                SpecRule::NAME => Attribute::ROLE,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'tabindex',
+                SpecRule::NAME => Attribute::TABINDEX,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'target',
+                SpecRule::NAME => Attribute::TARGET,
                 SpecRule::VALUE => [
                     '_blank',
                     '_self',
@@ -91,14 +92,14 @@ final class A extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::VALUE_CASEI => [
                     'text/html',
                     'application/rss+xml',
                 ],
             ],
             [
-                SpecRule::NAME => 'show-tooltip',
+                SpecRule::NAME => Attribute::SHOW_TOOLTIP,
                 SpecRule::VALUE => [
                     'auto',
                     'true',

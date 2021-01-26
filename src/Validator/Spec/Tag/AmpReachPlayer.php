@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpReachPlayer extends Tag
         SpecRule::TAG_NAME => Extension::REACH_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-embed-id',
+                SpecRule::NAME => Attribute::DATA_EMBED_ID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-z-]+',
             ],

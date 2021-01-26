@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -21,7 +22,7 @@ final class AmpAdWithTypeCustom extends Tag
         SpecRule::SPEC_NAME => 'amp-ad with type=custom',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-url',
+                SpecRule::NAME => Attribute::DATA_URL,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -30,10 +31,10 @@ final class AmpAdWithTypeCustom extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'template',
+                SpecRule::NAME => Attribute::TEMPLATE,
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'custom',

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,16 +19,16 @@ final class Textpath extends Tag
         SpecRule::TAG_NAME => Element::TEXTPATH,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'method',
+                SpecRule::NAME => Attribute::METHOD,
             ],
             [
-                SpecRule::NAME => 'spacing',
+                SpecRule::NAME => Attribute::SPACING,
             ],
             [
-                SpecRule::NAME => 'startoffset',
+                SpecRule::NAME => Attribute::STARTOFFSET,
             ],
         ],
         SpecRule::ATTR_LISTS => [

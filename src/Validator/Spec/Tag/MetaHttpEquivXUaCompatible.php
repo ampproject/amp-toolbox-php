@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,23 +20,23 @@ final class MetaHttpEquivXUaCompatible extends Tag
         SpecRule::SPEC_NAME => 'meta http-equiv=X-UA-Compatible',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'content',
+                SpecRule::NAME => Attribute::CONTENT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_PROPERTIES => [
                     'properties' => [
                         [
-                            'name' => 'ie',
-                            'value' => 'edge',
+                            SpecRule::NAME => 'ie',
+                            SpecRule::VALUE => 'edge',
                         ],
                         [
-                            'name' => 'chrome',
-                            'value' => '1',
+                            SpecRule::NAME => 'chrome',
+                            SpecRule::VALUE => '1',
                         ],
                     ],
                 ],
             ],
             [
-                SpecRule::NAME => 'http-equiv',
+                SpecRule::NAME => Attribute::HTTP_EQUIV,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

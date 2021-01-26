@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class Tref extends Tag
         SpecRule::TAG_NAME => Element::TREF,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
         ],
         SpecRule::ATTR_LISTS => [

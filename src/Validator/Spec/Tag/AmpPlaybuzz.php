@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,32 +20,32 @@ final class AmpPlaybuzz extends Tag
         SpecRule::TAG_NAME => Extension::PLAYBUZZ,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-comments',
+                SpecRule::NAME => Attribute::DATA_COMMENTS,
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-item',
+                SpecRule::NAME => Attribute::DATA_ITEM,
                 SpecRule::MANDATORY_ONEOF => '[\'data-item\', \'src\']',
             ],
             [
-                SpecRule::NAME => 'data-item-info',
+                SpecRule::NAME => Attribute::DATA_ITEM_INFO,
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-share-buttons',
+                SpecRule::NAME => Attribute::DATA_SHARE_BUTTONS,
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::MANDATORY_ONEOF => '[\'data-item\', \'src\']',
             ],
         ],

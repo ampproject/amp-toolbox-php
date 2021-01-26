@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -20,10 +21,10 @@ final class AmpStoryPage extends Tag
         SpecRule::MANDATORY_PARENT => Extension::STORY,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'auto-advance-after',
+                SpecRule::NAME => Attribute::AUTO_ADVANCE_AFTER,
             ],
             [
-                SpecRule::NAME => 'background-audio',
+                SpecRule::NAME => Attribute::BACKGROUND_AUDIO,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -32,7 +33,7 @@ final class AmpStoryPage extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'next-page-no-ad',
+                SpecRule::NAME => Attribute::NEXT_PAGE_NO_AD,
             ],
         ],
         SpecRule::ATTR_LISTS => [

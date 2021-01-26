@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,13 +20,13 @@ final class AmpMinuteMediaPlayer extends Tag
         SpecRule::TAG_NAME => Extension::MINUTE_MEDIA_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'data-content-id',
+                SpecRule::NAME => Attribute::DATA_CONTENT_ID,
             ],
             [
-                SpecRule::NAME => 'data-content-type',
+                SpecRule::NAME => Attribute::DATA_CONTENT_TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'curated',
@@ -34,13 +35,13 @@ final class AmpMinuteMediaPlayer extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-minimum-date-factor',
+                SpecRule::NAME => Attribute::DATA_MINIMUM_DATE_FACTOR,
             ],
             [
-                SpecRule::NAME => 'data-scanned-element',
+                SpecRule::NAME => Attribute::DATA_SCANNED_ELEMENT,
             ],
             [
-                SpecRule::NAME => 'data-scanned-element-type',
+                SpecRule::NAME => Attribute::DATA_SCANNED_ELEMENT_TYPE,
                 SpecRule::VALUE => [
                     'className',
                     'id',
@@ -48,13 +49,13 @@ final class AmpMinuteMediaPlayer extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-scoped-keywords',
+                SpecRule::NAME => Attribute::DATA_SCOPED_KEYWORDS,
             ],
             [
-                SpecRule::NAME => 'data-tags',
+                SpecRule::NAME => Attribute::DATA_TAGS,
             ],
             [
-                SpecRule::NAME => 'dock',
+                SpecRule::NAME => Attribute::DOCK,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -20,21 +21,21 @@ final class AmpStoryPageAttachmentHref extends Tag
         SpecRule::SPEC_NAME => 'amp-story-page-attachment[href]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'layout',
+                SpecRule::NAME => Attribute::LAYOUT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'nodisplay',
                 ],
             ],
             [
-                SpecRule::NAME => 'theme',
+                SpecRule::NAME => Attribute::THEME,
                 SpecRule::VALUE => [
                     'dark',
                     'light',
                 ],
             ],
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

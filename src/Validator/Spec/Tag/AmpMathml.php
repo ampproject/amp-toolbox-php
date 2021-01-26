@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,11 +20,11 @@ final class AmpMathml extends Tag
         SpecRule::TAG_NAME => Extension::MATHML,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-formula',
+                SpecRule::NAME => Attribute::DATA_FORMULA,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'inline',
+                SpecRule::NAME => Attribute::INLINE,
             ],
         ],
         SpecRule::ATTR_LISTS => [

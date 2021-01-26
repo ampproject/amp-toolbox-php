@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -21,10 +22,10 @@ final class AmpAdWithDataEnableRefreshAttribute extends Tag
         SpecRule::SPEC_NAME => 'amp-ad with data-enable-refresh attribute',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'data-enable-refresh',
+                SpecRule::NAME => Attribute::DATA_ENABLE_REFRESH,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
@@ -32,10 +33,10 @@ final class AmpAdWithDataEnableRefreshAttribute extends Tag
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'json',
+                SpecRule::NAME => Attribute::JSON,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -45,7 +46,7 @@ final class AmpAdWithDataEnableRefreshAttribute extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
             ],
         ],

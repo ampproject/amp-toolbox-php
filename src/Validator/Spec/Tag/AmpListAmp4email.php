@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -21,7 +22,7 @@ final class AmpListAmp4email extends Tag
         SpecRule::SPEC_NAME => 'AMP-LIST (AMP4EMAIL)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'binding',
+                SpecRule::NAME => Attribute::BINDING,
                 SpecRule::VALUE => [
                     'always',
                     'no',
@@ -30,22 +31,22 @@ final class AmpListAmp4email extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'diffable',
+                SpecRule::NAME => Attribute::DIFFABLE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'items',
+                SpecRule::NAME => Attribute::ITEMS,
             ],
             [
-                SpecRule::NAME => 'max-items',
+                SpecRule::NAME => Attribute::MAX_ITEMS,
             ],
             [
-                SpecRule::NAME => 'single-item',
+                SpecRule::NAME => Attribute::SINGLE_ITEM,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                 SpecRule::VALUE_URL => [
@@ -56,11 +57,11 @@ final class AmpListAmp4email extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'template',
+                SpecRule::NAME => Attribute::TEMPLATE,
                 SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
             ],
             [
-                SpecRule::NAME => 'xssi-prefix',
+                SpecRule::NAME => Attribute::XSSI_PREFIX,
             ],
             [
                 SpecRule::NAME => '[is-layout-container]',

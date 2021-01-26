@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,11 +20,11 @@ final class AmpGfycat extends Tag
         SpecRule::TAG_NAME => Extension::GFYCAT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-gfyid',
+                SpecRule::NAME => Attribute::DATA_GFYID,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'noautoplay',
+                SpecRule::NAME => Attribute::NOAUTOPLAY,
                 SpecRule::VALUE => [
                     '',
                 ],

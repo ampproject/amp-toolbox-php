@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,34 +19,34 @@ final class Radialgradient extends Tag
         SpecRule::TAG_NAME => Element::RADIALGRADIENT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'cx',
+                SpecRule::NAME => Attribute::CX,
             ],
             [
-                SpecRule::NAME => 'cy',
+                SpecRule::NAME => Attribute::CY,
             ],
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'fr',
+                SpecRule::NAME => Attribute::FR,
             ],
             [
-                SpecRule::NAME => 'fx',
+                SpecRule::NAME => Attribute::FX,
             ],
             [
-                SpecRule::NAME => 'fy',
+                SpecRule::NAME => Attribute::FY,
             ],
             [
-                SpecRule::NAME => 'gradienttransform',
+                SpecRule::NAME => Attribute::GRADIENTTRANSFORM,
             ],
             [
-                SpecRule::NAME => 'gradientunits',
+                SpecRule::NAME => Attribute::GRADIENTUNITS,
             ],
             [
-                SpecRule::NAME => 'r',
+                SpecRule::NAME => Attribute::R,
             ],
             [
-                SpecRule::NAME => 'spreadmethod',
+                SpecRule::NAME => Attribute::SPREADMETHOD,
             ],
         ],
         SpecRule::ATTR_LISTS => [

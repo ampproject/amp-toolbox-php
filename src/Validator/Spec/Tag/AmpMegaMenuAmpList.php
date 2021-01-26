@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -18,7 +19,7 @@ final class AmpMegaMenuAmpList extends Tag
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > AMP-LIST',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\']',
             ],
             [

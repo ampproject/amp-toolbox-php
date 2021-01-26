@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,16 +19,16 @@ final class Option extends Tag
         SpecRule::TAG_NAME => Element::OPTION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'disabled',
+                SpecRule::NAME => Attribute::DISABLED,
             ],
             [
-                SpecRule::NAME => 'label',
+                SpecRule::NAME => Attribute::LABEL,
             ],
             [
-                SpecRule::NAME => 'selected',
+                SpecRule::NAME => Attribute::SELECTED,
             ],
             [
-                SpecRule::NAME => 'value',
+                SpecRule::NAME => Attribute::VALUE,
             ],
             [
                 SpecRule::NAME => '[disabled]',

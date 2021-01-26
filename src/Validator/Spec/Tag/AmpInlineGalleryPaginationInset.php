@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpInlineGalleryPaginationInset extends Tag
         SpecRule::SPEC_NAME => 'amp-inline-gallery-pagination [inset]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'inset',
+                SpecRule::NAME => Attribute::INSET,
                 SpecRule::MANDATORY => true,
             ],
         ],

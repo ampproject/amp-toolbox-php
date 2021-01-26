@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,22 +20,22 @@ final class AmpLiveList extends Tag
         SpecRule::TAG_NAME => Extension::LIVE_LIST,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-max-items-per-page',
+                SpecRule::NAME => Attribute::DATA_MAX_ITEMS_PER_PAGE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '\d+',
             ],
             [
-                SpecRule::NAME => 'data-poll-interval',
+                SpecRule::NAME => Attribute::DATA_POLL_INTERVAL,
                 SpecRule::VALUE_REGEX => '\d{5,}',
             ],
             [
-                SpecRule::NAME => 'disabled',
+                SpecRule::NAME => Attribute::DISABLED,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'sort',
+                SpecRule::NAME => Attribute::SORT,
                 SpecRule::VALUE => [
                     'ascending',
                 ],

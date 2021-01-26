@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -21,7 +22,7 @@ final class AmpImageSliderDivSecond extends Tag
         SpecRule::MANDATORY_PARENT => Extension::IMAGE_SLIDER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'second',
+                SpecRule::NAME => Attribute::SECOND,
                 SpecRule::MANDATORY => true,
             ],
         ],

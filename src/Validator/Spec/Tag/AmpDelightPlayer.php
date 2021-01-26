@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,11 +20,11 @@ final class AmpDelightPlayer extends Tag
         SpecRule::TAG_NAME => Extension::DELIGHT_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-content-id',
+                SpecRule::NAME => Attribute::DATA_CONTENT_ID,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'dock',
+                SpecRule::NAME => Attribute::DOCK,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

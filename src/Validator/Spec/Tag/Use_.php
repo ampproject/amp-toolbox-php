@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,22 +19,22 @@ final class Use_ extends Tag
         SpecRule::TAG_NAME => Element::USE_,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
             [
-                SpecRule::NAME => 'x',
+                SpecRule::NAME => Attribute::X,
             ],
             [
-                SpecRule::NAME => 'y',
+                SpecRule::NAME => Attribute::Y,
             ],
         ],
         SpecRule::ATTR_LISTS => [

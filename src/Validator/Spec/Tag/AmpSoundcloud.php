@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,25 +20,25 @@ final class AmpSoundcloud extends Tag
         SpecRule::TAG_NAME => Extension::SOUNDCLOUD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-color',
+                SpecRule::NAME => Attribute::DATA_COLOR,
                 SpecRule::VALUE_REGEX_CASEI => '([0-9a-f]{3}){1,2}',
             ],
             [
-                SpecRule::NAME => 'data-playlistid',
+                SpecRule::NAME => Attribute::DATA_PLAYLISTID,
                 SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']',
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
-                SpecRule::NAME => 'data-secret-token',
+                SpecRule::NAME => Attribute::DATA_SECRET_TOKEN,
                 SpecRule::VALUE_REGEX => '[A-Za-z0-9_-]+',
             ],
             [
-                SpecRule::NAME => 'data-trackid',
+                SpecRule::NAME => Attribute::DATA_TRACKID,
                 SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']',
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
-                SpecRule::NAME => 'data-visual',
+                SpecRule::NAME => Attribute::DATA_VISUAL,
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',

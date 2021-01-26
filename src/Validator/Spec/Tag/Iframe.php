@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -20,29 +21,29 @@ final class Iframe extends Tag
         SpecRule::TAG_NAME => Element::IFRAME,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'frameborder',
+                SpecRule::NAME => Attribute::FRAMEBORDER,
                 SpecRule::VALUE => [
                     '0',
                     '1',
                 ],
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'referrerpolicy',
+                SpecRule::NAME => Attribute::REFERRERPOLICY,
             ],
             [
-                SpecRule::NAME => 'resizable',
+                SpecRule::NAME => Attribute::RESIZABLE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'sandbox',
+                SpecRule::NAME => Attribute::SANDBOX,
             ],
             [
-                SpecRule::NAME => 'scrolling',
+                SpecRule::NAME => Attribute::SCROLLING,
                 SpecRule::VALUE => [
                     'auto',
                     'yes',
@@ -50,7 +51,7 @@ final class Iframe extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
                 SpecRule::VALUE_URL => [
@@ -62,11 +63,11 @@ final class Iframe extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'srcdoc',
+                SpecRule::NAME => Attribute::SRCDOC,
                 SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
         ],
         SpecRule::ATTR_LISTS => [

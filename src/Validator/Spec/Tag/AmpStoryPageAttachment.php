@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,14 +20,14 @@ final class AmpStoryPageAttachment extends Tag
         SpecRule::SPEC_NAME => 'amp-story-page-attachment',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'layout',
+                SpecRule::NAME => Attribute::LAYOUT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'nodisplay',
                 ],
             ],
             [
-                SpecRule::NAME => 'theme',
+                SpecRule::NAME => Attribute::THEME,
                 SpecRule::VALUE => [
                     'dark',
                     'light',

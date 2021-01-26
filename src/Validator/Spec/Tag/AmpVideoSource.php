@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -22,10 +23,10 @@ final class AmpVideoSource extends Tag
         SpecRule::MANDATORY_PARENT => Extension::VIDEO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'media',
+                SpecRule::NAME => Attribute::MEDIA,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -35,7 +36,7 @@ final class AmpVideoSource extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
             ],
             [
                 SpecRule::NAME => '[src]',

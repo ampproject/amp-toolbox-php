@@ -20,19 +20,19 @@ final class IAmphtmlSizerResponsive extends Tag
         SpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-RESPONSIVE',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'style',
+                SpecRule::NAME => Attribute::STYLE,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '!\s*important',
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
                 SpecRule::CSS_DECLARATION => [
                     [
-                        SpecRule::NAME => 'display',
+                        SpecRule::NAME => Attribute::DISPLAY,
                         SpecRule::VALUE_CASEI => [
                             'block',
                         ],
                     ],
                     [
-                        SpecRule::NAME => 'padding-top',
+                        SpecRule::NAME => Attribute::PADDING_TOP,
                     ],
                 ],
             ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -21,7 +22,7 @@ final class AmpStory extends Tag
         SpecRule::MANDATORY_PARENT => Element::BODY,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'background-audio',
+                SpecRule::NAME => Attribute::BACKGROUND_AUDIO,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -30,10 +31,10 @@ final class AmpStory extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'entity',
+                SpecRule::NAME => Attribute::ENTITY,
             ],
             [
-                SpecRule::NAME => 'entity-logo-src',
+                SpecRule::NAME => Attribute::ENTITY_LOGO_SRC,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -42,7 +43,7 @@ final class AmpStory extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'entity-url',
+                SpecRule::NAME => Attribute::ENTITY_URL,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -51,7 +52,7 @@ final class AmpStory extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'poster-landscape-src',
+                SpecRule::NAME => Attribute::POSTER_LANDSCAPE_SRC,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -60,7 +61,7 @@ final class AmpStory extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'poster-portrait-src',
+                SpecRule::NAME => Attribute::POSTER_PORTRAIT_SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -70,7 +71,7 @@ final class AmpStory extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'poster-square-src',
+                SpecRule::NAME => Attribute::POSTER_SQUARE_SRC,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -79,11 +80,11 @@ final class AmpStory extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'publisher',
+                SpecRule::NAME => Attribute::PUBLISHER,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'publisher-logo-src',
+                SpecRule::NAME => Attribute::PUBLISHER_LOGO_SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -93,30 +94,30 @@ final class AmpStory extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'standalone',
+                SpecRule::NAME => Attribute::STANDALONE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'supports-landscape',
+                SpecRule::NAME => Attribute::SUPPORTS_LANDSCAPE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'title',
+                SpecRule::NAME => Attribute::TITLE,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'live-story',
+                SpecRule::NAME => Attribute::LIVE_STORY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'live-story-disabled',
+                SpecRule::NAME => Attribute::LIVE_STORY_DISABLED,
                 SpecRule::VALUE => [
                     '',
                 ],

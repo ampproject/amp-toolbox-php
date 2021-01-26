@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,13 +19,13 @@ final class Fegaussianblur extends Tag
         SpecRule::TAG_NAME => Element::FEGAUSSIANBLUR,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'edgemode',
+                SpecRule::NAME => Attribute::EDGEMODE,
             ],
             [
-                SpecRule::NAME => 'in',
+                SpecRule::NAME => Attribute::IN,
             ],
             [
-                SpecRule::NAME => 'stddeviation',
+                SpecRule::NAME => Attribute::STDDEVIATION,
             ],
         ],
         SpecRule::ATTR_LISTS => [

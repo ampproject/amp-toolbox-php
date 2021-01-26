@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -22,7 +23,7 @@ final class MetaCharsetUtf8 extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'charset',
+                SpecRule::NAME => Attribute::CHARSET,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
                 SpecRule::VALUE_CASEI => [

@@ -19,18 +19,18 @@ final class AmpStoryInteractiveResults extends Tag
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_RESULTS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'option-1-results-category',
+                SpecRule::NAME => Attribute::OPTION_1_RESULTS_CATEGORY,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'option-2-results-category',
+                SpecRule::NAME => Attribute::OPTION_2_RESULTS_CATEGORY,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'option-3-results-category',
+                SpecRule::NAME => Attribute::OPTION_3_RESULTS_CATEGORY,
             ],
             [
-                SpecRule::NAME => 'option-4-results-category',
+                SpecRule::NAME => Attribute::OPTION_4_RESULTS_CATEGORY,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_3_RESULTS_CATEGORY,
@@ -38,13 +38,13 @@ final class AmpStoryInteractiveResults extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'option-1-image',
+                SpecRule::NAME => Attribute::OPTION_1_IMAGE,
             ],
             [
-                SpecRule::NAME => 'option-2-image',
+                SpecRule::NAME => Attribute::OPTION_2_IMAGE,
             ],
             [
-                SpecRule::NAME => 'option-3-image',
+                SpecRule::NAME => Attribute::OPTION_3_IMAGE,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_3_RESULTS_CATEGORY,
@@ -52,7 +52,7 @@ final class AmpStoryInteractiveResults extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'option-4-image',
+                SpecRule::NAME => Attribute::OPTION_4_IMAGE,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_4_RESULTS_CATEGORY,
@@ -60,13 +60,13 @@ final class AmpStoryInteractiveResults extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'option-1-text',
+                SpecRule::NAME => Attribute::OPTION_1_TEXT,
             ],
             [
-                SpecRule::NAME => 'option-2-text',
+                SpecRule::NAME => Attribute::OPTION_2_TEXT,
             ],
             [
-                SpecRule::NAME => 'option-3-text',
+                SpecRule::NAME => Attribute::OPTION_3_TEXT,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_3_RESULTS_CATEGORY,
@@ -74,7 +74,7 @@ final class AmpStoryInteractiveResults extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'option-4-text',
+                SpecRule::NAME => Attribute::OPTION_4_TEXT,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_4_RESULTS_CATEGORY,
@@ -82,15 +82,15 @@ final class AmpStoryInteractiveResults extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'option-1-results-threshold',
+                SpecRule::NAME => Attribute::OPTION_1_RESULTS_THRESHOLD,
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
             ],
             [
-                SpecRule::NAME => 'option-2-results-threshold',
+                SpecRule::NAME => Attribute::OPTION_2_RESULTS_THRESHOLD,
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
             ],
             [
-                SpecRule::NAME => 'option-3-results-threshold',
+                SpecRule::NAME => Attribute::OPTION_3_RESULTS_THRESHOLD,
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -99,7 +99,7 @@ final class AmpStoryInteractiveResults extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'option-4-results-threshold',
+                SpecRule::NAME => Attribute::OPTION_4_RESULTS_THRESHOLD,
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -108,17 +108,17 @@ final class AmpStoryInteractiveResults extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'prompt-text',
+                SpecRule::NAME => Attribute::PROMPT_TEXT,
             ],
             [
-                SpecRule::NAME => 'theme',
+                SpecRule::NAME => Attribute::THEME,
                 SpecRule::VALUE => [
                     'light',
                     'dark',
                 ],
             ],
             [
-                SpecRule::NAME => 'chip-style',
+                SpecRule::NAME => Attribute::CHIP_STYLE,
                 SpecRule::VALUE => [
                     'flat',
                     'transparent',

@@ -21,27 +21,27 @@ final class AmpImgTransformed extends Tag
         SpecRule::SPEC_NAME => 'amp-img (transformed)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'i-amphtml-ssr',
+                SpecRule::NAME => Attribute::I_AMPHTML_SSR,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'attribution',
+                SpecRule::NAME => Attribute::ATTRIBUTION,
             ],
             [
-                SpecRule::NAME => 'object-fit',
+                SpecRule::NAME => Attribute::OBJECT_FIT,
             ],
             [
-                SpecRule::NAME => 'object-position',
+                SpecRule::NAME => Attribute::OBJECT_POSITION,
             ],
             [
-                SpecRule::NAME => 'placeholder',
+                SpecRule::NAME => Attribute::PLACEHOLDER,
             ],
             [
-                SpecRule::NAME => 'referrerpolicy',
+                SpecRule::NAME => Attribute::REFERRERPOLICY,
             ],
             [
                 SpecRule::NAME => '[alt]',

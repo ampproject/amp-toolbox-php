@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,10 +20,10 @@ final class AmpInstagram extends Tag
         SpecRule::TAG_NAME => Extension::INSTAGRAM,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'data-shortcode',
+                SpecRule::NAME => Attribute::DATA_SHORTCODE,
                 SpecRule::MANDATORY => true,
             ],
         ],

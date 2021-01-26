@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,28 +20,28 @@ final class AmpListLoadMore extends Tag
         SpecRule::MANDATORY_PARENT => Extension::LIST_,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'load-more-button',
+                SpecRule::NAME => Attribute::LOAD_MORE_BUTTON,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
             ],
             [
-                SpecRule::NAME => 'load-more-failed',
+                SpecRule::NAME => Attribute::LOAD_MORE_FAILED,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
             ],
             [
-                SpecRule::NAME => 'load-more-loading',
+                SpecRule::NAME => Attribute::LOAD_MORE_LOADING,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
             ],
             [
-                SpecRule::NAME => 'load-more-end',
+                SpecRule::NAME => Attribute::LOAD_MORE_END,
                 SpecRule::VALUE => [
                     '',
                 ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class H2 extends Tag
         SpecRule::TAG_NAME => Element::H2,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
         ],
         SpecRule::HTML_FORMAT => [

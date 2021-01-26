@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpStoryAmpAudio extends Tag
         SpecRule::SPEC_NAME => 'amp-story >> amp-audio',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

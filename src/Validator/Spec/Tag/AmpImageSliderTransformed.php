@@ -21,14 +21,14 @@ final class AmpImageSliderTransformed extends Tag
         SpecRule::SPEC_NAME => 'amp-image-slider (transformed)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'disable-hint-reappear',
+                SpecRule::NAME => Attribute::DISABLE_HINT_REAPPEAR,
             ],
             [
-                SpecRule::NAME => 'initial-slider-position',
+                SpecRule::NAME => Attribute::INITIAL_SLIDER_POSITION,
                 SpecRule::VALUE_REGEX => '0(\.[0-9]+)?|1(\.0+)?',
             ],
             [
-                SpecRule::NAME => 'step-size',
+                SpecRule::NAME => Attribute::STEP_SIZE,
                 SpecRule::VALUE_REGEX => '0(\.[0-9]+)?|1(\.0+)?',
             ],
         ],

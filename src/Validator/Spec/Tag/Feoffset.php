@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,13 +19,13 @@ final class Feoffset extends Tag
         SpecRule::TAG_NAME => Element::FEOFFSET,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'dx',
+                SpecRule::NAME => Attribute::DX,
             ],
             [
-                SpecRule::NAME => 'dy',
+                SpecRule::NAME => Attribute::DY,
             ],
             [
-                SpecRule::NAME => 'in',
+                SpecRule::NAME => Attribute::IN,
             ],
         ],
         SpecRule::ATTR_LISTS => [

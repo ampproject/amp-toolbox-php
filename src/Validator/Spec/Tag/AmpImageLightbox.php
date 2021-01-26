@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpImageLightbox extends Tag
         SpecRule::TAG_NAME => Extension::IMAGE_LIGHTBOX,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'controls',
+                SpecRule::NAME => Attribute::CONTROLS,
             ],
         ],
         SpecRule::ATTR_LISTS => [

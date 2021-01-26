@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,13 +21,13 @@ final class AmpMegaphoneDataPlaylist extends Tag
         SpecRule::SPEC_NAME => 'amp-megaphone [data-playlist]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-playlist',
+                SpecRule::NAME => Attribute::DATA_PLAYLIST,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
                 SpecRule::VALUE_REGEX => '[A-Za-z0-9]+',
             ],
             [
-                SpecRule::NAME => 'data-episodes',
+                SpecRule::NAME => Attribute::DATA_EPISODES,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
         ],

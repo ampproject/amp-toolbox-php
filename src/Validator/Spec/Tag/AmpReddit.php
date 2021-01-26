@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,21 +20,21 @@ final class AmpReddit extends Tag
         SpecRule::TAG_NAME => Extension::REDDIT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-embedlive',
+                SpecRule::NAME => Attribute::DATA_EMBEDLIVE,
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-embedparent',
+                SpecRule::NAME => Attribute::DATA_EMBEDPARENT,
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-embedtype',
+                SpecRule::NAME => Attribute::DATA_EMBEDTYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'comment',
@@ -41,7 +42,7 @@ final class AmpReddit extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-src',
+                SpecRule::NAME => Attribute::DATA_SRC,
                 SpecRule::MANDATORY => true,
             ],
         ],

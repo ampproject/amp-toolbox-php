@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class Blockquote extends Tag
         SpecRule::TAG_NAME => Element::BLOCKQUOTE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
         ],
         SpecRule::ATTR_LISTS => [

@@ -106,69 +106,14 @@ final class Dumper
     ];
 
     /**
-     * Dump a variable so it can be used for code generation.
-     *
-     * @param mixed         $variable Variable to dump.
-     * @param int           $level    Indentation level to use.
-     * @param callable|null $callback Optional. Callback used to filter individual values. Returns a string
-     *                                representation of the value, or false if no special representation needed.
-     * @return string Dump of the provided variable.
-     */
-    public function dump($variable, $level, $callback = null)
-    {
-        if ($this->dumper === null) {
-            $this->dumper = new NetteDumper();
-        }
-
-        $extraIndentation = str_pad('', $level * 4, ' ');
-
-        if (is_array($variable)) {
-            if (count($variable) === 0) {
-                return "[]";
-            }
-
-            $line = '';
-            foreach ($variable as $key => $value) {
-                $line .= "{$extraIndentation}    ";
-                if (is_string($key)) {
-                    $line .= "{$this->dumpWithKey($key, $value, $level + 1, $callback)},\n";
-                } else {
-                    $line .= "{$this->dump($value, $level + 1, $callback)},\n";
-                }
-            }
-            return "[\n" . $line . "{$extraIndentation}]";
-        }
-
-        return "{$this->getValueString($variable, $callback)}";
-    }
-
-    /**
-     * Dump a key-value pair so it can be used for code generation.
-     *
-     * @param string        $key      Key to dump.
-     * @param mixed         $value    Value to dump.
-     * @param int           $level    Indentation level to use.
-     * @param callable|null $callback Optional. Callback used to filter individual values. Returns a string
-     *                                representation of the value, or false if no special representation needed.
-     * @return string Dump of the provided variable.
-     */
-    public function dumpWithKey($key, $value, $level, $callback = null)
-    {
-        $value = $this->replaceConstants($key, $value);
-
-        return "{$this->getValueString($key)} => {$this->dump($value, $level, $callback)}";
-    }
-
-    /**
      * Dump a value so it can be used for code generation.
      *
-     * @param mixed         $value    Value to dump.
-     * @param int           $level    Indentation level to use.
-     * @param callable|null $callback Optional. Callback used to filter individual values. Returns a string
-     *                                representation of the value, or false if no special representation needed.
+     * @param mixed         $value      Value to dump.
+     * @param int           $level      Indentation level to use.
+     * @param array<string> $parentKeys Optional. Array of parent keys.
      * @return string Dump of the provided variable.
      */
-    public function dumpWithSpecRules($value, $level, $callback = null)
+    public function dump($value, $level, $parentKeys = [])
     {
         if ($this->dumper === null) {
             $this->dumper = new NetteDumper();
@@ -184,39 +129,42 @@ final class Dumper
             $line = '';
             foreach ($value as $subKey => $subValue) {
                 $line .= "{$extraIndentation}    ";
+
                 if (is_string($subKey)) {
-                    if (in_array($subKey, self::SPEC_RULE_SUBKEYS, true)) {
-                        $line .= "{$this->dumpWithSpecRuleKey($subKey, $subValue, $level + 1, $callback)},\n";
-                    } else {
-                        $line .= "{$this->dumpWithKey($subKey, $subValue, $level + 1, $callback)},\n";
-                    }
+                    $line .= "{$this->dumpWithKey($subKey, $subValue, $level + 1, $parentKeys)},\n";
                 } else {
-                    $line .= "{$this->dumpWithSpecRules($subValue, $level + 1, $callback)},\n";
+                    $line .= "{$this->dump($subValue, $level + 1, $parentKeys)},\n";
                 }
             }
 
             return "[\n" . $line . "{$extraIndentation}]";
         }
 
-        return "{$this->getValueString($value, $callback)}";
+        return "{$this->getValueString($value)}";
     }
 
     /**
      * Dump a key-value pair so it can be used for code generation.
      *
-     * @param string        $key      Key to dump.
-     * @param mixed         $value    Value to dump.
-     * @param int           $level    Indentation level to use.
-     * @param callable|null $callback Optional. Callback used to filter individual values. Returns a string
-     *                                representation of the value, or false if no special representation needed.
+     * @param string        $key        Key to dump.
+     * @param mixed         $value      Value to dump.
+     * @param int           $level      Indentation level to use.
+     * @param array<string> $parentKeys Optional. Array of parent keys.
      * @return string Dump of the provided variable.
      */
-    public function dumpWithSpecRuleKey($key, $value, $level, $callback = null)
+    public function dumpWithKey($key, $value, $level, $parentKeys = [])
     {
-        $specRuleConstant = "SpecRule::{$this->getConstantName($key)}";
-        $value            = $this->replaceConstants($key, $value);
+        $value = $this->replaceConstants($key, $value, $parentKeys);
 
-        return "{$specRuleConstant} => {$this->dumpWithSpecRules($value, $level, $callback)}";
+        if (is_string($key)) {
+            array_unshift($parentKeys, $key);
+        }
+
+        if (in_array($key, self::SPEC_RULE_SUBKEYS, true)) {
+            $key = "SpecRule::{$this->getConstantName($key)}";
+        }
+
+        return "{$this->getValueString($key)} => {$this->dump($value, $level, $parentKeys)}";
     }
 
     /**
@@ -224,22 +172,16 @@ final class Dumper
      *
      * This takes into account the optional callback that might have been passed in.
      *
-     * @param mixed         $value    Value to get the string representation of.
-     * @param callable|null $callback Optional. Callback used to filter individual values. Returns a string
-     *                                representation of the value, or false if no special representation needed.
+     * @param mixed $value Value to get the string representation of.
      * @return string String representation of the value.
      */
-    private function getValueString($value, $callback = null)
+    private function getValueString($value)
     {
         if ($this->dumper === null) {
             $this->dumper = new NetteDumper();
         }
 
-        if (!is_callable($callback)) {
-            $callback = [$this, 'filterValueStrings'];
-        }
-
-        $valueString = $callback($value);
+        $valueString = $this->filterValueStrings($value);
 
         if ($valueString === false) {
             $valueString = $this->dumper->dump($value);
@@ -261,6 +203,8 @@ final class Dumper
         }
 
         if (
+            strpos($value, 'AtRule::') === 0
+            ||
             strpos($value, 'Attribute::') === 0
             ||
             strpos($value, 'Element::') === 0
@@ -287,7 +231,7 @@ final class Dumper
         return false;
     }
 
-    private function replaceConstants($specRule, $value)
+    private function replaceConstants($specRule, $value, $parentKeys)
     {
         if (!is_string($value) && !is_array($value)) {
             return $value;
@@ -316,6 +260,20 @@ final class Dumper
                     $formats[] = $this->getFormatConstant($this->getConstantName($format));
                 }
                 return $formats;
+            case 'name':
+                if (empty($parentKeys[0])) {
+                    return $value;
+                }
+                if ($parentKeys[0] === 'atRuleSpec') {
+                    return $this->getAtRuleConstant($this->getConstantName($value));
+                }
+                if ($parentKeys[0] !== 'extensionSpec' && $parentKeys[0] !== 'properties') {
+                    $constant = $this->getAttributeConstant($this->getConstantName($value));
+                    if (strpos($value, '[') !== 0) {
+                        return $constant;
+                    }
+                }
+                return $value;
             case 'protocol':
                 $protocols = [];
                 foreach ($value as $protocol) {
@@ -326,12 +284,11 @@ final class Dumper
             case 'mandatoryAncestorSuggestedAlternative':
             case 'mandatoryParent':
             case 'tagName':
-                $constant = $value;
+                $constant = $this->getTagConstant($this->getConstantName($value));
                 if (strpos($value, '$') !== 0 && strpos($value, ' ') === false) {
-                    $constant = $this->getTagConstant($this->getConstantName($value));
+                    return $constant;
                 }
-
-                return $constant;
+                return $value;
             case 'requiresExtension':
                 $extensions = [];
                 foreach ($value as $extension) {
@@ -339,10 +296,12 @@ final class Dumper
                 }
                 return $extensions;
             case 'valueCasei':
-                foreach ($value as $index => $layout) {
-                    $constant = $this->getLayoutConstant($this->getConstantName($layout));
-                    if (defined("AmpProject\\{$constant}")) {
-                        $value[$index] = $constant;
+                if (!empty($parentKeys[0]) && $parentKeys[0] === 'i-amphtml-layout') {
+                    foreach ($value as $index => $layout) {
+                        $constant = $this->getLayoutConstant($this->getConstantName($layout));
+                        if (defined("AmpProject\\{$constant}")) {
+                            $value[$index] = $constant;
+                        }
                     }
                 }
                 return $value;

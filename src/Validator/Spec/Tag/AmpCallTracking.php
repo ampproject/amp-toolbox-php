@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpCallTracking extends Tag
         SpecRule::TAG_NAME => Extension::CALL_TRACKING,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'config',
+                SpecRule::NAME => Attribute::CONFIG,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

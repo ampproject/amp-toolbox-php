@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,16 +19,16 @@ final class Polyline extends Tag
         SpecRule::TAG_NAME => Element::POLYLINE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'points',
+                SpecRule::NAME => Attribute::POINTS,
             ],
             [
-                SpecRule::NAME => 'sketch:type',
+                SpecRule::NAME => Attribute::SKETCH_TYPE,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
         ],
         SpecRule::ATTR_LISTS => [

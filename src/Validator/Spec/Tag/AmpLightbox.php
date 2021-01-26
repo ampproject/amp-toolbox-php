@@ -20,7 +20,7 @@ final class AmpLightbox extends Tag
         SpecRule::TAG_NAME => Extension::LIGHTBOX,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'animate-in',
+                SpecRule::NAME => Attribute::ANIMATE_IN,
                 SpecRule::VALUE_CASEI => [
                     'fade-in',
                     'fly-in-bottom',
@@ -28,13 +28,13 @@ final class AmpLightbox extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'controls',
+                SpecRule::NAME => Attribute::CONTROLS,
             ],
             [
-                SpecRule::NAME => 'from',
+                SpecRule::NAME => Attribute::FROM,
             ],
             [
-                SpecRule::NAME => 'scrollable',
+                SpecRule::NAME => Attribute::SCROLLABLE,
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],

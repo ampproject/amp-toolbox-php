@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,25 +19,25 @@ final class Line extends Tag
         SpecRule::TAG_NAME => Element::LINE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'sketch:type',
+                SpecRule::NAME => Attribute::SKETCH_TYPE,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
             [
-                SpecRule::NAME => 'x1',
+                SpecRule::NAME => Attribute::X1,
             ],
             [
-                SpecRule::NAME => 'x2',
+                SpecRule::NAME => Attribute::X2,
             ],
             [
-                SpecRule::NAME => 'y1',
+                SpecRule::NAME => Attribute::Y1,
             ],
             [
-                SpecRule::NAME => 'y2',
+                SpecRule::NAME => Attribute::Y2,
             ],
         ],
         SpecRule::ATTR_LISTS => [

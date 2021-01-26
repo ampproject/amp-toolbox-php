@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -20,13 +21,13 @@ final class Base extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
                 SpecRule::VALUE => [
                     '/',
                 ],
             ],
             [
-                SpecRule::NAME => 'target',
+                SpecRule::NAME => Attribute::TARGET,
                 SpecRule::VALUE_CASEI => [
                     '_blank',
                     '_self',

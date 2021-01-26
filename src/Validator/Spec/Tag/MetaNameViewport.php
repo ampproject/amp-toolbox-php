@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -22,41 +23,41 @@ final class MetaNameViewport extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'content',
+                SpecRule::NAME => Attribute::CONTENT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_PROPERTIES => [
                     'properties' => [
                         [
-                            'name' => 'width',
-                            'mandatory' => true,
-                            'value' => 'device-width',
+                            SpecRule::NAME => 'width',
+                            SpecRule::MANDATORY => true,
+                            SpecRule::VALUE => 'device-width',
                         ],
                         [
-                            'name' => 'height',
+                            SpecRule::NAME => 'height',
                         ],
                         [
-                            'name' => 'initial-scale',
+                            SpecRule::NAME => 'initial-scale',
                         ],
                         [
-                            'name' => 'minimum-scale',
+                            SpecRule::NAME => 'minimum-scale',
                         ],
                         [
-                            'name' => 'maximum-scale',
+                            SpecRule::NAME => 'maximum-scale',
                         ],
                         [
-                            'name' => 'shrink-to-fit',
+                            SpecRule::NAME => 'shrink-to-fit',
                         ],
                         [
-                            'name' => 'user-scalable',
+                            SpecRule::NAME => 'user-scalable',
                         ],
                         [
-                            'name' => 'viewport-fit',
+                            SpecRule::NAME => 'viewport-fit',
                         ],
                     ],
                 ],
             ],
             [
-                SpecRule::NAME => 'name',
+                SpecRule::NAME => Attribute::NAME,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'viewport',

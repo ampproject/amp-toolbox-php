@@ -50,11 +50,11 @@ trait ArrayImport
         foreach ($this->data as $key => $value) {
             if (is_string($key)) {
                 $constructor->addBody(
-                    "    {$this->dumper->dumpWithSpecRuleKey($key, $value, 1)},"
+                    "    {$this->dumper->dumpWithKey($key, $value, 1)},"
                 );
             } else {
                 $constructor->addBody(
-                    "    {$this->dumper->dumpWithSpecRules($value, 1)},"
+                    "    {$this->dumper->dump($value, 1)},"
                 );
             }
         }

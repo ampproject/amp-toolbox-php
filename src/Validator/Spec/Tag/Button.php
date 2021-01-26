@@ -19,24 +19,24 @@ final class Button extends Tag
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'disabled',
+                SpecRule::NAME => Attribute::DISABLED,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'role',
+                SpecRule::NAME => Attribute::ROLE,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'tabindex',
+                SpecRule::NAME => Attribute::TABINDEX,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
             ],
             [
-                SpecRule::NAME => 'value',
+                SpecRule::NAME => Attribute::VALUE,
             ],
             [
                 SpecRule::NAME => '[disabled]',

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,32 +20,32 @@ final class AmpFont extends Tag
         SpecRule::TAG_NAME => Extension::FONT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'font-family',
+                SpecRule::NAME => Attribute::FONT_FAMILY,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'font-style',
+                SpecRule::NAME => Attribute::FONT_STYLE,
             ],
             [
-                SpecRule::NAME => 'font-variant',
+                SpecRule::NAME => Attribute::FONT_VARIANT,
             ],
             [
-                SpecRule::NAME => 'font-weight',
+                SpecRule::NAME => Attribute::FONT_WEIGHT,
             ],
             [
-                SpecRule::NAME => 'on-error-add-class',
+                SpecRule::NAME => Attribute::ON_ERROR_ADD_CLASS,
             ],
             [
-                SpecRule::NAME => 'on-error-remove-class',
+                SpecRule::NAME => Attribute::ON_ERROR_REMOVE_CLASS,
             ],
             [
-                SpecRule::NAME => 'on-load-add-class',
+                SpecRule::NAME => Attribute::ON_LOAD_ADD_CLASS,
             ],
             [
-                SpecRule::NAME => 'on-load-remove-class',
+                SpecRule::NAME => Attribute::ON_LOAD_REMOVE_CLASS,
             ],
             [
-                SpecRule::NAME => 'timeout',
+                SpecRule::NAME => Attribute::TIMEOUT,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
         ],

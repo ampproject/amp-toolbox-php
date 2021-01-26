@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -22,7 +23,7 @@ final class CryptokeysJsonScript extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'cryptokeys',
+                SpecRule::NAME => Attribute::CRYPTOKEYS,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
@@ -30,11 +31,11 @@ final class CryptokeysJsonScript extends Tag
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'sha-256-hash',
+                SpecRule::NAME => Attribute::SHA_256_HASH,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'application/json',

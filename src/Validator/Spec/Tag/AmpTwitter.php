@@ -21,7 +21,7 @@ final class AmpTwitter extends Tag
         SpecRule::TAG_NAME => Extension::TWITTER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-cards',
+                SpecRule::NAME => Attribute::DATA_CARDS,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_TWEETID,
@@ -29,7 +29,7 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-conversation',
+                SpecRule::NAME => Attribute::DATA_CONVERSATION,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_TWEETID,
@@ -37,7 +37,7 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-limit',
+                SpecRule::NAME => Attribute::DATA_LIMIT,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_MOMENTID,
@@ -45,12 +45,12 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-momentid',
+                SpecRule::NAME => Attribute::DATA_MOMENTID,
                 SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
                 SpecRule::VALUE_REGEX => '\d+',
             ],
             [
-                SpecRule::NAME => 'data-timeline-id',
+                SpecRule::NAME => Attribute::DATA_TIMELINE_ID,
                 SpecRule::VALUE_REGEX => '\d+',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -59,7 +59,7 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-timeline-owner-screen-name',
+                SpecRule::NAME => Attribute::DATA_TIMELINE_OWNER_SCREEN_NAME,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_TIMELINE_SOURCE_TYPE,
@@ -67,7 +67,7 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-timeline-slug',
+                SpecRule::NAME => Attribute::DATA_TIMELINE_SLUG,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_TIMELINE_SOURCE_TYPE,
@@ -75,11 +75,11 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-timeline-source-type',
+                SpecRule::NAME => Attribute::DATA_TIMELINE_SOURCE_TYPE,
                 SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
             ],
             [
-                SpecRule::NAME => 'data-timeline-screen-name',
+                SpecRule::NAME => Attribute::DATA_TIMELINE_SCREEN_NAME,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_TIMELINE_SOURCE_TYPE,
@@ -87,7 +87,7 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-timeline-url',
+                SpecRule::NAME => Attribute::DATA_TIMELINE_URL,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -102,7 +102,7 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-timeline-user-id',
+                SpecRule::NAME => Attribute::DATA_TIMELINE_USER_ID,
                 SpecRule::VALUE_REGEX => '\d+',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -111,7 +111,7 @@ final class AmpTwitter extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-tweetid',
+                SpecRule::NAME => Attribute::DATA_TWEETID,
                 SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
             ],
             [

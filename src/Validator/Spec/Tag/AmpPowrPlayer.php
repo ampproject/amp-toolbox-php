@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,15 +20,15 @@ final class AmpPowrPlayer extends Tag
         SpecRule::TAG_NAME => Extension::POWR_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'data-account',
+                SpecRule::NAME => Attribute::DATA_ACCOUNT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z-]+',
             ],
             [
-                SpecRule::NAME => 'data-player',
+                SpecRule::NAME => Attribute::DATA_PLAYER,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z-]+',
             ],
@@ -35,11 +36,11 @@ final class AmpPowrPlayer extends Tag
                 SpecRule::NAME => '[data-referrer]',
             ],
             [
-                SpecRule::NAME => 'data-terms',
+                SpecRule::NAME => Attribute::DATA_TERMS,
                 SpecRule::MANDATORY_ONEOF => '[\'data-video\', \'data-terms\']',
             ],
             [
-                SpecRule::NAME => 'data-video',
+                SpecRule::NAME => Attribute::DATA_VIDEO,
                 SpecRule::MANDATORY_ONEOF => '[\'data-video\', \'data-terms\']',
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z-]+',
             ],

@@ -21,14 +21,14 @@ final class AmpScript extends Tag
         SpecRule::TAG_NAME => Extension::SCRIPT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-ampdevmode',
+                SpecRule::NAME => Attribute::DATA_AMPDEVMODE,
                 SpecRule::VALUE => [
                     'false',
                 ],
                 SpecRule::DISALLOWED_VALUE_REGEX => 'false',
             ],
             [
-                SpecRule::NAME => 'max-age',
+                SpecRule::NAME => Attribute::MAX_AGE,
                 SpecRule::VALUE_REGEX => '[0-9]+',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -37,21 +37,21 @@ final class AmpScript extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'nodom',
+                SpecRule::NAME => Attribute::NODOM,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'sandbox',
+                SpecRule::NAME => Attribute::SANDBOX,
             ],
             [
-                SpecRule::NAME => 'script',
+                SpecRule::NAME => Attribute::SCRIPT,
                 SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
                 SpecRule::VALUE_ONEOF_SET => 'AMP_SCRIPT_IDS',
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
                 SpecRule::VALUE_URL => [

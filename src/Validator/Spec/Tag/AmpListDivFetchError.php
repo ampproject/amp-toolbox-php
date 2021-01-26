@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -20,10 +21,10 @@ final class AmpListDivFetchError extends Tag
         SpecRule::SPEC_NAME => 'AMP-LIST DIV [fetch-error]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
             [
-                SpecRule::NAME => 'fetch-error',
+                SpecRule::NAME => Attribute::FETCH_ERROR,
                 SpecRule::MANDATORY => true,
             ],
         ],

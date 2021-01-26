@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpLightboxAmp4ads extends Tag
         SpecRule::SPEC_NAME => 'amp-lightbox [AMP4ADS]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'animate-in',
+                SpecRule::NAME => Attribute::ANIMATE_IN,
                 SpecRule::VALUE_CASEI => [
                     'fade-in',
                     'fly-in-bottom',
@@ -28,14 +29,14 @@ final class AmpLightboxAmp4ads extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'close-button',
+                SpecRule::NAME => Attribute::CLOSE_BUTTON,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'controls',
+                SpecRule::NAME => Attribute::CONTROLS,
             ],
             [
-                SpecRule::NAME => 'from',
+                SpecRule::NAME => Attribute::FROM,
             ],
         ],
         SpecRule::ATTR_LISTS => [

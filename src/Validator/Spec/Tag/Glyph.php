@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,31 +19,31 @@ final class Glyph extends Tag
         SpecRule::TAG_NAME => Element::GLYPH,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'arabic-form',
+                SpecRule::NAME => Attribute::ARABIC_FORM,
             ],
             [
-                SpecRule::NAME => 'd',
+                SpecRule::NAME => Attribute::D,
             ],
             [
-                SpecRule::NAME => 'glyph-name',
+                SpecRule::NAME => Attribute::GLYPH_NAME,
             ],
             [
-                SpecRule::NAME => 'horiz-adv-x',
+                SpecRule::NAME => Attribute::HORIZ_ADV_X,
             ],
             [
-                SpecRule::NAME => 'orientation',
+                SpecRule::NAME => Attribute::ORIENTATION,
             ],
             [
-                SpecRule::NAME => 'unicode',
+                SpecRule::NAME => Attribute::UNICODE,
             ],
             [
-                SpecRule::NAME => 'vert-adv-y',
+                SpecRule::NAME => Attribute::VERT_ADV_Y,
             ],
             [
-                SpecRule::NAME => 'vert-origin-x',
+                SpecRule::NAME => Attribute::VERT_ORIGIN_X,
             ],
             [
-                SpecRule::NAME => 'vert-origin-y',
+                SpecRule::NAME => Attribute::VERT_ORIGIN_Y,
             ],
         ],
         SpecRule::ATTR_LISTS => [

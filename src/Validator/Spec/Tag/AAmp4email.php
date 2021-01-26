@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
@@ -20,10 +21,10 @@ final class AAmp4email extends Tag
         SpecRule::SPEC_NAME => 'A (AMP4EMAIL)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'border',
+                SpecRule::NAME => Attribute::BORDER,
             ],
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -36,27 +37,27 @@ final class AAmp4email extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'hreflang',
+                SpecRule::NAME => Attribute::HREFLANG,
             ],
             [
-                SpecRule::NAME => 'media',
+                SpecRule::NAME => Attribute::MEDIA,
             ],
             [
-                SpecRule::NAME => 'role',
+                SpecRule::NAME => Attribute::ROLE,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'tabindex',
+                SpecRule::NAME => Attribute::TABINDEX,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'target',
+                SpecRule::NAME => Attribute::TARGET,
                 SpecRule::VALUE => [
                     '_blank',
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::VALUE_CASEI => [
                     'text/html',
                 ],

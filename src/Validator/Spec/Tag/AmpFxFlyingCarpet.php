@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class AmpFxFlyingCarpet extends Tag
         SpecRule::TAG_NAME => Extension::FX_FLYING_CARPET,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
                 SpecRule::MANDATORY => true,
             ],
         ],

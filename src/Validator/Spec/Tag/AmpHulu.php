@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpHulu extends Tag
         SpecRule::TAG_NAME => Extension::HULU,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-eid',
+                SpecRule::NAME => Attribute::DATA_EID,
                 SpecRule::MANDATORY => true,
             ],
         ],

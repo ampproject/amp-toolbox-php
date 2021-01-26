@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,39 +20,39 @@ final class AmpBridPlayer extends Tag
         SpecRule::TAG_NAME => Extension::BRID_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'data-dynamic',
+                SpecRule::NAME => Attribute::DATA_DYNAMIC,
                 SpecRule::VALUE_REGEX => '[a-z]+',
             ],
             [
-                SpecRule::NAME => 'data-outstream',
+                SpecRule::NAME => Attribute::DATA_OUTSTREAM,
                 SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
-                SpecRule::NAME => 'data-partner',
+                SpecRule::NAME => Attribute::DATA_PARTNER,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
-                SpecRule::NAME => 'data-player',
+                SpecRule::NAME => Attribute::DATA_PLAYER,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
-                SpecRule::NAME => 'data-playlist',
+                SpecRule::NAME => Attribute::DATA_PLAYLIST,
                 SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
                 SpecRule::VALUE_REGEX => '.+',
             ],
             [
-                SpecRule::NAME => 'data-video',
+                SpecRule::NAME => Attribute::DATA_VIDEO,
                 SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
-                SpecRule::NAME => 'dock',
+                SpecRule::NAME => Attribute::DOCK,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

@@ -21,7 +21,7 @@ final class AmpList extends Tag
         SpecRule::TAG_NAME => Extension::LIST_,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'auto-resize',
+                SpecRule::NAME => Attribute::AUTO_RESIZE,
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -29,7 +29,7 @@ final class AmpList extends Tag
                 SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/18849',
             ],
             [
-                SpecRule::NAME => 'binding',
+                SpecRule::NAME => Attribute::BINDING,
                 SpecRule::VALUE => [
                     'always',
                     'no',
@@ -37,30 +37,30 @@ final class AmpList extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'credentials',
+                SpecRule::NAME => Attribute::CREDENTIALS,
             ],
             [
-                SpecRule::NAME => 'data-amp-bind-src',
+                SpecRule::NAME => Attribute::DATA_AMP_BIND_SRC,
                 SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
             ],
             [
-                SpecRule::NAME => 'diffable',
+                SpecRule::NAME => Attribute::DIFFABLE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'items',
+                SpecRule::NAME => Attribute::ITEMS,
             ],
             [
-                SpecRule::NAME => 'load-more',
+                SpecRule::NAME => Attribute::LOAD_MORE,
                 SpecRule::VALUE => [
                     'auto',
                     'manual',
                 ],
             ],
             [
-                SpecRule::NAME => 'load-more-bookmark',
+                SpecRule::NAME => Attribute::LOAD_MORE_BOOKMARK,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::LOAD_MORE,
@@ -68,10 +68,10 @@ final class AmpList extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'max-items',
+                SpecRule::NAME => Attribute::MAX_ITEMS,
             ],
             [
-                SpecRule::NAME => 'reset-on-refresh',
+                SpecRule::NAME => Attribute::RESET_ON_REFRESH,
                 SpecRule::VALUE => [
                     '',
                     'always',
@@ -79,10 +79,10 @@ final class AmpList extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'single-item',
+                SpecRule::NAME => Attribute::SINGLE_ITEM,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -95,11 +95,11 @@ final class AmpList extends Tag
                 SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
             ],
             [
-                SpecRule::NAME => 'template',
+                SpecRule::NAME => Attribute::TEMPLATE,
                 SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
             ],
             [
-                SpecRule::NAME => 'xssi-prefix',
+                SpecRule::NAME => Attribute::XSSI_PREFIX,
             ],
             [
                 SpecRule::NAME => '[is-layout-container]',

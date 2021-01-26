@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,7 +20,7 @@ final class MetaHttpEquivXDnsPrefetchControl extends Tag
         SpecRule::SPEC_NAME => 'meta http-equiv=x-dns-prefetch-control',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'content',
+                SpecRule::NAME => Attribute::CONTENT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'off',
@@ -27,7 +28,7 @@ final class MetaHttpEquivXDnsPrefetchControl extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'http-equiv',
+                SpecRule::NAME => Attribute::HTTP_EQUIV,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

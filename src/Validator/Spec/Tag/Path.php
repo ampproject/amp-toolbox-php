@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,19 +19,19 @@ final class Path extends Tag
         SpecRule::TAG_NAME => Element::PATH,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'd',
+                SpecRule::NAME => Attribute::D,
             ],
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'pathlength',
+                SpecRule::NAME => Attribute::PATHLENGTH,
             ],
             [
-                SpecRule::NAME => 'sketch:type',
+                SpecRule::NAME => Attribute::SKETCH_TYPE,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
         ],
         SpecRule::ATTR_LISTS => [

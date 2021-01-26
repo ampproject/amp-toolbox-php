@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -20,7 +21,7 @@ final class AmpNextPageRecommendationBox extends Tag
         SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'recommendation-box',
+                SpecRule::NAME => Attribute::RECOMMENDATION_BOX,
                 SpecRule::MANDATORY => true,
             ],
         ],

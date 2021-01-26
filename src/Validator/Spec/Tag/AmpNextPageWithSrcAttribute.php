@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -21,13 +22,13 @@ final class AmpNextPageWithSrcAttribute extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'deep-parsing',
+                SpecRule::NAME => Attribute::DEEP_PARSING,
             ],
             [
-                SpecRule::NAME => 'max-pages',
+                SpecRule::NAME => Attribute::MAX_PAGES,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -38,7 +39,7 @@ final class AmpNextPageWithSrcAttribute extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'xssi-prefix',
+                SpecRule::NAME => Attribute::XSSI_PREFIX,
             ],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',

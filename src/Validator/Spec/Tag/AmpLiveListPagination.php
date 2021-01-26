@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -18,7 +19,7 @@ final class AmpLiveListPagination extends Tag
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [pagination]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'pagination',
+                SpecRule::NAME => Attribute::PAGINATION,
                 SpecRule::MANDATORY => true,
             ],
         ],

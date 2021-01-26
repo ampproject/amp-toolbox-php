@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -21,13 +22,13 @@ final class AmpListLoadMoreButtonLoadMoreClickable extends Tag
         SpecRule::MANDATORY_PARENT => Extension::LIST_LOAD_MORE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'disabled',
+                SpecRule::NAME => Attribute::DISABLED,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'load-more-clickable',
+                SpecRule::NAME => Attribute::LOAD_MORE_CLICKABLE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
@@ -35,18 +36,18 @@ final class AmpListLoadMoreButtonLoadMoreClickable extends Tag
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'role',
+                SpecRule::NAME => Attribute::ROLE,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'tabindex',
+                SpecRule::NAME => Attribute::TABINDEX,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
             ],
             [
-                SpecRule::NAME => 'value',
+                SpecRule::NAME => Attribute::VALUE,
             ],
         ],
         SpecRule::ATTR_LISTS => [

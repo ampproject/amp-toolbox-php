@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,17 +20,17 @@ final class AmpBrightcove extends Tag
         SpecRule::TAG_NAME => Extension::BRIGHTCOVE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-account',
+                SpecRule::NAME => Attribute::DATA_ACCOUNT,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'dock',
+                SpecRule::NAME => Attribute::DOCK,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

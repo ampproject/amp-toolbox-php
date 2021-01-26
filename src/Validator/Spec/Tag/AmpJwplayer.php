@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,28 +20,28 @@ final class AmpJwplayer extends Tag
         SpecRule::TAG_NAME => Extension::JWPLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-media-id',
+                SpecRule::NAME => Attribute::DATA_MEDIA_ID,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}|outstream',
                 SpecRule::MANDATORY_ONEOF => '[\'data-media-id\', \'data-playlist-id\']',
             ],
             [
-                SpecRule::NAME => 'data-player-id',
+                SpecRule::NAME => Attribute::DATA_PLAYER_ID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
             ],
             [
-                SpecRule::NAME => 'data-playlist-id',
+                SpecRule::NAME => Attribute::DATA_PLAYLIST_ID,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
                 SpecRule::MANDATORY_ONEOF => '[\'data-media-id\', \'data-playlist-id\']',
             ],
             [
-                SpecRule::NAME => 'dock',
+                SpecRule::NAME => Attribute::DOCK,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

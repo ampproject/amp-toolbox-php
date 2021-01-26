@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpGwdAnimation extends Tag
         SpecRule::TAG_NAME => Extension::GWD_ANIMATION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'timeline-event-prefix',
+                SpecRule::NAME => Attribute::TIMELINE_EVENT_PREFIX,
             ],
         ],
         SpecRule::ATTR_LISTS => [

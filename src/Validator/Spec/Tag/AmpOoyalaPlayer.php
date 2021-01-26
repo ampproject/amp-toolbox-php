@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,15 +20,15 @@ final class AmpOoyalaPlayer extends Tag
         SpecRule::TAG_NAME => Extension::OOYALA_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-embedcode',
+                SpecRule::NAME => Attribute::DATA_EMBEDCODE,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-pcode',
+                SpecRule::NAME => Attribute::DATA_PCODE,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-playerid',
+                SpecRule::NAME => Attribute::DATA_PLAYERID,
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -21,40 +21,40 @@ final class AmpImgImgTransformed extends Tag
         SpecRule::MANDATORY_PARENT => 'amp-img (transformed)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'attribution',
+                SpecRule::NAME => Attribute::ATTRIBUTION,
             ],
             [
-                SpecRule::NAME => 'object-fit',
+                SpecRule::NAME => Attribute::OBJECT_FIT,
             ],
             [
-                SpecRule::NAME => 'object-position',
+                SpecRule::NAME => Attribute::OBJECT_POSITION,
             ],
             [
-                SpecRule::NAME => 'referrerpolicy',
+                SpecRule::NAME => Attribute::REFERRERPOLICY,
             ],
             [
-                SpecRule::NAME => 'sizes',
+                SpecRule::NAME => Attribute::SIZES,
             ],
             [
-                SpecRule::NAME => 'title',
+                SpecRule::NAME => Attribute::TITLE,
             ],
             [
-                SpecRule::NAME => 'class',
+                SpecRule::NAME => Attribute::CLASS_,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => 'i-amphtml-fill-content\s+i-amphtml-replaced-content|i-amphtml-replaced-content\s+i-amphtml-fill-content',
             ],
             [
-                SpecRule::NAME => 'decoding',
+                SpecRule::NAME => Attribute::DECODING,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'async',
                 ],
             ],
             [
-                SpecRule::NAME => 'loading',
+                SpecRule::NAME => Attribute::LOADING,
                 SpecRule::VALUE => [
                     'lazy',
                     'eager',

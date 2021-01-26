@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -20,11 +21,11 @@ final class MetaNameAmp4adsVars extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'content',
+                SpecRule::NAME => Attribute::CONTENT,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'name',
+                SpecRule::NAME => Attribute::NAME,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => 'amp4ads-vars-.+',
             ],

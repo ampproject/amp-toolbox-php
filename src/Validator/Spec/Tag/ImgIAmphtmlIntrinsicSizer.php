@@ -22,35 +22,35 @@ final class ImgIAmphtmlIntrinsicSizer extends Tag
         SpecRule::MANDATORY_PARENT => Internal::SIZER_INTRINSIC,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'aria-hidden',
+                SpecRule::NAME => Attribute::ARIA_HIDDEN,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'class',
+                SpecRule::NAME => Attribute::CLASS_,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'i-amphtml-intrinsic-sizer',
                 ],
             ],
             [
-                SpecRule::NAME => 'role',
+                SpecRule::NAME => Attribute::ROLE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'presentation',
                 ],
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => 'data:image\/svg\+xml;charset=utf-8,\s*<svg height="\d+(\.\d+)?" width="\d+(\.\d+)?" xmlns="http:\/\/www\.w3\.org\/2000\/svg" version="1\.1"\/>|data:image\/svg\+xml;charset=utf-8,\s*<svg height=\'\d+(\.\d+)?\' width=\'\d+(\.\d+)?\' xmlns=\'http:\/\/www\.w3\.org\/2000\/svg\' version=\'1\.1\'\/>|data:image\/svg\+xml;base64,[a-zA-Z0-9+\/=]+',
             ],

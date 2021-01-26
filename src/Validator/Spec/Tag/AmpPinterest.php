@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,10 +20,10 @@ final class AmpPinterest extends Tag
         SpecRule::TAG_NAME => Extension::PINTEREST,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'data-do',
+                SpecRule::NAME => Attribute::DATA_DO,
                 SpecRule::MANDATORY => true,
             ],
         ],

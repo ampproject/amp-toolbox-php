@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,20 +20,20 @@ final class MetaNameAndContent extends Tag
         SpecRule::SPEC_NAME => 'meta name= and content=',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'content',
+                SpecRule::NAME => Attribute::CONTENT,
             ],
             [
-                SpecRule::NAME => 'itemprop',
+                SpecRule::NAME => Attribute::ITEMPROP,
             ],
             [
-                SpecRule::NAME => 'name',
+                SpecRule::NAME => Attribute::NAME,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(amp-.*|amp4ads-.*|apple-itunes-app|content-disposition|revisit-after|viewport)(\s|$)',
             ],
             [
-                SpecRule::NAME => 'property',
+                SpecRule::NAME => Attribute::PROPERTY,
             ],
             [
-                SpecRule::NAME => 'scheme',
+                SpecRule::NAME => Attribute::SCHEME,
             ],
         ],
         SpecRule::HTML_FORMAT => [

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpVk extends Tag
         SpecRule::TAG_NAME => Extension::VK,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-embedtype',
+                SpecRule::NAME => Attribute::DATA_EMBEDTYPE,
                 SpecRule::MANDATORY => true,
             ],
         ],

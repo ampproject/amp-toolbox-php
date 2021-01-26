@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,11 +20,11 @@ final class AmpBysideContent extends Tag
         SpecRule::TAG_NAME => Extension::BYSIDE_CONTENT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-label',
+                SpecRule::NAME => Attribute::DATA_LABEL,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-webcare-id',
+                SpecRule::NAME => Attribute::DATA_WEBCARE_ID,
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,11 +20,11 @@ final class AmpO2Player extends Tag
         SpecRule::TAG_NAME => Extension::O2_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-bcid',
+                SpecRule::NAME => Attribute::DATA_BCID,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-pid',
+                SpecRule::NAME => Attribute::DATA_PID,
                 SpecRule::MANDATORY => true,
             ],
         ],

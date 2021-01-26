@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,13 +20,13 @@ final class Amp3qPlayer extends Tag
         SpecRule::TAG_NAME => Extension::_3Q_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-id',
+                SpecRule::NAME => Attribute::DATA_ID,
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -23,13 +23,13 @@ final class HtmlTransformed extends Tag
         SpecRule::MANDATORY_PARENT => Element::_DOCTYPE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'i-amphtml-layout',
+                SpecRule::NAME => Attribute::I_AMPHTML_LAYOUT,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'i-amphtml-no-boilerplate',
+                SpecRule::NAME => Attribute::I_AMPHTML_NO_BOILERPLATE,
                 SpecRule::VALUE => [
                     '',
                 ],

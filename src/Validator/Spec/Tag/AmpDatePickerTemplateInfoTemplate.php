@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -21,12 +22,12 @@ final class AmpDatePickerTemplateInfoTemplate extends Tag
         SpecRule::MANDATORY_PARENT => Extension::DATE_PICKER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'info-template',
+                SpecRule::NAME => Attribute::INFO_TEMPLATE,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-mustache',

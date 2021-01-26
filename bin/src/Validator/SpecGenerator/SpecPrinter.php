@@ -57,7 +57,7 @@ final class SpecPrinter extends Printer
             $consts[] = Helpers::formatDocComment((string) $const->getComment())
                 . self::printAttributes($const->getAttributes(), $namespace)
                 . "const {$const->getName()} = "
-                . $this->dumper->dumpWithSpecRules($const->getValue(), 0) . ";\n";
+                . $this->dumper->dump($const->getValue(), 0) . ";\n";
         }
 
         $properties = [];
@@ -73,7 +73,7 @@ final class SpecPrinter extends Printer
                 . ($property->getValue() === null && !$property->isInitialized()
                     ? ''
                     : ' = ' . $this->dumper->dump($property->getValue(), strlen($def) + 3)) // 3 = ' = '
-                . ";\n";
+                            . ";\n";
         }
 
         $methods = [];

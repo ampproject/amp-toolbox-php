@@ -22,7 +22,7 @@ final class AmpAccordionSection extends Tag
         SpecRule::MANDATORY_PARENT => Extension::ACCORDION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'access-hide',
+                SpecRule::NAME => Attribute::ACCESS_HIDE,
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -31,7 +31,7 @@ final class AmpAccordionSection extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'expanded',
+                SpecRule::NAME => Attribute::EXPANDED,
                 SpecRule::VALUE => [
                     '',
                 ],

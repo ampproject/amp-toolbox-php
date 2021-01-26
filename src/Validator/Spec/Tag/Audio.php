@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -20,22 +21,22 @@ final class Audio extends Tag
         SpecRule::TAG_NAME => Element::AUDIO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'controls',
+                SpecRule::NAME => Attribute::CONTROLS,
             ],
             [
-                SpecRule::NAME => 'loop',
+                SpecRule::NAME => Attribute::LOOP,
             ],
             [
-                SpecRule::NAME => 'muted',
+                SpecRule::NAME => Attribute::MUTED,
             ],
             [
-                SpecRule::NAME => 'preload',
+                SpecRule::NAME => Attribute::PRELOAD,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

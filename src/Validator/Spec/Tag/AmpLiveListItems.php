@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -18,7 +19,7 @@ final class AmpLiveListItems extends Tag
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'items',
+                SpecRule::NAME => Attribute::ITEMS,
                 SpecRule::MANDATORY => true,
             ],
         ],

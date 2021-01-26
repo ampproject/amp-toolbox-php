@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,13 +21,13 @@ final class AmpDatePickerTypeRangeModeStatic extends Tag
         SpecRule::SPEC_NAME => 'amp-date-picker[type=range][mode=static]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'mode',
+                SpecRule::NAME => Attribute::MODE,
                 SpecRule::VALUE_CASEI => [
                     'static',
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'range',

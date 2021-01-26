@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -20,33 +21,33 @@ final class Video extends Tag
         SpecRule::TAG_NAME => Element::VIDEO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'controls',
+                SpecRule::NAME => Attribute::CONTROLS,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'loop',
+                SpecRule::NAME => Attribute::LOOP,
             ],
             [
-                SpecRule::NAME => 'muted',
+                SpecRule::NAME => Attribute::MUTED,
                 SpecRule::DEPRECATION => 'autoplay',
                 SpecRule::DEPRECATION_URL => 'https://amp.dev/documentation/components/amp-video/',
             ],
             [
-                SpecRule::NAME => 'playsinline',
+                SpecRule::NAME => Attribute::PLAYSINLINE,
             ],
             [
-                SpecRule::NAME => 'poster',
+                SpecRule::NAME => Attribute::POSTER,
             ],
             [
-                SpecRule::NAME => 'preload',
+                SpecRule::NAME => Attribute::PRELOAD,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -57,7 +58,7 @@ final class Video extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video/',

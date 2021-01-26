@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,11 +20,11 @@ final class LinkProperty extends Tag
         SpecRule::SPEC_NAME => 'link property=',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'property',
+                SpecRule::NAME => Attribute::PROPERTY,
                 SpecRule::MANDATORY => true,
             ],
         ],

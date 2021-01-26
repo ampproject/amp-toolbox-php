@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,13 +19,13 @@ final class Fecolormatrix extends Tag
         SpecRule::TAG_NAME => Element::FECOLORMATRIX,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'in',
+                SpecRule::NAME => Attribute::IN,
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
             ],
             [
-                SpecRule::NAME => 'values',
+                SpecRule::NAME => Attribute::VALUES,
             ],
         ],
         SpecRule::ATTR_LISTS => [

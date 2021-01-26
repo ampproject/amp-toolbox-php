@@ -7,6 +7,8 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\AtRule;
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -21,14 +23,14 @@ final class StyleAmpCustom extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'amp-custom',
+                SpecRule::NAME => Attribute::AMP_CUSTOM,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::VALUE_CASEI => [
                     'text/css',
                 ],
@@ -54,19 +56,19 @@ final class StyleAmpCustom extends Tag
             SpecRule::CSS_SPEC => [
                 'atRuleSpec' => [
                     [
-                        'name' => 'font-face',
+                        SpecRule::NAME => AtRule::FONT_FACE,
                     ],
                     [
-                        'name' => 'keyframes',
+                        SpecRule::NAME => AtRule::KEYFRAMES,
                     ],
                     [
-                        'name' => 'media',
+                        SpecRule::NAME => AtRule::MEDIA,
                     ],
                     [
-                        'name' => 'page',
+                        SpecRule::NAME => AtRule::PAGE,
                     ],
                     [
-                        'name' => 'supports',
+                        SpecRule::NAME => AtRule::SUPPORTS,
                     ],
                 ],
             ],

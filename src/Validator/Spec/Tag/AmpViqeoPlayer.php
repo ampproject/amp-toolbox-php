@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,15 +20,15 @@ final class AmpViqeoPlayer extends Tag
         SpecRule::TAG_NAME => Extension::VIQEO_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'data-profileid',
+                SpecRule::NAME => Attribute::DATA_PROFILEID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-f]*',
             ],
             [
-                SpecRule::NAME => 'data-videoid',
+                SpecRule::NAME => Attribute::DATA_VIDEOID,
                 SpecRule::MANDATORY => true,
             ],
         ],

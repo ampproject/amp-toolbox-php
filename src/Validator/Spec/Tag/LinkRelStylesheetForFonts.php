@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -20,24 +21,24 @@ final class LinkRelStylesheetForFonts extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'async',
+                SpecRule::NAME => Attribute::ASYNC,
             ],
             [
-                SpecRule::NAME => 'crossorigin',
+                SpecRule::NAME => Attribute::CROSSORIGIN,
             ],
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => 'https://cdn\.materialdesignicons\.com/([0-9]+\.?)+/css/materialdesignicons\.min\.css|https://cloud\.typography\.com/[0-9]*/[0-9]*/css/fonts\.css|https://fast\.fonts\.net/.*|https://fonts\.googleapis\.com/css2?\?.*|https://fonts\.googleapis\.com/icon\?.*|https://fonts\.googleapis\.com/earlyaccess/.*\.css|https://maxcdn\.bootstrapcdn\.com/font-awesome/([0-9]+\.?)+/css/font-awesome\.min\.css(\?.*)?|https://(use|pro|kit)\.fontawesome\.com/releases/v([0-9]+\.?)+/css/[0-9a-zA-Z-]+\.css|https://(use|pro|kit)\.fontawesome\.com/[0-9a-zA-Z-]+\.css|https://use\.typekit\.net/[\w\p{L}\p{N}_]+\.css',
             ],
             [
-                SpecRule::NAME => 'integrity',
+                SpecRule::NAME => Attribute::INTEGRITY,
             ],
             [
-                SpecRule::NAME => 'media',
+                SpecRule::NAME => Attribute::MEDIA,
             ],
             [
-                SpecRule::NAME => 'rel',
+                SpecRule::NAME => Attribute::REL,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [
@@ -45,7 +46,7 @@ final class LinkRelStylesheetForFonts extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::VALUE_CASEI => [
                     'text/css',
                 ],

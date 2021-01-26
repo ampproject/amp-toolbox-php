@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,25 +19,25 @@ final class Fecomposite extends Tag
         SpecRule::TAG_NAME => Element::FECOMPOSITE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'in',
+                SpecRule::NAME => Attribute::IN,
             ],
             [
-                SpecRule::NAME => 'in2',
+                SpecRule::NAME => Attribute::IN2,
             ],
             [
-                SpecRule::NAME => 'k1',
+                SpecRule::NAME => Attribute::K1,
             ],
             [
-                SpecRule::NAME => 'k2',
+                SpecRule::NAME => Attribute::K2,
             ],
             [
-                SpecRule::NAME => 'k3',
+                SpecRule::NAME => Attribute::K3,
             ],
             [
-                SpecRule::NAME => 'k4',
+                SpecRule::NAME => Attribute::K4,
             ],
             [
-                SpecRule::NAME => 'operator',
+                SpecRule::NAME => Attribute::OPERATOR,
             ],
         ],
         SpecRule::ATTR_LISTS => [

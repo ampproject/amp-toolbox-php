@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -20,13 +21,13 @@ final class AmpState extends Tag
         SpecRule::SPEC_NAME => 'amp-state',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'credentials',
+                SpecRule::NAME => Attribute::CREDENTIALS,
             ],
             [
-                SpecRule::NAME => 'overridable',
+                SpecRule::NAME => Attribute::OVERRIDABLE,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

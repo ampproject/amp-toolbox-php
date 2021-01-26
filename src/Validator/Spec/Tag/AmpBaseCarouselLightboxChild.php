@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -18,7 +19,7 @@ final class AmpBaseCarouselLightboxChild extends Tag
         SpecRule::SPEC_NAME => 'AMP-BASE-CAROUSEL lightbox [child]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'lightbox-thumbnail-id',
+                SpecRule::NAME => Attribute::LIGHTBOX_THUMBNAIL_ID,
                 SpecRule::VALUE_REGEX_CASEI => '^[a-z][a-z\d_-]*',
             ],
         ],

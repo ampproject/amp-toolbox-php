@@ -20,34 +20,34 @@ final class Textarea extends Tag
         SpecRule::TAG_NAME => Element::TEXTAREA,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autocomplete',
+                SpecRule::NAME => Attribute::AUTOCOMPLETE,
             ],
             [
-                SpecRule::NAME => 'autoexpand',
+                SpecRule::NAME => Attribute::AUTOEXPAND,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::FORM,
                 ],
             ],
             [
-                SpecRule::NAME => 'autofocus',
+                SpecRule::NAME => Attribute::AUTOFOCUS,
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
             [
-                SpecRule::NAME => 'cols',
+                SpecRule::NAME => Attribute::COLS,
             ],
             [
-                SpecRule::NAME => 'disabled',
+                SpecRule::NAME => Attribute::DISABLED,
             ],
             [
-                SpecRule::NAME => 'maxlength',
+                SpecRule::NAME => Attribute::MAXLENGTH,
             ],
             [
-                SpecRule::NAME => 'minlength',
+                SpecRule::NAME => Attribute::MINLENGTH,
             ],
             [
-                SpecRule::NAME => 'no-verify',
+                SpecRule::NAME => Attribute::NO_VERIFY,
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -56,43 +56,43 @@ final class Textarea extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'pattern',
+                SpecRule::NAME => Attribute::PATTERN,
             ],
             [
-                SpecRule::NAME => 'placeholder',
+                SpecRule::NAME => Attribute::PLACEHOLDER,
             ],
             [
-                SpecRule::NAME => 'readonly',
+                SpecRule::NAME => Attribute::READONLY,
             ],
             [
-                SpecRule::NAME => 'required',
+                SpecRule::NAME => Attribute::REQUIRED,
             ],
             [
-                SpecRule::NAME => 'rows',
+                SpecRule::NAME => Attribute::ROWS,
             ],
             [
-                SpecRule::NAME => 'selectiondirection',
+                SpecRule::NAME => Attribute::SELECTIONDIRECTION,
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
             [
-                SpecRule::NAME => 'selectionend',
+                SpecRule::NAME => Attribute::SELECTIONEND,
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
             [
-                SpecRule::NAME => 'selectionstart',
+                SpecRule::NAME => Attribute::SELECTIONSTART,
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
             [
-                SpecRule::NAME => 'spellcheck',
+                SpecRule::NAME => Attribute::SPELLCHECK,
             ],
             [
-                SpecRule::NAME => 'wrap',
+                SpecRule::NAME => Attribute::WRAP,
             ],
             [
                 SpecRule::NAME => '[autocomplete]',

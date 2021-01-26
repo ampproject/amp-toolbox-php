@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,12 +20,12 @@ final class AmpApesterMedia extends Tag
         SpecRule::TAG_NAME => Extension::APESTER_MEDIA,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-apester-channel-token',
+                SpecRule::NAME => Attribute::DATA_APESTER_CHANNEL_TOKEN,
                 SpecRule::MANDATORY_ONEOF => '[\'data-apester-media-id\', \'data-apester-channel-token\']',
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z]+',
             ],
             [
-                SpecRule::NAME => 'data-apester-media-id',
+                SpecRule::NAME => Attribute::DATA_APESTER_MEDIA_ID,
                 SpecRule::MANDATORY_ONEOF => '[\'data-apester-media-id\', \'data-apester-channel-token\']',
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z]+',
             ],

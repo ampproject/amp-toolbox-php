@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,41 +19,41 @@ final class Svg extends Tag
         SpecRule::TAG_NAME => Element::SVG,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'contentscripttype',
+                SpecRule::NAME => Attribute::CONTENTSCRIPTTYPE,
             ],
             [
-                SpecRule::NAME => 'contentstyletype',
+                SpecRule::NAME => Attribute::CONTENTSTYLETYPE,
             ],
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'preserveaspectratio',
+                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
             ],
             [
-                SpecRule::NAME => 'version',
+                SpecRule::NAME => Attribute::VERSION,
                 SpecRule::VALUE => [
                     '1.0',
                     '1.1',
                 ],
             ],
             [
-                SpecRule::NAME => 'viewbox',
+                SpecRule::NAME => Attribute::VIEWBOX,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
             [
-                SpecRule::NAME => 'x',
+                SpecRule::NAME => Attribute::X,
             ],
             [
-                SpecRule::NAME => 'y',
+                SpecRule::NAME => Attribute::Y,
             ],
             [
-                SpecRule::NAME => 'zoomandpan',
+                SpecRule::NAME => Attribute::ZOOMANDPAN,
             ],
         ],
         SpecRule::ATTR_LISTS => [

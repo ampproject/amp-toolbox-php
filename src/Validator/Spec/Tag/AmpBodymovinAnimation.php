@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,17 +21,17 @@ final class AmpBodymovinAnimation extends Tag
         SpecRule::TAG_NAME => Extension::BODYMOVIN_ANIMATION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'loop',
+                SpecRule::NAME => Attribute::LOOP,
                 SpecRule::VALUE_REGEX_CASEI => '[1-9][0-9]*|false|true',
             ],
             [
-                SpecRule::NAME => 'noautoplay',
+                SpecRule::NAME => Attribute::NOAUTOPLAY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -40,7 +41,7 @@ final class AmpBodymovinAnimation extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'renderer',
+                SpecRule::NAME => Attribute::RENDERER,
                 SpecRule::VALUE_CASEI => [
                     'svg',
                     'html',

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -20,10 +21,10 @@ final class AmpNextPageWithInlineConfig extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'deep-parsing',
+                SpecRule::NAME => Attribute::DEEP_PARSING,
             ],
             [
-                SpecRule::NAME => 'max-pages',
+                SpecRule::NAME => Attribute::MAX_PAGES,
             ],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',

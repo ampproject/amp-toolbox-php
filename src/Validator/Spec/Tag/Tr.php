@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,16 +19,16 @@ final class Tr extends Tag
         SpecRule::TAG_NAME => Element::TR,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
             [
-                SpecRule::NAME => 'bgcolor',
+                SpecRule::NAME => Attribute::BGCOLOR,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'valign',
+                SpecRule::NAME => Attribute::VALIGN,
             ],
         ],
         SpecRule::HTML_FORMAT => [

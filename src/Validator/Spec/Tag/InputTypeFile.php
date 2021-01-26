@@ -20,7 +20,7 @@ final class InputTypeFile extends Tag
         SpecRule::SPEC_NAME => 'INPUT [type=file]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'no-verify',
+                SpecRule::NAME => Attribute::NO_VERIFY,
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -29,7 +29,7 @@ final class InputTypeFile extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

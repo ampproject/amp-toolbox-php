@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpEmbedlyCard extends Tag
         SpecRule::TAG_NAME => Extension::EMBEDLY_CARD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-url',
+                SpecRule::NAME => Attribute::DATA_URL,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

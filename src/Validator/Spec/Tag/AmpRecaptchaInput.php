@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,11 +21,11 @@ final class AmpRecaptchaInput extends Tag
         SpecRule::TAG_NAME => Extension::RECAPTCHA_INPUT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-sitekey',
+                SpecRule::NAME => Attribute::DATA_SITEKEY,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-action',
+                SpecRule::NAME => Attribute::DATA_ACTION,
                 SpecRule::MANDATORY => true,
             ],
         ],

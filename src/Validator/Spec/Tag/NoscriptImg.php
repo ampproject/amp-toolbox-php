@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -21,16 +22,16 @@ final class NoscriptImg extends Tag
         SpecRule::SPEC_NAME => 'noscript > img',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'attribution',
+                SpecRule::NAME => Attribute::ATTRIBUTION,
             ],
             [
-                SpecRule::NAME => 'border',
+                SpecRule::NAME => Attribute::BORDER,
             ],
             [
-                SpecRule::NAME => 'decoding',
+                SpecRule::NAME => Attribute::DECODING,
                 SpecRule::VALUE => [
                     'async',
                     'auto',
@@ -38,22 +39,22 @@ final class NoscriptImg extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'importance',
+                SpecRule::NAME => Attribute::IMPORTANCE,
             ],
             [
-                SpecRule::NAME => 'ismap',
+                SpecRule::NAME => Attribute::ISMAP,
             ],
             [
-                SpecRule::NAME => 'intrinsicsize',
+                SpecRule::NAME => Attribute::INTRINSICSIZE,
             ],
             [
-                SpecRule::NAME => 'loading',
+                SpecRule::NAME => Attribute::LOADING,
             ],
             [
-                SpecRule::NAME => 'longdesc',
+                SpecRule::NAME => Attribute::LONGDESC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -63,10 +64,10 @@ final class NoscriptImg extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'sizes',
+                SpecRule::NAME => Attribute::SIZES,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
         ],
         SpecRule::ATTR_LISTS => [

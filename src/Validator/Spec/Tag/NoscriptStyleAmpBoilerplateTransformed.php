@@ -22,7 +22,7 @@ final class NoscriptStyleAmpBoilerplateTransformed extends Tag
         SpecRule::MANDATORY_PARENT => Element::NOSCRIPT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'amp-boilerplate',
+                SpecRule::NAME => Attribute::AMP_BOILERPLATE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

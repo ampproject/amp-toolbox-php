@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,10 +21,10 @@ final class AmpStoryAnimation extends Tag
         SpecRule::MANDATORY_PARENT => Extension::STORY_PAGE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'animate-in-after',
+                SpecRule::NAME => Attribute::ANIMATE_IN_AFTER,
             ],
             [
-                SpecRule::NAME => 'trigger',
+                SpecRule::NAME => Attribute::TRIGGER,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'visibility',

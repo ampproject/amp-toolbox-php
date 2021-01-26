@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,10 +19,10 @@ final class Solidcolor extends Tag
         SpecRule::TAG_NAME => Element::SOLIDCOLOR,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'solid-color',
+                SpecRule::NAME => Attribute::SOLID_COLOR,
             ],
             [
-                SpecRule::NAME => 'solid-opacity',
+                SpecRule::NAME => Attribute::SOLID_OPACITY,
             ],
         ],
         SpecRule::ATTR_LISTS => [

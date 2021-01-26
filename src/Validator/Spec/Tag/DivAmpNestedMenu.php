@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -20,15 +21,15 @@ final class DivAmpNestedMenu extends Tag
         SpecRule::SPEC_NAME => 'div amp-nested-menu',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'amp-nested-submenu',
+                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU,
                 SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
             ],
             [
-                SpecRule::NAME => 'amp-nested-submenu-close',
+                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_CLOSE,
                 SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
             ],
             [
-                SpecRule::NAME => 'amp-nested-submenu-open',
+                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_OPEN,
                 SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
             ],
         ],

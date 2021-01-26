@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpSidebar extends Tag
         SpecRule::SPEC_NAME => 'amp-sidebar',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'side',
+                SpecRule::NAME => Attribute::SIDE,
                 SpecRule::VALUE => [
                     'left',
                     'right',

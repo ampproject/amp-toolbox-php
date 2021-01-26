@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
@@ -21,7 +22,7 @@ final class LinkRelManifest extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -31,7 +32,7 @@ final class LinkRelManifest extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'rel',
+                SpecRule::NAME => Attribute::REL,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

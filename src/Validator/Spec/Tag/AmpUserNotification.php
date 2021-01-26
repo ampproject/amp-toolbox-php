@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpUserNotification extends Tag
         SpecRule::TAG_NAME => Extension::USER_NOTIFICATION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-dismiss-href',
+                SpecRule::NAME => Attribute::DATA_DISMISS_HREF,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -30,7 +31,7 @@ final class AmpUserNotification extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-show-if-href',
+                SpecRule::NAME => Attribute::DATA_SHOW_IF_HREF,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -40,7 +41,7 @@ final class AmpUserNotification extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'enctype',
+                SpecRule::NAME => Attribute::ENCTYPE,
                 SpecRule::VALUE => [
                     'application/x-www-form-urlencoded',
                 ],

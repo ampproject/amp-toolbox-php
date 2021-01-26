@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,10 +21,10 @@ final class AmpAnimAmp4email extends Tag
         SpecRule::SPEC_NAME => 'AMP-ANIM (AMP4EMAIL)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'attribution',
+                SpecRule::NAME => Attribute::ATTRIBUTION,
             ],
         ],
         SpecRule::ATTR_LISTS => [

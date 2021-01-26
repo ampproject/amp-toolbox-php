@@ -74,7 +74,7 @@ final class Css implements Section
         foreach ($spec as $ruleSet) {
             $name = $this->getNameForRuleSet($ruleSet);
 
-            $constructor->addBody("    '{$name}' => {$this->dumper->dumpWithSpecRules($ruleSet, 1)},");
+            $constructor->addBody("    '{$name}' => {$this->dumper->dump($ruleSet, 1)},");
 
             if (array_key_exists('htmlFormat', $ruleSet)) {
                 foreach ($ruleSet['htmlFormat'] as $format) {

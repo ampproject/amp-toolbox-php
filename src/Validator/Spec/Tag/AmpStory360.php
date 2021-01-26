@@ -20,17 +20,17 @@ final class AmpStory360 extends Tag
         SpecRule::TAG_NAME => Extension::STORY_360,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'controls',
+                SpecRule::NAME => Attribute::CONTROLS,
                 SpecRule::VALUE => [
                     'gyroscope',
                 ],
             ],
             [
-                SpecRule::NAME => 'duration',
+                SpecRule::NAME => Attribute::DURATION,
                 SpecRule::VALUE_REGEX => '([0-9\.]+)\s*(s|ms)',
             ],
             [
-                SpecRule::NAME => 'heading-end',
+                SpecRule::NAME => Attribute::HEADING_END,
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -39,11 +39,11 @@ final class AmpStory360 extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'heading-start',
+                SpecRule::NAME => Attribute::HEADING_START,
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
             ],
             [
-                SpecRule::NAME => 'pitch-end',
+                SpecRule::NAME => Attribute::PITCH_END,
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -52,23 +52,23 @@ final class AmpStory360 extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'pitch-start',
+                SpecRule::NAME => Attribute::PITCH_START,
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
             ],
             [
-                SpecRule::NAME => 'scene-heading',
+                SpecRule::NAME => Attribute::SCENE_HEADING,
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
             ],
             [
-                SpecRule::NAME => 'scene-pitch',
+                SpecRule::NAME => Attribute::SCENE_PITCH,
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
             ],
             [
-                SpecRule::NAME => 'scene-roll',
+                SpecRule::NAME => Attribute::SCENE_ROLL,
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
             ],
             [
-                SpecRule::NAME => 'zoom-end',
+                SpecRule::NAME => Attribute::ZOOM_END,
                 SpecRule::VALUE_REGEX => '\d+\.?\d*',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -77,7 +77,7 @@ final class AmpStory360 extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'zoom-start',
+                SpecRule::NAME => Attribute::ZOOM_START,
                 SpecRule::VALUE_REGEX => '\d+\.?\d*',
             ],
         ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,10 +20,10 @@ final class LinkRel extends Tag
         SpecRule::SPEC_NAME => 'link rel=',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
             ],
             [
-                SpecRule::NAME => 'rel',
+                SpecRule::NAME => Attribute::REL,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(canonical|components|import|manifest|preload|serviceworker|stylesheet|subresource)(\s|$)',
             ],

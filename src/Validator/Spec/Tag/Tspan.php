@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,28 +19,28 @@ final class Tspan extends Tag
         SpecRule::TAG_NAME => Element::TSPAN,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'dx',
+                SpecRule::NAME => Attribute::DX,
             ],
             [
-                SpecRule::NAME => 'dy',
+                SpecRule::NAME => Attribute::DY,
             ],
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'lengthadjust',
+                SpecRule::NAME => Attribute::LENGTHADJUST,
             ],
             [
-                SpecRule::NAME => 'rotate',
+                SpecRule::NAME => Attribute::ROTATE,
             ],
             [
-                SpecRule::NAME => 'textlength',
+                SpecRule::NAME => Attribute::TEXTLENGTH,
             ],
             [
-                SpecRule::NAME => 'x',
+                SpecRule::NAME => Attribute::X,
             ],
             [
-                SpecRule::NAME => 'y',
+                SpecRule::NAME => Attribute::Y,
             ],
         ],
         SpecRule::ATTR_LISTS => [

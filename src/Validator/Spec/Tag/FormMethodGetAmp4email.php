@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -21,13 +22,13 @@ final class FormMethodGetAmp4email extends Tag
         SpecRule::SPEC_NAME => 'FORM [method=GET] (AMP4EMAIL)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'accept',
+                SpecRule::NAME => Attribute::ACCEPT,
             ],
             [
-                SpecRule::NAME => 'accept-charset',
+                SpecRule::NAME => Attribute::ACCEPT_CHARSET,
             ],
             [
-                SpecRule::NAME => 'action-xhr',
+                SpecRule::NAME => Attribute::ACTION_XHR,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -37,10 +38,10 @@ final class FormMethodGetAmp4email extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'autocomplete',
+                SpecRule::NAME => Attribute::AUTOCOMPLETE,
             ],
             [
-                SpecRule::NAME => 'custom-validation-reporting',
+                SpecRule::NAME => Attribute::CUSTOM_VALIDATION_REPORTING,
                 SpecRule::VALUE => [
                     'as-you-go',
                     'interact-and-submit',
@@ -49,19 +50,19 @@ final class FormMethodGetAmp4email extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'enctype',
+                SpecRule::NAME => Attribute::ENCTYPE,
             ],
             [
-                SpecRule::NAME => 'method',
+                SpecRule::NAME => Attribute::METHOD,
                 SpecRule::VALUE_CASEI => [
                     'get',
                 ],
             ],
             [
-                SpecRule::NAME => 'novalidate',
+                SpecRule::NAME => Attribute::NOVALIDATE,
             ],
             [
-                SpecRule::NAME => 'xssi-prefix',
+                SpecRule::NAME => Attribute::XSSI_PREFIX,
             ],
         ],
         SpecRule::HTML_FORMAT => [

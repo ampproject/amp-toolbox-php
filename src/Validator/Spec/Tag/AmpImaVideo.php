@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,13 +21,13 @@ final class AmpImaVideo extends Tag
         SpecRule::TAG_NAME => Extension::IMA_VIDEO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-src',
+                SpecRule::NAME => Attribute::DATA_SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -36,7 +37,7 @@ final class AmpImaVideo extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-tag',
+                SpecRule::NAME => Attribute::DATA_TAG,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -46,13 +47,13 @@ final class AmpImaVideo extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'dock',
+                SpecRule::NAME => Attribute::DOCK,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],
             ],
             [
-                SpecRule::NAME => 'rotate-to-fullscreen',
+                SpecRule::NAME => Attribute::ROTATE_TO_FULLSCREEN,
                 SpecRule::VALUE => [
                     '',
                 ],

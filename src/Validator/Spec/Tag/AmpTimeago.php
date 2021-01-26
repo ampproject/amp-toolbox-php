@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,16 +20,16 @@ final class AmpTimeago extends Tag
         SpecRule::TAG_NAME => Extension::TIMEAGO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'cutoff',
+                SpecRule::NAME => Attribute::CUTOFF,
                 SpecRule::VALUE_REGEX => '\d+',
             ],
             [
-                SpecRule::NAME => 'datetime',
+                SpecRule::NAME => Attribute::DATETIME,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(:[0-5]\d(\.\d+)?)?(Z|[+-][0-1][0-9]:[0-5][0-9])',
             ],
             [
-                SpecRule::NAME => 'locale',
+                SpecRule::NAME => Attribute::LOCALE,
             ],
             [
                 SpecRule::NAME => '[datetime]',

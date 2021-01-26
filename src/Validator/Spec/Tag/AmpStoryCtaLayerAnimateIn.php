@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -18,7 +19,7 @@ final class AmpStoryCtaLayerAnimateIn extends Tag
         SpecRule::SPEC_NAME => 'AMP-STORY-CTA-LAYER animate-in',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'animate-in',
+                SpecRule::NAME => Attribute::ANIMATE_IN,
                 SpecRule::VALUE => [
                     'drop',
                     'fade-in',
@@ -43,31 +44,31 @@ final class AmpStoryCtaLayerAnimateIn extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'animate-in-after',
+                SpecRule::NAME => Attribute::ANIMATE_IN_AFTER,
             ],
             [
-                SpecRule::NAME => 'animate-in-delay',
+                SpecRule::NAME => Attribute::ANIMATE_IN_DELAY,
             ],
             [
-                SpecRule::NAME => 'animate-in-duration',
+                SpecRule::NAME => Attribute::ANIMATE_IN_DURATION,
             ],
             [
-                SpecRule::NAME => 'animate-in-timing-function',
+                SpecRule::NAME => Attribute::ANIMATE_IN_TIMING_FUNCTION,
             ],
             [
-                SpecRule::NAME => 'scale-end',
+                SpecRule::NAME => Attribute::SCALE_END,
                 SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',
             ],
             [
-                SpecRule::NAME => 'scale-start',
+                SpecRule::NAME => Attribute::SCALE_START,
                 SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',
             ],
             [
-                SpecRule::NAME => 'translate-x',
+                SpecRule::NAME => Attribute::TRANSLATE_X,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',
             ],
             [
-                SpecRule::NAME => 'translate-y',
+                SpecRule::NAME => Attribute::TRANSLATE_Y,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',
             ],
         ],

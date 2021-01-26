@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,34 +19,34 @@ final class Pattern extends Tag
         SpecRule::TAG_NAME => Element::PATTERN,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'patterncontentunits',
+                SpecRule::NAME => Attribute::PATTERNCONTENTUNITS,
             ],
             [
-                SpecRule::NAME => 'patterntransform',
+                SpecRule::NAME => Attribute::PATTERNTRANSFORM,
             ],
             [
-                SpecRule::NAME => 'patternunits',
+                SpecRule::NAME => Attribute::PATTERNUNITS,
             ],
             [
-                SpecRule::NAME => 'preserveaspectratio',
+                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
             ],
             [
-                SpecRule::NAME => 'viewbox',
+                SpecRule::NAME => Attribute::VIEWBOX,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
             [
-                SpecRule::NAME => 'x',
+                SpecRule::NAME => Attribute::X,
             ],
             [
-                SpecRule::NAME => 'y',
+                SpecRule::NAME => Attribute::Y,
             ],
         ],
         SpecRule::ATTR_LISTS => [

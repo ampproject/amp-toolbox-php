@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpTruncateText extends Tag
         SpecRule::TAG_NAME => Extension::TRUNCATE_TEXT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'overflow-style',
+                SpecRule::NAME => Attribute::OVERFLOW_STYLE,
                 SpecRule::VALUE => [
                     'right',
                     'default',

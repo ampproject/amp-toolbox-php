@@ -19,32 +19,32 @@ final class Table extends Tag
         SpecRule::TAG_NAME => Element::TABLE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
             [
-                SpecRule::NAME => 'bgcolor',
+                SpecRule::NAME => Attribute::BGCOLOR,
             ],
             [
-                SpecRule::NAME => 'border',
+                SpecRule::NAME => Attribute::BORDER,
                 SpecRule::VALUE => [
                     '0',
                     '1',
                 ],
             ],
             [
-                SpecRule::NAME => 'cellpadding',
+                SpecRule::NAME => Attribute::CELLPADDING,
             ],
             [
-                SpecRule::NAME => 'cellspacing',
+                SpecRule::NAME => Attribute::CELLSPACING,
             ],
             [
-                SpecRule::NAME => 'sortable',
+                SpecRule::NAME => Attribute::SORTABLE,
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
         ],
         SpecRule::HTML_FORMAT => [

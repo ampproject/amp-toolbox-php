@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -22,7 +23,7 @@ final class AmpSubscriptionsExtensionJsonScript extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'id',
+                SpecRule::NAME => Attribute::ID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-subscriptions',
@@ -30,7 +31,7 @@ final class AmpSubscriptionsExtensionJsonScript extends Tag
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'application/json',

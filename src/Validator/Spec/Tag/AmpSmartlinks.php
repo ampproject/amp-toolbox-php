@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,25 +20,25 @@ final class AmpSmartlinks extends Tag
         SpecRule::TAG_NAME => Extension::SMARTLINKS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'exclusive-links',
+                SpecRule::NAME => Attribute::EXCLUSIVE_LINKS,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'link-attribute',
+                SpecRule::NAME => Attribute::LINK_ATTRIBUTE,
             ],
             [
-                SpecRule::NAME => 'link-selector',
+                SpecRule::NAME => Attribute::LINK_SELECTOR,
             ],
             [
-                SpecRule::NAME => 'linkmate',
+                SpecRule::NAME => Attribute::LINKMATE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'nrtv-account-name',
+                SpecRule::NAME => Attribute::NRTV_ACCOUNT_NAME,
                 SpecRule::MANDATORY => true,
             ],
         ],

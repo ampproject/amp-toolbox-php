@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpVideo extends Tag
         SpecRule::TAG_NAME => Extension::VIDEO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'poster',
+                SpecRule::NAME => Attribute::POSTER,
             ],
         ],
         SpecRule::ATTR_LISTS => [

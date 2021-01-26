@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpRedbullPlayer extends Tag
         SpecRule::TAG_NAME => Extension::REDBULL_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-param-videoid',
+                SpecRule::NAME => Attribute::DATA_PARAM_VIDEOID,
                 SpecRule::MANDATORY => true,
             ],
         ],

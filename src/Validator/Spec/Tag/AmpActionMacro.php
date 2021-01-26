@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,10 +19,10 @@ final class AmpActionMacro extends Tag
         SpecRule::TAG_NAME => Extension::ACTION_MACRO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'arguments',
+                SpecRule::NAME => Attribute::ARGUMENTS,
             ],
             [
-                SpecRule::NAME => 'execute',
+                SpecRule::NAME => Attribute::EXECUTE,
                 SpecRule::MANDATORY => true,
             ],
         ],

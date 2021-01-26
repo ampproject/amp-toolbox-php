@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpVine extends Tag
         SpecRule::TAG_NAME => Extension::VINE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-vineid',
+                SpecRule::NAME => Attribute::DATA_VINEID,
                 SpecRule::MANDATORY => true,
             ],
         ],

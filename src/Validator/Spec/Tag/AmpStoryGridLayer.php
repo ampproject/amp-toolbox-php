@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class AmpStoryGridLayer extends Tag
         SpecRule::TAG_NAME => Extension::STORY_GRID_LAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'template',
+                SpecRule::NAME => Attribute::TEMPLATE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'fill',
@@ -28,14 +29,14 @@ final class AmpStoryGridLayer extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'position',
+                SpecRule::NAME => Attribute::POSITION,
                 SpecRule::VALUE => [
                     'landscape-half-left',
                     'landscape-half-right',
                 ],
             ],
             [
-                SpecRule::NAME => 'aspect-ratio',
+                SpecRule::NAME => Attribute::ASPECT_RATIO,
                 SpecRule::VALUE_REGEX => '\d+:\d+',
             ],
         ],

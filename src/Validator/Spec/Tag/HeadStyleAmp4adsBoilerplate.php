@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -22,7 +23,7 @@ final class HeadStyleAmp4adsBoilerplate extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'amp4ads-boilerplate',
+                SpecRule::NAME => Attribute::AMP4ADS_BOILERPLATE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

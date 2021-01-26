@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -21,13 +22,13 @@ final class FormMethodPost extends Tag
         SpecRule::SPEC_NAME => 'FORM [method=POST]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'accept',
+                SpecRule::NAME => Attribute::ACCEPT,
             ],
             [
-                SpecRule::NAME => 'accept-charset',
+                SpecRule::NAME => Attribute::ACCEPT_CHARSET,
             ],
             [
-                SpecRule::NAME => 'action-xhr',
+                SpecRule::NAME => Attribute::ACTION_XHR,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -37,10 +38,10 @@ final class FormMethodPost extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'autocomplete',
+                SpecRule::NAME => Attribute::AUTOCOMPLETE,
             ],
             [
-                SpecRule::NAME => 'custom-validation-reporting',
+                SpecRule::NAME => Attribute::CUSTOM_VALIDATION_REPORTING,
                 SpecRule::VALUE => [
                     'as-you-go',
                     'interact-and-submit',
@@ -49,10 +50,10 @@ final class FormMethodPost extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'enctype',
+                SpecRule::NAME => Attribute::ENCTYPE,
             ],
             [
-                SpecRule::NAME => 'method',
+                SpecRule::NAME => Attribute::METHOD,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [
@@ -60,17 +61,17 @@ final class FormMethodPost extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'novalidate',
+                SpecRule::NAME => Attribute::NOVALIDATE,
             ],
             [
-                SpecRule::NAME => 'target',
+                SpecRule::NAME => Attribute::TARGET,
                 SpecRule::VALUE_CASEI => [
                     '_blank',
                     '_top',
                 ],
             ],
             [
-                SpecRule::NAME => 'verify-xhr',
+                SpecRule::NAME => Attribute::VERIFY_XHR,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

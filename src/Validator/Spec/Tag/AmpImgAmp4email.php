@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,13 +21,13 @@ final class AmpImgAmp4email extends Tag
         SpecRule::SPEC_NAME => 'AMP-IMG (AMP4EMAIL)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'attribution',
+                SpecRule::NAME => Attribute::ATTRIBUTION,
             ],
             [
-                SpecRule::NAME => 'placeholder',
+                SpecRule::NAME => Attribute::PLACEHOLDER,
             ],
             [
                 SpecRule::NAME => '[alt]',

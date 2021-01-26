@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,20 +20,20 @@ final class AmpPositionObserver extends Tag
         SpecRule::TAG_NAME => Extension::POSITION_OBSERVER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'intersection-ratios',
+                SpecRule::NAME => Attribute::INTERSECTION_RATIOS,
                 SpecRule::VALUE_REGEX => '^([0]*?\.\d*$|1$|0$)|([0]*?\.\d*|1|0)\s{1}([0]*?\.\d*$|1$|0$)',
             ],
             [
-                SpecRule::NAME => 'once',
+                SpecRule::NAME => Attribute::ONCE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'target',
+                SpecRule::NAME => Attribute::TARGET,
             ],
             [
-                SpecRule::NAME => 'viewport-margins',
+                SpecRule::NAME => Attribute::VIEWPORT_MARGINS,
                 SpecRule::VALUE_REGEX => '^(\d+$|\d+px$|\d+vh$)|((\d+|\d+px|\d+vh)\s{1}(\d+$|\d+px$|\d+vh$))',
             ],
         ],

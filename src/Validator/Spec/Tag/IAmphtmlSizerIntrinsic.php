@@ -20,7 +20,7 @@ final class IAmphtmlSizerIntrinsic extends Tag
         SpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-INTRINSIC',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'class',
+                SpecRule::NAME => Attribute::CLASS_,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'i-amphtml-sizer',

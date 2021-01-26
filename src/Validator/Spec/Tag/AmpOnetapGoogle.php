@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -21,7 +22,7 @@ final class AmpOnetapGoogle extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-src',
+                SpecRule::NAME => Attribute::DATA_SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

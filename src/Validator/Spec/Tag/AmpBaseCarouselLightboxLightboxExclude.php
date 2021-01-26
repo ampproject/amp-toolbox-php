@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -18,7 +19,7 @@ final class AmpBaseCarouselLightboxLightboxExclude extends Tag
         SpecRule::SPEC_NAME => 'AMP-BASE-CAROUSEL lightbox [lightbox-exclude]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'lightbox-exclude',
+                SpecRule::NAME => Attribute::LIGHTBOX_EXCLUDE,
                 SpecRule::MANDATORY => true,
             ],
         ],

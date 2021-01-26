@@ -165,7 +165,7 @@ final class FileManager
             $classes = [];
             foreach ($namespace->getClasses() as $class) {
                 foreach ($class->getConstants() as $constant) {
-                    $source          = $this->dumper->dumpWithSpecRules($constant->getValue(), 0);
+                    $source          = $this->dumper->dump($constant->getValue(), 0);
                     $constantClasses = $this->extractClassNames($source);
                     $classes         = array_merge($classes, $constantClasses);
                 }

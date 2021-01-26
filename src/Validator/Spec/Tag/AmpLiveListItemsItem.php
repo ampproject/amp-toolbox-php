@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -18,14 +19,14 @@ final class AmpLiveListItemsItem extends Tag
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items] item',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-sort-time',
+                SpecRule::NAME => Attribute::DATA_SORT_TIME,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-tombstone',
+                SpecRule::NAME => Attribute::DATA_TOMBSTONE,
             ],
             [
-                SpecRule::NAME => 'data-update-time',
+                SpecRule::NAME => Attribute::DATA_UPDATE_TIME,
             ],
         ],
         SpecRule::ATTR_LISTS => [

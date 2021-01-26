@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class Label extends Tag
         SpecRule::TAG_NAME => Element::LABEL,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'for',
+                SpecRule::NAME => Attribute::FOR_,
             ],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',

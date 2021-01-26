@@ -61,7 +61,7 @@ final class AttributeLists implements Section
             foreach ($value as $subKey => $subValue) {
                 $constant  = $this->getAttributeConstant($this->getConstantName($subKey));
                 $keyString = strpos($constant, 'Attribute::') === 0 ? $constant : "'{$subKey}'";
-                $constructor->addBody("            {$keyString} => {$this->dumper->dumpWithSpecRules($subValue, 3)},");
+                $constructor->addBody("            {$keyString} => {$this->dumper->dump($subValue, 3, [$subKey])},");
             }
             $constructor->addBody('        ]');
             $constructor->addBody("    ),");

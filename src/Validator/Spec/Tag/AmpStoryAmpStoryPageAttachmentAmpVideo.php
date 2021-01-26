@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpStoryAmpStoryPageAttachmentAmpVideo extends Tag
         SpecRule::SPEC_NAME => 'amp-story >> amp-story-page-attachment >> amp-video',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'poster',
+                SpecRule::NAME => Attribute::POSTER,
             ],
         ],
         SpecRule::ATTR_LISTS => [

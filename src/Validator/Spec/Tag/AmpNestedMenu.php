@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpNestedMenu extends Tag
         SpecRule::TAG_NAME => Extension::NESTED_MENU,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'side',
+                SpecRule::NAME => Attribute::SIDE,
                 SpecRule::VALUE => [
                     'left',
                     'right',

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -21,7 +22,7 @@ final class AmpStoryAutoAdsTemplate extends Tag
         SpecRule::MANDATORY_PARENT => Extension::STORY_AUTO_ADS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-mustache',

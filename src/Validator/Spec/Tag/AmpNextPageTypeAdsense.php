@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -20,21 +21,21 @@ final class AmpNextPageTypeAdsense extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-client',
+                SpecRule::NAME => Attribute::DATA_CLIENT,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-slot',
+                SpecRule::NAME => Attribute::DATA_SLOT,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'deep-parsing',
+                SpecRule::NAME => Attribute::DEEP_PARSING,
             ],
             [
-                SpecRule::NAME => 'max-pages',
+                SpecRule::NAME => Attribute::MAX_PAGES,
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'adsense',

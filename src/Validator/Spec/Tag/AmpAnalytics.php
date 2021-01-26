@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -19,7 +20,7 @@ final class AmpAnalytics extends Tag
         SpecRule::TAG_NAME => Extension::ANALYTICS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'config',
+                SpecRule::NAME => Attribute::CONFIG,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -30,7 +31,7 @@ final class AmpAnalytics extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
             ],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-analytics/',

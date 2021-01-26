@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,10 +20,10 @@ final class Optgroup extends Tag
         SpecRule::MANDATORY_PARENT => Element::SELECT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'disabled',
+                SpecRule::NAME => Attribute::DISABLED,
             ],
             [
-                SpecRule::NAME => 'label',
+                SpecRule::NAME => Attribute::LABEL,
             ],
             [
                 SpecRule::NAME => '[disabled]',

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -22,7 +23,7 @@ final class HtmlDoctypeAmp4ads extends Tag
         SpecRule::MANDATORY_PARENT => '$ROOT',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'html',
+                SpecRule::NAME => Attribute::HTML,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

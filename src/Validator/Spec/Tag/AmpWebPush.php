@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpWebPush extends Tag
         SpecRule::TAG_NAME => Extension::WEB_PUSH,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'helper-iframe-url',
+                SpecRule::NAME => Attribute::HELPER_IFRAME_URL,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -30,14 +31,14 @@ final class AmpWebPush extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'id',
+                SpecRule::NAME => Attribute::ID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-web-push',
                 ],
             ],
             [
-                SpecRule::NAME => 'permission-dialog-url',
+                SpecRule::NAME => Attribute::PERMISSION_DIALOG_URL,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -47,7 +48,7 @@ final class AmpWebPush extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'service-worker-url',
+                SpecRule::NAME => Attribute::SERVICE_WORKER_URL,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -57,7 +58,7 @@ final class AmpWebPush extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'service-worker-scope',
+                SpecRule::NAME => Attribute::SERVICE_WORKER_SCOPE,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,

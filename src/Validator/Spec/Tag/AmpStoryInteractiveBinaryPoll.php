@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,18 +19,18 @@ final class AmpStoryInteractiveBinaryPoll extends Tag
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_BINARY_POLL,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'option-1-text',
+                SpecRule::NAME => Attribute::OPTION_1_TEXT,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'option-2-text',
+                SpecRule::NAME => Attribute::OPTION_2_TEXT,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'option-1-confetti',
+                SpecRule::NAME => Attribute::OPTION_1_CONFETTI,
             ],
             [
-                SpecRule::NAME => 'option-2-confetti',
+                SpecRule::NAME => Attribute::OPTION_2_CONFETTI,
             ],
         ],
         SpecRule::ATTR_LISTS => [

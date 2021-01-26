@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -21,13 +22,13 @@ final class FormMethodPostAmp4email extends Tag
         SpecRule::SPEC_NAME => 'FORM [method=POST] (AMP4EMAIL)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'accept',
+                SpecRule::NAME => Attribute::ACCEPT,
             ],
             [
-                SpecRule::NAME => 'accept-charset',
+                SpecRule::NAME => Attribute::ACCEPT_CHARSET,
             ],
             [
-                SpecRule::NAME => 'action-xhr',
+                SpecRule::NAME => Attribute::ACTION_XHR,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                 SpecRule::VALUE_URL => [
@@ -38,10 +39,10 @@ final class FormMethodPostAmp4email extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'autocomplete',
+                SpecRule::NAME => Attribute::AUTOCOMPLETE,
             ],
             [
-                SpecRule::NAME => 'custom-validation-reporting',
+                SpecRule::NAME => Attribute::CUSTOM_VALIDATION_REPORTING,
                 SpecRule::VALUE => [
                     'as-you-go',
                     'interact-and-submit',
@@ -50,10 +51,10 @@ final class FormMethodPostAmp4email extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'enctype',
+                SpecRule::NAME => Attribute::ENCTYPE,
             ],
             [
-                SpecRule::NAME => 'method',
+                SpecRule::NAME => Attribute::METHOD,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [
@@ -61,10 +62,10 @@ final class FormMethodPostAmp4email extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'novalidate',
+                SpecRule::NAME => Attribute::NOVALIDATE,
             ],
             [
-                SpecRule::NAME => 'xssi-prefix',
+                SpecRule::NAME => Attribute::XSSI_PREFIX,
             ],
         ],
         SpecRule::HTML_FORMAT => [

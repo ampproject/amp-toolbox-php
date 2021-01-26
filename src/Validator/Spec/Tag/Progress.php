@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,10 +19,10 @@ final class Progress extends Tag
         SpecRule::TAG_NAME => Element::PROGRESS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'max',
+                SpecRule::NAME => Attribute::MAX,
             ],
             [
-                SpecRule::NAME => 'value',
+                SpecRule::NAME => Attribute::VALUE,
             ],
         ],
         SpecRule::HTML_FORMAT => [

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,17 +19,17 @@ final class Ol extends Tag
         SpecRule::TAG_NAME => Element::OL,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'reversed',
+                SpecRule::NAME => Attribute::REVERSED,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'start',
+                SpecRule::NAME => Attribute::START,
                 SpecRule::VALUE_REGEX => '[0-9]*',
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::VALUE_REGEX => '[1AaIi]',
             ],
         ],

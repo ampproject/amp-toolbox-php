@@ -90,6 +90,16 @@ trait ConstantNames
         return "Layout::{$layout}";
     }
 
+    /**
+     * Get the at rule constant.
+     *
+     * @param string $atRule At rule to get the constant for.
+     * @return string At rule constant.
+     */
+    private function getAtRuleConstant($atRule)
+    {
+        return "AtRule::{$atRule}";
+    }
 
     /**
      * Get the protocol constant.

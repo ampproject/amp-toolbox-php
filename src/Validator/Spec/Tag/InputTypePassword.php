@@ -20,7 +20,7 @@ final class InputTypePassword extends Tag
         SpecRule::SPEC_NAME => 'INPUT [type=password]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

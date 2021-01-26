@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,28 +19,28 @@ final class Filter extends Tag
         SpecRule::TAG_NAME => Element::FILTER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'filterres',
+                SpecRule::NAME => Attribute::FILTERRES,
             ],
             [
-                SpecRule::NAME => 'filterunits',
+                SpecRule::NAME => Attribute::FILTERUNITS,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'primitiveunits',
+                SpecRule::NAME => Attribute::PRIMITIVEUNITS,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
             [
-                SpecRule::NAME => 'x',
+                SpecRule::NAME => Attribute::X,
             ],
             [
-                SpecRule::NAME => 'y',
+                SpecRule::NAME => Attribute::Y,
             ],
         ],
         SpecRule::ATTR_LISTS => [

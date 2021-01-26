@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -20,7 +21,7 @@ final class AmpNextPageSeparator extends Tag
         SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'separator',
+                SpecRule::NAME => Attribute::SEPARATOR,
                 SpecRule::MANDATORY => true,
             ],
         ],

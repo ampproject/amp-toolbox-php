@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -20,13 +21,13 @@ final class InputMaskCustomMask extends Tag
         SpecRule::SPEC_NAME => 'input [mask] (custom mask)',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'mask',
+                SpecRule::NAME => Attribute::MASK,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(payment-card|date-dd-mm-yyyy|date-mm-dd-yyyy|date-mm-yy|date-yyyy-mm-dd)',
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'mask-trim-zeros',
+                SpecRule::NAME => Attribute::MASK_TRIM_ZEROS,
                 SpecRule::VALUE_REGEX => '\d+',
             ],
             [

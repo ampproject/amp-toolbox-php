@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class Ins extends Tag
         SpecRule::TAG_NAME => Element::INS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'datetime',
+                SpecRule::NAME => Attribute::DATETIME,
             ],
         ],
         SpecRule::ATTR_LISTS => [

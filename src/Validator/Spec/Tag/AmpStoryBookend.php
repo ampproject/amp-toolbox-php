@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
@@ -19,14 +20,14 @@ final class AmpStoryBookend extends Tag
         SpecRule::TAG_NAME => Extension::STORY_BOOKEND,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'layout',
+                SpecRule::NAME => Attribute::LAYOUT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'nodisplay',
                 ],
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,

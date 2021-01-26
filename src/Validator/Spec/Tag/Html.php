@@ -22,7 +22,7 @@ final class Html extends Tag
         SpecRule::MANDATORY_PARENT => Element::_DOCTYPE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-amp-autocomplete-opt-in',
+                SpecRule::NAME => Attribute::DATA_AMP_AUTOCOMPLETE_OPT_IN,
                 SpecRule::VALUE => [
                     'false',
                 ],

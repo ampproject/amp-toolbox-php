@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,23 +21,23 @@ final class AmpNexxtvPlayer extends Tag
         SpecRule::TAG_NAME => Extension::NEXXTV_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-client',
+                SpecRule::NAME => Attribute::DATA_CLIENT,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-mediaid',
+                SpecRule::NAME => Attribute::DATA_MEDIAID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
             [
-                SpecRule::NAME => 'data-mode',
+                SpecRule::NAME => Attribute::DATA_MODE,
                 SpecRule::VALUE => [
                     'api',
                     'static',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-origin',
+                SpecRule::NAME => Attribute::DATA_ORIGIN,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -46,7 +47,7 @@ final class AmpNexxtvPlayer extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-streamtype',
+                SpecRule::NAME => Attribute::DATA_STREAMTYPE,
                 SpecRule::VALUE => [
                     'album',
                     'audio',

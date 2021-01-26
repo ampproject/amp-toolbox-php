@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpAnimation extends Tag
         SpecRule::TAG_NAME => Extension::ANIMATION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'trigger',
+                SpecRule::NAME => Attribute::TRIGGER,
                 SpecRule::VALUE => [
                     'visibility',
                 ],

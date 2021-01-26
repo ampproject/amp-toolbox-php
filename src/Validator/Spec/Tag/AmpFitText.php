@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,10 +20,10 @@ final class AmpFitText extends Tag
         SpecRule::TAG_NAME => Extension::FIT_TEXT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'max-font-size',
+                SpecRule::NAME => Attribute::MAX_FONT_SIZE,
             ],
             [
-                SpecRule::NAME => 'min-font-size',
+                SpecRule::NAME => Attribute::MIN_FONT_SIZE,
             ],
         ],
         SpecRule::ATTR_LISTS => [

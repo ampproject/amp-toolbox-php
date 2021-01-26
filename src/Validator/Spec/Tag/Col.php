@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class Col extends Tag
         SpecRule::TAG_NAME => Element::COL,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'span',
+                SpecRule::NAME => Attribute::SPAN,
             ],
         ],
         SpecRule::HTML_FORMAT => [

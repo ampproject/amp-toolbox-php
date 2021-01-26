@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,31 +19,31 @@ final class Rect extends Tag
         SpecRule::TAG_NAME => Element::RECT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'rx',
+                SpecRule::NAME => Attribute::RX,
             ],
             [
-                SpecRule::NAME => 'ry',
+                SpecRule::NAME => Attribute::RY,
             ],
             [
-                SpecRule::NAME => 'sketch:type',
+                SpecRule::NAME => Attribute::SKETCH_TYPE,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
             [
-                SpecRule::NAME => 'x',
+                SpecRule::NAME => Attribute::X,
             ],
             [
-                SpecRule::NAME => 'y',
+                SpecRule::NAME => Attribute::Y,
             ],
         ],
         SpecRule::ATTR_LISTS => [

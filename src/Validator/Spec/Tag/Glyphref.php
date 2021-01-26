@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,22 +19,22 @@ final class Glyphref extends Tag
         SpecRule::TAG_NAME => Element::GLYPHREF,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'dx',
+                SpecRule::NAME => Attribute::DX,
             ],
             [
-                SpecRule::NAME => 'dy',
+                SpecRule::NAME => Attribute::DY,
             ],
             [
-                SpecRule::NAME => 'format',
+                SpecRule::NAME => Attribute::FORMAT,
             ],
             [
-                SpecRule::NAME => 'glyphref',
+                SpecRule::NAME => Attribute::GLYPHREF,
             ],
             [
-                SpecRule::NAME => 'x',
+                SpecRule::NAME => Attribute::X,
             ],
             [
-                SpecRule::NAME => 'y',
+                SpecRule::NAME => Attribute::Y,
             ],
         ],
         SpecRule::ATTR_LISTS => [

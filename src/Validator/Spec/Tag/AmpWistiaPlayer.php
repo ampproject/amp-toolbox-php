@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,12 +20,12 @@ final class AmpWistiaPlayer extends Tag
         SpecRule::TAG_NAME => Extension::WISTIA_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-media-hashed-id',
+                SpecRule::NAME => Attribute::DATA_MEDIA_HASHED_ID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z]+',
             ],
             [
-                SpecRule::NAME => 'rotate-to-fullscreen',
+                SpecRule::NAME => Attribute::ROTATE_TO_FULLSCREEN,
                 SpecRule::VALUE => [
                     '',
                 ],

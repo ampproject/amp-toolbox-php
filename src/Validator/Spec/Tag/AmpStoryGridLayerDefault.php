@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,7 +20,7 @@ final class AmpStoryGridLayerDefault extends Tag
         SpecRule::SPEC_NAME => 'AMP-STORY-GRID-LAYER default',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align-content',
+                SpecRule::NAME => Attribute::ALIGN_CONTENT,
                 SpecRule::VALUE => [
                     'center',
                     'end',
@@ -31,13 +32,13 @@ final class AmpStoryGridLayerDefault extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'target',
+                SpecRule::NAME => Attribute::TARGET,
                 SpecRule::VALUE => [
                     '_blank',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-tooltip-icon',
+                SpecRule::NAME => Attribute::DATA_TOOLTIP_ICON,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -47,7 +48,7 @@ final class AmpStoryGridLayerDefault extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'align-items',
+                SpecRule::NAME => Attribute::ALIGN_ITEMS,
                 SpecRule::VALUE => [
                     'center',
                     'end',
@@ -56,7 +57,7 @@ final class AmpStoryGridLayerDefault extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'align-self',
+                SpecRule::NAME => Attribute::ALIGN_SELF,
                 SpecRule::VALUE => [
                     'center',
                     'end',
@@ -65,7 +66,7 @@ final class AmpStoryGridLayerDefault extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'animate-in',
+                SpecRule::NAME => Attribute::ANIMATE_IN,
                 SpecRule::VALUE => [
                     'drop',
                     'fade-in',
@@ -90,44 +91,44 @@ final class AmpStoryGridLayerDefault extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'animate-in-after',
+                SpecRule::NAME => Attribute::ANIMATE_IN_AFTER,
             ],
             [
-                SpecRule::NAME => 'animate-in-delay',
+                SpecRule::NAME => Attribute::ANIMATE_IN_DELAY,
             ],
             [
-                SpecRule::NAME => 'animate-in-duration',
+                SpecRule::NAME => Attribute::ANIMATE_IN_DURATION,
             ],
             [
-                SpecRule::NAME => 'animate-in-timing-function',
+                SpecRule::NAME => Attribute::ANIMATE_IN_TIMING_FUNCTION,
             ],
             [
-                SpecRule::NAME => 'grid-area',
+                SpecRule::NAME => Attribute::GRID_AREA,
             ],
             [
-                SpecRule::NAME => 'interactive',
+                SpecRule::NAME => Attribute::INTERACTIVE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'scale-end',
+                SpecRule::NAME => Attribute::SCALE_END,
                 SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',
             ],
             [
-                SpecRule::NAME => 'scale-start',
+                SpecRule::NAME => Attribute::SCALE_START,
                 SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',
             ],
             [
-                SpecRule::NAME => 'translate-x',
+                SpecRule::NAME => Attribute::TRANSLATE_X,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',
             ],
             [
-                SpecRule::NAME => 'translate-y',
+                SpecRule::NAME => Attribute::TRANSLATE_Y,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',
             ],
             [
-                SpecRule::NAME => 'justify-content',
+                SpecRule::NAME => Attribute::JUSTIFY_CONTENT,
                 SpecRule::VALUE => [
                     'center',
                     'end',
@@ -139,7 +140,7 @@ final class AmpStoryGridLayerDefault extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'justify-items',
+                SpecRule::NAME => Attribute::JUSTIFY_ITEMS,
                 SpecRule::VALUE => [
                     'center',
                     'end',
@@ -148,7 +149,7 @@ final class AmpStoryGridLayerDefault extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'justify-self',
+                SpecRule::NAME => Attribute::JUSTIFY_SELF,
                 SpecRule::VALUE => [
                     'center',
                     'end',

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class ScriptAmpMraid extends Tag
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'no-fallback',
+                SpecRule::NAME => Attribute::NO_FALLBACK,
             ],
         ],
         SpecRule::ATTR_LISTS => [

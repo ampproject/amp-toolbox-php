@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpRiddleQuiz extends Tag
         SpecRule::TAG_NAME => Extension::RIDDLE_QUIZ,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-riddle-id',
+                SpecRule::NAME => Attribute::DATA_RIDDLE_ID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],

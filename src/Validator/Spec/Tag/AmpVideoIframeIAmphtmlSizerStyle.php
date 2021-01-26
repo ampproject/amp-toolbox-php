@@ -19,18 +19,18 @@ final class AmpVideoIframeIAmphtmlSizerStyle extends Tag
         SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'style',
+                SpecRule::NAME => Attribute::STYLE,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '!\s*important',
                 SpecRule::CSS_DECLARATION => [
                     [
-                        SpecRule::NAME => 'display',
+                        SpecRule::NAME => Attribute::DISPLAY,
                         SpecRule::VALUE_CASEI => [
                             'block',
                         ],
                     ],
                     [
-                        SpecRule::NAME => 'padding-top',
+                        SpecRule::NAME => Attribute::PADDING_TOP,
                     ],
                 ],
             ],

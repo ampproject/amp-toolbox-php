@@ -19,19 +19,19 @@ final class Select extends Tag
         SpecRule::TAG_NAME => Element::SELECT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autofocus',
+                SpecRule::NAME => Attribute::AUTOFOCUS,
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
             [
-                SpecRule::NAME => 'disabled',
+                SpecRule::NAME => Attribute::DISABLED,
             ],
             [
-                SpecRule::NAME => 'multiple',
+                SpecRule::NAME => Attribute::MULTIPLE,
             ],
             [
-                SpecRule::NAME => 'no-verify',
+                SpecRule::NAME => Attribute::NO_VERIFY,
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -40,10 +40,10 @@ final class Select extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'required',
+                SpecRule::NAME => Attribute::REQUIRED,
             ],
             [
-                SpecRule::NAME => 'size',
+                SpecRule::NAME => Attribute::SIZE,
             ],
             [
                 SpecRule::NAME => '[autofocus]',

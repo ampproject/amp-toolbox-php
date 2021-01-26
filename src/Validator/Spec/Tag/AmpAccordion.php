@@ -20,13 +20,13 @@ final class AmpAccordion extends Tag
         SpecRule::TAG_NAME => Extension::ACCORDION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'animate',
+                SpecRule::NAME => Attribute::ANIMATE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'disable-session-states',
+                SpecRule::NAME => Attribute::DISABLE_SESSION_STATES,
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -35,7 +35,7 @@ final class AmpAccordion extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'expand-single-section',
+                SpecRule::NAME => Attribute::EXPAND_SINGLE_SECTION,
                 SpecRule::VALUE => [
                     '',
                 ],

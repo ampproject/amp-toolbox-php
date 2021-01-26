@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,58 +20,58 @@ final class AmpDailymotion extends Tag
         SpecRule::TAG_NAME => Extension::DAILYMOTION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'data-endscreen-enable',
+                SpecRule::NAME => Attribute::DATA_ENDSCREEN_ENABLE,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-info',
+                SpecRule::NAME => Attribute::DATA_INFO,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-mute',
+                SpecRule::NAME => Attribute::DATA_MUTE,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-sharing-enable',
+                SpecRule::NAME => Attribute::DATA_SHARING_ENABLE,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-start',
+                SpecRule::NAME => Attribute::DATA_START,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
-                SpecRule::NAME => 'data-ui-highlight',
+                SpecRule::NAME => Attribute::DATA_UI_HIGHLIGHT,
                 SpecRule::VALUE_REGEX_CASEI => '([0-9a-f]{3}){1,2}',
             ],
             [
-                SpecRule::NAME => 'data-ui-logo',
+                SpecRule::NAME => Attribute::DATA_UI_LOGO,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-videoid',
+                SpecRule::NAME => Attribute::DATA_VIDEOID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[a-z0-9]+',
             ],
             [
-                SpecRule::NAME => 'dock',
+                SpecRule::NAME => Attribute::DOCK,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

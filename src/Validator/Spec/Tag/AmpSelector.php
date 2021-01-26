@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,16 +20,16 @@ final class AmpSelector extends Tag
         SpecRule::TAG_NAME => Extension::SELECTOR,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'disabled',
+                SpecRule::NAME => Attribute::DISABLED,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'form',
+                SpecRule::NAME => Attribute::FORM,
             ],
             [
-                SpecRule::NAME => 'keyboard-select-mode',
+                SpecRule::NAME => Attribute::KEYBOARD_SELECT_MODE,
                 SpecRule::VALUE_CASEI => [
                     'focus',
                     'none',
@@ -36,7 +37,7 @@ final class AmpSelector extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'multiple',
+                SpecRule::NAME => Attribute::MULTIPLE,
                 SpecRule::VALUE => [
                     '',
                 ],

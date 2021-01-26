@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpVideoIframePoster extends Tag
         SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME[poster]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'poster',
+                SpecRule::NAME => Attribute::POSTER,
                 SpecRule::MANDATORY => true,
             ],
         ],

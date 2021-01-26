@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
@@ -21,13 +22,13 @@ final class PictureSource extends Tag
         SpecRule::MANDATORY_PARENT => Element::PICTURE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'media',
+                SpecRule::NAME => Attribute::MEDIA,
             ],
             [
-                SpecRule::NAME => 'sizes',
+                SpecRule::NAME => Attribute::SIZES,
             ],
             [
-                SpecRule::NAME => 'srcset',
+                SpecRule::NAME => Attribute::SRCSET,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -39,7 +40,7 @@ final class PictureSource extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
             ],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',

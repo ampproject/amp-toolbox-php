@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpImgur extends Tag
         SpecRule::TAG_NAME => Extension::IMGUR,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-imgur-id',
+                SpecRule::NAME => Attribute::DATA_IMGUR_ID,
                 SpecRule::MANDATORY => true,
             ],
         ],

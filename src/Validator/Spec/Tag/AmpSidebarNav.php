@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -21,12 +22,12 @@ final class AmpSidebarNav extends Tag
         SpecRule::MANDATORY_PARENT => Extension::SIDEBAR,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'toolbar',
+                SpecRule::NAME => Attribute::TOOLBAR,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'toolbar-target',
+                SpecRule::NAME => Attribute::TOOLBAR_TARGET,
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpSocialShare extends Tag
         SpecRule::TAG_NAME => Extension::SOCIAL_SHARE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-share-endpoint',
+                SpecRule::NAME => Attribute::DATA_SHARE_ENDPOINT,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -47,7 +48,7 @@ final class AmpSocialShare extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
             ],
         ],

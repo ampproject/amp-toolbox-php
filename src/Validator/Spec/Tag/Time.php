@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,10 +19,10 @@ final class Time extends Tag
         SpecRule::TAG_NAME => Element::TIME,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'datetime',
+                SpecRule::NAME => Attribute::DATETIME,
             ],
             [
-                SpecRule::NAME => 'pubdate',
+                SpecRule::NAME => Attribute::PUBDATE,
                 SpecRule::VALUE => [
                     '',
                 ],

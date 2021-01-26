@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpInstallServiceworker extends Tag
         SpecRule::TAG_NAME => Extension::INSTALL_SERVICEWORKER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-iframe-src',
+                SpecRule::NAME => Attribute::DATA_IFRAME_SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -30,7 +31,7 @@ final class AmpInstallServiceworker extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

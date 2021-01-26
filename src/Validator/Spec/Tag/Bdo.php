@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class Bdo extends Tag
         SpecRule::TAG_NAME => Element::BDO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'dir',
+                SpecRule::NAME => Attribute::DIR,
             ],
         ],
         SpecRule::HTML_FORMAT => [

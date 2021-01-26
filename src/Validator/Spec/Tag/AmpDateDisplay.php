@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,34 +20,34 @@ final class AmpDateDisplay extends Tag
         SpecRule::TAG_NAME => Extension::DATE_DISPLAY,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'datetime',
+                SpecRule::NAME => Attribute::DATETIME,
                 SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
                 SpecRule::VALUE_REGEX => 'now|(\d{4}-[01]\d-[0-3]\d(T[0-2]\d:[0-5]\d(:[0-6]\d(\.\d\d?\d?)?)?(Z|[+-][0-1]\d:[0-5]\d)?)?)',
             ],
             [
-                SpecRule::NAME => 'display-in',
+                SpecRule::NAME => Attribute::DISPLAY_IN,
                 SpecRule::VALUE_CASEI => [
                     'utc',
                 ],
             ],
             [
-                SpecRule::NAME => 'offset-seconds',
+                SpecRule::NAME => Attribute::OFFSET_SECONDS,
                 SpecRule::VALUE_REGEX => '-?\d+',
             ],
             [
-                SpecRule::NAME => 'locale',
+                SpecRule::NAME => Attribute::LOCALE,
             ],
             [
-                SpecRule::NAME => 'template',
+                SpecRule::NAME => Attribute::TEMPLATE,
                 SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
             ],
             [
-                SpecRule::NAME => 'timestamp-ms',
+                SpecRule::NAME => Attribute::TIMESTAMP_MS,
                 SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
                 SpecRule::VALUE_REGEX => '\d+',
             ],
             [
-                SpecRule::NAME => 'timestamp-seconds',
+                SpecRule::NAME => Attribute::TIMESTAMP_SECONDS,
                 SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
                 SpecRule::VALUE_REGEX => '\d+',
             ],

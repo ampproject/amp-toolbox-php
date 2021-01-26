@@ -20,7 +20,7 @@ final class AmpInlineGalleryThumbnails extends Tag
         SpecRule::TAG_NAME => Extension::INLINE_GALLERY_THUMBNAILS,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'aspect-ratio-height',
+                SpecRule::NAME => Attribute::ASPECT_RATIO_HEIGHT,
                 SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\.0+)?$',
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
@@ -30,7 +30,7 @@ final class AmpInlineGalleryThumbnails extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'aspect-ratio-width',
+                SpecRule::NAME => Attribute::ASPECT_RATIO_WIDTH,
                 SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\.0+)?$',
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
@@ -40,7 +40,7 @@ final class AmpInlineGalleryThumbnails extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'loop',
+                SpecRule::NAME => Attribute::LOOP,
                 SpecRule::VALUE => [
                     'true',
                     'false',

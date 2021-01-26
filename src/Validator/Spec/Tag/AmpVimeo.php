@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,13 +20,13 @@ final class AmpVimeo extends Tag
         SpecRule::TAG_NAME => Extension::VIMEO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-videoid',
+                SpecRule::NAME => Attribute::DATA_VIDEOID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],

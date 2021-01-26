@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,13 +19,13 @@ final class Clippath extends Tag
         SpecRule::TAG_NAME => Element::CLIPPATH,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'clippathunits',
+                SpecRule::NAME => Attribute::CLIPPATHUNITS,
             ],
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
         ],
         SpecRule::ATTR_LISTS => [

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -21,10 +22,10 @@ final class AmpAdWithDataMultiSizeAttribute extends Tag
         SpecRule::SPEC_NAME => 'amp-ad with data-multi-size attribute',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'data-multi-size',
+                SpecRule::NAME => Attribute::DATA_MULTI_SIZE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
@@ -32,13 +33,13 @@ final class AmpAdWithDataMultiSizeAttribute extends Tag
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'json',
+                SpecRule::NAME => Attribute::JSON,
             ],
             [
-                SpecRule::NAME => 'rtc-config',
+                SpecRule::NAME => Attribute::RTC_CONFIG,
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -48,7 +49,7 @@ final class AmpAdWithDataMultiSizeAttribute extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
             ],
         ],

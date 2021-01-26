@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
@@ -20,13 +21,13 @@ final class LinkRelPreload extends Tag
         SpecRule::SPEC_NAME => 'link rel=preload',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'as',
+                SpecRule::NAME => Attribute::AS_,
             ],
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
             ],
             [
-                SpecRule::NAME => 'rel',
+                SpecRule::NAME => Attribute::REL,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [
@@ -34,7 +35,7 @@ final class LinkRelPreload extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'imagesrcset',
+                SpecRule::NAME => Attribute::IMAGESRCSET,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -44,7 +45,7 @@ final class LinkRelPreload extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'imagesizes',
+                SpecRule::NAME => Attribute::IMAGESIZES,
             ],
         ],
         SpecRule::ATTR_LISTS => [

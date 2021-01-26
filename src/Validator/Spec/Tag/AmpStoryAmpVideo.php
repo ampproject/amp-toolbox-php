@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,14 +21,14 @@ final class AmpStoryAmpVideo extends Tag
         SpecRule::SPEC_NAME => 'amp-story >> amp-video',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'controls',
+                SpecRule::NAME => Attribute::CONTROLS,
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -40,7 +41,7 @@ final class AmpStoryAmpVideo extends Tag
                 SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/23798',
             ],
             [
-                SpecRule::NAME => 'poster',
+                SpecRule::NAME => Attribute::POSTER,
                 SpecRule::MANDATORY => true,
             ],
         ],

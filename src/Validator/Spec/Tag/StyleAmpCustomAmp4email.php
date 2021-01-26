@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\AtRule;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -22,14 +23,14 @@ final class StyleAmpCustomAmp4email extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'amp-custom',
+                SpecRule::NAME => Attribute::AMP_CUSTOM,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::VALUE_CASEI => [
                     'text/css',
                 ],
@@ -52,7 +53,7 @@ final class StyleAmpCustomAmp4email extends Tag
             SpecRule::CSS_SPEC => [
                 'atRuleSpec' => [
                     [
-                        'name' => 'media',
+                        SpecRule::NAME => AtRule::MEDIA,
                         'mediaQuerySpec' => [
                             'issuesAsError' => true,
                             'type' => [
@@ -76,7 +77,7 @@ final class StyleAmpCustomAmp4email extends Tag
                         ],
                     ],
                     [
-                        'name' => 'page',
+                        SpecRule::NAME => AtRule::PAGE,
                     ],
                 ],
             ],

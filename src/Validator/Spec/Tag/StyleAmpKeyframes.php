@@ -7,6 +7,8 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\AtRule;
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -21,7 +23,7 @@ final class StyleAmpKeyframes extends Tag
         SpecRule::MANDATORY_PARENT => Element::BODY,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'amp-keyframes',
+                SpecRule::NAME => Attribute::AMP_KEYFRAMES,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
@@ -35,13 +37,13 @@ final class StyleAmpKeyframes extends Tag
             SpecRule::CSS_SPEC => [
                 'atRuleSpec' => [
                     [
-                        'name' => 'keyframes',
+                        SpecRule::NAME => AtRule::KEYFRAMES,
                     ],
                     [
-                        'name' => 'media',
+                        SpecRule::NAME => AtRule::MEDIA,
                     ],
                     [
-                        'name' => 'supports',
+                        SpecRule::NAME => AtRule::SUPPORTS,
                     ],
                 ],
                 'validateKeyframes' => true,

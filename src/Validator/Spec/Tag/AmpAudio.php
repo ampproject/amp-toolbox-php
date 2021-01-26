@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,13 +20,13 @@ final class AmpAudio extends Tag
         SpecRule::TAG_NAME => Extension::AUDIO,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'preload',
+                SpecRule::NAME => Attribute::PRELOAD,
                 SpecRule::VALUE_CASEI => [
                     'auto',
                     'metadata',

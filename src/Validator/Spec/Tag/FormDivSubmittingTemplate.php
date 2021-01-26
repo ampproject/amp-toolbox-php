@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,14 +20,14 @@ final class FormDivSubmittingTemplate extends Tag
         SpecRule::SPEC_NAME => 'FORM DIV [submitting][template]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
             [
-                SpecRule::NAME => 'submitting',
+                SpecRule::NAME => Attribute::SUBMITTING,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'template',
+                SpecRule::NAME => Attribute::TEMPLATE,
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,30 +20,30 @@ final class AmpYoutube extends Tag
         SpecRule::TAG_NAME => Extension::YOUTUBE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'loop',
+                SpecRule::NAME => Attribute::LOOP,
             ],
             [
-                SpecRule::NAME => 'credentials',
+                SpecRule::NAME => Attribute::CREDENTIALS,
                 SpecRule::VALUE_CASEI => [
                     'include',
                     'omit',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-live-channelid',
+                SpecRule::NAME => Attribute::DATA_LIVE_CHANNELID,
                 SpecRule::MANDATORY_ONEOF => '[\'data-live-channelid\', \'data-videoid\']',
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
             [
-                SpecRule::NAME => 'data-videoid',
+                SpecRule::NAME => Attribute::DATA_VIDEOID,
                 SpecRule::MANDATORY_ONEOF => '[\'data-live-channelid\', \'data-videoid\']',
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
             [
-                SpecRule::NAME => 'dock',
+                SpecRule::NAME => Attribute::DOCK,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

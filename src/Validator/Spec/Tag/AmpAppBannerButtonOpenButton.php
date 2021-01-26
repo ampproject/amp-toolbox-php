@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -20,24 +21,24 @@ final class AmpAppBannerButtonOpenButton extends Tag
         SpecRule::SPEC_NAME => 'amp-app-banner button[open-button]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'open-button',
+                SpecRule::NAME => Attribute::OPEN_BUTTON,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'role',
+                SpecRule::NAME => Attribute::ROLE,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'tabindex',
+                SpecRule::NAME => Attribute::TABINDEX,
                 SpecRule::IMPLICIT => true,
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
             ],
             [
-                SpecRule::NAME => 'value',
+                SpecRule::NAME => Attribute::VALUE,
             ],
         ],
         SpecRule::ATTR_LISTS => [

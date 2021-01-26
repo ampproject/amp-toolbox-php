@@ -19,40 +19,40 @@ final class Th extends Tag
         SpecRule::TAG_NAME => Element::TH,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'abbr',
+                SpecRule::NAME => Attribute::ABBR,
             ],
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
             [
-                SpecRule::NAME => 'bgcolor',
+                SpecRule::NAME => Attribute::BGCOLOR,
             ],
             [
-                SpecRule::NAME => 'colspan',
+                SpecRule::NAME => Attribute::COLSPAN,
             ],
             [
-                SpecRule::NAME => 'headers',
+                SpecRule::NAME => Attribute::HEADERS,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'rowspan',
+                SpecRule::NAME => Attribute::ROWSPAN,
             ],
             [
-                SpecRule::NAME => 'scope',
+                SpecRule::NAME => Attribute::SCOPE,
             ],
             [
-                SpecRule::NAME => 'sorted',
+                SpecRule::NAME => Attribute::SORTED,
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
             [
-                SpecRule::NAME => 'valign',
+                SpecRule::NAME => Attribute::VALIGN,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
         ],
         SpecRule::HTML_FORMAT => [

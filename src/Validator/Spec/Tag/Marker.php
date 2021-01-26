@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,34 +19,34 @@ final class Marker extends Tag
         SpecRule::TAG_NAME => Element::MARKER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'markerheight',
+                SpecRule::NAME => Attribute::MARKERHEIGHT,
             ],
             [
-                SpecRule::NAME => 'markerunits',
+                SpecRule::NAME => Attribute::MARKERUNITS,
             ],
             [
-                SpecRule::NAME => 'markerwidth',
+                SpecRule::NAME => Attribute::MARKERWIDTH,
             ],
             [
-                SpecRule::NAME => 'orient',
+                SpecRule::NAME => Attribute::ORIENT,
             ],
             [
-                SpecRule::NAME => 'preserveaspectratio',
+                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
             ],
             [
-                SpecRule::NAME => 'refx',
+                SpecRule::NAME => Attribute::REFX,
             ],
             [
-                SpecRule::NAME => 'refy',
+                SpecRule::NAME => Attribute::REFY,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
             [
-                SpecRule::NAME => 'viewbox',
+                SpecRule::NAME => Attribute::VIEWBOX,
             ],
         ],
         SpecRule::ATTR_LISTS => [

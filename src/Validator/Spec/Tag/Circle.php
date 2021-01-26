@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,22 +19,22 @@ final class Circle extends Tag
         SpecRule::TAG_NAME => Element::CIRCLE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'cx',
+                SpecRule::NAME => Attribute::CX,
             ],
             [
-                SpecRule::NAME => 'cy',
+                SpecRule::NAME => Attribute::CY,
             ],
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'r',
+                SpecRule::NAME => Attribute::R,
             ],
             [
-                SpecRule::NAME => 'sketch:type',
+                SpecRule::NAME => Attribute::SKETCH_TYPE,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
         ],
         SpecRule::ATTR_LISTS => [

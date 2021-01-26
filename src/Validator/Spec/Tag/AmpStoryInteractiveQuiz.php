@@ -19,15 +19,15 @@ final class AmpStoryInteractiveQuiz extends Tag
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_QUIZ,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'option-1-correct',
+                SpecRule::NAME => Attribute::OPTION_1_CORRECT,
                 SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
             ],
             [
-                SpecRule::NAME => 'option-2-correct',
+                SpecRule::NAME => Attribute::OPTION_2_CORRECT,
                 SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
             ],
             [
-                SpecRule::NAME => 'option-3-correct',
+                SpecRule::NAME => Attribute::OPTION_3_CORRECT,
                 SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -36,7 +36,7 @@ final class AmpStoryInteractiveQuiz extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'option-4-correct',
+                SpecRule::NAME => Attribute::OPTION_4_CORRECT,
                 SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [

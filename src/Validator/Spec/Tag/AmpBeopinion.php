@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,23 +20,23 @@ final class AmpBeopinion extends Tag
         SpecRule::TAG_NAME => Extension::BEOPINION,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-account',
+                SpecRule::NAME => Attribute::DATA_ACCOUNT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-f]{24}',
             ],
             [
-                SpecRule::NAME => 'data-content',
+                SpecRule::NAME => Attribute::DATA_CONTENT,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-f]{24}',
             ],
             [
-                SpecRule::NAME => 'data-my-content',
+                SpecRule::NAME => Attribute::DATA_MY_CONTENT,
                 SpecRule::VALUE => [
                     '0',
                     '1',
                 ],
             ],
             [
-                SpecRule::NAME => 'data-name',
+                SpecRule::NAME => Attribute::DATA_NAME,
             ],
         ],
         SpecRule::ATTR_LISTS => [

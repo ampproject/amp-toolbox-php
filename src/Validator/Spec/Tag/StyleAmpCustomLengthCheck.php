@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -21,7 +22,7 @@ final class StyleAmpCustomLengthCheck extends Tag
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'amp-custom-length-check',
+                SpecRule::NAME => Attribute::AMP_CUSTOM_LENGTH_CHECK,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
@@ -29,7 +30,7 @@ final class StyleAmpCustomLengthCheck extends Tag
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::VALUE_CASEI => [
                     'text/css',
                 ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,19 +20,19 @@ final class AmpSpringboardPlayer extends Tag
         SpecRule::TAG_NAME => Extension::SPRINGBOARD_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-content-id',
+                SpecRule::NAME => Attribute::DATA_CONTENT_ID,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-domain',
+                SpecRule::NAME => Attribute::DATA_DOMAIN,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-items',
+                SpecRule::NAME => Attribute::DATA_ITEMS,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'data-mode',
+                SpecRule::NAME => Attribute::DATA_MODE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'playlist',
@@ -39,12 +40,12 @@ final class AmpSpringboardPlayer extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'data-player-id',
+                SpecRule::NAME => Attribute::DATA_PLAYER_ID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[a-z0-9]+',
             ],
             [
-                SpecRule::NAME => 'data-site-id',
+                SpecRule::NAME => Attribute::DATA_SITE_ID,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],

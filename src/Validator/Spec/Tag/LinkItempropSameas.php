@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,11 +20,11 @@ final class LinkItempropSameas extends Tag
         SpecRule::SPEC_NAME => 'link itemprop=sameAs',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'href',
+                SpecRule::NAME => Attribute::HREF,
                 SpecRule::MANDATORY => true,
             ],
             [
-                SpecRule::NAME => 'itemprop',
+                SpecRule::NAME => Attribute::ITEMPROP,
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

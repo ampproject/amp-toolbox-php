@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,10 +19,10 @@ final class Output extends Tag
         SpecRule::TAG_NAME => Element::OUTPUT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'for',
+                SpecRule::NAME => Attribute::FOR_,
             ],
             [
-                SpecRule::NAME => 'form',
+                SpecRule::NAME => Attribute::FORM,
             ],
         ],
         SpecRule::ATTR_LISTS => [

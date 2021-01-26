@@ -19,7 +19,7 @@ final class Input extends Tag
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'no-verify',
+                SpecRule::NAME => Attribute::NO_VERIFY,
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -28,7 +28,7 @@ final class Input extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'type',
+                SpecRule::NAME => Attribute::TYPE,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(file|image|password|)(\s|$)',
             ],
             [

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -18,7 +19,7 @@ final class AmpMegaMenuItemContent extends Tag
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU item-content',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'role',
+                SpecRule::NAME => Attribute::ROLE,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'dialog',

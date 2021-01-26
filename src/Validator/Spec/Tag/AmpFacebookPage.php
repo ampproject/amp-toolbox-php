@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpFacebookPage extends Tag
         SpecRule::TAG_NAME => Extension::FACEBOOK_PAGE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-href',
+                SpecRule::NAME => Attribute::DATA_HREF,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

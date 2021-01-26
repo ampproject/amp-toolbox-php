@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -20,7 +21,7 @@ final class InputMaskDateMmDdYyyy extends Tag
         SpecRule::SPEC_NAME => 'input [mask=date-mm-dd-yyyy]',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'mask',
+                SpecRule::NAME => Attribute::MASK,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'date-mm-dd-yyyy',

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,7 +21,7 @@ final class AmpCarouselLightbox extends Tag
         SpecRule::SPEC_NAME => 'AMP-CAROUSEL lightbox',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'lightbox',
+                SpecRule::NAME => Attribute::LIGHTBOX,
                 SpecRule::MANDATORY => true,
             ],
         ],

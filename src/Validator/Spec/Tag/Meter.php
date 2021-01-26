@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,22 +19,22 @@ final class Meter extends Tag
         SpecRule::TAG_NAME => Element::METER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'high',
+                SpecRule::NAME => Attribute::HIGH,
             ],
             [
-                SpecRule::NAME => 'low',
+                SpecRule::NAME => Attribute::LOW,
             ],
             [
-                SpecRule::NAME => 'max',
+                SpecRule::NAME => Attribute::MAX,
             ],
             [
-                SpecRule::NAME => 'min',
+                SpecRule::NAME => Attribute::MIN,
             ],
             [
-                SpecRule::NAME => 'optimum',
+                SpecRule::NAME => Attribute::OPTIMUM,
             ],
             [
-                SpecRule::NAME => 'value',
+                SpecRule::NAME => Attribute::VALUE,
             ],
         ],
         SpecRule::HTML_FORMAT => [

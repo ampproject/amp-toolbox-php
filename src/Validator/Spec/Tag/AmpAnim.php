@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,16 +20,16 @@ final class AmpAnim extends Tag
         SpecRule::TAG_NAME => Extension::ANIM,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alt',
+                SpecRule::NAME => Attribute::ALT,
             ],
             [
-                SpecRule::NAME => 'attribution',
+                SpecRule::NAME => Attribute::ATTRIBUTION,
             ],
             [
-                SpecRule::NAME => 'object-fit',
+                SpecRule::NAME => Attribute::OBJECT_FIT,
             ],
             [
-                SpecRule::NAME => 'object-position',
+                SpecRule::NAME => Attribute::OBJECT_POSITION,
             ],
         ],
         SpecRule::ATTR_LISTS => [

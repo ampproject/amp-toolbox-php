@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,42 +21,42 @@ final class Amp3dGltf extends Tag
         SpecRule::TAG_NAME => Extension::_3D_GLTF,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alpha',
+                SpecRule::NAME => Attribute::ALPHA,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'antialiasing',
+                SpecRule::NAME => Attribute::ANTIALIASING,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'autorotate',
+                SpecRule::NAME => Attribute::AUTOROTATE,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'clearcolor',
+                SpecRule::NAME => Attribute::CLEARCOLOR,
             ],
             [
-                SpecRule::NAME => 'enablezoom',
+                SpecRule::NAME => Attribute::ENABLEZOOM,
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
             [
-                SpecRule::NAME => 'maxpixelratio',
+                SpecRule::NAME => Attribute::MAXPIXELRATIO,
                 SpecRule::VALUE_REGEX => '[+-]?(\d*\.)?\d+',
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

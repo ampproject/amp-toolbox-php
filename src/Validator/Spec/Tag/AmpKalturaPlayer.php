@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpKalturaPlayer extends Tag
         SpecRule::TAG_NAME => Extension::KALTURA_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-partner',
+                SpecRule::NAME => Attribute::DATA_PARTNER,
                 SpecRule::MANDATORY => true,
             ],
         ],

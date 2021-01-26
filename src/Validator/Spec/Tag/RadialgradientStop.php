@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -19,13 +20,13 @@ final class RadialgradientStop extends Tag
         SpecRule::SPEC_NAME => 'radialgradient > stop',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'offset',
+                SpecRule::NAME => Attribute::OFFSET,
             ],
             [
-                SpecRule::NAME => 'stop-color',
+                SpecRule::NAME => Attribute::STOP_COLOR,
             ],
             [
-                SpecRule::NAME => 'stop-opacity',
+                SpecRule::NAME => Attribute::STOP_OPACITY,
             ],
         ],
         SpecRule::ATTR_LISTS => [

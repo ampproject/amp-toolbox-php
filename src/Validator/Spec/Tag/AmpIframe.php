@@ -21,47 +21,47 @@ final class AmpIframe extends Tag
         SpecRule::TAG_NAME => Extension::IFRAME,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'allow',
+                SpecRule::NAME => Attribute::ALLOW,
             ],
             [
-                SpecRule::NAME => 'allowfullscreen',
+                SpecRule::NAME => Attribute::ALLOWFULLSCREEN,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'allowpaymentrequest',
+                SpecRule::NAME => Attribute::ALLOWPAYMENTREQUEST,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'allowtransparency',
+                SpecRule::NAME => Attribute::ALLOWTRANSPARENCY,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'frameborder',
+                SpecRule::NAME => Attribute::FRAMEBORDER,
                 SpecRule::VALUE => [
                     '0',
                     '1',
                 ],
             ],
             [
-                SpecRule::NAME => 'referrerpolicy',
+                SpecRule::NAME => Attribute::REFERRERPOLICY,
             ],
             [
-                SpecRule::NAME => 'resizable',
+                SpecRule::NAME => Attribute::RESIZABLE,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'sandbox',
+                SpecRule::NAME => Attribute::SANDBOX,
             ],
             [
-                SpecRule::NAME => 'scrolling',
+                SpecRule::NAME => Attribute::SCROLLING,
                 SpecRule::VALUE => [
                     'auto',
                     'no',
@@ -69,11 +69,11 @@ final class AmpIframe extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'tabindex',
+                SpecRule::NAME => Attribute::TABINDEX,
                 SpecRule::VALUE_REGEX => '-?\d+',
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
                 SpecRule::VALUE_URL => [
@@ -85,7 +85,7 @@ final class AmpIframe extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'srcdoc',
+                SpecRule::NAME => Attribute::SRCDOC,
                 SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
             ],
             [

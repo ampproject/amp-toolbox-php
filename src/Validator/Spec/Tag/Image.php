@@ -20,31 +20,31 @@ final class Image extends Tag
         SpecRule::TAG_NAME => Element::IMAGE,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'externalresourcesrequired',
+                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'preserveaspectratio',
+                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
             ],
             [
-                SpecRule::NAME => 'transform',
+                SpecRule::NAME => Attribute::TRANSFORM,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
             [
-                SpecRule::NAME => 'x',
+                SpecRule::NAME => Attribute::X,
             ],
             [
-                SpecRule::NAME => 'xlink:actuate',
+                SpecRule::NAME => Attribute::XLINK_ACTUATE,
             ],
             [
-                SpecRule::NAME => 'xlink:arcrole',
+                SpecRule::NAME => Attribute::XLINK_ARCROLE,
             ],
             [
-                SpecRule::NAME => 'xlink:href',
+                SpecRule::NAME => Attribute::XLINK_HREF,
                 SpecRule::ALTERNATIVE_NAMES => [
                     Attribute::HREF,
                 ],
@@ -59,19 +59,19 @@ final class Image extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'xlink:role',
+                SpecRule::NAME => Attribute::XLINK_ROLE,
             ],
             [
-                SpecRule::NAME => 'xlink:show',
+                SpecRule::NAME => Attribute::XLINK_SHOW,
             ],
             [
-                SpecRule::NAME => 'xlink:title',
+                SpecRule::NAME => Attribute::XLINK_TITLE,
             ],
             [
-                SpecRule::NAME => 'xlink:type',
+                SpecRule::NAME => Attribute::XLINK_TYPE,
             ],
             [
-                SpecRule::NAME => 'y',
+                SpecRule::NAME => Attribute::Y,
             ],
         ],
         SpecRule::ATTR_LISTS => [

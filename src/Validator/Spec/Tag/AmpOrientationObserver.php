@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,19 +20,19 @@ final class AmpOrientationObserver extends Tag
         SpecRule::TAG_NAME => Extension::ORIENTATION_OBSERVER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'alpha-range',
+                SpecRule::NAME => Attribute::ALPHA_RANGE,
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
             [
-                SpecRule::NAME => 'beta-range',
+                SpecRule::NAME => Attribute::BETA_RANGE,
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
             [
-                SpecRule::NAME => 'gamma-range',
+                SpecRule::NAME => Attribute::GAMMA_RANGE,
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
             [
-                SpecRule::NAME => 'smoothing',
+                SpecRule::NAME => Attribute::SMOOTHING,
                 SpecRule::VALUE_REGEX => '[0-9]+|',
             ],
         ],

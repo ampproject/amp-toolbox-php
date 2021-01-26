@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -22,14 +23,14 @@ final class HtmlDoctype extends Tag
         SpecRule::MANDATORY_PARENT => '$ROOT',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'html',
+                SpecRule::NAME => Attribute::HTML,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
             [
-                SpecRule::NAME => 'lang',
+                SpecRule::NAME => Attribute::LANG,
             ],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',

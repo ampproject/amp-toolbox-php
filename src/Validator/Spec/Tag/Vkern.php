@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,19 +19,19 @@ final class Vkern extends Tag
         SpecRule::TAG_NAME => Element::VKERN,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'g1',
+                SpecRule::NAME => Attribute::G1,
             ],
             [
-                SpecRule::NAME => 'g2',
+                SpecRule::NAME => Attribute::G2,
             ],
             [
-                SpecRule::NAME => 'k',
+                SpecRule::NAME => Attribute::K,
             ],
             [
-                SpecRule::NAME => 'u1',
+                SpecRule::NAME => Attribute::U1,
             ],
             [
-                SpecRule::NAME => 'u2',
+                SpecRule::NAME => Attribute::U2,
             ],
         ],
         SpecRule::ATTR_LISTS => [

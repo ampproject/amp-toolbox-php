@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,7 +20,7 @@ final class AmpConnatixPlayer extends Tag
         SpecRule::TAG_NAME => Extension::CONNATIX_PLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'data-player-id',
+                SpecRule::NAME => Attribute::DATA_PLAYER_ID,
                 SpecRule::MANDATORY => true,
             ],
         ],

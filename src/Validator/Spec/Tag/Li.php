@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,7 +19,7 @@ final class Li extends Tag
         SpecRule::TAG_NAME => Element::LI,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'value',
+                SpecRule::NAME => Attribute::VALUE,
                 SpecRule::VALUE_REGEX => '[0-9]*',
             ],
         ],

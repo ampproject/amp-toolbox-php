@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -19,10 +20,10 @@ final class AmpMowplayer extends Tag
         SpecRule::TAG_NAME => Extension::MOWPLAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'autoplay',
+                SpecRule::NAME => Attribute::AUTOPLAY,
             ],
             [
-                SpecRule::NAME => 'data-mediaid',
+                SpecRule::NAME => Attribute::DATA_MEDIAID,
                 SpecRule::MANDATORY => true,
             ],
         ],

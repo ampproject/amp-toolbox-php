@@ -22,7 +22,7 @@ final class AmpAutocomplete extends Tag
         SpecRule::SPEC_NAME => 'amp-autocomplete',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'filter',
+                SpecRule::NAME => Attribute::FILTER,
                 SpecRule::MANDATORY => true,
                 SpecRule::TRIGGER => [
                     SpecRule::IF_VALUE_REGEX => 'custom',
@@ -40,37 +40,37 @@ final class AmpAutocomplete extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'filter-expr',
+                SpecRule::NAME => Attribute::FILTER_EXPR,
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::BIND,
                 ],
             ],
             [
-                SpecRule::NAME => 'filter-value',
+                SpecRule::NAME => Attribute::FILTER_VALUE,
             ],
             [
-                SpecRule::NAME => 'highlight-user-entry',
+                SpecRule::NAME => Attribute::HIGHLIGHT_USER_ENTRY,
             ],
             [
-                SpecRule::NAME => 'inline',
+                SpecRule::NAME => Attribute::INLINE,
             ],
             [
-                SpecRule::NAME => 'items',
+                SpecRule::NAME => Attribute::ITEMS,
             ],
             [
-                SpecRule::NAME => 'max-entries',
+                SpecRule::NAME => Attribute::MAX_ENTRIES,
             ],
             [
-                SpecRule::NAME => 'max-items',
+                SpecRule::NAME => Attribute::MAX_ITEMS,
             ],
             [
-                SpecRule::NAME => 'min-characters',
+                SpecRule::NAME => Attribute::MIN_CHARACTERS,
             ],
             [
-                SpecRule::NAME => 'prefetch',
+                SpecRule::NAME => Attribute::PREFETCH,
             ],
             [
-                SpecRule::NAME => 'query',
+                SpecRule::NAME => Attribute::QUERY,
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::SRC,
@@ -78,7 +78,7 @@ final class AmpAutocomplete extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'src',
+                SpecRule::NAME => Attribute::SRC,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -87,13 +87,13 @@ final class AmpAutocomplete extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => 'submit-on-enter',
+                SpecRule::NAME => Attribute::SUBMIT_ON_ENTER,
             ],
             [
-                SpecRule::NAME => 'suggest-first',
+                SpecRule::NAME => Attribute::SUGGEST_FIRST,
             ],
             [
-                SpecRule::NAME => 'template',
+                SpecRule::NAME => Attribute::TEMPLATE,
             ],
             [
                 SpecRule::NAME => '[src]',

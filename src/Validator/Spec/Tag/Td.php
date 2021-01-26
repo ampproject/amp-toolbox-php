@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -18,28 +19,28 @@ final class Td extends Tag
         SpecRule::TAG_NAME => Element::TD,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => 'align',
+                SpecRule::NAME => Attribute::ALIGN,
             ],
             [
-                SpecRule::NAME => 'bgcolor',
+                SpecRule::NAME => Attribute::BGCOLOR,
             ],
             [
-                SpecRule::NAME => 'colspan',
+                SpecRule::NAME => Attribute::COLSPAN,
             ],
             [
-                SpecRule::NAME => 'headers',
+                SpecRule::NAME => Attribute::HEADERS,
             ],
             [
-                SpecRule::NAME => 'height',
+                SpecRule::NAME => Attribute::HEIGHT,
             ],
             [
-                SpecRule::NAME => 'rowspan',
+                SpecRule::NAME => Attribute::ROWSPAN,
             ],
             [
-                SpecRule::NAME => 'valign',
+                SpecRule::NAME => Attribute::VALIGN,
             ],
             [
-                SpecRule::NAME => 'width',
+                SpecRule::NAME => Attribute::WIDTH,
             ],
         ],
         SpecRule::HTML_FORMAT => [
