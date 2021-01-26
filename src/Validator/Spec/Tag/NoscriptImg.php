@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -56,8 +57,8 @@ final class NoscriptImg extends Tag
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'http',
-                        'https',
+                        Protocol::HTTP,
+                        Protocol::HTTPS,
                     ],
                 ],
             ],

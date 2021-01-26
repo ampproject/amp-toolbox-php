@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -38,8 +39,8 @@ final class AmpNexxtvPlayer extends Tag
                 SpecRule::NAME => 'data-origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
-                        'http',
+                        Protocol::HTTPS,
+                        Protocol::HTTP,
                     ],
                     SpecRule::ALLOW_EMPTY => true,
                 ],

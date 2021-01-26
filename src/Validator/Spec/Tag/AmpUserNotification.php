@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -22,7 +23,7 @@ final class AmpUserNotification extends Tag
                 SpecRule::NAME => 'data-dismiss-href',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_RELATIVE => false,
                     SpecRule::ALLOW_EMPTY => false,
@@ -32,7 +33,7 @@ final class AmpUserNotification extends Tag
                 SpecRule::NAME => 'data-show-if-href',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_RELATIVE => false,
                     SpecRule::ALLOW_EMPTY => false,

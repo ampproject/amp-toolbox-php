@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -54,8 +55,8 @@ final class Iframe extends Tag
                 SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'data',
-                        'https',
+                        Protocol::DATA,
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_RELATIVE => false,
                 ],

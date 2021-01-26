@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -37,8 +38,8 @@ final class AmpStoryPageAttachmentHref extends Tag
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'http',
-                        'https',
+                        Protocol::HTTP,
+                        Protocol::HTTPS,
                     ],
                 ],
             ],

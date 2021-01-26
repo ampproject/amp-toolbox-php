@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -23,7 +24,7 @@ final class AmpWebPush extends Tag
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
@@ -40,7 +41,7 @@ final class AmpWebPush extends Tag
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
@@ -50,7 +51,7 @@ final class AmpWebPush extends Tag
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
@@ -59,7 +60,7 @@ final class AmpWebPush extends Tag
                 SpecRule::NAME => 'service-worker-scope',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                 ],
             ],

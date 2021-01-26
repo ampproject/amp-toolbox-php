@@ -8,6 +8,7 @@
 namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -49,9 +50,9 @@ final class Image extends Tag
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)data:image\/svg\+xml',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'data',
-                        'http',
-                        'https',
+                        Protocol::DATA,
+                        Protocol::HTTP,
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_EMPTY => false,
                 ],

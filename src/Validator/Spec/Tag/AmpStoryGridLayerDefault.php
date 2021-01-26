@@ -8,6 +8,7 @@
 namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -39,9 +40,9 @@ final class AmpStoryGridLayerDefault extends Tag
                 SpecRule::NAME => 'data-tooltip-icon',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'http',
-                        'https',
-                        'data',
+                        Protocol::HTTP,
+                        Protocol::HTTPS,
+                        Protocol::DATA,
                     ],
                 ],
             ],

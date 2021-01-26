@@ -18,7 +18,7 @@ trait ConstantNames
         return strtoupper(
             $this->prefixLeadingDigits(
                 str_replace(
-                    [':', '-', '!'],
+                    [':', '-', '!', '+'],
                     '_',
                     preg_replace('/([a-z])([A-Z])/', '$1_$2', $value)
                 )
@@ -88,6 +88,18 @@ trait ConstantNames
     private function getLayoutConstant($layout)
     {
         return "Layout::{$layout}";
+    }
+
+
+    /**
+     * Get the protocol constant.
+     *
+     * @param string $protocol Protocol to get the constant for.
+     * @return string Protocol constant.
+     */
+    private function getProtocolConstant($protocol)
+    {
+        return "Protocol::{$protocol}";
     }
 
     /**

@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Section;
 
 use AmpProject\Attribute;
 use AmpProject\Exception\InvalidListName;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec;
 use AmpProject\Validator\Spec\SpecRule;
 
@@ -56,8 +57,8 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'http',
-                                'https',
+                                Protocol::HTTP,
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_EMPTY => true,
                         ],
@@ -85,7 +86,7 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
                         ],
@@ -112,7 +113,7 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
                         ],
@@ -232,8 +233,8 @@ final class AttributeLists
                         ],
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'http',
-                                'https',
+                                Protocol::HTTP,
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_EMPTY => false,
                         ],
@@ -418,9 +419,9 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'data',
-                                'http',
-                                'https',
+                                Protocol::DATA,
+                                Protocol::HTTP,
+                                Protocol::HTTPS,
                             ],
                         ],
                     ],
@@ -433,7 +434,7 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
                         ],
@@ -446,7 +447,7 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
                         ],
@@ -831,7 +832,7 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_RELATIVE => true,
                         ],
@@ -990,7 +991,7 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
                         ],
@@ -1100,7 +1101,7 @@ final class AttributeLists
                         SpecRule::MANDATORY => true,
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
                             SpecRule::ALLOW_EMPTY => false,
@@ -1226,7 +1227,7 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                         ],
                     ],
@@ -1297,7 +1298,7 @@ final class AttributeLists
                         SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
-                                'https',
+                                Protocol::HTTPS,
                             ],
                             SpecRule::ALLOW_RELATIVE => true,
                         ],

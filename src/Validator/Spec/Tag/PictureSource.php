@@ -8,6 +8,7 @@
 namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -30,9 +31,9 @@ final class PictureSource extends Tag
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'data',
-                        'http',
-                        'https',
+                        Protocol::DATA,
+                        Protocol::HTTP,
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_RELATIVE => true,
                 ],

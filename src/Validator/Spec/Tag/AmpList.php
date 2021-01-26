@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -84,9 +85,9 @@ final class AmpList extends Tag
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
-                        'amp-state',
-                        'amp-script',
+                        Protocol::HTTPS,
+                        Protocol::AMP_STATE,
+                        Protocol::AMP_SCRIPT,
                     ],
                     SpecRule::ALLOW_RELATIVE => true,
                 ],

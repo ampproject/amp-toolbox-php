@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -24,7 +25,7 @@ final class AmpGoogleDocumentEmbed extends Tag
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                     SpecRule::ALLOW_RELATIVE => false,
                 ],

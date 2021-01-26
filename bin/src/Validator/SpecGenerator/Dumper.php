@@ -264,6 +264,8 @@ final class Dumper
             ||
             strpos($value, 'Layout::') === 0
             ||
+            strpos($value, 'Protocol::') === 0
+            ||
             strpos($value, 'SpecRule::') === 0
             ||
             strpos($value, '::class') !== false
@@ -296,6 +298,12 @@ final class Dumper
                     $formats[] = $this->getFormatConstant($this->getConstantName($format));
                 }
                 return $formats;
+            case 'protocol':
+                $protocols = [];
+                foreach ($value as $protocol) {
+                    $protocols[] = $this->getProtocolConstant($this->getConstantName($protocol));
+                }
+                return $protocols;
             case 'mandatoryAncestor':
             case 'mandatoryAncestorSuggestedAlternative':
             case 'mandatoryParent':

@@ -8,6 +8,7 @@
 namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -26,10 +27,10 @@ final class AAmp4email extends Tag
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'http',
-                        'https',
-                        'mailto',
-                        'tel',
+                        Protocol::HTTP,
+                        Protocol::HTTPS,
+                        Protocol::MAILTO,
+                        Protocol::TEL,
                     ],
                     SpecRule::ALLOW_RELATIVE => false,
                 ],

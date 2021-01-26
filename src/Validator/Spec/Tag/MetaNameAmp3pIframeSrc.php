@@ -8,6 +8,7 @@
 namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -24,7 +25,7 @@ final class MetaNameAmp3pIframeSrc extends Tag
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                 ],
             ],

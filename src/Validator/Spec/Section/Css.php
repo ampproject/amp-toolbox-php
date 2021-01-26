@@ -12,6 +12,7 @@ use AmpProject\Attribute;
 use AmpProject\Exception\InvalidCssName;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Format;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 
 final class Css
@@ -81,17 +82,17 @@ final class Css
                 ],
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [
-                        'https',
-                        'http',
-                        'data',
+                        Protocol::HTTPS,
+                        Protocol::HTTP,
+                        Protocol::DATA,
                     ],
                     SpecRule::ALLOW_EMPTY => true,
                 ],
                 SpecRule::FONT_URL_SPEC => [
                     SpecRule::PROTOCOL => [
-                        'https',
-                        'http',
-                        'data',
+                        Protocol::HTTPS,
+                        Protocol::HTTP,
+                        Protocol::DATA,
                     ],
                     SpecRule::ALLOW_EMPTY => true,
                 ],
@@ -120,17 +121,17 @@ final class Css
                 ],
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [
-                        'https',
-                        'http',
-                        'data',
+                        Protocol::HTTPS,
+                        Protocol::HTTP,
+                        Protocol::DATA,
                     ],
                     SpecRule::ALLOW_EMPTY => true,
                 ],
                 SpecRule::FONT_URL_SPEC => [
                     SpecRule::PROTOCOL => [
-                        'https',
-                        'http',
-                        'data',
+                        Protocol::HTTPS,
+                        Protocol::HTTP,
+                        Protocol::DATA,
                     ],
                     SpecRule::ALLOW_EMPTY => true,
                 ],
@@ -152,17 +153,17 @@ final class Css
                 ],
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [
-                        'https',
-                        'http',
-                        'data',
+                        Protocol::HTTPS,
+                        Protocol::HTTP,
+                        Protocol::DATA,
                     ],
                     SpecRule::ALLOW_EMPTY => true,
                 ],
                 SpecRule::FONT_URL_SPEC => [
                     SpecRule::PROTOCOL => [
-                        'https',
-                        'http',
-                        'data',
+                        Protocol::HTTPS,
+                        Protocol::HTTP,
+                        Protocol::DATA,
                     ],
                     SpecRule::ALLOW_EMPTY => true,
                 ],
@@ -190,7 +191,7 @@ final class Css
                 ],
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                 ],
                 SpecRule::ALLOW_IMPORTANT => false,
@@ -215,7 +216,7 @@ final class Css
                 ],
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [
-                        'https',
+                        Protocol::HTTPS,
                     ],
                 ],
                 SpecRule::ALLOW_IMPORTANT => false,
