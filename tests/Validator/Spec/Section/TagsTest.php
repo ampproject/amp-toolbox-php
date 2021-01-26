@@ -35,11 +35,11 @@ class TagsTest extends TestCase
 
         foreach ($tags as $tag) {
             $this->assertInstanceOf(Spec\Tag::class, $tag);
-            $this->assertEquals('stop', $tag->tagName());
+            $this->assertEquals('stop', $tag->tagName);
         }
 
-        $this->assertEquals('lineargradient > stop', $tags[0]->specName());
-        $this->assertEquals('radialgradient > stop', $tags[1]->specName());
+        $this->assertEquals('lineargradient > stop', $tags[0]->specName);
+        $this->assertEquals('radialgradient > stop', $tags[1]->specName);
     }
 
     public function testByTagNameReturnsEmptyArrayForUnknownTagName()
@@ -55,8 +55,8 @@ class TagsTest extends TestCase
         $tag = $this->tags->bySpecName('picture > source');
 
         $this->assertInstanceOf(Spec\Tag::class, $tag);
-        $this->assertEquals('picture > source', $tag->specName());
-        $this->assertEquals('source', $tag->tagName());
+        $this->assertEquals('picture > source', $tag->specName);
+        $this->assertEquals('source', $tag->tagName);
     }
 
     public function testBySpecNameThrowsExceptionForUnknownSpecName()
@@ -74,7 +74,7 @@ class TagsTest extends TestCase
 
         foreach ($tags as $tag) {
             $this->assertInstanceOf(Spec\Tag::class, $tag);
-            $this->assertContains(Format::AMP, $tag->htmlFormat());
+            $this->assertContains(Format::AMP, $tag->htmlFormat);
         }
     }
 

@@ -277,7 +277,16 @@ final class SpecGenerator
                             }
                         }
 
-                        foreach (['ampLayout', 'cdata', 'extensionSpec', 'childTags', 'cssSpec', 'valueProperties'] as $attribute) {
+                        foreach (
+                            [
+                                'ampLayout',
+                                'cdata',
+                                'extensionSpec',
+                                'childTags',
+                                'cssSpec',
+                                'valueProperties'
+                            ] as $attribute
+                        ) {
                             if (array_key_exists($attribute, $ruleset)) {
                                 foreach ($ruleset[$attribute] as $attributeKey => $attributeValue) {
                                     $specRuleKeys[$attributeKey] = $attributeKey;

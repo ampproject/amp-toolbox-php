@@ -6,7 +6,6 @@ use Nette\PhpGenerator\Dumper as NetteDumper;
 
 final class Dumper
 {
-
     use ConstantNames;
 
     /** @var NetteDumper */
@@ -146,7 +145,7 @@ final class Dumper
     {
         $value = $this->replaceConstants($key, $value);
 
-        return "'{$key}' => {$this->dump($value, $level, $callback)}";
+        return "{$this->getValueString($key)} => {$this->dump($value, $level, $callback)}";
     }
 
     /**
@@ -221,6 +220,10 @@ final class Dumper
      */
     private function getValueString($value, $callback = null)
     {
+        if ($this->dumper === null) {
+            $this->dumper = new NetteDumper();
+        }
+
         if (!is_callable($callback)) {
             $callback = [$this, 'filterValueStrings'];
         }
@@ -260,6 +263,10 @@ final class Dumper
             strpos($value, 'Internal::') === 0
             ||
             strpos($value, 'Layout::') === 0
+            ||
+            strpos($value, 'SpecRule::') === 0
+            ||
+            strpos($value, '::class') !== false
         ) {
             return $value;
         }

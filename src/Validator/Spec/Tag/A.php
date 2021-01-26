@@ -12,7 +12,7 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class A_ extends Tag
+final class A extends Tag
 {
     const SPEC = [
         SpecRule::TAG_NAME => Element::A,

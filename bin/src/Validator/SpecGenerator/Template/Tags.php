@@ -10,10 +10,11 @@ final class Tags
 {
     const TAGS = [];
 
+    const BY_TAG_NAME  = [];
+    const BY_SPEC_NAME = [];
+    const BY_FORMAT    = [];
+
     private $tagsCache  = [];
-    private $byTagName  = [];
-    private $bySpecName = [];
-    private $byFormat   = [];
 
     /**
      * Get a collection of tags by tag name.
@@ -25,18 +26,18 @@ final class Tags
     {
         $tagName = strtolower($tagName);
 
-        if (!array_key_exists($tagName, $this->byTagName)) {
+        if (!array_key_exists($tagName, self::BY_TAG_NAME)) {
             return [];
         }
 
-        $tagIds = $this->byTagName[$tagName];
+        $tagIds = self::BY_TAG_NAME[$tagName];
         if (!is_array($tagIds)) {
             $tagIds = [$tagIds];
         }
 
         $tags = [];
         foreach ($tagIds as $tagId) {
-            $tags[$tagId] = $this->byTagId($tagId);
+            $tags[] = $this->byTagId($tagId);
         }
 
         return $tags;
@@ -51,11 +52,11 @@ final class Tags
      */
     public function bySpecName($specName)
     {
-        if (!array_key_exists($specName, $this->bySpecName)) {
+        if (!array_key_exists($specName, self::BY_SPEC_NAME)) {
             throw InvalidSpecName::forSpecName($specName);
         }
 
-        return $this->bySpecName[$specName];
+        return $this->byTagId(self::BY_SPEC_NAME[$specName]);
     }
 
     /**
@@ -67,12 +68,21 @@ final class Tags
      */
     public function byFormat($format)
     {
-        if (!array_key_exists($format, $this->byFormat)) {
+        if (!array_key_exists($format, self::BY_FORMAT)) {
             throw InvalidFormat::forFormat($format);
         }
 
-        $tags = $this->byFormat[$format];
-        return is_array($tags) ? $tags : [$tags];
+        $tagIds = self::BY_FORMAT[$format];
+        if (!is_array($tagIds)) {
+            $tagIds = [$tagIds];
+        }
+
+        $tags = [];
+        foreach ($tagIds as $tagId) {
+            $tags[] = $this->byTagId($tagId);
+        }
+
+        return $tags;
     }
 
     /**

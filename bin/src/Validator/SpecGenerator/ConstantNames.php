@@ -48,16 +48,7 @@ trait ConstantNames
             $interface = 'Element';
         }
 
-        $languageConstructs = [
-            'LIST',
-            'SWITCH',
-            'USE',
-            'VAR',
-        ];
-
-        if (in_array($constantName, $languageConstructs, true)) {
-            $constantName .= '_';
-        }
+        $constantName = (new ReservedKeywords())->maybeAddSuffix($constantName);
 
         return "{$interface}::{$constantName}";
     }
@@ -111,16 +102,7 @@ trait ConstantNames
             return $attribute;
         }
 
-        $languageConstructs = [
-            'AS',
-            'DEFAULT',
-            'FOR',
-            'LIST',
-        ];
-
-        if (in_array($attribute, $languageConstructs, true)) {
-            $attribute .= '_';
-        }
+        $attribute = (new ReservedKeywords())->maybeAddSuffix($attribute);
 
         return "Attribute::{$attribute}";
     }

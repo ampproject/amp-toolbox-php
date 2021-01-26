@@ -41,12 +41,15 @@ final class SpecPrinter extends Printer
         $class->validate();
         $resolver = $this->resolveTypes && $namespace
             ? [$namespace, 'unresolveUnionType']
-            : function ($s) { return $s; };
+            : function ($s) {
+                return $s;
+            };
 
         $traits = [];
         foreach ($class->getTraitResolutions() as $trait => $resolutions) {
-            $traits[] = 'use ' . $resolver($trait)
-                . ($resolutions ? " {\n" . $this->indentation . implode(";\n" . $this->indentation, $resolutions) . ";\n}\n" : ";\n");
+            $traits[] = 'use ' . $resolver($trait) . ($resolutions
+                    ? " {\n" . $this->indentation . implode(";\n" . $this->indentation, $resolutions) . ";\n}\n"
+                    : ";\n");
         }
 
         $consts = [];
@@ -94,12 +97,16 @@ final class SpecPrinter extends Printer
                 . ($class->isAbstract() ? 'abstract ' : '')
                 . ($class->isFinal() ? 'final ' : '')
                 . ($class->getName() ? $class->getType() . ' ' . $class->getName() . ' ' : '')
-                . ($class->getExtends() ? 'extends ' . implode(', ', array_map($resolver, (array) $class->getExtends())) . ' ' : '')
-                . ($class->getImplements() ? 'implements ' . implode(', ', array_map($resolver, $class->getImplements())) . ' ' : '')
+                . ($class->getExtends()
+                ? 'extends ' . implode(', ', array_map($resolver, (array) $class->getExtends())) . ' '
+                : '')
+                . ($class->getImplements()
+                ? 'implements ' . implode(', ', array_map($resolver, $class->getImplements())) . ' '
+                : '')
                 . ($class->getName() ? "\n" : '') . "{\n"
                 . ($members ? $this->indent(implode("\n", $members)) : '')
                 . '}'
-            ) . ($class->getName() ? "\n" : '');
+        ) . ($class->getName() ? "\n" : '');
     }
 
     /**
@@ -120,7 +127,7 @@ final class SpecPrinter extends Printer
         }
         $items = [];
         foreach ($attrs as $attr) {
-            $args = (new Dumper)->format('...?:', $attr->getArguments());
+            $args = (new Dumper())->format('...?:', $attr->getArguments());
             $items[] = $this->printType($attr->getName(), false, $namespace) . ($args ? "($args)" : '');
         }
         return $inline

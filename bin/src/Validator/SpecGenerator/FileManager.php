@@ -9,7 +9,6 @@ use Nette\PhpGenerator\Printer;
 final class FileManager
 {
 
-
     /**
      * Root namespace to generate the PHP validator spec under.
      *
@@ -251,6 +250,13 @@ final class FileManager
                 return;
             }
 
+            $partials          = explode('\\', $class);
+            $relativeNamespace = array_shift($partials);
+
+            if ($this->getShortName($import) === $relativeNamespace) {
+                return;
+            }
+
             if ($alias === $this->getShortName($class)) {
                 return;
             }
@@ -273,7 +279,8 @@ final class FileManager
      * @param string $class Class name to get the short name for.
      * @return string Short name of the provided class name.
      */
-    private function getShortName($class) {
+    private function getShortName($class)
+    {
         $class = ltrim($class, '\\');
 
         if (strpos($class, 'AmpProject\\') === 0) {

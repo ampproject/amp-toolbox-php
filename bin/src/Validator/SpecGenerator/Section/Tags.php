@@ -6,6 +6,7 @@ use AmpProject\Tooling\Validator\SpecGenerator\ArrayKeyFirstPolyfill;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
+use AmpProject\Tooling\Validator\SpecGenerator\ReservedKeywords;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -15,13 +16,6 @@ final class Tags implements Section
 {
     use ArrayKeyFirstPolyfill;
     use ConstantNames;
-
-    const PHP_KEYWORDS = [
-        'A',
-        'Switch',
-        'Use',
-        'Var',
-    ];
 
     /**
      * Dumper instance to use.
@@ -54,14 +48,6 @@ final class Tags implements Section
         $bySpecName = [];
         $byFormat   = [];
 
-        $namespace->addUse('AmpProject\\Exception\\InvalidSpecName');
-        $namespace->addUse('AmpProject\\Attribute');
-        $namespace->addUse('AmpProject\\Extension');
-        $namespace->addUse('AmpProject\\Format');
-        $namespace->addUse('AmpProject\\Internal');
-        $namespace->addUse('AmpProject\\Layout');
-        $namespace->addUse('AmpProject\\Tag', 'Element');
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
 
         $tagsTemplateClass = ClassType::withBodiesFrom(Template\Tags::class);
@@ -71,19 +57,8 @@ final class Tags implements Section
 
         $class->addProperty('tagsCache')
               ->setPrivate()
-              ->addComment('@var array<Tag>');
-
-        $class->addProperty('byTagName')
-              ->setPrivate()
-              ->addComment('@var array<array>');
-
-        $class->addProperty('bySpecName')
-              ->setPrivate()
-              ->addComment('@var array');
-
-        $class->addProperty('byFormat')
-              ->setPrivate()
-              ->addComment('@var array<array>');
+              ->addComment('@var array<Tag>')
+              ->setValue([]);
 
         foreach ($spec as $attributes) {
             $tagId        = $this->getTagId($tags, $attributes);
@@ -101,28 +76,40 @@ final class Tags implements Section
             if (array_key_exists('tagName', $tags[$tagId])) {
                 $tagName = $tags[$tagId]['tagName'];
                 if (strpos($tagName, '$') !== 0) {
-                    if (!array_key_exists($tagName, $byTagName)) {
-                        $byTagName[$tagName] = [];
+                    $tagName = $this->getKeyString($tagName);
+                    if (array_key_exists($tagName, $byTagName)) {
+                        if (!is_array($byTagName[$tagName])) {
+                            $previousTagId         = $byTagName[$tagName];
+                            $byTagName[$tagName]   = [];
+                            $byTagName[$tagName][] = $previousTagId;
+                        }
+                        $byTagName[$tagName][] = $this->getKeyString($tagId);
+                    } else {
+                        $byTagName[$tagName] = $this->getKeyString($tagId);
                     }
-                    $byTagName[$tagName][$tagId] = $tags[$tagId];
                 }
             }
 
             if (array_key_exists('specName', $tags[$tagId])) {
-                $specName                    = $tags[$tagId]['specName'];
-                $bySpecName[$specName] = $tagId;
+                $specName              = $this->getKeyString($tags[$tagId]['specName']);
+                $bySpecName[$specName] = $this->getKeyString($tagId);
             }
 
             if (array_key_exists('htmlFormat', $tags[$tagId])) {
                 $formats = $tags[$tagId]['htmlFormat'];
                 foreach ($formats as $format) {
+                    $format = $this->getFormatConstant($this->getConstantName($format));
                     if (!array_key_exists($format, $byFormat)) {
                         $byFormat[$format] = [];
                     }
-                    $byFormat[$format][] = $tagId;
+                    $byFormat[$format][] = $this->getKeyString($tagId);
                 }
             }
         }
+
+        $class->addConstant('BY_TAG_NAME', $byTagName);
+        $class->addConstant('BY_SPEC_NAME', $bySpecName);
+        $class->addConstant('BY_FORMAT', $byFormat);
     }
 
     /**
@@ -162,17 +149,25 @@ final class Tags implements Section
      *
      * This automatically reuses existing constant to reduce memory consumption.
      *
-     * @param array  $tags  Array of tags that were collected.
      * @param string $tagId Tag ID to produce a key string for.
      * @return string Key string to use.
      */
-    private function getKeyString($tags, $tagId)
+    private function getKeyString($tagId)
     {
-        if (array_key_exists('tagName', $tags[$tagId]) && $tags[$tagId]['tagName'] === $tagId) {
-            return $this->getTagConstant($this->getConstantName($tagId));
+        if (!is_string($tagId)) {
+            return $tagId;
         }
 
-        return "'{$tagId}'";
+        $constant = $this->getTagConstant($this->getConstantName($tagId));
+
+        $definition = "AmpProject\\{$constant}";
+        $definition = str_replace('\\Element::', '\\Tag::', $definition);
+
+        if (!defined($definition)) {
+            return $tagId;
+        }
+
+        return $constant;
     }
 
     /**
@@ -186,7 +181,12 @@ final class Tags implements Section
         $tagMappings = [];
 
         foreach ($tags as $tagId => $attributes) {
-            $tagMappings[$tagId] = $this->getTagClassFromTagId($tagId);
+            unset($tagMappings[$tagId]);
+
+            $class = "Tag\\{$this->getTagClassFromTagId($tagId)}::class";
+            $tagId = $this->getKeyString($tagId);
+
+            $tagMappings[$tagId] = $class;
         }
 
         return $tagMappings;
@@ -204,9 +204,7 @@ final class Tags implements Section
         $className = preg_replace('/\s+/', ' ', trim($className));
         $className = str_replace(' ', '', ucwords(strtolower($className)));
 
-        if (in_array($className, self::PHP_KEYWORDS, true)) {
-            $className = "{$className}_";
-        }
+        $className = (new ReservedKeywords())->maybeAddSuffix($className);
 
         return $className;
     }
