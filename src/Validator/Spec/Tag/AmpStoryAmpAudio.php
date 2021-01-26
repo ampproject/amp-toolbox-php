@@ -42,7 +42,7 @@ final class AmpStoryAmpAudio extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-audio',
+            Extension::AUDIO,
         ],
     ];
 }

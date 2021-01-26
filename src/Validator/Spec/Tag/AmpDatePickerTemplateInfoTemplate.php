@@ -37,7 +37,7 @@ final class AmpDatePickerTemplateInfoTemplate extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-mustache',
+            Extension::MUSTACHE,
         ],
     ];
 }

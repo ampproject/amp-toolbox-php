@@ -51,7 +51,7 @@ final class AmpStoryAnimation extends Tag
             'amp-story-animation json script',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-story',
+            Extension::STORY,
         ],
     ];
 }

@@ -33,8 +33,8 @@ final class AmpAutocompleteInput extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-autocomplete',
-            'amp-form',
+            Extension::AUTOCOMPLETE,
+            Extension::FORM,
         ],
     ];
 }

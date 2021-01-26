@@ -49,7 +49,7 @@ final class AmpVideoIframeWithPlaceholderTransformed extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-video-iframe',
+            Extension::VIDEO_IFRAME,
         ],
         SpecRule::ENABLED_BY => [
             'transformed',

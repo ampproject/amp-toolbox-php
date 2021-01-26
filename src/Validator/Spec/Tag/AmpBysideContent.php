@@ -44,7 +44,7 @@ final class AmpBysideContent extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-byside-content',
+            Extension::BYSIDE_CONTENT,
         ],
     ];
 }

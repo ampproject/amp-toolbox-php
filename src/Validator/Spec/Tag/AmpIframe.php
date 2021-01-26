@@ -114,7 +114,7 @@ final class AmpIframe extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-iframe',
+            Extension::IFRAME,
         ],
     ];
 }

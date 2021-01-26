@@ -46,7 +46,7 @@ final class AmpWistiaPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-wistia-player',
+            Extension::WISTIA_PLAYER,
         ],
     ];
 }

@@ -46,7 +46,7 @@ final class AmpVimeo extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-vimeo',
+            Extension::VIMEO,
         ],
     ];
 }

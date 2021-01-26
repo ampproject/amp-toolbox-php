@@ -44,7 +44,7 @@ final class AmpMegaphoneDataPlaylist extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-megaphone',
+            Extension::MEGAPHONE,
         ],
     ];
 }

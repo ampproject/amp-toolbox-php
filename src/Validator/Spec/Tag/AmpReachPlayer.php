@@ -40,7 +40,7 @@ final class AmpReachPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-reach-player',
+            Extension::REACH_PLAYER,
         ],
     ];
 }

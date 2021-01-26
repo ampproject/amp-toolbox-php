@@ -40,7 +40,7 @@ final class AmpIzlesene extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-izlesene',
+            Extension::IZLESENE,
         ],
     ];
 }

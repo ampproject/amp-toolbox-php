@@ -41,7 +41,7 @@ final class AmpAdExit extends Tag
             'amp-ad-exit configuration JSON',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-ad-exit',
+            Extension::AD_EXIT,
         ],
     ];
 }

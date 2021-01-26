@@ -83,7 +83,7 @@ final class AmpScript extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-script',
+            Extension::SCRIPT,
         ],
     ];
 }

@@ -53,7 +53,7 @@ final class AmpSmartlinks extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-smartlinks',
+            Extension::SMARTLINKS,
         ],
     ];
 }

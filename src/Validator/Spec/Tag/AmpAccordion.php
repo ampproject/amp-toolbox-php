@@ -60,7 +60,7 @@ final class AmpAccordion extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-accordion',
+            Extension::ACCORDION,
         ],
     ];
 }

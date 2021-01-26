@@ -40,7 +40,7 @@ final class AmpSidebarAmp4email extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-sidebar',
+            Extension::SIDEBAR,
         ],
     ];
 }

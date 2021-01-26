@@ -89,7 +89,7 @@ final class AmpListAmp4email extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-list',
+            Extension::LIST_,
         ],
     ];
 }

@@ -56,7 +56,7 @@ final class AmpMinuteMediaPlayer extends Tag
             [
                 SpecRule::NAME => 'dock',
                 SpecRule::REQUIRES_EXTENSION => [
-                    'amp-video-docking',
+                    Extension::VIDEO_DOCKING,
                 ],
             ],
         ],
@@ -77,7 +77,7 @@ final class AmpMinuteMediaPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-minute-media-player',
+            Extension::MINUTE_MEDIA_PLAYER,
         ],
     ];
 }

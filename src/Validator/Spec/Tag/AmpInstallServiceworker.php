@@ -50,7 +50,7 @@ final class AmpInstallServiceworker extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-install-serviceworker',
+            Extension::INSTALL_SERVICEWORKER,
         ],
     ];
 }

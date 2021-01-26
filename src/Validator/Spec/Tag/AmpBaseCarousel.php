@@ -37,7 +37,7 @@ final class AmpBaseCarousel extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-base-carousel',
+            Extension::BASE_CAROUSEL,
         ],
     ];
 }

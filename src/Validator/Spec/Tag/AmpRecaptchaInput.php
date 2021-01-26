@@ -41,8 +41,8 @@ final class AmpRecaptchaInput extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-form',
-            'amp-recaptcha-input',
+            Extension::FORM,
+            Extension::RECAPTCHA_INPUT,
         ],
     ];
 }

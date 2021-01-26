@@ -74,7 +74,7 @@ final class AmpNexxtvPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-nexxtv-player',
+            Extension::NEXXTV_PLAYER,
         ],
     ];
 }

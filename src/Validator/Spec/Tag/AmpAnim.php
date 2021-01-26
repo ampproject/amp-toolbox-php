@@ -52,7 +52,7 @@ final class AmpAnim extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-anim',
+            Extension::ANIM,
         ],
     ];
 }

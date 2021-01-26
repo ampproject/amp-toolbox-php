@@ -64,7 +64,7 @@ final class AmpNextPageWithSrcAttribute extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-next-page',
+            Extension::NEXT_PAGE,
         ],
     ];
 }

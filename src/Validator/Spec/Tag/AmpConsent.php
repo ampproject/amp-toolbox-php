@@ -33,7 +33,7 @@ final class AmpConsent extends Tag
             'amp-consent extension .json script',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-consent',
+            Extension::CONSENT,
         ],
         SpecRule::EXCLUDES => [
             'amp-consent [type]',

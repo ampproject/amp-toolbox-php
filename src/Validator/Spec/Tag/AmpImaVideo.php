@@ -48,7 +48,7 @@ final class AmpImaVideo extends Tag
             [
                 SpecRule::NAME => 'dock',
                 SpecRule::REQUIRES_EXTENSION => [
-                    'amp-video-docking',
+                    Extension::VIDEO_DOCKING,
                 ],
             ],
             [
@@ -75,7 +75,7 @@ final class AmpImaVideo extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-ima-video',
+            Extension::IMA_VIDEO,
         ],
     ];
 }

@@ -69,7 +69,7 @@ final class AmpLiveList extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-live-list',
+            Extension::LIVE_LIST,
         ],
     ];
 }

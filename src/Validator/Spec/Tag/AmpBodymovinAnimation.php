@@ -62,7 +62,7 @@ final class AmpBodymovinAnimation extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-bodymovin-animation',
+            Extension::BODYMOVIN_ANIMATION,
         ],
     ];
 }

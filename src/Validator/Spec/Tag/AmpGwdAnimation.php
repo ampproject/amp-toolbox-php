@@ -34,7 +34,7 @@ final class AmpGwdAnimation extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-gwd-animation',
+            Extension::GWD_ANIMATION,
         ],
     ];
 }

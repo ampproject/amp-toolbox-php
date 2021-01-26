@@ -31,7 +31,7 @@ final class AmpBrightcove extends Tag
             [
                 SpecRule::NAME => 'dock',
                 SpecRule::REQUIRES_EXTENSION => [
-                    'amp-video-docking',
+                    Extension::VIDEO_DOCKING,
                 ],
             ],
             [
@@ -74,7 +74,7 @@ final class AmpBrightcove extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-brightcove',
+            Extension::BRIGHTCOVE,
         ],
     ];
 }

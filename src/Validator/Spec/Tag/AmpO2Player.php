@@ -44,7 +44,7 @@ final class AmpO2Player extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-o2-player',
+            Extension::O2_PLAYER,
         ],
     ];
 }

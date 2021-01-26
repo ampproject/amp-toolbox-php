@@ -52,8 +52,8 @@ final class AmpCarouselLightbox extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-carousel',
-            'amp-lightbox-gallery',
+            Extension::CAROUSEL,
+            Extension::LIGHTBOX_GALLERY,
         ],
     ];
 }

@@ -53,7 +53,7 @@ final class AmpImageSlider extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-image-slider',
+            Extension::IMAGE_SLIDER,
         ],
         SpecRule::DISABLED_BY => [
             'transformed',

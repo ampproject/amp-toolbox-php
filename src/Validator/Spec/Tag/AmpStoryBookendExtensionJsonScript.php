@@ -37,7 +37,7 @@ final class AmpStoryBookendExtensionJsonScript extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-story',
+            Extension::STORY,
         ],
         SpecRule::SIBLINGS_DISALLOWED => true,
         SpecRule::MANDATORY_LAST_CHILD => true,

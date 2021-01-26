@@ -49,7 +49,7 @@ final class AmpPositionObserver extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-position-observer',
+            Extension::POSITION_OBSERVER,
         ],
     ];
 }

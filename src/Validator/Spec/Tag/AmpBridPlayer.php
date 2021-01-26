@@ -53,7 +53,7 @@ final class AmpBridPlayer extends Tag
             [
                 SpecRule::NAME => 'dock',
                 SpecRule::REQUIRES_EXTENSION => [
-                    'amp-video-docking',
+                    Extension::VIDEO_DOCKING,
                 ],
             ],
         ],
@@ -75,7 +75,7 @@ final class AmpBridPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-brid-player',
+            Extension::BRID_PLAYER,
         ],
     ];
 }

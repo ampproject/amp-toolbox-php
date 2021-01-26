@@ -41,7 +41,7 @@ final class AmpStoryAutoAdsTemplate extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-mustache',
+            Extension::MUSTACHE,
         ],
         SpecRule::DESCENDANT_TAG_LIST => 'amp-story-grid-layer-allowed-descendants',
     ];

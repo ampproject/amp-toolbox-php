@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -35,7 +36,7 @@ final class SpanSwgAmpCacheNonce extends Tag
             'subscriptions-section content swg_amp_cache_nonce',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-subscriptions',
+            Extension::SUBSCRIPTIONS,
         ],
     ];
 }

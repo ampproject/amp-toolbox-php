@@ -45,7 +45,7 @@ final class AmpFitText extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-fit-text',
+            Extension::FIT_TEXT,
         ],
     ];
 }

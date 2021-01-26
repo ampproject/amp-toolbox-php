@@ -46,7 +46,7 @@ final class AmpGfycat extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-gfycat',
+            Extension::GFYCAT,
         ],
     ];
 }

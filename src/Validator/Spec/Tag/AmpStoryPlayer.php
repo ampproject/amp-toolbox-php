@@ -31,7 +31,7 @@ final class AmpStoryPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-story-player',
+            Extension::STORY_PLAYER,
         ],
         SpecRule::DESCENDANT_TAG_LIST => 'amp-story-player-allowed-descendants',
     ];

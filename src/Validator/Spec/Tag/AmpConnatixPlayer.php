@@ -41,7 +41,7 @@ final class AmpConnatixPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-connatix-player',
+            Extension::CONNATIX_PLAYER,
         ],
     ];
 }

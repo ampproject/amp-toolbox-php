@@ -25,7 +25,7 @@ final class AmpDelightPlayer extends Tag
             [
                 SpecRule::NAME => 'dock',
                 SpecRule::REQUIRES_EXTENSION => [
-                    'amp-video-docking',
+                    Extension::VIDEO_DOCKING,
                 ],
             ],
         ],
@@ -46,7 +46,7 @@ final class AmpDelightPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-delight-player',
+            Extension::DELIGHT_PLAYER,
         ],
     ];
 }

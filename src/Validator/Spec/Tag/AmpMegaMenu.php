@@ -45,7 +45,7 @@ final class AmpMegaMenu extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-mega-menu',
+            Extension::MEGA_MENU,
         ],
         SpecRule::DESCENDANT_TAG_LIST => 'amp-mega-menu-allowed-descendants',
     ];

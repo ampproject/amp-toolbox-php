@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -63,7 +64,7 @@ final class ScriptTypeTextPlainAmp4email extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-mustache',
+            Extension::MUSTACHE,
         ],
     ];
 }

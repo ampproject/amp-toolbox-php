@@ -142,7 +142,7 @@ final class AmpStory extends Tag
             'amp-story-page',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-story',
+            Extension::STORY,
         ],
         SpecRule::SIBLINGS_DISALLOWED => true,
     ];

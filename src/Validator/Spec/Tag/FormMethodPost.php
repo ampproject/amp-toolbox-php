@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
@@ -89,7 +90,7 @@ final class FormMethodPost extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-form',
+            Extension::FORM,
         ],
     ];
 }

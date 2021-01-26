@@ -37,7 +37,7 @@ final class AmpVk extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-vk',
+            Extension::VK,
         ],
     ];
 }

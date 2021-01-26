@@ -107,7 +107,7 @@ final class AmpDateCountdown extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-date-countdown',
+            Extension::DATE_COUNTDOWN,
         ],
     ];
 }

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -59,7 +60,7 @@ final class AmpScriptExtensionLocalScript extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-script',
+            Extension::SCRIPT,
         ],
     ];
 }

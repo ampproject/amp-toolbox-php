@@ -40,7 +40,7 @@ final class AmpFacebookComments extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-facebook-comments',
+            Extension::FACEBOOK_COMMENTS,
         ],
     ];
 }

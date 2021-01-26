@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -37,7 +38,7 @@ final class InputMaskDateMmYy extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-inputmask',
+            Extension::INPUTMASK,
         ],
     ];
 }

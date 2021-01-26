@@ -44,7 +44,7 @@ final class Amp3qPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-3q-player',
+            Extension::_3Q_PLAYER,
         ],
     ];
 }

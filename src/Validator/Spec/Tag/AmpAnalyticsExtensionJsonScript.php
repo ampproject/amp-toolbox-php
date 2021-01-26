@@ -46,7 +46,7 @@ final class AmpAnalyticsExtensionJsonScript extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-analytics',
+            Extension::ANALYTICS,
         ],
         SpecRule::DESCRIPTIVE_NAME => 'amp-analytics extension .json script',
     ];

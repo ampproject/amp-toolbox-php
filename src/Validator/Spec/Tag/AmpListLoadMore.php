@@ -51,7 +51,7 @@ final class AmpListLoadMore extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-list',
+            Extension::LIST_,
         ],
     ];
 }

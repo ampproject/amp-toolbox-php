@@ -50,7 +50,7 @@ final class AmpLightboxAmp4ads extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-lightbox',
+            Extension::LIGHTBOX,
         ],
     ];
 }

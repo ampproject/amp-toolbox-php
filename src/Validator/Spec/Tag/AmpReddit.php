@@ -62,7 +62,7 @@ final class AmpReddit extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-reddit',
+            Extension::REDDIT,
         ],
     ];
 }

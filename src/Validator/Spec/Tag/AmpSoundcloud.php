@@ -62,7 +62,7 @@ final class AmpSoundcloud extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-soundcloud',
+            Extension::SOUNDCLOUD,
         ],
     ];
 }

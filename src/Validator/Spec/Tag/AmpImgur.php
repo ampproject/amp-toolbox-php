@@ -40,7 +40,7 @@ final class AmpImgur extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-imgur',
+            Extension::IMGUR,
         ],
     ];
 }

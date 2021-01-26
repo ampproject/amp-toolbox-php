@@ -33,7 +33,7 @@ final class AmpActionMacro extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-action-macro',
+            Extension::ACTION_MACRO,
         ],
     ];
 }

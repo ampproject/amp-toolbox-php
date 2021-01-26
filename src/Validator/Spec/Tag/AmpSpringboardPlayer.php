@@ -64,7 +64,7 @@ final class AmpSpringboardPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-springboard-player',
+            Extension::SPRINGBOARD_PLAYER,
         ],
     ];
 }

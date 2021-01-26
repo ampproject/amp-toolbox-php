@@ -43,7 +43,7 @@ final class AmpEmbedlyCard extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-embedly-card',
+            Extension::EMBEDLY_CARD,
         ],
     ];
 }

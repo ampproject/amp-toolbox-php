@@ -43,7 +43,7 @@ final class AmpInstagram extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-instagram',
+            Extension::INSTAGRAM,
         ],
     ];
 }

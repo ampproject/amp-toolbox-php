@@ -10,6 +10,8 @@ namespace AmpProject;
 interface Extension
 {
 
+    const ACCESS                        = 'amp-access';
+    const ACCESS_POOOL                  = 'amp-access-poool';
     const ACCORDION                     = 'amp-accordion';
     const ACTION_MACRO                  = 'amp-action-macro';
     const AD                            = 'amp-ad';
@@ -52,6 +54,7 @@ interface Extension
     const FACEBOOK_PAGE                 = 'amp-facebook-page';
     const FIT_TEXT                      = 'amp-fit-text';
     const FONT                          = 'amp-font';
+    const FORM                          = 'amp-form';
     const FX_COLLECTION                 = 'amp-fx-collection';
     const FX_FLYING_CARPET              = 'amp-flying-carpet';
     const GEO                           = 'amp-geo';
@@ -66,6 +69,7 @@ interface Extension
     const IMA_VIDEO                     = 'amp-ima-video';
     const IMG                           = 'amp-img';
     const IMGUR                         = 'amp-imgur';
+    const INPUTMASK                     = 'amp-inputmask';
     const INLINE_GALLERY                = 'amp-inline-gallery';
     const INLINE_GALLERY_PAGINATION     = 'amp-inline-gallery-pagination';
     const INLINE_GALLERY_THUMBNAILS     = 'amp-inline-gallery-thumbnails';
@@ -76,6 +80,7 @@ interface Extension
     const KALTURA_PLAYER                = 'amp-kaltura-player';
     const LAYOUT                        = 'amp-layout';
     const LIGHTBOX                      = 'amp-lightbox';
+    const LIGHTBOX_GALLERY              = 'amp-lightbox-gallery';
     const LINK_REWRITER                 = 'amp-link-rewriter';
     const LIST_                         = 'amp-list';
     const LIST_LOAD_MORE                = 'amp-list-load-more';
@@ -122,6 +127,7 @@ interface Extension
     const STORY_CONSENT                 = 'amp-story-consent';
     const STORY_CTA_LAYER               = 'amp-story-cta-layer';
     const STORY_GRID_LAYER              = 'amp-story-grid-layer';
+    const STORY_INTERACTIVE             = 'amp-story-interactive';
     const STORY_INTERACTIVE_BINARY_POLL = 'amp-story-interactive-binary-poll';
     const STORY_INTERACTIVE_POLL        = 'amp-story-interactive-poll';
     const STORY_INTERACTIVE_QUIZ        = 'amp-story-interactive-quiz';
@@ -130,11 +136,14 @@ interface Extension
     const STORY_PAGE_ATTACHMENT         = 'amp-story-page-attachment';
     const STORY_PANNING_MEDIA           = 'amp-story-panning-media';
     const STORY_PLAYER                  = 'amp-story-player';
+    const SUBSCRIPTIONS                 = 'amp-subscriptions';
+    const SUBSCRIPTIONS_GOOGLE          = 'amp-subscriptions-google';
     const TIMEAGO                       = 'amp-timeago';
     const TRUNCATE_TEXT                 = 'amp-truncate-text';
     const TWITTER                       = 'amp-twitter';
     const USER_NOTIFICATION             = 'amp-user-notification';
     const VIDEO                         = 'amp-video';
+    const VIDEO_DOCKING                 = 'amp-video-docking';
     const VIDEO_IFRAME                  = 'amp-video-iframe';
     const VIMEO                         = 'amp-vimeo';
     const VINE                          = 'amp-vine';

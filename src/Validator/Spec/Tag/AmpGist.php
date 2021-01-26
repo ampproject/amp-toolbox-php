@@ -36,7 +36,7 @@ final class AmpGist extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-gist',
+            Extension::GIST,
         ],
     ];
 }

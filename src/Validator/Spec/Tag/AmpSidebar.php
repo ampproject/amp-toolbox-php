@@ -43,7 +43,7 @@ final class AmpSidebar extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-sidebar',
+            Extension::SIDEBAR,
         ],
         SpecRule::MARK_DESCENDANTS => [
             'marker' => [

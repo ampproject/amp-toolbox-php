@@ -314,6 +314,12 @@ final class Dumper
                 }
 
                 return $constant;
+            case 'requiresExtension':
+                $extensions = [];
+                foreach ($value as $extension) {
+                    $extensions[] = $this->getTagConstant($this->getConstantName($extension));
+                }
+                return $extensions;
             default:
                 return $value;
         }

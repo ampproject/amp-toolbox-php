@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -23,7 +24,7 @@ final class Textarea extends Tag
             [
                 SpecRule::NAME => 'autoexpand',
                 SpecRule::REQUIRES_EXTENSION => [
-                    'amp-form',
+                    Extension::FORM,
                 ],
             ],
             [

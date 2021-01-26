@@ -41,7 +41,7 @@ final class AmpRedbullPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-redbull-player',
+            Extension::REDBULL_PLAYER,
         ],
     ];
 }

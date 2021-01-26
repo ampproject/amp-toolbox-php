@@ -102,7 +102,7 @@ final class AmpStory360 extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-story-360',
+            Extension::STORY_360,
         ],
     ];
 }

@@ -36,7 +36,7 @@ final class AmpAudioA4a extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-audio',
+            Extension::AUDIO,
         ],
     ];
 }

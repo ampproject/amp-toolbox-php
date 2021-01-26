@@ -48,7 +48,7 @@ final class AmpFacebookLike extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-facebook-like',
+            Extension::FACEBOOK_LIKE,
         ],
     ];
 }

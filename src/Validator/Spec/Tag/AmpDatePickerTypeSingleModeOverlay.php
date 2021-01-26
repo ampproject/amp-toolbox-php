@@ -50,7 +50,7 @@ final class AmpDatePickerTypeSingleModeOverlay extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-date-picker',
+            Extension::DATE_PICKER,
         ],
     ];
 }

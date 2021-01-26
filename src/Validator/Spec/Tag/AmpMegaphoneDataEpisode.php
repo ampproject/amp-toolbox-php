@@ -50,7 +50,7 @@ final class AmpMegaphoneDataEpisode extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-megaphone',
+            Extension::MEGAPHONE,
         ],
     ];
 }

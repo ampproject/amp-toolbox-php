@@ -33,7 +33,7 @@ final class AmpAutoAds extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-auto-ads',
+            Extension::AUTO_ADS,
         ],
     ];
 }

@@ -40,7 +40,7 @@ final class AmpHulu extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-hulu',
+            Extension::HULU,
         ],
     ];
 }

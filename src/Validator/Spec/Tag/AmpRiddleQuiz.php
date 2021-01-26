@@ -37,7 +37,7 @@ final class AmpRiddleQuiz extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-riddle-quiz',
+            Extension::RIDDLE_QUIZ,
         ],
     ];
 }

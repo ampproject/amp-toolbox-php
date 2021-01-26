@@ -40,7 +40,7 @@ final class AmpVine extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-vine',
+            Extension::VINE,
         ],
     ];
 }

@@ -28,7 +28,7 @@ final class AmpStoryPanningMedia extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-story-panning-media',
+            Extension::STORY_PANNING_MEDIA,
         ],
     ];
 }

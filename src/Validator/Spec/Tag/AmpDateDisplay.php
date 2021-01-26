@@ -68,7 +68,7 @@ final class AmpDateDisplay extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-date-display',
+            Extension::DATE_DISPLAY,
         ],
     ];
 }

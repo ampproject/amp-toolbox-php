@@ -35,7 +35,7 @@ final class AmpImageLightbox extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-image-lightbox',
+            Extension::IMAGE_LIGHTBOX,
         ],
     ];
 }

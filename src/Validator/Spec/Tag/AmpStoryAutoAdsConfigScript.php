@@ -45,7 +45,7 @@ final class AmpStoryAutoAdsConfigScript extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-story-auto-ads',
+            Extension::STORY_AUTO_ADS,
         ],
     ];
 }

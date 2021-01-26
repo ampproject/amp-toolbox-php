@@ -55,7 +55,7 @@ final class AmpCallTracking extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-call-tracking',
+            Extension::CALL_TRACKING,
         ],
     ];
 }

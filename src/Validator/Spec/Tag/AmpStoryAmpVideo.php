@@ -65,7 +65,7 @@ final class AmpStoryAmpVideo extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-video',
+            Extension::VIDEO,
         ],
     ];
 }

@@ -40,7 +40,7 @@ final class AmpCarousel extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-carousel',
+            Extension::CAROUSEL,
         ],
     ];
 }

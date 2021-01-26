@@ -38,7 +38,7 @@ final class AmpInlineGalleryPaginationInset extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-inline-gallery',
+            Extension::INLINE_GALLERY,
         ],
     ];
 }

@@ -44,7 +44,7 @@ final class AmpYoutube extends Tag
             [
                 SpecRule::NAME => 'dock',
                 SpecRule::REQUIRES_EXTENSION => [
-                    'amp-video-docking',
+                    Extension::VIDEO_DOCKING,
                 ],
             ],
             [
@@ -69,7 +69,7 @@ final class AmpYoutube extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-youtube',
+            Extension::YOUTUBE,
         ],
     ];
 }

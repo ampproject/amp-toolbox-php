@@ -46,7 +46,7 @@ final class AmpOoyalaPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-ooyala-player',
+            Extension::OOYALA_PLAYER,
         ],
     ];
 }

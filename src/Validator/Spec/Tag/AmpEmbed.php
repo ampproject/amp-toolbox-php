@@ -69,7 +69,7 @@ final class AmpEmbed extends Tag
             'amp-ad extension script',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-ad',
+            Extension::AD,
         ],
     ];
 }

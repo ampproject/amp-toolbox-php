@@ -85,7 +85,7 @@ final class AmpAutocompleteAmp4email extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-autocomplete',
+            Extension::AUTOCOMPLETE,
         ],
     ];
 }

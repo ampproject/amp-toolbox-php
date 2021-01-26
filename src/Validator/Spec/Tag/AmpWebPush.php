@@ -78,7 +78,7 @@ final class AmpWebPush extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-web-push',
+            Extension::WEB_PUSH,
         ],
     ];
 }

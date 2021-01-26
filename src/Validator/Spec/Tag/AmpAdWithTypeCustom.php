@@ -67,7 +67,7 @@ final class AmpAdWithTypeCustom extends Tag
             'amp-ad extension script',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-ad',
+            Extension::AD,
         ],
     ];
 }

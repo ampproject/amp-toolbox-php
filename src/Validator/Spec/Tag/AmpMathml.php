@@ -38,7 +38,7 @@ final class AmpMathml extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-mathml',
+            Extension::MATHML,
         ],
     ];
 }

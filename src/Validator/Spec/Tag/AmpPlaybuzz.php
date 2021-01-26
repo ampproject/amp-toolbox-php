@@ -61,7 +61,7 @@ final class AmpPlaybuzz extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-playbuzz',
+            Extension::PLAYBUZZ,
         ],
     ];
 }

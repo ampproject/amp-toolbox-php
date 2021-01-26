@@ -44,7 +44,7 @@ final class AmpAutocompleteJson extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-autocomplete',
+            Extension::AUTOCOMPLETE,
         ],
     ];
 }

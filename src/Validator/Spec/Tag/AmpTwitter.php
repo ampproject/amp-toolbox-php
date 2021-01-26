@@ -135,7 +135,7 @@ final class AmpTwitter extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-twitter',
+            Extension::TWITTER,
         ],
     ];
 }

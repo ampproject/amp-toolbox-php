@@ -39,7 +39,7 @@ final class AmpAnalytics extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-analytics',
+            Extension::ANALYTICS,
         ],
     ];
 }

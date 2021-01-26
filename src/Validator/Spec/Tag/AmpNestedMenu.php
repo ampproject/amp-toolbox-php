@@ -40,7 +40,7 @@ final class AmpNestedMenu extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-sidebar',
+            Extension::SIDEBAR,
         ],
         SpecRule::DESCENDANT_TAG_LIST => 'amp-nested-menu-allowed-descendants',
     ];

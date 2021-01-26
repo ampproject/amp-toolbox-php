@@ -40,7 +40,7 @@ final class AmpKalturaPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-kaltura-player',
+            Extension::KALTURA_PLAYER,
         ],
     ];
 }

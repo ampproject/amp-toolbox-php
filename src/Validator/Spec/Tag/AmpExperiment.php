@@ -22,7 +22,7 @@ final class AmpExperiment extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-experiment',
+            Extension::EXPERIMENT,
         ],
     ];
 }

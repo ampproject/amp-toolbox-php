@@ -43,7 +43,7 @@ final class AmpMowplayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-mowplayer',
+            Extension::MOWPLAYER,
         ],
     ];
 }

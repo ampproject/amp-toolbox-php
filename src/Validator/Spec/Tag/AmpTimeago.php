@@ -53,7 +53,7 @@ final class AmpTimeago extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-timeago',
+            Extension::TIMEAGO,
         ],
     ];
 }

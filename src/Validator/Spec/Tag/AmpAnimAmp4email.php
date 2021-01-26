@@ -45,7 +45,7 @@ final class AmpAnimAmp4email extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-anim',
+            Extension::ANIM,
         ],
     ];
 }

@@ -49,7 +49,7 @@ final class AmpBindExtensionJsonScript extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-bind',
+            Extension::BIND,
         ],
     ];
 }

@@ -29,7 +29,7 @@ final class AmpFxFlyingCarpet extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-fx-flying-carpet',
+            Extension::FX_FLYING_CARPET,
         ],
     ];
 }

@@ -52,7 +52,7 @@ final class AmpState extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-bind',
+            Extension::BIND,
         ],
     ];
 }

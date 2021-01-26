@@ -47,7 +47,7 @@ final class AmpViqeoPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-viqeo-player',
+            Extension::VIQEO_PLAYER,
         ],
     ];
 }

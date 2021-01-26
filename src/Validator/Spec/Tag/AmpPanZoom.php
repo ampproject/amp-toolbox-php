@@ -62,7 +62,7 @@ final class AmpPanZoom extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-pan-zoom',
+            Extension::PAN_ZOOM,
         ],
     ];
 }

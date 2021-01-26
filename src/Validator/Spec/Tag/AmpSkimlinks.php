@@ -56,7 +56,7 @@ final class AmpSkimlinks extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-skimlinks',
+            Extension::SKIMLINKS,
         ],
     ];
 }

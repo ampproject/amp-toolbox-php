@@ -39,7 +39,7 @@ final class AmpStickyAd extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-sticky-ad',
+            Extension::STICKY_AD,
         ],
     ];
 }

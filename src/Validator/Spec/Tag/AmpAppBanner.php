@@ -38,7 +38,7 @@ final class AmpAppBanner extends Tag
             'amp-app-banner button[open-button]',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-app-banner',
+            Extension::APP_BANNER,
         ],
     ];
 }

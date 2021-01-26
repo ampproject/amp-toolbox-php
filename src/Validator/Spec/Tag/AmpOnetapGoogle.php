@@ -42,7 +42,7 @@ final class AmpOnetapGoogle extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-onetap-google',
+            Extension::ONETAP_GOOGLE,
         ],
     ];
 }

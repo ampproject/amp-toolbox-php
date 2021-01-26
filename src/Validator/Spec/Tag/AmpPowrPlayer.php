@@ -62,7 +62,7 @@ final class AmpPowrPlayer extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-powr-player',
+            Extension::POWR_PLAYER,
         ],
     ];
 }

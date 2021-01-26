@@ -70,7 +70,7 @@ final class AmpSocialShare extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-social-share',
+            Extension::SOCIAL_SHARE,
         ],
     ];
 }

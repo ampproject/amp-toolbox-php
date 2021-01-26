@@ -53,7 +53,7 @@ final class AmpAdCustom extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-ad-custom',
+            Extension::AD_CUSTOM,
         ],
     ];
 }

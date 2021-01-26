@@ -48,7 +48,7 @@ final class AmpFacebookPage extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-facebook-page',
+            Extension::FACEBOOK_PAGE,
         ],
     ];
 }

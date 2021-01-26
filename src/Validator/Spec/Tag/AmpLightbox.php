@@ -55,7 +55,7 @@ final class AmpLightbox extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-lightbox',
+            Extension::LIGHTBOX,
         ],
     ];
 }

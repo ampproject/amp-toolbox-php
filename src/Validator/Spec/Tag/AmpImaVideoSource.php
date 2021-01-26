@@ -49,7 +49,7 @@ final class AmpImaVideoSource extends Tag
             Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-ima-video',
+            Extension::IMA_VIDEO,
         ],
     ];
 }

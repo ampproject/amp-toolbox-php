@@ -45,7 +45,7 @@ final class AmpGeoExtensionJsonScript extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-geo',
+            Extension::GEO,
         ],
     ];
 }

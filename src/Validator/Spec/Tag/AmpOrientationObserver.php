@@ -47,7 +47,7 @@ final class AmpOrientationObserver extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-orientation-observer',
+            Extension::ORIENTATION_OBSERVER,
         ],
     ];
 }

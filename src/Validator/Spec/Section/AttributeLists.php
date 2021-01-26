@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Section;
 
 use AmpProject\Attribute;
 use AmpProject\Exception\InvalidListName;
+use AmpProject\Extension;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec;
 use AmpProject\Validator\Spec\SpecRule;
@@ -41,12 +42,12 @@ final class AttributeLists
                 [
                     Attribute::POOOL_ACCESS_PREVIEW => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-access-poool',
+                            Extension::ACCESS_POOOL,
                         ],
                     ],
                     Attribute::POOOL_ACCESS_CONTENT => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-access-poool',
+                            Extension::ACCESS_POOOL,
                         ],
                     ],
                 ]
@@ -694,12 +695,12 @@ final class AttributeLists
                     Attribute::AMP_FX => [
                         SpecRule::VALUE_REGEX_CASEI => '(fade-in|fade-in-scroll|float-in-bottom|float-in-top|fly-in-bottom|fly-in-left|fly-in-right|fly-in-top|parallax)(\s|fade-in|fade-in-scroll|float-in-bottom|float-in-top|fly-in-bottom|fly-in-left|fly-in-right|fly-in-top|parallax)*',
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-fx-collection',
+                            Extension::FX_COLLECTION,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_ACTION => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions',
+                            Extension::SUBSCRIPTIONS,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_ACTIONS => [
@@ -707,12 +708,12 @@ final class AttributeLists
                             '',
                         ],
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions',
+                            Extension::SUBSCRIPTIONS,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_DECORATE => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions',
+                            Extension::SUBSCRIPTIONS,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_DIALOG => [
@@ -720,17 +721,17 @@ final class AttributeLists
                             '',
                         ],
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions',
+                            Extension::SUBSCRIPTIONS,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_DISPLAY => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions',
+                            Extension::SUBSCRIPTIONS,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_LANG => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions',
+                            Extension::SUBSCRIPTIONS,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_SECTION => [
@@ -741,27 +742,27 @@ final class AttributeLists
                             'loading',
                         ],
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions',
+                            Extension::SUBSCRIPTIONS,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_SERVICE => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions',
+                            Extension::SUBSCRIPTIONS,
                         ],
                     ],
                     Attribute::SUBSCRIPTIONS_GOOGLE_RTC => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-subscriptions-google',
+                            Extension::SUBSCRIPTIONS_GOOGLE,
                         ],
                     ],
                     Attribute::NEXT_PAGE_HIDE => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-next-page',
+                            Extension::NEXT_PAGE,
                         ],
                     ],
                     Attribute::NEXT_PAGE_REPLACE => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-next-page',
+                            Extension::NEXT_PAGE,
                         ],
                     ],
                     '[aria-activedescendant]' => [],
@@ -1203,7 +1204,7 @@ final class AttributeLists
                     ],
                     Attribute::DOCK => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-video-docking',
+                            Extension::VIDEO_DOCKING,
                         ],
                     ],
                     Attribute::IMPLEMENTS_MEDIA_SESSION => [
@@ -1260,7 +1261,7 @@ final class AttributeLists
                     ],
                     Attribute::DOCK => [
                         SpecRule::REQUIRES_EXTENSION => [
-                            'amp-video-docking',
+                            Extension::VIDEO_DOCKING,
                         ],
                     ],
                     Attribute::LOOP => [

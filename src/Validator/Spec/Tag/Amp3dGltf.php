@@ -80,7 +80,7 @@ final class Amp3dGltf extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-3d-gltf',
+            Extension::_3D_GLTF,
         ],
     ];
 }

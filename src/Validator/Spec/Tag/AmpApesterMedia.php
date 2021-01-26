@@ -47,7 +47,7 @@ final class AmpApesterMedia extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-apester-media',
+            Extension::APESTER_MEDIA,
         ],
     ];
 }

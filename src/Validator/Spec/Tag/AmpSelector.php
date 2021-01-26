@@ -79,7 +79,7 @@ final class AmpSelector extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-selector',
+            Extension::SELECTOR,
         ],
     ];
 }

@@ -46,7 +46,7 @@ final class AmpTruncateText extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-truncate-text',
+            Extension::TRUNCATE_TEXT,
         ],
     ];
 }

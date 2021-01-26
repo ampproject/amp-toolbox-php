@@ -27,7 +27,7 @@ final class AmpStoryInteractivePoll extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-story-interactive',
+            Extension::STORY_INTERACTIVE,
         ],
     ];
 }

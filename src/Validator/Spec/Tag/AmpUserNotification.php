@@ -58,7 +58,7 @@ final class AmpUserNotification extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-user-notification',
+            Extension::USER_NOTIFICATION,
         ],
     ];
 }

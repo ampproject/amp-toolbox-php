@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -31,7 +32,7 @@ final class ScriptAmpAccessScroll extends Tag
             SpecRule::REQUIRES_USAGE => 'NONE',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-access',
+            Extension::ACCESS,
         ],
     ];
 }

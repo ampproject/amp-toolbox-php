@@ -33,7 +33,7 @@ final class AmpLinkRewriter extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-link-rewriter',
+            Extension::LINK_REWRITER,
         ],
     ];
 }

@@ -56,7 +56,7 @@ final class AmpGoogleDocumentEmbed extends Tag
             Format::AMP,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            'amp-google-document-embed',
+            Extension::GOOGLE_DOCUMENT_EMBED,
         ],
     ];
 }
