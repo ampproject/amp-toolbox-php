@@ -18,6 +18,9 @@ final class Tags implements Section
 
     const PHP_KEYWORDS = [
         'A',
+        'Switch',
+        'Use',
+        'Var',
     ];
 
     /**
@@ -120,47 +123,6 @@ final class Tags implements Section
                 }
             }
         }
-
-/*        $constructor->addBody('$this->byTagName = [');
-        foreach ($byTagName as $tagName => $tagData) {
-            $constant = $this->getTagConstant($this->getConstantName($tagName));
-            if (count($tagData) > 1) {
-                $constructor->addBody("    {$constant} => [");
-                foreach ($tagData as $tagId => $attributes) {
-                    $keyString = $this->getKeyString($tags, $tagId);
-                    $constructor->addBody("        \$this->tags[{$keyString}],");
-                }
-                $constructor->addBody('    ],');
-            } else {
-                $keyString = $this->getKeyString($tags, $this->arrayKeyFirst($tagData));
-                $constructor->addBody("    {$constant} => \$this->tags[{$keyString}],");
-            }
-        }
-        $constructor->addBody('];');
-
-        $constructor->addBody('$this->bySpecName = [');
-        foreach ($bySpecName as $specName => $tagId) {
-            $keyString = $this->getKeyString($tags, $tagId);
-            $constructor->addBody("    '{$specName}' => \$this->tags[{$keyString}],");
-        }
-        $constructor->addBody('];');
-
-        $constructor->addBody('$this->byFormat = [');
-        foreach ($byFormat as $tagName => $tagIds) {
-            $constant = $this->getFormatConstant($this->getConstantName($tagName));
-            if (count($tagIds) > 1) {
-                $constructor->addBody("    {$constant} => [");
-                foreach ($tagIds as $tagId) {
-                    $keyString = $this->getKeyString($tags, $tagId);
-                    $constructor->addBody("        \$this->tags[{$keyString}],");
-                }
-                $constructor->addBody('    ],');
-            } else {
-                $keyString = $this->getKeyString($tags, $this->arrayKeyFirst($tagIds));
-                $constructor->addBody("    {$constant} => \$this->tags[{$keyString}],");
-            }
-        }
-        $constructor->addBody('];');*/
     }
 
     /**
@@ -269,58 +231,6 @@ final class Tags implements Section
         $class = $namespace->addClass($className)
                            ->setFinal()
                            ->addExtend('AmpProject\Validator\Spec\Tag');
-
-/*        $tagSpec = [];
-        foreach ($jsonSpec as $key => $value) {
-            switch ($key) {
-                case 'ampLayout':
-                    if (array_key_exists('supportedLayouts', $value)) {
-                        foreach ($value['supportedLayouts'] as $index => $layout) {
-                            $value['supportedLayouts'][$index] = $this->getLayoutConstant(
-                                $this->getConstantName($layout)
-                            );
-                        }
-                    }
-                    $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $value, 3)}\n";
-                    break;
-                case 'attrs':
-                    $tagSpec .= "SpecRule::ATTRS => [\n";
-                    foreach ($value as $attributeArray) {
-                        $constant = $this->getAttributeConstant($this->getConstantName($attributeArray['name']));
-                        $attributeArray['name'] = $constant === $attributeArray['name']
-                            ? "'{$attributeArray['name']}'"
-                            : $constant;
-                        $tagSpec .= "    [\n";
-                        foreach ($attributeArray as $attributeKey => $attributeData) {
-                            $line = $this->dumper->dumpWithSpecRuleKey($attributeKey, $attributeData, 5);
-                            $tagSpec .= "        {$line}\n";
-                        }
-                        $tagSpec .= "    ],\n";
-                    }
-                    $tagSpec .= "],\n";
-                    break;
-                case 'htmlFormat':
-                    $formats = [];
-                    foreach ($value as $format) {
-                        $constant = $this->getFormatConstant($format);
-                        $formats[] = $constant === $format ? "'{$format}'" : $constant;
-                    }
-                    $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $formats, 3)}\n";
-                    break;
-                case 'mandatoryAncestor':
-                case 'mandatoryAncestorSuggestedAlternative':
-                case 'mandatoryParent':
-                case 'tagName':
-                    $constant = $value;
-                    if (strpos($value, '$') !== 0 && strpos($value, ' ') === false) {
-                        $constant = $this->getTagConstant($this->getConstantName($value));
-                    }
-                    $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $constant, 3)}\n";
-                    break;
-                default:
-                    $tagSpec .= "{$this->dumper->dumpWithSpecRuleKey($key, $value, 3)}\n";
-            }
-        }*/
 
         $class->addConstant('SPEC', $jsonSpec);
 
