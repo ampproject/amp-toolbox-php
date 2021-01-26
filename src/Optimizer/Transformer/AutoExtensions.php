@@ -107,18 +107,8 @@ final class AutoExtensions implements Transformer
 
             $tagSpecs = $this->spec->tags()->byTagName($node->tagName);
 
-            if (empty($tagSpecs)) {
-                continue;
-            }
-
             foreach ($tagSpecs as $tagSpec) {
-                $requiredExtensions = $tagSpec->requiresExtension();
-
-                if (empty($requiredExtensions)) {
-                    continue;
-                }
-
-                foreach ($requiredExtensions as $requiredExtension) {
+                foreach ($tagSpec->requiresExtension as $requiredExtension) {
                     $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiredExtension);
                 }
             }
@@ -192,6 +182,8 @@ final class AutoExtensions implements Transformer
      */
     private function getScriptSrcForExtension($requiredExtension)
     {
-        return Amp::CACHE_ROOT_URL . ;
+        // TODO: Version URL argument is missing.
+
+        return Amp::CACHE_ROOT_URL . "{$requiredExtension}.js";
     }
 }
