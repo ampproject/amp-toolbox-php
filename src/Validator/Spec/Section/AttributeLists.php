@@ -581,7 +581,7 @@ final class AttributeLists
                     Attribute::TYPEOF => [],
                     Attribute::VOCAB => [],
                     Attribute::ACCESSKEY => [],
-                    Attribute::CLASS => [],
+                    Attribute::CLASS_ => [],
                     Attribute::DIR => [],
                     Attribute::DRAGGABLE => [],
                     Attribute::HIDDEN => [

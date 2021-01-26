@@ -12,6 +12,7 @@ final class ReservedKeywords
      */
     const PHP_KEYWORDS = [
         'AS',
+        'CLASS',
         'DEFAULT',
         'FOR',
         'LIST',

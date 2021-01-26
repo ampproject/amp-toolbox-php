@@ -304,9 +304,7 @@ final class Dumper
             case 'ampLayout':
                 if (array_key_exists('supportedLayouts', $value)) {
                     foreach ($value['supportedLayouts'] as $index => $layout) {
-                        $value['supportedLayouts'][$index] = $this->getLayoutConstant(
-                            $this->getConstantName($layout)
-                        );
+                        $value['supportedLayouts'][$index] = $this->getLayoutConstant($this->getConstantName($layout));
                     }
                 }
                 return $value;
