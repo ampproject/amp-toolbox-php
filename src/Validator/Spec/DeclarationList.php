@@ -7,6 +7,8 @@
 
 namespace AmpProject\Validator\Spec;
 
+use AmpProject\Exception\InvalidAttributeName;
+
 final class DeclarationList
 {
     /**
@@ -46,7 +48,7 @@ final class DeclarationList
     public function get($declaration)
     {
         if (!$this->has($declaration)) {
-            throw \AmpProject\Exception\InvalidAttributeName::forAttribute($declaration);
+            throw InvalidAttributeName::forAttribute($declaration);
         }
 
         return $this->declarations[$declaration];

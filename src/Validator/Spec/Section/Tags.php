@@ -8,7 +8,9 @@
 namespace AmpProject\Validator\Spec\Section;
 
 use AmpProject\Attribute;
+use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
+use AmpProject\Exception\InvalidTagId;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Internal;
@@ -713,7 +715,7 @@ final class Tags
     public function bySpecName($specName)
     {
         if (!array_key_exists($specName, $this->bySpecName)) {
-            throw \AmpProject\Exception\InvalidSpecName::forSpecName($specName);
+            throw InvalidSpecName::forSpecName($specName);
         }
 
         return $this->bySpecName[$specName];
@@ -729,7 +731,7 @@ final class Tags
     public function byFormat($format)
     {
         if (!array_key_exists($format, $this->byFormat)) {
-            throw \AmpProject\Exception\InvalidFormat::forFormat($format);
+            throw InvalidFormat::forFormat($format);
         }
 
         $tags = $this->byFormat[$format];
@@ -749,7 +751,7 @@ final class Tags
         }
 
         if (!array_key_exists($tagId, self::TAGS)) {
-            throw \AmpProject\Exception\InvalidTagId::forTagId($tagId);
+            throw InvalidTagId::forTagId($tagId);
         }
 
         $tagClassName = self::TAGS[$tagId];

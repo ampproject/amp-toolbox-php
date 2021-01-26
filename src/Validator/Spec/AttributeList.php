@@ -7,6 +7,8 @@
 
 namespace AmpProject\Validator\Spec;
 
+use AmpProject\Exception\InvalidAttributeName;
+
 final class AttributeList
 {
     /**
@@ -46,7 +48,7 @@ final class AttributeList
     public function get($attribute)
     {
         if (!$this->has($attribute)) {
-            throw \AmpProject\Exception\InvalidAttributeName::forAttribute($attribute);
+            throw InvalidAttributeName::forAttribute($attribute);
         }
 
         return $this->attributes[$attribute];

@@ -72,7 +72,7 @@ final class DescendantTagList
                 Element::U,
                 Element::UL,
                 Element::USE_,
-            ]
+            ],
             'amp-nested-menu-allowed-descendants' => [
                 Element::A,
                 Extension::ACCORDION,
@@ -122,15 +122,15 @@ final class DescendantTagList
                 Element::U,
                 Element::UL,
                 Element::USE_,
-            ]
+            ],
             'amp-story-player-allowed-descendants' => [
                 Element::A,
                 Element::SPAN,
                 Internal::SIZER,
-            ]
+            ],
             'amp-story-bookend-allowed-descendants' => [
                 Element::SCRIPT,
-            ]
+            ],
             'amp-story-cta-layer-allowed-descendants' => [
                 Element::A,
                 Element::ABBR,
@@ -241,7 +241,7 @@ final class DescendantTagList
                 Element::VIEW,
                 Element::VKERN,
                 Element::WBR,
-            ]
+            ],
             'amp-story-grid-layer-allowed-descendants' => [
                 Element::A,
                 Element::ABBR,
@@ -384,7 +384,7 @@ final class DescendantTagList
                 Element::VIEW,
                 Element::VKERN,
                 Element::WBR,
-            ]
+            ],
             'amp-story-page-attachment-allowed-descendants' => [
                 Element::A,
                 Element::ABBR,
@@ -564,7 +564,7 @@ final class DescendantTagList
                 Element::VIEW,
                 Element::VKERN,
                 Element::WBR,
-            ]
+            ],
         ];
     }
 }

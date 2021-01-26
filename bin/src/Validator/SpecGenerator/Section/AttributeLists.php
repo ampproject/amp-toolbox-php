@@ -67,7 +67,7 @@ final class AttributeLists implements Section
                     $constructor->addBody("            {$keyString} => [");
                     foreach ($subValue as $specRuleKey => $specRule) {
                         $line = $this->dumper->dumpWithSpecRuleKey($specRuleKey, $specRule, 4);
-                        $constructor->addBody("                {$line}");
+                        $constructor->addBody("                {$line},");
                     }
                     $constructor->addBody("            ],");
                 }

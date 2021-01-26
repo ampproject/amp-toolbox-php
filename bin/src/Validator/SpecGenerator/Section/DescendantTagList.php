@@ -57,7 +57,7 @@ final class DescendantTagList implements Section
             foreach ($data['tag'] as $tag) {
                 $tags[] = $this->getTagConstant($this->getConstantName($tag));
             }
-            $constructor->addBody("    {$this->dumper->dumpWithKey($key, $tags, 1)}");
+            $constructor->addBody("    {$this->dumper->dumpWithKey($key, $tags, 1)},");
         }
 
         $constructor->addBody('];');

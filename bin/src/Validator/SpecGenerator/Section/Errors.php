@@ -59,7 +59,7 @@ final class Errors implements Section
         $constructor->addBody('$this->? = [', [$propertyName]);
 
         foreach ($errorData as $key => $value) {
-            $constructor->addBody("    {$key} => {$this->dumper->dump($value, 1)}");
+            $constructor->addBody("    {$key} => {$this->dumper->dumpWithSpecRules($value, 1)},");
         }
 
         $constructor->addBody('];');

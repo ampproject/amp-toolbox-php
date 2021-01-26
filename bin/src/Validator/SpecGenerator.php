@@ -6,7 +6,6 @@ use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\SpecPrinter;
-use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
 
 final class SpecGenerator
@@ -115,7 +114,7 @@ final class SpecGenerator
     private function generateEntityClass($entity, FileManager $fileManager)
     {
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
-        $class     = ClassType::withBodiesFrom("AmpProject\\Tooling\\Validator\\SpecGenerator\\Template\\{$entity}");
+        $class     = ClassType::withBodiesFrom(self::GENERATOR_NAMESPACE . "\\Template\\{$entity}");
         $namespace->add($class);
         $fileManager->saveFile($file, "Spec/{$entity}.php");
     }

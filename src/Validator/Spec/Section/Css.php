@@ -7,8 +7,12 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
+use AmpProject\Amp;
 use AmpProject\Attribute;
+use AmpProject\Exception\InvalidCssName;
+use AmpProject\Exception\InvalidFormat;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\SpecRule;
 
 final class Css
 {
@@ -27,7 +31,7 @@ final class Css
     public function getByName($name)
     {
         if (!array_key_exists($name, $this->css)) {
-            throw \AmpProject\Exception\InvalidCssName::forCssName($name);
+            throw InvalidCssName::forCssName($name);
         }
 
         return $this->css[$name];
@@ -41,8 +45,8 @@ final class Css
      */
     public function getByFormat($format)
     {
-        if (!in_array($format, \AmpProject\Amp::FORMATS, true)) {
-            throw \AmpProject\Exception\InvalidFormat::forFormat($format);
+        if (!in_array($format, Amp::FORMATS, true)) {
+            throw InvalidFormat::forFormat($format);
         }
 
         if (!array_key_exists($format, $this->byFormat)) {
@@ -56,167 +60,167 @@ final class Css
     {
         $this->css = [
             'AMP (no-transformed)' => [
-                'htmlFormat' => [
-                        'FORMAT__AMP',
-                    ]
-                'disabledBy' => [
-                        Attribute::TRANSFORMED,
-                    ]
-                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets'
-                'maxBytes' => 75000
-                'maxBytesPerInlineStyle' => 1000
-                'urlBytesIncluded' => true
-                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size'
-                'allowAllDeclarationInStyleTag' => true
-                'declarationList' => [
-                        'BASIC_DECLARATIONS',
-                        'AMP_ONLY_DECLARATIONS',
-                    ]
-                'declarationListSvg' => [
-                        'SVG_BASIC_DECLARATIONS',
-                    ]
-                'imageUrlSpec' => [
-                        'protocol' => [
-                            'https',
-                            'http',
-                            'data',
-                        ],
-                        'allowEmpty' => true,
-                    ]
-                'fontUrlSpec' => [
-                        'protocol' => [
-                            'https',
-                            'http',
-                            'data',
-                        ],
-                        'allowEmpty' => true,
-                    ]
-                'allowImportant' => false
-                'expandVendorPrefixes' => true
+                SpecRule::HTML_FORMAT => [
+                    'FORMAT__AMP',
+                ],
+                SpecRule::DISABLED_BY => [
+                    Attribute::TRANSFORMED,
+                ],
+                SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets',
+                SpecRule::MAX_BYTES => 75000,
+                SpecRule::MAX_BYTES_PER_INLINE_STYLE => 1000,
+                SpecRule::URL_BYTES_INCLUDED => true,
+                SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => true,
+                SpecRule::DECLARATION_LIST => [
+                    'BASIC_DECLARATIONS',
+                    'AMP_ONLY_DECLARATIONS',
+                ],
+                SpecRule::DECLARATION_LIST_SVG => [
+                    'SVG_BASIC_DECLARATIONS',
+                ],
+                SpecRule::IMAGE_URL_SPEC => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+                SpecRule::FONT_URL_SPEC => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+                SpecRule::ALLOW_IMPORTANT => false,
+                SpecRule::EXPAND_VENDOR_PREFIXES => true,
             ],
             'AMP (transformed)' => [
-                'htmlFormat' => [
-                        'FORMAT__AMP',
-                    ]
-                'enabledBy' => [
-                        Attribute::TRANSFORMED,
-                    ]
-                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets'
-                'maxBytes' => 112500
-                'maxBytesPerInlineStyle' => 1500
-                'urlBytesIncluded' => false
-                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size'
-                'allowAllDeclarationInStyleTag' => true
-                'declarationList' => [
-                        'BASIC_DECLARATIONS',
-                        'AMP_ONLY_DECLARATIONS',
-                    ]
-                'declarationListSvg' => [
-                        'SVG_BASIC_DECLARATIONS',
-                    ]
-                'imageUrlSpec' => [
-                        'protocol' => [
-                            'https',
-                            'http',
-                            'data',
-                        ],
-                        'allowEmpty' => true,
-                    ]
-                'fontUrlSpec' => [
-                        'protocol' => [
-                            'https',
-                            'http',
-                            'data',
-                        ],
-                        'allowEmpty' => true,
-                    ]
-                'allowImportant' => false
-                'expandVendorPrefixes' => true
+                SpecRule::HTML_FORMAT => [
+                    'FORMAT__AMP',
+                ],
+                SpecRule::ENABLED_BY => [
+                    Attribute::TRANSFORMED,
+                ],
+                SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#stylesheets',
+                SpecRule::MAX_BYTES => 112500,
+                SpecRule::MAX_BYTES_PER_INLINE_STYLE => 1500,
+                SpecRule::URL_BYTES_INCLUDED => false,
+                SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => true,
+                SpecRule::DECLARATION_LIST => [
+                    'BASIC_DECLARATIONS',
+                    'AMP_ONLY_DECLARATIONS',
+                ],
+                SpecRule::DECLARATION_LIST_SVG => [
+                    'SVG_BASIC_DECLARATIONS',
+                ],
+                SpecRule::IMAGE_URL_SPEC => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+                SpecRule::FONT_URL_SPEC => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+                SpecRule::ALLOW_IMPORTANT => false,
+                SpecRule::EXPAND_VENDOR_PREFIXES => true,
             ],
             'AMP4ADS' => [
-                'htmlFormat' => [
-                        'FORMAT__AMP4ADS',
-                    ]
-                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css'
-                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css'
-                'allowAllDeclarationInStyleTag' => true
-                'declarationList' => [
-                        'BASIC_DECLARATIONS',
-                    ]
-                'declarationListSvg' => [
-                        'SVG_BASIC_DECLARATIONS',
-                    ]
-                'imageUrlSpec' => [
-                        'protocol' => [
-                            'https',
-                            'http',
-                            'data',
-                        ],
-                        'allowEmpty' => true,
-                    ]
-                'fontUrlSpec' => [
-                        'protocol' => [
-                            'https',
-                            'http',
-                            'data',
-                        ],
-                        'allowEmpty' => true,
-                    ]
-                'allowImportant' => false
-                'expandVendorPrefixes' => true
+                SpecRule::HTML_FORMAT => [
+                    'FORMAT__AMP4ADS',
+                ],
+                SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
+                SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => true,
+                SpecRule::DECLARATION_LIST => [
+                    'BASIC_DECLARATIONS',
+                ],
+                SpecRule::DECLARATION_LIST_SVG => [
+                    'SVG_BASIC_DECLARATIONS',
+                ],
+                SpecRule::IMAGE_URL_SPEC => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+                SpecRule::FONT_URL_SPEC => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                        'http',
+                        'data',
+                    ],
+                    SpecRule::ALLOW_EMPTY => true,
+                ],
+                SpecRule::ALLOW_IMPORTANT => false,
+                SpecRule::EXPAND_VENDOR_PREFIXES => true,
             ],
             'AMP4EMAIL (no-data-css-strict)' => [
-                'htmlFormat' => [
-                        'FORMAT__AMP4EMAIL',
-                    ]
-                'disabledBy' => [
-                        Attribute::DATA_CSS_STRICT,
-                    ]
-                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css'
-                'maxBytes' => 75000
-                'maxBytesPerInlineStyle' => 1000
-                'urlBytesIncluded' => true
-                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size'
-                'allowAllDeclarationInStyleTag' => true
-                'declarationList' => [
-                        'BASIC_DECLARATIONS',
-                    ]
-                'declarationListSvg' => [
-                        'SVG_BASIC_DECLARATIONS',
-                    ]
-                'imageUrlSpec' => [
-                        'protocol' => [
-                            'https',
-                        ],
-                    ]
-                'allowImportant' => false
-                'maxBytesIsWarning' => true
-                'expandVendorPrefixes' => true
+                SpecRule::HTML_FORMAT => [
+                    'FORMAT__AMP4EMAIL',
+                ],
+                SpecRule::DISABLED_BY => [
+                    Attribute::DATA_CSS_STRICT,
+                ],
+                SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css',
+                SpecRule::MAX_BYTES => 75000,
+                SpecRule::MAX_BYTES_PER_INLINE_STYLE => 1000,
+                SpecRule::URL_BYTES_INCLUDED => true,
+                SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => true,
+                SpecRule::DECLARATION_LIST => [
+                    'BASIC_DECLARATIONS',
+                ],
+                SpecRule::DECLARATION_LIST_SVG => [
+                    'SVG_BASIC_DECLARATIONS',
+                ],
+                SpecRule::IMAGE_URL_SPEC => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                ],
+                SpecRule::ALLOW_IMPORTANT => false,
+                SpecRule::MAX_BYTES_IS_WARNING => true,
+                SpecRule::EXPAND_VENDOR_PREFIXES => true,
             ],
             'AMP4EMAIL (data-css-strict)' => [
-                'htmlFormat' => [
-                        'FORMAT__AMP4EMAIL',
-                    ]
-                'enabledBy' => [
-                        Attribute::DATA_CSS_STRICT,
-                    ]
-                'specUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css'
-                'maxBytes' => 75000
-                'maxBytesPerInlineStyle' => 1000
-                'urlBytesIncluded' => true
-                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size'
-                'allowAllDeclarationInStyleTag' => false
-                'declarationList' => [
-                        'EMAIL_SPECIFIC_DECLARATIONS',
-                    ]
-                'imageUrlSpec' => [
-                        'protocol' => [
-                            'https',
-                        ],
-                    ]
-                'allowImportant' => false
-                'maxBytesIsWarning' => false
-                'expandVendorPrefixes' => false
+                SpecRule::HTML_FORMAT => [
+                    'FORMAT__AMP4EMAIL',
+                ],
+                SpecRule::ENABLED_BY => [
+                    Attribute::DATA_CSS_STRICT,
+                ],
+                SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-css',
+                SpecRule::MAX_BYTES => 75000,
+                SpecRule::MAX_BYTES_PER_INLINE_STYLE => 1000,
+                SpecRule::URL_BYTES_INCLUDED => true,
+                SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => false,
+                SpecRule::DECLARATION_LIST => [
+                    'EMAIL_SPECIFIC_DECLARATIONS',
+                ],
+                SpecRule::IMAGE_URL_SPEC => [
+                    SpecRule::PROTOCOL => [
+                        'https',
+                    ],
+                ],
+                SpecRule::ALLOW_IMPORTANT => false,
+                SpecRule::MAX_BYTES_IS_WARNING => false,
+                SpecRule::EXPAND_VENDOR_PREFIXES => false,
             ],
         ];
         $this->byFormat = [

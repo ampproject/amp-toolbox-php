@@ -7,6 +7,9 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
+use AmpProject\Format;
+use AmpProject\Validator\Spec\SpecRule;
+
 final class Doc
 {
     /** @var array */
@@ -16,12 +19,12 @@ final class Doc
     {
         $this->doc = [
             [
-                'htmlFormat' => [
+                SpecRule::HTML_FORMAT => [
                     Format::AMP4EMAIL,
                 ],
-                'maxBytes' => 200000,
-                'maxBytesSpecUrl' => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-format/?format=email',
-            ]
+                SpecRule::MAX_BYTES => 200000,
+                SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/email-spec/amp-email-format/?format=email',
+            ],
         ];
     }
 }

@@ -571,7 +571,7 @@ final class DeclarationLists
     public function get($declarationListName)
     {
         if (!array_key_exists($declarationListName, $this->declarations)) {
-            throw \AmpProject\Exception\InvalidListName::forDeclarationList($declarationListName);
+            throw InvalidListName::forDeclarationList($declarationListName);
         }
 
         return $this->declarations[$declarationListName];

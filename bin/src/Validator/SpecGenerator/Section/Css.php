@@ -90,7 +90,7 @@ final class Css implements Section
                             $attributeArray[] = $attribute;
                         }
                         $constructor->addBody(
-                            "{$indent}{$this->dumper->dumpWithKey($key, $attributeArray, 3)}"
+                            "{$indent}{$this->dumper->dumpWithSpecRuleKey($key, $attributeArray, 2)},"
                         );
                         break;
                     case 'htmlFormat':
@@ -100,11 +100,11 @@ final class Css implements Section
                             $formats[] = $constant === $format ? "'{$format}'" : $constant;
                         }
                         $constructor->addBody(
-                            "{$indent}{$this->dumper->dumpWithKey($key, $formats, 3)}"
+                            "{$indent}{$this->dumper->dumpWithSpecRuleKey($key, $formats, 2)},"
                         );
                         break;
                     default:
-                        $constructor->addBody("{$indent}{$this->dumper->dumpWithKey($key, $value, 3)}");
+                        $constructor->addBody("{$indent}{$this->dumper->dumpWithSpecRuleKey($key, $value, 2)},");
                 }
             }
             $constructor->addBody('    ],');

@@ -7,6 +7,8 @@
 
 namespace AmpProject\Validator\Spec;
 
+use AmpProject\Exception\InvalidSpecRuleName;
+
 /**
  * Class Tag
  *
@@ -60,16 +62,16 @@ class Tag
     public function __get($specRuleName)
     {
         switch ($specRuleName) {
-            case \AmpProject\Validator\Spec\SpecRule::EXPLICIT_ATTRS_ONLY:
-            case \AmpProject\Validator\Spec\SpecRule::MANDATORY:
-            case \AmpProject\Validator\Spec\SpecRule::MANDATORY_LAST_CHILD:
-            case \AmpProject\Validator\Spec\SpecRule::SIBLINGS_DISALLOWED:
-            case \AmpProject\Validator\Spec\SpecRule::UNIQUE:
-            case \AmpProject\Validator\Spec\SpecRule::UNIQUE_WARNING:
+            case SpecRule::EXPLICIT_ATTRS_ONLY:
+            case SpecRule::MANDATORY:
+            case SpecRule::MANDATORY_LAST_CHILD:
+            case SpecRule::SIBLINGS_DISALLOWED:
+            case SpecRule::UNIQUE:
+            case SpecRule::UNIQUE_WARNING:
                 return array_key_exists($specRuleName, static::SPEC) ? static::SPEC[$specRuleName] : false;
             default:
                 if (!array_key_exists($specRuleName, static::SPEC)) {
-                    throw \AmpProject\Exception\InvalidSpecRuleName::forSpecRuleName($specRuleName);
+                    throw InvalidSpecRuleName::forSpecRuleName($specRuleName);
                 }
 
                 return static::SPEC[$specRuleName];

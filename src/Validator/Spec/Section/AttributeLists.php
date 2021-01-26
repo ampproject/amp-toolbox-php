@@ -25,7 +25,7 @@ final class AttributeLists
                     Attribute::CHARSET => [
                         SpecRule::VALUE_CASEI => [
                             'utf-8',
-                        ]
+                        ],
                     ],
                     Attribute::COLOR => [],
                     Attribute::CROSSORIGIN => [],
@@ -41,26 +41,26 @@ final class AttributeLists
                     Attribute::POOOL_ACCESS_PREVIEW => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-access-poool',
-                        ]
+                        ],
                     ],
                     Attribute::POOOL_ACCESS_CONTENT => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-access-poool',
-                        ]
+                        ],
                     ],
                 ]
             ),
             'cite-attr' => new Spec\AttributeList(
                 [
                     Attribute::CITE => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'http',
                                 'https',
                             ],
                             SpecRule::ALLOW_EMPTY => true,
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -69,7 +69,7 @@ final class AttributeLists
                     Attribute::DEFAULT_ => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::KIND => [
                         SpecRule::VALUE => [
@@ -77,18 +77,18 @@ final class AttributeLists
                             'chapters',
                             'descriptions',
                             'metadata',
-                        ]
+                        ],
                     ],
                     Attribute::LABEL => [],
                     Attribute::SRC => [
-                        SpecRule::MANDATORY => true
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin'
+                        SpecRule::MANDATORY => true,
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
-                        ]
+                        ],
                     ],
                     Attribute::SRCLANG => [],
                 ]
@@ -98,27 +98,27 @@ final class AttributeLists
                     Attribute::DEFAULT_ => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::KIND => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                         SpecRule::VALUE_CASEI => [
                             'subtitles',
-                        ]
+                        ],
                     ],
                     Attribute::LABEL => [],
                     Attribute::SRC => [
-                        SpecRule::MANDATORY => true
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin'
+                        SpecRule::MANDATORY => true,
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
-                        ]
+                        ],
                     ],
                     Attribute::SRCLANG => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                     ],
                 ]
             ),
@@ -229,14 +229,14 @@ final class AttributeLists
                     Attribute::XLINK_HREF => [
                         SpecRule::ALTERNATIVE_NAMES => [
                             'href',
-                        ]
+                        ],
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'http',
                                 'https',
                             ],
                             SpecRule::ALLOW_EMPTY => false,
-                        ]
+                        ],
                     ],
                     Attribute::XLINK_ROLE => [],
                     Attribute::XLINK_SHOW => [],
@@ -247,7 +247,7 @@ final class AttributeLists
             'svg-style-attr' => new Spec\AttributeList(
                 [
                     Attribute::STYLE => [
-                        SpecRule::VALUE_DOC_SVG_CSS => true
+                        SpecRule::VALUE_DOC_SVG_CSS => true,
                     ],
                 ]
             ),
@@ -259,7 +259,7 @@ final class AttributeLists
                     Attribute::AUTOFOCUS => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     Attribute::CHECKED => [],
                     Attribute::DISABLED => [],
@@ -267,17 +267,17 @@ final class AttributeLists
                     Attribute::INPUTMODE => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     Attribute::LIST_ => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     Attribute::ENTERKEYHINT => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     Attribute::MAX => [],
                     Attribute::MAXLENGTH => [],
@@ -291,7 +291,7 @@ final class AttributeLists
                     Attribute::SELECTIONDIRECTION => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     Attribute::SIZE => [],
                     Attribute::SPELLCHECK => [],
@@ -302,12 +302,12 @@ final class AttributeLists
                     '[accept]' => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     '[accesskey]' => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     '[autocomplete]' => [],
                     '[checked]' => [],
@@ -316,7 +316,7 @@ final class AttributeLists
                     '[inputmode]' => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     '[max]' => [],
                     '[maxlength]' => [],
@@ -330,7 +330,7 @@ final class AttributeLists
                     '[selectiondirection]' => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     '[size]' => [],
                     '[spellcheck]' => [],
@@ -342,69 +342,69 @@ final class AttributeLists
             'amphtml-engine-attrs' => new Spec\AttributeList(
                 [
                     Attribute::ASYNC => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::CROSSORIGIN => [
                         SpecRule::VALUE => [
                             'anonymous',
-                        ]
+                        ],
                     ],
                     Attribute::TYPE => [
                         SpecRule::VALUE_CASEI => [
                             'text/javascript',
-                        ]
+                        ],
                     ],
                 ]
             ),
             'amphtml-module-engine-attrs' => new Spec\AttributeList(
                 [
                     Attribute::ASYNC => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::CROSSORIGIN => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                         SpecRule::VALUE => [
                             'anonymous',
-                        ]
+                        ],
                     ],
                     Attribute::TYPE => [
-                        SpecRule::MANDATORY => true
-                        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH'
+                        SpecRule::MANDATORY => true,
+                        SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                         SpecRule::VALUE_CASEI => [
                             'module',
-                        ]
+                        ],
                     ],
                 ]
             ),
             'amphtml-nomodule-engine-attrs' => new Spec\AttributeList(
                 [
                     Attribute::ASYNC => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::CROSSORIGIN => [
                         SpecRule::VALUE => [
                             'anonymous',
-                        ]
+                        ],
                     ],
                     Attribute::NOMODULE => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::TYPE => [
                         SpecRule::VALUE_CASEI => [
                             'text/javascript',
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -413,43 +413,43 @@ final class AttributeLists
                     Attribute::SRC => [
                         SpecRule::ALTERNATIVE_NAMES => [
                             'srcset',
-                        ]
-                        SpecRule::MANDATORY => true
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin'
+                        ],
+                        SpecRule::MANDATORY => true,
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'data',
                                 'http',
                                 'https',
                             ],
-                        ]
+                        ],
                     ],
                 ]
             ),
             'mandatory-src-amp4email' => new Spec\AttributeList(
                 [
                     Attribute::SRC => [
-                        SpecRule::MANDATORY => true
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^'
+                        SpecRule::MANDATORY => true,
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
-                        ]
+                        ],
                     ],
                 ]
             ),
             'optional-src-amp4email' => new Spec\AttributeList(
                 [
                     Attribute::SRC => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -466,16 +466,16 @@ final class AttributeLists
                             'intrinsic',
                             'nodisplay',
                             'responsive',
-                        ]
+                        ],
                         SpecRule::ENABLED_BY => [
                             'transformed',
-                        ]
+                        ],
                     ],
                     Attribute::MEDIA => [],
                     Attribute::NOLOADING => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -496,62 +496,62 @@ final class AttributeLists
                     Attribute::NONCE => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                 ]
             ),
             'common-extension-attrs' => new Spec\AttributeList(
                 [
                     Attribute::ASYNC => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::CROSSORIGIN => [
                         SpecRule::VALUE => [
                             'anonymous',
-                        ]
+                        ],
                     ],
                     Attribute::NONCE => [
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     Attribute::TYPE => [
                         SpecRule::VALUE_CASEI => [
                             'text/javascript',
-                        ]
+                        ],
                     ],
                 ]
             ),
             'mandatory-id-attr' => new Spec\AttributeList(
                 [
                     Attribute::ID => [
-                        SpecRule::MANDATORY => true
-                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|\$p|\$proxy|acceptCharset|addEventListener|appendChild|assignedSlot|attachShadow|AMP|baseURI|checkValidity|childElementCount|childNodes|classList|className|clientHeight|clientLeft|clientTop|clientWidth|compareDocumentPosition|computedName|computedRole|contentEditable|createShadowRoot|enqueAction|firstChild|firstElementChild|getAnimations|getAttribute|getAttributeNS|getAttributeNode|getAttributeNodeNS|getBoundingClientRect|getClientRects|getDestinationInsertionPoints|getElementsByClassName|getElementsByTagName|getElementsByTagNameNS|getRootNode|hasAttribute|hasAttributeNS|hasAttributes|hasChildNodes|hasPointerCapture|i-amphtml-\S*|innerHTML|innerText|inputMode|insertAdjacentElement|insertAdjacentHTML|insertAdjacentText|isContentEditable|isDefaultNamespace|isEqualNode|isSameNode|lastChild|lastElementChild|lookupNamespaceURI|namespaceURI|nextElementSibling|nextSibling|nodeName|nodeType|nodeValue|offsetHeight|offsetLeft|offsetParent|offsetTop|offsetWidth|outerHTML|outerText|ownerDocument|parentElement|parentNode|previousElementSibling|previousSibling|querySelector|querySelectorAll|releasePointerCapture|removeAttribute|removeAttributeNS|removeAttributeNode|removeChild|removeEventListener|replaceChild|reportValidity|requestPointerLock|scrollHeight|scrollIntoView|scrollIntoViewIfNeeded|scrollLeft|scrollWidth|setAttribute|setAttributeNS|setAttributeNode|setAttributeNodeNS|setPointerCapture|shadowRoot|styleMap|tabIndex|tagName|textContent|toString|valueOf|(webkit|ms|moz|o)dropzone|(webkit|moz|ms|o)MatchesSelector|(webkit|moz|ms|o)RequestFullScreen|(webkit|moz|ms|o)RequestFullscreen)(\s|$)'
+                        SpecRule::MANDATORY => true,
+                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|\$p|\$proxy|acceptCharset|addEventListener|appendChild|assignedSlot|attachShadow|AMP|baseURI|checkValidity|childElementCount|childNodes|classList|className|clientHeight|clientLeft|clientTop|clientWidth|compareDocumentPosition|computedName|computedRole|contentEditable|createShadowRoot|enqueAction|firstChild|firstElementChild|getAnimations|getAttribute|getAttributeNS|getAttributeNode|getAttributeNodeNS|getBoundingClientRect|getClientRects|getDestinationInsertionPoints|getElementsByClassName|getElementsByTagName|getElementsByTagNameNS|getRootNode|hasAttribute|hasAttributeNS|hasAttributes|hasChildNodes|hasPointerCapture|i-amphtml-\S*|innerHTML|innerText|inputMode|insertAdjacentElement|insertAdjacentHTML|insertAdjacentText|isContentEditable|isDefaultNamespace|isEqualNode|isSameNode|lastChild|lastElementChild|lookupNamespaceURI|namespaceURI|nextElementSibling|nextSibling|nodeName|nodeType|nodeValue|offsetHeight|offsetLeft|offsetParent|offsetTop|offsetWidth|outerHTML|outerText|ownerDocument|parentElement|parentNode|previousElementSibling|previousSibling|querySelector|querySelectorAll|releasePointerCapture|removeAttribute|removeAttributeNS|removeAttributeNode|removeChild|removeEventListener|replaceChild|reportValidity|requestPointerLock|scrollHeight|scrollIntoView|scrollIntoViewIfNeeded|scrollLeft|scrollWidth|setAttribute|setAttributeNS|setAttributeNode|setAttributeNodeNS|setPointerCapture|shadowRoot|styleMap|tabIndex|tagName|textContent|toString|valueOf|(webkit|ms|moz|o)dropzone|(webkit|moz|ms|o)MatchesSelector|(webkit|moz|ms|o)RequestFullScreen|(webkit|moz|ms|o)RequestFullscreen)(\s|$)',
                     ],
                 ]
             ),
             'form-name-attr' => new Spec\AttributeList(
                 [
                     Attribute::NAME => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(ATTRIBUTE_NODE|CDATA_SECTION_NODE|COMMENT_NODE|DOCUMENT_FRAGMENT_NODE|DOCUMENT_NODE|DOCUMENT_POSITION_CONTAINED_BY|DOCUMENT_POSITION_CONTAINS|DOCUMENT_POSITION_DISCONNECTED|DOCUMENT_POSITION_FOLLOWING|DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC|DOCUMENT_POSITION_PRECEDING|DOCUMENT_TYPE_NODE|ELEMENT_NODE|ENTITY_NODE|ENTITY_REFERENCE_NODE|NOTATION_NODE|PROCESSING_INSTRUCTION_NODE|TEXT_NODE|URL|URLUnencoded|__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|activeElement|addEventListener|adoptNode|alinkColor|all|anchors|append|appendChild|applets|baseURI|bgColor|body|captureEvents|caretPositionFromPoint|caretRangeFromPoint|characterSet|charset|childElementCount|childNodes|children|clear|cloneNode|close|compareDocumentPosition|compatMode|constructor|contains|contentType|cookie|createAttribute|createAttributeNS|createCDATASection|createComment|createDocumentFragment|createElement|createElementNS|createEvent|createExpression|createNSResolver|createNodeIterator|createProcessingInstruction|createRange|createTextNode|createTreeWalker|currentScript|defaultView|designMode|dir|dispatchEvent|doctype|documentElement|documentURI|domain|elementFromPoint|elementsFromPoint|embeds|enableStyleSheetsForSet|evaluate|execCommand|execCommandShowHelp|exitFullscreen|exitPictureInPicture|exitPointerLock|fgColor|firstChild|firstElementChild|focus|fonts|forms|fullscreen|fullscreenElement|fullscreenEnabled|getCSSCanvasContext|getElementById|getElementsByClassName|getElementsByName|getElementsByTagName|getElementsByTagNameNS|getOverrideStyle|getRootNode|getSelection|hasChildNodes|hasFocus|hasOwnProperty|hasStorageAccess|head|hidden|images|implementation|importNode|inputEncoding|insertBefore|isConnected|isDefaultNamespace|isEqualNode|isPrototypeOf|isSameNode|l10n|lastChild|lastElementChild|lastModified|lastStyleSheetSet|linkColor|links|location|lookupNamespaceURI|lookupPrefix|mozCancelFullScreen|mozFullScreen|mozFullScreenElement|mozFullScreenEnabled|mozSetImageElement|msCSSOMElementFloatMetrics|msCapsLockWarningOff|msElementsFromPoint|msElementsFromRect|nextSibling|nodeName|nodeType|nodeValue|normalize|onabort|onactivate|onafterscriptexecute|onanimationcancel|onanimationend|onanimationiteration|onanimationstart|onauxclick|onbeforeactivate|onbeforecopy|onbeforecut|onbeforedeactivate|onbeforeinput|onbeforepaste|onbeforescriptexecute|onblur|oncancel|oncanplay|oncanplaythrough|onchange|onclick|onclose|oncontextmenu|oncopy|oncuechange|oncut|ondblclick|ondeactivate|ondrag|ondragend|ondragenter|ondragexit|ondragleave|ondragover|ondragstart|ondrop|ondurationchange|onemptied|onended|onerror|onfocus|onfreeze|onfullscreenchange|onfullscreenerror|ongotpointercapture|oninput|oninvalid|onkeydown|onkeypress|onkeyup|onload|onloadeddata|onloadedmetadata|onloadend|onloadstart|onlostpointercapture|onmousedown|onmouseenter|onmouseleave|onmousemove|onmouseout|onmouseover|onmouseup|onmousewheel|onmozfullscreenchange|onmozfullscreenerror|onmscontentzoom|onmsgesturechange|onmsgesturedoubletap|onmsgestureend|onmsgesturehold|onmsgesturestart|onmsgesturetap|onmsinertiastart|onmsmanipulationstatechanged|onmssitemodejumplistitemremoved|onmsthumbnailclick|onpaste|onpause|onplay|onplaying|onpointercancel|onpointerdown|onpointerenter|onpointerleave|onpointerlockchange|onpointerlockerror|onpointermove|onpointerout|onpointerover|onpointerup|onprogress|onratechange|onreadystatechange|onrejectionhandled|onreset|onresize|onresume|onscroll|onsearch|onseeked|onseeking|onselect|onselectionchange|onselectstart|onshow|onstalled|onstop|onsubmit|onsuspend|ontimeupdate|ontoggle|ontransitioncancel|ontransitionend|ontransitionrun|ontransitionstart|onunhandledrejection|onvisibilitychange|onvolumechange|onwaiting|onwebkitanimationend|onwebkitanimationiteration|onwebkitanimationstart|onwebkitfullscreenchange|onwebkitfullscreenerror|onwebkitmouseforcechanged|onwebkitmouseforcedown|onwebkitmouseforceup|onwebkitmouseforcewillbegin|onwebkittransitionend|onwheel|open|origin|ownerDocument|parentElement|parentNode|pictureInPictureElement|pictureInPictureEnabled|plugins|pointerLockElement|preferredStyleSheetSet|prepend|previousSibling|propertyIsEnumerable|queryCommandEnabled|queryCommandIndeterm|queryCommandState|queryCommandSupported|queryCommandText|queryCommandValue|querySelector|querySelectorAll|readyState|referrer|registerElement|releaseCapture|releaseEvents|removeChild|removeEventListener|replaceChild|requestStorageAccess|rootElement|scripts|scrollingElement|selectedStyleSheetSet|styleSheetSets|styleSheets|textContent|title|toLocaleString|toSource|toString|updateSettings|valueOf|visibilityState|vlinkColor|wasDiscarded|webkitCancelFullScreen|webkitCurrentFullScreenElement|webkitExitFullscreen|webkitFullScreenKeyboardInputAllowed|webkitFullscreenElement|webkitFullscreenEnabled|webkitHidden|webkitIsFullScreen|webkitVisibilityState|write|writeln|xmlEncoding|xmlStandalone|xmlVersion)(\s|$)'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(ATTRIBUTE_NODE|CDATA_SECTION_NODE|COMMENT_NODE|DOCUMENT_FRAGMENT_NODE|DOCUMENT_NODE|DOCUMENT_POSITION_CONTAINED_BY|DOCUMENT_POSITION_CONTAINS|DOCUMENT_POSITION_DISCONNECTED|DOCUMENT_POSITION_FOLLOWING|DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC|DOCUMENT_POSITION_PRECEDING|DOCUMENT_TYPE_NODE|ELEMENT_NODE|ENTITY_NODE|ENTITY_REFERENCE_NODE|NOTATION_NODE|PROCESSING_INSTRUCTION_NODE|TEXT_NODE|URL|URLUnencoded|__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|activeElement|addEventListener|adoptNode|alinkColor|all|anchors|append|appendChild|applets|baseURI|bgColor|body|captureEvents|caretPositionFromPoint|caretRangeFromPoint|characterSet|charset|childElementCount|childNodes|children|clear|cloneNode|close|compareDocumentPosition|compatMode|constructor|contains|contentType|cookie|createAttribute|createAttributeNS|createCDATASection|createComment|createDocumentFragment|createElement|createElementNS|createEvent|createExpression|createNSResolver|createNodeIterator|createProcessingInstruction|createRange|createTextNode|createTreeWalker|currentScript|defaultView|designMode|dir|dispatchEvent|doctype|documentElement|documentURI|domain|elementFromPoint|elementsFromPoint|embeds|enableStyleSheetsForSet|evaluate|execCommand|execCommandShowHelp|exitFullscreen|exitPictureInPicture|exitPointerLock|fgColor|firstChild|firstElementChild|focus|fonts|forms|fullscreen|fullscreenElement|fullscreenEnabled|getCSSCanvasContext|getElementById|getElementsByClassName|getElementsByName|getElementsByTagName|getElementsByTagNameNS|getOverrideStyle|getRootNode|getSelection|hasChildNodes|hasFocus|hasOwnProperty|hasStorageAccess|head|hidden|images|implementation|importNode|inputEncoding|insertBefore|isConnected|isDefaultNamespace|isEqualNode|isPrototypeOf|isSameNode|l10n|lastChild|lastElementChild|lastModified|lastStyleSheetSet|linkColor|links|location|lookupNamespaceURI|lookupPrefix|mozCancelFullScreen|mozFullScreen|mozFullScreenElement|mozFullScreenEnabled|mozSetImageElement|msCSSOMElementFloatMetrics|msCapsLockWarningOff|msElementsFromPoint|msElementsFromRect|nextSibling|nodeName|nodeType|nodeValue|normalize|onabort|onactivate|onafterscriptexecute|onanimationcancel|onanimationend|onanimationiteration|onanimationstart|onauxclick|onbeforeactivate|onbeforecopy|onbeforecut|onbeforedeactivate|onbeforeinput|onbeforepaste|onbeforescriptexecute|onblur|oncancel|oncanplay|oncanplaythrough|onchange|onclick|onclose|oncontextmenu|oncopy|oncuechange|oncut|ondblclick|ondeactivate|ondrag|ondragend|ondragenter|ondragexit|ondragleave|ondragover|ondragstart|ondrop|ondurationchange|onemptied|onended|onerror|onfocus|onfreeze|onfullscreenchange|onfullscreenerror|ongotpointercapture|oninput|oninvalid|onkeydown|onkeypress|onkeyup|onload|onloadeddata|onloadedmetadata|onloadend|onloadstart|onlostpointercapture|onmousedown|onmouseenter|onmouseleave|onmousemove|onmouseout|onmouseover|onmouseup|onmousewheel|onmozfullscreenchange|onmozfullscreenerror|onmscontentzoom|onmsgesturechange|onmsgesturedoubletap|onmsgestureend|onmsgesturehold|onmsgesturestart|onmsgesturetap|onmsinertiastart|onmsmanipulationstatechanged|onmssitemodejumplistitemremoved|onmsthumbnailclick|onpaste|onpause|onplay|onplaying|onpointercancel|onpointerdown|onpointerenter|onpointerleave|onpointerlockchange|onpointerlockerror|onpointermove|onpointerout|onpointerover|onpointerup|onprogress|onratechange|onreadystatechange|onrejectionhandled|onreset|onresize|onresume|onscroll|onsearch|onseeked|onseeking|onselect|onselectionchange|onselectstart|onshow|onstalled|onstop|onsubmit|onsuspend|ontimeupdate|ontoggle|ontransitioncancel|ontransitionend|ontransitionrun|ontransitionstart|onunhandledrejection|onvisibilitychange|onvolumechange|onwaiting|onwebkitanimationend|onwebkitanimationiteration|onwebkitanimationstart|onwebkitfullscreenchange|onwebkitfullscreenerror|onwebkitmouseforcechanged|onwebkitmouseforcedown|onwebkitmouseforceup|onwebkitmouseforcewillbegin|onwebkittransitionend|onwheel|open|origin|ownerDocument|parentElement|parentNode|pictureInPictureElement|pictureInPictureEnabled|plugins|pointerLockElement|preferredStyleSheetSet|prepend|previousSibling|propertyIsEnumerable|queryCommandEnabled|queryCommandIndeterm|queryCommandState|queryCommandSupported|queryCommandText|queryCommandValue|querySelector|querySelectorAll|readyState|referrer|registerElement|releaseCapture|releaseEvents|removeChild|removeEventListener|replaceChild|requestStorageAccess|rootElement|scripts|scrollingElement|selectedStyleSheetSet|styleSheetSets|styleSheets|textContent|title|toLocaleString|toSource|toString|updateSettings|valueOf|visibilityState|vlinkColor|wasDiscarded|webkitCancelFullScreen|webkitCurrentFullScreenElement|webkitExitFullscreen|webkitFullScreenKeyboardInputAllowed|webkitFullscreenElement|webkitFullscreenEnabled|webkitHidden|webkitIsFullScreen|webkitVisibilityState|write|writeln|xmlEncoding|xmlStandalone|xmlVersion)(\s|$)',
                     ],
                 ]
             ),
             'name-attr' => new Spec\AttributeList(
                 [
                     Attribute::NAME => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|\$p|\$proxy|acceptCharset|addEventListener|appendChild|assignedSlot|attachShadow|baseURI|checkValidity|childElementCount|childNodes|classList|className|clientHeight|clientLeft|clientTop|clientWidth|compareDocumentPosition|computedName|computedRole|contentEditable|createShadowRoot|enqueAction|firstChild|firstElementChild|getAnimations|getAttribute|getAttributeNS|getAttributeNode|getAttributeNodeNS|getBoundingClientRect|getClientRects|getDestinationInsertionPoints|getElementsByClassName|getElementsByTagName|getElementsByTagNameNS|getRootNode|hasAttribute|hasAttributeNS|hasAttributes|hasChildNodes|hasPointerCapture|innerHTML|innerText|inputMode|insertAdjacentElement|insertAdjacentHTML|insertAdjacentText|isContentEditable|isDefaultNamespace|isEqualNode|isSameNode|lastChild|lastElementChild|lookupNamespaceURI|namespaceURI|nextElementSibling|nextSibling|nodeName|nodeType|nodeValue|offsetHeight|offsetLeft|offsetParent|offsetTop|offsetWidth|outerHTML|outerText|ownerDocument|parentElement|parentNode|previousElementSibling|previousSibling|querySelector|querySelectorAll|releasePointerCapture|removeAttribute|removeAttributeNS|removeAttributeNode|removeChild|removeEventListener|replaceChild|reportValidity|requestPointerLock|scrollHeight|scrollIntoView|scrollIntoViewIfNeeded|scrollLeft|scrollWidth|setAttribute|setAttributeNS|setAttributeNode|setAttributeNodeNS|setPointerCapture|shadowRoot|styleMap|tabIndex|tagName|textContent|toString|valueOf|(webkit|ms|moz|o)dropzone|(webkit|moz|ms|o)MatchesSelector|(webkit|moz|ms|o)RequestFullScreen|(webkit|moz|ms|o)RequestFullscreen)(\s|$)'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|\$p|\$proxy|acceptCharset|addEventListener|appendChild|assignedSlot|attachShadow|baseURI|checkValidity|childElementCount|childNodes|classList|className|clientHeight|clientLeft|clientTop|clientWidth|compareDocumentPosition|computedName|computedRole|contentEditable|createShadowRoot|enqueAction|firstChild|firstElementChild|getAnimations|getAttribute|getAttributeNS|getAttributeNode|getAttributeNodeNS|getBoundingClientRect|getClientRects|getDestinationInsertionPoints|getElementsByClassName|getElementsByTagName|getElementsByTagNameNS|getRootNode|hasAttribute|hasAttributeNS|hasAttributes|hasChildNodes|hasPointerCapture|innerHTML|innerText|inputMode|insertAdjacentElement|insertAdjacentHTML|insertAdjacentText|isContentEditable|isDefaultNamespace|isEqualNode|isSameNode|lastChild|lastElementChild|lookupNamespaceURI|namespaceURI|nextElementSibling|nextSibling|nodeName|nodeType|nodeValue|offsetHeight|offsetLeft|offsetParent|offsetTop|offsetWidth|outerHTML|outerText|ownerDocument|parentElement|parentNode|previousElementSibling|previousSibling|querySelector|querySelectorAll|releasePointerCapture|removeAttribute|removeAttributeNS|removeAttributeNode|removeChild|removeEventListener|replaceChild|reportValidity|requestPointerLock|scrollHeight|scrollIntoView|scrollIntoViewIfNeeded|scrollLeft|scrollWidth|setAttribute|setAttributeNS|setAttributeNode|setAttributeNodeNS|setPointerCapture|shadowRoot|styleMap|tabIndex|tagName|textContent|toString|valueOf|(webkit|ms|moz|o)dropzone|(webkit|moz|ms|o)MatchesSelector|(webkit|moz|ms|o)RequestFullScreen|(webkit|moz|ms|o)RequestFullscreen)(\s|$)',
                     ],
                 ]
             ),
             'mandatory-name-attr' => new Spec\AttributeList(
                 [
                     Attribute::NAME => [
-                        SpecRule::MANDATORY => true
-                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|\$p|\$proxy|acceptCharset|addEventListener|appendChild|assignedSlot|attachShadow|baseURI|checkValidity|childElementCount|childNodes|classList|className|clientHeight|clientLeft|clientTop|clientWidth|compareDocumentPosition|computedName|computedRole|contentEditable|createShadowRoot|enqueAction|firstChild|firstElementChild|getAnimations|getAttribute|getAttributeNS|getAttributeNode|getAttributeNodeNS|getBoundingClientRect|getClientRects|getDestinationInsertionPoints|getElementsByClassName|getElementsByTagName|getElementsByTagNameNS|getRootNode|hasAttribute|hasAttributeNS|hasAttributes|hasChildNodes|hasPointerCapture|innerHTML|innerText|inputMode|insertAdjacentElement|insertAdjacentHTML|insertAdjacentText|isContentEditable|isDefaultNamespace|isEqualNode|isSameNode|lastChild|lastElementChild|lookupNamespaceURI|namespaceURI|nextElementSibling|nextSibling|nodeName|nodeType|nodeValue|offsetHeight|offsetLeft|offsetParent|offsetTop|offsetWidth|outerHTML|outerText|ownerDocument|parentElement|parentNode|previousElementSibling|previousSibling|querySelector|querySelectorAll|releasePointerCapture|removeAttribute|removeAttributeNS|removeAttributeNode|removeChild|removeEventListener|replaceChild|reportValidity|requestPointerLock|scrollHeight|scrollIntoView|scrollIntoViewIfNeeded|scrollLeft|scrollWidth|setAttribute|setAttributeNS|setAttributeNode|setAttributeNodeNS|setPointerCapture|shadowRoot|styleMap|tabIndex|tagName|textContent|toString|valueOf|(webkit|ms|moz|o)dropzone|(webkit|moz|ms|o)MatchesSelector|(webkit|moz|ms|o)RequestFullScreen|(webkit|moz|ms|o)RequestFullscreen)(\s|$)'
+                        SpecRule::MANDATORY => true,
+                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|\$p|\$proxy|acceptCharset|addEventListener|appendChild|assignedSlot|attachShadow|baseURI|checkValidity|childElementCount|childNodes|classList|className|clientHeight|clientLeft|clientTop|clientWidth|compareDocumentPosition|computedName|computedRole|contentEditable|createShadowRoot|enqueAction|firstChild|firstElementChild|getAnimations|getAttribute|getAttributeNS|getAttributeNode|getAttributeNodeNS|getBoundingClientRect|getClientRects|getDestinationInsertionPoints|getElementsByClassName|getElementsByTagName|getElementsByTagNameNS|getRootNode|hasAttribute|hasAttributeNS|hasAttributes|hasChildNodes|hasPointerCapture|innerHTML|innerText|inputMode|insertAdjacentElement|insertAdjacentHTML|insertAdjacentText|isContentEditable|isDefaultNamespace|isEqualNode|isSameNode|lastChild|lastElementChild|lookupNamespaceURI|namespaceURI|nextElementSibling|nextSibling|nodeName|nodeType|nodeValue|offsetHeight|offsetLeft|offsetParent|offsetTop|offsetWidth|outerHTML|outerText|ownerDocument|parentElement|parentNode|previousElementSibling|previousSibling|querySelector|querySelectorAll|releasePointerCapture|removeAttribute|removeAttributeNS|removeAttributeNode|removeChild|removeEventListener|replaceChild|reportValidity|requestPointerLock|scrollHeight|scrollIntoView|scrollIntoViewIfNeeded|scrollLeft|scrollWidth|setAttribute|setAttributeNS|setAttributeNode|setAttributeNodeNS|setPointerCapture|shadowRoot|styleMap|tabIndex|tagName|textContent|toString|valueOf|(webkit|ms|moz|o)dropzone|(webkit|moz|ms|o)MatchesSelector|(webkit|moz|ms|o)RequestFullScreen|(webkit|moz|ms|o)RequestFullscreen)(\s|$)',
                     ],
                 ]
             ),
@@ -569,12 +569,12 @@ final class AttributeLists
                     Attribute::PREFIX => [],
                     Attribute::PROPERTY => [],
                     Attribute::REL => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(canonical|components|dns-prefetch|import|manifest|preconnect|preload|prerender|serviceworker|stylesheet|subresource)(\s|$)'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(canonical|components|dns-prefetch|import|manifest|preconnect|preload|prerender|serviceworker|stylesheet|subresource)(\s|$)',
                     ],
                     Attribute::RESOURCE => [],
                     Attribute::REV => [],
                     Attribute::STYLE => [
-                        SpecRule::VALUE_DOC_CSS => true
+                        SpecRule::VALUE_DOC_CSS => true,
                     ],
                     Attribute::TYPEOF => [],
                     Attribute::VOCAB => [],
@@ -585,10 +585,10 @@ final class AttributeLists
                     Attribute::HIDDEN => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::ID => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|\$p|\$proxy|acceptCharset|addEventListener|appendChild|assignedSlot|attachShadow|AMP|baseURI|checkValidity|childElementCount|childNodes|classList|className|clientHeight|clientLeft|clientTop|clientWidth|compareDocumentPosition|computedName|computedRole|contentEditable|createShadowRoot|enqueAction|firstChild|firstElementChild|getAnimations|getAttribute|getAttributeNS|getAttributeNode|getAttributeNodeNS|getBoundingClientRect|getClientRects|getDestinationInsertionPoints|getElementsByClassName|getElementsByTagName|getElementsByTagNameNS|getRootNode|hasAttribute|hasAttributeNS|hasAttributes|hasChildNodes|hasPointerCapture|i-amphtml-\S*|innerHTML|innerText|inputMode|insertAdjacentElement|insertAdjacentHTML|insertAdjacentText|isContentEditable|isDefaultNamespace|isEqualNode|isSameNode|lastChild|lastElementChild|lookupNamespaceURI|namespaceURI|nextElementSibling|nextSibling|nodeName|nodeType|nodeValue|offsetHeight|offsetLeft|offsetParent|offsetTop|offsetWidth|outerHTML|outerText|ownerDocument|parentElement|parentNode|previousElementSibling|previousSibling|querySelector|querySelectorAll|releasePointerCapture|removeAttribute|removeAttributeNS|removeAttributeNode|removeChild|removeEventListener|replaceChild|reportValidity|requestPointerLock|scrollHeight|scrollIntoView|scrollIntoViewIfNeeded|scrollLeft|scrollWidth|setAttribute|setAttributeNS|setAttributeNode|setAttributeNodeNS|setPointerCapture|shadowRoot|styleMap|tabIndex|tagName|textContent|toString|valueOf|(webkit|ms|moz|o)dropzone|(webkit|moz|ms|o)MatchesSelector|(webkit|moz|ms|o)RequestFullScreen|(webkit|moz|ms|o)RequestFullscreen)(\s|$)'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(__amp_\S*|__count__|__defineGetter__|__defineSetter__|__lookupGetter__|__lookupSetter__|__noSuchMethod__|__parent__|__proto__|__AMP_\S*|\$p|\$proxy|acceptCharset|addEventListener|appendChild|assignedSlot|attachShadow|AMP|baseURI|checkValidity|childElementCount|childNodes|classList|className|clientHeight|clientLeft|clientTop|clientWidth|compareDocumentPosition|computedName|computedRole|contentEditable|createShadowRoot|enqueAction|firstChild|firstElementChild|getAnimations|getAttribute|getAttributeNS|getAttributeNode|getAttributeNodeNS|getBoundingClientRect|getClientRects|getDestinationInsertionPoints|getElementsByClassName|getElementsByTagName|getElementsByTagNameNS|getRootNode|hasAttribute|hasAttributeNS|hasAttributes|hasChildNodes|hasPointerCapture|i-amphtml-\S*|innerHTML|innerText|inputMode|insertAdjacentElement|insertAdjacentHTML|insertAdjacentText|isContentEditable|isDefaultNamespace|isEqualNode|isSameNode|lastChild|lastElementChild|lookupNamespaceURI|namespaceURI|nextElementSibling|nextSibling|nodeName|nodeType|nodeValue|offsetHeight|offsetLeft|offsetParent|offsetTop|offsetWidth|outerHTML|outerText|ownerDocument|parentElement|parentNode|previousElementSibling|previousSibling|querySelector|querySelectorAll|releasePointerCapture|removeAttribute|removeAttributeNS|removeAttributeNode|removeChild|removeEventListener|replaceChild|reportValidity|requestPointerLock|scrollHeight|scrollIntoView|scrollIntoViewIfNeeded|scrollLeft|scrollWidth|setAttribute|setAttributeNS|setAttributeNode|setAttributeNodeNS|setPointerCapture|shadowRoot|styleMap|tabIndex|tagName|textContent|toString|valueOf|(webkit|ms|moz|o)dropzone|(webkit|moz|ms|o)MatchesSelector|(webkit|moz|ms|o)RequestFullScreen|(webkit|moz|ms|o)RequestFullscreen)(\s|$)',
                     ],
                     Attribute::LANG => [],
                     Attribute::SLOT => [],
@@ -638,18 +638,18 @@ final class AttributeLists
                                 'role',
                                 'tabindex',
                             ],
-                        ]
+                        ],
                     ],
                     Attribute::ROLE => [],
                     Attribute::PLACEHOLDER => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::FALLBACK => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::OVERFLOW => [],
                     Attribute::AMP_ACCESS => [],
@@ -669,7 +669,7 @@ final class AttributeLists
                             'alsoRequiresAttr' => [
                                 'visible-when-invalid',
                             ],
-                        ]
+                        ],
                     ],
                     Attribute::VISIBLE_WHEN_INVALID => [
                         SpecRule::VALUE => [
@@ -683,54 +683,54 @@ final class AttributeLists
                             'tooShort',
                             'typeMismatch',
                             'valueMissing',
-                        ]
+                        ],
                         SpecRule::TRIGGER => [
                             'alsoRequiresAttr' => [
                                 'validation-for',
                             ],
-                        ]
+                        ],
                     ],
                     Attribute::AMP_FX => [
-                        SpecRule::VALUE_REGEX_CASEI => '(fade-in|fade-in-scroll|float-in-bottom|float-in-top|fly-in-bottom|fly-in-left|fly-in-right|fly-in-top|parallax)(\s|fade-in|fade-in-scroll|float-in-bottom|float-in-top|fly-in-bottom|fly-in-left|fly-in-right|fly-in-top|parallax)*'
+                        SpecRule::VALUE_REGEX_CASEI => '(fade-in|fade-in-scroll|float-in-bottom|float-in-top|fly-in-bottom|fly-in-left|fly-in-right|fly-in-top|parallax)(\s|fade-in|fade-in-scroll|float-in-bottom|float-in-top|fly-in-bottom|fly-in-left|fly-in-right|fly-in-top|parallax)*',
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-fx-collection',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_ACTION => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_ACTIONS => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_DECORATE => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_DIALOG => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_DISPLAY => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_LANG => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_SECTION => [
                         SpecRule::VALUE_CASEI => [
@@ -738,30 +738,30 @@ final class AttributeLists
                             'content',
                             'content-not-granted',
                             'loading',
-                        ]
+                        ],
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_SERVICE => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions',
-                        ]
+                        ],
                     ],
                     Attribute::SUBSCRIPTIONS_GOOGLE_RTC => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-subscriptions-google',
-                        ]
+                        ],
                     ],
                     Attribute::NEXT_PAGE_HIDE => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-next-page',
-                        ]
+                        ],
                     ],
                     Attribute::NEXT_PAGE_REPLACE => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-next-page',
-                        ]
+                        ],
                     ],
                     '[aria-activedescendant]' => [],
                     '[aria-atomic]' => [],
@@ -806,7 +806,7 @@ final class AttributeLists
                             'marker' => [
                                 'AUTOSCROLL',
                             ],
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -820,21 +820,21 @@ final class AttributeLists
                     Attribute::LOOP => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::MUTED => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::SRC => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
                             SpecRule::ALLOW_RELATIVE => true,
-                        ]
+                        ],
                     ],
                     '[album]' => [],
                     '[artist]' => [],
@@ -848,43 +848,43 @@ final class AttributeLists
             'amp-base-carousel-common' => new Spec\AttributeList(
                 [
                     Attribute::ADVANCE_COUNT => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(-?\d+),\s*)*(-?\d+)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(-?\d+),\s*)*(-?\d+)',
                     ],
                     Attribute::AUTO_ADVANCE => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
                     ],
                     Attribute::AUTO_ADVANCE_COUNT => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(-?\d+),\s*)*(-?\d+)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(-?\d+),\s*)*(-?\d+)',
                     ],
                     Attribute::AUTO_ADVANCE_INTERVAL => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)',
                     ],
                     Attribute::AUTO_ADVANCE_LOOPS => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)',
                     ],
                     Attribute::HORIZONTAL => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
                     ],
                     Attribute::LOOP => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
                     ],
                     Attribute::MIXED_LENGTH => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
                     ],
                     Attribute::SLIDE => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)',
                     ],
                     Attribute::SNAP => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
                     ],
                     Attribute::SNAP_ALIGN => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(start|center),\s*)*(start|center)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(start|center),\s*)*(start|center)',
                     ],
                     Attribute::SNAP_BY => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)',
                     ],
                     Attribute::VISIBLE_COUNT => [
-                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+(\.\d+)?),\s*)*(\d+(\.\d+)?)'
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+(\.\d+)?),\s*)*(\d+(\.\d+)?)',
                     ],
                     '[advance-count]' => [],
                     '[auto-advance]' => [],
@@ -906,39 +906,39 @@ final class AttributeLists
                     Attribute::ARROWS => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     Attribute::AUTOPLAY => [
-                        SpecRule::VALUE_REGEX => '(|[0-9]+)'
+                        SpecRule::VALUE_REGEX => '(|[0-9]+)',
                     ],
                     Attribute::CONTROLS => [],
                     Attribute::DELAY => [
-                        SpecRule::VALUE_REGEX => '[0-9]+'
+                        SpecRule::VALUE_REGEX => '[0-9]+',
                     ],
                     Attribute::DOTS => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                         SpecRule::DISABLED_BY => [
                             'amp4email',
-                        ]
+                        ],
                     ],
                     Attribute::LOOP => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::SLIDE => [
-                        SpecRule::VALUE_REGEX => '[0-9]+'
+                        SpecRule::VALUE_REGEX => '[0-9]+',
                     ],
                     Attribute::TYPE => [
                         SpecRule::VALUE => [
                             'carousel',
                             'slides',
-                        ]
+                        ],
                     ],
                     '[slide]' => [],
                 ]
@@ -948,19 +948,19 @@ final class AttributeLists
                     Attribute::ALLOW_BLOCKED_END_DATE => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::ALLOW_BLOCKED_RANGES => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::BLOCKED => [],
                     Attribute::DAY_SIZE => [
-                        SpecRule::VALUE_REGEX => '[0-9]+'
+                        SpecRule::VALUE_REGEX => '[0-9]+',
                     ],
                     Attribute::FIRST_DAY_OF_WEEK => [
-                        SpecRule::VALUE_REGEX => '[0-6]'
+                        SpecRule::VALUE_REGEX => '[0-6]',
                     ],
                     Attribute::FORMAT => [],
                     Attribute::HIGHLIGHTED => [],
@@ -969,31 +969,31 @@ final class AttributeLists
                     Attribute::MIN => [],
                     Attribute::MONTH_FORMAT => [],
                     Attribute::NUMBER_OF_MONTHS => [
-                        SpecRule::VALUE_REGEX => '[0-9]+'
+                        SpecRule::VALUE_REGEX => '[0-9]+',
                     ],
                     Attribute::OPEN_AFTER_CLEAR => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::OPEN_AFTER_SELECT => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::HIDE_KEYBOARD_SHORTCUTS_PANEL => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::SRC => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
-                        ]
+                        ],
                     ],
                     Attribute::WEEK_DAY_FORMAT => [],
                     '[src]' => [],
@@ -1006,10 +1006,10 @@ final class AttributeLists
                     Attribute::END_DATE => [],
                     Attribute::END_INPUT_SELECTOR => [],
                     Attribute::MAXIMUM_NIGHTS => [
-                        SpecRule::VALUE_REGEX => '[0-9]+'
+                        SpecRule::VALUE_REGEX => '[0-9]+',
                     ],
                     Attribute::MINIMUM_NIGHTS => [
-                        SpecRule::VALUE_REGEX => '[0-9]+'
+                        SpecRule::VALUE_REGEX => '[0-9]+',
                     ],
                     Attribute::START_DATE => [],
                     Attribute::START_INPUT_SELECTOR => [],
@@ -1026,7 +1026,7 @@ final class AttributeLists
                     Attribute::FULLSCREEN => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -1035,7 +1035,7 @@ final class AttributeLists
                     Attribute::TOUCH_KEYBOARD_EDITABLE => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -1046,14 +1046,14 @@ final class AttributeLists
                             'alsoRequiresAttr' => [
                                 'mask',
                             ],
-                        ]
+                        ],
                     ],
                     Attribute::TYPE => [
                         SpecRule::VALUE => [
                             'text',
                             'tel',
                             'search',
-                        ]
+                        ],
                     ],
                     '[type]' => [],
                 ]
@@ -1062,7 +1062,7 @@ final class AttributeLists
                 [
                     Attribute::LIGHTBOX => [],
                     Attribute::LIGHTBOX_THUMBNAIL_ID => [
-                        SpecRule::VALUE_REGEX_CASEI => '^[a-z][a-z\d_-]*'
+                        SpecRule::VALUE_REGEX_CASEI => '^[a-z][a-z\d_-]*',
                     ],
                 ]
             ),
@@ -1071,70 +1071,70 @@ final class AttributeLists
                     Attribute::DATA_LIGHT => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::DATA_SHARING => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                 ]
             ),
             'amp-nested-menu-actions' => new Spec\AttributeList(
                 [
                     Attribute::AMP_NESTED_SUBMENU_CLOSE => [
-                        SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu-close\', \'amp-nested-submenu-open\']'
+                        SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
                     ],
                     Attribute::AMP_NESTED_SUBMENU_OPEN => [
-                        SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu-close\', \'amp-nested-submenu-open\']'
+                        SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
                     ],
                 ]
             ),
             'interactive-shared-configs-attrs' => new Spec\AttributeList(
                 [
                     Attribute::ID => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                     ],
                     Attribute::PROMPT_TEXT => [],
                     Attribute::ENDPOINT => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
                             SpecRule::ALLOW_RELATIVE => false,
                             SpecRule::ALLOW_EMPTY => false,
-                        ]
+                        ],
                     ],
                     Attribute::THEME => [
                         SpecRule::VALUE => [
                             'light',
                             'dark',
-                        ]
+                        ],
                     ],
                     Attribute::CHIP_STYLE => [
                         SpecRule::VALUE => [
                             'shadow',
                             'flat',
                             'transparent',
-                        ]
+                        ],
                     ],
                     Attribute::PROMPT_SIZE => [
                         SpecRule::VALUE => [
                             'small',
                             'medium',
                             'large',
-                        ]
+                        ],
                     ],
                 ]
             ),
             'interactive-options-text-attrs' => new Spec\AttributeList(
                 [
                     Attribute::OPTION_1_TEXT => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                     ],
                     Attribute::OPTION_2_TEXT => [
-                        SpecRule::MANDATORY => true
+                        SpecRule::MANDATORY => true,
                     ],
                     Attribute::OPTION_3_TEXT => [],
                     Attribute::OPTION_4_TEXT => [
@@ -1142,7 +1142,7 @@ final class AttributeLists
                             'alsoRequiresAttr' => [
                                 'option-3-text',
                             ],
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -1161,14 +1161,14 @@ final class AttributeLists
                             'alsoRequiresAttr' => [
                                 'option-2-results-category',
                             ],
-                        ]
+                        ],
                     ],
                     Attribute::OPTION_2_RESULTS_CATEGORY => [
                         SpecRule::TRIGGER => [
                             'alsoRequiresAttr' => [
                                 'option-1-results-category',
                             ],
-                        ]
+                        ],
                     ],
                     Attribute::OPTION_3_RESULTS_CATEGORY => [
                         SpecRule::TRIGGER => [
@@ -1176,7 +1176,7 @@ final class AttributeLists
                                 'option-2-results-category',
                                 'option-3-text',
                             ],
-                        ]
+                        ],
                     ],
                     Attribute::OPTION_4_RESULTS_CATEGORY => [
                         SpecRule::TRIGGER => [
@@ -1184,7 +1184,7 @@ final class AttributeLists
                                 'option-3-results-category',
                                 'option-4-text',
                             ],
-                        ]
+                        ],
                     ],
                 ]
             ),
@@ -1198,37 +1198,37 @@ final class AttributeLists
                     Attribute::AUTOPLAY => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::DOCK => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-video-docking',
-                        ]
+                        ],
                     ],
                     Attribute::IMPLEMENTS_MEDIA_SESSION => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::IMPLEMENTS_ROTATE_TO_FULLSCREEN => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::REFERRERPOLICY => [],
                     Attribute::ROTATE_TO_FULLSCREEN => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::SRC => [
-                        SpecRule::MANDATORY => true
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin'
+                        SpecRule::MANDATORY => true,
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
-                        ]
+                        ],
                     ],
                     '[src]' => [],
                 ]
@@ -1243,39 +1243,39 @@ final class AttributeLists
                     Attribute::AUTOPLAY => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::CONTROLS => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::CONTROLSLIST => [],
                     Attribute::CROSSORIGIN => [],
                     Attribute::DISABLEREMOTEPLAYBACK => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::DOCK => [
                         SpecRule::REQUIRES_EXTENSION => [
                             'amp-video-docking',
-                        ]
+                        ],
                     ],
                     Attribute::LOOP => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::MUTED => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::NOAUDIO => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::OBJECT_FIT => [],
                     Attribute::OBJECT_POSITION => [],
@@ -1286,21 +1286,21 @@ final class AttributeLists
                             'metadata',
                             'none',
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::ROTATE_TO_FULLSCREEN => [
                         SpecRule::VALUE => [
                             '',
-                        ]
+                        ],
                     ],
                     Attribute::SRC => [
-                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin'
+                        SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                         SpecRule::VALUE_URL => [
                             SpecRule::PROTOCOL => [
                                 'https',
                             ],
                             SpecRule::ALLOW_RELATIVE => true,
-                        ]
+                        ],
                     ],
                     '[album]' => [],
                     '[alt]' => [],
@@ -1329,7 +1329,7 @@ final class AttributeLists
     public function get($attributeListName)
     {
         if (!array_key_exists($attributeListName, $this->attributes)) {
-            throw \AmpProject\Exception\InvalidListName::forAttributeList($attributeListName);
+            throw InvalidListName::forAttributeList($attributeListName);
         }
 
         return $this->attributes[$attributeListName];
