@@ -66,6 +66,17 @@ class Tag
             case SpecRule::UNIQUE:
             case SpecRule::UNIQUE_WARNING:
                 return array_key_exists($specRuleName, static::SPEC) ? static::SPEC[$specRuleName] : false;
+            case SpecRule::ALSO_REQUIRES_TAG_WARNING:
+            case SpecRule::ATTR_LISTS:
+            case SpecRule::DISABLED_BY:
+            case SpecRule::DISALLOWED_ANCESTOR:
+            case SpecRule::ENABLED_BY:
+            case SpecRule::EXCLUDES:
+            case SpecRule::HTML_FORMAT:
+            case SpecRule::REQUIRES:
+            case SpecRule::REQUIRES_EXTENSION:
+            case SpecRule::SATISFIES:
+                return array_key_exists($specRuleName, static::SPEC) ? static::SPEC[$specRuleName] : [];
             default:
                 if (!array_key_exists($specRuleName, static::SPEC)) {
                     throw InvalidSpecRuleName::forSpecRuleName($specRuleName);
