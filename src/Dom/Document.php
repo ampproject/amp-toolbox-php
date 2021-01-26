@@ -1304,12 +1304,12 @@ final class Document extends DOMDocument
 
         foreach ($templates as $template) {
             foreach ($this->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
-                $attribute->nodeValue = str_replace(
+                $attribute->nodeValue = htmlspecialchars(str_replace(
                     array_keys($mustacheTagPlaceholders),
                     $mustacheTagPlaceholders,
                     $attribute->nodeValue,
                     $count
-                );
+                ));
                 if ($count) {
                     $this->mustacheTagsReplaced = true;
                 }
