@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Internal;
 use AmpProject\Tag as Element;
@@ -58,7 +59,7 @@ final class ImgIAmphtmlIntrinsicSizer extends Tag
             Format::AMP,
         ],
         SpecRule::ENABLED_BY => [
-            'transformed',
+            Attribute::TRANSFORMED,
         ],
     ];
 }

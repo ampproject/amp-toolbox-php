@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -24,7 +25,7 @@ final class InputTypeFile extends Tag
                     '',
                 ],
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
@@ -38,7 +39,7 @@ final class InputTypeFile extends Tag
             [
                 SpecRule::NAME => '[type]',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
         ],

@@ -261,7 +261,7 @@ final class AttributeLists
                     Attribute::AUTOCOMPLETE => [],
                     Attribute::AUTOFOCUS => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     Attribute::CHECKED => [],
@@ -269,17 +269,17 @@ final class AttributeLists
                     Attribute::HEIGHT => [],
                     Attribute::INPUTMODE => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     Attribute::LIST_ => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     Attribute::ENTERKEYHINT => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     Attribute::MAX => [],
@@ -293,7 +293,7 @@ final class AttributeLists
                     Attribute::REQUIRED => [],
                     Attribute::SELECTIONDIRECTION => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     Attribute::SIZE => [],
@@ -304,12 +304,12 @@ final class AttributeLists
                     Attribute::WIDTH => [],
                     '[accept]' => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     '[accesskey]' => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     '[autocomplete]' => [],
@@ -318,7 +318,7 @@ final class AttributeLists
                     '[height]' => [],
                     '[inputmode]' => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     '[max]' => [],
@@ -332,7 +332,7 @@ final class AttributeLists
                     '[required]' => [],
                     '[selectiondirection]' => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     '[size]' => [],
@@ -471,7 +471,7 @@ final class AttributeLists
                             Layout::RESPONSIVE,
                         ],
                         SpecRule::ENABLED_BY => [
-                            'transformed',
+                            Attribute::TRANSFORMED,
                         ],
                     ],
                     Attribute::MEDIA => [],
@@ -498,7 +498,7 @@ final class AttributeLists
                 [
                     Attribute::NONCE => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                 ]
@@ -518,7 +518,7 @@ final class AttributeLists
                     ],
                     Attribute::NONCE => [
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     Attribute::TYPE => [
@@ -911,7 +911,7 @@ final class AttributeLists
                             '',
                         ],
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     Attribute::AUTOPLAY => [
@@ -926,7 +926,7 @@ final class AttributeLists
                             '',
                         ],
                         SpecRule::DISABLED_BY => [
-                            'amp4email',
+                            Attribute::AMP4EMAIL,
                         ],
                     ],
                     Attribute::LOOP => [

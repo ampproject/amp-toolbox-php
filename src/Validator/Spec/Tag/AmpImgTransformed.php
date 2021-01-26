@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -76,7 +77,7 @@ final class AmpImgTransformed extends Tag
             Format::AMP,
         ],
         SpecRule::ENABLED_BY => [
-            'transformed',
+            Attribute::TRANSFORMED,
         ],
     ];
 }

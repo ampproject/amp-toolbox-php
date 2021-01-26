@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -30,7 +31,7 @@ final class Textarea extends Tag
             [
                 SpecRule::NAME => 'autofocus',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
@@ -51,7 +52,7 @@ final class Textarea extends Tag
                     '',
                 ],
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
@@ -72,19 +73,19 @@ final class Textarea extends Tag
             [
                 SpecRule::NAME => 'selectiondirection',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
                 SpecRule::NAME => 'selectionend',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
                 SpecRule::NAME => 'selectionstart',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
@@ -99,7 +100,7 @@ final class Textarea extends Tag
             [
                 SpecRule::NAME => '[autofocus]',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
@@ -135,19 +136,19 @@ final class Textarea extends Tag
             [
                 SpecRule::NAME => '[selectiondirection]',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
                 SpecRule::NAME => '[selectionend]',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [
                 SpecRule::NAME => '[selectionstart]',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [

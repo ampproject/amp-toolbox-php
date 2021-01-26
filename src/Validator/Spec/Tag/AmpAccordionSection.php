@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
@@ -26,7 +27,7 @@ final class AmpAccordionSection extends Tag
                     '',
                 ],
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [

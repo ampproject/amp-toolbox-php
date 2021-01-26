@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -44,7 +45,7 @@ final class Th extends Tag
             [
                 SpecRule::NAME => 'sorted',
                 SpecRule::DISABLED_BY => [
-                    'amp4email',
+                    Attribute::AMP4EMAIL,
                 ],
             ],
             [

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -35,7 +36,7 @@ final class Html extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::DISABLED_BY => [
-            'transformed',
+            Attribute::TRANSFORMED,
         ],
     ];
 }

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -58,7 +59,7 @@ final class AmpImageSliderTransformed extends Tag
             Extension::IMAGE_SLIDER,
         ],
         SpecRule::ENABLED_BY => [
-            'transformed',
+            Attribute::TRANSFORMED,
         ],
     ];
 }

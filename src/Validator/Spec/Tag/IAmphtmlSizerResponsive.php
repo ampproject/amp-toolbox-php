@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Internal;
 use AmpProject\Validator\Spec\SpecRule;
@@ -41,7 +42,7 @@ final class IAmphtmlSizerResponsive extends Tag
         ],
         SpecRule::EXPLICIT_ATTRS_ONLY => true,
         SpecRule::ENABLED_BY => [
-            'transformed',
+            Attribute::TRANSFORMED,
         ],
     ];
 }

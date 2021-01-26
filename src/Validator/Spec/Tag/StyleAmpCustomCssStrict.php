@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -155,7 +156,7 @@ final class StyleAmpCustomCssStrict extends Tag
             Format::AMP4EMAIL,
         ],
         SpecRule::ENABLED_BY => [
-            'data-css-strict',
+            Attribute::DATA_CSS_STRICT,
         ],
         SpecRule::DESCRIPTIVE_NAME => 'style amp-custom',
     ];

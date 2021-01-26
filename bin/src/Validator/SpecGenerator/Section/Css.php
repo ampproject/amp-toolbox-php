@@ -74,40 +74,7 @@ final class Css implements Section
         foreach ($spec as $ruleSet) {
             $name = $this->getNameForRuleSet($ruleSet);
 
-            $constructor->addBody("    '{$name}' => [");
-            $indent = '        ';
-
-            foreach ($ruleSet as $key => $value) {
-                switch ($key) {
-                    case 'disabledBy':
-                    case 'enabledBy':
-                        $attributeArray = [];
-                        foreach ($value as $attribute) {
-                            $constant  = $this->getAttributeConstant($this->getConstantName($attribute));
-                            $attribute = $constant === $attribute
-                                ? "'{$attribute}'"
-                                : $constant;
-                            $attributeArray[] = $attribute;
-                        }
-                        $constructor->addBody(
-                            "{$indent}{$this->dumper->dumpWithSpecRuleKey($key, $attributeArray, 2)},"
-                        );
-                        break;
-                    case 'htmlFormat':
-                        $formats = [];
-                        foreach ($value as $format) {
-                            $constant = $this->getFormatConstant($format);
-                            $formats[] = $constant === $format ? "'{$format}'" : $constant;
-                        }
-                        $constructor->addBody(
-                            "{$indent}{$this->dumper->dumpWithSpecRuleKey($key, $formats, 2)},"
-                        );
-                        break;
-                    default:
-                        $constructor->addBody("{$indent}{$this->dumper->dumpWithSpecRuleKey($key, $value, 2)},");
-                }
-            }
-            $constructor->addBody('    ],');
+            $constructor->addBody("    '{$name}' => {$this->dumper->dumpWithSpecRules($ruleSet, 1)},");
 
             if (array_key_exists('htmlFormat', $ruleSet)) {
                 foreach ($ruleSet['htmlFormat'] as $format) {

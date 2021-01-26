@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -49,7 +50,7 @@ final class AmpVideoIframeWithPlaceholder extends Tag
             Extension::VIDEO_IFRAME,
         ],
         SpecRule::DISABLED_BY => [
-            'transformed',
+            Attribute::TRANSFORMED,
         ],
     ];
 }

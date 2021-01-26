@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -24,7 +25,7 @@ final class NoscriptEnclosureForBoilerplateTransformed extends Tag
             Format::AMP,
         ],
         SpecRule::ENABLED_BY => [
-            'transformed',
+            Attribute::TRANSFORMED,
         ],
         SpecRule::DESCRIPTIVE_NAME => 'noscript enclosure for boilerplate',
     ];

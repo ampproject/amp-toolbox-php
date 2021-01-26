@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
@@ -43,7 +44,7 @@ final class StyleAmpRuntimeTransformed extends Tag
             Format::AMP,
         ],
         SpecRule::ENABLED_BY => [
-            'transformed',
+            Attribute::TRANSFORMED,
         ],
         SpecRule::DESCRIPTIVE_NAME => 'style[amp-runtime]',
     ];

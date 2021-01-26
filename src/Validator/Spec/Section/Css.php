@@ -62,7 +62,7 @@ final class Css
         $this->css = [
             'AMP (no-transformed)' => [
                 SpecRule::HTML_FORMAT => [
-                    'FORMAT__AMP',
+                    Format::AMP,
                 ],
                 SpecRule::DISABLED_BY => [
                     Attribute::TRANSFORMED,
@@ -101,7 +101,7 @@ final class Css
             ],
             'AMP (transformed)' => [
                 SpecRule::HTML_FORMAT => [
-                    'FORMAT__AMP',
+                    Format::AMP,
                 ],
                 SpecRule::ENABLED_BY => [
                     Attribute::TRANSFORMED,
@@ -140,7 +140,7 @@ final class Css
             ],
             'AMP4ADS' => [
                 SpecRule::HTML_FORMAT => [
-                    'FORMAT__AMP4ADS',
+                    Format::AMP4ADS,
                 ],
                 SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
@@ -172,7 +172,7 @@ final class Css
             ],
             'AMP4EMAIL (no-data-css-strict)' => [
                 SpecRule::HTML_FORMAT => [
-                    'FORMAT__AMP4EMAIL',
+                    Format::AMP4EMAIL,
                 ],
                 SpecRule::DISABLED_BY => [
                     Attribute::DATA_CSS_STRICT,
@@ -200,7 +200,7 @@ final class Css
             ],
             'AMP4EMAIL (data-css-strict)' => [
                 SpecRule::HTML_FORMAT => [
-                    'FORMAT__AMP4EMAIL',
+                    Format::AMP4EMAIL,
                 ],
                 SpecRule::ENABLED_BY => [
                     Attribute::DATA_CSS_STRICT,
