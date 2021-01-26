@@ -39,8 +39,8 @@ final class AmphtmlEngineScriptAmp4email extends Tag
         SpecRule::CDATA => [
             SpecRule::DISALLOWED_CDATA_REGEX => [
                 [
-                    'regex' => '.',
-                    'errorMessage' => 'contents',
+                    SpecRule::REGEX => '.',
+                    SpecRule::ERROR_MESSAGE => 'contents',
                 ],
             ],
         ],

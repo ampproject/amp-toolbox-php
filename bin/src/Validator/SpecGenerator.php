@@ -267,19 +267,6 @@ final class SpecGenerator
                             $specRuleKeys[$specRuleKey] = $specRuleKey;
                         }
 
-                        if (array_key_exists('attrs', $ruleset)) {
-                            foreach ($ruleset['attrs'] as $attributeEntry) {
-                                foreach (array_keys($attributeEntry) as $specRuleKey) {
-                                    $specRuleKeys[$specRuleKey] = $specRuleKey;
-                                }
-                                if (array_key_exists('valueUrl', $attributeEntry)) {
-                                    foreach ($attributeEntry['valueUrl'] as $valueUrlKey => $valueUrlData) {
-                                        $specRuleKeys[$valueUrlKey] = $valueUrlKey;
-                                    }
-                                }
-                            }
-                        }
-
                         $this->collectSpecRuleKeysFromSubset($specRuleKeys, $ruleset);
                     }
                     break;
@@ -300,21 +287,42 @@ final class SpecGenerator
      */
     private function collectSpecRuleKeysFromSubset(&$specRuleKeys, $subset)
     {
+        if (!is_array($subset)) {
+            return;
+        }
+/*
         foreach (
             [
                 'ampLayout',
+                'attrs',
                 'cdata',
                 'childTags',
                 'cssSpec',
+                'disallowedCdataRegex',
                 'extensionSpec',
                 'trigger',
-                'valueProperties'
+                'valueProperties',
+                'valueUrl',
             ] as $attribute
         ) {
             if (array_key_exists($attribute, $subset)) {
                 foreach ($subset[$attribute] as $attributeKey => $attributeValue) {
-                    $specRuleKeys[$attributeKey] = $attributeKey;
+                    if (is_string($attributeKey)) {
+                        $specRuleKeys[$attributeKey] = $attributeKey;
+                    }
+                    if (is_array($attributeValue)) {
+                        $this->collectSpecRuleKeysFromSubset($specRuleKeys, $attributeValue);
+                    }
                 }
+            }
+        }
+*/
+        foreach ($subset as $key => $value) {
+            if (is_string($key)) {
+                $specRuleKeys[$key] = $key;
+            }
+            if (is_array($value)) {
+                $this->collectSpecRuleKeysFromSubset($specRuleKeys, $value);
             }
         }
     }

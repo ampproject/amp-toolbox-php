@@ -32,10 +32,10 @@ final class AmpStoryAutoAdsTemplate extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-STORY-GRID-LAYER default',
+                SpecRule::TAG_SPEC_NAME => 'AMP-STORY-GRID-LAYER default',
             ],
             [
-                'tagSpecName' => 'AMP-STORY-GRID-LAYER animate-in',
+                SpecRule::TAG_SPEC_NAME => 'AMP-STORY-GRID-LAYER animate-in',
             ],
         ],
         SpecRule::HTML_FORMAT => [

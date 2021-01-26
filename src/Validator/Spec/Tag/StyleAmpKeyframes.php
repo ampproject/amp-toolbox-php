@@ -35,7 +35,7 @@ final class StyleAmpKeyframes extends Tag
             SpecRule::MAX_BYTES => 500000,
             SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#keyframes-stylesheet',
             SpecRule::CSS_SPEC => [
-                'atRuleSpec' => [
+                SpecRule::AT_RULE_SPEC => [
                     [
                         SpecRule::NAME => AtRule::KEYFRAMES,
                     ],
@@ -46,8 +46,8 @@ final class StyleAmpKeyframes extends Tag
                         SpecRule::NAME => AtRule::SUPPORTS,
                     ],
                 ],
-                'validateKeyframes' => true,
-                'declaration' => [
+                SpecRule::VALIDATE_KEYFRAMES => true,
+                SpecRule::DECLARATION => [
                     'animation-timing-function',
                     'offset-distance',
                     'opacity',

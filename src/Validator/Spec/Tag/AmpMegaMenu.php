@@ -35,10 +35,10 @@ final class AmpMegaMenu extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-MEGA-MENU > AMP-LIST',
+                SpecRule::TAG_SPEC_NAME => 'AMP-MEGA-MENU > AMP-LIST',
             ],
             [
-                'tagSpecName' => 'AMP-MEGA-MENU > NAV',
+                SpecRule::TAG_SPEC_NAME => 'AMP-MEGA-MENU > NAV',
             ],
         ],
         SpecRule::HTML_FORMAT => [

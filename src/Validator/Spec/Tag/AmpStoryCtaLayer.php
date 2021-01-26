@@ -19,7 +19,7 @@ final class AmpStoryCtaLayer extends Tag
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-STORY-CTA-LAYER animate-in',
+                SpecRule::TAG_SPEC_NAME => 'AMP-STORY-CTA-LAYER animate-in',
             ],
         ],
         SpecRule::HTML_FORMAT => [

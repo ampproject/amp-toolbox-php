@@ -38,7 +38,7 @@ final class AmpVideoIframeWithPlaceholder extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-VIDEO-IFRAME > [placeholder]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-VIDEO-IFRAME > [placeholder]',
                 SpecRule::MANDATORY => true,
                 SpecRule::UNIQUE => true,
             ],

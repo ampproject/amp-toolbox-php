@@ -38,12 +38,12 @@ final class AmpVideoIframeWithPlaceholderTransformed extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-VIDEO-IFRAME > [placeholder]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-VIDEO-IFRAME > [placeholder]',
                 SpecRule::MANDATORY => true,
                 SpecRule::UNIQUE => true,
             ],
             [
-                'tagSpecName' => 'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]',
             ],
         ],
         SpecRule::HTML_FORMAT => [

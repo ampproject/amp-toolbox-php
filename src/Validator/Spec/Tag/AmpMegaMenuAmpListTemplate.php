@@ -26,7 +26,7 @@ final class AmpMegaMenuAmpListTemplate extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-MEGA-MENU > NAV',
+                SpecRule::TAG_SPEC_NAME => 'AMP-MEGA-MENU > NAV',
             ],
         ],
         SpecRule::HTML_FORMAT => [

@@ -32,7 +32,7 @@ final class AmpStoryAmpSidebar extends Tag
             Extension::SIDEBAR,
         ],
         SpecRule::MARK_DESCENDANTS => [
-            'marker' => [
+            SpecRule::MARKER => [
                 'AUTOSCROLL',
             ],
         ],

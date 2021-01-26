@@ -68,10 +68,10 @@ final class AmpSelector extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-SELECTOR option',
+                SpecRule::TAG_SPEC_NAME => 'AMP-SELECTOR option',
             ],
             [
-                'tagSpecName' => 'AMP-SELECTOR child',
+                SpecRule::TAG_SPEC_NAME => 'AMP-SELECTOR child',
             ],
         ],
         SpecRule::HTML_FORMAT => [

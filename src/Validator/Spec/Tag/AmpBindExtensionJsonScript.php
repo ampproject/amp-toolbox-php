@@ -39,8 +39,8 @@ final class AmpBindExtensionJsonScript extends Tag
             SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/components/amp-bind#state',
             SpecRule::DISALLOWED_CDATA_REGEX => [
                 [
-                    'regex' => '<!--',
-                    'errorMessage' => 'html comments',
+                    SpecRule::REGEX => '<!--',
+                    SpecRule::ERROR_MESSAGE => 'html comments',
                 ],
             ],
         ],

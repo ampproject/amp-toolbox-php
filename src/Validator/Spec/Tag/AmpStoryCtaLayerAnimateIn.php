@@ -75,7 +75,7 @@ final class AmpStoryCtaLayerAnimateIn extends Tag
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story/',
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-STORY-CTA-LAYER animate-in',
+                SpecRule::TAG_SPEC_NAME => 'AMP-STORY-CTA-LAYER animate-in',
             ],
         ],
         SpecRule::HTML_FORMAT => [

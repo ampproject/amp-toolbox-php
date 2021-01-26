@@ -30,19 +30,19 @@ final class AmpNextPageWithInlineConfig extends Tag
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-NEXT-PAGE > [separator]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-NEXT-PAGE > [separator]',
                 SpecRule::UNIQUE => true,
             ],
             [
-                'tagSpecName' => 'AMP-NEXT-PAGE > [recommendation-box]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-NEXT-PAGE > [recommendation-box]',
                 SpecRule::UNIQUE => true,
             ],
             [
-                'tagSpecName' => 'AMP-NEXT-PAGE > [footer]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-NEXT-PAGE > [footer]',
                 SpecRule::UNIQUE => true,
             ],
             [
-                'tagSpecName' => 'AMP-NEXT-PAGE > SCRIPT[type=application/json]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-NEXT-PAGE > SCRIPT[type=application/json]',
                 SpecRule::MANDATORY => true,
                 SpecRule::UNIQUE => true,
             ],

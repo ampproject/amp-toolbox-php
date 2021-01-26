@@ -52,17 +52,17 @@ final class AmpLiveList extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-LIVE-LIST [update]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-LIVE-LIST [update]',
                 SpecRule::MANDATORY => true,
                 SpecRule::UNIQUE => true,
             ],
             [
-                'tagSpecName' => 'AMP-LIVE-LIST [items]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-LIVE-LIST [items]',
                 SpecRule::MANDATORY => true,
                 SpecRule::UNIQUE => true,
             ],
             [
-                'tagSpecName' => 'AMP-LIVE-LIST [pagination]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-LIVE-LIST [pagination]',
                 SpecRule::UNIQUE => true,
             ],
         ],

@@ -12,7 +12,7 @@ final class Dumper
     private $dumper;
 
     /** @var string[] */
-    const SPEC_RULE_SUBKEYS = [
+    const SPEC_RULE_KEYS = [
         'addValueToSet',
         'allowAllDeclarationInStyleTag',
         'allowEmpty',
@@ -22,7 +22,9 @@ final class Dumper
         'alsoRequiresTagWarning',
         'alternativeNames',
         'ampLayout',
+        'atRuleSpec',
         'attrLists',
+        'attributeName',
         'attrs',
         'cdata',
         'cdataRegex',
@@ -30,6 +32,7 @@ final class Dumper
         'childTags',
         'cssDeclaration',
         'cssSpec',
+        'declaration',
         'declarationList',
         'declarationListSvg',
         'definesDefaultHeight',
@@ -47,11 +50,13 @@ final class Dumper
         'dispatchKey',
         'docCssBytes',
         'enabledBy',
+        'errorMessage',
         'excludes',
         'expandVendorPrefixes',
         'explicitAttrsOnly',
         'extensionSpec',
         'extensionType',
+        'feature',
         'firstChildTagNameOneof',
         'fontUrlSpec',
         'format',
@@ -59,6 +64,7 @@ final class Dumper
         'ifValueRegex',
         'imageUrlSpec',
         'implicit',
+        'issuesAsError',
         'mandatory',
         'mandatoryAlternatives',
         'mandatoryAncestor',
@@ -70,29 +76,39 @@ final class Dumper
         'mandatoryOneof',
         'mandatoryParent',
         'markDescendants',
+        'marker',
         'maxBytes',
         'maxBytesIsWarning',
         'maxBytesPerInlineStyle',
         'maxBytesSpecUrl',
+        'mediaQuerySpec',
         'name',
         'namedId',
+        'properties',
         'protocol',
+        'pseudoClass',
         'referencePoints',
+        'regex',
         'requires',
         'requiresAncestor',
         'requiresExtension',
         'requiresUsage',
         'satisfies',
+        'selectorSpec',
         'siblingsDisallowed',
         'specName',
         'specUrl',
         'specificity',
         'supportedLayouts',
         'tagName',
+        'tagSpecName',
         'trigger',
+        'type',
         'unique',
         'uniqueWarning',
         'urlBytesIncluded',
+        'validateAmp4ads',
+        'validateKeyframes',
         'value',
         'valueCasei',
         'valueDocCss',
@@ -160,7 +176,7 @@ final class Dumper
             array_unshift($parentKeys, $key);
         }
 
-        if (in_array($key, self::SPEC_RULE_SUBKEYS, true)) {
+        if (in_array($key, self::SPEC_RULE_KEYS, true)) {
             $key = "SpecRule::{$this->getConstantName($key)}";
         }
 

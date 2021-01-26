@@ -33,8 +33,8 @@ final class AmpImaVideoScriptTypeApplicationJson extends Tag
         SpecRule::CDATA => [
             SpecRule::DISALLOWED_CDATA_REGEX => [
                 [
-                    'regex' => '<!--',
-                    'errorMessage' => 'html comments',
+                    SpecRule::REGEX => '<!--',
+                    SpecRule::ERROR_MESSAGE => 'html comments',
                 ],
             ],
         ],

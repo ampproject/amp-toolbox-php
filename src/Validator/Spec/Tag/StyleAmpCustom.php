@@ -45,16 +45,16 @@ final class StyleAmpCustom extends Tag
             SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
             SpecRule::DISALLOWED_CDATA_REGEX => [
                 [
-                    'regex' => '<!--',
-                    'errorMessage' => 'html comments',
+                    SpecRule::REGEX => '<!--',
+                    SpecRule::ERROR_MESSAGE => 'html comments',
                 ],
                 [
-                    'regex' => '(^|\W)i-amphtml-',
-                    'errorMessage' => 'CSS i-amphtml- name prefix',
+                    SpecRule::REGEX => '(^|\W)i-amphtml-',
+                    SpecRule::ERROR_MESSAGE => 'CSS i-amphtml- name prefix',
                 ],
             ],
             SpecRule::CSS_SPEC => [
-                'atRuleSpec' => [
+                SpecRule::AT_RULE_SPEC => [
                     [
                         SpecRule::NAME => AtRule::FONT_FACE,
                     ],

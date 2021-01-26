@@ -98,7 +98,7 @@ final class AmpStoryGridLayerAnimateIn extends Tag
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story/',
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-STORY-GRID-LAYER animate-in',
+                SpecRule::TAG_SPEC_NAME => 'AMP-STORY-GRID-LAYER animate-in',
             ],
         ],
         SpecRule::HTML_FORMAT => [

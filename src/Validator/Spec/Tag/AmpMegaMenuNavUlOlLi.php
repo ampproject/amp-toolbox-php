@@ -33,11 +33,11 @@ final class AmpMegaMenuNavUlOlLi extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-MEGA-MENU item-content',
+                SpecRule::TAG_SPEC_NAME => 'AMP-MEGA-MENU item-content',
                 SpecRule::UNIQUE => true,
             ],
             [
-                'tagSpecName' => 'AMP-MEGA-MENU item-heading',
+                SpecRule::TAG_SPEC_NAME => 'AMP-MEGA-MENU item-heading',
                 SpecRule::MANDATORY => true,
                 SpecRule::UNIQUE => true,
             ],

@@ -26,7 +26,7 @@ final class MetaNameViewport extends Tag
                 SpecRule::NAME => Attribute::CONTENT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_PROPERTIES => [
-                    'properties' => [
+                    SpecRule::PROPERTIES => [
                         [
                             SpecRule::NAME => 'width',
                             SpecRule::MANDATORY => true,

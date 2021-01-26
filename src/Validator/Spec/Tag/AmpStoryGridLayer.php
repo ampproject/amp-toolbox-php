@@ -43,10 +43,10 @@ final class AmpStoryGridLayer extends Tag
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-STORY-GRID-LAYER default',
+                SpecRule::TAG_SPEC_NAME => 'AMP-STORY-GRID-LAYER default',
             ],
             [
-                'tagSpecName' => 'AMP-STORY-GRID-LAYER animate-in',
+                SpecRule::TAG_SPEC_NAME => 'AMP-STORY-GRID-LAYER animate-in',
             ],
         ],
         SpecRule::HTML_FORMAT => [

@@ -26,7 +26,7 @@ final class AmpLiveListItems extends Tag
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-live-list/#items',
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-LIVE-LIST [items] item',
+                SpecRule::TAG_SPEC_NAME => 'AMP-LIVE-LIST [items] item',
             ],
         ],
         SpecRule::HTML_FORMAT => [

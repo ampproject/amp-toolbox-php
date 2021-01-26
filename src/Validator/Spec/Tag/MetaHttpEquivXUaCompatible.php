@@ -23,7 +23,7 @@ final class MetaHttpEquivXUaCompatible extends Tag
                 SpecRule::NAME => Attribute::CONTENT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_PROPERTIES => [
-                    'properties' => [
+                    SpecRule::PROPERTIES => [
                         [
                             SpecRule::NAME => 'ie',
                             SpecRule::VALUE => 'edge',

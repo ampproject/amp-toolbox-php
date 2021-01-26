@@ -43,10 +43,10 @@ final class AmpCarouselLightbox extends Tag
         ],
         SpecRule::REFERENCE_POINTS => [
             [
-                'tagSpecName' => 'AMP-CAROUSEL lightbox [lightbox-exclude]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-CAROUSEL lightbox [lightbox-exclude]',
             ],
             [
-                'tagSpecName' => 'AMP-CAROUSEL lightbox [child]',
+                SpecRule::TAG_SPEC_NAME => 'AMP-CAROUSEL lightbox [child]',
             ],
         ],
         SpecRule::HTML_FORMAT => [

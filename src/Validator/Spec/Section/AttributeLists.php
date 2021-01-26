@@ -806,7 +806,7 @@ final class AttributeLists
                     '[text]' => [],
                     Attribute::AUTOSCROLL => [
                         SpecRule::REQUIRES_ANCESTOR => [
-                            'marker' => [
+                            SpecRule::MARKER => [
                                 'AUTOSCROLL',
                             ],
                         ],
