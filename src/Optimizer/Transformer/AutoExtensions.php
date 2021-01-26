@@ -7,7 +7,6 @@ use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Dom\NodeWalker;
-use AmpProject\Format;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Tag;
@@ -154,7 +153,24 @@ final class AutoExtensions implements Transformer
      */
     private function renderExtensionScripts(Document $document, array $extensionScripts)
     {
-        // TODO: Add logic.
+        $referenceNode = $document->viewport;
+
+        if (!$referenceNode) {
+            $referenceNode = $document->charset;
+        }
+
+        foreach ($extensionScripts as $extensionScript) {
+            if ($referenceNode) {
+                $referenceNode->parentNode->insertBefore(
+                    $extensionScript,
+                    $referenceNode->nextSibling
+                );
+            } else {
+                $document->head->appendChild($extensionScript);
+            }
+
+            $referenceNode = $extensionScript;
+        }
     }
 
     /**
@@ -169,8 +185,12 @@ final class AutoExtensions implements Transformer
     {
         if (!array_key_exists($requiredExtension, $extensionScripts)) {
             $requiredScript = $document->createElement(Tag::SCRIPT);
+            $requiredScript->appendChild($document->createAttribute(Attribute::ASYNC));
+            $requiredScript->setAttribute(Attribute::CUSTOM_ELEMENT, $requiredExtension);
             $requiredScript->setAttribute(Attribute::SRC, $this->getScriptSrcForExtension($requiredExtension));
+            $extensionScripts[$requiredExtension] = $requiredScript;
         }
+
         return $extensionScripts;
     }
 
@@ -182,8 +202,9 @@ final class AutoExtensions implements Transformer
      */
     private function getScriptSrcForExtension($requiredExtension)
     {
-        // TODO: Version URL argument is missing.
+        // TODO: Version URL needs to be retrieved from spec.
+        $version = '0.99';
 
-        return Amp::CACHE_ROOT_URL . "{$requiredExtension}.js";
+        return Amp::CACHE_ROOT_URL . "v0/{$requiredExtension}-{$version}.js";
     }
 }
