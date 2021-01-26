@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -41,8 +42,8 @@ final class AmpAutocompleteAmp4email extends Tag
             [
                 SpecRule::NAME => 'query',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'src',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::SRC,
                     ],
                 ],
             ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -30,8 +31,8 @@ final class AmpScript extends Tag
                 SpecRule::NAME => 'max-age',
                 SpecRule::VALUE_REGEX => '[0-9]+',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'script',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::SCRIPT,
                     ],
                 ],
             ],

@@ -18,6 +18,7 @@ final class Dumper
         'allowEmpty',
         'allowImportant',
         'allowRelative',
+        'alsoRequiresAttr',
         'alsoRequiresTagWarning',
         'alternativeNames',
         'ampLayout',
@@ -55,6 +56,7 @@ final class Dumper
         'fontUrlSpec',
         'format',
         'htmlFormat',
+        'ifValueRegex',
         'imageUrlSpec',
         'implicit',
         'mandatory',
@@ -292,6 +294,12 @@ final class Dumper
         }
 
         switch ($specRule) {
+            case 'alsoRequiresAttr':
+                $attributes = [];
+                foreach ($value as $attribute) {
+                    $attributes[] = $this->getAttributeConstant($this->getConstantName($attribute));
+                }
+                return $attributes;
             case 'ampLayout':
                 if (array_key_exists('supportedLayouts', $value)) {
                     foreach ($value['supportedLayouts'] as $index => $layout) {

@@ -236,6 +236,8 @@ final class SpecGenerator
                         foreach ($attributeList as $attributeEntry) {
                             foreach (array_keys($attributeEntry) as $specRuleKey) {
                                 $specRuleKeys[$specRuleKey] = $specRuleKey;
+
+                                $this->collectSpecRuleKeysFromSubset($specRuleKeys, $attributeEntry);
                             }
                         }
                     }
@@ -278,22 +280,7 @@ final class SpecGenerator
                             }
                         }
 
-                        foreach (
-                            [
-                                'ampLayout',
-                                'cdata',
-                                'extensionSpec',
-                                'childTags',
-                                'cssSpec',
-                                'valueProperties'
-                            ] as $attribute
-                        ) {
-                            if (array_key_exists($attribute, $ruleset)) {
-                                foreach ($ruleset[$attribute] as $attributeKey => $attributeValue) {
-                                    $specRuleKeys[$attributeKey] = $attributeKey;
-                                }
-                            }
-                        }
+                        $this->collectSpecRuleKeysFromSubset($specRuleKeys, $ruleset);
                     }
                     break;
                 default:
@@ -303,5 +290,32 @@ final class SpecGenerator
         ksort($specRuleKeys);
 
         return $specRuleKeys;
+    }
+
+    /**
+     * Collect all spec rule keys from a spec subset.
+     *
+     * @param array<string> $specRuleKeys Array of collected spec rule keys.
+     * @param array         $subset       Subset to collect additional keys from.
+     */
+    private function collectSpecRuleKeysFromSubset(&$specRuleKeys, $subset)
+    {
+        foreach (
+            [
+                'ampLayout',
+                'cdata',
+                'childTags',
+                'cssSpec',
+                'extensionSpec',
+                'trigger',
+                'valueProperties'
+            ] as $attribute
+        ) {
+            if (array_key_exists($attribute, $subset)) {
+                foreach ($subset[$attribute] as $attributeKey => $attributeValue) {
+                    $specRuleKeys[$attributeKey] = $attributeKey;
+                }
+            }
+        }
     }
 }

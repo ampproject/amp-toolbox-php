@@ -14,6 +14,7 @@ interface SpecRule
     const ALLOW_EMPTY = 'allowEmpty';
     const ALLOW_IMPORTANT = 'allowImportant';
     const ALLOW_RELATIVE = 'allowRelative';
+    const ALSO_REQUIRES_ATTR = 'alsoRequiresAttr';
     const ALSO_REQUIRES_TAG_WARNING = 'alsoRequiresTagWarning';
     const ALTERNATIVE_NAMES = 'alternativeNames';
     const AMP_LAYOUT = 'ampLayout';
@@ -51,6 +52,7 @@ interface SpecRule
     const FONT_URL_SPEC = 'fontUrlSpec';
     const FORMAT = 'format';
     const HTML_FORMAT = 'htmlFormat';
+    const IF_VALUE_REGEX = 'ifValueRegex';
     const IMAGE_URL_SPEC = 'imageUrlSpec';
     const IMPLICIT = 'implicit';
     const MANDATORY = 'mandatory';

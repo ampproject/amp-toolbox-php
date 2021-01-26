@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -61,8 +62,8 @@ final class AmpList extends Tag
             [
                 SpecRule::NAME => 'load-more-bookmark',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'load-more',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::LOAD_MORE,
                     ],
                 ],
             ],

@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -31,8 +32,8 @@ final class AmpStoryInteractiveResults extends Tag
             [
                 SpecRule::NAME => 'option-4-results-category',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-3-results-category',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_3_RESULTS_CATEGORY,
                     ],
                 ],
             ],
@@ -45,16 +46,16 @@ final class AmpStoryInteractiveResults extends Tag
             [
                 SpecRule::NAME => 'option-3-image',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-3-results-category',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_3_RESULTS_CATEGORY,
                     ],
                 ],
             ],
             [
                 SpecRule::NAME => 'option-4-image',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-4-results-category',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_4_RESULTS_CATEGORY,
                     ],
                 ],
             ],
@@ -67,16 +68,16 @@ final class AmpStoryInteractiveResults extends Tag
             [
                 SpecRule::NAME => 'option-3-text',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-3-results-category',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_3_RESULTS_CATEGORY,
                     ],
                 ],
             ],
             [
                 SpecRule::NAME => 'option-4-text',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-4-results-category',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_4_RESULTS_CATEGORY,
                     ],
                 ],
             ],
@@ -92,8 +93,8 @@ final class AmpStoryInteractiveResults extends Tag
                 SpecRule::NAME => 'option-3-results-threshold',
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-3-results-category',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_3_RESULTS_CATEGORY,
                     ],
                 ],
             ],
@@ -101,8 +102,8 @@ final class AmpStoryInteractiveResults extends Tag
                 SpecRule::NAME => 'option-4-results-threshold',
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-4-results-category',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_4_RESULTS_CATEGORY,
                     ],
                 ],
             ],

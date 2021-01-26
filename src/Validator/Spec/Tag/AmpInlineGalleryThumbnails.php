@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -23,8 +24,8 @@ final class AmpInlineGalleryThumbnails extends Tag
                 SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\.0+)?$',
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'aspect-ratio-width',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::ASPECT_RATIO_WIDTH,
                     ],
                 ],
             ],
@@ -33,8 +34,8 @@ final class AmpInlineGalleryThumbnails extends Tag
                 SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\.0+)?$',
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'aspect-ratio-height',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::ASPECT_RATIO_HEIGHT,
                     ],
                 ],
             ],

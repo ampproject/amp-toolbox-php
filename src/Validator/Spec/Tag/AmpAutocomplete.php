@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -24,9 +25,9 @@ final class AmpAutocomplete extends Tag
                 SpecRule::NAME => 'filter',
                 SpecRule::MANDATORY => true,
                 SpecRule::TRIGGER => [
-                    'ifValueRegex' => 'custom',
-                    'alsoRequiresAttr' => [
-                        'filter-expr',
+                    SpecRule::IF_VALUE_REGEX => 'custom',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::FILTER_EXPR,
                     ],
                 ],
                 SpecRule::VALUE_CASEI => [
@@ -71,8 +72,8 @@ final class AmpAutocomplete extends Tag
             [
                 SpecRule::NAME => 'query',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'src',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::SRC,
                     ],
                 ],
             ],

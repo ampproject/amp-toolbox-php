@@ -635,10 +635,10 @@ final class AttributeLists
                     Attribute::ARIA_VALUETEXT => [],
                     Attribute::ON => [
                         SpecRule::TRIGGER => [
-                            'ifValueRegex' => 'tap:.*',
-                            'alsoRequiresAttr' => [
-                                'role',
-                                'tabindex',
+                            SpecRule::IF_VALUE_REGEX => 'tap:.*',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::ROLE,
+                                Attribute::TABINDEX,
                             ],
                         ],
                     ],
@@ -668,8 +668,8 @@ final class AttributeLists
                     Attribute::I_AMP_ACCESS_ID => [],
                     Attribute::VALIDATION_FOR => [
                         SpecRule::TRIGGER => [
-                            'alsoRequiresAttr' => [
-                                'visible-when-invalid',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::VISIBLE_WHEN_INVALID,
                             ],
                         ],
                     ],
@@ -687,8 +687,8 @@ final class AttributeLists
                             'valueMissing',
                         ],
                         SpecRule::TRIGGER => [
-                            'alsoRequiresAttr' => [
-                                'validation-for',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::VALIDATION_FOR,
                             ],
                         ],
                     ],
@@ -1045,8 +1045,8 @@ final class AttributeLists
                 [
                     Attribute::MASK_OUTPUT => [
                         SpecRule::TRIGGER => [
-                            'alsoRequiresAttr' => [
-                                'mask',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::MASK,
                             ],
                         ],
                     ],
@@ -1141,8 +1141,8 @@ final class AttributeLists
                     Attribute::OPTION_3_TEXT => [],
                     Attribute::OPTION_4_TEXT => [
                         SpecRule::TRIGGER => [
-                            'alsoRequiresAttr' => [
-                                'option-3-text',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::OPTION_3_TEXT,
                             ],
                         ],
                     ],
@@ -1160,31 +1160,31 @@ final class AttributeLists
                 [
                     Attribute::OPTION_1_RESULTS_CATEGORY => [
                         SpecRule::TRIGGER => [
-                            'alsoRequiresAttr' => [
-                                'option-2-results-category',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::OPTION_2_RESULTS_CATEGORY,
                             ],
                         ],
                     ],
                     Attribute::OPTION_2_RESULTS_CATEGORY => [
                         SpecRule::TRIGGER => [
-                            'alsoRequiresAttr' => [
-                                'option-1-results-category',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::OPTION_1_RESULTS_CATEGORY,
                             ],
                         ],
                     ],
                     Attribute::OPTION_3_RESULTS_CATEGORY => [
                         SpecRule::TRIGGER => [
-                            'alsoRequiresAttr' => [
-                                'option-2-results-category',
-                                'option-3-text',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::OPTION_2_RESULTS_CATEGORY,
+                                Attribute::OPTION_3_TEXT,
                             ],
                         ],
                     ],
                     Attribute::OPTION_4_RESULTS_CATEGORY => [
                         SpecRule::TRIGGER => [
-                            'alsoRequiresAttr' => [
-                                'option-3-results-category',
-                                'option-4-text',
+                            SpecRule::ALSO_REQUIRES_ATTR => [
+                                Attribute::OPTION_3_RESULTS_CATEGORY,
+                                Attribute::OPTION_4_TEXT,
                             ],
                         ],
                     ],

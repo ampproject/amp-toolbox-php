@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
@@ -29,8 +30,8 @@ final class AmpStoryInteractiveQuiz extends Tag
                 SpecRule::NAME => 'option-3-correct',
                 SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-3-text',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_3_TEXT,
                     ],
                 ],
             ],
@@ -38,8 +39,8 @@ final class AmpStoryInteractiveQuiz extends Tag
                 SpecRule::NAME => 'option-4-correct',
                 SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'option-4-text',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::OPTION_4_TEXT,
                     ],
                 ],
             ],

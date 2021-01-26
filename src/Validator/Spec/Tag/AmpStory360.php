@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -32,8 +33,8 @@ final class AmpStory360 extends Tag
                 SpecRule::NAME => 'heading-end',
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'duration',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DURATION,
                     ],
                 ],
             ],
@@ -45,8 +46,8 @@ final class AmpStory360 extends Tag
                 SpecRule::NAME => 'pitch-end',
                 SpecRule::VALUE_REGEX => '-?\d+\.?\d*',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'duration',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DURATION,
                     ],
                 ],
             ],
@@ -70,8 +71,8 @@ final class AmpStory360 extends Tag
                 SpecRule::NAME => 'zoom-end',
                 SpecRule::VALUE_REGEX => '\d+\.?\d*',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'duration',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DURATION,
                     ],
                 ],
             ],

@@ -1014,6 +1014,7 @@ interface Attribute
     const DATA_POLL_INTERVAL               = 'data-poll-interval';
     const DATA_PRODUCT_CODE                = 'data-product-code';
     const DATA_PROFILEID                   = 'data-profileid';
+    const DATA_PUB_ID                      = 'data-pub-id';
     const DATA_RIDDLE_ID                   = 'data-riddle-id';
     const DATA_SCANNED_ELEMENT             = 'data-scanned-element';
     const DATA_SCANNED_ELEMENT_TYPE        = 'data-scanned-element-type';

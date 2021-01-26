@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -22,24 +23,24 @@ final class AmpTwitter extends Tag
             [
                 SpecRule::NAME => 'data-cards',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-tweetid',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_TWEETID,
                     ],
                 ],
             ],
             [
                 SpecRule::NAME => 'data-conversation',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-tweetid',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_TWEETID,
                     ],
                 ],
             ],
             [
                 SpecRule::NAME => 'data-limit',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-momentid',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_MOMENTID,
                     ],
                 ],
             ],
@@ -52,24 +53,24 @@ final class AmpTwitter extends Tag
                 SpecRule::NAME => 'data-timeline-id',
                 SpecRule::VALUE_REGEX => '\d+',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-timeline-source-type',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_TIMELINE_SOURCE_TYPE,
                     ],
                 ],
             ],
             [
                 SpecRule::NAME => 'data-timeline-owner-screen-name',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-timeline-source-type',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_TIMELINE_SOURCE_TYPE,
                     ],
                 ],
             ],
             [
                 SpecRule::NAME => 'data-timeline-slug',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-timeline-source-type',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_TIMELINE_SOURCE_TYPE,
                     ],
                 ],
             ],
@@ -80,8 +81,8 @@ final class AmpTwitter extends Tag
             [
                 SpecRule::NAME => 'data-timeline-screen-name',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-timeline-source-type',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_TIMELINE_SOURCE_TYPE,
                     ],
                 ],
             ],
@@ -95,8 +96,8 @@ final class AmpTwitter extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-timeline-source-type',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_TIMELINE_SOURCE_TYPE,
                     ],
                 ],
             ],
@@ -104,8 +105,8 @@ final class AmpTwitter extends Tag
                 SpecRule::NAME => 'data-timeline-user-id',
                 SpecRule::VALUE_REGEX => '\d+',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-timeline-source-type',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_TIMELINE_SOURCE_TYPE,
                     ],
                 ],
             ],

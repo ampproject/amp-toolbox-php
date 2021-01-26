@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -47,8 +48,8 @@ final class AmpAddthis extends Tag
                 SpecRule::NAME => 'data-widget-id',
                 SpecRule::MANDATORY_ONEOF => '[\'data-product-code\', \'data-widget-id\']',
                 SpecRule::TRIGGER => [
-                    'alsoRequiresAttr' => [
-                        'data-pub-id',
+                    SpecRule::ALSO_REQUIRES_ATTR => [
+                        Attribute::DATA_PUB_ID,
                     ],
                 ],
             ],
