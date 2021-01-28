@@ -9,11 +9,24 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\ExtensionVersion;
+use AmpProject\Validator\Spec\HasExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpVideoExtensionScript extends Tag
+final class AmpVideoExtensionScript extends Tag implements HasExtensionSpec
 {
+    use ExtensionVersion;
+
+    const EXTENSION_SPEC = [
+        SpecRule::NAME => 'amp-video',
+        SpecRule::VERSION => [
+            '0.1',
+            'latest',
+        ],
+        SpecRule::REQUIRES_USAGE => 'NONE',
+    ];
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-video extension script',
@@ -24,13 +37,6 @@ final class AmpVideoExtensionScript extends Tag
             Format::AMP,
             Format::AMP4ADS,
         ],
-        SpecRule::EXTENSION_SPEC => [
-            SpecRule::NAME => 'amp-video',
-            SpecRule::VERSION => [
-                '0.1',
-                'latest',
-            ],
-            SpecRule::REQUIRES_USAGE => 'NONE',
-        ],
+        SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
     ];
 }

@@ -9,11 +9,24 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\ExtensionVersion;
+use AmpProject\Validator\Spec\HasExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpLiveList extends Tag
+final class ScriptAmpLiveList extends Tag implements HasExtensionSpec
 {
+    use ExtensionVersion;
+
+    const EXTENSION_SPEC = [
+        SpecRule::NAME => 'amp-live-list',
+        SpecRule::VERSION => [
+            '0.1',
+            'latest',
+        ],
+        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+    ];
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
@@ -24,13 +37,6 @@ final class ScriptAmpLiveList extends Tag
             Format::AMP,
         ],
         SpecRule::UNIQUE_WARNING => true,
-        SpecRule::EXTENSION_SPEC => [
-            SpecRule::NAME => 'amp-live-list',
-            SpecRule::VERSION => [
-                '0.1',
-                'latest',
-            ],
-            SpecRule::REQUIRES_USAGE => 'EXEMPTED',
-        ],
+        SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
     ];
 }

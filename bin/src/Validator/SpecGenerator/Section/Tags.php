@@ -43,10 +43,11 @@ final class Tags implements Section
      */
     public function process(FileManager $fileManager, $spec, PhpNamespace $namespace, ClassType $class)
     {
-        $tags       = [];
-        $byTagName  = [];
-        $bySpecName = [];
-        $byFormat   = [];
+        $tags            = [];
+        $byTagName       = [];
+        $bySpecName      = [];
+        $byFormat        = [];
+        $byExtensionSpec = [];
 
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
 
@@ -105,11 +106,18 @@ final class Tags implements Section
                     $byFormat[$format][] = $this->getKeyString($tagId);
                 }
             }
+
+            if (array_key_exists('extensionSpec', $tags[$tagId])) {
+                $extensionSpec                   = $tags[$tagId]['extensionSpec'];
+                $extensionName                   = $this->getKeyString($extensionSpec['name']);
+                $byExtensionSpec[$extensionName] = $this->getKeyString($tagId);
+            }
         }
 
         $class->addConstant('BY_TAG_NAME', $byTagName);
         $class->addConstant('BY_SPEC_NAME', $bySpecName);
         $class->addConstant('BY_FORMAT', $byFormat);
+        $class->addConstant('BY_EXTENSION_SPEC', $byExtensionSpec);
     }
 
     /**
@@ -229,6 +237,18 @@ final class Tags implements Section
         $class = $namespace->addClass($className)
                            ->setFinal()
                            ->addExtend('AmpProject\Validator\Spec\Tag');
+
+        if (array_key_exists('extensionSpec', $jsonSpec)) {
+            $extensionSpec             = $jsonSpec['extensionSpec'];
+            $jsonSpec['extensionSpec'] = "self::EXTENSION_SPEC";
+
+            $class->addConstant('EXTENSION_SPEC', $extensionSpec);
+
+            $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\HasExtensionSpec");
+            $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\HasExtensionSpec");
+            $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\ExtensionVersion");
+            $class->addTrait("{$fileManager->getRootNamespace()}\\Spec\\ExtensionVersion");
+        }
 
         $class->addConstant('SPEC', $jsonSpec);
 

@@ -38,6 +38,7 @@ interface Attribute
     const ALPHA                           = 'alpha';
     const ALPHA_RANGE                     = 'alpha-range';
     const ALT                             = 'alt';
+    const ALWAYS_SERVE_NPA                = 'alwaysServeNpa';
     const AMP                             = 'amp';
     const AMP4ADS                         = 'amp4ads';
     const AMP4ADS_BOILERPLATE             = 'amp4ads-boilerplate';
@@ -71,6 +72,7 @@ interface Attribute
     const AMP_NESTED_SUBMENU_OPEN         = 'amp-nested-submenu-open';
     const AMP_RUNTIME                     = 'amp-runtime';
     const AMP_SCRIPT_SRC                  = 'amp-script-src';
+    const ANCHOR                          = 'anchor';
     const ANIMATE                         = 'animate';
     const ANIMATE_IN                      = 'animate-in';
     const ANIMATE_IN_AFTER                = 'animate-in-after';
@@ -165,6 +167,7 @@ interface Attribute
     const BGCOLOR                         = 'bgcolor';
     const BIGGEST_UNIT                    = 'biggest-unit';
     const BINDING                         = 'binding';
+    const BLOCK_RTC                       = 'blockRtc';
     const BLOCKED                         = 'blocked';
     const BORDER                          = 'border';
     const BORDER_BOTTOM                   = 'border-bottom';
@@ -657,6 +660,7 @@ interface Attribute
     const PREFIX                          = 'prefix';
     const PRELOAD                         = 'preload';
     const PRESERVEASPECTRATIO             = 'preserveaspectratio';
+    const PRESET                          = 'preset';
     const PRIMITIVEUNITS                  = 'primitiveunits';
     const PROFILE                         = 'profile';
     const PROMPT_SIZE                     = 'prompt-size';

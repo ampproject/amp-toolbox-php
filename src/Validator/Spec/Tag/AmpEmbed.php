@@ -43,6 +43,12 @@ final class AmpEmbed extends Tag
                 SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
             ],
+            [
+                SpecRule::NAME => Attribute::ALWAYS_SERVE_NPA,
+            ],
+            [
+                SpecRule::NAME => Attribute::BLOCK_RTC,
+            ],
         ],
         SpecRule::ATTR_LISTS => [
             'extended-amp-global',

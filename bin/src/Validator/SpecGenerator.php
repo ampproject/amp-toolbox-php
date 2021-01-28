@@ -7,6 +7,7 @@ use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\SpecPrinter;
 use Nette\PhpGenerator\ClassType;
+use Nette\PhpGenerator\PhpNamespace;
 
 final class SpecGenerator
 {
@@ -49,6 +50,8 @@ final class SpecGenerator
         $this->generateEntityClass('Tag', $fileManager);
         $this->generateEntityClass('AttributeList', $fileManager);
         $this->generateEntityClass('DeclarationList', $fileManager);
+        $this->generateEntityClass('HasExtensionSpec', $fileManager, 'interface');
+        $this->generateEntityClass('ExtensionVersion', $fileManager, 'trait');
         $this->generateErrorCodeInterface($jsonSpec, $fileManager);
         $this->generateSpecRuleInterface($specRuleKeys, $fileManager);
 
@@ -110,11 +113,27 @@ final class SpecGenerator
      *
      * @param string      $entity      Entity name to generate the class for.
      * @param FileManager $fileManager FileManager instance to use.
+     * @param string      $type        Optional. Type of class construct. Can be 'class', interface' or 'trait'.
      */
-    private function generateEntityClass($entity, FileManager $fileManager)
+    private function generateEntityClass($entity, FileManager $fileManager, $type = 'class')
     {
+        /** @var PhpNamespace $namespace */
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec');
-        $class     = ClassType::withBodiesFrom(self::GENERATOR_NAMESPACE . "\\Template\\{$entity}");
+        switch ($type) {
+            case 'interface':
+                $class = ClassType::from(self::GENERATOR_NAMESPACE . "\\Template\\{$entity}");
+                $class->setInterface();
+                foreach ($class->getMethods() as $method) {
+                    $method->setPublic();
+                }
+                break;
+            case 'trait':
+                $class = ClassType::withBodiesFrom(self::GENERATOR_NAMESPACE . "\\Template\\{$entity}");
+                $class->setTrait();
+                break;
+            default:
+                $class = ClassType::withBodiesFrom(self::GENERATOR_NAMESPACE . "\\Template\\{$entity}");
+        }
         $namespace->add($class);
         $fileManager->saveFile($file, "Spec/{$entity}.php");
     }
@@ -132,7 +151,7 @@ final class SpecGenerator
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\Section');
         $className = $this->getClassName($section);
         $class     = $namespace->addClass($className)
-                                             ->setFinal();
+                               ->setFinal();
 
         $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$className}";
 
@@ -290,33 +309,7 @@ final class SpecGenerator
         if (!is_array($subset)) {
             return;
         }
-/*
-        foreach (
-            [
-                'ampLayout',
-                'attrs',
-                'cdata',
-                'childTags',
-                'cssSpec',
-                'disallowedCdataRegex',
-                'extensionSpec',
-                'trigger',
-                'valueProperties',
-                'valueUrl',
-            ] as $attribute
-        ) {
-            if (array_key_exists($attribute, $subset)) {
-                foreach ($subset[$attribute] as $attributeKey => $attributeValue) {
-                    if (is_string($attributeKey)) {
-                        $specRuleKeys[$attributeKey] = $attributeKey;
-                    }
-                    if (is_array($attributeValue)) {
-                        $this->collectSpecRuleKeysFromSubset($specRuleKeys, $attributeValue);
-                    }
-                }
-            }
-        }
-*/
+
         foreach ($subset as $key => $value) {
             if (is_string($key)) {
                 $specRuleKeys[$key] = $key;

@@ -10,6 +10,7 @@ namespace AmpProject;
 interface AtRule
 {
 
+    const _MOZ_DOCUMENT       = '-moz-document';
     const CHARSET             = 'charset';
     const COUNTER_STYLE       = 'counter-style';
     const DOCUMENT            = 'document';

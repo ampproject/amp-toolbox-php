@@ -11,7 +11,9 @@ interface Extension
 {
 
     const ACCESS                        = 'amp-access';
+    const ACCESS_LATERPAY               = 'amp-access-laterpay';
     const ACCESS_POOOL                  = 'amp-access-poool';
+    const ACCESS_SCROLL                 = 'amp-access-scroll';
     const ACCORDION                     = 'amp-accordion';
     const ACTION_MACRO                  = 'amp-action-macro';
     const AD                            = 'amp-ad';
@@ -90,6 +92,7 @@ interface Extension
     const MEGA_MENU                     = 'amp-mega-menu';
     const MINUTE_MEDIA_PLAYER           = 'amp-minute-media-player';
     const MOWPLAYER                     = 'amp-mowplayer';
+    const MRAID                         = 'amp-mraid';
     const MUSTACHE                      = 'amp-mustache';
     const NESTED_MENU                   = 'amp-nested-menu';
     const NEXT_PAGE                     = 'amp-next-page';
@@ -113,6 +116,7 @@ interface Extension
     const SELECTOR                      = 'amp-selector';
     const SIDEBAR                       = 'amp-sidebar';
     const SKIMLINKS                     = 'amp-skimlinks';
+    const SLIDES                        = 'amp-slides';
     const SMARTLINKS                    = 'amp-smartlinks';
     const SOCIAL_SHARE                  = 'amp-social-share';
     const SOUNDCLOUD                    = 'amp-soundcloud';

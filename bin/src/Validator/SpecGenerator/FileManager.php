@@ -172,6 +172,9 @@ final class FileManager
 
                 foreach ($class->getMethods() as $method) {
                     $source        = $method->getBody();
+                    if ($source === null) {
+                        continue;
+                    }
                     $methodClasses = $this->extractClassNames($source);
                     $method->setBody($this->adaptSource($source, $methodClasses));
                     $classes = array_merge($classes, $methodClasses);

@@ -2,8 +2,10 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
+use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tests\TestCase;
 use AmpProject\Validator\Spec;
@@ -82,5 +84,20 @@ class TagsTest extends TestCase
     {
         $this->expectException(InvalidFormat::class);
         $this->tags->byFormat('utter nonsense');
+    }
+
+    public function testByExtensionSpec()
+    {
+        $tag = $this->tags->byExtensionSpec(Extension::LIGHTBOX_GALLERY);
+
+        $this->assertInstanceOf(Spec\Tag::class, $tag);
+        $this->assertArrayHasKey(Spec\SpecRule::NAME, $tag->extensionSpec);
+        $this->assertEquals(Extension::LIGHTBOX_GALLERY, $tag->extensionSpec[Spec\SpecRule::NAME]);
+    }
+
+    public function testByExtensionSpecThrowsExceptionForUnknownExtension()
+    {
+        $this->expectException(InvalidExtension::class);
+        $this->tags->byExtensionSpec('utter nonsense');
     }
 }

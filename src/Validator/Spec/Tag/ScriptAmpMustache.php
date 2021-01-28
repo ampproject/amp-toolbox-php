@@ -9,11 +9,30 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\ExtensionVersion;
+use AmpProject\Validator\Spec\HasExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpMustache extends Tag
+final class ScriptAmpMustache extends Tag implements HasExtensionSpec
 {
+    use ExtensionVersion;
+
+    const EXTENSION_SPEC = [
+        SpecRule::NAME => 'amp-mustache',
+        SpecRule::VERSION => [
+            '0.1',
+            '0.2',
+            'latest',
+        ],
+        SpecRule::DEPRECATED_VERSION => [
+            '0.1',
+        ],
+        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::EXTENSION_TYPE => 'CUSTOM_TEMPLATE',
+    ];
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [
@@ -22,19 +41,6 @@ final class ScriptAmpMustache extends Tag
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::EXTENSION_SPEC => [
-            SpecRule::NAME => 'amp-mustache',
-            SpecRule::VERSION => [
-                '0.1',
-                '0.2',
-                'latest',
-            ],
-            SpecRule::DEPRECATED_VERSION => [
-                '0.1',
-            ],
-            SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
-            SpecRule::REQUIRES_USAGE => 'EXEMPTED',
-            SpecRule::EXTENSION_TYPE => 'CUSTOM_TEMPLATE',
-        ],
+        SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
     ];
 }

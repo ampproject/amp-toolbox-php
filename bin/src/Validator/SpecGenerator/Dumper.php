@@ -239,6 +239,10 @@ final class Dumper
             ||
             strpos($value, 'SpecRule::') === 0
             ||
+            strpos($value, 'self::') === 0
+            ||
+            strpos($value, 'static::') === 0
+            ||
             strpos($value, '::class') !== false
         ) {
             return $value;

@@ -10,11 +10,24 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\ExtensionVersion;
+use AmpProject\Validator\Spec\HasExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class ScriptAmpAccessScroll extends Tag
+final class ScriptAmpAccessScroll extends Tag implements HasExtensionSpec
 {
+    use ExtensionVersion;
+
+    const EXTENSION_SPEC = [
+        SpecRule::NAME => 'amp-access-scroll',
+        SpecRule::VERSION => [
+            '0.1',
+            'latest',
+        ],
+        SpecRule::REQUIRES_USAGE => 'NONE',
+    ];
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [
@@ -23,14 +36,7 @@ final class ScriptAmpAccessScroll extends Tag
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::EXTENSION_SPEC => [
-            SpecRule::NAME => 'amp-access-scroll',
-            SpecRule::VERSION => [
-                '0.1',
-                'latest',
-            ],
-            SpecRule::REQUIRES_USAGE => 'NONE',
-        ],
+        SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
         SpecRule::REQUIRES_EXTENSION => [
             Extension::ACCESS,
         ],

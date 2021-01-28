@@ -39,6 +39,12 @@ final class AmpEmbedWithDataMultiSizeAttribute extends Tag
                 SpecRule::NAME => Attribute::RTC_CONFIG,
             ],
             [
+                SpecRule::NAME => Attribute::ALWAYS_SERVE_NPA,
+            ],
+            [
+                SpecRule::NAME => Attribute::BLOCK_RTC,
+            ],
+            [
                 SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

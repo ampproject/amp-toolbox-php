@@ -19,14 +19,12 @@ final class AmpStoryGridLayer extends Tag
         SpecRule::TAG_NAME => Extension::STORY_GRID_LAYER,
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => Attribute::TEMPLATE,
-                SpecRule::MANDATORY => true,
-                SpecRule::VALUE => [
-                    'fill',
-                    'horizontal',
-                    'thirds',
-                    'vertical',
-                ],
+                SpecRule::NAME => Attribute::ANCHOR,
+                SpecRule::VALUE_REGEX => 'top|bottom|left|right|(top|bottom)[ -](left|right)|(left|right)[ -](top|bottom)',
+            ],
+            [
+                SpecRule::NAME => Attribute::ASPECT_RATIO,
+                SpecRule::VALUE_REGEX => '\d+:\d+',
             ],
             [
                 SpecRule::NAME => Attribute::POSITION,
@@ -36,8 +34,21 @@ final class AmpStoryGridLayer extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => Attribute::ASPECT_RATIO,
-                SpecRule::VALUE_REGEX => '\d+:\d+',
+                SpecRule::NAME => Attribute::PRESET,
+                SpecRule::VALUE => [
+                    '2021-background',
+                    '2021-foreground',
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::TEMPLATE,
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE => [
+                    'fill',
+                    'horizontal',
+                    'thirds',
+                    'vertical',
+                ],
             ],
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,

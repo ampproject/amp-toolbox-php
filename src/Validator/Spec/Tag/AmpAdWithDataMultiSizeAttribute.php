@@ -49,6 +49,12 @@ final class AmpAdWithDataMultiSizeAttribute extends Tag
                 ],
             ],
             [
+                SpecRule::NAME => Attribute::ALWAYS_SERVE_NPA,
+            ],
+            [
+                SpecRule::NAME => Attribute::BLOCK_RTC,
+            ],
+            [
                 SpecRule::NAME => Attribute::TYPE,
                 SpecRule::MANDATORY => true,
             ],

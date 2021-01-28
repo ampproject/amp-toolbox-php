@@ -59,6 +59,12 @@ class Tag
      */
     const SPEC = [];
 
+    /**
+     * Magic getter to return the spec rules.
+     *
+     * @param string $specRuleName Name of the spec rule to return.
+     * @return mixed Value of the spec rule.
+     */
     public function __get($specRuleName)
     {
         switch ($specRuleName) {

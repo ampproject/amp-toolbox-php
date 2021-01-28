@@ -2,6 +2,7 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
+use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Exception\InvalidTagId;
@@ -10,11 +11,12 @@ final class Tags
 {
     const TAGS = [];
 
-    const BY_TAG_NAME  = [];
-    const BY_SPEC_NAME = [];
-    const BY_FORMAT    = [];
+    const BY_TAG_NAME       = [];
+    const BY_SPEC_NAME      = [];
+    const BY_FORMAT         = [];
+    const BY_EXTENSION_SPEC = [];
 
-    private $tagsCache  = [];
+    private $tagsCache = [];
 
     /**
      * Get a collection of tags by tag name.
@@ -83,6 +85,22 @@ final class Tags
         }
 
         return $tags;
+    }
+
+    /**
+     * Get the tag for a given extension spec name.
+     *
+     * @param string $extension Extension name to get the extension spec for.
+     * @return Tag Tag with the given extension spec name.
+     * @throws InvalidExtension If an invalid extension name is requested.
+     */
+    public function byExtensionSpec($extension)
+    {
+        if (!array_key_exists($extension, self::BY_EXTENSION_SPEC)) {
+            throw InvalidExtension::forExtension($extension);
+        }
+
+        return $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
     }
 
     /**

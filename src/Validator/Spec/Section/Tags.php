@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
+use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Exception\InvalidTagId;
@@ -2607,6 +2608,137 @@ final class Tags
         ],
     ];
 
+    const BY_EXTENSION_SPEC = [
+        Extension::AD => 'amp-ad extension script',
+        Extension::ANIM => 'SCRIPT (amp-anim)',
+        Extension::VIDEO => 'amp-video extension script',
+        Extension::_3D_GLTF => 'SCRIPT (amp-3d-gltf)',
+        Extension::_3Q_PLAYER => 'SCRIPT (amp-3q-player)',
+        Extension::ACCESS => 'SCRIPT (amp-access)',
+        Extension::ACCESS_LATERPAY => 'SCRIPT (amp-access-laterpay)',
+        Extension::ACCESS_POOOL => 'SCRIPT (amp-access-poool)',
+        Extension::ACCESS_SCROLL => 'SCRIPT (amp-access-scroll)',
+        Extension::ACCORDION => 'SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)',
+        Extension::ACTION_MACRO => 'SCRIPT (amp-action-macro)',
+        Extension::AD_CUSTOM => 'SCRIPT (amp-ad-custom)',
+        Extension::AD_EXIT => 'SCRIPT (amp-ad-exit)',
+        Extension::ADDTHIS => 'SCRIPT (amp-addthis)',
+        Extension::ANALYTICS => 'SCRIPT (amp-analytics)',
+        Extension::ANIMATION => 'SCRIPT (amp-animation)',
+        Extension::APESTER_MEDIA => 'SCRIPT (amp-apester-media)',
+        Extension::APP_BANNER => 'SCRIPT (amp-app-banner)',
+        Extension::AUDIO => 'SCRIPT (amp-audio)',
+        Extension::AUTO_ADS => 'SCRIPT (amp-auto-ads)',
+        Extension::AUTOCOMPLETE => 'SCRIPT[custom-element=amp-autocomplete] (AMP4EMAIL)',
+        Extension::BASE_CAROUSEL => 'SCRIPT (amp-base-carousel)',
+        Extension::BEOPINION => 'SCRIPT (amp-beopinion)',
+        Extension::BIND => 'SCRIPT[custom-element=amp-bind] (AMP4EMAIL)',
+        Extension::BODYMOVIN_ANIMATION => 'SCRIPT (amp-bodymovin-animation)',
+        Extension::BRID_PLAYER => 'SCRIPT (amp-brid-player)',
+        Extension::BRIGHTCOVE => 'SCRIPT (amp-brightcove)',
+        Extension::BYSIDE_CONTENT => 'SCRIPT (amp-byside-content)',
+        Extension::CALL_TRACKING => 'SCRIPT (amp-call-tracking)',
+        Extension::CAROUSEL => 'SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)',
+        Extension::CONNATIX_PLAYER => 'SCRIPT (amp-connatix-player)',
+        Extension::CONSENT => 'SCRIPT (amp-consent)',
+        Extension::DAILYMOTION => 'SCRIPT (amp-dailymotion)',
+        Extension::DATE_COUNTDOWN => 'SCRIPT (amp-date-countdown)',
+        Extension::DATE_DISPLAY => 'SCRIPT (amp-date-display)',
+        Extension::DATE_PICKER => 'SCRIPT (amp-date-picker)',
+        Extension::DELIGHT_PLAYER => 'SCRIPT (amp-delight-player)',
+        Extension::DYNAMIC_CSS_CLASSES => 'SCRIPT (amp-dynamic-css-classes)',
+        Extension::EMBEDLY_CARD => 'SCRIPT (amp-embedly-card)',
+        Extension::EXPERIMENT => 'SCRIPT (amp-experiment)',
+        Extension::FACEBOOK => 'SCRIPT (amp-facebook)',
+        Extension::FACEBOOK_COMMENTS => 'SCRIPT (amp-facebook-comments)',
+        Extension::FACEBOOK_LIKE => 'SCRIPT (amp-facebook-like)',
+        Extension::FACEBOOK_PAGE => 'SCRIPT (amp-facebook-page)',
+        Extension::FIT_TEXT => 'SCRIPT[custom-element=amp-fit-text] (AMP4EMAIL)',
+        Extension::FONT => 'SCRIPT (amp-font)',
+        Extension::FORM => 'SCRIPT[custom-element=amp-form] (AMP4EMAIL)',
+        Extension::FX_COLLECTION => 'SCRIPT (amp-fx-collection)',
+        Extension::FX_FLYING_CARPET => 'SCRIPT (amp-fx-flying-carpet)',
+        Extension::GEO => 'SCRIPT (amp-geo)',
+        Extension::GFYCAT => 'SCRIPT (amp-gfycat)',
+        Extension::GIST => 'SCRIPT (amp-gist)',
+        Extension::GOOGLE_DOCUMENT_EMBED => 'SCRIPT (amp-google-document-embed)',
+        Extension::GWD_ANIMATION => 'SCRIPT (amp-gwd-animation)',
+        Extension::HULU => 'SCRIPT (amp-hulu)',
+        Extension::IFRAME => 'SCRIPT (amp-iframe)',
+        Extension::IMA_VIDEO => 'SCRIPT (amp-ima-video)',
+        Extension::IMAGE_LIGHTBOX => 'SCRIPT[custom-element=amp-image-lightbox] (AMP4EMAIL)',
+        Extension::IMAGE_SLIDER => 'SCRIPT (amp-image-slider)',
+        Extension::IMGUR => 'SCRIPT (amp-imgur)',
+        Extension::INLINE_GALLERY => 'SCRIPT (amp-inline-gallery)',
+        Extension::INPUTMASK => 'SCRIPT (amp-inputmask)',
+        Extension::INSTAGRAM => 'SCRIPT (amp-instagram)',
+        Extension::INSTALL_SERVICEWORKER => 'SCRIPT (amp-install-serviceworker)',
+        Extension::IZLESENE => 'SCRIPT (amp-izlesene)',
+        Extension::JWPLAYER => 'SCRIPT (amp-jwplayer)',
+        Extension::KALTURA_PLAYER => 'SCRIPT (amp-kaltura-player)',
+        Extension::LIGHTBOX => 'SCRIPT[custom-element=amp-lightbox] (AMP4EMAIL)',
+        Extension::LIGHTBOX_GALLERY => 'SCRIPT (amp-lightbox-gallery)',
+        Extension::LINK_REWRITER => 'SCRIPT (amp-link-rewriter)',
+        Extension::LIST_ => 'SCRIPT[custom-element=amp-list] (AMP4EMAIL)',
+        Extension::LIVE_LIST => 'SCRIPT (amp-live-list)',
+        Extension::MATHML => 'SCRIPT (amp-mathml)',
+        Extension::MEGA_MENU => 'SCRIPT (amp-mega-menu)',
+        Extension::MEGAPHONE => 'SCRIPT (amp-megaphone)',
+        Extension::MINUTE_MEDIA_PLAYER => 'SCRIPT (amp-minute-media-player)',
+        Extension::MOWPLAYER => 'SCRIPT (amp-mowplayer)',
+        Extension::MRAID => 'SCRIPT (amp-mraid)',
+        Extension::MUSTACHE => 'SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)',
+        Extension::NESTED_MENU => 'SCRIPT (amp-nested-menu)',
+        Extension::NEXT_PAGE => 'SCRIPT (amp-next-page)',
+        Extension::NEXXTV_PLAYER => 'SCRIPT (amp-nexxtv-player)',
+        Extension::O2_PLAYER => 'SCRIPT (amp-o2-player)',
+        Extension::ONETAP_GOOGLE => 'SCRIPT (amp-onetap-google)',
+        Extension::OOYALA_PLAYER => 'SCRIPT (amp-ooyala-player)',
+        Extension::ORIENTATION_OBSERVER => 'SCRIPT (amp-orientation-observer)',
+        Extension::PAN_ZOOM => 'SCRIPT (amp-pan-zoom)',
+        Extension::PINTEREST => 'SCRIPT (amp-pinterest)',
+        Extension::PLAYBUZZ => 'SCRIPT (amp-playbuzz)',
+        Extension::POSITION_OBSERVER => 'SCRIPT (amp-position-observer)',
+        Extension::POWR_PLAYER => 'SCRIPT (amp-powr-player)',
+        Extension::REACH_PLAYER => 'SCRIPT (amp-reach-player)',
+        Extension::RECAPTCHA_INPUT => 'SCRIPT (amp-recaptcha-input)',
+        Extension::REDBULL_PLAYER => 'SCRIPT (amp-redbull-player)',
+        Extension::REDDIT => 'SCRIPT (amp-reddit)',
+        Extension::RIDDLE_QUIZ => 'SCRIPT (amp-riddle-quiz)',
+        Extension::SCRIPT => 'SCRIPT (amp-script)',
+        Extension::SELECTOR => 'SCRIPT[custom-element=amp-selector] (AMP4EMAIL)',
+        Extension::SIDEBAR => 'SCRIPT[custom-element=amp-sidebar] (AMP4EMAIL)',
+        Extension::SKIMLINKS => 'SCRIPT (amp-skimlinks)',
+        Extension::SLIDES => 'SCRIPT (amp-slides)',
+        Extension::SMARTLINKS => 'SCRIPT (amp-smartlinks)',
+        Extension::SOCIAL_SHARE => 'SCRIPT (amp-social-share)',
+        Extension::SOUNDCLOUD => 'SCRIPT (amp-soundcloud)',
+        Extension::SPRINGBOARD_PLAYER => 'SCRIPT (amp-springboard-player)',
+        Extension::STICKY_AD => 'SCRIPT (amp-sticky-ad)',
+        Extension::STORY => 'SCRIPT (amp-story)',
+        Extension::STORY_360 => 'SCRIPT (amp-story-360)',
+        Extension::STORY_AUTO_ADS => 'SCRIPT (amp-story-auto-ads)',
+        Extension::STORY_INTERACTIVE => 'SCRIPT (amp-story-interactive)',
+        Extension::STORY_PANNING_MEDIA => 'SCRIPT (amp-story-panning-media)',
+        Extension::STORY_PLAYER => 'SCRIPT (amp-story-player)',
+        Extension::SUBSCRIPTIONS => 'SCRIPT (amp-subscriptions)',
+        Extension::SUBSCRIPTIONS_GOOGLE => 'SCRIPT (amp-subscriptions-google)',
+        Extension::TIMEAGO => 'SCRIPT[custom-element=amp-timeago] (AMP4EMAIL)',
+        Extension::TRUNCATE_TEXT => 'SCRIPT (amp-truncate-text)',
+        Extension::TWITTER => 'SCRIPT (amp-twitter)',
+        Extension::USER_NOTIFICATION => 'SCRIPT (amp-user-notification)',
+        Extension::VIDEO_DOCKING => 'SCRIPT (amp-video-docking)',
+        Extension::VIDEO_IFRAME => 'SCRIPT (amp-video-iframe)',
+        Extension::VIMEO => 'SCRIPT (amp-vimeo)',
+        Extension::VINE => 'SCRIPT (amp-vine)',
+        Extension::VIQEO_PLAYER => 'SCRIPT (amp-viqeo-player)',
+        Extension::VK => 'SCRIPT (amp-vk)',
+        Extension::WEB_PUSH => 'SCRIPT (amp-web-push)',
+        Extension::WISTIA_PLAYER => 'SCRIPT (amp-wistia-player)',
+        Extension::YOTPO => 'SCRIPT (amp-yotpo)',
+        Extension::YOUTUBE => 'SCRIPT (amp-youtube)',
+    ];
+
     /** @var array<Tag> */
     private $tagsCache = [];
 
@@ -2677,6 +2809,22 @@ final class Tags
         }
 
         return $tags;
+    }
+
+    /**
+     * Get the tag for a given extension spec name.
+     *
+     * @param string $extension Extension name to get the extension spec for.
+     * @return Tag Tag with the given extension spec name.
+     * @throws InvalidExtension If an invalid extension name is requested.
+     */
+    public function byExtensionSpec($extension)
+    {
+        if (!array_key_exists($extension, self::BY_EXTENSION_SPEC)) {
+            throw InvalidExtension::forExtension($extension);
+        }
+
+        return $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
     }
 
     /**
