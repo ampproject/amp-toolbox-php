@@ -118,26 +118,6 @@ final class FileManager
     }
 
     /**
-     * Get the destination folder to use.
-     *
-     * @return string Destination folder.
-     */
-    public function getDestination()
-    {
-        return $this->destination;
-    }
-
-    /**
-     * Get the printer instance to use.
-     *
-     * @return Printer Printer instance.
-     */
-    public function getPrinter()
-    {
-        return $this->printer;
-    }
-
-    /**
      * Save a file to the filesystem.
      *
      * @param PhpFile $file             File to save.
@@ -315,32 +295,5 @@ final class FileManager
         // TODO: Add additional logic here.
 
         return "AmpProject\\{$class}";
-    }
-
-    /**
-     * Recursively adapt an array of source data.
-     *
-     * @param mixed $source Source data to adapt.
-     * @param array<string> $classes Array of classes that were extracted.
-     * @return mixed Source data.
-     */
-    private function recursivelyAdaptConstant($source, &$classes)
-    {
-        if (is_string($source)) {
-            $constantClasses = $this->extractClassNames($source);
-            $classes = array_merge($classes, $constantClasses);
-
-            return $this->adaptSource($source, $constantClasses);
-        }
-
-        if (is_array($source)) {
-            foreach ($source as $key => $value) {
-                unset($source[$key]);
-                $key          = $this->recursivelyAdaptConstant($key, $classes);
-                $source[$key] = $this->recursivelyAdaptConstant($value, $classes);
-            }
-        }
-
-        return $source;
     }
 }
