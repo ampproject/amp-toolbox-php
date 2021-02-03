@@ -74,8 +74,8 @@ final class Css
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
                 SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => true,
                 SpecRule::DECLARATION_LIST => [
-                    'BASIC_DECLARATIONS',
-                    'AMP_ONLY_DECLARATIONS',
+                    DeclarationList::BASIC_DECLARATIONS,
+                    DeclarationList::AMP_ONLY_DECLARATIONS,
                 ],
                 SpecRule::DECLARATION_LIST_SVG => [
                     'SVG_BASIC_DECLARATIONS',
@@ -113,8 +113,8 @@ final class Css
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
                 SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => true,
                 SpecRule::DECLARATION_LIST => [
-                    'BASIC_DECLARATIONS',
-                    'AMP_ONLY_DECLARATIONS',
+                    DeclarationList::BASIC_DECLARATIONS,
+                    DeclarationList::AMP_ONLY_DECLARATIONS,
                 ],
                 SpecRule::DECLARATION_LIST_SVG => [
                     'SVG_BASIC_DECLARATIONS',
@@ -146,7 +146,7 @@ final class Css
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
                 SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => true,
                 SpecRule::DECLARATION_LIST => [
-                    'BASIC_DECLARATIONS',
+                    DeclarationList::BASIC_DECLARATIONS,
                 ],
                 SpecRule::DECLARATION_LIST_SVG => [
                     'SVG_BASIC_DECLARATIONS',
@@ -184,7 +184,7 @@ final class Css
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
                 SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => true,
                 SpecRule::DECLARATION_LIST => [
-                    'BASIC_DECLARATIONS',
+                    DeclarationList::BASIC_DECLARATIONS,
                 ],
                 SpecRule::DECLARATION_LIST_SVG => [
                     'SVG_BASIC_DECLARATIONS',
@@ -212,7 +212,7 @@ final class Css
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
                 SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE_TAG => false,
                 SpecRule::DECLARATION_LIST => [
-                    'EMAIL_SPECIFIC_DECLARATIONS',
+                    DeclarationList::EMAIL_SPECIFIC_DECLARATIONS,
                 ],
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [

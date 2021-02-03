@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Section\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -44,6 +45,6 @@ final class AmpStoryAutoAdsTemplate extends Tag
         SpecRule::REQUIRES_EXTENSION => [
             Extension::MUSTACHE,
         ],
-        SpecRule::DESCENDANT_TAG_LIST => 'amp-story-grid-layer-allowed-descendants',
+        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList::AMP_STORY_GRID_LAYER_ALLOWED_DESCENDANTS,
     ];
 }

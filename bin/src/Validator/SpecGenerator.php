@@ -43,13 +43,11 @@ final class SpecGenerator
 
         $namespace->addUse("{$rootNamespace}\\Spec");
 
-        $jsonSpec = $this->adaptJsonSpec($jsonSpec);
-
+        $jsonSpec     = $this->adaptJsonSpec($jsonSpec);
         $specRuleKeys = $this->collectSpecRuleKeys($jsonSpec);
 
         $this->generateEntityClass('Tag', $fileManager);
         $this->generateEntityClass('AttributeList', $fileManager);
-        $this->generateEntityClass('DeclarationList', $fileManager);
         $this->generateEntityClass('HasExtensionSpec', $fileManager, 'interface');
         $this->generateEntityClass('ExtensionVersion', $fileManager, 'trait');
         $this->generateErrorCodeInterface($jsonSpec, $fileManager);
@@ -60,37 +58,37 @@ final class SpecGenerator
                 case 'minValidatorRevisionRequired':
                 case 'specFileRevision':
                     $class->addProperty($section, $sectionSpec)
-                        ->setPrivate()
-                        ->addComment("@var int");
+                          ->setPrivate()
+                          ->addComment("@var int");
 
                     $class->addMethod($section)
-                              ->addBody('return $this->?;', [$section])
-                              ->addComment("@return int");
+                          ->addBody('return $this->?;', [$section])
+                          ->addComment("@return int");
                     break;
                 case 'scriptSpecUrl':
                 case 'stylesSpecUrl':
                 case 'templateSpecUrl':
                     $class->addProperty($section, $sectionSpec)
-                              ->setPrivate()
-                              ->addComment("@var string");
+                          ->setPrivate()
+                          ->addComment("@var string");
 
                     $class->addMethod($section)
-                              ->addBody('return $this->?;', [$section])
-                              ->addComment("@return string");
+                          ->addBody('return $this->?;', [$section])
+                          ->addComment("@return string");
                     break;
                 default:
                     $sectionClassName = $this->generateSectionClass($section, $sectionSpec, $fileManager);
 
                     $class->addProperty($section)
-                        ->setPrivate()
-                        ->addComment("@var Spec\\Section\\{$sectionClassName}");
+                          ->setPrivate()
+                          ->addComment("@var Spec\\Section\\{$sectionClassName}");
 
                     $class->addMethod($section)
-                              ->addBody('if ($this->? === null) {', [$section])
-                              ->addBody("    \$this->? = new Spec\\Section\\{$sectionClassName}();", [$section])
-                              ->addBody('}')
-                              ->addBody('return $this->?;', [$section])
-                              ->addComment("@return Spec\\Section\\{$sectionClassName}");
+                          ->addBody('if ($this->? === null) {', [$section])
+                          ->addBody("    \$this->? = new Spec\\Section\\{$sectionClassName}();", [$section])
+                          ->addBody('}')
+                          ->addBody('return $this->?;', [$section])
+                          ->addComment("@return Spec\\Section\\{$sectionClassName}");
             }
         }
 
@@ -216,9 +214,6 @@ final class SpecGenerator
     {
         $jsonSpec['attributeLists'] = $jsonSpec['attrLists'];
         unset($jsonSpec['attrLists']);
-
-        $jsonSpec['declarationLists'] = $jsonSpec['declarationList'];
-        unset($jsonSpec['declarationList']);
 
         $errorArray = [
             'format'      => $jsonSpec['errorFormats'],

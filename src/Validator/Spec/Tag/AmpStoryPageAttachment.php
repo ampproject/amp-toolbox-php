@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Section\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -38,7 +39,7 @@ final class AmpStoryPageAttachment extends Tag
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::DESCENDANT_TAG_LIST => 'amp-story-page-attachment-allowed-descendants',
+        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList::AMP_STORY_PAGE_ATTACHMENT_ALLOWED_DESCENDANTS,
         SpecRule::MANDATORY_LAST_CHILD => true,
     ];
 }

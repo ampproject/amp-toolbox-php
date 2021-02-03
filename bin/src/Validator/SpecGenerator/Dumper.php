@@ -223,6 +223,10 @@ final class Dumper
             ||
             strpos($value, 'Attribute::') === 0
             ||
+            strpos($value, 'DeclarationList::') === 0
+            ||
+            strpos($value, 'DescendantTagList::') === 0
+            ||
             strpos($value, 'Element::') === 0
             ||
             strpos($value, 'ErrorCode::') === 0
@@ -274,6 +278,14 @@ final class Dumper
                     }
                 }
                 return $value;
+            case 'declarationList':
+                $declarationLists = [];
+                foreach ($value as $declarationList) {
+                    $declarationLists[] = "DeclarationList::{$this->getConstantName($declarationList)}";
+                }
+                return $declarationLists;
+            case 'descendantTagList':
+                return "DescendantTagList::{$this->getConstantName($value)}";
             case 'htmlFormat':
                 $formats = [];
                 foreach ($value as $format) {

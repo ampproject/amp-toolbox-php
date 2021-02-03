@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\Section\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -47,6 +48,6 @@ final class AmpMegaMenu extends Tag
         SpecRule::REQUIRES_EXTENSION => [
             Extension::MEGA_MENU,
         ],
-        SpecRule::DESCENDANT_TAG_LIST => 'amp-mega-menu-allowed-descendants',
+        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList::AMP_MEGA_MENU_ALLOWED_DESCENDANTS,
     ];
 }

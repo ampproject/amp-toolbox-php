@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\Section\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -43,6 +44,6 @@ final class AmpNestedMenu extends Tag
         SpecRule::REQUIRES_EXTENSION => [
             Extension::SIDEBAR,
         ],
-        SpecRule::DESCENDANT_TAG_LIST => 'amp-nested-menu-allowed-descendants',
+        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList::AMP_NESTED_MENU_ALLOWED_DESCENDANTS,
     ];
 }

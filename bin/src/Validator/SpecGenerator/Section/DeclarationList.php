@@ -3,31 +3,14 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
-use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
-use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
-final class DeclarationLists implements Section
+final class DeclarationList implements Section
 {
     use ConstantNames;
-
-    /**
-     * Dumper instance to use.
-     *
-     * @var Dumper
-     */
-    private $dumper;
-
-    /**
-     * DeclarationLists constructor.
-     */
-    public function __construct()
-    {
-        $this->dumper = new Dumper();
-    }
 
     /**
      * Process a section.
@@ -41,37 +24,16 @@ final class DeclarationLists implements Section
     public function process(FileManager $fileManager, $spec, PhpNamespace $namespace, ClassType $class)
     {
         $namespace->addUse('AmpProject\Attribute');
-        $namespace->addUse('AmpProject\Exception\InvalidListName');
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
 
-        $this->data = $this->adaptSpec($spec);
-
-        $class->addProperty('declarations')
-              ->setPrivate()
-              ->addComment('@var array<Spec\DeclarationList>');
-
-        $constructor = $class->addMethod('__construct');
-
-        $constructor->addBody('$this->? = [', ['declarations']);
-
-        foreach ($this->data as $key => $value) {
-            $constructor->addBody("    '{$key}' => new Spec\DeclarationList(");
-            $constructor->addBody('        [');
+        foreach ($this->adaptSpec($spec) as $key => $value) {
+            $constantKey   = $this->getConstantName($key);
+            $constantValue = [];
             foreach ($value as $subKey => $subValue) {
-                $constant  = $this->getAttributeConstant($this->getConstantName($subKey));
-                $keyString = strpos($constant, 'Attribute::') === 0 ? $constant : "'{$subKey}'";
-                $constructor->addBody("            {$keyString} => {$this->dumper->dump($subValue, 3, [$subKey])},");
+                $subKey                 = $this->getAttributeConstant($this->getConstantName($subKey));
+                $constantValue[$subKey] = $subValue;
             }
-            $constructor->addBody('        ]');
-            $constructor->addBody("    ),");
-        }
-
-        $constructor->addBody('];');
-
-        $declarationListsTemplateClass = ClassType::withBodiesFrom(Template\DeclarationLists::class);
-        foreach ($declarationListsTemplateClass->getMethods() as $method) {
-            $class->addMember($method);
+            $class->addConstant($constantKey, $constantValue);
         }
     }
 

@@ -3,7 +3,6 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
-use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use Nette\PhpGenerator\ClassType;
@@ -12,21 +11,6 @@ use Nette\PhpGenerator\PhpNamespace;
 final class DescendantTagList implements Section
 {
     use ConstantNames;
-
-    /**
-     * Dumper instance to use.
-     *
-     * @var Dumper
-     */
-    private $dumper;
-
-    /**
-     * DescendantTagList constructor.
-     */
-    public function __construct()
-    {
-        $this->dumper = new Dumper();
-    }
 
     /**
      * Process a section.
@@ -39,27 +23,34 @@ final class DescendantTagList implements Section
      */
     public function process(FileManager $fileManager, $spec, PhpNamespace $namespace, ClassType $class)
     {
-        $propertyName = lcfirst($class->getName());
-
         $namespace->addUse('AmpProject\\Extension');
         $namespace->addUse('AmpProject\\Tag', 'Element');
         $namespace->addUse('AmpProject\\Internal');
 
-        $class->addProperty($propertyName)
-              ->addComment('@var array');
-
-        $constructor = $class->addMethod('__construct');
-        $constructor->addBody('$this->? = [', [$propertyName]);
-
-        foreach ($spec as $data) {
-            $key = $data['name'];
-            $tags = [];
-            foreach ($data['tag'] as $tag) {
-                $tags[] = $this->getTagConstant($this->getConstantName($tag));
+        foreach ($this->adaptSpec($spec) as $key => $value) {
+            $constantKey   = $this->getConstantName($key);
+            $constantValue = [];
+            foreach ($value as $subKey => $subValue) {
+                $constantValue[$subKey] = $this->getTagConstant($this->getConstantName($subValue));
             }
-            $constructor->addBody("    {$this->dumper->dumpWithKey($key, $tags, 1)},");
+            $class->addConstant($constantKey, $constantValue);
+        }
+    }
+
+    /**
+     * Adapt JSON spec data.
+     *
+     * @param array $jsonSpec JSON spec data to adapt.
+     * @return array Adapted JSON spec data.
+     */
+    protected function adaptSpec($jsonSpec)
+    {
+        $tagList = [];
+
+        foreach ($jsonSpec as $entry) {
+            $tagList[$entry['name']] = $entry['tag'];
         }
 
-        $constructor->addBody('];');
+        return $tagList;
     }
 }

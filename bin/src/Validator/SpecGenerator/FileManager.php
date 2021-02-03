@@ -292,6 +292,10 @@ final class FileManager
             return "AmpProject\\Validator\\Spec\\{$class}";
         }
 
+        if (in_array($class, ['DeclarationList', 'DescendantTagList'], true)) {
+            return "AmpProject\\Validator\\Spec\\Section\\{$class}";
+        }
+
         // TODO: Add additional logic here.
 
         return "AmpProject\\{$class}";
