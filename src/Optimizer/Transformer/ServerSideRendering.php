@@ -293,6 +293,13 @@ final class ServerSideRendering implements Transformer
         try {
             /** @var Element $newElement */
             $newElement = $element->cloneNode(true);
+
+            // Transformed AMP validation requires layout attribute to be set.
+            // See https://github.com/ampproject/amp-toolbox/issues/959
+            if ($layout && $layout === Layout::RESPONSIVE) {
+                $newElement->setAttribute(Attribute::LAYOUT, $layout);
+            }
+
             $this->applyLayoutAttributes($newElement, $layout, $width, $height);
             $this->maybeAddSizerInto($document, $newElement, $layout, $width, $height);
             $element->parentNode->replaceChild($newElement, $element);
