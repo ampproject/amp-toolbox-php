@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 get_files() {
     git ls-files "$1" --exclude-per-directory=.gitignore --exclude-from=.git/info/exclude --exclude-standard
