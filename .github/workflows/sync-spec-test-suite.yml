@@ -1,0 +1,67 @@
+name: Sync spec test suite from NodeJS toolbox
+on:
+  pull_request:
+  schedule:
+    # https://crontab.guru/every-night-at-midnight
+    - cron: "0 0 * * *"
+
+jobs:
+  sync-spec-test-suite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: dom, iconv, json, libxml, zip
+          tools: composer
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Configure Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install
+
+      - name: Sync spec test suite
+        run: composer update-test-specs
+
+      - name: Get pull request body text
+        id: body
+        run: |
+          BODY=$(bin/render-pr-body.bash)
+          echo $BODY
+          BODY="${BODY//$'\n'/'%0A'}"
+          echo -e "::set-output name=text::$BODY"
+
+
+      - name: Create branch with committed changes
+        run: |
+          git config --global user.email "alain.schlesser@gmail.com"
+          git config --global user.name "Alain Schlesser"
+          git branch -f sync-spec-test-suite
+          git checkout sync-spec-test-suite
+          git add --all .
+          git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')" || true
+          git push --force origin sync-spec-test-suite || true
+
+      - name: Create or update pull request
+        uses: gr2m/create-or-update-pull-request-action@v1
+        with:
+          author: "Alain Schlesser <alain.schlesser@gmail.com>"
+          branch: "sync-spec-test-suite"
+          body: "${{ steps.body.outputs.text }}"
+          title: "Sync spec test suite"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
