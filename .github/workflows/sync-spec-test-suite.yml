@@ -1,0 +1,40 @@
+name: Sync spec test suite from NodeJS toolbox
+on:
+  pull_request:
+  schedule:
+    # https://crontab.guru/every-night-at-midnight
+    - cron: "0 0 * * *"
+
+jobs:
+  update_routes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: dom, iconv, json, libxml, zip
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+
+      - name: Sync spec test suite
+        run: php bin/sync-amp-toolbox-test-suite.php
+
+      - name: Get pull request body text
+        id: body
+        run: echo "::set-output name=text::$(bin/render-pr-body.bash)"
+
+      - name: Create or update pull request
+        uses: gr2m/create-or-update-pull-request-action@v1
+        with:
+          branch: "sync-spec-test-suite-${{ steps.date.outputs.today }}"
+          body: "${{ steps.body.outputs.text }}"
+          commit-message: "Sync spec test suite - ${{ steps.date.outputs.today }}"
+          title: "Sync spec test suite"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
