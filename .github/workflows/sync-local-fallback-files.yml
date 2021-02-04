@@ -52,6 +52,7 @@ jobs:
           BODY=$(bin/render-pr-body.bash)
           echo $BODY
           BODY="${BODY//$'\n'/'%0A'}"
+          BODY="${BODY//$'`'/'\`'}"
           echo -e "::set-output name=text::$BODY"
 
       - name: Commit update
