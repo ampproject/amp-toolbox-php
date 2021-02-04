@@ -73,7 +73,8 @@ jobs:
       - name: Create pull request
         uses: repo-sync/pull-request@v2
         with:
-          destination_branch: "sync-local-fallback-files"
+          source_branch: "sync-local-fallback-files"
+          destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_title: "Sync local fallback files"
           pr_body: "${{ steps.body.outputs.text }}"
