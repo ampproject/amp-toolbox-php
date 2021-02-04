@@ -51,16 +51,29 @@ jobs:
           git config --global user.name "Alain Schlesser"
           git branch -f sync-local-fallback-files
           git checkout sync-local-fallback-files
+          git pull
+
+      - name: Sync local fallback files
+        run: composer update-fallback-files
+
+      - name: Get pull request body text
+        id: body
+        run: |
+          BODY=$(bin/render-pr-body.bash)
+          echo $BODY
+          BODY="${BODY//$'\n'/'%0A'}"
+          echo -e "::set-output name=text::$BODY"
+
+      - name: Commit update
+        run: |
           git add --all .
           git commit -m "Sync local fallback files - $(date +'%Y-%m-%d')" || true
-          git push --force origin sync-local-fallback-files || true
+          git push origin sync-local-fallback-files || true
 
-      - name: Create or update pull request
-        uses: gr2m/create-or-update-pull-request-action@v1
+      - name: Create pull request
+        uses: repo-sync/pull-request@v2
         with:
-          author: "Alain Schlesser <alain.schlesser@gmail.com>"
-          branch: "sync-local-fallback-files"
-          body: "${{ steps.body.outputs.text }}"
-          title: "Sync local fallback files"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          destination_branch: "sync-local-fallback-files"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: "Sync local fallback files"
+          pr_body: "${{ steps.body.outputs.text }}"

@@ -34,6 +34,15 @@ jobs:
       - name: Install Composer dependencies
         run: composer install
 
+      - name: Create branch as needed and pull latest changes
+        run: |
+          git config --global user.email "alain.schlesser@gmail.com"
+          git config --global user.name "Alain Schlesser"
+          git fetch
+          git branch -f sync-spec-test-suite
+          git checkout sync-spec-test-suite
+          git pull
+
       - name: Sync spec test suite
         run: composer update-test-specs
 
@@ -45,23 +54,16 @@ jobs:
           BODY="${BODY//$'\n'/'%0A'}"
           echo -e "::set-output name=text::$BODY"
 
-
-      - name: Create branch with committed changes
+      - name: Commit update
         run: |
-          git config --global user.email "alain.schlesser@gmail.com"
-          git config --global user.name "Alain Schlesser"
-          git branch -f sync-spec-test-suite
-          git checkout sync-spec-test-suite
           git add --all .
           git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')" || true
-          git push --force origin sync-spec-test-suite || true
+          git push origin sync-spec-test-suite || true
 
-      - name: Create or update pull request
-        uses: gr2m/create-or-update-pull-request-action@v1
+      - name: Create pull request
+        uses: repo-sync/pull-request@v2
         with:
-          author: "Alain Schlesser <alain.schlesser@gmail.com>"
-          branch: "sync-spec-test-suite"
-          body: "${{ steps.body.outputs.text }}"
-          title: "Sync spec test suite"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          destination_branch: "sync-spec-test-suite"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: "Sync spec test suite"
+          pr_body: "${{ steps.body.outputs.text }}"
