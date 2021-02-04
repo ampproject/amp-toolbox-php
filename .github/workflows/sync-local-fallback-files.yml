@@ -34,17 +34,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install
 
-      - name: Sync local fallback files
-        run: composer update-fallback-files
-
-      - name: Get pull request body text
-        id: body
-        run: |
-          BODY=$(bin/render-pr-body.bash)
-          echo $BODY
-          BODY="${BODY//$'\n'/'%0A'}"
-          echo -e "::set-output name=text::$BODY"
-
       - name: Create branch with committed changes
         run: |
           git config --global user.email "alain.schlesser@gmail.com"
