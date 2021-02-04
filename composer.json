@@ -60,6 +60,8 @@
     ],
     "analyze": "if [ -z $TEST_SKIP_PHPSTAN ]; then phpstan --version; phpstan analyze --ansi; fi",
     "unit": "if [ -z $TEST_SKIP_PHPUNIT ]; then phpunit --colors=always; fi",
+    "sync-fallback-files":  "bin/sync-amp-runtime-local-fallback-resources.php",
+    "sync-test-specs":  "rm -rf tests/spec && bin/sync-amp-toolbox-test-suite.php",
     "sync": [
       "sync-fallback-files",
       "sync-test-specs"
