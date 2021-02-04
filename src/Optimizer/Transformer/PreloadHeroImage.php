@@ -489,9 +489,13 @@ final class PreloadHeroImage implements Transformer
             }
         }
 
-        if ($heroImage->getMedia()) {
-            $preload->setAttribute(Attribute::MEDIA, $heroImage->getMedia());
+        if (empty($heroImage->getMedia())) {
+            // We can only safely preload a hero image if there's a media attribute
+            // as we can't detect whether it's hidden on certain viewport sizes otherwise.
+            return;
         }
+
+        $preload->setAttribute(Attribute::MEDIA, $heroImage->getMedia());
 
         if ($this->preloadReferenceNode) {
             $this->preloadReferenceNode->parentNode->insertBefore(

@@ -57,8 +57,7 @@ final class PreloadHeroImageTest extends TestCase
                 $output(
                     '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png"></amp-img>'
                     . '<amp-img width="500" height="400" src="/img2.png"></amp-img>'
-                    . '<amp-img width="500" height="400" src="/img3.png"></amp-img>',
-                    '<link rel=preload href="/img1.png" as="image" data-hero>'
+                    . '<amp-img width="500" height="400" src="/img3.png"></amp-img>'
                 ),
             ],
 
@@ -71,8 +70,7 @@ final class PreloadHeroImageTest extends TestCase
                 $output(
                     '<amp-img width="100" height="100" src="/img1.png"></amp-img>'
                     . '<amp-img data-hero width="500" height="400" src="/img2.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img2.png"></amp-img>'
-                    . '<amp-img width="500" height="400" src="/img3.png"></amp-img>',
-                    '<link rel=preload href="/img2.png" as="image" data-hero>'
+                    . '<amp-img width="500" height="400" src="/img3.png"></amp-img>'
                 ),
             ],
 
@@ -91,9 +89,7 @@ final class PreloadHeroImageTest extends TestCase
                     . '<amp-img data-hero width="500" height="400" src="/hero2.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/hero2.png"></amp-img>'
                     . '<amp-img data-hero width="500" height="400" src="/hero3.png"></amp-img>'
                     . '<amp-img data-hero width="500" height="400" src="/hero4.png"></amp-img>'
-                    . '<amp-img data-hero width="500" height="400" src="/hero5.png"></amp-img>',
-                    '<link rel=preload href="/hero1.png" as="image" data-hero>'
-                    . '<link rel=preload href="/hero2.png" as="image" data-hero>'
+                    . '<amp-img data-hero width="500" height="400" src="/hero5.png"></amp-img>'
                 ),
                 [
                     Error\TooManyHeroImages::whenPastMaximum(),
@@ -111,8 +107,7 @@ final class PreloadHeroImageTest extends TestCase
                     . '</amp-img>'
                     . '<amp-img data-hero width="500" height="400" i-amphtml-ssr src="https://example-com.cdn.ampproject.org/hero2.png">'
                     . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="https://example-com.cdn.ampproject.org/hero2.png">'
-                    . '</amp-img>',
-                    '<link rel=preload href="https://example-com.cdn.ampproject.org/hero2.png" as="image" data-hero>'
+                    . '</amp-img>'
                 ),
                 [
                     Error\CannotPreloadImage::fromImageWithSrcsetAttribute(
@@ -132,8 +127,7 @@ final class PreloadHeroImageTest extends TestCase
                 $output(
                     '<amp-anim data-hero width="500" height="400" src="/foo.gif">'
                     . '<amp-img placeholder data-hero width="500" height="400" src="/foo.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/foo.png"></amp-img>'
-                    . '</amp-anim>',
-                    '<link rel=preload href="/foo.png" as="image" data-hero>'
+                    . '</amp-anim>'
                 )
             ],
 
@@ -146,8 +140,7 @@ final class PreloadHeroImageTest extends TestCase
                 $output(
                     '<amp-youtube data-hero data-videoid="mGENRKrdoGY" layout="responsive" width="480" height="270">'
                     . '<amp-img placeholder data-hero width="480" height="270" src="/foo.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/foo.png"></amp-img>'
-                    . '</amp-youtube>',
-                    '<link rel=preload href="/foo.png" as="image" data-hero>'
+                    . '</amp-youtube>'
                 )
             ],
 
@@ -166,9 +159,7 @@ final class PreloadHeroImageTest extends TestCase
                     . '</amp-vimeo>'
                     . '<amp-wistia-player data-hero data-media-hashed-id="u8p9wq6mq8" layout="responsive" width="480" height="270">'
                     . '<div placeholder><p><img width="480" height="270" src="/hero2.png"></p></div>'
-                    . '</amp-wistia-player>',
-                    '<link rel=preload href="/hero1.png" as="image" data-hero>'
-                    . '<link rel=preload href="/hero2.png" as="image" data-hero>'
+                    . '</amp-wistia-player>'
                 )
             ],
 
@@ -181,9 +172,7 @@ final class PreloadHeroImageTest extends TestCase
                 $output(
                     '<div style="background-image:url(\'https://example.com/img1.jpg\')"></div>'
                     . '<div style="background-image:url(\'https://example.com/hero1.jpg\')" data-hero></div>'
-                    . '<div data-amp-original-style="background-image:url(https://example.com/hero2.jpg)" data-hero></div>',
-                    '<link rel=preload href="https://example.com/hero1.jpg" as="image" data-hero>'
-                    . '<link rel=preload href="https://example.com/hero2.jpg" as="image" data-hero>'
+                    . '<div data-amp-original-style="background-image:url(https://example.com/hero2.jpg)" data-hero></div>'
                 ),
                 [],
                 [
@@ -198,8 +187,7 @@ final class PreloadHeroImageTest extends TestCase
                 $output(
                     '<amp-img data-hero width="500" height="400" src="/img1.png" alt="Some image" attribution="by someone" referrerpolicy="unknown" sizes="many" srcset="for2.jpg w320, foo3.jpg" title="the title" i-amphtml-ssr>'
                     . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png" alt="Some image" attribution="by someone" referrerpolicy="unknown" sizes="many" srcset="for2.jpg w320, foo3.jpg" title="the title">'
-                    . '</amp-img>',
-                    '<link rel=preload href="/img1.png" as="image" data-hero imagesizes="many" imagesrcset="for2.jpg w320, foo3.jpg">'
+                    . '</amp-img>'
                 ),
                 [],
                 [
@@ -214,8 +202,7 @@ final class PreloadHeroImageTest extends TestCase
                 $output(
                     '<amp-img data-hero width="500" height="400" src="/img1.png" object-fit="cover" object-position="right top" i-amphtml-ssr>'
                     . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png" style="object-fit:cover;object-position:right top;">'
-                    . '</amp-img>',
-                    '<link rel=preload href="/img1.png" as="image" data-hero>'
+                    . '</amp-img>'
                 ),
             ],
         ];

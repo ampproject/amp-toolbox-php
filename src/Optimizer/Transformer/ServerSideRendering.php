@@ -122,7 +122,7 @@ final class ServerSideRendering implements Transformer
             }
 
             // Skip tags inside a template tag.
-            if ($this->hasAncestorWithTag($ampElement, Tag::TEMPLATE)) {
+            if ($this->isWithinTemplate($ampElement)) {
                 continue;
             }
 
@@ -293,6 +293,13 @@ final class ServerSideRendering implements Transformer
         try {
             /** @var Element $newElement */
             $newElement = $element->cloneNode(true);
+
+            // Transformed AMP validation requires layout attribute to be set.
+            // See https://github.com/ampproject/amp-toolbox/issues/959
+            if ($layout && $layout === Layout::RESPONSIVE) {
+                $newElement->setAttribute(Attribute::LAYOUT, $layout);
+            }
+
             $this->applyLayoutAttributes($newElement, $layout, $width, $height);
             $this->maybeAddSizerInto($document, $newElement, $layout, $width, $height);
             $element->parentNode->replaceChild($newElement, $element);
@@ -652,21 +659,27 @@ final class ServerSideRendering implements Transformer
     }
 
     /**
-     * Check whether the element has an ancestor of a given tag type.
+     * Check whether the element is within a template.
      *
-     * @param Element $element Element to check the ancestor tree of.
-     * @param string  $tagName Name of the tag to look for.
-     * @return bool Whether the element has an ancestor of the given tag name.
+     * @param Element $element Element to check.
+     * @return bool Whether the element is within a template.
      */
-    private function hasAncestorWithTag(Element $element, $tagName)
+    private function isWithinTemplate(Element $element)
     {
         $parent = $element->parentNode;
         while ($parent !== null) {
-            if ($parent instanceof Element && $parent->tagName === $tagName) {
-                return true;
+            if ($parent instanceof Element) {
+                if ($parent->tagName === Tag::TEMPLATE) {
+                    return true;
+                }
+
+                if ($parent->tagName === Tag::SCRIPT && $parent->hasAttribute(Attribute::TEMPLATE)) {
+                    return true;
+                }
             }
             $parent = $parent->parentNode;
         }
+
         return false;
     }
 
