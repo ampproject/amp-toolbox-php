@@ -39,7 +39,7 @@ jobs:
           git config --global user.email "alain.schlesser@gmail.com"
           git config --global user.name "Alain Schlesser"
           git fetch
-          git branch -f sync-spec-test-suite
+          git branch -f sync-spec-test-suite main
           git checkout sync-spec-test-suite
           git pull --no-rebase || true
 

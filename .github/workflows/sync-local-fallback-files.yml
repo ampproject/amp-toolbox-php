@@ -39,7 +39,7 @@ jobs:
           git config --global user.email "alain.schlesser@gmail.com"
           git config --global user.name "Alain Schlesser"
           git fetch
-          git branch -f sync-local-fallback-files
+          git branch -f sync-local-fallback-files main
           git checkout sync-local-fallback-files
           git pull --no-rebase || true
 
