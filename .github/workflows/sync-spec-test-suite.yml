@@ -51,6 +51,7 @@ jobs:
           git config --global user.email "alain.schlesser@gmail.com"
           git config --global user.name "Alain Schlesser"
           git branch -f sync-spec-test-suite
+          git checkout sync-spec-test-suite
           git add --all .
           git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')"
           git push --force origin sync-spec-test-suite
