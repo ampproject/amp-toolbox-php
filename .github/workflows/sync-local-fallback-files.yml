@@ -43,6 +43,14 @@ jobs:
       - name: Sync local fallback files
         run: php bin/sync-amp-runtime-local-fallback-resources.php
 
+      - name: Get pull request body text
+        id: body
+        run: |
+          BODY=$(bin/render-pr-body.bash)
+          echo $BODY
+          BODY="${BODY//$'\n'/'%0A'}"
+          echo "::set-output name=text::$BODY"
+
       - name: Commit and push changes
         uses: github-actions-x/commit@v2.7
         with:
@@ -51,14 +59,6 @@ jobs:
           commit-message: "Sync local fallback files - ${{ steps.date.outputs.today }}"
           name: Alain Schlesser
           email: alain.schlesser@gmail.com
-
-      - name: Get pull request body text
-        id: body
-        run: |
-          BODY=$(bin/render-pr-body.bash)
-          echo $BODY
-          BODY="${BODY//$'\n'/'%0A'}"
-          echo "::set-output name=text::$BODY"
 
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1
