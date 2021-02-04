@@ -52,7 +52,7 @@ jobs:
           git config --global user.name "Alain Schlesser"
           git branch -f sync-spec-test-suite
           git add --all .
-          git commit "Sync spec test suite - $(date +'%Y-%m-%d')"
+          git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')"
           git push --force origin sync-spec-test-suite
 
       - name: Create or update pull request
