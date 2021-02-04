@@ -50,6 +50,7 @@ jobs:
           git config --global user.email "alain.schlesser@gmail.com"
           git config --global user.name "Alain Schlesser"
           git branch -f sync-local-fallback-files
+          git checkout sync-local-fallback-files
           git add --all .
           git commit -m "Sync local fallback files - $(date +'%Y-%m-%d')"
           git push --force origin sync-local-fallback-files
