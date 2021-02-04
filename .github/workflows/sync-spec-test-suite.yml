@@ -68,3 +68,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_title: "Sync spec test suite"
           pr_body: "${{ steps.body.outputs.text }}"
+          pr_reviewer: "schlessera"
