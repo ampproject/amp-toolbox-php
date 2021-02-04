@@ -49,16 +49,17 @@ jobs:
           BODY=$(bin/render-pr-body.bash)
           echo $BODY
           BODY="${BODY//$'\n'/'%0A'}"
-          echo "::set-output name=text::$BODY"
+          echo -e "::set-output name=text::$BODY"
 
       - name: Commit and push changes
-        uses: github-actions-x/commit@v2.7
+        uses: actions-js/push@master
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: "sync-local-fallback-files"
-          commit-message: "Sync local fallback files - ${{ steps.date.outputs.today }}"
-          name: Alain Schlesser
-          email: alain.schlesser@gmail.com
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "sync-local-fallback-files"
+          message: "Sync local fallback files - ${{ steps.date.outputs.today }}"
+          author_name: Alain Schlesser
+          author_email: alain.schlesser@gmail.com
+          force: true
 
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1
