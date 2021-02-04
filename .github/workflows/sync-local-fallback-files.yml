@@ -6,7 +6,7 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  update_routes:
+  sync-local-fallback-files:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -40,7 +40,7 @@ jobs:
           date +'%Y-%m-%d'
           echo "::set-output name=today::$(date +'%Y-%m-%d')"
 
-      - name: Sync spec test suite
+      - name: Sync local fallback files
         run: php bin/sync-amp-runtime-local-fallback-resources.php
 
       - name: Get pull request body text
@@ -52,6 +52,7 @@ jobs:
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1
         with:
+          author: "Alain Schlesser <alain.schlesser@gmail.com>"
           branch: "sync-local-fallback-files-${{ steps.date.outputs.today }}"
           body: "${{ steps.body.outputs.text }}"
           commit-message: "Sync local fallback files - ${{ steps.date.outputs.today }}"
