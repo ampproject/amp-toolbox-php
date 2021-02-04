@@ -51,6 +51,10 @@ jobs:
           BODY="${BODY//$'\n'/'%0A'}"
           echo -e "::set-output name=text::$BODY"
 
+      - name: Create branch
+        run: |
+          git branch -f sync-local-fallback-files
+
       - name: Commit and push changes
         uses: actions-js/push@master
         with:
