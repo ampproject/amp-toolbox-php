@@ -648,8 +648,8 @@ final class ServerSideRendering implements Transformer
             Attribute::SRC,
             sprintf(
                 'data:image/svg+xml;base64,%s',
-                base64_encode("<svg height='{$height->getNumeral()}' width='{$width->getNumeral()}' "
-                              . "xmlns='http://www.w3.org/2000/svg' version='1.1'/>")
+                base64_encode("<svg height=\"{$height->getNumeral()}\" width=\"{$width->getNumeral()}\" "
+                              . "xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"/>")
             )
         );
 
