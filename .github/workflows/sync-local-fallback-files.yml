@@ -69,3 +69,4 @@ jobs:
           pr_title: "Sync local fallback files"
           pr_body: "${{ steps.body.outputs.text }}"
           pr_reviewer: "schlessera"
+          pr_label: "SSR"
