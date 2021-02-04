@@ -49,9 +49,10 @@ jobs:
         run: |
           git config --global user.email "alain.schlesser@gmail.com"
           git config --global user.name "Alain Schlesser"
+          git fetch
           git branch -f sync-local-fallback-files
           git checkout sync-local-fallback-files
-          git pull
+          git pull --no-rebase || true
 
       - name: Sync local fallback files
         run: composer update-fallback-files
