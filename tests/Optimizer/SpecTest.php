@@ -36,7 +36,6 @@ final class SpecTest extends TestCase
         'ServerSideRendering - converts_sizes_attribute_to_css'                => 'see https://github.com/ampproject/amp-toolbox/issues/819',
         'ServerSideRendering - boilerplate_not_removed_when_amp-story_present' => 'Node.js on stories produces partial SSR whereas PHP leaves the original story intact',
         'ServerSideRendering - transforms_layout_intrinsic'                    => 'see https://github.com/ampproject/amp-toolbox/issues/844',
-        'ServerSideRendering - transforms_layout_responsive'                   => 'see https://github.com/ampproject/amp-toolbox/pull/1135',
 
         'PreloadHeroImage - max-hero-image-count-param' => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
         'PreloadHeroImage - disable_via_param'          => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
