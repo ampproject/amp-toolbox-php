@@ -53,8 +53,8 @@ jobs:
           git branch -f sync-spec-test-suite
           git checkout sync-spec-test-suite
           git add --all .
-          git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')"
-          git push --force origin sync-spec-test-suite
+          git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')" || true
+          git push --force origin sync-spec-test-suite || true
 
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1
