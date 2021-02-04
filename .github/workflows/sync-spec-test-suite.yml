@@ -34,12 +34,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install
 
-      - name: Get current date
-        id: date
-        run: |
-          date +'%Y-%m-%d'
-          echo "::set-output name=today::$(date +'%Y-%m-%d')"
-
       - name: Sync spec test suite
         run: composer update-test-specs
 
@@ -51,19 +45,15 @@ jobs:
           BODY="${BODY//$'\n'/'%0A'}"
           echo -e "::set-output name=text::$BODY"
 
-      - name: Create branch
-        run: |
-          git branch -f sync-spec-test-suite main
 
-      - name: Commit and push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "sync-spec-test-suite"
-          message: "Sync spec test suite - ${{ steps.date.outputs.today }}"
-          author_name: Alain Schlesser
-          author_email: alain.schlesser@gmail.com
-          force: true
+      - name: Create branch with committed changes
+        run: |
+          git config --global user.email "alain.schlesser@gmail.com"
+          git config --global user.name "Alain Schlesser"
+          git branch -f sync-spec-test-suite
+          git add --all .
+          git commit "Sync spec test suite - $(date +'%Y-%m-%d')"
+          git push --force origin sync-spec-test-suite
 
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1
