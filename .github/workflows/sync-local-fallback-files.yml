@@ -1,0 +1,71 @@
+name: Sync runtime local fallback files
+on:
+  pull_request:
+  schedule:
+    # https://crontab.guru/every-night-at-midnight
+    - cron: "0 0 * * *"
+
+jobs:
+  sync-local-fallback-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: dom, iconv, json, libxml, zip
+          tools: composer
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Configure Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install
+
+      - name: Create branch with committed changes
+        run: |
+          git config --global user.email "alain.schlesser@gmail.com"
+          git config --global user.name "Alain Schlesser"
+          git fetch
+          git branch -f sync-local-fallback-files
+          git checkout sync-local-fallback-files
+          git pull --no-rebase || true
+
+      - name: Sync local fallback files
+        run: composer update-fallback-files
+
+      - name: Get pull request body text
+        id: body
+        run: |
+          BODY=$(bin/render-pr-body.bash)
+          echo $BODY
+          BODY="${BODY//$'\n'/'%0A'}"
+          echo -e "::set-output name=text::$BODY"
+
+      - name: Commit update
+        run: |
+          git add --all .
+          git commit -m "Sync local fallback files - $(date +'%Y-%m-%d')" || true
+          git push origin sync-local-fallback-files || true
+
+      - name: Create pull request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "sync-local-fallback-files"
+          destination_branch: "main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: "Sync local fallback files"
+          pr_body: "${{ steps.body.outputs.text }}"
+          pr_reviewer: "schlessera"

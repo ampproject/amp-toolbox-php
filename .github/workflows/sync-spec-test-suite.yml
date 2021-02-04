@@ -1,0 +1,71 @@
+name: Sync spec test suite from NodeJS toolbox
+on:
+  pull_request:
+  schedule:
+    # https://crontab.guru/every-night-at-midnight
+    - cron: "0 0 * * *"
+
+jobs:
+  sync-spec-test-suite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: dom, iconv, json, libxml, zip
+          tools: composer
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Configure Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install
+
+      - name: Create branch as needed and pull latest changes
+        run: |
+          git config --global user.email "alain.schlesser@gmail.com"
+          git config --global user.name "Alain Schlesser"
+          git fetch
+          git branch -f sync-spec-test-suite
+          git checkout sync-spec-test-suite
+          git pull --no-rebase || true
+
+      - name: Sync spec test suite
+        run: composer update-test-specs
+
+      - name: Get pull request body text
+        id: body
+        run: |
+          BODY=$(bin/render-pr-body.bash)
+          echo $BODY
+          BODY="${BODY//$'\n'/'%0A'}"
+          echo -e "::set-output name=text::$BODY"
+
+      - name: Commit update
+        run: |
+          git add --all .
+          git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')" || true
+          git push origin sync-spec-test-suite || true
+
+      - name: Create pull request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "sync-spec-test-suite"
+          destination_branch: "main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: "Sync spec test suite"
+          pr_body: "${{ steps.body.outputs.text }}"
+          pr_reviewer: "schlessera"
