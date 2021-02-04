@@ -44,7 +44,7 @@ jobs:
           git pull --no-rebase || true
 
       - name: Sync spec test suite
-        run: composer update-test-specs
+        run: composer sync-test-specs
 
       - name: Get pull request body text
         id: body
