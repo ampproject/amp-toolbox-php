@@ -43,6 +43,15 @@ jobs:
       - name: Sync local fallback files
         run: php bin/sync-amp-runtime-local-fallback-resources.php
 
+      - name: Commit and push changes
+        uses: github-actions-x/commit@v2.7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: "sync-local-fallback-files"
+          commit-message: "Sync local fallback files - ${{ steps.date.outputs.today }}"
+          name: Alain Schlesser
+          email: alain.schlesser@gmail.com
+
       - name: Get pull request body text
         id: body
         run: |
@@ -55,9 +64,8 @@ jobs:
         uses: gr2m/create-or-update-pull-request-action@v1
         with:
           author: "Alain Schlesser <alain.schlesser@gmail.com>"
-          branch: "sync-local-fallback-files-${{ steps.date.outputs.today }}"
+          branch: "sync-local-fallback-files"
           body: "${{ steps.body.outputs.text }}"
-          commit-message: "Sync local fallback files - ${{ steps.date.outputs.today }}"
           title: "Sync local fallback files"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
