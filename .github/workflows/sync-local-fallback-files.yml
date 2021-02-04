@@ -1,4 +1,4 @@
-name: Sync AMP runtime local fallback files
+name: Sync runtime local fallback files
 on:
   pull_request:
   schedule:
@@ -17,6 +17,22 @@ jobs:
         with:
           php-version: '7.4'
           extensions: dom, iconv, json, libxml, zip
+          tools: composer
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Configure Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install
 
       - name: Get current date
         id: date
