@@ -46,8 +46,10 @@ jobs:
       - name: Get pull request body text
         id: body
         run: |
-          bin/render-pr-body.bash
-          echo "::set-output name=text::$(bin/render-pr-body.bash)"
+          BODY=$(bin/render-pr-body.bash)
+          echo $BODY
+          BODY="${BODY//$'\n'/'%0A'}"
+          echo "::set-output name=text::$BODY"
 
       - name: Create or update pull request
         uses: gr2m/create-or-update-pull-request-action@v1
