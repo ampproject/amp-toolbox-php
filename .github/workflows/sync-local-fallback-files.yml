@@ -41,7 +41,7 @@ jobs:
           echo "::set-output name=today::$(date +'%Y-%m-%d')"
 
       - name: Sync local fallback files
-        run: php bin/sync-amp-runtime-local-fallback-resources.php
+        run: composer update-fallback-files
 
       - name: Get pull request body text
         id: body
