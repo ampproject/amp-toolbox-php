@@ -1,5 +1,6 @@
 name: Sync runtime local fallback files
 on:
+  pull_request:
   schedule:
     # https://crontab.guru/every-night-at-midnight
     - cron: "0 0 * * *"
