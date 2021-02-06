@@ -34,10 +34,13 @@ jobs:
       - name: Install Composer dependencies
         run: composer install
 
-      - name: Create branch as needed and pull latest changes
+      - name: Configure git user
         run: |
           git config --global user.email "alain.schlesser@gmail.com"
           git config --global user.name "Alain Schlesser"
+
+      - name: Create branch to base pull request on
+        run: |
           git fetch
           git branch -f sync-spec-test-suite origin/main
           git checkout sync-spec-test-suite
@@ -46,7 +49,12 @@ jobs:
       - name: Sync spec test suite
         run: composer sync-test-specs
 
+      - name: Check if there are changes
+        id: changes
+        uses: UnicornGlobal/has-changes-action@v1.0.11
+
       - name: Get pull request body text
+        if: steps.changes.outputs.changed == 1
         id: body
         run: |
           BODY=$(bin/render-pr-body.bash)
@@ -55,13 +63,15 @@ jobs:
           BODY="${BODY//$'`'/'\`'}"
           echo -e "::set-output name=text::$BODY"
 
-      - name: Commit update
+      - name: Commit changes
+        if: steps.changes.outputs.changed == 1
         run: |
           git add --all .
-          git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')" || true
-          git push origin sync-spec-test-suite || true
+          git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')"
+          git push origin sync-spec-test-suite
 
       - name: Create pull request
+        if: steps.changes.outputs.changed == 1
         uses: repo-sync/pull-request@v2
         with:
           source_branch: "sync-spec-test-suite"
