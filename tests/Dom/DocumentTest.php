@@ -362,6 +362,11 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html>' . $head . '<body><script type="text/plain" template="amp-mustache"><div><form action="{{action}}"><a href="{{url}}"><img src="{{src}}"></a></form></div></script></body></html>',
                 '<!DOCTYPE html><html>' . $head . '<body><script type="text/plain" template="amp-mustache"><div><form action="{{action}}"><a href="{{url}}"><img src="{{src}}"></a></form></div></script></body></html>',
             ],
+            'amp_mustache_template_with_ampersand_character' => [
+                'utf-8',
+                '<!DOCTYPE html><html>' . $head . '<body><template type="amp-mustache"><a href="https://example.com/?foo={{foo}}&bar={{bar}}&amp;baz={{baz}}">Link</a></template></body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body><template type="amp-mustache"><a href="https://example.com/?foo={{foo}}&bar={{bar}}&amp;baz={{baz}}">Link</a></template></body></html>',
+            ],
             'schema_markup_check' => [
                 'utf-8',
                 '
