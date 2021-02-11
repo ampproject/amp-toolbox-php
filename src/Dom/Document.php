@@ -1316,7 +1316,7 @@ final class Document extends DOMDocument
                     // entities. In the case of a URL value like '/foo/?bar=1&baz=2' the result is a warning for an
                     // unterminated entity reference "baz". When the attribute value is updated via setAttribute() this
                     // same problem does not occur, so that is why the following is used.
-                    $attribute->parentNode->setAttribute( $attribute->nodeName, $value );
+                    $attribute->parentNode->setAttribute($attribute->nodeName, $value);
 
                     $this->mustacheTagsReplaced = true;
                 }
