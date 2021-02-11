@@ -1311,12 +1311,11 @@ final class Document extends DOMDocument
                     $count
                 );
 
-                // Make sure entities are encoded setting the attribute value. Note this is at variance with browser DOM,
-                // where normally an entity supplied as a nodeValue "&amp;" would get escaped when serialized
-                // (e.g. "&amp;amp;"). In contrast, PHP DOM will try to parse the entity when it is supplied.
-                $value = htmlspecialchars( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8', false );
-
-                $attribute->nodeValue = $value;
+                // Note we cannot do `$attribute->nodeValue = $value` because the PHP DOM will try to parse any
+                // entities. In the case of a URL value like '/foo/?bar=1&baz=2' the result is a warning for an
+                // unterminated entity reference "baz". When the attribute value is updated via setAttribute() this
+                // same problem does not occur, so that is why the following is used.
+                $attribute->parentNode->setAttribute( $attribute->nodeName, $value );
 
                 if ($count) {
                     $this->mustacheTagsReplaced = true;
