@@ -525,7 +525,7 @@ final class Document extends DOMDocument
      *
      * @link  https://php.net/manual/domdocument.savehtml.php
      *
-     * @param DOMNode $node Optional. Parameter to output a subset of the document.
+     * @param DOMNode|null $node Optional. Parameter to output a subset of the document.
      * @return string The HTML, or false if an error occurred.
      */
     public function saveHTML(DOMNode $node = null)
@@ -536,7 +536,7 @@ final class Document extends DOMDocument
     /**
      * Dumps the internal document fragment into a string using HTML formatting.
      *
-     * @param DOMNode $node Optional. Parameter to output a subset of the document.
+     * @param DOMNode|null $node Optional. Parameter to output a subset of the document.
      * @return string The HTML fragment, or false if an error occurred.
      */
     public function saveHTMLFragment(DOMNode $node = null)
