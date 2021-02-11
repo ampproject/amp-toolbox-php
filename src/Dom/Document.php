@@ -172,15 +172,6 @@ final class Document extends DOMDocument
     const HTML_FIND_TAG_DELIMITER                 = '/';
 
     /**
-     * Regex pattern to match a template tag and extract its template text.
-     *
-     * @see https://regex101.com/r/rQhA3F/1
-     *
-     * @var string
-     */
-    const HTML_EXTRACT_TEMPLATE_TAGS_PATTERN = '#(<template(?>\s[^>]*)>)(.*?)(</template>)#is';
-
-    /**
      * Pattern to match an AMP emoji together with its variant (amp4ads, amp4email, ...).
      *
      * @var string
@@ -467,7 +458,6 @@ final class Document extends DOMDocument
         $source = $this->secureMustacheScriptTemplates($source);
         $source = $this->secureDoctypeNode($source);
         $source = $this->convertAmpEmojiAttribute($source);
-        $source = $this->secureTemplateEntities($source);
 
         list($source, $this->originalEncoding) = $this->detectAndStripEncoding($source);
 
@@ -1314,12 +1304,19 @@ final class Document extends DOMDocument
 
         foreach ($templates as $template) {
             foreach ($this->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
-                $attribute->nodeValue = str_replace(
+                $value = str_replace(
                     array_keys($mustacheTagPlaceholders),
                     $mustacheTagPlaceholders,
                     $attribute->nodeValue,
                     $count
                 );
+
+                // Make sure entities are encoded setting the attribute value. Note this is at variance with browser DOM,
+                // where normally an entity supplied as a nodeValue "&amp;" would get escaped when serialized
+                // (e.g. "&amp;amp;"). In contrast, PHP DOM will try to parse the entity when it is supplied.
+                $value = htmlspecialchars( $value, ENT_QUOTES | ENT_HTML5, 'UTF-8', false );
+
+                $attribute->nodeValue = $value;
 
                 if ($count) {
                     $this->mustacheTagsReplaced = true;
@@ -1871,26 +1868,5 @@ final class Document extends DOMDocument
     public function enforceCssMaxByteCount($maxByteCount = AMP::MAX_CSS_BYTE_COUNT)
     {
         $this->cssMaxByteCountEnforced = $maxByteCount;
-    }
-
-    /**
-     * Secure HTML entities within template text so that their state is correctly preserved across transformations.
-     *
-     * @see https://github.com/ampproject/amp-toolbox-php/issues/53
-     *
-     * @param string $html String of HTML to secure the template entities in.
-     * @return string Adapted string of HTML.
-     */
-    private function secureTemplateEntities($html)
-    {
-        $adaptedHtml = preg_replace_callback(
-            self::HTML_EXTRACT_TEMPLATE_TAGS_PATTERN,
-            static function ($matches) {
-                return $matches[1] . str_replace('&', '&amp;', $matches[2]) . $matches[3];
-            },
-            $html
-        );
-
-        return is_string($adaptedHtml) ? $adaptedHtml : $html;
     }
 }

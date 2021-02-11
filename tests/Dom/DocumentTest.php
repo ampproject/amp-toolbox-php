@@ -364,8 +364,8 @@ class DocumentTest extends TestCase
             ],
             'amp_mustache_template_with_ampersand_character' => [
                 'utf-8',
-                '<!DOCTYPE html><html>' . $head . '<body><template type="amp-mustache"><a href="https://example.com/?foo={{foo}}&bar={{bar}}&amp;baz={{baz}}" title="This & that. That &amp; this.">Link</a></template></body></html>',
-                '<!DOCTYPE html><html>' . $head . '<body><template type="amp-mustache"><a href="https://example.com/?foo={{foo}}&bar={{bar}}&amp;baz={{baz}}" title="This &amp; that. That &amp; this.">Link</a></template></body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body><template type="amp-mustache"><a href="https://example.com/?foo={{foo}}&bar={{bar}}&amp;baz={{baz}}&#38;qux={{qux}}&#x26;quux={{quux}}" title="This & that. &quot;That&quot; &amp; &apos;this&apos;.">Link: This & that. That &amp; this. &lt;&#x3C;&#60;</a></template></body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body><template type="amp-mustache"><a href="https://example.com/?foo={{foo}}&amp;bar={{bar}}&amp;baz={{baz}}&amp;qux={{qux}}&amp;quux={{quux}}" title="This &amp; that. &quot;That&quot; &amp; \'this\'.">Link: This &amp; that. That &amp; this. &lt;&lt;&lt;</a></template></body></html>',
             ],
             'schema_markup_check' => [
                 'utf-8',
