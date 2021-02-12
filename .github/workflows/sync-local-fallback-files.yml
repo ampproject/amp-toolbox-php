@@ -43,7 +43,7 @@ jobs:
 
       - name: Check if remote branch exists
         id: remote-branch
-        run: echo ::set-output name=exists::$([[ -z $(git ls-remote --exit-code --heads origin sync-local-fallback) ]] && echo "0" || echo "1")
+        run: echo ::set-output name=exists::$([[ -z $(git ls-remote --heads origin sync-local-fallback-files) ]] && echo "0" || echo "1")
 
       - name: Create branch to base pull request on
         if: steps.changes.outputs.exists == 0
