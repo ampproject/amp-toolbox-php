@@ -44,7 +44,7 @@ jobs:
           git fetch
           git branch -f sync-local-fallback-files origin/main
           git checkout sync-local-fallback-files
-          git pull --no-rebase || true
+          git pull origin sync-local-fallback --no-rebase || true
 
       - name: Sync local fallback files
         run: composer sync-fallback-files

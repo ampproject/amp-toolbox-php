@@ -44,7 +44,7 @@ jobs:
           git fetch
           git branch -f sync-spec-test-suite origin/main
           git checkout sync-spec-test-suite
-          git pull --no-rebase || true
+          git pull origin sync-spec-test-suite --no-rebase || true
 
       - name: Sync spec test suite
         run: composer sync-test-specs
