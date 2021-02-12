@@ -39,12 +39,21 @@ jobs:
           git config --global user.email "alain.schlesser@gmail.com"
           git config --global user.name "Alain Schlesser"
 
+      - name: Check if remote branch exists
+        id: remote-branch
+        run: echo ::set-output name=exists::$([[ -z $(git ls-remote --exit-code --heads origin sync-spec-test-suite) ]] && echo "0" || echo "1")
+
       - name: Create branch to base pull request on
+        if: steps.changes.outputs.exists == 0
         run: |
-          git fetch
-          git branch -f sync-spec-test-suite origin/main
+          git checkout -b sync-spec-test-suite
+
+      - name: Fetch existing branch to add commits to
+        if: steps.changes.outputs.exists == 1
+        run: |
+          git fetch --all --prune
           git checkout sync-spec-test-suite
-          git pull origin sync-spec-test-suite --rebase || true
+          git pull --no-rebase
 
       - name: Sync spec test suite
         run: composer sync-test-specs
@@ -68,7 +77,7 @@ jobs:
         run: |
           git add --all .
           git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')"
-          git push origin sync-spec-test-suite --force
+          git push origin sync-spec-test-suite
 
       - name: Create pull request
         if: steps.changes.outputs.changed == 1
