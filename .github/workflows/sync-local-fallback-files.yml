@@ -12,6 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Setup PHP
@@ -82,12 +83,14 @@ jobs:
           git push origin sync-local-fallback-files
 
       - name: Create pull request
-        if: steps.changes.outputs.changed == 1
+        if: |
+          steps.changes.outputs.changed == 1 &&
+          steps.remote-branch.outputs.exists == 0
         uses: repo-sync/pull-request@v2
         with:
           source_branch: "sync-local-fallback-files"
           destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
           pr_title: "Sync local fallback files"
           pr_body: "${{ steps.body.outputs.text }}"
           pr_reviewer: "schlessera"
