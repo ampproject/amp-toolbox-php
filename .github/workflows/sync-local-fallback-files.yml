@@ -44,7 +44,7 @@ jobs:
           git fetch
           git branch -f sync-local-fallback-files origin/main
           git checkout sync-local-fallback-files
-          git pull origin sync-local-fallback --no-rebase || true
+          git pull origin sync-local-fallback --rebase || true
 
       - name: Sync local fallback files
         run: composer sync-fallback-files
@@ -68,7 +68,7 @@ jobs:
         run: |
           git add --all .
           git commit -m "Sync local fallback files - $(date +'%Y-%m-%d')"
-          git push origin sync-local-fallback-files
+          git push origin sync-local-fallback-files --force
 
       - name: Create pull request
         if: steps.changes.outputs.changed == 1
