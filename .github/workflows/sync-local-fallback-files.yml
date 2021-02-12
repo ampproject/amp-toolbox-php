@@ -46,12 +46,12 @@ jobs:
         run: echo ::set-output name=exists::$([[ -z $(git ls-remote --heads origin sync-local-fallback-files) ]] && echo "0" || echo "1")
 
       - name: Create branch to base pull request on
-        if: steps.changes.outputs.exists == 0
+        if: steps.remote-branch.outputs.exists == 0
         run: |
           git checkout -b sync-local-fallback-files
 
       - name: Fetch existing branch to add commits to
-        if: steps.changes.outputs.exists == 1
+        if: steps.remote-branch.outputs.exists == 1
         run: |
           git fetch --all --prune
           git checkout sync-local-fallback-files
