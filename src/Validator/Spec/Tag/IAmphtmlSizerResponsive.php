@@ -36,6 +36,12 @@ final class IAmphtmlSizerResponsive extends Tag
                     ],
                 ],
             ],
+            [
+                SpecRule::NAME => Attribute::I_AMPHTML_DISABLE_AR,
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

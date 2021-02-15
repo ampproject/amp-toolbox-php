@@ -1,14 +1,10 @@
 <?php
 
-/**
- * DO NOT EDIT!
- * This file was automatically generated via bin/generate-validator-spec.php.
- */
+namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
-namespace AmpProject\Validator\Spec;
-
-interface HasExtensionSpec
+interface TagWithExtensionSpec
 {
+
     /**
      * Get the latest available version of the extension.
      *

@@ -10,11 +10,11 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\ExtensionVersion;
-use AmpProject\Validator\Spec\HasExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
+use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpMathml extends Tag implements HasExtensionSpec
+final class ScriptAmpMathml extends Tag implements TagWithExtensionSpec
 {
     use ExtensionVersion;
 

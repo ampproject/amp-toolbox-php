@@ -43,8 +43,9 @@ final class AmpBodymovinAnimation extends Tag
             [
                 SpecRule::NAME => Attribute::RENDERER,
                 SpecRule::VALUE_CASEI => [
-                    'svg',
+                    'canvas',
                     'html',
+                    'svg',
                 ],
             ],
         ],

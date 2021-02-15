@@ -26,6 +26,7 @@ final class DeclarationList
         Attribute::ANIMATION_NAME => [],
         Attribute::ANIMATION_PLAY_STATE => [],
         Attribute::ANIMATION_TIMING_FUNCTION => [],
+        Attribute::ASPECT_RATIO => [],
         Attribute::BACKFACE_VISIBILITY => [],
         Attribute::BACKGROUND => [],
         Attribute::BACKGROUND_ATTACHMENT => [],
@@ -291,10 +292,6 @@ final class DeclarationList
         Attribute::TEXT_RENDERING => [],
     ];
 
-    const AMP_ONLY_DECLARATIONS = [
-        Attribute::CLIP_PATH => [],
-    ];
-
     const EMAIL_SPECIFIC_DECLARATIONS = [
         Attribute::_MOZ_APPEARANCE => [],
         Attribute::_WEBKIT_APPEARANCE => [],
@@ -303,6 +300,7 @@ final class DeclarationList
         Attribute::ALIGN_ITEMS => [],
         Attribute::ALIGN_SELF => [],
         Attribute::APPEARANCE => [],
+        Attribute::ASPECT_RATIO => [],
         Attribute::AZIMUTH => [],
         Attribute::BACKGROUND => [],
         Attribute::BACKGROUND_ATTACHMENT => [],

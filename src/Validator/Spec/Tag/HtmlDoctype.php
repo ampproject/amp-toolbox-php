@@ -31,6 +31,8 @@ final class HtmlDoctype extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::LANG,
+                SpecRule::DEPRECATION => 'html',
+                SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/25926',
             ],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',

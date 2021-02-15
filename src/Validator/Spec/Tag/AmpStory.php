@@ -131,6 +131,7 @@ final class AmpStory extends Tag
                 'AMP-PIXEL',
                 'AMP-SIDEBAR',
                 'AMP-STORY-AUTO-ADS',
+                'AMP-STORY-AUTO-ANALYTICS',
                 'AMP-STORY-BOOKEND',
                 'AMP-STORY-PAGE',
             ],

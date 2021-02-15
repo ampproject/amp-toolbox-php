@@ -10,7 +10,7 @@ namespace AmpProject\Validator\Spec;
 interface SpecRule
 {
     const ADD_VALUE_TO_SET = 'addValueToSet';
-    const ALLOW_ALL_DECLARATION_IN_STYLE_TAG = 'allowAllDeclarationInStyleTag';
+    const ALLOW_ALL_DECLARATION_IN_STYLE = 'allowAllDeclarationInStyle';
     const ALLOW_EMPTY = 'allowEmpty';
     const ALLOW_IMPORTANT = 'allowImportant';
     const ALLOW_RELATIVE = 'allowRelative';
@@ -115,4 +115,5 @@ interface SpecRule
     const VALUE_REGEX_CASEI = 'valueRegexCasei';
     const VALUE_URL = 'valueUrl';
     const VERSION = 'version';
+    const WHITESPACE_ONLY = 'whitespaceOnly';
 }

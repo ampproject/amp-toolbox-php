@@ -6,6 +6,7 @@ use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Exception\InvalidTagId;
+use LogicException;
 
 final class Tags
 {
@@ -91,7 +92,7 @@ final class Tags
      * Get the tag for a given extension spec name.
      *
      * @param string $extension Extension name to get the extension spec for.
-     * @return Tag Tag with the given extension spec name.
+     * @return TagWithExtensionSpec Tag with the given extension spec name.
      * @throws InvalidExtension If an invalid extension name is requested.
      */
     public function byExtensionSpec($extension)
@@ -100,7 +101,13 @@ final class Tags
             throw InvalidExtension::forExtension($extension);
         }
 
-        return $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
+        $tag = $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
+
+        if (!$tag instanceof \AmpProject\Validator\Spec\TagWithExtensionSpec) {
+            throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
+        }
+
+        return $tag;
     }
 
     /**

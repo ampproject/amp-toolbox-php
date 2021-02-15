@@ -44,6 +44,7 @@ final class AmpStoryPage extends Tag
                 'AMP-ANALYTICS',
                 'AMP-PIXEL',
                 'AMP-STORY-ANIMATION',
+                'AMP-STORY-AUTO-ANALYTICS',
                 'AMP-STORY-CTA-LAYER',
                 'AMP-STORY-GRID-LAYER',
                 'AMP-STORY-PAGE-ATTACHMENT',

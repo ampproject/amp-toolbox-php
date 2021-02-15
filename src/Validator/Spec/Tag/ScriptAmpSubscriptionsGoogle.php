@@ -11,11 +11,11 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\ExtensionVersion;
-use AmpProject\Validator\Spec\HasExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
+use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpSubscriptionsGoogle extends Tag implements HasExtensionSpec
+final class ScriptAmpSubscriptionsGoogle extends Tag implements TagWithExtensionSpec
 {
     use ExtensionVersion;
 

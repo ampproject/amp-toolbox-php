@@ -49,7 +49,9 @@ final class Tags implements Section
         $byFormat        = [];
         $byExtensionSpec = [];
 
+        $namespace->addUse("LogicException");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
 
         $tagsTemplateClass = ClassType::withBodiesFrom(Template\Tags::class);
         foreach ($tagsTemplateClass->getMethods() as $method) {
@@ -244,8 +246,8 @@ final class Tags implements Section
 
             $class->addConstant('EXTENSION_SPEC', $extensionSpec);
 
-            $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\HasExtensionSpec");
-            $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\HasExtensionSpec");
+            $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
+            $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
             $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\ExtensionVersion");
             $class->addTrait("{$fileManager->getRootNamespace()}\\Spec\\ExtensionVersion");
         }

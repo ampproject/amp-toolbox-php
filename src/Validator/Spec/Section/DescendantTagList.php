@@ -123,6 +123,7 @@ final class DescendantTagList
         Element::A,
         Element::SPAN,
         Internal::SIZER,
+        Element::IMG,
     ];
 
     const AMP_STORY_BOOKEND_ALLOWED_DESCENDANTS = [
@@ -259,6 +260,7 @@ final class DescendantTagList
         Extension::PIXEL,
         Extension::STATE,
         Extension::STORY_360,
+        Extension::STORY_AUTO_ANALYTICS,
         Extension::STORY_INTERACTIVE_BINARY_POLL,
         Extension::STORY_INTERACTIVE_POLL,
         Extension::STORY_INTERACTIVE_QUIZ,
