@@ -202,9 +202,8 @@ final class AutoExtensions implements Transformer
      */
     private function getScriptSrcForExtension($requiredExtension)
     {
-        // TODO: Version URL needs to be retrieved from spec.
-        $version = '0.99';
+        $tagSpec = $this->spec->tags()->byExtensionSpec($requiredExtension);
 
-        return Amp::CACHE_ROOT_URL . "v0/{$requiredExtension}-{$version}.js";
+        return Amp::CACHE_ROOT_URL . "v0/{$requiredExtension}-{$tagSpec->getLatestVersion()}.js";
     }
 }
