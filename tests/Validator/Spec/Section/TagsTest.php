@@ -91,6 +91,7 @@ class TagsTest extends TestCase
         $tag = $this->tags->byExtensionSpec(Extension::LIGHTBOX_GALLERY);
 
         $this->assertInstanceOf(Spec\Tag::class, $tag);
+        $this->assertInstanceOf(Spec\TagWithExtensionSpec::class, $tag);
         $this->assertArrayHasKey(Spec\SpecRule::NAME, $tag->extensionSpec);
         $this->assertEquals(Extension::LIGHTBOX_GALLERY, $tag->extensionSpec[Spec\SpecRule::NAME]);
     }

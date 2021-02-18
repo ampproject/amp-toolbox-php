@@ -17,6 +17,27 @@ trait ExtensionVersion
     public function getLatestVersion()
     {
         $versions = self::EXTENSION_SPEC['version'];
-        return $versions[count($versions) - 1];
+
+        // Sort versions in descending order so that the latest version ends up to be the first element in the array.
+        usort(
+            $versions,
+            static function ($a, $b) {
+                if ($a === $b) {
+                    return 0;
+                }
+
+                if ($a === 'latest') {
+                    return 1;
+                }
+
+                if ($b === 'latest') {
+                    return -1;
+                }
+
+                return version_compare($a, $b, '<');
+            }
+        );
+
+        return $versions[0];
     }
 }
