@@ -18,6 +18,9 @@ final class Errors
     public function __construct()
     {
         $this->errors = [
+            ErrorCode::AMP_EMAIL_MISSING_STRICT_CSS_ATTR => [
+                SpecRule::FORMAT => 'Tag \'html\' marked with attribute \'amp4email\' is missing the corresponding attribute \'data-css-strict\' for enabling strict CSS validation. This may become an error in the future.',
+            ],
             ErrorCode::ATTR_DISALLOWED_BY_IMPLIED_LAYOUT => [
                 SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is disallowed by implied layout \'%3\'.',
                 SpecRule::SPECIFICITY => 48,

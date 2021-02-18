@@ -127,6 +127,7 @@ interface Extension
     const STORY_360                     = 'amp-story-360';
     const STORY_ANIMATION               = 'amp-story-animation';
     const STORY_AUTO_ADS                = 'amp-story-auto-ads';
+    const STORY_AUTO_ANALYTICS          = 'amp-story-auto-analytics';
     const STORY_BOOKEND                 = 'amp-story-bookend';
     const STORY_CONSENT                 = 'amp-story-consent';
     const STORY_CTA_LAYER               = 'amp-story-cta-layer';

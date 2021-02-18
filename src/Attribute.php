@@ -162,9 +162,11 @@ interface Attribute
     const BACKGROUND_POSITION             = 'background-position';
     const BACKGROUND_REPEAT               = 'background-repeat';
     const BACKGROUND_SIZE                 = 'background-size';
+    const BASEFREQUENCY                   = 'basefrequency';
     const BASELINE_SHIFT                  = 'baseline-shift';
     const BETA_RANGE                      = 'beta-range';
     const BGCOLOR                         = 'bgcolor';
+    const BIAS                            = 'bias';
     const BIGGEST_UNIT                    = 'biggest-unit';
     const BINDING                         = 'binding';
     const BLOCK_RTC                       = 'blockRtc';
@@ -277,6 +279,7 @@ interface Attribute
     const DEFAULT_                        = 'default'; // Underscore needed because 'default' is a PHP keyword.
     const DELAY                           = 'delay';
     const DIFFABLE                        = 'diffable';
+    const DIFFUSECONSTANT                 = 'diffuseconstant';
     const DIR                             = 'dir';
     const DIRECTION                       = 'direction';
     const DISABLED                        = 'disabled';
@@ -287,6 +290,7 @@ interface Attribute
     const DISABLE_SESSION_STATES          = 'disable-session-states';
     const DISPLAY                         = 'display';
     const DISPLAY_IN                      = 'display-in';
+    const DIVISOR                         = 'divisor';
     const DOCK                            = 'dock';
     const DOMINANT_BASELINE               = 'dominant-baseline';
     const DOTS                            = 'dots';
@@ -397,6 +401,7 @@ interface Attribute
     const GRID_TEMPLATE_AREAS             = 'grid-template-areas';
     const GRID_TEMPLATE_COLUMNS           = 'grid-template-columns';
     const GRID_TEMPLATE_ROWS              = 'grid-template-rows';
+    const GTAG_ID                         = 'gtag-id';
     const HANGING_PUNCTUATION             = 'hanging-punctuation';
     const HEADERS                         = 'headers';
     const HEADING_END                     = 'heading-end';
@@ -452,6 +457,7 @@ interface Attribute
     const ITEMS                           = 'items';
     const ITEMSCOPE                       = 'itemscope';
     const ITEMTYPE                        = 'itemtype';
+    const I_AMPHTML_DISABLE_AR            = 'i-amphtml-disable-ar';
     const I_AMPHTML_LAYOUT                = 'i-amphtml-layout';
     const I_AMPHTML_NO_BOILERPLATE        = 'i-amphtml-no-boilerplate';
     const I_AMPHTML_SSR                   = 'i-amphtml-ssr';
@@ -466,6 +472,8 @@ interface Attribute
     const K2                              = 'k2';
     const K3                              = 'k3';
     const K4                              = 'k4';
+    const KERNELMATRIX                    = 'kernelmatrix';
+    const KERNELUNITLENGTH                = 'kernelunitlength';
     const KERNING                         = 'kerning';
     const KEYBOARD_SELECT_MODE            = 'keyboard-select-mode';
     const KIND                            = 'kind';
@@ -479,6 +487,7 @@ interface Attribute
     const LIGHTBOX_EXCLUDE                = 'lightbox-exclude';
     const LIGHTBOX_THUMBNAIL_ID           = 'lightbox-thumbnail-id';
     const LIGHTING_COLOR                  = 'lighting-color';
+    const LIMITINGCONEANGLE               = 'limitingconeangle';
     const LINE_BREAK                      = 'line-break';
     const LINE_HEIGHT                     = 'line-height';
     const LINKMATE                        = 'linkmate';
@@ -562,6 +571,7 @@ interface Attribute
     const NO_VERIFY                       = 'no-verify';
     const NRTV_ACCOUNT_NAME               = 'nrtv-account-name';
     const NUMBER_OF_MONTHS                = 'number-of-months';
+    const NUMOCTAVES                      = 'numoctaves';
     const OBJECT_FIT                      = 'object-fit';
     const OBJECT_POSITION                 = 'object-position';
     const OFFSET                          = 'offset';
@@ -649,6 +659,9 @@ interface Attribute
     const PLAYSINLINE                     = 'playsinline';
     const POINTER_EVENTS                  = 'pointer-events';
     const POINTS                          = 'points';
+    const POINTSATX                       = 'pointsatx';
+    const POINTSATY                       = 'pointsaty';
+    const POINTSATZ                       = 'pointsatz';
     const POOOL_ACCESS_CONTENT            = 'poool-access-content';
     const POOOL_ACCESS_PREVIEW            = 'poool-access-preview';
     const POSITION                        = 'position';
@@ -659,6 +672,7 @@ interface Attribute
     const PREFETCH                        = 'prefetch';
     const PREFIX                          = 'prefix';
     const PRELOAD                         = 'preload';
+    const PRESERVEALPHA                   = 'preservealpha';
     const PRESERVEASPECTRATIO             = 'preserveaspectratio';
     const PRESET                          = 'preset';
     const PRIMITIVEUNITS                  = 'primitiveunits';
@@ -673,6 +687,7 @@ interface Attribute
     const QUERY                           = 'query';
     const QUOTES                          = 'quotes';
     const R                               = 'r';
+    const RADIUS                          = 'radius';
     const READONLY                        = 'readonly';
     const RECOMMENDATION_BOX              = 'recommendation-box';
     const REFERRERPOLICY                  = 'referrerpolicy';
@@ -703,6 +718,7 @@ interface Attribute
     const RX                              = 'rx';
     const RY                              = 'ry';
     const SANDBOX                         = 'sandbox';
+    const SCALE                           = 'scale';
     const SCALE_END                       = 'scale-end';
     const SCALE_START                     = 'scale-start';
     const SCENE_HEADING                   = 'scene-heading';
@@ -714,6 +730,7 @@ interface Attribute
     const SCROLLABLE                      = 'scrollable';
     const SCROLLING                       = 'scrolling';
     const SECOND                          = 'second';
+    const SEED                            = 'seed';
     const SELECTED                        = 'selected';
     const SELECTIONDIRECTION              = 'selectiondirection';
     const SELECTIONEND                    = 'selectionend';
@@ -747,6 +764,8 @@ interface Attribute
     const SPEAK_HEADER                    = 'speak-header';
     const SPEAK_NUMERAL                   = 'speak-numeral';
     const SPEAK_PUNCTUATION               = 'speak-punctuation';
+    const SPECULARCONSTANT                = 'specularconstant';
+    const SPECULAREXPONENT                = 'specularexponent';
     const SPEECH_RATE                     = 'speech-rate';
     const SPELLCHECK                      = 'spellcheck';
     const SPREADMETHOD                    = 'spreadmethod';
@@ -763,6 +782,7 @@ interface Attribute
     const STEP                            = 'step';
     const STEP_SIZE                       = 'step-size';
     const STICKY                          = 'sticky';
+    const STITCHTILES                     = 'stitchtiles';
     const STOP_COLOR                      = 'stop-color';
     const STOP_OPACITY                    = 'stop-opacity';
     const STRESS                          = 'stress';
@@ -790,6 +810,7 @@ interface Attribute
     const SUBSCRIPTIONS_SERVICE           = 'subscriptions-service';
     const SUGGEST_FIRST                   = 'suggest-first';
     const SUPPORTS_LANDSCAPE              = 'supports-landscape';
+    const SURFACESCALE                    = 'surfacescale';
     const SWG_AMP_CACHE_NONCE             = 'swg-amp-cache-nonce';
     const SYSTEMLANGUAGE                  = 'systemlanguage';
     const TABINDEX                        = 'tabindex';
@@ -798,6 +819,8 @@ interface Attribute
     const TABLE_LAYOUT                    = 'table-layout';
     const TAB_SIZE                        = 'tab-size';
     const TARGET                          = 'target';
+    const TARGETX                         = 'targetx';
+    const TARGETY                         = 'targety';
     const TEMPLATE                        = 'template';
     const TEXTLENGTH                      = 'textlength';
     const TEXT_ALIGN                      = 'text-align';
@@ -894,6 +917,7 @@ interface Attribute
     const X                               = 'x';
     const X1                              = 'x1';
     const X2                              = 'x2';
+    const XCHANNELSELECTOR                = 'xchannelselector';
     const XLINK_ACTUATE                   = 'xlink-actuate';
     const XLINK_ARCROLE                   = 'xlink-arcrole';
     const XLINK_HREF                      = 'xlink-href';
@@ -909,6 +933,7 @@ interface Attribute
     const Y                               = 'y';
     const Y1                              = 'y1';
     const Y2                              = 'y2';
+    const YCHANNELSELECTOR                = 'ychannelselector';
     const ZOOMANDPAN                      = 'zoomandpan';
     const ZOOM_END                        = 'zoom-end';
     const ZOOM_START                      = 'zoom-start';
@@ -916,6 +941,7 @@ interface Attribute
     const _MOZ_APPEARANCE                 = '-moz-appearance';
     const _WEBKIT_APPEARANCE              = '-webkit-appearance';
     const _WEBKIT_TAP_HIGHLIGHT_COLOR     = '-webkit-tap-highlight-color';
+    const Z                               = 'z';
 
     const ALL_AMP       = [self::AMP, self::AMP_EMOJI, self::AMP_EMOJI_ALT];
     const ALL_AMP4ADS   = [self::AMP4ADS, self::AMP4ADS_EMOJI, self::AMP4ADS_EMOJI_ALT];

@@ -47,6 +47,7 @@ final class AmpImgAmp4email extends Tag
                 Layout::FIXED,
                 Layout::FIXED_HEIGHT,
                 Layout::FLEX_ITEM,
+                Layout::INTRINSIC,
                 Layout::NODISPLAY,
                 Layout::RESPONSIVE,
             ],
