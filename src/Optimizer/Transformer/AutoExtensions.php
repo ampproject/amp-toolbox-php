@@ -7,10 +7,12 @@ use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Dom\NodeWalker;
+use AmpProject\Extension;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Tag;
 use AmpProject\Validator\Spec;
+use Exception;
 
 final class AutoExtensions implements Transformer
 {
@@ -59,11 +61,54 @@ final class AutoExtensions implements Transformer
     {
         $extensionScripts = [];
 
+        // We memorize nodes to be removed first and only remove them after the loop to not mess up the loop index.
+        $nodesToRemove = [];
+
         foreach ($document->head->getElementsByTagName(Tag::SCRIPT) as $script) {
+            if ($script->getAttribute(Attribute::ID) === Extension::ACCESS) {
+                // Explicitly detect amp-access via the script tag in the header to be able to handle amp-access
+                // extensions.
+                $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::ACCESS);
+                $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::ANALYTICS);
+
+                $jsonData = $this->getJsonData($script);
+                if (array_key_exists('vendor', $jsonData) && $jsonData['vendor'] === 'laterpay') {
+                    $extensionScripts = $this->maybeAddExtension(
+                        $document,
+                        $extensionScripts,
+                        Extension::ACCESS_LATERPAY
+                    );
+                }
+            } elseif ($script->getAttribute(Attribute::ID) === Extension::SUBSCRIPTIONS) {
+                // Explicitly detect amp-subscriptions via the script tag in the header to be able to handle
+                // amp-subscriptions extensions.
+                $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::SUBSCRIPTIONS);
+                $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::ANALYTICS);
+
+                $jsonData = $this->getJsonData($script);
+                if (!array_key_exists('services', $jsonData)) {
+                    continue;
+                }
+
+                foreach ($jsonData['services'] as $service) {
+                    if (
+                        array_key_exists('serviceId', $service)
+                        && $service['serviceId'] === 'subscribe.google.com'
+                    ) {
+                        $extensionScripts = $this->maybeAddExtension(
+                            $document,
+                            $extensionScripts,
+                            Extension::SUBSCRIPTIONS_GOOGLE
+                        );
+                        break;
+                    }
+                }
+            }
+
             $src = $script->getAttribute(Attribute::SRC);
 
             if (
-                ! $src
+                ! $script->hasAttribute(Attribute::SRC)
                 ||
                 Amp::CACHE_ROOT_URL !== substr($src, 0, strlen(Amp::CACHE_ROOT_URL))
             ) {
@@ -80,8 +125,12 @@ final class AutoExtensions implements Transformer
                 continue;
             }
 
+            $nodesToRemove[] = $script;
+        }
+
+        foreach ($nodesToRemove as $nodeToRemove) {
             // Remove the identified extension scripts from the DOM Document so that we can move them.
-            $script->parentNode->removeChild($script);
+            $nodeToRemove->parentNode->removeChild($nodeToRemove);
         }
 
         return $extensionScripts;
@@ -159,8 +208,16 @@ final class AutoExtensions implements Transformer
             $referenceNode = $document->charset;
         }
 
+        if (
+            $referenceNode
+            && $referenceNode->nextSibling instanceof Element
+            && $referenceNode->nextSibling->hasAttribute(Attribute::AMP_BOILERPLATE)
+        ) {
+            $referenceNode = $referenceNode->nextSibling;
+        }
+
         foreach ($extensionScripts as $extensionScript) {
-            if ($referenceNode) {
+            if ($referenceNode && $referenceNode->nextSibling) {
                 $referenceNode->parentNode->insertBefore(
                     $extensionScript,
                     $referenceNode->nextSibling
@@ -169,7 +226,7 @@ final class AutoExtensions implements Transformer
                 $document->head->appendChild($extensionScript);
             }
 
-            $referenceNode = $extensionScript;
+            //$referenceNode = $extensionScript;
         }
     }
 
@@ -184,10 +241,12 @@ final class AutoExtensions implements Transformer
     private function maybeAddExtension(Document $document, $extensionScripts, $requiredExtension)
     {
         if (!array_key_exists($requiredExtension, $extensionScripts)) {
+            $tagSpec = $this->spec->tags()->byExtensionSpec($requiredExtension);
+
             $requiredScript = $document->createElement(Tag::SCRIPT);
             $requiredScript->appendChild($document->createAttribute(Attribute::ASYNC));
-            $requiredScript->setAttribute(Attribute::CUSTOM_ELEMENT, $requiredExtension);
-            $requiredScript->setAttribute(Attribute::SRC, $this->getScriptSrcForExtension($requiredExtension));
+            $requiredScript->setAttribute($tagSpec->getScriptType(), $requiredExtension);
+            $requiredScript->setAttribute(Attribute::SRC, $this->getScriptSrcForExtension($tagSpec));
             $extensionScripts[$requiredExtension] = $requiredScript;
         }
 
@@ -197,13 +256,31 @@ final class AutoExtensions implements Transformer
     /**
      * Get the URL to use for the extension script's src attribute.
      *
-     * @param string $requiredExtension Required extension to get the URL for.
+     * @param Spec\TagWithExtensionSpec $tagSpec Spec of the extension tag.
      * @return string URL to use for extension script.
      */
-    private function getScriptSrcForExtension($requiredExtension)
+    private function getScriptSrcForExtension($tagSpec)
     {
-        $tagSpec = $this->spec->tags()->byExtensionSpec($requiredExtension);
+        return Amp::CACHE_ROOT_URL . "v0/{$tagSpec->getName()}-{$tagSpec->getLatestVersion()}.js";
+    }
 
-        return Amp::CACHE_ROOT_URL . "v0/{$requiredExtension}-{$tagSpec->getLatestVersion()}.js";
+    /**
+     * Get the JSON data from the script element.
+     *
+     * @param Element $script Script element to get the JSON data from.
+     * @return array Associative array of parsed JSON data.
+     */
+    private function getJsonData(Element $script)
+    {
+        try {
+            $jsonData = json_decode(trim($script->nodeValue), true);
+            if (is_array($jsonData)) {
+                return $jsonData;
+            }
+        } catch (Exception $exception) {
+            // TODO: Log error.
+        }
+
+        return [];
     }
 }
