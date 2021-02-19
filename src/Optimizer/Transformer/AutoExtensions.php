@@ -245,7 +245,7 @@ final class AutoExtensions implements Transformer
 
             $requiredScript = $document->createElement(Tag::SCRIPT);
             $requiredScript->appendChild($document->createAttribute(Attribute::ASYNC));
-            $requiredScript->setAttribute($tagSpec->getScriptType(), $requiredExtension);
+            $requiredScript->setAttribute($tagSpec->getExtensionType(), $requiredExtension);
             $requiredScript->setAttribute(Attribute::SRC, $this->getScriptSrcForExtension($tagSpec));
             $extensionScripts[$requiredExtension] = $requiredScript;
         }
@@ -261,7 +261,7 @@ final class AutoExtensions implements Transformer
      */
     private function getScriptSrcForExtension($tagSpec)
     {
-        return Amp::CACHE_ROOT_URL . "v0/{$tagSpec->getName()}-{$tagSpec->getLatestVersion()}.js";
+        return Amp::CACHE_ROOT_URL . "v0/{$tagSpec->getExtensionName()}-{$tagSpec->getLatestVersion()}.js";
     }
 
     /**
