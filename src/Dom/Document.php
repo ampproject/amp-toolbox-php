@@ -525,7 +525,7 @@ final class Document extends DOMDocument
      *
      * @link  https://php.net/manual/domdocument.savehtml.php
      *
-     * @param DOMNode $node Optional. Parameter to output a subset of the document.
+     * @param DOMNode|null $node Optional. Parameter to output a subset of the document.
      * @return string The HTML, or false if an error occurred.
      */
     public function saveHTML(DOMNode $node = null)
@@ -536,7 +536,7 @@ final class Document extends DOMDocument
     /**
      * Dumps the internal document fragment into a string using HTML formatting.
      *
-     * @param DOMNode $node Optional. Parameter to output a subset of the document.
+     * @param DOMNode|null $node Optional. Parameter to output a subset of the document.
      * @return string The HTML fragment, or false if an error occurred.
      */
     public function saveHTMLFragment(DOMNode $node = null)
@@ -1304,13 +1304,20 @@ final class Document extends DOMDocument
 
         foreach ($templates as $template) {
             foreach ($this->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
-                $attribute->nodeValue = str_replace(
+                $value = str_replace(
                     array_keys($mustacheTagPlaceholders),
                     $mustacheTagPlaceholders,
                     $attribute->nodeValue,
                     $count
                 );
+
                 if ($count) {
+                    // Note we cannot do `$attribute->nodeValue = $value` because the PHP DOM will try to parse any
+                    // entities. In the case of a URL value like '/foo/?bar=1&baz=2' the result is a warning for an
+                    // unterminated entity reference "baz". When the attribute value is updated via setAttribute() this
+                    // same problem does not occur, so that is why the following is used.
+                    $attribute->parentNode->setAttribute($attribute->nodeName, $value);
+
                     $this->mustacheTagsReplaced = true;
                 }
             }
