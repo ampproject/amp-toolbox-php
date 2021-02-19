@@ -248,8 +248,8 @@ final class Tags implements Section
 
             $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
             $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
-            $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\ExtensionVersion");
-            $class->addTrait("{$fileManager->getRootNamespace()}\\Spec\\ExtensionVersion");
+            $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\ExtensionSpec");
+            $class->addTrait("{$fileManager->getRootNamespace()}\\Spec\\ExtensionSpec");
         }
 
         $class->addConstant('SPEC', $jsonSpec);

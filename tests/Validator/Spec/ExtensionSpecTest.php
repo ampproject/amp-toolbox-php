@@ -4,9 +4,9 @@ namespace AmpProject\Validator\Spec;
 
 use AmpProject\Tests\TestCase;
 
-class ExtensionVersionTest extends TestCase
+class ExtensionSpecTest extends TestCase
 {
-    use ExtensionVersion;
+    use ExtensionSpec;
 
     const EXTENSION_SPEC = [
         SpecRule::NAME           => 'amp-dummy-extension',
@@ -18,10 +18,21 @@ class ExtensionVersionTest extends TestCase
             'latest',
         ],
         SpecRule::REQUIRES_USAGE => 'NONE',
+        SpecRule::EXTENSION_TYPE => 'CUSTOM_TEMPLATE',
     ];
+
+    public function testGetExtensionName()
+    {
+        $this->assertEquals('amp-dummy-extension', $this->getExtensionName());
+    }
 
     public function testGetLatestVersion()
     {
         $this->assertEquals('2.0', $this->getLatestVersion());
+    }
+
+    public function testGetExtensionType()
+    {
+        $this->assertEquals('custom-template', $this->getExtensionType());
     }
 }

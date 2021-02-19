@@ -10,14 +10,14 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
-use AmpProject\Validator\Spec\ExtensionVersion;
+use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 final class ScriptAmpAccessLaterpay extends Tag implements TagWithExtensionSpec
 {
-    use ExtensionVersion;
+    use ExtensionSpec;
 
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-access-laterpay',
