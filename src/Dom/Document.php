@@ -310,6 +310,13 @@ final class Document extends DOMDocument
     private $cssMaxByteCountEnforced = -1;
 
     /**
+     * Store the names of the amp-bind attributes that were converted so that we can restore them later on.
+     *
+     * @var array<string>
+     */
+    private $convertedAmpBindAttributes = [];
+
+    /**
      * Creates a new AmpProject\Dom\Document object
      *
      * @link  https://php.net/manual/domdocument.construct.php
@@ -565,6 +572,7 @@ final class Document extends DOMDocument
         $html = $this->restoreMustacheTemplateTokens($html);
         $html = $this->restoreSelfClosingTags($html);
         $html = $this->restoreAmpEmojiAttribute($html);
+        $html = $this->restoreAmpBindAttributes($html);
         $html = $this->fixSvgSourceAttributeEncoding($html);
 
         // Whitespace just causes unit tests to fail... so whitespace begone.
@@ -1040,6 +1048,7 @@ final class Document extends DOMDocument
      * get dropped with an error raised:
      * > Warning: DOMDocument::loadHTML(): error parsing attribute name
      *
+     * @see restoreAmpBindAttributes() Reciprocal function.
      * @link https://www.ampproject.org/docs/reference/components/amp-bind
      *
      * @param string $html HTML containing amp-bind attributes.
@@ -1053,7 +1062,7 @@ final class Document extends DOMDocument
          * @param array $tagMatches Tag matches.
          * @return string Replacement.
          */
-        $replaceCallback = static function ($tagMatches) {
+        $replaceCallback = function ($tagMatches) {
 
             // Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
             $oldAttrs = rtrim(preg_replace('#(?<!=)/$#', '', $tagMatches['attrs']));
@@ -1064,10 +1073,12 @@ final class Document extends DOMDocument
                 $offset += strlen($attrMatches[0]);
 
                 if ('[' === $attrMatches['name'][0]) {
-                    $newAttrs .= ' ' . self::AMP_BIND_DATA_ATTR_PREFIX . trim($attrMatches['name'], '[]');
+                    $attrName = trim($attrMatches['name'], '[]');
+                    $newAttrs .= ' ' . self::AMP_BIND_DATA_ATTR_PREFIX . $attrName;
                     if (isset($attrMatches['value'])) {
                         $newAttrs .= $attrMatches['value'];
                     }
+                    $this->convertedAmpBindAttributes[] = $attrName;
                 } else {
                     $newAttrs .= $attrMatches[0];
                 }
@@ -1097,6 +1108,38 @@ final class Document extends DOMDocument
          * See http://php.net/manual/en/pcre.constants.php for additional info on PCRE errors.
          */
         return (null !== $converted) ? $converted : $html;
+    }
+
+    /**
+     * Convert AMP bind-attributes back to their original syntax.
+     *
+     * This is not guaranteed to produce the exact same result as the initial markup, as it is more of a best guess.
+     * It can end up replacing the wrong attributes if the initial markup had inconsistent styling, mixing both syntaxes
+     * for the same attribute. In either case, it will always produce working markup, so this is not that big of a deal.
+     *
+     * @see convertAmpBindAttributes() Reciprocal function.
+     * @link https://www.ampproject.org/docs/reference/components/amp-bind
+     *
+     * @param string $html HTML with amp-bind attributes converted.
+     * @return string HTML with amp-bind attributes restored.
+     */
+    public function restoreAmpBindAttributes($html)
+    {
+        if (empty($this->convertedAmpBindAttributes)) {
+            return $html;
+        }
+
+        $pattern     = sprintf(
+            '#%s(%s)#i',
+            self::AMP_BIND_DATA_ATTR_PREFIX,
+            implode('|', array_unique($this->convertedAmpBindAttributes))
+        );
+        $replacement = '[$1]';
+        $limit       = count($this->convertedAmpBindAttributes);
+
+        $restored = preg_replace($pattern, $replacement, $html, $limit);
+
+        return (null !== $restored) ? $restored : $html;
     }
 
     /**

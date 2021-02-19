@@ -439,16 +439,29 @@ class DocumentTest extends TestCase
      */
     public function testAmpBindConversion()
     {
-        $original  = '<amp-img width=300 height="200" data-foo="bar" selected src="/img/dog.jpg" [src]="myAnimals[currentAnimal].imageUrl"></amp-img>';
-        $converted = Document::fromHtml($original)->saveHTML();
-        $this->assertNotEquals($original, $converted);
+        // Conversion is transparent and end result preserves square brackets.
+        $original  = '<amp-img width="300" height="200" data-foo="bar" selected src="/img/dog.jpg" [src]="myAnimals[currentAnimal].imageUrl"></amp-img>';
+        $dom       = Document::fromHtml($original);
+        $converted = $dom->saveHTML($dom->body->firstChild);
+        $this->assertEquals($original, $converted);
+        $this->assertStringContainsString('[src]="myAnimals[currentAnimal].imageUrl"', $converted);
+        $this->assertStringNotContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX, $converted);
+        $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
+
+        // Conversion is transparent and end result preserves data-amp-bind-* syntax.
+        $original  = '<amp-img width="300" height="200" data-foo="bar" selected src="/img/dog.jpg" data-amp-bind-src="myAnimals[currentAnimal].imageUrl"></amp-img>';
+        $dom       = Document::fromHtml($original);
+        $converted = $dom->saveHTML($dom->body->firstChild);
+        $this->assertEquals($original, $converted);
         $this->assertStringContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX . 'src="myAnimals[currentAnimal].imageUrl"', $converted);
+        $this->assertStringNotContainsString('[src]', $converted);
         $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
 
         // Check tag with self-closing attribute.
         $original  = '<input type="text" role="textbox" class="calc-input" id="liens" name="liens" [value]="(result1 != null) ? result1.liens : \'verifying…\'" />';
-        $converted = Document::fromHtml($original)->saveHTML();
-        $this->assertNotEquals($original, $converted);
+        $dom       = Document::fromHtml($original);
+        $converted = $dom->saveHTML($dom->body->firstChild);
+        $this->assertSimilarMarkup($original, $converted);
 
         // Preserve trailing slash that is actually the attribute value.
         $original  = '<a href=/>Home</a>';

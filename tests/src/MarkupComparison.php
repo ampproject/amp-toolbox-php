@@ -92,7 +92,15 @@ trait MarkupComparison
                         $matches[2],
                         -1,
                         PREG_SPLIT_DELIM_CAPTURE
-                    )
+                    ),
+                    static function ($match) {
+                        // Eliminate individual slash as attribute, which is a left-over from self-closing tags.
+                        if (trim($match) === '/') {
+                            return false;
+                        }
+
+                        return (bool) $match;
+                    }
                 )
             );
 
