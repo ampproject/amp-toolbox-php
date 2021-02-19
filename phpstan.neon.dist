@@ -9,7 +9,7 @@ parameters:
 	ignoreErrors:
 		- '#^PHPDoc tag @throws with type AmpProject\\Exception\\FailedRemoteRequest is not subtype of Throwable$#'
 		- '/^Parameter \#1 \$callback of function set_exception_handler expects/'
-		# @see https://github.com/phpstan/phpstan/issues/3632
+		# @see https://github.com/phpstan/phpstan/issues/4570
 		- '#^Call to function array_key_exists\(\) with ''extensionType'' and array\(.*\) will always evaluate to false.$#'
 		-
 			message: '#^Unreachable statement - code above always terminates.$#'
