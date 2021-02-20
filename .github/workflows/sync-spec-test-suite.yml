@@ -1,6 +1,5 @@
 name: Sync spec test suite from NodeJS toolbox
 on:
-  pull_request:
   schedule:
     # https://crontab.guru/every-night-at-midnight
     - cron: "0 0 * * *"
