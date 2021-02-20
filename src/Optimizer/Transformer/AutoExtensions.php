@@ -45,7 +45,7 @@ final class AutoExtensions implements Transformer
      */
     public function transform(Document $document, ErrorCollection $errors)
     {
-        $extensionScripts = $this->extractExtensionScripts($document);
+        $extensionScripts = $this->extractExtensionScripts($document, $errors);
         $extensionScripts = $this->addMissingExtensions($document, $extensionScripts);
         $extensionScripts = $this->removeDuplicateExtensions($extensionScripts);
         $extensionScripts = $this->removeUnneededExtensions($document, $extensionScripts);

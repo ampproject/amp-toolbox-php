@@ -9,6 +9,7 @@ use Exception;
 
 final class CannotParseJsonData implements Error
 {
+    use ErrorProperties;
 
     const SCRIPT_EXCEPTION_MESSAGE = 'Cannot parse JSON data for script element %2$s: %1$s.';
 
