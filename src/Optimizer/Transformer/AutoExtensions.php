@@ -8,11 +8,13 @@ use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Dom\NodeWalker;
 use AmpProject\Extension;
+use AmpProject\Optimizer\Error\CannotParseJsonData;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Tag;
 use AmpProject\Validator\Spec;
 use Exception;
+use InvalidArgumentException;
 
 final class AutoExtensions implements Transformer
 {
@@ -54,10 +56,11 @@ final class AutoExtensions implements Transformer
     /**
      * Extract the extension scripts already present in the document.
      *
-     * @param Document $document Document to extract the extension scripts from.
+     * @param Document        $document Document to extract the extension scripts from.
+     * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
      * @return Element[] Array of extension scripts.
      */
-    private function extractExtensionScripts(Document $document)
+    private function extractExtensionScripts(Document $document, ErrorCollection $errors)
     {
         $extensionScripts = [];
 
@@ -71,7 +74,7 @@ final class AutoExtensions implements Transformer
                 $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::ACCESS);
                 $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::ANALYTICS);
 
-                $jsonData = $this->getJsonData($script);
+                $jsonData = $this->getJsonData($script, $errors);
                 if (array_key_exists('vendor', $jsonData) && $jsonData['vendor'] === 'laterpay') {
                     $extensionScripts = $this->maybeAddExtension(
                         $document,
@@ -85,7 +88,7 @@ final class AutoExtensions implements Transformer
                 $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::SUBSCRIPTIONS);
                 $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::ANALYTICS);
 
-                $jsonData = $this->getJsonData($script);
+                $jsonData = $this->getJsonData($script, $errors);
                 if (!array_key_exists('services', $jsonData)) {
                     continue;
                 }
@@ -267,18 +270,30 @@ final class AutoExtensions implements Transformer
     /**
      * Get the JSON data from the script element.
      *
-     * @param Element $script Script element to get the JSON data from.
+     * @param Element         $script Script element to get the JSON data from.
+     * @param ErrorCollection $errors Collection of errors that are collected during transformation.
      * @return array Associative array of parsed JSON data.
      */
-    private function getJsonData(Element $script)
+    private function getJsonData(Element $script, ErrorCollection $errors)
     {
         try {
+            $jsonString = trim($script->nodeValue);
+
+            if (empty($jsonString)) {
+                return [];
+            }
+
             $jsonData = json_decode(trim($script->nodeValue), true);
+
+            if (JSON_ERROR_NONE !== json_last_error()) {
+                throw new InvalidArgumentException('json_decode error: ' . json_last_error_msg());
+            }
+
             if (is_array($jsonData)) {
                 return $jsonData;
             }
         } catch (Exception $exception) {
-            // TODO: Log error.
+            $errors->add(CannotParseJsonData::fromExceptionForScriptElement($exception, $script));
         }
 
         return [];
