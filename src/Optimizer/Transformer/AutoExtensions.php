@@ -11,6 +11,7 @@ use AmpProject\Extension;
 use AmpProject\Optimizer\Error\CannotParseJsonData;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
+use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\Tag;
 use AmpProject\Validator\Spec;
 use Exception;
@@ -20,6 +21,13 @@ final class AutoExtensions implements Transformer
 {
 
     /**
+     * Configuration store to use.
+     *
+     * @var TransformerConfiguration
+     */
+    private $configuration;
+
+    /**
      * Validator spec instance.
      *
      * @var Spec
@@ -27,13 +35,15 @@ final class AutoExtensions implements Transformer
     private $spec;
 
     /**
-     * AutoExtensions constructor.
+     * Instantiate an AutoExtensions object.
      *
-     * @param Spec $spec Validator spec instance.
+     * @param TransformerConfiguration $configuration Configuration store to use.
+     * @param Spec                     $spec          Validator spec instance.
      */
-    public function __construct(Spec $spec)
+    public function __construct(TransformerConfiguration $configuration, Spec $spec)
     {
-        $this->spec = $spec;
+        $this->configuration = $configuration;
+        $this->spec          = $spec;
     }
 
     /**

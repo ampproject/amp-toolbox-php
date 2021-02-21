@@ -3,7 +3,10 @@
 namespace AmpProject\Optimizer\Transformer;
 
 use AmpProject\Dom\Document;
+use AmpProject\Optimizer\Configuration\AutoExtensionsConfiguration;
+use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
+use AmpProject\Tests\ErrorComparison;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
@@ -17,6 +20,7 @@ use AmpProject\Validator\Spec;
  */
 final class AutoExtensionsTest extends TestCase
 {
+    use ErrorComparison;
     use MarkupComparison;
 
     /**
@@ -45,17 +49,20 @@ final class AutoExtensionsTest extends TestCase
      * @covers       \AmpProject\Optimizer\Transformer\AutoExtensions::transform()
      * @dataProvider dataTransform()
      *
-     * @param string     $source       String of source HTML.
-     * @param string     $expectedHtml String of expected HTML output.
+     * @param string                  $source         String of source HTML.
+     * @param string                  $expectedHtml   String of expected HTML output.
+     * @param ErrorCollection|Error[] $expectedErrors Set of expected errors.
+     * @param array                   $config         Configuration data to use.
      */
-    public function testTransform($source, $expectedHtml)
+    public function testTransform($source, $expectedHtml, $expectedErrors = [], $config = [])
     {
         $document    = Document::fromHtml($source);
-        $transformer = new AutoExtensions(new Spec());
+        $transformer = new AutoExtensions(new AutoExtensionsConfiguration($config), new Spec());
         $errors      = new ErrorCollection();
 
         $transformer->transform($document, $errors);
 
         $this->assertEqualMarkup($expectedHtml, $document->saveHTML());
+        $this->assertSameErrors($expectedErrors, $errors);
     }
 }
