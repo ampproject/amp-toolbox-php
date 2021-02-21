@@ -57,7 +57,6 @@ final class AutoExtensions implements Transformer
     {
         $extensionScripts = $this->extractExtensionScripts($document, $errors);
         $extensionScripts = $this->addMissingExtensions($document, $extensionScripts);
-        $extensionScripts = $this->removeDuplicateExtensions($extensionScripts);
         $extensionScripts = $this->removeUnneededExtensions($document, $extensionScripts);
 
         $this->renderExtensionScripts($document, $extensionScripts);
@@ -176,19 +175,6 @@ final class AutoExtensions implements Transformer
 
             $node = NodeWalker::nextNode($node);
         }
-
-        return $extensionScripts;
-    }
-
-    /**
-     * Remove duplicate extension scripts.
-     *
-     * @param Element[] $extensionScripts Array of extension scripts to deduplicate.
-     * @return Element[] Deduplicated array of extension scripts.
-     */
-    private function removeDuplicateExtensions($extensionScripts)
-    {
-        // TODO: Add logic.
 
         return $extensionScripts;
     }
