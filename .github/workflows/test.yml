@@ -1,12 +1,6 @@
 name: Run tests
 
-on:
-  push:
-    branches:
-      - main
-      # Include all release branches.
-      - '[0-9]+.[0-9]+'
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   unit-test:
