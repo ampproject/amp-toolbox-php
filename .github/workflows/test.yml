@@ -64,6 +64,9 @@ jobs:
   code-style:
     name: "Code style / PHP ${{ matrix.php }}"
     runs-on: ubuntu-latest
+    # We want to run on external PRs, but not on our own internal PRs as they'll be run
+    # by the push to the branch. This avoids running the workflows twice in such a case.
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:
@@ -100,6 +103,9 @@ jobs:
   static-analysis:
     name: "Static analysis / PHP ${{ matrix.php }}"
     runs-on: ubuntu-latest
+    # We want to run on external PRs, but not on our own internal PRs as they'll be run
+    # by the push to the branch. This avoids running the workflows twice in such a case.
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     strategy:
       fail-fast: false
       matrix:
