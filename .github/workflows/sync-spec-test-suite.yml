@@ -1,0 +1,96 @@
+name: Sync spec test suite from NodeJS toolbox
+on:
+  schedule:
+    # https://crontab.guru/every-night-at-midnight
+    - cron: "0 0 * * *"
+
+jobs:
+  sync-spec-test-suite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: dom, iconv, json, libxml, zip
+          tools: composer
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Configure Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install Composer dependencies
+        run: composer install
+
+      - name: Configure git user
+        run: |
+          git config --global user.email "alain.schlesser@gmail.com"
+          git config --global user.name "Alain Schlesser"
+
+      - name: Check if remote branch exists
+        id: remote-branch
+        run: echo ::set-output name=exists::$([[ -z $(git ls-remote --heads origin sync-spec-test-suite) ]] && echo "0" || echo "1")
+
+      - name: Create branch to base pull request on
+        if: steps.remote-branch.outputs.exists == 0
+        run: |
+          git checkout -b sync-spec-test-suite
+
+      - name: Fetch existing branch to add commits to
+        if: steps.remote-branch.outputs.exists == 1
+        run: |
+          git fetch --all --prune
+          git checkout sync-spec-test-suite
+          git pull --no-rebase
+
+      - name: Sync spec test suite
+        run: composer sync-test-specs
+
+      - name: Check if there are changes
+        id: changes
+        run: echo ::set-output name=changed::$([[ -z $(git status --porcelain) ]] && echo "0" || echo "1")
+
+      - name: Get pull request body text
+        if: steps.changes.outputs.changed == 1
+        id: body
+        run: |
+          BODY=$(bin/render-pr-body.bash)
+          echo $BODY
+          BODY="${BODY//$'\n'/'%0A'}"
+          BODY="${BODY//$'`'/'\`'}"
+          echo -e "::set-output name=text::$BODY"
+
+      - name: Commit changes
+        if: steps.changes.outputs.changed == 1
+        run: |
+          git add --all .
+          git commit -m "Sync spec test suite - $(date +'%Y-%m-%d')"
+          git push origin sync-spec-test-suite
+
+      - name: Create pull request
+        if: |
+          steps.changes.outputs.changed == 1 &&
+          steps.remote-branch.outputs.exists == 0
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: "sync-spec-test-suite"
+          destination_branch: "main"
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          pr_title: "Sync spec test suite"
+          pr_body: "${{ steps.body.outputs.text }}"
+          pr_reviewer: "schlessera"
+          pr_label: "Testing"
