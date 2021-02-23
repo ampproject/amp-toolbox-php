@@ -397,6 +397,16 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><br/></body></html>',
                 '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><br></body></html>',
             ],
+            'emoji_in_html_tag_for_amp_attribute' => [
+                'utf-8',
+                '<!DOCTYPE html><html ⚡ [class]="mystate.class" class="blue">' . $head . '<body></body></html>',
+                '<!DOCTYPE html><html ⚡ data-amp-bind-class="mystate.class" class="blue ⚡">' . $head . '<body></body></html>',
+            ],
+            'emoji_in_html_tag_for_data_attribute' => [
+                'utf-8',
+                '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body></body></html>',
+                '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body></body></html>',
+            ],
         ];
     }
 
