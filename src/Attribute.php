@@ -103,5 +103,6 @@ interface Attribute
     const REL_PRERENDER    = 'prerender';
     const REL_STYLESHEET   = 'stylesheet';
 
-    const DATA_HERO = 'data-hero';
+    const DATA_HERO           = 'data-hero';
+    const DATA_HERO_CANDIDATE = 'data-hero-candidate';
 }
