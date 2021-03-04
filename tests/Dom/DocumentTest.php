@@ -399,7 +399,7 @@ class DocumentTest extends TestCase
             ],
             'emoji_in_html_tag_for_amp_attribute' => [
                 'utf-8',
-                '<!DOCTYPE html><html ⚡ [class]="mystate.class" class="blue">' . $head . '<body></body></html>',
+                '<!DOCTYPE html><html ⚡ [class]="mystate.class" class="blue ⚡">' . $head . '<body></body></html>',
                 '<!DOCTYPE html><html ⚡ data-amp-bind-class="mystate.class" class="blue ⚡">' . $head . '<body></body></html>',
             ],
             'emoji_in_html_tag_for_data_attribute' => [
