@@ -215,18 +215,18 @@ final class PreloadHeroImage implements Transformer
                     $heroImageCandidates[] = $heroImageCandidate;
                 } elseif (count($heroImageFallbacks) < self::DATA_HERO_MAX) {
                     $heroImageFallback = $this->detectPossibleHeroImageFallbacks($node);
+
+                    // Ensure we don't flag the same image twice. This can happen for placeholder images, which are
+                    // flagged on their own and as their parent's placeholder.
                     if (
-                        $heroImageFallback &&
-                        // Ensure we don't flag the same image twice. This can happen for placeholder images, which are
-                        // flagged on their own and as their parent's placeholder.
-                        (
+                        $heroImageFallback
+                        && (
                             ! $previousHeroImageFallback
                             || $heroImageFallback->getAmpImg() !== $previousHeroImageFallback->getAmpImg()
                         )
                     ) {
-                            $heroImageFallbacks[]      = $heroImageFallback;
-                            $previousHeroImageFallback = $heroImageFallback;
-                        }
+                        $heroImageFallbacks[]      = $heroImageFallback;
+                        $previousHeroImageFallback = $heroImageFallback;
                     }
                 }
             }
