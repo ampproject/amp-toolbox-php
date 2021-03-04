@@ -205,6 +205,55 @@ final class PreloadHeroImageTest extends TestCase
                     . '</amp-img>'
                 ),
             ],
+
+            'hero image candidates are turned into hero images' => [
+                $input(
+                    '<amp-img data-hero-candidate width="500" height="400" src="/img1.png"></amp-img>'
+                ),
+                $output(
+                    '<amp-img data-hero data-hero-candidate width="500" height="400" src="/img1.png" i-amphtml-ssr>'
+                    . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png">'
+                    . '</amp-img>'
+                ),
+            ],
+
+            'superfluous candidates are ignored without throwing an error' => [
+                $input(
+                    '<amp-img width="500" height="400" src="/foo.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero1.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero2.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero3.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero4.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero5.png"></amp-img>'
+                ),
+                $output(
+                    '<amp-img width="500" height="400" src="/foo.png"></amp-img>'
+                    . '<amp-img data-hero data-hero-candidate width="500" height="400" src="/hero1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/hero1.png"></amp-img>'
+                    . '<amp-img data-hero data-hero-candidate width="500" height="400" src="/hero2.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/hero2.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero3.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero4.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero5.png"></amp-img>'
+                ),
+            ],
+
+            'hero images trump hero image candidates' => [
+                $input(
+                    '<amp-img width="500" height="400" src="/foo.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero1.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero2.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero3.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero4.png"></amp-img>'
+                    . '<amp-img data-hero width="500" height="400" src="/hero5.png"></amp-img>'
+                ),
+                $output(
+                    '<amp-img width="500" height="400" src="/foo.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero1.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero2.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero3.png"></amp-img>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/hero4.png"></amp-img>'
+                    . '<amp-img data-hero width="500" height="400" src="/hero5.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/hero5.png"></amp-img>'
+                ),
+            ],
         ];
     }
 

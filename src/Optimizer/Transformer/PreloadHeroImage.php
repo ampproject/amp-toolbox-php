@@ -194,9 +194,11 @@ final class PreloadHeroImage implements Transformer
      */
     private function findHeroImages(Document $document)
     {
-        $heroImageCandidate = null;
-        $heroImages         = [];
-        $node               = $document->body;
+        $heroImages                = [];
+        $heroImageCandidates       = [];
+        $heroImageFallbacks        = [];
+        $previousHeroImageFallback = null;
+        $node                      = $document->body;
 
         while ($node !== null) {
             if (! $node instanceof Element) {
@@ -204,14 +206,31 @@ final class PreloadHeroImage implements Transformer
                 continue;
             }
 
-            $heroImage = $this->detectImageWithDataHero($node);
+            $heroImage = $this->detectImageWithAttribute($node, Attribute::DATA_HERO);
             if ($heroImage) {
                 $heroImages[] = $heroImage;
+            } elseif (count($heroImageCandidates) < self::DATA_HERO_MAX) {
+                $heroImageCandidate = $this->detectImageWithAttribute($node, Attribute::DATA_HERO_CANDIDATE);
+                if ($heroImageCandidate) {
+                    $heroImageCandidates[] = $heroImageCandidate;
+                } elseif (count($heroImageFallbacks) < self::DATA_HERO_MAX) {
+                    $heroImageFallback = $this->detectPossibleHeroImageFallbacks($node);
+
+                    // Ensure we don't flag the same image twice. This can happen for placeholder images, which are
+                    // flagged on their own and as their parent's placeholder.
+                    if (
+                        $heroImageFallback
+                        && (
+                            ! $previousHeroImageFallback
+                            || $heroImageFallback->getAmpImg() !== $previousHeroImageFallback->getAmpImg()
+                        )
+                    ) {
+                        $heroImageFallbacks[]      = $heroImageFallback;
+                        $previousHeroImageFallback = $heroImageFallback;
+                    }
+                }
             }
 
-            if (! $heroImageCandidate && count($heroImages) === 0) {
-                $heroImageCandidate = $this->detectHeroImageCandidate($node);
-            }
             if (Amp::isTemplate($node)) {
                 // Ignore images inside templates.
                 $node = $this->skipNodeAndChildren($node);
@@ -220,29 +239,33 @@ final class PreloadHeroImage implements Transformer
             }
         }
 
-        // Optimize data-hero element if defined.
         if (count($heroImages) > 0) {
             return $heroImages;
         }
 
-        // Fall back to auto-detected hero image if available.
-        if ($heroImageCandidate) {
-            return [$heroImageCandidate];
+        while (count($heroImages) < self::DATA_HERO_MAX && count($heroImageCandidates) > 0) {
+            $heroImages[] = array_shift($heroImageCandidates);
         }
 
-        // No hero images to optimize.
-        return [];
+        if (count($heroImages) < 1 && count($heroImageFallbacks) > 0) {
+            $heroImages[] = array_shift($heroImageFallbacks);
+        }
+
+        return $heroImages;
     }
 
     /**
-     * Detect a hero image with the data-hero attribute.
+     * Detect a hero image with a specific attribute.
      *
-     * @param Element $element Element to detect for.
+     * This is used for detecting an image marked with data-hero or data-hero-candidate
+     *
+     * @param Element $element   Element to detect for.
+     * @param string  $attribute Attribute to look for.
      * @return HeroImage|null Detected hero image, or null if none detected.
      */
-    private function detectImageWithDataHero(Element $element)
+    private function detectImageWithAttribute(Element $element, $attribute)
     {
-        if (!$element->hasAttribute(Attribute::DATA_HERO)) {
+        if (!$element->hasAttribute($attribute)) {
             return null;
         }
 
@@ -278,14 +301,14 @@ final class PreloadHeroImage implements Transformer
     }
 
     /**
-     * Detect a hero image candidate.
+     * Detect a possible hero image fallback.
      *
      * The hero image here can come from one of <amp-img>, <amp-video>, <amp-iframe>, <amp-video-iframe>.
      *
      * @param Element $element Element to detect for.
-     * @return HeroImage|null Detected hero image candidate, or null if none detected.
+     * @return HeroImage|null Detected hero image fallback, or null if none detected.
      */
-    private function detectHeroImageCandidate(Element $element)
+    private function detectPossibleHeroImageFallbacks(Element $element)
     {
         if (
             $element->hasAttribute(Attribute::LAYOUT)
@@ -295,27 +318,27 @@ final class PreloadHeroImage implements Transformer
         }
 
         if ($element->tagName === Extension::IMG || $element->tagName === Tag::IMG) {
-            return $this->detectHeroImageCandidateForAmpImg($element);
+            return $this->detectPossibleHeroImageFallbackForAmpImg($element);
         }
 
-        if ($element->tagName === EXTENSION::VIDEO) {
-            return $this->detectHeroImageCandidateForPosterImage($element);
+        if ($element->tagName === Extension::VIDEO) {
+            return $this->detectPossibleHeroImageFallbackForPosterImage($element);
         }
 
         if ($this->isAmpEmbed($element)) {
-            return $this->detectHeroImageCandidateForPlaceholderImage($element);
+            return $this->detectPossibleHeroImageFallbackForPlaceholderImage($element);
         }
 
         return null;
     }
 
     /**
-     * Detect a hero image candidate from an <amp-img> element.
+     * Detect a possible hero image fallback from an <amp-img> element.
      *
      * @param Element $element Element to detect for.
-     * @return HeroImage|null Detected hero image candidate, or null if none detected.
+     * @return HeroImage|null Detected hero image fallback, or null if none detected.
      */
-    private function detectHeroImageCandidateForAmpImg(Element $element)
+    private function detectPossibleHeroImageFallbackForAmpImg(Element $element)
     {
         $src = $element->getAttribute(Attribute::SRC);
 
@@ -338,12 +361,12 @@ final class PreloadHeroImage implements Transformer
     }
 
     /**
-     * Detect a hero image candidate from a video's poster (= placeholder) image.
+     * Detect a possible hero image fallback from a video's poster (= placeholder) image.
      *
      * @param Element $element Element to detect for.
-     * @return HeroImage|null Detected hero image candidate, or null if none detected.
+     * @return HeroImage|null Detected hero image fallback, or null if none detected.
      */
-    private function detectHeroImageCandidateForPosterImage(Element $element)
+    private function detectPossibleHeroImageFallbackForPosterImage(Element $element)
     {
         $poster = $element->getAttribute(Attribute::POSTER);
 
@@ -365,12 +388,12 @@ final class PreloadHeroImage implements Transformer
     }
 
     /**
-     * Detect a hero image candidate from a placeholder image.
+     * Detect a possible hero image fallback from a placeholder image.
      *
      * @param Element $element Element to detect for.
-     * @return HeroImage|null Detected hero image candidate, or null if none detected.
+     * @return HeroImage|null Detected hero image fallback, or null if none detected.
      */
-    private function detectHeroImageCandidateForPlaceholderImage(Element $element)
+    private function detectPossibleHeroImageFallbackForPlaceholderImage(Element $element)
     {
         // The placeholder will be a child node of the element.
         if (! $element->hasChildNodes()) {
