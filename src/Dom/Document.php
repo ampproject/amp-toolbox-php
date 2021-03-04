@@ -459,12 +459,12 @@ final class Document extends DOMDocument
     {
         $this->reset();
 
+        $source = $this->convertAmpEmojiAttribute($source);
         $source = $this->convertAmpBindAttributes($source);
         $source = $this->replaceSelfClosingTags($source);
         $source = $this->maybeReplaceNoscriptElements($source);
         $source = $this->secureMustacheScriptTemplates($source);
         $source = $this->secureDoctypeNode($source);
-        $source = $this->convertAmpEmojiAttribute($source);
 
         list($source, $this->originalEncoding) = $this->detectAndStripEncoding($source);
 
@@ -571,8 +571,8 @@ final class Document extends DOMDocument
         $html = $this->restoreDoctypeNode($html);
         $html = $this->restoreMustacheTemplateTokens($html);
         $html = $this->restoreSelfClosingTags($html);
-        $html = $this->restoreAmpEmojiAttribute($html);
         $html = $this->restoreAmpBindAttributes($html);
+        $html = $this->restoreAmpEmojiAttribute($html);
         $html = $this->fixSvgSourceAttributeEncoding($html);
 
         // Whitespace just causes unit tests to fail... so whitespace begone.
