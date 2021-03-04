@@ -407,6 +407,11 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body></body></html>',
                 '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body></body></html>',
             ],
+            'amp-bind on html tag class attribute' => [
+                'utf-8',
+                '<!DOCTYPE html><html amp [class]="mystate.class" class="blue">' . $head . '<body></body></html>',
+                '<!DOCTYPE html><html amp data-amp-bind-class="mystate.class" class="blue">' . $head . '<body></body></html>',
+            ],
         ];
     }
 
