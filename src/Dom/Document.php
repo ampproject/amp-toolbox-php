@@ -44,6 +44,11 @@ final class Document extends DOMDocument
      */
     const OPTION_AMP_BIND_SYNTAX = 'amp_bind_syntax';
 
+    // Different flags for the amp-bind syntax option.
+    const AMP_BIND_SYNTAX_AUTO            = 'auto';
+    const AMP_BIND_SYNTAX_SQUARE_BRACKETS = 'square_brackets';
+    const AMP_BIND_SYNTAX_DATA_ATTRIBUTE  = 'data_attribute';
+
     /**
      * Option to provide the encoding of the document.
      *
@@ -64,7 +69,7 @@ final class Document extends DOMDocument
      * @var array<string>
      */
     const KNOWN_OPTIONS = [
-        self::OPTION_AMP_BIND_SYNTAX => 'auto',
+        self::OPTION_AMP_BIND_SYNTAX => self::AMP_BIND_SYNTAX_AUTO,
         self::OPTION_ENCODING        => null,
         self::OPTION_LIBXML_FLAGS    => 0,
     ];
@@ -254,6 +259,15 @@ final class Document extends DOMDocument
      * @var string
      */
     const XPATH_INLINE_STYLE_ATTRIBUTES_QUERY = './/@style';
+
+    /**
+     * Associative array of options to configure the behavior of the DOM document abstraction.
+     *
+     * @see Document::KNOWN_OPTIONS For a list of available options.
+     *
+     * @var array
+     */
+    private $options;
 
     /**
      * Whether `data-ampdevmode` was initially set on the the document element.
@@ -514,7 +528,7 @@ final class Document extends DOMDocument
             $options = [self::OPTION_LIBXML_FLAGS => $options];
         }
 
-        $options = array_merge(self::KNOWN_OPTIONS, $options);
+        $this->options = array_merge(self::KNOWN_OPTIONS, $options);
 
         $this->reset();
 
@@ -542,7 +556,7 @@ final class Document extends DOMDocument
 
         $libxml_previous_state = libxml_use_internal_errors(true);
 
-        $options[self::OPTION_LIBXML_FLAGS] |= LIBXML_COMPACT;
+        $this->options[self::OPTION_LIBXML_FLAGS] |= LIBXML_COMPACT;
 
         /*
          * LIBXML_HTML_NODEFDTD is only available for libxml 2.7.8+.
@@ -550,10 +564,10 @@ final class Document extends DOMDocument
          * is lower than expected.
          */
         if (defined('LIBXML_HTML_NODEFDTD')) {
-            $options[self::OPTION_LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
+            $this->options[self::OPTION_LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
         }
 
-        $success = parent::loadHTML($source, $options[self::OPTION_LIBXML_FLAGS]);
+        $success = parent::loadHTML($source, $this->options[self::OPTION_LIBXML_FLAGS]);
 
         libxml_clear_errors();
         libxml_use_internal_errors($libxml_previous_state);
@@ -1184,19 +1198,35 @@ final class Document extends DOMDocument
      */
     public function restoreAmpBindAttributes($html)
     {
-        if (empty($this->convertedAmpBindAttributes)) {
+        if ($this->options[self::OPTION_AMP_BIND_SYNTAX] === self::AMP_BIND_SYNTAX_DATA_ATTRIBUTE) {
+            // All amp-bind attributes should remain in their converted data attribute form.
             return $html;
         }
 
-        $pattern     = sprintf(
-            '#%s(%s)#i',
-            self::AMP_BIND_DATA_ATTR_PREFIX,
-            implode('|', array_unique($this->convertedAmpBindAttributes))
-        );
-        $replacement = '[$1]';
-        $limit       = count($this->convertedAmpBindAttributes);
+        if (
+            $this->options[self::OPTION_AMP_BIND_SYNTAX] === self::AMP_BIND_SYNTAX_AUTO
+            &&
+            empty($this->convertedAmpBindAttributes)
+        ) {
+            // Only previously converted amp-bind attributes should be restored, but none were converted.
+            return $html;
+        }
 
-        $restored = preg_replace($pattern, $replacement, $html, $limit);
+        // Depending on options, restore previously converted or all amp-bind attributes to square bracket syntax.
+        $pattern = $this->options[self::OPTION_AMP_BIND_SYNTAX] === self::AMP_BIND_SYNTAX_AUTO
+            ? sprintf(
+                '#%s(%s)#i',
+                self::AMP_BIND_DATA_ATTR_PREFIX,
+                implode('|', array_unique($this->convertedAmpBindAttributes))
+            )
+            : sprintf(
+                '#%s([a-z0-9-_]+)#i', // TODO: Check what exact regex makes sense here.
+                self::AMP_BIND_DATA_ATTR_PREFIX
+            );
+
+        $replacement = '[$1]';
+
+        $restored = preg_replace($pattern, $replacement, $html);
 
         return (null !== $restored) ? $restored : $html;
     }
