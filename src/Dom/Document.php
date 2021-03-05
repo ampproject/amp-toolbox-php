@@ -37,6 +37,37 @@ use DOMXPath;
  */
 final class Document extends DOMDocument
 {
+    /**
+     * Option to configure the preferred amp-bind syntax.
+     *
+     * @var string
+     */
+    const OPTION_AMP_BIND_SYNTAX = 'amp_bind_syntax';
+
+    /**
+     * Option to provide the encoding of the document.
+     *
+     * @var string
+     */
+    const OPTION_ENCODING = 'encoding';
+
+    /**
+     * Option to provide additional libxml flags to configure parsing of the document.
+     *
+     * @var string
+     */
+    const OPTION_LIBXML_FLAGS = 'libxml_flags';
+
+    /**
+     * Associative array of known options and their respective default value.
+     *
+     * @var array<string>
+     */
+    const KNOWN_OPTIONS = [
+        self::OPTION_AMP_BIND_SYNTAX => 'auto',
+        self::OPTION_ENCODING        => null,
+        self::OPTION_LIBXML_FLAGS    => 0,
+    ];
 
     /**
      * AMP requires the HTML markup to be encoded in UTF-8.
@@ -334,15 +365,23 @@ final class Document extends DOMDocument
     /**
      * Named constructor to provide convenient way of transforming HTML into DOM.
      *
-     * @param string $html     HTML to turn into a DOM.
-     * @param string $encoding Optional. Encoding of the provided HTML string.
+     * @param string       $html    HTML to turn into a DOM.
+     * @param array|string $options Optional. Array of options to configure the document. Used as encoding if a string
+     *                              is passed. Defaults to an empty array.
      * @return Document|false DOM generated from provided HTML, or false if the transformation failed.
      */
-    public static function fromHtml($html, $encoding = null)
+    public static function fromHtml($html, $options = [])
     {
+        // Assume options are the encoding if a string is passed, for BC reasons.
+        if (is_string($options)) {
+            $options = [self::OPTION_ENCODING => $options];
+        }
+
+        $encoding = isset($options[self::OPTION_ENCODING]) ? $options[self::OPTION_ENCODING] : null;
+
         $dom = new self('', $encoding);
 
-        if (! $dom->loadHTML($html)) {
+        if (! $dom->loadHTML($html, $options)) {
             return false;
         }
 
@@ -354,15 +393,23 @@ final class Document extends DOMDocument
      *
      * The difference to Document::fromHtml() is that fragments are not normalized as to their structure.
      *
-     * @param string $html     HTML to turn into a DOM.
-     * @param string $encoding Optional. Encoding of the provided HTML string.
+     * @param string       $html    HTML to turn into a DOM.
+     * @param array|string $options Optional. Array of options to configure the document. Used as encoding if a string
+     *                              is passed. Defaults to an empty array.
      * @return Document|false DOM generated from provided HTML, or false if the transformation failed.
      */
-    public static function fromHtmlFragment($html, $encoding = null)
+    public static function fromHtmlFragment($html, $options = [])
     {
+        // Assume options are the encoding if a string is passed, for BC reasons.
+        if (is_string($options)) {
+            $options = [self::OPTION_ENCODING => $options];
+        }
+
+        $encoding = isset($options[self::OPTION_ENCODING]) ? $options[self::OPTION_ENCODING] : null;
+
         $dom = new self('', $encoding);
 
-        if (! $dom->loadHTMLFragment($html)) {
+        if (! $dom->loadHTMLFragment($html, $options)) {
             return false;
         }
 
@@ -425,11 +472,12 @@ final class Document extends DOMDocument
      *
      * @link  https://php.net/manual/domdocument.loadhtml.php
      *
-     * @param string     $source  The HTML string.
-     * @param int|string $options Optional. Specify additional Libxml parameters.
+     * @param string           $source  The HTML string.
+     * @param array|int|string $options Optional. Array of options to configure the document. Used as additional Libxml
+     *                                  parameters if an int or string is passed. Defaults to an empty array.
      * @return bool true on success or false on failure.
      */
-    public function loadHTML($source, $options = 0)
+    public function loadHTML($source, $options = [])
     {
         $source  = $this->normalizeDocumentStructure($source);
         $success = $this->loadHTMLFragment($source, $options);
@@ -451,12 +499,23 @@ final class Document extends DOMDocument
     /**
      * Load a HTML fragment from a string.
      *
-     * @param string     $source  The HTML fragment string.
-     * @param int|string $options Optional. Specify additional Libxml parameters.
+     * @param string           $source  The HTML fragment string.
+     * @param array|int|string $options Optional. Array of options to configure the document. Used as additional Libxml
+     *                                  parameters if an int or string is passed. Defaults to an empty array.
      * @return bool true on success or false on failure.
      */
-    public function loadHTMLFragment($source, $options = 0)
+    public function loadHTMLFragment($source, $options = [])
     {
+        // Assume options are the additional libxml flags if a string or int is passed, for BC reasons.
+        if (is_string($options)) {
+            $options = (int) $options;
+        }
+        if (is_int($options)) {
+            $options = [self::OPTION_LIBXML_FLAGS => $options];
+        }
+
+        $options = array_merge(self::KNOWN_OPTIONS, $options);
+
         $this->reset();
 
         $source = $this->convertAmpEmojiAttribute($source);
@@ -483,7 +542,7 @@ final class Document extends DOMDocument
 
         $libxml_previous_state = libxml_use_internal_errors(true);
 
-        $options |= LIBXML_COMPACT;
+        $options[self::OPTION_LIBXML_FLAGS] |= LIBXML_COMPACT;
 
         /*
          * LIBXML_HTML_NODEFDTD is only available for libxml 2.7.8+.
@@ -491,10 +550,10 @@ final class Document extends DOMDocument
          * is lower than expected.
          */
         if (defined('LIBXML_HTML_NODEFDTD')) {
-            $options |= constant('LIBXML_HTML_NODEFDTD');
+            $options[self::OPTION_LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
         }
 
-        $success = parent::loadHTML($source, $options);
+        $success = parent::loadHTML($source, $options[self::OPTION_LIBXML_FLAGS]);
 
         libxml_clear_errors();
         libxml_use_internal_errors($libxml_previous_state);
