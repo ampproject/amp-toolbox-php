@@ -469,6 +469,17 @@ class DocumentTest extends TestCase
         $converted = $dom->saveHTML($dom->body->firstChild);
         $this->assertEquals('<a href="/">Home</a>', $converted);
 
+        // Amp-bind syntax auto option preserves individual syntax.
+        $original          = '<div [id]="valueA" data-amp-bind-class="valueB"></div>';
+        $dataAttribute     = '<div data-amp-bind-id="valueA" data-amp-bind-class="valueB"></div>';
+        $squareBrackets    = '<div [id]="valueA" [class]="valueB"></div>';
+        $domAuto           = Document::fromHtml($original, [Document::OPTION_AMP_BIND_SYNTAX => Document::AMP_BIND_SYNTAX_AUTO]);
+        $domDataAttribute  = Document::fromHtml($original, [Document::OPTION_AMP_BIND_SYNTAX => Document::AMP_BIND_SYNTAX_DATA_ATTRIBUTE]);
+        $domSquareBrackets = Document::fromHtml($original, [Document::OPTION_AMP_BIND_SYNTAX => Document::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
+        $this->assertSimilarMarkup($original, $domAuto->saveHTML($domAuto->body->firstChild));
+        $this->assertSimilarMarkup($dataAttribute, $domDataAttribute->saveHTML($domDataAttribute->body->firstChild));
+        $this->assertSimilarMarkup($squareBrackets, $domSquareBrackets->saveHTML($domSquareBrackets->body->firstChild));
+
         // Test malformed.
         $malformed_html = [
             '<amp-img width="123" [text]="..."</amp-img>',
