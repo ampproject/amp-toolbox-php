@@ -469,10 +469,10 @@ class DocumentTest extends TestCase
         $converted = $dom->saveHTML($dom->body->firstChild);
         $this->assertEquals('<a href="/">Home</a>', $converted);
 
-        // Amp-bind syntax auto option preserves individual syntax.
-        $original          = '<div [id]="valueA" data-amp-bind-class="valueB"></div>';
-        $dataAttribute     = '<div data-amp-bind-id="valueA" data-amp-bind-class="valueB"></div>';
-        $squareBrackets    = '<div [id]="valueA" [class]="valueB"></div>';
+        // Options make the conversion behavior configurable.
+        $original          = '<div [id]="valueA" data-amp-bind-class="valueB">These stay intact within content: [id]="valueA" data-amp-bind-class="valueB"</div>';
+        $dataAttribute     = '<div data-amp-bind-id="valueA" data-amp-bind-class="valueB">These stay intact within content: [id]="valueA" data-amp-bind-class="valueB"</div>';
+        $squareBrackets    = '<div [id]="valueA" [class]="valueB">These stay intact within content: [id]="valueA" data-amp-bind-class="valueB"</div>';
         $domAuto           = Document::fromHtml($original, [Document::OPTION_AMP_BIND_SYNTAX => Document::AMP_BIND_SYNTAX_AUTO]);
         $domDataAttribute  = Document::fromHtml($original, [Document::OPTION_AMP_BIND_SYNTAX => Document::AMP_BIND_SYNTAX_DATA_ATTRIBUTE]);
         $domSquareBrackets = Document::fromHtml($original, [Document::OPTION_AMP_BIND_SYNTAX => Document::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
