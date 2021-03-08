@@ -123,27 +123,62 @@ final class Document extends DOMDocument
     const AMP_BIND_DATA_ATTR_PREFIX = 'data-amp-bind-';
 
     /**
-     * Pattern for HTML attribute accounting for binding attr name, boolean attribute, single/double-quoted attribute
-     * value, and unquoted attribute values.
+     * Pattern for HTML attribute accounting for binding attr name in square brackets syntax, boolean attribute,
+     * single/double-quoted attribute value, and unquoted attribute values.
      *
      * @var string
      */
-    const AMP_BIND_ATTR_PATTERN = '#^\s+(?P<name>\[?[a-zA-Z0-9_\-]+\]?)'
-                                  . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
+    const AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN = '#^\s+(?P<name>\[?[a-zA-Z0-9_\-]+\]?)'
+                                                  . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
 
     /**
-     * Match all start tags that contain a binding attribute.
+     * Pattern for HTML attribute accounting for binding attr name in data attribute syntax, boolean attribute,
+     * single/double-quoted attribute value, and unquoted attribute values.
      *
      * @var string
      */
-    const AMP_BIND_START_TAGS_PATTERN = '#<'
+    const AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN = '#^\s+(?P<name>(?:'
+                                                 . self::AMP_BIND_DATA_ATTR_PREFIX
+                                                 . ')?[a-zA-Z0-9_\-]+)'
+                                                 . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
+
+    /**
+     * Match all start tags that contain a binding attribute in square brackets syntax.
+     *
+     * @var string
+     */
+    const AMP_BIND_SQUARE_START_PATTERN = '#<'
+                                          . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
+                                          . '(?P<attrs>\s+'                           // Attributes.
+                                          . '(?>[^>"\'\[\]]+|"[^"]*+"|\'[^\']*+\')*+' // Non-binding attributes tokens.
+                                          . '\[[a-zA-Z0-9_\-]+\]'                     // One binding attribute key.
+                                          . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+'     // Any attribute tokens, including
+                                                                                      // binding ones.
+                                          . ')>#s';
+
+    /**
+     * Match all start tags that contain a binding attribute in data attribute syntax.
+     *
+     * @var string
+     */
+    const AMP_BIND_DATA_START_PATTERN = '#<'
                                         . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
-                                        . '(?P<attrs>\s'                            // Attributes.
-                                        . '(?>[^>"\'\[\]]+|"[^"]*+"|\'[^\']*+\')*+' // Non-binding attributes tokens.
-                                        . '\[[a-zA-Z0-9_\-]+\]'                     // One binding attribute key.
-                                        . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+'     // Any attribute tokens, including
+                                        . '(?P<attrs>\s+'                           // Attributes.
+                                            . '(?>'                                 // Match at least one attribute
+                                                . '(?>'                             // prefixed with "data-amp-bind-".
+                                                    . '(?![a-zA-Z0-9_\-\s]*'
+                                                    . self::AMP_BIND_DATA_ATTR_PREFIX
+                                                    . '[a-zA-Z0-9_\-]+="[^"]*+"|\'[^\']*+\')'
+                                                    . '[^>"\']+|"[^"]*+"|\'[^\']*+\''
+                                                . ')*+'
+                                                . '(?>[a-zA-Z0-9_\-\s]*'
+                                                    . self::AMP_BIND_DATA_ATTR_PREFIX
+                                                    . '[a-zA-Z0-9_\-]+'
+                                                . ')'
+                                            . ')+'
+                                            . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+' // Any attribute tokens, including
                                                                                     // binding ones.
-                                        . ')>#s';
+                                        . ')>#is';
 
     /*
      * Regular expressions to fetch the individual structural tags.
@@ -1142,7 +1177,7 @@ final class Document extends DOMDocument
 
             $newAttrs = '';
             $offset   = 0;
-            while (preg_match(self::AMP_BIND_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
+            while (preg_match(self::AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
                 $offset += strlen($attrMatches[0]);
 
                 if ('[' === $attrMatches['name'][0]) {
@@ -1166,7 +1201,7 @@ final class Document extends DOMDocument
         };
 
         $converted = preg_replace_callback(
-            self::AMP_BIND_START_TAGS_PATTERN,
+            self::AMP_BIND_SQUARE_START_PATTERN,
             $replaceCallback,
             $html
         );
@@ -1212,23 +1247,61 @@ final class Document extends DOMDocument
             return $html;
         }
 
-        // Depending on options, restore previously converted or all amp-bind attributes to square bracket syntax.
-        $pattern = $this->options[self::OPTION_AMP_BIND_SYNTAX] === self::AMP_BIND_SYNTAX_AUTO
-            ? sprintf(
-                '#%s(%s)#i',
-                self::AMP_BIND_DATA_ATTR_PREFIX,
-                implode('|', array_unique($this->convertedAmpBindAttributes))
-            )
-            : sprintf(
-                '#%s([a-z0-9-_]+)#i', // TODO: Check what exact regex makes sense here.
-                self::AMP_BIND_DATA_ATTR_PREFIX
-            );
+        /**
+         * Replace callback.
+         *
+         * @param array $tagMatches Tag matches.
+         * @return string Replacement.
+         */
+        $replaceCallback = function ($tagMatches) {
 
-        $replacement = '[$1]';
+            // Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
+            $oldAttrs = rtrim(preg_replace('#(?<!=)/$#', '', $tagMatches['attrs']));
 
-        $restored = preg_replace($pattern, $replacement, $html);
+            $newAttrs = '';
+            $offset   = 0;
+            while (preg_match(self::AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
+                $offset += strlen($attrMatches[0]);
 
-        return (null !== $restored) ? $restored : $html;
+                $attrName = substr($attrMatches['name'], strlen(self::AMP_BIND_DATA_ATTR_PREFIX));
+                if (
+                    $this->options[self::OPTION_AMP_BIND_SYNTAX] === self::AMP_BIND_SYNTAX_SQUARE_BRACKETS
+                    ||
+                    in_array($attrName, $this->convertedAmpBindAttributes, true)
+                ) {
+                    $newAttrs .= " [{$attrName}]";
+                    if (isset($attrMatches['value'])) {
+                        $newAttrs .= $attrMatches['value'];
+                    }
+                } else {
+                    $newAttrs .= $attrMatches[0];
+                }
+            }
+
+            // Bail on parse error which occurs when the regex isn't able to consume the entire $newAttrs string.
+            if (strlen($oldAttrs) !== $offset) {
+                return $tagMatches[0];
+            }
+
+            return '<' . $tagMatches['name'] . $newAttrs . '>';
+        };
+
+        $converted = preg_replace_callback(
+            self::AMP_BIND_DATA_START_PATTERN,
+            $replaceCallback,
+            $html
+        );
+
+        /*
+         * If the regex engine incurred an error during processing, for example exceeding the backtrack
+         * limit, $converted will be null. In this case we return the originally passed document to allow
+         * DOMDocument to attempt to load it.  If the AMP HTML doesn't make use of amp-bind or similar
+         * attributes, then everything should still work.
+         *
+         * See https://github.com/ampproject/amp-wp/issues/993 for additional context on this issue.
+         * See http://php.net/manual/en/pcre.constants.php for additional info on PCRE errors.
+         */
+        return (null !== $converted) ? $converted : $html;
     }
 
     /**
