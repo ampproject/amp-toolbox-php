@@ -66,7 +66,7 @@ final class Document extends DOMDocument
     /**
      * Associative array of known options and their respective default value.
      *
-     * @var array<string>
+     * @var array
      */
     const KNOWN_OPTIONS = [
         self::OPTION_AMP_BIND_SYNTAX => self::AMP_BIND_SYNTAX_AUTO,
