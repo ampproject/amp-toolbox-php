@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+namespace AmpProject\Cli;
+
+if (!class_exists('AmpProject\Cli\AmpExecutable')) {
+
+    $possibleAutoloaderLocations = [
+        dirname(__DIR__) . '/vendor/autoload.php',
+        dirname(__DIR__) . '/autoload.php',
+    ];
+
+    foreach ($possibleAutoloaderLocations as $possibleAutoloaderLocation) {
+        if (is_readable($possibleAutoloaderLocation)) {
+            include_once $possibleAutoloaderLocation;
+        }
+    }
+}
+
+( new AmpExecutable() )->run();
