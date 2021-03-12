@@ -1,10 +1,9 @@
 name: Run tests
-
 on: [push, pull_request]
 
 jobs:
   unit-test:
-    name: "Unit test${{ matrix.coverage && ' (with coverage)' || '' }} / PHP ${{ matrix.php }}"
+    name: Unit test${{ matrix.coverage && ' (with coverage)' || '' }} / PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     # We want to run on external PRs, but not on our own internal PRs as they'll be run
     # by the push to the branch. This avoids running the workflows twice in such a case.
@@ -62,7 +61,7 @@ jobs:
           bash <(curl -s https://codecov.io/bash) -cF php -f "$PWD/build/logs/clover.xml"
 
   code-style:
-    name: "Code style / PHP ${{ matrix.php }}"
+    name: Code style / PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     # We want to run on external PRs, but not on our own internal PRs as they'll be run
     # by the push to the branch. This avoids running the workflows twice in such a case.
@@ -101,7 +100,7 @@ jobs:
         run: vendor/bin/phpcs -q --report=checkstyle --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 | cs2pr --graceful-warnings
 
   static-analysis:
-    name: "Static analysis / PHP ${{ matrix.php }}"
+    name: Static analysis / PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     # We want to run on external PRs, but not on our own internal PRs as they'll be run
     # by the push to the branch. This avoids running the workflows twice in such a case.
