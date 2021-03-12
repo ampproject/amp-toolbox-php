@@ -2,7 +2,7 @@ name: Sync runtime local fallback files
 on:
   schedule:
     # https://crontab.guru/every-night-at-midnight
-    - cron: "0 0 * * *"
+    - cron: 0 0 * * *
 
 jobs:
   sync-local-fallback-files:
@@ -87,10 +87,10 @@ jobs:
           steps.remote-branch.outputs.exists == 0
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: "sync-local-fallback-files"
-          destination_branch: "main"
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
-          pr_title: "Sync local fallback files"
-          pr_body: "${{ steps.body.outputs.text }}"
-          pr_reviewer: "schlessera"
-          pr_label: "SSR"
+          source_branch: sync-local-fallback-files
+          destination_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: Sync local fallback files
+          pr_body: ${{ steps.body.outputs.text }}
+          pr_reviewer: schlessera
+          pr_label: SSR,automerge

@@ -2,7 +2,7 @@ name: Sync spec test suite from NodeJS toolbox
 on:
   schedule:
     # https://crontab.guru/every-night-at-midnight
-    - cron: "0 0 * * *"
+    - cron: 0 0 * * *
 
 jobs:
   sync-spec-test-suite:
@@ -87,10 +87,10 @@ jobs:
           steps.remote-branch.outputs.exists == 0
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: "sync-spec-test-suite"
-          destination_branch: "main"
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
-          pr_title: "Sync spec test suite"
-          pr_body: "${{ steps.body.outputs.text }}"
-          pr_reviewer: "schlessera"
-          pr_label: "Testing"
+          source_branch: sync-spec-test-suite
+          destination_branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: Sync spec test suite
+          pr_body: ${{ steps.body.outputs.text }}
+          pr_reviewer: schlessera
+          pr_label: Testing
