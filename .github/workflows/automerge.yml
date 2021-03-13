@@ -2,8 +2,8 @@ name: Automatic Merge
 on:
   workflow_dispatch:
   schedule:
-    # Every day at half past midnight: https://crontab.guru/#30_0_*_*_*
-    - cron: 30 0 * * *
+    # https://crontab.guru/every-hour
+    - cron: 0 * * * *
 
 jobs:
   merge:
