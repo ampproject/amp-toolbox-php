@@ -260,7 +260,7 @@ class DocumentTest extends TestCase
             ],
             // Make sure we correctly identify the ISO-8859 sub-charsets ("€" does not exist in ISO-8859-1).
             'iso_8859_15_encoding_predefined'          => [
-                'iso-8859-1',
+                'iso-8859-15',
                 mb_convert_encoding('<!DOCTYPE html><html><head></head><body><p>€</p></body></html>', 'ISO-8859-15', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>€</p></body></html>',
             ],

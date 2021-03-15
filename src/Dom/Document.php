@@ -1281,7 +1281,7 @@ final class Document extends DOMDocument
      */
     private function detectAndStripEncoding($content)
     {
-        $encoding = Encoding::UNKNOWN;
+        $encoding = $this->originalEncoding;
 
         // Check for HTML 4 http-equiv meta tags.
         foreach ($this->findTags($content, Tag::META, Attribute::HTTP_EQUIV) as $potentialHttpEquivTag) {
