@@ -1250,6 +1250,14 @@ final class Document extends DOMDocument
 
         $this->originalEncoding = $this->sanitizeEncoding($this->originalEncoding);
 
+        // Sanitization failed, so we do a last effort to auto-detect.
+        if (Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
+            $detectedEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
+            if ($detectedEncoding !== false) {
+                $this->originalEncoding = $detectedEncoding;
+            }
+        }
+
         $target = false;
         if (Encoding::AMP !== strtolower($this->originalEncoding)) {
             $target = function_exists('mb_convert_encoding')
