@@ -269,6 +269,11 @@ class DocumentTest extends TestCase
                 utf8_decode('<!DOCTYPE html><html><body><p>ÄÖÜ</p></body></html>'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
+            'mapping_encodings_to_fallbacks'  => [
+                'latin-1',
+                utf8_decode('<!DOCTYPE html><html><body><p>ÄÖÜ</p></body></html>'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
+            ],
             'raw_iso_8859_1'                           => [
                 '',
                 utf8_decode('ÄÖÜ'),
