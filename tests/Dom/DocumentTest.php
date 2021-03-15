@@ -208,6 +208,11 @@ class DocumentTest extends TestCase
                 '<p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p>',
                 '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
             ],
+            'utf_8_encoding_auto'                      => [
+                'auto',
+                '<p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p>',
+                '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
+            ],
             'utf_8_encoding_guessed_via_charset'       => [
                 '',
                 '<html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body>',
@@ -219,6 +224,11 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
             ],
             'iso_8859_1_encoding_predefined'           => [
+                'iso-8859-1',
+                utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
+            ],
+            'iso_8859_1_encoding_auto'           => [
                 'iso-8859-1',
                 utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',

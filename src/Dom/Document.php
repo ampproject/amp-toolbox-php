@@ -1243,6 +1243,7 @@ final class Document extends DOMDocument
         }
 
         // Guessing the encoding seems to have failed, so we assume UTF-8 instead.
+        // In my testing, this was not possible as long as one ISO-8859-x is in the detection order.
         if (empty($this->originalEncoding)) {
             $this->originalEncoding = Encoding::AMP;
         }
@@ -1386,6 +1387,12 @@ final class Document extends DOMDocument
      */
     private function sanitizeEncoding($encoding)
     {
+        $encoding = strtolower($encoding);
+
+        if ($encoding === Encoding::AMP) {
+            return $encoding;
+        }
+
         if (! function_exists('mb_list_encodings')) {
             return $encoding;
         }
@@ -1396,14 +1403,11 @@ final class Document extends DOMDocument
             $knownEncodings = array_map('strtolower', mb_list_encodings());
         }
 
-        $lcEncoding = strtolower($encoding);
-        $encodings  = Encoding::MAPPINGS;
-
-        if (isset($encodings[$lcEncoding])) {
-            $encoding = $encodings[$lcEncoding];
+        if (array_key_exists($encoding, Encoding::MAPPINGS)) {
+            $encoding = Encoding::MAPPINGS[$encoding];
         }
 
-        if (! in_array($lcEncoding, $knownEncodings, true)) {
+        if (! in_array($encoding, $knownEncodings, true)) {
             return Encoding::UNKNOWN;
         }
 
