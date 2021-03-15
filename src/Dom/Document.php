@@ -5,6 +5,8 @@ namespace AmpProject\Dom;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\DevMode;
+use AmpProject\Dom\Document\Encoding;
+use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
@@ -223,7 +225,7 @@ final class Document extends DOMDocument
     /**
      * Associative array of options to configure the behavior of the DOM document abstraction.
      *
-     * @see Document\Option::DEFAULTS For a list of available options.
+     * @see Option::DEFAULTS For a list of available options.
      *
      * @var array
      */
@@ -331,8 +333,8 @@ final class Document extends DOMDocument
      */
     public function __construct($version = '', $encoding = null)
     {
-        $this->originalEncoding = (string)$encoding ?: Document\Encoding::UNKNOWN;
-        parent::__construct($version ?: '1.0', Document\Encoding::AMP);
+        $this->originalEncoding = (string)$encoding ?: Encoding::UNKNOWN;
+        parent::__construct($version ?: '1.0', Encoding::AMP);
         $this->registerNodeClass(DOMElement::class, Element::class);
     }
 
@@ -348,10 +350,10 @@ final class Document extends DOMDocument
     {
         // Assume options are the encoding if a string is passed, for BC reasons.
         if (is_string($options)) {
-            $options = [Document\Option::ENCODING => $options];
+            $options = [Option::ENCODING => $options];
         }
 
-        $encoding = isset($options[Document\Option::ENCODING]) ? $options[Document\Option::ENCODING] : null;
+        $encoding = isset($options[Option::ENCODING]) ? $options[Option::ENCODING] : null;
 
         $dom = new self('', $encoding);
 
@@ -376,10 +378,10 @@ final class Document extends DOMDocument
     {
         // Assume options are the encoding if a string is passed, for BC reasons.
         if (is_string($options)) {
-            $options = [Document\Option::ENCODING => $options];
+            $options = [Option::ENCODING => $options];
         }
 
-        $encoding = isset($options[Document\Option::ENCODING]) ? $options[Document\Option::ENCODING] : null;
+        $encoding = isset($options[Option::ENCODING]) ? $options[Option::ENCODING] : null;
 
         $dom = new self('', $encoding);
 
@@ -485,10 +487,10 @@ final class Document extends DOMDocument
             $options = (int) $options;
         }
         if (is_int($options)) {
-            $options = [Document\Option::LIBXML_FLAGS => $options];
+            $options = [Option::LIBXML_FLAGS => $options];
         }
 
-        $this->options = array_merge(Document\Option::DEFAULTS, $options);
+        $this->options = array_merge(Option::DEFAULTS, $options);
 
         $this->reset();
 
@@ -501,7 +503,7 @@ final class Document extends DOMDocument
 
         list($source, $this->originalEncoding) = $this->detectAndStripEncoding($source);
 
-        if (Document\Encoding::AMP !== strtolower($this->originalEncoding)) {
+        if (Encoding::AMP !== strtolower($this->originalEncoding)) {
             $source = $this->adaptEncoding($source);
         }
 
@@ -516,7 +518,7 @@ final class Document extends DOMDocument
 
         $libxml_previous_state = libxml_use_internal_errors(true);
 
-        $this->options[Document\Option::LIBXML_FLAGS] |= LIBXML_COMPACT;
+        $this->options[Option::LIBXML_FLAGS] |= LIBXML_COMPACT;
 
         /*
          * LIBXML_HTML_NODEFDTD is only available for libxml 2.7.8+.
@@ -524,10 +526,10 @@ final class Document extends DOMDocument
          * is lower than expected.
          */
         if (defined('LIBXML_HTML_NODEFDTD')) {
-            $this->options[Document\Option::LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
+            $this->options[Option::LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
         }
 
-        $success = parent::loadHTML($source, $this->options[Document\Option::LIBXML_FLAGS]);
+        $success = parent::loadHTML($source, $this->options[Option::LIBXML_FLAGS]);
 
         libxml_clear_errors();
         libxml_use_internal_errors($libxml_previous_state);
@@ -627,7 +629,7 @@ final class Document extends DOMDocument
         }
 
         $charset = $this->createElement(Tag::META);
-        $charset->setAttribute(Attribute::CHARSET, Document\Encoding::AMP);
+        $charset->setAttribute(Attribute::CHARSET, Encoding::AMP);
         $this->head->insertBefore($charset, $this->head->firstChild);
     }
 
@@ -1158,13 +1160,13 @@ final class Document extends DOMDocument
      */
     public function restoreAmpBindAttributes($html)
     {
-        if ($this->options[Document\Option::AMP_BIND_SYNTAX] === Document\Option::AMP_BIND_SYNTAX_DATA_ATTRIBUTE) {
+        if ($this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_DATA_ATTRIBUTE) {
             // All amp-bind attributes should remain in their converted data attribute form.
             return $html;
         }
 
         if (
-            $this->options[Document\Option::AMP_BIND_SYNTAX] === Document\Option::AMP_BIND_SYNTAX_AUTO
+            $this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_AUTO
             &&
             empty($this->convertedAmpBindAttributes)
         ) {
@@ -1190,7 +1192,7 @@ final class Document extends DOMDocument
 
                 $attrName = substr($attrMatches['name'], strlen(self::AMP_BIND_DATA_ATTR_PREFIX));
                 if (
-                    $this->options[Document\Option::AMP_BIND_SYNTAX] === Document\Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS
+                    $this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS
                     ||
                     in_array($attrName, $this->convertedAmpBindAttributes, true)
                 ) {
@@ -1236,21 +1238,21 @@ final class Document extends DOMDocument
     private function adaptEncoding($source)
     {
         // No encoding was provided, so we need to guess.
-        if (Document\Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
-            $this->originalEncoding = mb_detect_encoding($source, Document\Encoding::DETECTION_ORDER, true);
+        if (Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
+            $this->originalEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
         }
 
         // Guessing the encoding seems to have failed, so we assume UTF-8 instead.
         if (empty($this->originalEncoding)) {
-            $this->originalEncoding = Document\Encoding::AMP;
+            $this->originalEncoding = Encoding::AMP;
         }
 
         $this->originalEncoding = $this->sanitizeEncoding($this->originalEncoding);
 
         $target = false;
-        if (Document\Encoding::AMP !== strtolower($this->originalEncoding)) {
+        if (Encoding::AMP !== strtolower($this->originalEncoding)) {
             $target = function_exists('mb_convert_encoding')
-                ? mb_convert_encoding($source, Document\Encoding::AMP, $this->originalEncoding)
+                ? mb_convert_encoding($source, Encoding::AMP, $this->originalEncoding)
                 : false;
         }
 
@@ -1270,7 +1272,7 @@ final class Document extends DOMDocument
      */
     private function detectAndStripEncoding($content)
     {
-        $encoding = Document\Encoding::UNKNOWN;
+        $encoding = Encoding::UNKNOWN;
 
         // Check for HTML 4 http-equiv meta tags.
         foreach ($this->findTags($content, Tag::META, Attribute::HTTP_EQUIV) as $potentialHttpEquivTag) {
@@ -1291,7 +1293,7 @@ final class Document extends DOMDocument
             $encoding = $this->extractValue($charsetTag, Attribute::CHARSET);
 
             // Strip the encoding if it is not the required one.
-            if (strtolower($encoding) !== Document\Encoding::AMP) {
+            if (strtolower($encoding) !== Encoding::AMP) {
                 $content = str_replace($charsetTag, '', $content);
             }
         }
@@ -1395,14 +1397,14 @@ final class Document extends DOMDocument
         }
 
         $lcEncoding = strtolower($encoding);
-        $encodings  = Document\Encoding::MAPPINGS;
+        $encodings  = Encoding::MAPPINGS;
 
         if (isset($encodings[$lcEncoding])) {
             $encoding = $encodings[$lcEncoding];
         }
 
         if (! in_array($lcEncoding, $knownEncodings, true)) {
-            return Document\Encoding::UNKNOWN;
+            return Encoding::UNKNOWN;
         }
 
         return $encoding;
