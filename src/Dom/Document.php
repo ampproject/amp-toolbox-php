@@ -39,22 +39,6 @@ final class Document extends DOMDocument
 {
 
     /**
-     * AMP requires the HTML markup to be encoded in UTF-8.
-     *
-     * @var string
-     */
-    const AMP_ENCODING = 'utf-8';
-
-    /**
-     * Encoding identifier to use for an unknown encoding.
-     *
-     * "auto" is recognized by mb_convert_encoding() as a special value.
-     *
-     * @var string
-     */
-    const UNKNOWN_ENCODING = 'auto';
-
-    /**
      * Default document type to use.
      *
      * @var string
@@ -67,17 +51,6 @@ final class Document extends DOMDocument
      * @var string
      */
     const HTML_DOCTYPE_REGEX_PATTERN = '#<!doctype\s+html[^>]+?>#si';
-
-    /**
-     * Encoding detection order in case we have to guess.
-     *
-     * This list of encoding detection order is just a wild guess and might need fine-tuning over time.
-     * If the charset was not provided explicitly, we can really only guess, as the detection can
-     * never be 100% accurate and reliable.
-     *
-     * @var string
-     */
-    const ENCODING_DETECTION_ORDER = 'UTF-8, EUC-JP, eucJP-win, JIS, ISO-2022-JP, ISO-8859-15, ISO-8859-1, ASCII';
 
     /**
      * Attribute prefix for AMP-bind data attributes.
@@ -227,18 +200,6 @@ final class Document extends DOMDocument
     const SRC_SVG_REGEX_PATTERN         = '/^\s*(?<type>[^<]+)(?<value><svg[^>]+>)\s*$/i';
 
     /**
-     * Associative array of encoding mappings.
-     *
-     * Translates HTML charsets into encodings PHP can understand.
-     *
-     * @var string[]
-     */
-    const ENCODING_MAP = [
-        // Assume ISO-8859-1 for some charsets.
-        'latin-1' => 'ISO-8859-1',
-    ];
-
-    /**
      * XPath query to retrieve all <amp-*> tags, relative to the <body> node.
      *
      * @var string
@@ -370,8 +331,8 @@ final class Document extends DOMDocument
      */
     public function __construct($version = '', $encoding = null)
     {
-        $this->originalEncoding = (string)$encoding ?: self::UNKNOWN_ENCODING;
-        parent::__construct($version ?: '1.0', self::AMP_ENCODING);
+        $this->originalEncoding = (string)$encoding ?: Document\Encoding::UNKNOWN;
+        parent::__construct($version ?: '1.0', Document\Encoding::AMP);
         $this->registerNodeClass(DOMElement::class, Element::class);
     }
 
@@ -540,7 +501,7 @@ final class Document extends DOMDocument
 
         list($source, $this->originalEncoding) = $this->detectAndStripEncoding($source);
 
-        if (self::AMP_ENCODING !== strtolower($this->originalEncoding)) {
+        if (Document\Encoding::AMP !== strtolower($this->originalEncoding)) {
             $source = $this->adaptEncoding($source);
         }
 
@@ -666,7 +627,7 @@ final class Document extends DOMDocument
         }
 
         $charset = $this->createElement(Tag::META);
-        $charset->setAttribute(Attribute::CHARSET, self::AMP_ENCODING);
+        $charset->setAttribute(Attribute::CHARSET, Document\Encoding::AMP);
         $this->head->insertBefore($charset, $this->head->firstChild);
     }
 
@@ -1277,21 +1238,21 @@ final class Document extends DOMDocument
     private function adaptEncoding($source)
     {
         // No encoding was provided, so we need to guess.
-        if (self::UNKNOWN_ENCODING === $this->originalEncoding && function_exists('mb_detect_encoding')) {
-            $this->originalEncoding = mb_detect_encoding($source, self::ENCODING_DETECTION_ORDER, true);
+        if (Document\Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
+            $this->originalEncoding = mb_detect_encoding($source, Document\Encoding::DETECTION_ORDER, true);
         }
 
         // Guessing the encoding seems to have failed, so we assume UTF-8 instead.
         if (empty($this->originalEncoding)) {
-            $this->originalEncoding = self::AMP_ENCODING;
+            $this->originalEncoding = Document\Encoding::AMP;
         }
 
         $this->originalEncoding = $this->sanitizeEncoding($this->originalEncoding);
 
         $target = false;
-        if (self::AMP_ENCODING !== strtolower($this->originalEncoding)) {
+        if (Document\Encoding::AMP !== strtolower($this->originalEncoding)) {
             $target = function_exists('mb_convert_encoding')
-                ? mb_convert_encoding($source, self::AMP_ENCODING, $this->originalEncoding)
+                ? mb_convert_encoding($source, Document\Encoding::AMP, $this->originalEncoding)
                 : false;
         }
 
@@ -1311,7 +1272,7 @@ final class Document extends DOMDocument
      */
     private function detectAndStripEncoding($content)
     {
-        $encoding = self::UNKNOWN_ENCODING;
+        $encoding = Document\Encoding::UNKNOWN;
 
         // Check for HTML 4 http-equiv meta tags.
         foreach ($this->findTags($content, Tag::META, Attribute::HTTP_EQUIV) as $potentialHttpEquivTag) {
@@ -1332,7 +1293,7 @@ final class Document extends DOMDocument
             $encoding = $this->extractValue($charsetTag, Attribute::CHARSET);
 
             // Strip the encoding if it is not the required one.
-            if (strtolower($encoding) !== self::AMP_ENCODING) {
+            if (strtolower($encoding) !== Document\Encoding::AMP) {
                 $content = str_replace($charsetTag, '', $content);
             }
         }
@@ -1436,14 +1397,14 @@ final class Document extends DOMDocument
         }
 
         $lcEncoding = strtolower($encoding);
-        $encodings  = self::ENCODING_MAP;
+        $encodings  = Document\Encoding::MAPPINGS;
 
         if (isset($encodings[$lcEncoding])) {
             $encoding = $encodings[$lcEncoding];
         }
 
         if (! in_array($lcEncoding, $knownEncodings, true)) {
-            return self::UNKNOWN_ENCODING;
+            return Document\Encoding::UNKNOWN;
         }
 
         return $encoding;
