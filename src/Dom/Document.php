@@ -619,6 +619,16 @@ final class Document extends DOMDocument
     }
 
     /**
+     * Get the current options of the Document instance.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
      * Add the required utf-8 meta charset tag if it is still missing.
      */
     private function insertMissingCharset()

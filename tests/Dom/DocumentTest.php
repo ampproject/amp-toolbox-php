@@ -4,6 +4,7 @@ namespace AmpProject\Dom;
 
 use AmpProject\Amp;
 use AmpProject\Attribute;
+use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\MarkupComparison;
@@ -1068,5 +1069,77 @@ class DocumentTest extends TestCase
         );
 
         $document->addAmpCustomStyle('X');
+    }
+
+    public function testEncodingOption()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::ENCODING => 'something', Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+        );
+
+        $document = Document::fromHtml('<html><div></div></html>', [Option::ENCODING => 'something']);
+        $this->assertEquals(array_merge($expectedOptions, [Option::ENCODING => 'something']), $document->getOptions());
+
+        $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::ENCODING => 'something']);
+        $this->assertEquals(array_merge($expectedOptions, [Option::ENCODING => 'something']), $documentFragment->getOptions());
+    }
+
+    public function testAmpBindSyntaxOption()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS, Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+        );
+
+        $document = Document::fromHtml('<html><div></div></html>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+    }
+
+    public function testLibxmlOption()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_PARSEHUGE]
+        );
+
+        $document = Document::fromHtml('<html><div></div></html>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+    }
+
+    public function testEncodingOptionBC()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::ENCODING => 'something', Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+        );
+
+        $document = Document::fromHtml('<html><div></div></html>', 'something');
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = Document::fromHtmlFragment('<div></div>', 'something');
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+    }
+
+    public function testLibxmlOptionBC()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_PARSEHUGE]
+        );
+
+        $document = new Document();
+        $document->loadHTML('<html><div></div></html>', LIBXML_PARSEHUGE);
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = new Document();
+        $documentFragment->loadHTMLFragment('<div></div>', LIBXML_PARSEHUGE);
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
 }
