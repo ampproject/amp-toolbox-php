@@ -37,42 +37,6 @@ use DOMXPath;
  */
 final class Document extends DOMDocument
 {
-    /**
-     * Option to configure the preferred amp-bind syntax.
-     *
-     * @var string
-     */
-    const OPTION_AMP_BIND_SYNTAX = 'amp_bind_syntax';
-
-    // Different flags for the amp-bind syntax option.
-    const AMP_BIND_SYNTAX_AUTO            = 'auto';
-    const AMP_BIND_SYNTAX_SQUARE_BRACKETS = 'square_brackets';
-    const AMP_BIND_SYNTAX_DATA_ATTRIBUTE  = 'data_attribute';
-
-    /**
-     * Option to provide the encoding of the document.
-     *
-     * @var string
-     */
-    const OPTION_ENCODING = 'encoding';
-
-    /**
-     * Option to provide additional libxml flags to configure parsing of the document.
-     *
-     * @var string
-     */
-    const OPTION_LIBXML_FLAGS = 'libxml_flags';
-
-    /**
-     * Associative array of known options and their respective default value.
-     *
-     * @var array
-     */
-    const KNOWN_OPTIONS = [
-        self::OPTION_AMP_BIND_SYNTAX => self::AMP_BIND_SYNTAX_AUTO,
-        self::OPTION_ENCODING        => null,
-        self::OPTION_LIBXML_FLAGS    => 0,
-    ];
 
     /**
      * AMP requires the HTML markup to be encoded in UTF-8.
@@ -298,7 +262,7 @@ final class Document extends DOMDocument
     /**
      * Associative array of options to configure the behavior of the DOM document abstraction.
      *
-     * @see Document::KNOWN_OPTIONS For a list of available options.
+     * @see Document\Option::DEFAULTS For a list of available options.
      *
      * @var array
      */
@@ -423,10 +387,10 @@ final class Document extends DOMDocument
     {
         // Assume options are the encoding if a string is passed, for BC reasons.
         if (is_string($options)) {
-            $options = [self::OPTION_ENCODING => $options];
+            $options = [Document\Option::ENCODING => $options];
         }
 
-        $encoding = isset($options[self::OPTION_ENCODING]) ? $options[self::OPTION_ENCODING] : null;
+        $encoding = isset($options[Document\Option::ENCODING]) ? $options[Document\Option::ENCODING] : null;
 
         $dom = new self('', $encoding);
 
@@ -451,10 +415,10 @@ final class Document extends DOMDocument
     {
         // Assume options are the encoding if a string is passed, for BC reasons.
         if (is_string($options)) {
-            $options = [self::OPTION_ENCODING => $options];
+            $options = [Document\Option::ENCODING => $options];
         }
 
-        $encoding = isset($options[self::OPTION_ENCODING]) ? $options[self::OPTION_ENCODING] : null;
+        $encoding = isset($options[Document\Option::ENCODING]) ? $options[Document\Option::ENCODING] : null;
 
         $dom = new self('', $encoding);
 
@@ -560,10 +524,10 @@ final class Document extends DOMDocument
             $options = (int) $options;
         }
         if (is_int($options)) {
-            $options = [self::OPTION_LIBXML_FLAGS => $options];
+            $options = [Document\Option::LIBXML_FLAGS => $options];
         }
 
-        $this->options = array_merge(self::KNOWN_OPTIONS, $options);
+        $this->options = array_merge(Document\Option::DEFAULTS, $options);
 
         $this->reset();
 
@@ -591,7 +555,7 @@ final class Document extends DOMDocument
 
         $libxml_previous_state = libxml_use_internal_errors(true);
 
-        $this->options[self::OPTION_LIBXML_FLAGS] |= LIBXML_COMPACT;
+        $this->options[Document\Option::LIBXML_FLAGS] |= LIBXML_COMPACT;
 
         /*
          * LIBXML_HTML_NODEFDTD is only available for libxml 2.7.8+.
@@ -599,10 +563,10 @@ final class Document extends DOMDocument
          * is lower than expected.
          */
         if (defined('LIBXML_HTML_NODEFDTD')) {
-            $this->options[self::OPTION_LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
+            $this->options[Document\Option::LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
         }
 
-        $success = parent::loadHTML($source, $this->options[self::OPTION_LIBXML_FLAGS]);
+        $success = parent::loadHTML($source, $this->options[Document\Option::LIBXML_FLAGS]);
 
         libxml_clear_errors();
         libxml_use_internal_errors($libxml_previous_state);
@@ -1233,13 +1197,13 @@ final class Document extends DOMDocument
      */
     public function restoreAmpBindAttributes($html)
     {
-        if ($this->options[self::OPTION_AMP_BIND_SYNTAX] === self::AMP_BIND_SYNTAX_DATA_ATTRIBUTE) {
+        if ($this->options[Document\Option::AMP_BIND_SYNTAX] === Document\Option::AMP_BIND_SYNTAX_DATA_ATTRIBUTE) {
             // All amp-bind attributes should remain in their converted data attribute form.
             return $html;
         }
 
         if (
-            $this->options[self::OPTION_AMP_BIND_SYNTAX] === self::AMP_BIND_SYNTAX_AUTO
+            $this->options[Document\Option::AMP_BIND_SYNTAX] === Document\Option::AMP_BIND_SYNTAX_AUTO
             &&
             empty($this->convertedAmpBindAttributes)
         ) {
@@ -1265,7 +1229,7 @@ final class Document extends DOMDocument
 
                 $attrName = substr($attrMatches['name'], strlen(self::AMP_BIND_DATA_ATTR_PREFIX));
                 if (
-                    $this->options[self::OPTION_AMP_BIND_SYNTAX] === self::AMP_BIND_SYNTAX_SQUARE_BRACKETS
+                    $this->options[Document\Option::AMP_BIND_SYNTAX] === Document\Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS
                     ||
                     in_array($attrName, $this->convertedAmpBindAttributes, true)
                 ) {
