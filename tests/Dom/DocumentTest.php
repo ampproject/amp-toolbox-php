@@ -1071,6 +1071,15 @@ class DocumentTest extends TestCase
         $document->addAmpCustomStyle('X');
     }
 
+    /**
+     * Test the encoding option.
+     *
+     * @covers \AmpProject\Dom\Document::fromHtml()
+     * @covers \AmpProject\Dom\Document::fromHtmlFragment()
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
     public function testEncodingOption()
     {
         $expectedOptions = array_merge(
@@ -1079,12 +1088,21 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::ENCODING => 'something']);
-        $this->assertEquals(array_merge($expectedOptions, [Option::ENCODING => 'something']), $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::ENCODING => 'something']);
-        $this->assertEquals(array_merge($expectedOptions, [Option::ENCODING => 'something']), $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
 
+    /**
+     * Test the amp-bind syntax option.
+     *
+     * @covers \AmpProject\Dom\Document::fromHtml()
+     * @covers \AmpProject\Dom\Document::fromHtmlFragment()
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
     public function testAmpBindSyntaxOption()
     {
         $expectedOptions = array_merge(
@@ -1099,6 +1117,15 @@ class DocumentTest extends TestCase
         $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
 
+    /**
+     * Test the libxml option.
+     *
+     * @covers \AmpProject\Dom\Document::fromHtml()
+     * @covers \AmpProject\Dom\Document::fromHtmlFragment()
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
     public function testLibxmlOption()
     {
         $expectedOptions = array_merge(
@@ -1113,6 +1140,15 @@ class DocumentTest extends TestCase
         $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
 
+    /**
+     * Test the encoding option backwards compatibility fallback.
+     *
+     * @covers \AmpProject\Dom\Document::fromHtml()
+     * @covers \AmpProject\Dom\Document::fromHtmlFragment()
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
     public function testEncodingOptionBC()
     {
         $expectedOptions = array_merge(
@@ -1127,6 +1163,13 @@ class DocumentTest extends TestCase
         $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
 
+    /**
+     * Test the libxml option backwards compatibility fallback.
+     *
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
     public function testLibxmlOptionBC()
     {
         $expectedOptions = array_merge(
@@ -1135,11 +1178,11 @@ class DocumentTest extends TestCase
         );
 
         $document = new Document();
-        $document->loadHTML('<html><div></div></html>', LIBXML_PARSEHUGE);
+        $document->loadHTML('<html><div></div></html>', 524288);
         $this->assertEquals($expectedOptions, $document->getOptions());
 
         $documentFragment = new Document();
-        $documentFragment->loadHTMLFragment('<div></div>', LIBXML_PARSEHUGE);
+        $documentFragment->loadHTMLFragment('<div></div>', '524288');
         $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
 }
