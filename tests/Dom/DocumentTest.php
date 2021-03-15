@@ -208,6 +208,11 @@ class DocumentTest extends TestCase
                 '<p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p>',
                 '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
             ],
+            'utf_8_encoding_predefined_uc'             => [
+                'UTF-8',
+                '<p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p>',
+                '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
+            ],
             'utf_8_encoding_auto'                      => [
                 'auto',
                 '<p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p>',
@@ -217,6 +222,11 @@ class DocumentTest extends TestCase
                 '',
                 '<html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body>',
                 '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
+            ],
+            'utf_8_encoding_guessed_via_charset_uc'    => [
+                '',
+                '<html><head><meta charset="UTF-8"></head><body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body>',
+                '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
             ],
             'utf_8_encoding_guessed_via_wrong_charset'       => [
                 '',
@@ -233,7 +243,12 @@ class DocumentTest extends TestCase
                 utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
-            'iso_8859_1_encoding_auto'           => [
+            'iso_8859_1_encoding_predefined_uc'        => [
+                'ISO-8859-1',
+                utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
+            ],
+            'iso_8859_1_encoding_auto'                 => [
                 'iso-8859-1',
                 utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
@@ -261,6 +276,11 @@ class DocumentTest extends TestCase
             // Make sure we correctly identify the ISO-8859 sub-charsets ("€" does not exist in ISO-8859-1).
             'iso_8859_15_encoding_predefined'          => [
                 'iso-8859-15',
+                mb_convert_encoding('<!DOCTYPE html><html><head></head><body><p>€</p></body></html>', 'ISO-8859-15', 'UTF-8'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>€</p></body></html>',
+            ],
+            'iso_8859_15_encoding_predefined_uc'       => [
+                'ISO-8859-15',
                 mb_convert_encoding('<!DOCTYPE html><html><head></head><body><p>€</p></body></html>', 'ISO-8859-15', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>€</p></body></html>',
             ],
