@@ -247,11 +247,11 @@ final class Document extends DOMDocument
      *
      * @var string
      */
-    const AMP_EMOJI_ATTRIBUTE_PATTERN = '/<html\s[^>]*?(?:'
+    const AMP_EMOJI_ATTRIBUTE_PATTERN = '/<html\s([^>]*?(?:'
                                         . Attribute::AMP_EMOJI_ALT
                                         . '|'
                                         . Attribute::AMP_EMOJI
-                                        . ')[^>]*?>/i';
+                                        . ')(4(?:ads|email))?[^>]*?)>/i';
 
     // Attribute to use as a placeholder to move the emoji AMP symbol (⚡) over to DOM.
     const EMOJI_AMP_ATTRIBUTE_PLACEHOLDER = 'emoji-amp';
@@ -1595,56 +1595,45 @@ final class Document extends DOMDocument
      */
     private function convertAmpEmojiAttribute($source)
     {
-        $matches            = [];
         $this->usedAmpEmoji = '';
 
-        if (! preg_match(self::AMP_EMOJI_ATTRIBUTE_PATTERN, $source, $matches)) {
-            return $source;
-        }
-
-        $htmlTag = $matches[0];
-
-        // Extract attributes.
-        if (!preg_match('#^(<html)(\s[^>]+)>$#i', $htmlTag, $matches)) {
-            return $source;
-        }
-
-        // Split into individual attributes.
-        $attributes = array_map(
-            'trim',
-            array_filter(
-                preg_split(
-                    '#(\s+[^"\'\s=]+(?:=(?:"[^"]+"|\'[^\']+\'|[^"\'\s]+))?)#',
-                    $matches[2],
-                    -1,
-                    PREG_SPLIT_DELIM_CAPTURE
-                )
-            )
-        );
-
-        foreach ($attributes as $index => $attribute) {
-            $attributeMatches = [];
-            if (
-                preg_match(
-                    '/^(' . Attribute::AMP_EMOJI_ALT . '|' . Attribute::AMP_EMOJI . ')(4(?:ads|email))?$/i',
-                    $attribute,
-                    $attributeMatches
-                )
-            ) {
-                $this->usedAmpEmoji = $attributeMatches[1];
-                $variant            = ! empty($attributeMatches[2]) ? $attributeMatches[2] : '';
-                $attributes[$index] = self::EMOJI_AMP_ATTRIBUTE_PLACEHOLDER . "=\"{$variant}\"";
-
-                $source = preg_replace(
-                    self::AMP_EMOJI_ATTRIBUTE_PATTERN,
-                    '<html ' . implode(' ', $attributes) . '>',
-                    $source
+        return preg_replace_callback(
+            self::AMP_EMOJI_ATTRIBUTE_PATTERN,
+            function ($matches) {
+                // Split into individual attributes.
+                $attributes = array_map(
+                    'trim',
+                    array_filter(
+                        preg_split(
+                            '#(\s+[^"\'\s=]+(?:=(?:"[^"]+"|\'[^\']+\'|[^"\'\s]+))?)#',
+                            $matches[1],
+                            -1,
+                            PREG_SPLIT_DELIM_CAPTURE
+                        )
+                    )
                 );
-                break;
-            }
-        }
 
-        return $source;
+                foreach ($attributes as $index => $attribute) {
+                    $attributeMatches = [];
+                    if (
+                        preg_match(
+                            '/^(' . Attribute::AMP_EMOJI_ALT . '|' . Attribute::AMP_EMOJI . ')(4(?:ads|email))?$/i',
+                            $attribute,
+                            $attributeMatches
+                        )
+                    ) {
+                        $this->usedAmpEmoji = $attributeMatches[1];
+                        $variant            = ! empty($attributeMatches[2]) ? $attributeMatches[2] : '';
+                        $attributes[$index] = self::EMOJI_AMP_ATTRIBUTE_PLACEHOLDER . "=\"{$variant}\"";
+                        break;
+                    }
+                }
+
+                return '<html ' . implode(' ', $attributes) . '>';
+            },
+            $source,
+            1
+        );
     }
 
     /**
