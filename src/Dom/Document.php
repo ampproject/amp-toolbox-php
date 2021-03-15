@@ -1194,10 +1194,8 @@ final class Document extends DOMDocument
                     ||
                     in_array($attrName, $this->convertedAmpBindAttributes, true)
                 ) {
-                    $newAttrs .= " [{$attrName}]";
-                    if (isset($attrMatches['value'])) {
-                        $newAttrs .= $attrMatches['value'];
-                    }
+                    $attrValue = isset($attrMatches['value']) ? $attrMatches['value'] : '=""';
+                    $newAttrs .= " [{$attrName}]{$attrValue}";
                 } else {
                     $newAttrs .= $attrMatches[0];
                 }
