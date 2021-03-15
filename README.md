@@ -4,7 +4,7 @@
 
 # AMP Toolbox for PHP
 
-![Build Status](https://github.com/ampproject/amp-toolbox-php/workflows/Run%20tests/badge.svg)
+![Build Status](https://github.com/ampproject/amp-toolbox-php/workflows/Run%20tests/badge.svg) [![Coverage](https://codecov.io/gh/ampproject/amp-toolbox-php/branch/main/graph/badge.svg)](https://codecov.io/gh/ampproject/amp-toolbox-php)
 
 A collection of AMP tools making it easier to publish and host AMP pages with PHP.
 
