@@ -1190,4 +1190,121 @@ class DocumentTest extends TestCase
         $documentFragment->loadHTMLFragment('<div></div>', '524288');
         $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
+
+    /**
+     * Data for document fragment tests.
+     *
+     * @return array Data.
+     */
+    public function dataDocumentFragment()
+    {
+        return [
+            'encoding_without_doctype_without_html_without_head_without_body' => [
+                'utf-8',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_without_doctype_without_html_without_head_with_body' => [
+                'utf-8',
+                '<body><div style="Iñtërnâtiônàlizætiøn"></div></body>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_without_doctype_without_html_with_head_without_body' => [
+                'utf-8',
+                '<head></head><div style="Iñtërnâtiônàlizætiøn"></div>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_without_doctype_without_html_with_head_with_body' => [
+                'utf-8',
+                '<head></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_without_doctype_with_html_without_head_without_body' => [
+                'utf-8',
+                '<html><div style="Iñtërnâtiônàlizætiøn"></div></html>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_without_doctype_with_html_without_head_with_body' => [
+                'utf-8',
+                '<html><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_without_doctype_with_html_with_head_without_body' => [
+                'utf-8',
+                '<html><head></head><div style="Iñtërnâtiônàlizætiøn"></div></html>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_without_doctype_with_html_with_head_with_body' => [
+                'utf-8',
+                '<html><head></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_with_doctype_without_html_without_head_without_body' => [
+                'utf-8',
+                '<!DOCTYPE html><div style="Iñtërnâtiônàlizætiøn"></div>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_with_doctype_without_html_without_head_with_body' => [
+                'utf-8',
+                '<!DOCTYPE html><body><div style="Iñtërnâtiônàlizætiøn"></div></body>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_with_doctype_without_html_with_head_without_body' => [
+                'utf-8',
+                '<!DOCTYPE html><head></head><div style="Iñtërnâtiônàlizætiøn"></div>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_with_doctype_without_html_with_head_with_body' => [
+                'utf-8',
+                '<!DOCTYPE html><head></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_with_doctype_with_html_without_head_without_body' => [
+                'utf-8',
+                '<!DOCTYPE html><html><div style="Iñtërnâtiônàlizætiøn"></div></html>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_with_doctype_with_html_without_head_with_body' => [
+                'utf-8',
+                '<!DOCTYPE html><html><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_with_doctype_with_html_with_head_without_body' => [
+                'utf-8',
+                '<!DOCTYPE html><html><head></head><div style="Iñtërnâtiônàlizætiøn"></div></html>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+            'encoding_with_doctype_with_html_with_head_with_body' => [
+                'utf-8',
+                '<!DOCTYPE html><html><head></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>',
+                '<div style="Iñtërnâtiônàlizætiøn"></div>',
+            ],
+        ];
+    }
+
+    /**
+     * Tests loading and saving a document fragment.
+     *
+     * @param string        $charset          Charset to use.
+     * @param string        $source           Source content.
+     * @param string        $expected         Expected target content.
+     * @param callable|null $fragmentCallback Optional. Callback to use for fetching the fragment node to compare.
+     *                                        Defaults to retrieving the first child node of the body tag.
+     *
+     * @dataProvider dataDocumentFragment
+     * @covers       \AmpProject\Dom\Document::loadHTML()
+     * @covers       \AmpProject\Dom\Document::saveHTML()
+     */
+    public function testDocumentFragment($charset, $source, $expected, $fragmentCallback = null)
+    {
+        if ($fragmentCallback === null) {
+            $fragmentCallback = static function (Document $document) {
+                return $document->body->firstChild;
+            };
+        }
+
+        $document = Document::fromHtmlFragment($source, $charset);
+
+        $this->assertEqualMarkup($expected, $document->saveHTMLFragment($fragmentCallback($document)));
+    }
 }
