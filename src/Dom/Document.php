@@ -1255,7 +1255,7 @@ final class Document extends DOMDocument
         // Guessing the encoding seems to have failed, so we assume UTF-8 instead.
         // In my testing, this was not possible as long as one ISO-8859-x is in the detection order.
         if (empty($this->originalEncoding)) {
-            $this->originalEncoding = Encoding::AMP;
+            $this->originalEncoding = Encoding::AMP; // @codeCoverageIgnore
         }
 
         $this->originalEncoding = $this->sanitizeEncoding($this->originalEncoding);
