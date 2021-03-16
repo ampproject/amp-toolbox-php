@@ -14,17 +14,10 @@ use AmpProject\Layout;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpVideoIframePoster extends Tag
+final class AmpVideoIframe extends Tag
 {
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIDEO_IFRAME,
-        SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME[poster]',
-        SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::POSTER,
-                SpecRule::MANDATORY => true,
-            ],
-        ],
         SpecRule::ATTR_LISTS => [
             'extended-amp-global',
             'amp-video-iframe-common',
@@ -47,6 +40,9 @@ final class AmpVideoIframePoster extends Tag
         ],
         SpecRule::REQUIRES_EXTENSION => [
             Extension::VIDEO_IFRAME,
+        ],
+        SpecRule::DISABLED_BY => [
+            Attribute::TRANSFORMED,
         ],
     ];
 }

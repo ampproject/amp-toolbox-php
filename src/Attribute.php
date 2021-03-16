@@ -70,6 +70,7 @@ interface Attribute
     const AMP_NESTED_SUBMENU              = 'amp-nested-submenu';
     const AMP_NESTED_SUBMENU_CLOSE        = 'amp-nested-submenu-close';
     const AMP_NESTED_SUBMENU_OPEN         = 'amp-nested-submenu-open';
+    const AMP_ONERROR                     = 'amp-onerror';
     const AMP_RUNTIME                     = 'amp-runtime';
     const AMP_SCRIPT_SRC                  = 'amp-script-src';
     const ANCHOR                          = 'anchor';
@@ -257,6 +258,8 @@ interface Attribute
     const CREDENTIALS                     = 'credentials';
     const CROSSORIGIN                     = 'crossorigin';
     const CRYPTOKEYS                      = 'cryptokeys';
+    const CTA_IMAGE                       = 'cta-image';
+    const CTA_IMAGE_2                     = 'cta-image-2';
     const CURSOR                          = 'cursor';
     const CUSTOM_ELEMENT                  = 'custom-element';
     const CUSTOM_REDIRECT_DOMAIN          = 'custom-redirect-domain';
@@ -457,6 +460,7 @@ interface Attribute
     const ITEMS                           = 'items';
     const ITEMSCOPE                       = 'itemscope';
     const ITEMTYPE                        = 'itemtype';
+    const I_AMPHTML_BINDING               = 'i-amphtml-binding';
     const I_AMPHTML_DISABLE_AR            = 'i-amphtml-disable-ar';
     const I_AMPHTML_LAYOUT                = 'i-amphtml-layout';
     const I_AMPHTML_NO_BOILERPLATE        = 'i-amphtml-no-boilerplate';
@@ -973,7 +977,8 @@ interface Attribute
     const DATA_ACTION                      = 'data-action';
     const DATA_AMPDEVMODE                  = 'data-ampdevmode';
     const DATA_AMP_AUTOCOMPLETE_OPT_IN     = 'data-amp-autocomplete-opt-in';
-    const DATA_AMP_STORY_PLAYER_POSTER_IMG = 'data-amp-story-player-poster-img';    const DATA_AMP_BIND_SRC               = 'data-amp-bind-src';
+    const DATA_AMP_BIND_SRC                = 'data-amp-bind-src';
+    const DATA_AMP_STORY_PLAYER_POSTER_IMG = 'data-amp-story-player-poster-img';
     const DATA_APESTER_CHANNEL_TOKEN       = 'data-apester-channel-token';
     const DATA_APESTER_MEDIA_ID            = 'data-apester-media-id';
     const DATA_APP_KEY                     = 'data-app-key';

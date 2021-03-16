@@ -14,12 +14,12 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpStoryPlayer extends Tag implements TagWithExtensionSpec
+final class ScriptAmpGoogleAssistantAssistjs extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-story-player',
+        SpecRule::NAME => 'amp-google-assistant-assistjs',
         SpecRule::VERSION => [
             '0.1',
             'latest',
@@ -31,7 +31,6 @@ final class ScriptAmpStoryPlayer extends Tag implements TagWithExtensionSpec
         SpecRule::ATTR_LISTS => [
             'common-extension-attrs',
         ],
-        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-player/',
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],

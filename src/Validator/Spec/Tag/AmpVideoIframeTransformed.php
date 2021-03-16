@@ -14,11 +14,11 @@ use AmpProject\Layout;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpVideoIframeWithPlaceholderTransformed extends Tag
+final class AmpVideoIframeTransformed extends Tag
 {
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIDEO_IFRAME,
-        SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME with [placeholder] (transformed)',
+        SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME (transformed)',
         SpecRule::ATTR_LISTS => [
             'extended-amp-global',
             'amp-video-iframe-common',
@@ -34,16 +34,6 @@ final class AmpVideoIframeWithPlaceholderTransformed extends Tag
                 Layout::INTRINSIC,
                 Layout::NODISPLAY,
                 Layout::RESPONSIVE,
-            ],
-        ],
-        SpecRule::REFERENCE_POINTS => [
-            [
-                SpecRule::TAG_SPEC_NAME => 'AMP-VIDEO-IFRAME > [placeholder]',
-                SpecRule::MANDATORY => true,
-                SpecRule::UNIQUE => true,
-            ],
-            [
-                SpecRule::TAG_SPEC_NAME => 'AMP-VIDEO-IFRAME > I-AMPHTML-SIZER [style]',
             ],
         ],
         SpecRule::HTML_FORMAT => [

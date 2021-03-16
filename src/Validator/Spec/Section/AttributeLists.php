@@ -675,6 +675,14 @@ final class AttributeLists
                     '[class]' => [],
                     '[hidden]' => [],
                     '[text]' => [],
+                    Attribute::I_AMPHTML_BINDING => [
+                        SpecRule::VALUE => [
+                            '',
+                        ],
+                        SpecRule::ENABLED_BY => [
+                            Attribute::TRANSFORMED,
+                        ],
+                    ],
                     Attribute::AUTOSCROLL => [
                         SpecRule::REQUIRES_ANCESTOR => [
                             SpecRule::MARKER => [
@@ -1222,6 +1230,7 @@ final class AttributeLists
                             '',
                         ],
                     ],
+                    Attribute::POSTER => [],
                     Attribute::REFERRERPOLICY => [],
                     Attribute::ROTATE_TO_FULLSCREEN => [
                         SpecRule::VALUE => [

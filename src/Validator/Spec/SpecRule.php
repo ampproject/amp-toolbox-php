@@ -66,6 +66,7 @@ interface SpecRule
     const MANDATORY_ANCESTOR = 'mandatoryAncestor';
     const MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE = 'mandatoryAncestorSuggestedAlternative';
     const MANDATORY_ANYOF = 'mandatoryAnyof';
+    const MANDATORY_CDATA = 'mandatoryCdata';
     const MANDATORY_LAST_CHILD = 'mandatoryLastChild';
     const MANDATORY_MIN_NUM_CHILD_TAGS = 'mandatoryMinNumChildTags';
     const MANDATORY_NUM_CHILD_TAGS = 'mandatoryNumChildTags';
