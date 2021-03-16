@@ -4,6 +4,7 @@ namespace AmpProject\Dom;
 
 use AmpProject\Amp;
 use AmpProject\Attribute;
+use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\MarkupComparison;
@@ -208,9 +209,29 @@ class DocumentTest extends TestCase
                 '<p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p>',
                 '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
             ],
+            'utf_8_encoding_predefined_uc'             => [
+                'UTF-8',
+                '<p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p>',
+                '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
+            ],
+            'utf_8_encoding_auto'                      => [
+                'auto',
+                '<p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p>',
+                '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
+            ],
             'utf_8_encoding_guessed_via_charset'       => [
                 '',
                 '<html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body>',
+                '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
+            ],
+            'utf_8_encoding_guessed_via_charset_uc'    => [
+                '',
+                '<html><head><meta charset="UTF-8"></head><body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body>',
+                '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
+            ],
+            'utf_8_encoding_guessed_via_wrong_charset'       => [
+                '',
+                '<html><head><meta charset="something-else"></head><body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body>',
                 '<!DOCTYPE html><html>' . $head . '<body><p>مرحبا بالعالم! Check out ‘this’ and “that” and—other things.</p></body></html>',
             ],
             'utf_8_encoding_guessed_via_content'       => [
@@ -223,13 +244,33 @@ class DocumentTest extends TestCase
                 utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
+            'iso_8859_1_encoding_predefined_uc'        => [
+                'ISO-8859-1',
+                utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
+            ],
+            'iso_8859_1_encoding_auto'                 => [
+                'iso-8859-1',
+                utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
+            ],
             'iso_8859_1_encoding_guessed_via_charset'  => [
                 '',
                 utf8_decode('<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /></head><body><p>ÄÖÜ</p></body></html>'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
+            'iso_8859_1_encoding_guessed_via_wrong_charset'  => [
+                '',
+                utf8_decode('<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=something-else" /></head><body><p>ÄÖÜ</p></body></html>'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
+            ],
             'iso_8859_1_encoding_guessed_via_content'  => [
                 '',
+                utf8_decode('<!DOCTYPE html><html><body><p>ÄÖÜ</p></body></html>'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
+            ],
+            'mapping_encodings_to_fallbacks'  => [
+                'latin-1',
                 utf8_decode('<!DOCTYPE html><html><body><p>ÄÖÜ</p></body></html>'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
@@ -240,7 +281,12 @@ class DocumentTest extends TestCase
             ],
             // Make sure we correctly identify the ISO-8859 sub-charsets ("€" does not exist in ISO-8859-1).
             'iso_8859_15_encoding_predefined'          => [
-                'iso-8859-1',
+                'iso-8859-15',
+                mb_convert_encoding('<!DOCTYPE html><html><head></head><body><p>€</p></body></html>', 'ISO-8859-15', 'UTF-8'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>€</p></body></html>',
+            ],
+            'iso_8859_15_encoding_predefined_uc'       => [
+                'ISO-8859-15',
                 mb_convert_encoding('<!DOCTYPE html><html><head></head><body><p>€</p></body></html>', 'ISO-8859-15', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>€</p></body></html>',
             ],
@@ -397,6 +443,21 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><br/></body></html>',
                 '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><br></body></html>',
             ],
+            'emoji_in_html_tag_for_amp_attribute' => [
+                'utf-8',
+                '<!DOCTYPE html><html ⚡ [class]="mystate.class" class="blue ⚡">' . $head . '<body></body></html>',
+                '<!DOCTYPE html><html ⚡ [class]="mystate.class" class="blue ⚡">' . $head . '<body></body></html>',
+            ],
+            'emoji_in_html_tag_for_data_attribute' => [
+                'utf-8',
+                '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body></body></html>',
+                '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body></body></html>',
+            ],
+            'amp-bind on html tag class attribute' => [
+                'utf-8',
+                '<!DOCTYPE html><html amp [class]="mystate.class" class="blue">' . $head . '<body></body></html>',
+                '<!DOCTYPE html><html amp [class]="mystate.class" class="blue">' . $head . '<body></body></html>',
+            ],
         ];
     }
 
@@ -424,22 +485,46 @@ class DocumentTest extends TestCase
      */
     public function testAmpBindConversion()
     {
-        $original  = '<amp-img width=300 height="200" data-foo="bar" selected src="/img/dog.jpg" [src]="myAnimals[currentAnimal].imageUrl"></amp-img>';
-        $converted = Document::fromHtml($original)->saveHTML();
-        $this->assertNotEquals($original, $converted);
+        // Conversion is transparent and end result preserves square brackets.
+        $original  = '<amp-img width="300" height="200" data-foo="bar" selected src="/img/dog.jpg" [src]="myAnimals[currentAnimal].imageUrl"></amp-img>';
+        $dom       = Document::fromHtml($original);
+        $converted = $dom->saveHTML($dom->body->firstChild);
+        $this->assertEquals($original, $converted);
+        $this->assertStringContainsString('[src]="myAnimals[currentAnimal].imageUrl"', $converted);
+        $this->assertStringNotContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX, $converted);
+        $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
+
+        // Conversion is transparent and end result preserves data-amp-bind-* syntax.
+        $original  = '<amp-img width="300" height="200" data-foo="bar" selected src="/img/dog.jpg" data-amp-bind-src="myAnimals[currentAnimal].imageUrl"></amp-img>';
+        $dom       = Document::fromHtml($original);
+        $converted = $dom->saveHTML($dom->body->firstChild);
+        $this->assertEquals($original, $converted);
         $this->assertStringContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX . 'src="myAnimals[currentAnimal].imageUrl"', $converted);
+        $this->assertStringNotContainsString('[src]', $converted);
         $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
 
         // Check tag with self-closing attribute.
         $original  = '<input type="text" role="textbox" class="calc-input" id="liens" name="liens" [value]="(result1 != null) ? result1.liens : \'verifying…\'" />';
-        $converted = Document::fromHtml($original)->saveHTML();
-        $this->assertNotEquals($original, $converted);
+        $dom       = Document::fromHtml($original);
+        $converted = $dom->saveHTML($dom->body->firstChild);
+        $this->assertSimilarMarkup($original, $converted);
 
         // Preserve trailing slash that is actually the attribute value.
         $original  = '<a href=/>Home</a>';
         $dom       = Document::fromHtml($original);
         $converted = $dom->saveHTML($dom->body->firstChild);
         $this->assertEquals('<a href="/">Home</a>', $converted);
+
+        // Options make the conversion behavior configurable.
+        $original          = '<div [id]="valueA" data-amp-bind-class="valueB">These stay intact within content: [id]="valueA" data-amp-bind-class="valueB"</div>';
+        $dataAttribute     = '<div data-amp-bind-id="valueA" data-amp-bind-class="valueB">These stay intact within content: [id]="valueA" data-amp-bind-class="valueB"</div>';
+        $squareBrackets    = '<div [id]="valueA" [class]="valueB">These stay intact within content: [id]="valueA" data-amp-bind-class="valueB"</div>';
+        $domAuto           = Document::fromHtml($original, [Document\Option::AMP_BIND_SYNTAX => Document\Option::AMP_BIND_SYNTAX_AUTO]);
+        $domDataAttribute  = Document::fromHtml($original, [Document\Option::AMP_BIND_SYNTAX => Document\Option::AMP_BIND_SYNTAX_DATA_ATTRIBUTE]);
+        $domSquareBrackets = Document::fromHtml($original, [Document\Option::AMP_BIND_SYNTAX => Document\Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
+        $this->assertSimilarMarkup($original, $domAuto->saveHTML($domAuto->body->firstChild));
+        $this->assertSimilarMarkup($dataAttribute, $domDataAttribute->saveHTML($domDataAttribute->body->firstChild));
+        $this->assertSimilarMarkup($squareBrackets, $domSquareBrackets->saveHTML($domSquareBrackets->body->firstChild));
 
         // Test malformed.
         $malformed_html = [
@@ -989,5 +1074,120 @@ class DocumentTest extends TestCase
         );
 
         $document->addAmpCustomStyle('X');
+    }
+
+    /**
+     * Test the encoding option.
+     *
+     * @covers \AmpProject\Dom\Document::fromHtml()
+     * @covers \AmpProject\Dom\Document::fromHtmlFragment()
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
+    public function testEncodingOption()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::ENCODING => 'something', Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+        );
+
+        $document = Document::fromHtml('<html><div></div></html>', [Option::ENCODING => 'something']);
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::ENCODING => 'something']);
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+    }
+
+    /**
+     * Test the amp-bind syntax option.
+     *
+     * @covers \AmpProject\Dom\Document::fromHtml()
+     * @covers \AmpProject\Dom\Document::fromHtmlFragment()
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
+    public function testAmpBindSyntaxOption()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS, Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+        );
+
+        $document = Document::fromHtml('<html><div></div></html>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+    }
+
+    /**
+     * Test the libxml option.
+     *
+     * @covers \AmpProject\Dom\Document::fromHtml()
+     * @covers \AmpProject\Dom\Document::fromHtmlFragment()
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
+    public function testLibxmlOption()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_PARSEHUGE]
+        );
+
+        $document = Document::fromHtml('<html><div></div></html>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+    }
+
+    /**
+     * Test the encoding option backwards compatibility fallback.
+     *
+     * @covers \AmpProject\Dom\Document::fromHtml()
+     * @covers \AmpProject\Dom\Document::fromHtmlFragment()
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
+    public function testEncodingOptionBC()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::ENCODING => 'something', Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+        );
+
+        $document = Document::fromHtml('<html><div></div></html>', 'something');
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = Document::fromHtmlFragment('<div></div>', 'something');
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+    }
+
+    /**
+     * Test the libxml option backwards compatibility fallback.
+     *
+     * @covers \AmpProject\Dom\Document::getOptions()
+     * @covers \AmpProject\Dom\Document::loadHTML()
+     * @covers \AmpProject\Dom\Document::loadHTMLFragment()
+     */
+    public function testLibxmlOptionBC()
+    {
+        $expectedOptions = array_merge(
+            Option::DEFAULTS,
+            [Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_PARSEHUGE]
+        );
+
+        $document = new Document();
+        $document->loadHTML('<html><div></div></html>', 524288);
+        $this->assertEquals($expectedOptions, $document->getOptions());
+
+        $documentFragment = new Document();
+        $documentFragment->loadHTMLFragment('<div></div>', '524288');
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
 }

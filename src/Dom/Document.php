@@ -5,6 +5,8 @@ namespace AmpProject\Dom;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\DevMode;
+use AmpProject\Dom\Document\Encoding;
+use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
@@ -39,22 +41,6 @@ final class Document extends DOMDocument
 {
 
     /**
-     * AMP requires the HTML markup to be encoded in UTF-8.
-     *
-     * @var string
-     */
-    const AMP_ENCODING = 'utf-8';
-
-    /**
-     * Encoding identifier to use for an unknown encoding.
-     *
-     * "auto" is recognized by mb_convert_encoding() as a special value.
-     *
-     * @var string
-     */
-    const UNKNOWN_ENCODING = 'auto';
-
-    /**
      * Default document type to use.
      *
      * @var string
@@ -69,17 +55,6 @@ final class Document extends DOMDocument
     const HTML_DOCTYPE_REGEX_PATTERN = '#<!doctype\s+html[^>]+?>#si';
 
     /**
-     * Encoding detection order in case we have to guess.
-     *
-     * This list of encoding detection order is just a wild guess and might need fine-tuning over time.
-     * If the charset was not provided explicitly, we can really only guess, as the detection can
-     * never be 100% accurate and reliable.
-     *
-     * @var string
-     */
-    const ENCODING_DETECTION_ORDER = 'UTF-8, EUC-JP, eucJP-win, JIS, ISO-2022-JP, ISO-8859-15, ISO-8859-1, ASCII';
-
-    /**
      * Attribute prefix for AMP-bind data attributes.
      *
      * @var string
@@ -87,27 +62,62 @@ final class Document extends DOMDocument
     const AMP_BIND_DATA_ATTR_PREFIX = 'data-amp-bind-';
 
     /**
-     * Pattern for HTML attribute accounting for binding attr name, boolean attribute, single/double-quoted attribute
-     * value, and unquoted attribute values.
+     * Pattern for HTML attribute accounting for binding attr name in square brackets syntax, boolean attribute,
+     * single/double-quoted attribute value, and unquoted attribute values.
      *
      * @var string
      */
-    const AMP_BIND_ATTR_PATTERN = '#^\s+(?P<name>\[?[a-zA-Z0-9_\-]+\]?)'
-                                  . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
+    const AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN = '#^\s+(?P<name>\[?[a-zA-Z0-9_\-]+\]?)'
+                                                  . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
 
     /**
-     * Match all start tags that contain a binding attribute.
+     * Pattern for HTML attribute accounting for binding attr name in data attribute syntax, boolean attribute,
+     * single/double-quoted attribute value, and unquoted attribute values.
      *
      * @var string
      */
-    const AMP_BIND_START_TAGS_PATTERN = '#<'
+    const AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN = '#^\s+(?P<name>(?:'
+                                                 . self::AMP_BIND_DATA_ATTR_PREFIX
+                                                 . ')?[a-zA-Z0-9_\-]+)'
+                                                 . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
+
+    /**
+     * Match all start tags that contain a binding attribute in square brackets syntax.
+     *
+     * @var string
+     */
+    const AMP_BIND_SQUARE_START_PATTERN = '#<'
+                                          . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
+                                          . '(?P<attrs>\s+'                           // Attributes.
+                                          . '(?>[^>"\'\[\]]+|"[^"]*+"|\'[^\']*+\')*+' // Non-binding attributes tokens.
+                                          . '\[[a-zA-Z0-9_\-]+\]'                     // One binding attribute key.
+                                          . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+'     // Any attribute tokens, including
+                                                                                      // binding ones.
+                                          . ')>#s';
+
+    /**
+     * Match all start tags that contain a binding attribute in data attribute syntax.
+     *
+     * @var string
+     */
+    const AMP_BIND_DATA_START_PATTERN = '#<'
                                         . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
-                                        . '(?P<attrs>\s'                            // Attributes.
-                                        . '(?>[^>"\'\[\]]+|"[^"]*+"|\'[^\']*+\')*+' // Non-binding attributes tokens.
-                                        . '\[[a-zA-Z0-9_\-]+\]'                     // One binding attribute key.
-                                        . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+'     // Any attribute tokens, including
+                                        . '(?P<attrs>\s+'                           // Attributes.
+                                            . '(?>'                                 // Match at least one attribute
+                                                . '(?>'                             // prefixed with "data-amp-bind-".
+                                                    . '(?![a-zA-Z0-9_\-\s]*'
+                                                    . self::AMP_BIND_DATA_ATTR_PREFIX
+                                                    . '[a-zA-Z0-9_\-]+="[^"]*+"|\'[^\']*+\')'
+                                                    . '[^>"\']+|"[^"]*+"|\'[^\']*+\''
+                                                . ')*+'
+                                                . '(?>[a-zA-Z0-9_\-\s]*'
+                                                    . self::AMP_BIND_DATA_ATTR_PREFIX
+                                                    . '[a-zA-Z0-9_\-]+'
+                                                . ')'
+                                            . ')+'
+                                            . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+' // Any attribute tokens, including
                                                                                     // binding ones.
-                                        . ')>#s';
+                                        . ')>#is';
 
     /*
      * Regular expressions to fetch the individual structural tags.
@@ -176,11 +186,11 @@ final class Document extends DOMDocument
      *
      * @var string
      */
-    const AMP_EMOJI_ATTRIBUTE_PATTERN = '/(<html\s[^>]*?)('
+    const AMP_EMOJI_ATTRIBUTE_PATTERN = '/<html\s([^>]*?(?:'
                                         . Attribute::AMP_EMOJI_ALT
                                         . '|'
                                         . Attribute::AMP_EMOJI
-                                        . ')([^\s^>]*)/iu';
+                                        . ')(4(?:ads|email))?[^>]*?)>/i';
 
     // Attribute to use as a placeholder to move the emoji AMP symbol (⚡) over to DOM.
     const EMOJI_AMP_ATTRIBUTE_PLACEHOLDER = 'emoji-amp';
@@ -190,18 +200,6 @@ final class Document extends DOMDocument
                                           . '(?<src>.*?)'
                                           . '(?<after_src>\2><\/i-amphtml-sizer>)/i';
     const SRC_SVG_REGEX_PATTERN         = '/^\s*(?<type>[^<]+)(?<value><svg[^>]+>)\s*$/i';
-
-    /**
-     * Associative array of encoding mappings.
-     *
-     * Translates HTML charsets into encodings PHP can understand.
-     *
-     * @var string[]
-     */
-    const ENCODING_MAP = [
-        // Assume ISO-8859-1 for some charsets.
-        'latin-1' => 'ISO-8859-1',
-    ];
 
     /**
      * XPath query to retrieve all <amp-*> tags, relative to the <body> node.
@@ -223,6 +221,15 @@ final class Document extends DOMDocument
      * @var string
      */
     const XPATH_INLINE_STYLE_ATTRIBUTES_QUERY = './/@style';
+
+    /**
+     * Associative array of options to configure the behavior of the DOM document abstraction.
+     *
+     * @see Option::DEFAULTS For a list of available options.
+     *
+     * @var array
+     */
+    private $options;
 
     /**
      * Whether `data-ampdevmode` was initially set on the the document element.
@@ -310,6 +317,13 @@ final class Document extends DOMDocument
     private $cssMaxByteCountEnforced = -1;
 
     /**
+     * Store the names of the amp-bind attributes that were converted so that we can restore them later on.
+     *
+     * @var array<string>
+     */
+    private $convertedAmpBindAttributes = [];
+
+    /**
      * Creates a new AmpProject\Dom\Document object
      *
      * @link  https://php.net/manual/domdocument.construct.php
@@ -319,23 +333,31 @@ final class Document extends DOMDocument
      */
     public function __construct($version = '', $encoding = null)
     {
-        $this->originalEncoding = (string)$encoding ?: self::UNKNOWN_ENCODING;
-        parent::__construct($version ?: '1.0', self::AMP_ENCODING);
+        $this->originalEncoding = (string)$encoding ?: Encoding::UNKNOWN;
+        parent::__construct($version ?: '1.0', Encoding::AMP);
         $this->registerNodeClass(DOMElement::class, Element::class);
     }
 
     /**
      * Named constructor to provide convenient way of transforming HTML into DOM.
      *
-     * @param string $html     HTML to turn into a DOM.
-     * @param string $encoding Optional. Encoding of the provided HTML string.
+     * @param string       $html    HTML to turn into a DOM.
+     * @param array|string $options Optional. Array of options to configure the document. Used as encoding if a string
+     *                              is passed. Defaults to an empty array.
      * @return Document|false DOM generated from provided HTML, or false if the transformation failed.
      */
-    public static function fromHtml($html, $encoding = null)
+    public static function fromHtml($html, $options = [])
     {
+        // Assume options are the encoding if a string is passed, for BC reasons.
+        if (is_string($options)) {
+            $options = [Option::ENCODING => $options];
+        }
+
+        $encoding = isset($options[Option::ENCODING]) ? $options[Option::ENCODING] : null;
+
         $dom = new self('', $encoding);
 
-        if (! $dom->loadHTML($html)) {
+        if (! $dom->loadHTML($html, $options)) {
             return false;
         }
 
@@ -347,15 +369,23 @@ final class Document extends DOMDocument
      *
      * The difference to Document::fromHtml() is that fragments are not normalized as to their structure.
      *
-     * @param string $html     HTML to turn into a DOM.
-     * @param string $encoding Optional. Encoding of the provided HTML string.
+     * @param string       $html    HTML to turn into a DOM.
+     * @param array|string $options Optional. Array of options to configure the document. Used as encoding if a string
+     *                              is passed. Defaults to an empty array.
      * @return Document|false DOM generated from provided HTML, or false if the transformation failed.
      */
-    public static function fromHtmlFragment($html, $encoding = null)
+    public static function fromHtmlFragment($html, $options = [])
     {
+        // Assume options are the encoding if a string is passed, for BC reasons.
+        if (is_string($options)) {
+            $options = [Option::ENCODING => $options];
+        }
+
+        $encoding = isset($options[Option::ENCODING]) ? $options[Option::ENCODING] : null;
+
         $dom = new self('', $encoding);
 
-        if (! $dom->loadHTMLFragment($html)) {
+        if (! $dom->loadHTMLFragment($html, $options)) {
             return false;
         }
 
@@ -418,11 +448,12 @@ final class Document extends DOMDocument
      *
      * @link  https://php.net/manual/domdocument.loadhtml.php
      *
-     * @param string     $source  The HTML string.
-     * @param int|string $options Optional. Specify additional Libxml parameters.
+     * @param string           $source  The HTML string.
+     * @param array|int|string $options Optional. Array of options to configure the document. Used as additional Libxml
+     *                                  parameters if an int or string is passed. Defaults to an empty array.
      * @return bool true on success or false on failure.
      */
-    public function loadHTML($source, $options = 0)
+    public function loadHTML($source, $options = [])
     {
         $source  = $this->normalizeDocumentStructure($source);
         $success = $this->loadHTMLFragment($source, $options);
@@ -444,24 +475,35 @@ final class Document extends DOMDocument
     /**
      * Load a HTML fragment from a string.
      *
-     * @param string     $source  The HTML fragment string.
-     * @param int|string $options Optional. Specify additional Libxml parameters.
+     * @param string           $source  The HTML fragment string.
+     * @param array|int|string $options Optional. Array of options to configure the document. Used as additional Libxml
+     *                                  parameters if an int or string is passed. Defaults to an empty array.
      * @return bool true on success or false on failure.
      */
-    public function loadHTMLFragment($source, $options = 0)
+    public function loadHTMLFragment($source, $options = [])
     {
+        // Assume options are the additional libxml flags if a string or int is passed, for BC reasons.
+        if (is_string($options)) {
+            $options = (int) $options;
+        }
+        if (is_int($options)) {
+            $options = [Option::LIBXML_FLAGS => $options];
+        }
+
+        $this->options = array_merge(Option::DEFAULTS, $options);
+
         $this->reset();
 
+        $source = $this->convertAmpEmojiAttribute($source);
         $source = $this->convertAmpBindAttributes($source);
         $source = $this->replaceSelfClosingTags($source);
         $source = $this->maybeReplaceNoscriptElements($source);
         $source = $this->secureMustacheScriptTemplates($source);
         $source = $this->secureDoctypeNode($source);
-        $source = $this->convertAmpEmojiAttribute($source);
 
         list($source, $this->originalEncoding) = $this->detectAndStripEncoding($source);
 
-        if (self::AMP_ENCODING !== strtolower($this->originalEncoding)) {
+        if (Encoding::AMP !== strtolower($this->originalEncoding)) {
             $source = $this->adaptEncoding($source);
         }
 
@@ -476,7 +518,7 @@ final class Document extends DOMDocument
 
         $libxml_previous_state = libxml_use_internal_errors(true);
 
-        $options |= LIBXML_COMPACT;
+        $this->options[Option::LIBXML_FLAGS] |= LIBXML_COMPACT;
 
         /*
          * LIBXML_HTML_NODEFDTD is only available for libxml 2.7.8+.
@@ -484,10 +526,10 @@ final class Document extends DOMDocument
          * is lower than expected.
          */
         if (defined('LIBXML_HTML_NODEFDTD')) {
-            $options |= constant('LIBXML_HTML_NODEFDTD');
+            $this->options[Option::LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
         }
 
-        $success = parent::loadHTML($source, $options);
+        $success = parent::loadHTML($source, $this->options[Option::LIBXML_FLAGS]);
 
         libxml_clear_errors();
         libxml_use_internal_errors($libxml_previous_state);
@@ -564,6 +606,7 @@ final class Document extends DOMDocument
         $html = $this->restoreDoctypeNode($html);
         $html = $this->restoreMustacheTemplateTokens($html);
         $html = $this->restoreSelfClosingTags($html);
+        $html = $this->restoreAmpBindAttributes($html);
         $html = $this->restoreAmpEmojiAttribute($html);
         $html = $this->fixSvgSourceAttributeEncoding($html);
 
@@ -573,6 +616,16 @@ final class Document extends DOMDocument
         }
 
         return $html;
+    }
+
+    /**
+     * Get the current options of the Document instance.
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 
     /**
@@ -586,7 +639,7 @@ final class Document extends DOMDocument
         }
 
         $charset = $this->createElement(Tag::META);
-        $charset->setAttribute(Attribute::CHARSET, self::AMP_ENCODING);
+        $charset->setAttribute(Attribute::CHARSET, Encoding::AMP);
         $this->head->insertBefore($charset, $this->head->firstChild);
     }
 
@@ -1040,6 +1093,7 @@ final class Document extends DOMDocument
      * get dropped with an error raised:
      * > Warning: DOMDocument::loadHTML(): error parsing attribute name
      *
+     * @see restoreAmpBindAttributes() Reciprocal function.
      * @link https://www.ampproject.org/docs/reference/components/amp-bind
      *
      * @param string $html HTML containing amp-bind attributes.
@@ -1053,21 +1107,23 @@ final class Document extends DOMDocument
          * @param array $tagMatches Tag matches.
          * @return string Replacement.
          */
-        $replaceCallback = static function ($tagMatches) {
+        $replaceCallback = function ($tagMatches) {
 
             // Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
             $oldAttrs = rtrim(preg_replace('#(?<!=)/$#', '', $tagMatches['attrs']));
 
             $newAttrs = '';
             $offset   = 0;
-            while (preg_match(self::AMP_BIND_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
+            while (preg_match(self::AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
                 $offset += strlen($attrMatches[0]);
 
                 if ('[' === $attrMatches['name'][0]) {
-                    $newAttrs .= ' ' . self::AMP_BIND_DATA_ATTR_PREFIX . trim($attrMatches['name'], '[]');
+                    $attrName = trim($attrMatches['name'], '[]');
+                    $newAttrs .= ' ' . self::AMP_BIND_DATA_ATTR_PREFIX . $attrName;
                     if (isset($attrMatches['value'])) {
                         $newAttrs .= $attrMatches['value'];
                     }
+                    $this->convertedAmpBindAttributes[] = $attrName;
                 } else {
                     $newAttrs .= $attrMatches[0];
                 }
@@ -1082,7 +1138,91 @@ final class Document extends DOMDocument
         };
 
         $converted = preg_replace_callback(
-            self::AMP_BIND_START_TAGS_PATTERN,
+            self::AMP_BIND_SQUARE_START_PATTERN,
+            $replaceCallback,
+            $html
+        );
+
+        /*
+         * If the regex engine incurred an error during processing, for example exceeding the backtrack
+         * limit, $converted will be null. In this case we return the originally passed document to allow
+         * DOMDocument to attempt to load it.  If the AMP HTML doesn't make use of amp-bind or similar
+         * attributes, then everything should still work.
+         *
+         * See https://github.com/ampproject/amp-wp/issues/993 for additional context on this issue.
+         * See http://php.net/manual/en/pcre.constants.php for additional info on PCRE errors.
+         */
+        return (null !== $converted) ? $converted : $html;
+    }
+
+    /**
+     * Convert AMP bind-attributes back to their original syntax.
+     *
+     * This is not guaranteed to produce the exact same result as the initial markup, as it is more of a best guess.
+     * It can end up replacing the wrong attributes if the initial markup had inconsistent styling, mixing both syntaxes
+     * for the same attribute. In either case, it will always produce working markup, so this is not that big of a deal.
+     *
+     * @see convertAmpBindAttributes() Reciprocal function.
+     * @link https://www.ampproject.org/docs/reference/components/amp-bind
+     *
+     * @param string $html HTML with amp-bind attributes converted.
+     * @return string HTML with amp-bind attributes restored.
+     */
+    public function restoreAmpBindAttributes($html)
+    {
+        if ($this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_DATA_ATTRIBUTE) {
+            // All amp-bind attributes should remain in their converted data attribute form.
+            return $html;
+        }
+
+        if (
+            $this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_AUTO
+            &&
+            empty($this->convertedAmpBindAttributes)
+        ) {
+            // Only previously converted amp-bind attributes should be restored, but none were converted.
+            return $html;
+        }
+
+        /**
+         * Replace callback.
+         *
+         * @param array $tagMatches Tag matches.
+         * @return string Replacement.
+         */
+        $replaceCallback = function ($tagMatches) {
+
+            // Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
+            $oldAttrs = rtrim(preg_replace('#(?<!=)/$#', '', $tagMatches['attrs']));
+
+            $newAttrs = '';
+            $offset   = 0;
+            while (preg_match(self::AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
+                $offset += strlen($attrMatches[0]);
+
+                $attrName = substr($attrMatches['name'], strlen(self::AMP_BIND_DATA_ATTR_PREFIX));
+                if (
+                    $this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS
+                    ||
+                    in_array($attrName, $this->convertedAmpBindAttributes, true)
+                ) {
+                    $attrValue = isset($attrMatches['value']) ? $attrMatches['value'] : '=""';
+                    $newAttrs .= " [{$attrName}]{$attrValue}";
+                } else {
+                    $newAttrs .= $attrMatches[0];
+                }
+            }
+
+            // Bail on parse error which occurs when the regex isn't able to consume the entire $newAttrs string.
+            if (strlen($oldAttrs) !== $offset) {
+                return $tagMatches[0];
+            }
+
+            return '<' . $tagMatches['name'] . $newAttrs . '>';
+        };
+
+        $converted = preg_replace_callback(
+            self::AMP_BIND_DATA_START_PATTERN,
             $replaceCallback,
             $html
         );
@@ -1108,21 +1248,30 @@ final class Document extends DOMDocument
     private function adaptEncoding($source)
     {
         // No encoding was provided, so we need to guess.
-        if (self::UNKNOWN_ENCODING === $this->originalEncoding && function_exists('mb_detect_encoding')) {
-            $this->originalEncoding = mb_detect_encoding($source, self::ENCODING_DETECTION_ORDER, true);
+        if (Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
+            $this->originalEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
         }
 
         // Guessing the encoding seems to have failed, so we assume UTF-8 instead.
+        // In my testing, this was not possible as long as one ISO-8859-x is in the detection order.
         if (empty($this->originalEncoding)) {
-            $this->originalEncoding = self::AMP_ENCODING;
+            $this->originalEncoding = Encoding::AMP; // @codeCoverageIgnore
         }
 
         $this->originalEncoding = $this->sanitizeEncoding($this->originalEncoding);
 
+        // Sanitization failed, so we do a last effort to auto-detect.
+        if (Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
+            $detectedEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
+            if ($detectedEncoding !== false) {
+                $this->originalEncoding = $detectedEncoding;
+            }
+        }
+
         $target = false;
-        if (self::AMP_ENCODING !== strtolower($this->originalEncoding)) {
+        if (Encoding::AMP !== strtolower($this->originalEncoding)) {
             $target = function_exists('mb_convert_encoding')
-                ? mb_convert_encoding($source, self::AMP_ENCODING, $this->originalEncoding)
+                ? mb_convert_encoding($source, Encoding::AMP, $this->originalEncoding)
                 : false;
         }
 
@@ -1142,7 +1291,7 @@ final class Document extends DOMDocument
      */
     private function detectAndStripEncoding($content)
     {
-        $encoding = self::UNKNOWN_ENCODING;
+        $encoding = $this->originalEncoding;
 
         // Check for HTML 4 http-equiv meta tags.
         foreach ($this->findTags($content, Tag::META, Attribute::HTTP_EQUIV) as $potentialHttpEquivTag) {
@@ -1163,7 +1312,7 @@ final class Document extends DOMDocument
             $encoding = $this->extractValue($charsetTag, Attribute::CHARSET);
 
             // Strip the encoding if it is not the required one.
-            if (strtolower($encoding) !== self::AMP_ENCODING) {
+            if (strtolower($encoding) !== Encoding::AMP) {
                 $content = str_replace($charsetTag, '', $content);
             }
         }
@@ -1256,6 +1405,12 @@ final class Document extends DOMDocument
      */
     private function sanitizeEncoding($encoding)
     {
+        $encoding = strtolower($encoding);
+
+        if ($encoding === Encoding::AMP) {
+            return $encoding;
+        }
+
         if (! function_exists('mb_list_encodings')) {
             return $encoding;
         }
@@ -1266,15 +1421,12 @@ final class Document extends DOMDocument
             $knownEncodings = array_map('strtolower', mb_list_encodings());
         }
 
-        $lcEncoding = strtolower($encoding);
-        $encodings  = self::ENCODING_MAP;
-
-        if (isset($encodings[$lcEncoding])) {
-            $encoding = $encodings[$lcEncoding];
+        if (array_key_exists($encoding, Encoding::MAPPINGS)) {
+            $encoding = Encoding::MAPPINGS[$encoding];
         }
 
-        if (! in_array($lcEncoding, $knownEncodings, true)) {
-            return self::UNKNOWN_ENCODING;
+        if (! in_array($encoding, $knownEncodings, true)) {
+            return Encoding::UNKNOWN;
         }
 
         return $encoding;
@@ -1390,18 +1542,42 @@ final class Document extends DOMDocument
      */
     private function convertAmpEmojiAttribute($source)
     {
-        $matches            = [];
         $this->usedAmpEmoji = '';
 
-        if (! preg_match(self::AMP_EMOJI_ATTRIBUTE_PATTERN, $source, $matches)) {
-            return $source;
-        }
-
-        $this->usedAmpEmoji = $matches[2];
-
-        return preg_replace(
+        return preg_replace_callback(
             self::AMP_EMOJI_ATTRIBUTE_PATTERN,
-            '\1' . self::EMOJI_AMP_ATTRIBUTE_PLACEHOLDER . '="\3"',
+            function ($matches) {
+                // Split into individual attributes.
+                $attributes = array_map(
+                    'trim',
+                    array_filter(
+                        preg_split(
+                            '#(\s+[^"\'\s=]+(?:=(?:"[^"]+"|\'[^\']+\'|[^"\'\s]+))?)#',
+                            $matches[1],
+                            -1,
+                            PREG_SPLIT_DELIM_CAPTURE
+                        )
+                    )
+                );
+
+                foreach ($attributes as $index => $attribute) {
+                    $attributeMatches = [];
+                    if (
+                        preg_match(
+                            '/^(' . Attribute::AMP_EMOJI_ALT . '|' . Attribute::AMP_EMOJI . ')(4(?:ads|email))?$/i',
+                            $attribute,
+                            $attributeMatches
+                        )
+                    ) {
+                        $this->usedAmpEmoji = $attributeMatches[1];
+                        $variant            = ! empty($attributeMatches[2]) ? $attributeMatches[2] : '';
+                        $attributes[$index] = self::EMOJI_AMP_ATTRIBUTE_PLACEHOLDER . "=\"{$variant}\"";
+                        break;
+                    }
+                }
+
+                return '<html ' . implode(' ', $attributes) . '>';
+            },
             $source,
             1
         );
