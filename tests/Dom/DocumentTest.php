@@ -1198,88 +1198,31 @@ class DocumentTest extends TestCase
      */
     public function dataDocumentFragment()
     {
-        return [
-            'encoding_without_doctype_without_html_without_head_without_body' => [
-                'utf-8',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_without_doctype_without_html_without_head_with_body' => [
-                'utf-8',
-                '<body><div style="Iñtërnâtiônàlizætiøn"></div></body>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_without_doctype_without_html_with_head_without_body' => [
-                'utf-8',
-                '<head></head><div style="Iñtërnâtiônàlizætiøn"></div>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_without_doctype_without_html_with_head_with_body' => [
-                'utf-8',
-                '<head></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_without_doctype_with_html_without_head_without_body' => [
-                'utf-8',
-                '<html><div style="Iñtërnâtiônàlizætiøn"></div></html>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_without_doctype_with_html_without_head_with_body' => [
-                'utf-8',
-                '<html><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_without_doctype_with_html_with_head_without_body' => [
-                'utf-8',
-                '<html><head></head><div style="Iñtërnâtiônàlizætiøn"></div></html>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_without_doctype_with_html_with_head_with_body' => [
-                'utf-8',
-                '<html><head></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_with_doctype_without_html_without_head_without_body' => [
-                'utf-8',
-                '<!DOCTYPE html><div style="Iñtërnâtiônàlizætiøn"></div>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_with_doctype_without_html_without_head_with_body' => [
-                'utf-8',
-                '<!DOCTYPE html><body><div style="Iñtërnâtiônàlizætiøn"></div></body>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_with_doctype_without_html_with_head_without_body' => [
-                'utf-8',
-                '<!DOCTYPE html><head></head><div style="Iñtërnâtiônàlizætiøn"></div>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_with_doctype_without_html_with_head_with_body' => [
-                'utf-8',
-                '<!DOCTYPE html><head></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_with_doctype_with_html_without_head_without_body' => [
-                'utf-8',
-                '<!DOCTYPE html><html><div style="Iñtërnâtiônàlizætiøn"></div></html>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_with_doctype_with_html_without_head_with_body' => [
-                'utf-8',
-                '<!DOCTYPE html><html><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_with_doctype_with_html_with_head_without_body' => [
-                'utf-8',
-                '<!DOCTYPE html><html><head></head><div style="Iñtërnâtiônàlizætiøn"></div></html>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-            'encoding_with_doctype_with_html_with_head_with_body' => [
-                'utf-8',
-                '<!DOCTYPE html><html><head></head><body><div style="Iñtërnâtiônàlizætiøn"></div></body></html>',
-                '<div style="Iñtërnâtiônàlizætiøn"></div>',
-            ],
-        ];
+        $target = '<div style="Iñtërnâtiônàlizætiøn"></div>';
+
+        foreach ([true, false] as $body) {
+            foreach ([true, false] as $head) {
+                foreach ([true, false] as $html) {
+                    foreach ([true, false] as $doctype) {
+                        $source = $body ? '<body>' . $target . '</body>' : $target;
+                        $case   = $body ? 'with_body' : 'without_body';
+
+                        $source = $head ? '<head></head>' . $source : $source;
+                        $case   = $head ? 'with_head_' . $case : 'without_head_' . $case;
+
+                        $source = $html ? '<html>' . $source . '</html>' : $source;
+                        $case   = $html ? 'with_html_' . $case : 'without_html_' . $case;
+
+                        $source = $doctype ? '<!DOCTYPE html>' . $source : $source;
+                        $case   = $doctype ? 'with_doctype_' . $case : 'without_doctype_' . $case;
+
+                        $cases["fragment_encoding_{$case}"] = ['utf-8', $source, $target];
+                    }
+                }
+            }
+        }
+
+        return $cases;
     }
 
     /**
