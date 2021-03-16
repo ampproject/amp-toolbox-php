@@ -6,6 +6,7 @@ use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Exception\InvalidHtmlAttribute;
+use AmpProject\Tag;
 use AmpProject\Tests\ErrorComparison;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
@@ -152,8 +153,8 @@ final class ServerSideRenderingTest extends TestCase
                 [
                     Error\CannotRemoveBoilerplate::fromRenderDelayingScript(
                         Document::fromHtmlFragment(
-                            TestMarkup::SCRIPT_AMPSTORY
-                        )->head->firstChild
+                            '<head>' . TestMarkup::SCRIPT_AMPSTORY . '</head>'
+                        )->head->lastChild
                     ),
                 ],
             ],
@@ -164,8 +165,8 @@ final class ServerSideRenderingTest extends TestCase
                 [
                     Error\CannotRemoveBoilerplate::fromRenderDelayingScript(
                         Document::fromHtmlFragment(
-                            TestMarkup::SCRIPT_AMPDYNAMIC_CSSCLASSES
-                        )->head->firstChild
+                            '<head>' . TestMarkup::SCRIPT_AMPDYNAMIC_CSSCLASSES . '</head>'
+                        )->head->lastChild
                     ),
                 ],
             ],

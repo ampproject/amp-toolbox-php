@@ -163,12 +163,24 @@ final class Document extends DOMDocument
      */
     const PROPERTY_GETTER_ERROR_MESSAGE = 'Undefined property: AmpProject\\Dom\\Document::';
 
+    /**
+     * Charset compatibility tag for making DOMDocument behave.
+     *
+     * See: http://php.net/manual/en/domdocument.loadhtml.php#78243.
+     *
+     * @var string
+     */
+    const HTTP_EQUIV_META_TAG = '<meta http-equiv="content-type" content="text/html; charset=utf-8">';
+
     // Regex patterns and values used for adding and removing http-equiv charsets for compatibility.
     // The opening tag pattern contains a comment to make sure we don't match a <head> tag within a comment.
+
     const HTML_GET_HEAD_OPENING_TAG_PATTERN     = '/(?><!--.*?-->\s*)*<head(?>\s+[^>]*)?>/is';
-    const HTML_GET_HEAD_OPENING_TAG_REPLACEMENT = '$0<meta http-equiv="content-type" '
-                                                  . 'content="text/html; '
-                                                  . 'charset=utf-8">';
+    const HTML_GET_HEAD_OPENING_TAG_REPLACEMENT = '$0' . self::HTTP_EQUIV_META_TAG;
+    const HTML_GET_BODY_OPENING_TAG_PATTERN     = '/(?><!--.*?-->\s*)*<body(?>\s+[^>]*)?>/is';
+    const HTML_GET_BODY_OPENING_TAG_REPLACEMENT = '<head>' . self::HTTP_EQUIV_META_TAG . '</head>$0';
+    const HTML_GET_HTML_OPENING_TAG_PATTERN     = '/(?><!--.*?-->\s*)*<html(?>\s+[^>]*)?>/is';
+    const HTML_GET_HTML_OPENING_TAG_REPLACEMENT = '$0<head>' . self::HTTP_EQUIV_META_TAG . '</head>';
     const HTML_GET_HTTP_EQUIV_TAG_PATTERN       = '#<meta http-equiv=([\'"])content-type\1 '
                                                   . 'content=([\'"])text/html; '
                                                   . 'charset=utf-8\2>#i';
@@ -507,14 +519,7 @@ final class Document extends DOMDocument
             $source = $this->adaptEncoding($source);
         }
 
-        // Force-add http-equiv charset to make DOMDocument behave as it should.
-        // See: http://php.net/manual/en/domdocument.loadhtml.php#78243.
-        $source = preg_replace(
-            self::HTML_GET_HEAD_OPENING_TAG_PATTERN,
-            self::HTML_GET_HEAD_OPENING_TAG_REPLACEMENT,
-            $source,
-            1
-        );
+        $source = $this->addHttpEquivCharset($source);
 
         $libxml_previous_state = libxml_use_internal_errors(true);
 
@@ -2043,5 +2048,68 @@ final class Document extends DOMDocument
     public function enforceCssMaxByteCount($maxByteCount = AMP::MAX_CSS_BYTE_COUNT)
     {
         $this->cssMaxByteCountEnforced = $maxByteCount;
+    }
+
+    /**
+     * Add a http-equiv charset meta tag to the document's <head> node.
+     *
+     * This is needed to make the DOMDocument behave as it should in terms of encoding.
+     * See: http://php.net/manual/en/domdocument.loadhtml.php#78243.
+     *
+     * @param string $html HTML string to add the http-equiv charset to.
+     * @return string Adapted string of HTML.
+     */
+    private function addHttpEquivCharset($html)
+    {
+        $count = 0;
+
+        // We try first to detect an existing <head> node.
+        $html = preg_replace(
+            self::HTML_GET_HEAD_OPENING_TAG_PATTERN,
+            self::HTML_GET_HEAD_OPENING_TAG_REPLACEMENT,
+            $html,
+            1,
+            $count
+        );
+
+        // In case no <head> node was found, we try to prepend it together with the http-equiv to the <body> tag.
+        if ($count < 1) {
+            $html = preg_replace(
+                self::HTML_GET_BODY_OPENING_TAG_PATTERN,
+                self::HTML_GET_BODY_OPENING_TAG_REPLACEMENT,
+                $html,
+                1,
+                $count
+            );
+        }
+
+        // If no <body> was found either, we look for the <html> tag instead.
+        if ($count < 1) {
+            $html = preg_replace(
+                self::HTML_GET_HTML_OPENING_TAG_PATTERN,
+                self::HTML_GET_HTML_OPENING_TAG_REPLACEMENT,
+                $html,
+                1,
+                $count
+            );
+        }
+
+        // If no <html> was found either, we look for the <!doctype> tag instead.
+        if ($count < 1) {
+            $html = preg_replace(
+                self::HTML_GET_HTML_OPENING_TAG_PATTERN,
+                self::HTML_GET_HTML_OPENING_TAG_REPLACEMENT,
+                $html,
+                1,
+                $count
+            );
+        }
+
+        // Finally, we just prepend the head with the required http-equiv charset.
+        if ($count < 1) {
+            $html = '<head>' . self::HTTP_EQUIV_META_TAG . '</head>' . $html;
+        }
+
+        return $html;
     }
 }
