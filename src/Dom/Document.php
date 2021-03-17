@@ -177,8 +177,6 @@ final class Document extends DOMDocument
 
     const HTML_GET_HEAD_OPENING_TAG_PATTERN     = '/(?><!--.*?-->\s*)*<head(?>\s+[^>]*)?>/is';
     const HTML_GET_HEAD_OPENING_TAG_REPLACEMENT = '$0' . self::HTTP_EQUIV_META_TAG;
-    const HTML_GET_BODY_OPENING_TAG_PATTERN     = '/(?><!--.*?-->\s*)*<body(?>\s+[^>]*)?>/is';
-    const HTML_GET_BODY_OPENING_TAG_REPLACEMENT = '<head>' . self::HTTP_EQUIV_META_TAG . '</head>$0';
     const HTML_GET_HTML_OPENING_TAG_PATTERN     = '/(?><!--.*?-->\s*)*<html(?>\s+[^>]*)?>/is';
     const HTML_GET_HTML_OPENING_TAG_REPLACEMENT = '$0<head>' . self::HTTP_EQUIV_META_TAG . '</head>';
     const HTML_GET_HTTP_EQUIV_TAG_PATTERN       = '#<meta http-equiv=([\'"])content-type\1 '
@@ -2072,29 +2070,8 @@ final class Document extends DOMDocument
             $count
         );
 
-        // In case no <head> node was found, we try to prepend it together with the http-equiv to the <body> tag.
-        if ($count < 1) {
-            $html = preg_replace(
-                self::HTML_GET_BODY_OPENING_TAG_PATTERN,
-                self::HTML_GET_BODY_OPENING_TAG_REPLACEMENT,
-                $html,
-                1,
-                $count
-            );
-        }
 
-        // If no <body> was found either, we look for the <html> tag instead.
-        if ($count < 1) {
-            $html = preg_replace(
-                self::HTML_GET_HTML_OPENING_TAG_PATTERN,
-                self::HTML_GET_HTML_OPENING_TAG_REPLACEMENT,
-                $html,
-                1,
-                $count
-            );
-        }
-
-        // If no <html> was found either, we look for the <!doctype> tag instead.
+        // If no <head> was found, we look for the <html> tag instead.
         if ($count < 1) {
             $html = preg_replace(
                 self::HTML_GET_HTML_OPENING_TAG_PATTERN,
