@@ -1510,7 +1510,6 @@ final class Document extends DOMDocument
      *
      * @return string[] Mapping of mustache tag token to its placeholder.
      * @see \wpdb::placeholder_escape()
-     *
      */
     private function getMustacheTagPlaceholders()
     {
@@ -1542,6 +1541,8 @@ final class Document extends DOMDocument
      * Get a regular expression that matches all amp-mustache tags while consuming whitespace.
      *
      * Removing whitespace is needed to avoid DOMDocument turning whitespace into entities, like %20 for spaces.
+     *
+     * @return string Regex pattern to match amp-mustache tags with whitespace.
      */
     private function getMustacheTagPattern()
     {
