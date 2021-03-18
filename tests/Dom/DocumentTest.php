@@ -1190,4 +1190,64 @@ class DocumentTest extends TestCase
         $documentFragment->loadHTMLFragment('<div></div>', '524288');
         $this->assertEquals($expectedOptions, $documentFragment->getOptions());
     }
+
+    /**
+     * Data for document fragment tests.
+     *
+     * @return array Data.
+     */
+    public function dataDocumentFragment()
+    {
+        $target = '<div style="Iñtërnâtiônàlizætiøn"></div>';
+
+        foreach ([true, false] as $body) {
+            foreach ([true, false] as $head) {
+                foreach ([true, false] as $html) {
+                    foreach ([true, false] as $doctype) {
+                        $source = $body ? '<body>' . $target . '</body>' : $target;
+                        $case   = $body ? 'with_body' : 'without_body';
+
+                        $source = $head ? '<head></head>' . $source : $source;
+                        $case   = $head ? 'with_head_' . $case : 'without_head_' . $case;
+
+                        $source = $html ? '<html>' . $source . '</html>' : $source;
+                        $case   = $html ? 'with_html_' . $case : 'without_html_' . $case;
+
+                        $source = $doctype ? '<!DOCTYPE html>' . $source : $source;
+                        $case   = $doctype ? 'with_doctype_' . $case : 'without_doctype_' . $case;
+
+                        $cases["fragment_encoding_{$case}"] = ['utf-8', $source, $target];
+                    }
+                }
+            }
+        }
+
+        return $cases;
+    }
+
+    /**
+     * Tests loading and saving a document fragment.
+     *
+     * @param string        $charset          Charset to use.
+     * @param string        $source           Source content.
+     * @param string        $expected         Expected target content.
+     * @param callable|null $fragmentCallback Optional. Callback to use for fetching the fragment node to compare.
+     *                                        Defaults to retrieving the first child node of the body tag.
+     *
+     * @dataProvider dataDocumentFragment
+     * @covers       \AmpProject\Dom\Document::loadHTML()
+     * @covers       \AmpProject\Dom\Document::saveHTML()
+     */
+    public function testDocumentFragment($charset, $source, $expected, $fragmentCallback = null)
+    {
+        if ($fragmentCallback === null) {
+            $fragmentCallback = static function (Document $document) {
+                return $document->body->firstChild;
+            };
+        }
+
+        $document = Document::fromHtmlFragment($source, $charset);
+
+        $this->assertEqualMarkup($expected, $document->saveHTMLFragment($fragmentCallback($document)));
+    }
 }
