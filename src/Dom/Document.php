@@ -1457,22 +1457,10 @@ final class Document extends DOMDocument
 
         $mustacheTagPlaceholders = $this->getMustacheTagPlaceholders();
 
-        // Build a tag pattern that consumes whitespace padding.
-        $delimiter  = ':';
-        $tagPattern = [];
-        foreach (array_keys($mustacheTagPlaceholders) as $token) {
-            if ('{' === $token[0]) {
-                $tagPattern[] = preg_quote($token, $delimiter) . '\s*';
-            } else {
-                $tagPattern[] = '\s*' . preg_quote($token, $delimiter);
-            }
-        }
-        $tagPattern = $delimiter . implode('|', $tagPattern) . $delimiter;
-
         foreach ($templates as $template) {
             foreach ($this->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
                 $value = preg_replace_callback(
-                    $tagPattern,
+                    $this->getMustacheTagPattern(),
                     static function ($matches) use ($mustacheTagPlaceholders) {
                         return $mustacheTagPlaceholders[trim($matches[0])];
                     },
@@ -1548,6 +1536,33 @@ final class Document extends DOMDocument
         }
 
         return $placeholders;
+    }
+
+    /**
+     * Get a regular expression that matches all amp-mustache tags while consuming whitespace.
+     *
+     * Removing whitespace is needed to avoid DOMDocument turning whitespace into entities, like %20 for spaces.
+     */
+    private function getMustacheTagPattern()
+    {
+        static $tagPattern = null;
+
+        if (null === $tagPattern) {
+            $delimiter  = ':';
+            $tags       = [];
+
+            foreach (array_keys($this->getMustacheTagPlaceholders()) as $token) {
+                if ('{' === $token[0]) {
+                    $tags[] = preg_quote($token, $delimiter) . '\s*';
+                } else {
+                    $tags[] = '\s*' . preg_quote($token, $delimiter);
+                }
+            }
+
+            $tagPattern = $delimiter . implode('|', $tags) . $delimiter;
+        }
+
+        return $tagPattern;
     }
 
     /**
