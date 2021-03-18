@@ -1460,13 +1460,13 @@ final class Document extends DOMDocument
         // Build a tag pattern that consumes whitespace padding.
         $tagPattern = [];
         foreach (array_keys($mustacheTagPlaceholders) as $token) {
-            if ( '{' === $token[0] ) {
-                $tagPattern[] = preg_quote( $token, ':' ) . '\s*';
+            if ('{' === $token[0]) {
+                $tagPattern[] = preg_quote($token, ':') . '\s*';
             } else {
-                $tagPattern[] = '\s*' . preg_quote( $token, ':' );
+                $tagPattern[] = '\s*' . preg_quote($token, ':');
             }
         }
-        $tagPattern = ':' . implode( '|', $tagPattern ) . ':';
+        $tagPattern = ':' . implode('|', $tagPattern) . ':';
 
         foreach ($templates as $template) {
             foreach ($this->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
