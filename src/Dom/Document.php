@@ -1457,12 +1457,26 @@ final class Document extends DOMDocument
 
         $mustacheTagPlaceholders = $this->getMustacheTagPlaceholders();
 
+        // Build a tag pattern that consumes whitespace padding.
+        $tagPattern = [];
+        foreach (array_keys($mustacheTagPlaceholders) as $token) {
+            if ( '{' === $token[0] ) {
+                $tagPattern[] = preg_quote( $token, ':' ) . '\s*';
+            } else {
+                $tagPattern[] = '\s*' . preg_quote( $token, ':' );
+            }
+        }
+        $tagPattern = ':' . implode( '|', $tagPattern ) . ':';
+
         foreach ($templates as $template) {
             foreach ($this->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
-                $value = str_replace(
-                    array_keys($mustacheTagPlaceholders),
-                    $mustacheTagPlaceholders,
+                $value = preg_replace_callback(
+                    $tagPattern,
+                    static function ($matches) use ($mustacheTagPlaceholders) {
+                        return $mustacheTagPlaceholders[trim($matches[0])];
+                    },
                     $attribute->nodeValue,
+                    -1,
                     $count
                 );
 
@@ -1471,7 +1485,7 @@ final class Document extends DOMDocument
                     // entities. In the case of a URL value like '/foo/?bar=1&baz=2' the result is a warning for an
                     // unterminated entity reference "baz". When the attribute value is updated via setAttribute() this
                     // same problem does not occur, so that is why the following is used.
-                    $attribute->parentNode->setAttribute($attribute->nodeName, str_replace(' ', '', $value));
+                    $attribute->parentNode->setAttribute($attribute->nodeName, $value);
 
                     $this->mustacheTagsReplaced = true;
                 }
