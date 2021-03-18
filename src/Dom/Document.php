@@ -1458,15 +1458,16 @@ final class Document extends DOMDocument
         $mustacheTagPlaceholders = $this->getMustacheTagPlaceholders();
 
         // Build a tag pattern that consumes whitespace padding.
+        $delimiter  = ':';
         $tagPattern = [];
         foreach (array_keys($mustacheTagPlaceholders) as $token) {
             if ('{' === $token[0]) {
-                $tagPattern[] = preg_quote($token, ':') . '\s*';
+                $tagPattern[] = preg_quote($token, $delimiter) . '\s*';
             } else {
-                $tagPattern[] = '\s*' . preg_quote($token, ':');
+                $tagPattern[] = '\s*' . preg_quote($token, $delimiter);
             }
         }
-        $tagPattern = ':' . implode('|', $tagPattern) . ':';
+        $tagPattern = $delimiter . implode('|', $tagPattern) . $delimiter;
 
         foreach ($templates as $template) {
             foreach ($this->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
