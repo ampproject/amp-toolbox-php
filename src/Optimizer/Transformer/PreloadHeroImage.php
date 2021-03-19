@@ -488,7 +488,7 @@ final class PreloadHeroImage implements Transformer
 
         $img = $heroImage->getAmpImg();
 
-        if ($img && $img->getAttribute(Attribute::LOADING) === 'lazy') {
+        if ($img && $img->getAttribute(Attribute::LOADING) === 'lazy' && ! $img->hasAttribute('data-amp-story-player-poster-img')) {
             $img->removeAttribute(Attribute::LOADING);
         }
 
