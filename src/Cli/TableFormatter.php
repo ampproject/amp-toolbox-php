@@ -7,6 +7,8 @@ use AmpProject\Exception\Cli\InvalidColumnFormat;
 /**
  * This file is adapted from the splitbrain\php-cli library, which is authored by Andreas Gohr <andi@splitbrain.org> and
  * licensed under the MIT license.
+ *
+ * Source: https://github.com/splitbrain/php-cli/blob/8c2c001b1b55d194402cf18aad2757049ac6d575/src/TableFormatter.php
  */
 
 /**

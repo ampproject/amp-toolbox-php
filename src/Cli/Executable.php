@@ -9,6 +9,8 @@ use Exception;
 /**
  * This file is adapted from the splitbrain\php-cli library, which is authored by Andreas Gohr <andi@splitbrain.org> and
  * licensed under the MIT license.
+ *
+ * Source: https://github.com/splitbrain/php-cli/blob/fb4f888866d090b10e3e68292d197ca274cea626/src/CLI.php
  */
 
 /**
