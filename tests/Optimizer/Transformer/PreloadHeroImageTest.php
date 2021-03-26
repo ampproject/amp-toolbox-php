@@ -254,6 +254,34 @@ final class PreloadHeroImageTest extends TestCase
                     . '<amp-img data-hero width="500" height="400" src="/hero5.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/hero5.png"></amp-img>'
                 ),
             ],
+
+            'strips lazy-loading attribute' => [
+                $input(
+                    '<amp-img width="500" height="400" src="/img1.png" loading="lazy"></amp-img>'
+                ),
+                $output(
+                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png"></amp-img>'
+                ),
+            ],
+
+            'keeps lazy-loading attribute for amp-story-player poster images' => [
+                $input(
+                    '<amp-story-player layout="fixed" width="360" height="600">'
+                    . '<a href="https://preview.amp.dev/documentation/examples/introduction/stories_in_amp/">'
+                    . '<img src="https://amp.dev/static/samples/img/story_dog2_portrait.jpg" width="360" height="600" loading="lazy" data-amp-story-player-poster-img>'
+                    . 'Stories in AMP - Hello World'
+                    . '</a>'
+                    . '</amp-story-player>'
+                ),
+                $output(
+                    '<amp-story-player layout="fixed" width="360" height="600">'
+                    . '<a href="https://preview.amp.dev/documentation/examples/introduction/stories_in_amp/">'
+                    . '<img src="https://amp.dev/static/samples/img/story_dog2_portrait.jpg" width="360" height="600" loading="lazy" data-amp-story-player-poster-img>'
+                    . 'Stories in AMP - Hello World'
+                    . '</a>'
+                    . '</amp-story-player>'
+                ),
+            ],
         ];
     }
 
