@@ -36,6 +36,7 @@ class Colors
     const C_RESET       = 'reset';
     const C_WHITE       = 'white';
     const C_YELLOW      = 'yellow';
+
     /**
      * Associative array of known color names.
      *
