@@ -76,17 +76,7 @@ class Colors
      */
     public function __construct()
     {
-        if (function_exists('posix_isatty') && ! posix_isatty(STDOUT)) {
-            $this->enabled = false;
-
-            return;
-        }
-
-        if (! getenv('TERM')) {
-            $this->enabled = false;
-
-            return;
-        }
+        $this->enabled = getenv('TERM') || (function_exists('posix_isatty') && posix_isatty(STDOUT));
     }
 
     /**
@@ -152,12 +142,12 @@ class Colors
      */
     public function getColorCode($color)
     {
-        if (! $this->enabled) {
-            return '';
-        }
-
         if (! array_key_exists($color, self::KNOWN_COLORS)) {
             throw InvalidColor::forUnknownColor($color);
+        }
+
+        if (! $this->enabled) {
+            return '';
         }
 
         return self::KNOWN_COLORS[$color];
