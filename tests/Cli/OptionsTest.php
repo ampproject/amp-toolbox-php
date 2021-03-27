@@ -2,6 +2,7 @@
 
 namespace AmpProject\Cli;
 
+use AmpProject\Exception\Cli\InvalidArgument;
 use AmpProject\Tests\PrivateAccess;
 use AmpProject\Tests\TestCase;
 
@@ -87,10 +88,74 @@ class OptionsTest extends TestCase
     {
         $options = new Options();
         $options->registerCommand('cmd', 'a command');
-        $this->assertStringContainsString('accepts a command as first parameter', $options->help());
+        $options->registerArgument('file', 'File to load');
+        $options->registerOption('verbose', 'Use verbose output');
+        $help = $options->help();
+        $this->assertStringContainsString('accepts a command as first parameter', $help);
+        $this->assertStringContainsString('<file>', $help);
+        $this->assertStringContainsString('File to load', $help);
+        $this->assertStringContainsString('--verbose', $help);
+        $this->assertStringContainsString('-v', $help);
+        $this->assertStringContainsString('Use verbose output', $help);
 
         $options->setCommandHelp('foooooobaar');
         $this->assertStringNotContainsString('accepts a command as first parameter', $options->help());
         $this->assertStringContainsString('foooooobaar', $options->help());
+    }
+
+    public function testReadArgumentsFromGlobal()
+    {
+        $GLOBALS['argv'] = [
+            '/usr/bin/amp',
+            'optimize',
+            '-'
+        ];
+
+        $options = new Options();
+        $this->assertEquals('amp', $options->getBin());
+        $this->assertEquals(['optimize', '-'], $options->getArguments());
+    }
+
+    public function testReadArgumentsFromServer()
+    {
+        unset($GLOBALS['argv']);
+
+        $_SERVER['argv'] = [
+            '/usr/bin/amp',
+            'optimize',
+            '-'
+        ];
+
+        $options = new Options();
+        $this->assertEquals('amp', $options->getBin());
+        $this->assertEquals(['optimize', '-'], $options->getArguments());
+    }
+
+    public function testReadArgumentsFromHttpServerVars()
+    {
+        unset($GLOBALS['argv']);
+        unset($_SERVER['argv']);
+
+        $GLOBALS['HTTP_SERVER_VARS'] = [
+            'argv' => [
+                '/usr/bin/amp',
+                'optimize',
+                '-'
+            ]
+        ];
+
+        $options = new Options();
+        $this->assertEquals('amp', $options->getBin());
+        $this->assertEquals(['optimize', '-'], $options->getArguments());
+    }
+
+    public function testReadArgumentsThrowsOnUnreadableArguments()
+    {
+        unset($GLOBALS['argv']);
+        unset($_SERVER['argv']);
+        unset($GLOBALS['HTTP_SERVER_VARS']);
+
+        $this->expectException(InvalidArgument::class);
+        new Options();
     }
 }
