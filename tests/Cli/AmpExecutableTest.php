@@ -2,6 +2,7 @@
 
 namespace AmpProject\Cli;
 
+use AmpProject\Tests\PrivateAccess;
 use AmpProject\Tests\TestCase;
 
 /**
@@ -13,6 +14,8 @@ use AmpProject\Tests\TestCase;
  */
 class AmpExecutableTest extends TestCase
 {
+    use PrivateAccess;
+
     public function dataLogging()
     {
         return [
@@ -78,5 +81,30 @@ class AmpExecutableTest extends TestCase
 
         $this->expectOutputString("[{$channel}]<{$color}> {$logLevel} message");
         $executable->log($logLevel, '{level} message', ['level' => $logLevel]);
+    }
+
+    public function testCommandSetupAndProcessing()
+    {
+        $options = $this->createMock(Options::class);
+        $executable = new AmpExecutable(false, $options);
+
+        $options->expects($this->once())
+                ->method('registerCommand')
+                ->with('optimize');
+        $options->expects($this->once())
+                ->method('registerArgument')
+                ->withAnyParameters();
+        $this->callPrivateMethod($executable, 'setup', [$options]);
+
+        $options->expects($this->once())
+                ->method('getCommand')
+                ->willReturn('optimize');
+        $options->expects($this->once())
+                ->method('getArguments')
+                ->willReturn([__DIR__ . '/../spec/end-to-end/hello-world/input.html']);
+        ob_start();
+        $this->callPrivateMethod($executable, 'main', [$options]);
+        $output = ob_get_clean();
+        $this->assertStringContainsString('transformed="self;v=1"', $output);
     }
 }

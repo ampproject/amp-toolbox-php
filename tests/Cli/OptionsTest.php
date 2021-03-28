@@ -4,7 +4,6 @@ namespace AmpProject\Cli;
 
 use AmpProject\Exception\Cli\InvalidArgument;
 use AmpProject\Exception\Cli\InvalidCommand;
-use AmpProject\Exception\Cli\InvalidOption;
 use AmpProject\Exception\Cli\MissingArgument;
 use AmpProject\Tests\PrivateAccess;
 use AmpProject\Tests\TestCase;
