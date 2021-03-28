@@ -8,3 +8,4 @@ parameters:
 		- src/
 	ignoreErrors:
 		- '#^PHPDoc tag @throws with type AmpProject\\Exception\\FailedRemoteRequest is not subtype of Throwable$#'
+		- '/^Parameter \#1 \$callback of function set_exception_handler expects/'
