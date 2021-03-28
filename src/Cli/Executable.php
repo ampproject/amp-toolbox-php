@@ -71,16 +71,21 @@ abstract class Executable
      *
      * Initialize the arguments, set up helper classes and set up the CLI environment.
      *
-     * @param bool $autocatch Optional. Whether exceptions should be caught and handled automatically. Defaults to true.
+     * @param bool         $autocatch Optional. Whether exceptions should be caught and handled automatically. Defaults
+     *                                to true.
+     * @param Options|null $options   Optional. Instance of the Options object to use. Defaults to null to instantiate a
+     *                                new one.
+     * @param Colors|null  $colors    Optional. Instance of the Colors object to use. Defaults to null to instantiate a
+     *                                new one.
      */
-    public function __construct($autocatch = true)
+    public function __construct($autocatch = true, Options $options = null, Colors $colors = null)
     {
         if ($autocatch) {
             set_exception_handler([$this, 'fatal']);
         }
 
-        $this->colors  = new Colors();
-        $this->options = new Options($this->colors);
+        $this->colors  = $colors instanceof Colors ? $colors : new Colors();
+        $this->options = $options instanceof Options ? $options : new Options($this->colors);
     }
 
     /**
