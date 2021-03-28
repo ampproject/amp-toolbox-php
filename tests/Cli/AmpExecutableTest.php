@@ -16,6 +16,39 @@ class AmpExecutableTest extends TestCase
 {
     use PrivateAccess;
 
+    /**
+     * Temporary store for global argv data so it can be restored after the test.
+     *
+     * @var array
+     */
+    protected $globalArguments;
+
+    /**
+     * Sets up the fixture, for example, open a network connection.
+     *
+     * This method is called before each test.
+     *
+     * @return void
+     */
+    protected function set_up() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    {
+        parent::set_up();
+        $this->globalArguments = $GLOBALS['argv'];
+    }
+
+    /**
+     * Tears down the fixture, for example, close a network connection.
+     *
+     * This method is called after each test.
+     *
+     * @return void
+     */
+    protected function tear_down() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
+    {
+        parent::tear_down();
+        $GLOBALS['argv'] = $this->globalArguments;
+    }
+
     public function dataLogging()
     {
         return [
@@ -105,6 +138,23 @@ class AmpExecutableTest extends TestCase
         ob_start();
         $this->callPrivateMethod($executable, 'main', [$options]);
         $output = ob_get_clean();
+        $this->assertStringContainsString('transformed="self;v=1"', $output);
+    }
+
+    public function testApplicationRun()
+    {
+        $GLOBALS['argv'] = [
+            '/usr/bin/amp',
+            'optimize',
+            __DIR__ . '/../spec/end-to-end/hello-world/input.html',
+        ];
+
+        $executable = new AmpExecutable();
+
+        ob_start();
+        $executable->run(false);
+        $output = ob_get_clean();
+
         $this->assertStringContainsString('transformed="self;v=1"', $output);
     }
 }

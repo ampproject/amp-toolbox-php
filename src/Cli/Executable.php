@@ -95,9 +95,10 @@ abstract class Executable
      * and finally executes main() - Each part is split into their own protected function below, so behaviour
      * can easily be overwritten.
      *
+     * @param bool $exitOnCompletion Optional. Whether to exit on completion. Defaults to true.
      * @throws InvalidSapi If a SAPI other than 'cli' is detected.
      */
-    public function run()
+    public function run($exitOnCompletion = true)
     {
         $sapi = php_sapi_name();
 
@@ -113,7 +114,9 @@ abstract class Executable
         $this->checkArguments();
         $this->execute();
 
-        exit(0);
+        if ($exitOnCompletion) {
+            exit(0);
+        }
     }
 
     /**
