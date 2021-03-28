@@ -25,7 +25,7 @@ class TableFormatterTest extends TestCase
         return [
             [
                 [5, 5, 5],
-                [5, 5, 88]
+                [5, 5, 88],
             ],
 
             [
@@ -39,8 +39,21 @@ class TableFormatterTest extends TestCase
             ],
 
             [
+                [5, '50%', '50%'],
+                [5, 21, 22],
+                50,
+            ],
+
+            [
+                [5, '50%', '50%'],
+                [5, 20, 21],
+                50,
+                '||',
+            ],
+
+            [
                 [5, '*', '50%'],
-                [5, 47, 46]
+                [5, 47, 46],
             ],
         ];
     }
@@ -63,6 +76,8 @@ class TableFormatterTest extends TestCase
         $result = $this->callPrivateMethod($tableFormatter, 'calculateColumnWidths', [$input]);
 
         $this->assertEquals($max, array_sum($result) + (strlen($border) * (count($input) - 1)));
+        $this->assertEquals($max, $tableFormatter->getMaxWidth());
+        $this->assertEquals($border, $tableFormatter->getBorder());
         $this->assertEquals($expect, $result);
     }
 
