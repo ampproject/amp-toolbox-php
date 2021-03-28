@@ -244,9 +244,9 @@ class Options
     /**
      * Parses the given arguments for known options and command.
      *
-     * The given $args array should NOT contain the executed file as first item anymore! The $args
+     * The given $arguments array should NOT contain the executed file as first item anymore! The $arguments
      * array is stripped from any options and possible command. All found options can be accessed via the
-     * getOpt() function.
+     * getOptions() function.
      *
      * Note that command options will overwrite any global options with the same name.
      *
