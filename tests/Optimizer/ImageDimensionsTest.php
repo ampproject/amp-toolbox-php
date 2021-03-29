@@ -375,7 +375,7 @@ class ImageDimensionsTest extends TestCase
             'zero height with no layout'                => [500, 0, null, null, true],
             'zero width & height with no layout'        => [0, 0, null, null, true],
             'large intrinsic'                           => [500, 500, Layout::INTRINSIC, null, false],
-            'small intrinsic'                           => [50, 50, Layout::INTRINSIC, null, false],
+            'small intrinsic'                           => [50, 50, Layout::INTRINSIC, null, true],
             'large responsive'                          => [500, 500, Layout::RESPONSIVE, null, false],
             'small responsive'                          => [50, 50, Layout::RESPONSIVE, null, false],
             'large fixed height'                        => ['auto', 500, Layout::FIXED_HEIGHT, null, false],
