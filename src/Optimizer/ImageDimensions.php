@@ -194,8 +194,6 @@ final class ImageDimensions
         }
 
         switch ($this->getLayout()) {
-            // For 'intrinsic' layout, the natural dimensions are more important, so assume not tiny for now.
-            case Layout::INTRINSIC:
             // For 'responsive' layout, the image adapts to the container and can grow beyond its dimensions.
             case Layout::RESPONSIVE:
                 return false;
