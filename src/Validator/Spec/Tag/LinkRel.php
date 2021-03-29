@@ -25,7 +25,7 @@ final class LinkRel extends Tag
             [
                 SpecRule::NAME => Attribute::REL,
                 SpecRule::MANDATORY => true,
-                SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(canonical|components|import|manifest|preload|serviceworker|stylesheet|subresource)(\s|$)',
+                SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(canonical|components|import|manifest|modulepreload|preload|serviceworker|stylesheet|subresource)(\s|$)',
             ],
         ],
         SpecRule::ATTR_LISTS => [

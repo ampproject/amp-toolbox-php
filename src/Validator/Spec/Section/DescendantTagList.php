@@ -130,6 +130,10 @@ final class DescendantTagList
         Element::SCRIPT,
     ];
 
+    const AMP_STORY_SOCIAL_SHARE_ALLOWED_DESCENDANTS = [
+        Element::SCRIPT,
+    ];
+
     const AMP_STORY_CTA_LAYER_ALLOWED_DESCENDANTS = [
         Element::A,
         Element::ABBR,

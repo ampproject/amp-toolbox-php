@@ -16,7 +16,7 @@ final class Spec
     private $minValidatorRevisionRequired = 475;
 
     /** @var int */
-    private $specFileRevision = 1160;
+    private $specFileRevision = 1162;
 
     /** @var string */
     private $templateSpecUrl = 'https://amp.dev/documentation/components/amp-mustache';

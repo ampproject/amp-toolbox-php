@@ -134,6 +134,7 @@ final class AmpStory extends Tag
                 'AMP-STORY-AUTO-ANALYTICS',
                 'AMP-STORY-BOOKEND',
                 'AMP-STORY-PAGE',
+                'AMP-STORY-SOCIAL-SHARE',
             ],
             SpecRule::MANDATORY_MIN_NUM_CHILD_TAGS => 1,
         ],

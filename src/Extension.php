@@ -146,6 +146,7 @@ interface Extension
     const STORY_PAGE_ATTACHMENT                  = 'amp-story-page-attachment';
     const STORY_PANNING_MEDIA                    = 'amp-story-panning-media';
     const STORY_PLAYER                           = 'amp-story-player';
+    const STORY_SOCIAL_SHARE                     = 'amp-story-social-share';
     const SUBSCRIPTIONS                          = 'amp-subscriptions';
     const SUBSCRIPTIONS_GOOGLE                   = 'amp-subscriptions-google';
     const TIMEAGO                                = 'amp-timeago';
