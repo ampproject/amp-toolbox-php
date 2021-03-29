@@ -38,7 +38,6 @@ final class SpecTest extends TestCase
 
         'PreloadHeroImage - max-hero-image-count-param'    => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
         'PreloadHeroImage - disable_via_param'             => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
-        'PreloadHeroImage - ignores_tiny_images_intrinsic' => 'see https://github.com/ampproject/amp-toolbox/pull/1184',
     ];
 
     const CLASS_SKIP_TEST = '__SKIP__';
