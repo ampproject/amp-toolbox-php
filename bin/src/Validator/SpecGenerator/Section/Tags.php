@@ -49,6 +49,7 @@ final class Tags implements Section
         $byFormat        = [];
         $byExtensionSpec = [];
 
+        $namespace->addUse("Iterator");
         $namespace->addUse("LogicException");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
@@ -58,10 +59,16 @@ final class Tags implements Section
             $class->addMember($method);
         }
 
+        $class->addImplement('Iterator');
+
         $class->addProperty('tagsCache')
               ->setPrivate()
               ->addComment('@var array<Tag>')
               ->setValue([]);
+
+        $class->addProperty('iterationArray')
+              ->setPrivate()
+              ->addComment('@var array<string>|null');
 
         foreach ($spec as $attributes) {
             $tagId        = $this->getTagId($tags, $attributes);

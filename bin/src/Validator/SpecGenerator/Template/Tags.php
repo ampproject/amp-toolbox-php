@@ -6,9 +6,10 @@ use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Exception\InvalidTagId;
+use Iterator;
 use LogicException;
 
-final class Tags
+final class Tags implements Iterator
 {
     const TAGS = [];
 
@@ -17,7 +18,19 @@ final class Tags
     const BY_FORMAT         = [];
     const BY_EXTENSION_SPEC = [];
 
+    /**
+     * Cache of already instantiated Tag objects.
+
+     * @var \AmpProject\Validator\Spec\Tag[]
+     */
     private $tagsCache = [];
+
+    /**
+     * Array to use for iteration.
+     *
+     * @var string[]
+     */
+    private $iterationArray;
 
     /**
      * Get a collection of tags by tag name.
@@ -132,5 +145,80 @@ final class Tags
         $this->tagsCache[$tagId] = $tag;
 
         return $tag;
+    }
+
+    /**
+     * Return the current Tag object.
+     *
+     * @return Tag Tag object.
+     */
+    public function current()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        $tagId = current($this->iterationArray);
+
+        return $this->byTagId($tagId);
+    }
+
+    /**
+     * Move forward to next Tag object.
+     *
+     * @return void Any returned value is ignored.
+     */
+    public function next()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        next($this->iterationArray);
+    }
+
+    /**
+     * Return the Tag ID of the current Tag object.
+     *
+     * @return string|null Tag ID of the current Tag object, or null if out of bounds.
+     */
+    public function key()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        return key($this->iterationArray);
+    }
+
+    /**
+     * Checks if current position is valid.
+     *
+     * @return bool The return value will be casted to boolean and then evaluated.
+     *              Returns true on success or false on failure.
+     */
+    public function valid()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        $key = $this->key();
+
+        return $key !== null && $key !== false;
+    }
+
+    /**
+     * Rewind the Iterator to the first Tag object.
+     *
+     * @return void Any returned value is ignored.
+     */
+    public function rewind()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        reset($this->iterationArray);
     }
 }

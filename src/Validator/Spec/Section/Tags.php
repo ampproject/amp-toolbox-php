@@ -17,9 +17,10 @@ use AmpProject\Internal;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
+use Iterator;
 use LogicException;
 
-final class Tags
+final class Tags implements Iterator
 {
     const TAGS = [
         'html doctype' => Tag\HtmlDoctype::class,
@@ -33,6 +34,7 @@ final class Tags
         'link rel=' => Tag\LinkRel::class,
         'link rel=canonical' => Tag\LinkRelCanonical::class,
         'link rel=manifest' => Tag\LinkRelManifest::class,
+        'link rel=modulepreload' => Tag\LinkRelModulepreload::class,
         'link rel=preload' => Tag\LinkRelPreload::class,
         'link rel=stylesheet for fonts' => Tag\LinkRelStylesheetForFonts::class,
         'link itemprop=sameAs' => Tag\LinkItempropSameas::class,
@@ -640,6 +642,8 @@ final class Tags
         'AMP-STORY-GRID-LAYER animate-in' => Tag\AmpStoryGridLayerAnimateIn::class,
         Extension::STORY_BOOKEND => Tag\AmpStoryBookend::class,
         'amp-story-bookend extension .json script' => Tag\AmpStoryBookendExtensionJsonScript::class,
+        Extension::STORY_SOCIAL_SHARE => Tag\AmpStorySocialShare::class,
+        'amp-story-social-share extension .json script' => Tag\AmpStorySocialShareExtensionJsonScript::class,
         'amp-story-consent extension .json script' => Tag\AmpStoryConsentExtensionJsonScript::class,
         Extension::STORY_CONSENT => Tag\AmpStoryConsent::class,
         Extension::STORY_CTA_LAYER => Tag\AmpStoryCtaLayer::class,
@@ -725,6 +729,7 @@ final class Tags
             'amp-story-auto-ads config script',
             'amp-story-bookend extension .json script',
             'amp-story-consent extension .json script',
+            'amp-story-social-share extension .json script',
             'amp-subscriptions extension .json script',
             'amp-video extension script',
             'amp4ads engine script',
@@ -1150,6 +1155,7 @@ final class Tags
         ],
         Extension::STORY_PANNING_MEDIA => Extension::STORY_PANNING_MEDIA,
         Extension::STORY_PLAYER => Extension::STORY_PLAYER,
+        Extension::STORY_SOCIAL_SHARE => Extension::STORY_SOCIAL_SHARE,
         Extension::VIDEO => [
             'amp-story >> amp-story-page-attachment >> amp-video',
             'amp-story >> amp-video',
@@ -1317,6 +1323,7 @@ final class Tags
             'link rel=',
             'link rel=canonical',
             'link rel=manifest',
+            'link rel=modulepreload',
             'link rel=preload',
             'link rel=stylesheet for fonts',
         ],
@@ -1539,6 +1546,7 @@ final class Tags
         Extension::STORY_PAGE_ATTACHMENT => Extension::STORY_PAGE_ATTACHMENT,
         'amp-story-page-attachment[href]' => 'amp-story-page-attachment[href]',
         'amp-story-player > img' => 'amp-story-player > img',
+        'amp-story-social-share extension .json script' => 'amp-story-social-share extension .json script',
         'amp-story >> amp-audio' => 'amp-story >> amp-audio',
         'amp-story >> amp-sidebar' => 'amp-story >> amp-sidebar',
         'amp-story >> amp-story-page-attachment >> amp-video' => 'amp-story >> amp-story-page-attachment >> amp-video',
@@ -1606,6 +1614,7 @@ final class Tags
         'link rel=' => 'link rel=',
         'link rel=canonical' => 'link rel=canonical',
         'link rel=manifest' => 'link rel=manifest',
+        'link rel=modulepreload' => 'link rel=modulepreload',
         'link rel=preload' => 'link rel=preload',
         'link rel=stylesheet for fonts' => 'link rel=stylesheet for fonts',
         'meta charset=utf-8' => 'meta charset=utf-8',
@@ -1894,6 +1903,8 @@ final class Tags
             Extension::STORY_PANNING_MEDIA,
             Extension::STORY_PLAYER,
             'amp-story-player > img',
+            Extension::STORY_SOCIAL_SHARE,
+            'amp-story-social-share extension .json script',
             'amp-story >> amp-audio',
             'amp-story >> amp-sidebar',
             'amp-story >> amp-story-page-attachment >> amp-video',
@@ -2059,6 +2070,7 @@ final class Tags
             'link rel=',
             'link rel=canonical',
             'link rel=manifest',
+            'link rel=modulepreload',
             'link rel=preload',
             'link rel=stylesheet for fonts',
             Element::LISTING,
@@ -2852,6 +2864,9 @@ final class Tags
     /** @var array<Tag> */
     private $tagsCache = [];
 
+    /** @var array<string>|null */
+    private $iterationArray;
+
     /**
      * Get a collection of tags by tag name.
      *
@@ -2965,5 +2980,80 @@ final class Tags
         $this->tagsCache[$tagId] = $tag;
 
         return $tag;
+    }
+
+    /**
+     * Return the current Tag object.
+     *
+     * @return Tag Tag object.
+     */
+    public function current()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        $tagId = current($this->iterationArray);
+
+        return $this->byTagId($tagId);
+    }
+
+    /**
+     * Move forward to next Tag object.
+     *
+     * @return void Any returned value is ignored.
+     */
+    public function next()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        next($this->iterationArray);
+    }
+
+    /**
+     * Return the Tag ID of the current Tag object.
+     *
+     * @return string|null Tag ID of the current Tag object, or null if out of bounds.
+     */
+    public function key()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        return key($this->iterationArray);
+    }
+
+    /**
+     * Checks if current position is valid.
+     *
+     * @return bool The return value will be casted to boolean and then evaluated.
+     *              Returns true on success or false on failure.
+     */
+    public function valid()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        $key = $this->key();
+
+        return $key !== null && $key !== false;
+    }
+
+    /**
+     * Rewind the Iterator to the first Tag object.
+     *
+     * @return void Any returned value is ignored.
+     */
+    public function rewind()
+    {
+        if ($this->iterationArray === null) {
+            $this->iterationArray = array_keys(self::TAGS);
+        }
+
+        reset($this->iterationArray);
     }
 }

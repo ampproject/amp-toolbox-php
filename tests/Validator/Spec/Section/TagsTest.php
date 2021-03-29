@@ -101,4 +101,15 @@ class TagsTest extends TestCase
         $this->expectException(InvalidExtension::class);
         $this->tags->byExtensionSpec('utter nonsense');
     }
+
+    public function testIteration()
+    {
+        foreach ($this->tags as $tag) {
+            $this->assertInstanceOf(Spec\Tag::class, $tag);
+            $this->assertNotEmpty($tag::SPEC);
+            if ($tag instanceof Spec\TagWithExtensionSpec) {
+                $this->assertNotEmpty($tag::EXTENSION_SPEC);
+            }
+        }
+    }
 }
