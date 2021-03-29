@@ -154,9 +154,7 @@ final class Tags implements Iterator
      */
     public function current()
     {
-        if ($this->iterationArray === null) {
-            $this->iterationArray = array_keys(self::TAGS);
-        }
+        $this->initIterationArray();
 
         $tagId = current($this->iterationArray);
 
@@ -170,9 +168,7 @@ final class Tags implements Iterator
      */
     public function next()
     {
-        if ($this->iterationArray === null) {
-            $this->iterationArray = array_keys(self::TAGS);
-        }
+        $this->initIterationArray();
 
         next($this->iterationArray);
     }
@@ -184,9 +180,7 @@ final class Tags implements Iterator
      */
     public function key()
     {
-        if ($this->iterationArray === null) {
-            $this->iterationArray = array_keys(self::TAGS);
-        }
+        $this->initIterationArray();
 
         return key($this->iterationArray);
     }
@@ -199,9 +193,7 @@ final class Tags implements Iterator
      */
     public function valid()
     {
-        if ($this->iterationArray === null) {
-            $this->iterationArray = array_keys(self::TAGS);
-        }
+        $this->initIterationArray();
 
         $key = $this->key();
 
@@ -215,10 +207,15 @@ final class Tags implements Iterator
      */
     public function rewind()
     {
+        $this->initIterationArray();
+
+        reset($this->iterationArray);
+    }
+
+    private function initIterationArray()
+    {
         if ($this->iterationArray === null) {
             $this->iterationArray = array_keys(self::TAGS);
         }
-
-        reset($this->iterationArray);
     }
 }
