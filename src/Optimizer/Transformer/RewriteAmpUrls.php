@@ -55,7 +55,7 @@ use Exception;
  * @version 7fbf187b3c7f07100e8911a52582b640b23490e5
  * @link https://github.com/ampproject/amp-toolbox/blob/7fbf187b3c7f07100e8911a52582b640b23490e5/packages/optimizer/lib/transformers/RewriteAmpUrls.js
  *
- * @package AmpProject\Optimizer\Transformer
+ * @package ampproject/amp-toolbox
  */
 final class RewriteAmpUrls implements Transformer
 {

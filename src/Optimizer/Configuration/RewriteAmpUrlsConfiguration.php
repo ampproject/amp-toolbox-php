@@ -5,6 +5,18 @@ namespace AmpProject\Optimizer\Configuration;
 use AmpProject\Amp;
 use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 
+/**
+ * Configuration for the RewriteAmpUrls transformer.
+ *
+ * @property $ampUrlPrefix      Specifies an URL prefix for AMP runtime URLs.
+ * @property $ampRuntimeVersion Specifies a specific version of the AMP runtime.
+ * @property $lts               Use long-term stable URLs.
+ * @property $rtv               Append the runtime version to the rewritten URLs.
+ * @property $geoApiUrl         Specifies amp-geo API URL to use as a fallback.
+ * @property $experimentEsm     Whether to use ES modules for loading the AMP runtime and components.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
 {
 
