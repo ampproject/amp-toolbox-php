@@ -35,6 +35,7 @@ interface Attribute
     const CHARSET               = 'charset';
     const CLASS_                = 'class'; // Underscore needed because 'class' is a PHP keyword.
     const CONTENT               = 'content';
+    const CROSSORIGIN           = 'crossorigin';
     const CUSTOM_ELEMENT        = 'custom-element';
     const CUSTOM_TEMPLATE       = 'custom-template';
     const DECODING              = 'decoding';
@@ -59,6 +60,7 @@ interface Attribute
     const MEDIA                 = 'media';
     const NAME                  = 'name';
     const NOLOADING             = 'noloading';
+    const NOMODULE              = 'nomodule';
     const OBJECT_FIT            = 'object-fit';
     const OBJECT_POSITION       = 'object-position';
     const ON                    = 'on';
@@ -89,6 +91,7 @@ interface Attribute
     const TYPE_HTML       = 'text/html';
     const TYPE_JSON       = 'application/json';
     const TYPE_LD_JSON    = 'application/ld+json';
+    const TYPE_MODULE     = 'module';
     const TYPE_TEXT_PLAIN = 'text/plain';
 
     const REL_AMPHTML      = 'amphtml';
@@ -106,4 +109,6 @@ interface Attribute
     const DATA_AMP_STORY_PLAYER_POSTER_IMG = 'data-amp-story-player-poster-img';
     const DATA_HERO                        = 'data-hero';
     const DATA_HERO_CANDIDATE              = 'data-hero-candidate';
+
+    const CROSSORIGIN_ANONYMOUS = 'anonymous';
 }
