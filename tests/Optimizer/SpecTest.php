@@ -28,7 +28,7 @@ final class SpecTest extends TestCase
 {
     use MarkupComparison;
 
-    const TRANSFORMER_SPEC_PATH = __DIR__ . '/../spec/transformers/valid';
+    const TRANSFORMER_SPEC_PATH = __DIR__ . '/../spec/transformers';
 
     const TESTS_TO_SKIP = [
         'ReorderHead - reorders_head_a4a'                => 'see https://github.com/ampproject/amp-toolbox/issues/583',
@@ -64,12 +64,28 @@ final class SpecTest extends TestCase
         $suites    = [
             'AmpRuntimeCss'       => [
                 AmpRuntimeCss::class,
-                self::TRANSFORMER_SPEC_PATH . '/AmpBoilerplateTransformer',
+                self::TRANSFORMER_SPEC_PATH . '/valid/AmpBoilerplateTransformer',
             ],
-            'PreloadHeroImage'    => [PreloadHeroImage::class, self::TRANSFORMER_SPEC_PATH . '/OptimizeHeroImages'],
-            'ReorderHead'         => [ReorderHead::class, self::TRANSFORMER_SPEC_PATH . '/ReorderHeadTransformer'],
-            'RewriteAmpUrls'      => [RewriteAmpUrls::class, self::TRANSFORMER_SPEC_PATH . '/RewriteAmpUrls'],
-            'ServerSideRendering' => [ServerSideRendering::class, self::TRANSFORMER_SPEC_PATH . '/ServerSideRendering'],
+            'PreloadHeroImage'              => [
+                PreloadHeroImage::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeHeroImages'
+            ],
+            'ReorderHead'                   => [
+                ReorderHead::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/ReorderHeadTransformer'
+            ],
+            'RewriteAmpUrls'                => [
+                RewriteAmpUrls::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/RewriteAmpUrls'
+            ],
+            'RewriteAmpUrls (experimental)' => [
+                RewriteAmpUrls::class,
+                self::TRANSFORMER_SPEC_PATH . '/experimental/RewriteAmpUrls'
+            ],
+            'ServerSideRendering'           => [
+                ServerSideRendering::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/ServerSideRendering'
+            ],
         ];
 
         foreach ($suites as $key => list($transformerClass, $specFileFolder)) {
@@ -171,8 +187,8 @@ final class SpecTest extends TestCase
                 case 'ampUrlPrefix':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::AMP_URL_PREFIX] = $value;
                     break;
-                case 'experimentEsm':
-                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::EXPERIMENT_ESM] = $value;
+                case 'esmModulesEnabled':
+                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::ESM_MODULES_ENABLED] = $value;
                     break;
                 case 'geoApiUrl':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::GEO_API_URL] = $value;

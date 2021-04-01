@@ -43,11 +43,9 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
     /**
      * Whether to use ES modules for loading the AMP runtime and components.
      *
-     * ==> EXPERIMENTAL <==
-     *
      * @var string
      */
-    const EXPERIMENT_ESM = 'experimentEsm';
+    const ESM_MODULES_ENABLED = 'esmModulesEnabled';
 
     /**
      * Specifies amp-geo API URL to use as a fallback when `amp-geo-0.1.js` is served unpatched.
@@ -95,7 +93,7 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
         return [
             self::AMP_RUNTIME_VERSION => '',
             self::AMP_URL_PREFIX      => Amp::CACHE_HOST,
-            self::EXPERIMENT_ESM      => false,
+            self::ESM_MODULES_ENABLED => true,
             self::GEO_API_URL         => '',
             self::LTS                 => false,
             self::RTV                 => false,
@@ -136,11 +134,11 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                 $value = trim($value);
                 break;
 
-            case self::EXPERIMENT_ESM:
+            case self::ESM_MODULES_ENABLED:
                 if (! is_bool($value)) {
                     throw InvalidConfigurationValue::forInvalidSubValueType(
                         self::class,
-                        self::EXPERIMENT_ESM,
+                        self::ESM_MODULES_ENABLED,
                         'boolean',
                         gettype($value)
                     );
