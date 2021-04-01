@@ -14,7 +14,6 @@ use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\RuntimeVersion;
 use AmpProject\Tag;
-use DOMElement;
 use DOMNode;
 use Exception;
 
@@ -107,7 +106,7 @@ final class RewriteAmpUrls implements Transformer
      *
      * @param Document $document Document to collect preload nodes for.
      * @param string   $host     Host URL to use.
-     * @return DOMNode[] Preload nodes.
+     * @return Element[] Preload nodes.
      */
     private function collectPreloadNodes(Document $document, $host)
     {
@@ -116,7 +115,7 @@ final class RewriteAmpUrls implements Transformer
 
         $node = $document->head->firstChild;
         while ($node) {
-            if (! $node instanceof DOMElement) {
+            if (! $node instanceof Element) {
                 $node = $node->nextSibling;
                 continue;
             }
@@ -234,7 +233,7 @@ final class RewriteAmpUrls implements Transformer
      * @param Document $document Document to create the element in.
      * @param string   $href     Href to use for the preload.
      * @param string   $type     Type to use for the preload.
-     * @return DOMElement|null Preload element, or null if not created.
+     * @return Element|null Preload element, or null if not created.
      */
     private function createPreload(Document $document, $href, $type)
     {
