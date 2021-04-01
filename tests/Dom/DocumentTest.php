@@ -1251,4 +1251,32 @@ class DocumentTest extends TestCase
 
         $this->assertEqualMarkup($expected, $document->saveHTMLFragment($fragmentCallback($document)));
     }
+
+    /**
+     * Test creating an element with attributes.
+     *
+     * @covers \AmpProject\Dom\Document::createElementWithAttributes()
+     */
+    public function testCreateElementWithAttributes()
+    {
+        $document = new Document();
+        $element  = $document->createElementWithAttributes(
+            'div',
+            [
+                'class'          => 'red blue',
+                'data-something' => 42,
+            ],
+            'Some text'
+        );
+
+        $this->assertInstanceOf(Element::class, $element);
+        $this->assertTrue($element->hasAttributes());
+        $this->assertEquals('red blue', $element->getAttribute('class'));
+        $this->assertEquals(42, $element->getAttribute('data-something'));
+        $this->assertEquals('Some text', $element->nodeValue);
+        $this->assertEquals(
+            '<div class="red blue" data-something="42">Some text</div>',
+            $document->saveHTMLFragment($element)
+        );
+    }
 }

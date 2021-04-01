@@ -346,6 +346,7 @@ final class Document extends DOMDocument
         $this->originalEncoding = (string)$encoding ?: Encoding::UNKNOWN;
         parent::__construct($version ?: '1.0', Encoding::AMP);
         $this->registerNodeClass(DOMElement::class, Element::class);
+        $this->options = Option::DEFAULTS;
     }
 
     /**
@@ -500,7 +501,7 @@ final class Document extends DOMDocument
             $options = [Option::LIBXML_FLAGS => $options];
         }
 
-        $this->options = array_merge(Option::DEFAULTS, $options);
+        $this->options = array_merge($this->options, $options);
 
         $this->reset();
 
@@ -2100,7 +2101,7 @@ final class Document extends DOMDocument
      *
      * @param int $maxByteCount Maximum number of bytes to limit the CSS to. A negative number disables the limit.
      */
-    public function enforceCssMaxByteCount($maxByteCount = AMP::MAX_CSS_BYTE_COUNT)
+    public function enforceCssMaxByteCount($maxByteCount = Amp::MAX_CSS_BYTE_COUNT)
     {
         $this->cssMaxByteCountEnforced = $maxByteCount;
     }
