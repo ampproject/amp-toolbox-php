@@ -276,9 +276,9 @@ final class RewriteAmpUrls implements Transformer
         }
         if (
             ! empty(
-            $this->configuration->get(
-                RewriteAmpUrlsConfiguration::GEO_API_URL
-            )
+                $this->configuration->get(
+                    RewriteAmpUrlsConfiguration::GEO_API_URL
+                )
             ) && ! $this->configuration->get(
                 RewriteAmpUrlsConfiguration::LTS
             )
