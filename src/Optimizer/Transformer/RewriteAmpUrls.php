@@ -40,7 +40,7 @@ use Exception;
  *
  * * `rtv`: Append the runtime version to the rewritten URLs. This option is not compatible with `lts`.
  *
- * * `experimentEsm`: (EXPERIMENTAL) Use ES modules for loading the AMP runtime and components.
+ * * `esmModulesEnabled`: Use ES modules for loading the AMP runtime and components. Defaults to true.
  *
  * All parameters are optional. If no option is provided, runtime URLs won't be re-written. You can combine
  * `ampRuntimeVersion` and  `ampUrlPrefix` to rewrite AMP runtime URLs to versioned URLs on a different origin.
@@ -120,40 +120,38 @@ final class RewriteAmpUrls implements Transformer
                 continue;
             }
 
-            $src = $node->getAttribute(Attribute::SRC);
-
+            $src  = $node->getAttribute(Attribute::SRC);
+            $href = $node->getAttribute(Attribute::HREF);
             if ($node->tagName === Tag::SCRIPT && $this->usesAmpCacheUrl($src)) {
+                $newUrl = $this->replaceUrl($src, $host);
                 $node->setAttribute(Attribute::SRC, $this->replaceUrl($src, $host));
                 if ($usesEsm) {
                     $preloadNodes[] = $this->addEsm($document, $node);
                 } else {
-                    $preloadNodes[] = $this->createPreload($document, $src, Tag::SCRIPT);
+                    $preloadNodes[] = $this->createPreload($document, $newUrl, Tag::SCRIPT);
                 }
-            } elseif ($node->tagName === Tag::LINK) {
-                $href = $node->getAttribute(Attribute::HREF);
-
-                if (
-                    $node->getAttribute(Attribute::REL) === Attribute::REL_STYLESHEET
-                    && $this->usesAmpCacheUrl($href)
-                ) {
-                    $node->setAttribute(
-                        Attribute::HREF,
-                        $this->replaceUrl($href, $host)
-                    );
-                    $preloadNodes[] = $this->createPreload($document, $href, Tag::STYLE);
-                } elseif (
-                    $node->getAttribute(Attribute::REL) === Attribute::REL_PRELOAD
-                    && $this->usesAmpCacheUrl($href)
-                ) {
-                    if ($usesEsm && $this->shouldPreload($href)) {
-                        // Only preload .mjs runtime in ESM mode.
-                        $node->parentNode->removeChild($node);
-                    } else {
-                        $node->setAttribute(
-                            Attribute::HREF,
-                            $this->replaceUrl($href, $host)
-                        );
-                    }
+            } elseif (
+                $node->tagName === Tag::LINK
+                &&
+                $node->getAttribute(Attribute::REL) === Attribute::REL_STYLESHEET
+                &&
+                $this->usesAmpCacheUrl($href)
+            ) {
+                $newUrl = $this->replaceUrl($href, $host);
+                $node->setAttribute(Attribute::HREF, $newUrl);
+                $preloadNodes[] = $this->createPreload($document, $newUrl, Tag::STYLE);
+            } elseif (
+                $node->tagName === Tag::LINK
+                &&
+                $node->getAttribute(Attribute::REL) === Attribute::REL_PRELOAD
+                &&
+                $this->usesAmpCacheUrl($href)
+            ) {
+                if ($usesEsm && $this->shouldPreload($href)) {
+                    // Only preload .mjs runtime in ESM mode.
+                    $node->parentNode->removeChild($node);
+                } else {
+                    $node->setAttribute(Attribute::HREF, $this->replaceUrl($href, $host));
                 }
             }
 
@@ -212,8 +210,8 @@ final class RewriteAmpUrls implements Transformer
         }
 
         $nomoduleNode = $document->createElement(Tag::SCRIPT);
-        $nomoduleNode->setAttribute(Attribute::ASYNC, null);
-        $nomoduleNode->setAttribute(Attribute::NOMODULE, null);
+        $nomoduleNode->addBooleanAttribute(Attribute::ASYNC);
+        $nomoduleNode->addBooleanAttribute(Attribute::NOMODULE);
         $nomoduleNode->setAttribute(Attribute::SRC, $scriptUrl);
 
         $scriptNode->copyAttributes([Attribute::CUSTOM_ELEMENT, Attribute::CUSTOM_TEMPLATE], $nomoduleNode);
@@ -263,9 +261,9 @@ final class RewriteAmpUrls implements Transformer
     {
         // runtime-host and amp-geo-api meta tags should appear before the first script.
         if (
-            ! $this->usesAmpCacheUrl($host) && ! $this->configuration->get(
-                RewriteAmpUrlsConfiguration::LTS
-            )
+            ! $this->usesAmpCacheUrl($host)
+            &&
+            ! $this->configuration->get(RewriteAmpUrlsConfiguration::LTS)
         ) {
             try {
                 $urlParts = parse_url($host);
@@ -276,13 +274,9 @@ final class RewriteAmpUrls implements Transformer
             }
         }
         if (
-            ! empty(
-                $this->configuration->get(
-                    RewriteAmpUrlsConfiguration::GEO_API_URL
-                )
-            ) && ! $this->configuration->get(
-                RewriteAmpUrlsConfiguration::LTS
-            )
+            ! empty($this->configuration->get(RewriteAmpUrlsConfiguration::GEO_API_URL))
+            &&
+            ! $this->configuration->get(RewriteAmpUrlsConfiguration::LTS)
         ) {
             $this->addMeta(
                 $document,
@@ -301,7 +295,8 @@ final class RewriteAmpUrls implements Transformer
     private function shouldPreload($url)
     {
         return substr_compare($url, 'v0.js', -5) === 0
-               || substr_compare($url, 'v0.css', -6) === 0;
+               ||
+               substr_compare($url, 'v0.css', -6) === 0;
     }
 
     /**

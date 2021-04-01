@@ -94,6 +94,25 @@ final class Element extends DOMElement
     }
 
     /**
+     * Adds a boolean attribute without value.
+     *
+     * @param string $name  The name of the attribute.
+     * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
+     * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
+     */
+    public function addBooleanAttribute($name)
+    {
+        $attribute = new DOMAttr($name);
+        $result    = $this->appendChild($attribute);
+
+        if (!$result instanceof DOMAttr) {
+            return false;
+        }
+
+        return $result;
+    }
+
+    /**
      * Copy one or more attributes from this element to another element.
      *
      * @param array|string $attributes       Attribute name or array of attribute names to copy.
