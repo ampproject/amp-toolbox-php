@@ -2060,6 +2060,32 @@ final class Document extends DOMDocument
     }
 
     /**
+     * Create new element node.
+     *
+     * @link https://php.net/manual/domdocument.createelement.php
+     *
+     * This override only serves to provide the correct object type-hint for our extended Dom/Element class.
+     *
+     * @param string $name       The tag name of the element.
+     * @param array  $attributes Attributes to add to the newly created element.
+     * @param string $value      Optional. The value of the element. By default, an empty element will be created.
+     *                           You can also set the value later with Element->nodeValue.
+     * @return Element|false A new instance of class Element or false if an error occurred.
+     */
+    public function createElementWithAttributes($name, $attributes, $value = null)
+    {
+        $element = parent::createElement($name, $value);
+
+        if (!$element instanceof Element) {
+            return false;
+        }
+
+        $element->addAttributes($attributes);
+
+        return $element;
+    }
+
+    /**
      * Check whether the CSS maximum byte count is enforced.
      *
      * @return bool Whether the CSS maximum byte count is enforced.

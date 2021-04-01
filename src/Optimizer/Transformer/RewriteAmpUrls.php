@@ -216,6 +216,8 @@ final class RewriteAmpUrls implements Transformer
         $nomoduleNode->setAttribute(Attribute::NOMODULE, null);
         $nomoduleNode->setAttribute(Attribute::SRC, $scriptUrl);
 
+        $scriptNode->copyAttributes([Attribute::CUSTOM_ELEMENT, Attribute::CUSTOM_TEMPLATE], $nomoduleNode);
+
         $scriptNode->parentNode->insertBefore($nomoduleNode, $scriptNode);
 
         $scriptNode->setAttribute(Attribute::TYPE, Attribute::TYPE_MODULE);

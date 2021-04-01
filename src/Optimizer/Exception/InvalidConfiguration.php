@@ -21,7 +21,8 @@ final class InvalidConfiguration extends DomainException implements AmpOptimizer
      */
     public static function forMutuallyExclusiveFlags($flagA, $flagB)
     {
-        $message = "The configuration flags '{$flagA}' and '{$flagB}' are mutually exclusive and cannot be set at the same time.";
+        $message = "The configuration flags '{$flagA}' and '{$flagB}' are mutually exclusive "
+                   . 'and cannot be set at the same time.';
 
         return new self($message);
     }
