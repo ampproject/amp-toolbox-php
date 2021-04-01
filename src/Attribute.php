@@ -94,17 +94,18 @@ interface Attribute
     const TYPE_MODULE     = 'module';
     const TYPE_TEXT_PLAIN = 'text/plain';
 
-    const REL_AMPHTML      = 'amphtml';
-    const REL_CANONICAL    = 'canonical';
-    const REL_DNS_PREFETCH = 'dns-prefetch';
-    const REL_ICON         = 'icon';
-    const REL_NOAMPHTML    = 'noamphtml';
-    const REL_NOFOLLOW     = 'nofollow';
-    const REL_PRECONNECT   = 'preconnect';
-    const REL_PREFETCH     = 'prefetch';
-    const REL_PRELOAD      = 'preload';
-    const REL_PRERENDER    = 'prerender';
-    const REL_STYLESHEET   = 'stylesheet';
+    const REL_AMPHTML       = 'amphtml';
+    const REL_CANONICAL     = 'canonical';
+    const REL_DNS_PREFETCH  = 'dns-prefetch';
+    const REL_ICON          = 'icon';
+    const REL_MODULEPRELOAD = 'modulepreload';
+    const REL_NOAMPHTML     = 'noamphtml';
+    const REL_NOFOLLOW      = 'nofollow';
+    const REL_PRECONNECT    = 'preconnect';
+    const REL_PREFETCH      = 'prefetch';
+    const REL_PRELOAD       = 'preload';
+    const REL_PRERENDER     = 'prerender';
+    const REL_STYLESHEET    = 'stylesheet';
 
     const DATA_AMP_STORY_PLAYER_POSTER_IMG = 'data-amp-story-player-poster-img';
     const DATA_HERO                        = 'data-hero';
