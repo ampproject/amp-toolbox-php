@@ -85,6 +85,14 @@ final class ServerSideRenderingTest extends TestCase
                 $expectWithoutBoilerplate('<amp-img class="i-amphtml-layout-container" layout="container" i-amphtml-layout="container"></amp-img>'),
             ],
 
+            'nested amp component' => [
+                $input('<amp-layout layout="fill"><amp-img height="300" layout="responsive" src="https://acme.org/image1.png" width="400"></amp-img></amp-layout>'),
+                $expectWithoutBoilerplate(
+                    '<amp-layout class="i-amphtml-layout-fill i-amphtml-layout-size-defined" i-amphtml-layout="fill" layout="fill"><amp-img height="300" layout="responsive" src="https://acme.org/image1.png" width="400" class="i-amphtml-layout-responsive i-amphtml-layout-size-defined" i-amphtml-layout="responsive"><i-amphtml-sizer style="display:block;padding-top:75%"></i-amphtml-sizer></amp-img></amp-layout>'
+                ),
+                [],
+            ],
+
             'amp4Email boilerplate removed and layout applied' => [
                 TestMarkup::DOCTYPE . '<html ⚡4email><head>'
                 . TestMarkup::META_CHARSET . TestMarkup::SCRIPT_AMPRUNTIME . TestMarkup::STYLE_AMP_4_EMAIL_BOILERPLATE

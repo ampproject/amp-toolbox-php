@@ -292,7 +292,7 @@ final class ServerSideRendering implements Transformer
 
         try {
             /** @var Element $newElement */
-            $newElement = $element->cloneNode(true);
+            $newElement = $element->cloneNode(false);
 
             // Transformed AMP validation requires layout attribute to be set.
             // See https://github.com/ampproject/amp-toolbox/issues/959
@@ -303,6 +303,9 @@ final class ServerSideRendering implements Transformer
             $this->applyLayoutAttributes($newElement, $layout, $width, $height);
             $this->maybeAddSizerInto($document, $newElement, $layout, $width, $height);
             $element->parentNode->replaceChild($newElement, $element);
+            while ($element->firstChild) {
+                $newElement->appendChild($element->removeChild($element->firstChild));
+            }
         } catch (MaxCssByteCountExceeded $exception) {
             $errors->add(
                 Error\CannotPerformServerSideRendering::fromMaxCssByteCountExceededException($exception, $element)
