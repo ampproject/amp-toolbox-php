@@ -10,7 +10,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  *
  * @property string $ampRuntimeVersion Specifies a specific version of the AMP runtime.
  * @property string $ampUrlPrefix      Specifies an URL prefix for AMP runtime URLs.
- * @property bool   $experimentEsm     Whether to use ES modules for loading the AMP runtime and components.
+ * @property bool   $esmModulesEnabled Whether to use ES modules for loading the AMP runtime and components.
  * @property string $geoApiUrl         Specifies amp-geo API URL to use as a fallback.
  * @property bool   $lts               Use long-term stable URLs.
  * @property bool   $rtv               Append the runtime version to the rewritten URLs.
@@ -116,7 +116,7 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::AMP_RUNTIME_VERSION,
                         'string',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 $value = trim($value);
@@ -128,7 +128,7 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::AMP_URL_PREFIX,
                         'string',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 $value = trim($value);
@@ -140,7 +140,7 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::ESM_MODULES_ENABLED,
                         'boolean',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 break;
@@ -151,7 +151,7 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::GEO_API_URL,
                         'string',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 $value = trim($value);
@@ -163,7 +163,7 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::LTS,
                         'boolean',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 break;
@@ -174,7 +174,7 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::RTV,
                         'boolean',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 break;

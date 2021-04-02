@@ -7,19 +7,16 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 /**
  * Configuration for the PreloadHeroImage transformer.
  *
- * @property string  $preloadHeroImage Whether to preload hero images. Defaults to true.
+ * @property string $inlineStyleBackupAttribute Name of the attribute that is used to store inline styles that were
+ *                                              moved to <style amp-custom>
+ * @property bool   $preloadHeroImage           Whether to preload hero images. Defaults to true.
+ * @property bool   $preloadSrcset              Whether to enable preloading of images with a srcset attribute. Defaults
+ *                                              to false.
  *
  * @package ampproject/amp-toolbox
  */
 final class PreloadHeroImageConfiguration extends BaseTransformerConfiguration
 {
-
-    /**
-     * Configuration key that holds the switch to disable preloading of hero images.
-     *
-     * @var string
-     */
-    const PRELOAD_HERO_IMAGE = 'preloadHeroImage';
 
     /**
      * Configuration key that holds the attribute that is used to store inline styles that
@@ -30,6 +27,13 @@ final class PreloadHeroImageConfiguration extends BaseTransformerConfiguration
      * @var string.
      */
     const INLINE_STYLE_BACKUP_ATTRIBUTE = 'inlineStyleBackupAttribute';
+
+    /**
+     * Configuration key that holds the switch to disable preloading of hero images.
+     *
+     * @var string
+     */
+    const PRELOAD_HERO_IMAGE = 'preloadHeroImage';
 
     /**
      * Configuration key that holds the switch to enable preloading of images with a srcset attribute.
@@ -48,8 +52,8 @@ final class PreloadHeroImageConfiguration extends BaseTransformerConfiguration
     protected function getAllowedKeys()
     {
         return [
-            self::PRELOAD_HERO_IMAGE            => true,
             self::INLINE_STYLE_BACKUP_ATTRIBUTE => '',
+            self::PRELOAD_HERO_IMAGE            => true,
             self::PRELOAD_SRCSET                => false,
         ];
     }
@@ -64,24 +68,24 @@ final class PreloadHeroImageConfiguration extends BaseTransformerConfiguration
     protected function validate($key, $value)
     {
         switch ($key) {
-            case self::PRELOAD_HERO_IMAGE:
-                if (! is_bool($value)) {
-                    throw InvalidConfigurationValue::forInvalidSubValueType(
-                        self::class,
-                        self::PRELOAD_HERO_IMAGE,
-                        'boolean',
-                        gettype($value)
-                    );
-                }
-                break;
-
             case self::INLINE_STYLE_BACKUP_ATTRIBUTE:
                 if (! is_string($value)) {
                     throw InvalidConfigurationValue::forInvalidSubValueType(
                         self::class,
                         self::INLINE_STYLE_BACKUP_ATTRIBUTE,
                         'string',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
+                    );
+                }
+                break;
+
+            case self::PRELOAD_HERO_IMAGE:
+                if (! is_bool($value)) {
+                    throw InvalidConfigurationValue::forInvalidSubValueType(
+                        self::class,
+                        self::PRELOAD_HERO_IMAGE,
+                        'boolean',
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 break;
@@ -92,7 +96,7 @@ final class PreloadHeroImageConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::PRELOAD_SRCSET,
                         'boolean',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 break;
