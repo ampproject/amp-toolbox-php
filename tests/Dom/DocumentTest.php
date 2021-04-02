@@ -1268,6 +1268,7 @@ class DocumentTest extends TestCase
             ],
             'Some text'
         );
+        $document->body->appendChild($element);
 
         $this->assertInstanceOf(Element::class, $element);
         $this->assertTrue($element->hasAttributes());
