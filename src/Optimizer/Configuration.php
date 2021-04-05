@@ -50,10 +50,10 @@ final class Configuration
         AmpBoilerplate::class,
         ServerSideRendering::class,
         AmpRuntimeCss::class,
-        RewriteAmpUrls::class,
         TransformedIdentifier::class,
         ReorderHead::class,
         PreloadHeroImage::class,
+        RewriteAmpUrls::class,
     ];
 
     /**
