@@ -126,10 +126,10 @@ final class Element extends DOMElement
                 $values = $this->getAttribute($attribute);
                 if ($target->hasAttribute($attribute)) {
                     switch ($attribute) {
-                        case 'on':
+                        case Attribute::ON:
                             $values = self::mergeAmpActions($target->getAttribute($attribute), $values);
                             break;
-                        case 'class':
+                        case Attribute::CLASS_:
                             $values = $target->getAttribute($attribute) . ' ' . $values;
                             break;
                         default:
@@ -154,16 +154,16 @@ final class Element extends DOMElement
     {
         $eventActionString = "{$event}:{$action}";
 
-        if (! $this->hasAttribute('on')) {
+        if (! $this->hasAttribute(Attribute::ON)) {
             // There's no "on" attribute yet, so just add it and be done.
-            $this->setAttribute('on', $eventActionString);
+            $this->setAttribute(Attribute::ON, $eventActionString);
             return;
         }
 
         $this->setAttribute(
-            'on',
+            Attribute::ON,
             self::mergeAmpActions(
-                $this->getAttribute('on'),
+                $this->getAttribute(Attribute::ON),
                 $eventActionString
             )
         );
