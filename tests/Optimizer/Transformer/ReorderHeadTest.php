@@ -55,8 +55,8 @@ final class ReorderHeadTest extends TestCase
                 // (5) <script> tags that are render delaying
                 TestMarkup::SCRIPT_AMPEXPERIMENT .
                 // (6) <script> tags for remaining extensions
-                TestMarkup::SCRIPT_AMPMRAID .
                 TestMarkup::SCRIPT_AMPAUDIO .
+                TestMarkup::SCRIPT_AMPMRAID .
                 TestMarkup::SCRIPT_AMPMUSTACHE .
                 // (7) <link> tag for favicons
                 TestMarkup::LINK_FAVICON .
