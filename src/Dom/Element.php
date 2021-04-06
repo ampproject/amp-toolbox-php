@@ -102,7 +102,7 @@ final class Element extends DOMElement
     public function addBooleanAttribute($name)
     {
         $attribute = new DOMAttr($name);
-        $result    = $this->appendChild($attribute);
+        $result    = $this->setAttributeNode($attribute);
 
         if (!$result instanceof DOMAttr) {
             return false;
