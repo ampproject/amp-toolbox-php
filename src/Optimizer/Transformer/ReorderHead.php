@@ -261,25 +261,6 @@ final class ReorderHead implements Transformer
     }
 
     /**
-     * Get the name of the custom node or template.
-     *
-     * @param Element $node Node to get the name of.
-     * @return string Name of the custom node or template. Empty string if none found.
-     */
-    private function getName(Element $node)
-    {
-        if ($node->hasAttribute(Attribute::CUSTOM_ELEMENT)) {
-            return $node->getAttribute(Attribute::CUSTOM_ELEMENT);
-        }
-
-        if ($node->hasAttribute(Attribute::CUSTOM_TEMPLATE)) {
-            return $node->getAttribute(Attribute::CUSTOM_TEMPLATE);
-        }
-
-        return '';
-    }
-
-    /**
      * Append all registered nodes to the <head> node.
      *
      * @param Document $document Document to append the nodes to.
@@ -331,7 +312,8 @@ final class ReorderHead implements Transformer
         foreach (['scriptRenderDelayingExtensions', 'scriptNonRenderDelayingExtensions'] as $set) {
             $sortedNodes = [];
             foreach ($this->$set as $node) {
-                $sortedNodes[$this->getName($node)] = $node;
+                /** @var Element $node */
+                $sortedNodes[$node->getAttribute('src')] = $node;
             }
             ksort($sortedNodes);
             $this->$set = array_values($sortedNodes);
