@@ -248,6 +248,7 @@ final class ReorderHead implements Transformer
             || $this->containsWord($rel, Attribute::REL_PREFETCH)
             || $this->containsWord($rel, Attribute::REL_DNS_PREFETCH)
             || $this->containsWord($rel, Attribute::REL_PRECONNECT)
+            || $this->containsWord($rel, Attribute::REL_MODULEPRELOAD)
         ) {
             if ($this->isHintForAmp($node)) {
                 $this->ampResourceHints[] = $node;
