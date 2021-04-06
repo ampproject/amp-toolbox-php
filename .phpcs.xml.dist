@@ -12,6 +12,7 @@
 
 	<!-- Exclude Composer vendor folder -->
 	<exclude-pattern>amp-toolbox/vendor/</exclude-pattern>
+	<exclude-pattern>amp-toolbox-php/vendor/</exclude-pattern>
 
 	<!-- Include sniffs for PHP cross-version compatibility. -->
 	<config name="testVersion" value="5.6-"/>
