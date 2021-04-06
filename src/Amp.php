@@ -151,7 +151,9 @@ final class Amp
 
         if (
             substr($src, -6) !== '/v0.js'
+            && substr($src, -7) !== '/v0.mjs'
             && substr($src, -14) !== '/amp4ads-v0.js'
+            && substr($src, -15) !== '/amp4ads-v0.mjs'
         ) {
             return false;
         }
