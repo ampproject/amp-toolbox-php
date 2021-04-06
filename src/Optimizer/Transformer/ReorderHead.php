@@ -63,7 +63,7 @@ final class ReorderHead implements Transformer
     private $noscript                          = null;
     private $others                            = [];
     private $resourceHintLinks                 = [];
-    private $scriptAmpRuntime                  = null;
+    private $scriptAmpRuntime                  = [];
     private $scriptAmpViewer                   = null;
     private $scriptNonRenderDelayingExtensions = [];
     private $scriptRenderDelayingExtensions    = [];
@@ -157,7 +157,7 @@ final class ReorderHead implements Transformer
     private function registerScript(Element $node)
     {
         if (Amp::isRuntimeScript($node)) {
-            $this->scriptAmpRuntime = $node;
+            $this->scriptAmpRuntime[$node->getAttribute('src')] = $node;
             return;
         }
 
