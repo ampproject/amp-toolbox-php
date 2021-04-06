@@ -88,7 +88,7 @@ final class RewriteAmpUrls implements Transformer
     public function transform(Document $document, ErrorCollection $errors)
     {
         $host          = $this->calculateHost();
-        $referenceNode = $document->viewport;;
+        $referenceNode = $document->viewport;
 
         $preloadNodes = array_filter($this->collectPreloadNodes($document, $host));
         foreach ($preloadNodes as $preloadNode) {
