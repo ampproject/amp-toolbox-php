@@ -30,7 +30,6 @@ final class Element extends DOMElement
     /**
      * Regular expression pattern to match individual actions within an event.
      *
-     * @since 1.4.0
      * @var string
      */
     const AMP_ACTION_REGEX_PATTERN = '/(?<action>[^(),\s]+(?:\([^\)]+\))?)+/';
