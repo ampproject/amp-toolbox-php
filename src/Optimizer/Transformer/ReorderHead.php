@@ -300,8 +300,7 @@ final class ReorderHead implements Transformer
                 $node = $document->importNode($this->$category);
                 $document->head->appendChild($node);
             } elseif (is_array($this->$category)) {
-                // @todo Do recursive sort so that module is always before nomodule?
-                ksort($this->$category);
+                $this->recursiveKeySort($this->$category);
                 array_walk_recursive(
                     $this->$category,
                     static function ( Element $node ) use ( $document ) {
@@ -310,6 +309,18 @@ final class ReorderHead implements Transformer
                     }
                 );
             }
+        }
+    }
+
+    /**
+     * Sort array keys recursively.
+     *
+     * @param array|mixed $item Item.
+     */
+    private function recursiveKeySort( &$item ) {
+        if (is_array($item)) {
+            ksort($item);
+            array_walk( $item, [$this, 'recursiveKeySort']);
         }
     }
 
