@@ -56,8 +56,8 @@ final class ReorderHeadTest extends TestCase
                 TestMarkup::SCRIPT_AMPEXPERIMENT .
                 // (6) <script> tags for remaining extensions
                 TestMarkup::SCRIPT_AMPAUDIO .
-                TestMarkup::SCRIPT_AMPMRAID .
                 TestMarkup::SCRIPT_AMPMUSTACHE .
+                TestMarkup::SCRIPT_AMPMRAID .
                 // (7) <link> tag for favicons
                 TestMarkup::LINK_FAVICON .
                 // (8) <link> tag for resource hints
@@ -179,7 +179,7 @@ final class ReorderHeadTest extends TestCase
 
                 TestMarkup::DOCTYPE . '<html ⚡><head>' .
                 TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT .
-                TestMarkup::SCRIPT_AMPRUNTIME . TestMarkup::SCRIPT_AMPDYNAMIC_CSSCLASSES . TestMarkup::SCRIPT_AMPEXPERIMENT .
+                TestMarkup::SCRIPT_AMPRUNTIME . TestMarkup::SCRIPT_AMPEXPERIMENT . TestMarkup::SCRIPT_AMPDYNAMIC_CSSCLASSES .
                 TestMarkup::LINK_FAVICON . TestMarkup::LINK_CANONICAL .
                 TestMarkup::STYLE_AMPBOILERPLATE . TestMarkup::NOSCRIPT_AMPBOILERPLATE .
                 '</head><body></body></html>',

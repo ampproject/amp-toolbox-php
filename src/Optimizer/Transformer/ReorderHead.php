@@ -64,7 +64,7 @@ final class ReorderHead implements Transformer
     private $others                            = [];
     private $resourceHintLinks                 = [];
     private $scriptAmpRuntime                  = [];
-    private $scriptAmpViewer                   = null;
+    private $scriptAmpViewer                   = [];
     private $scriptNonRenderDelayingExtensions = [];
     private $scriptRenderDelayingExtensions    = [];
     private $styleAmpBoilerplate               = null;
@@ -91,7 +91,6 @@ final class ReorderHead implements Transformer
             $this->registerNode($node);
         }
 
-        $this->deduplicateAndSortCustomNodes();
         $this->appendToHead($document);
     }
 
@@ -127,7 +126,7 @@ final class ReorderHead implements Transformer
                 $this->registerLink($node);
                 break;
             case Tag::NOSCRIPT:
-                $this->noscript = $node;
+                $this->noscript = $node; // @todo Make this an array.
                 break;
             default:
                 $this->others[] = $node;
@@ -156,32 +155,37 @@ final class ReorderHead implements Transformer
      */
     private function registerScript(Element $node)
     {
+        $nomodule = (int)$node->hasAttribute('nomodule');
+
         if (Amp::isRuntimeScript($node)) {
-            $this->scriptAmpRuntime[$node->getAttribute('src')] = $node;
+            $this->scriptAmpRuntime[$nomodule] = $node;
             return;
         }
 
         if (Amp::isViewerScript($node)) {
-            $this->scriptAmpViewer = $node;
+            $this->scriptAmpViewer[$nomodule] = $node;
             return;
         }
 
         if ($node->hasAttribute(Attribute::CUSTOM_ELEMENT)) {
+            $name = $node->getAttribute(Attribute::CUSTOM_ELEMENT);
             if (Amp::isRenderDelayingExtension($node)) {
-                $this->scriptRenderDelayingExtensions[] = $node;
+                $this->scriptRenderDelayingExtensions[$name][$nomodule] = $node;
                 return;
             }
-            $this->scriptNonRenderDelayingExtensions[] = $node;
+            $this->scriptNonRenderDelayingExtensions[$name][$nomodule] = $node;
             return;
         }
 
         if ($node->hasAttribute(Attribute::CUSTOM_TEMPLATE)) {
-            $this->scriptNonRenderDelayingExtensions[] = $node;
+            $name = $node->getAttribute(Attribute::CUSTOM_TEMPLATE);
+            $this->scriptNonRenderDelayingExtensions[$name][$nomodule] = $node;
             return;
         }
 
         if ($node->hasAttribute(Attribute::HOST_SERVICE)) {
-            $this->scriptNonRenderDelayingExtensions[] = $node;
+            $name = $node->getAttribute(Attribute::HOST_SERVICE);
+            $this->scriptNonRenderDelayingExtensions[$name][$nomodule] = $node;
             return;
         }
 
@@ -296,28 +300,14 @@ final class ReorderHead implements Transformer
                 $node = $document->importNode($this->$category);
                 $document->head->appendChild($node);
             } elseif (is_array($this->$category)) {
-                // @todo Maybe sort by attribute-name, attribute-value?
-                foreach ($this->$category as $node) {
-                    $node = $document->importNode($node);
-                    $document->head->appendChild($node);
-                }
+                array_walk_recursive(
+                    $this->$category,
+                    static function ( Element $node ) use ( $document ) {
+                        $node = $document->importNode($node);
+                        $document->head->appendChild($node);
+                    }
+                );
             }
-        }
-    }
-
-    /**
-     * Deduplicate and sort custom extensions.
-     */
-    private function deduplicateAndSortCustomNodes()
-    {
-        foreach (['scriptRenderDelayingExtensions', 'scriptNonRenderDelayingExtensions'] as $set) {
-            $sortedNodes = [];
-            foreach ($this->$set as $node) {
-                /** @var Element $node */
-                $sortedNodes[$node->getAttribute('src')] = $node;
-            }
-            ksort($sortedNodes);
-            $this->$set = array_values($sortedNodes);
         }
     }
 
