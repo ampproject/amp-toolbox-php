@@ -300,6 +300,8 @@ final class ReorderHead implements Transformer
                 $node = $document->importNode($this->$category);
                 $document->head->appendChild($node);
             } elseif (is_array($this->$category)) {
+                // @todo Do recursive sort so that module is always before nomodule?
+                ksort($this->$category);
                 array_walk_recursive(
                     $this->$category,
                     static function ( Element $node ) use ( $document ) {
