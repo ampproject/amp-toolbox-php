@@ -303,7 +303,7 @@ final class ReorderHead implements Transformer
                 $this->recursiveKeySort($this->$category);
                 array_walk_recursive(
                     $this->$category,
-                    static function ( Element $node ) use ( $document ) {
+                    static function (Element $node) use ($document) {
                         $node = $document->importNode($node);
                         $document->head->appendChild($node);
                     }
@@ -317,10 +317,11 @@ final class ReorderHead implements Transformer
      *
      * @param array|mixed $item Item.
      */
-    private function recursiveKeySort( &$item ) {
+    private function recursiveKeySort(&$item)
+    {
         if (is_array($item)) {
             ksort($item);
-            array_walk( $item, [$this, 'recursiveKeySort']);
+            array_walk($item, [$this, 'recursiveKeySort']);
         }
     }
 
