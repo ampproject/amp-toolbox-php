@@ -130,8 +130,6 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
             $body   = curl_exec($curlHandle);
             $status = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
 
-            curl_close($curlHandle);
-
             if ($body === false) {
                 $curlErrno = curl_errno($curlHandle);
 
@@ -145,6 +143,8 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
 
                 continue;
             }
+
+            curl_close($curlHandle);
 
             return new RemoteGetRequestResponse($body, $headers, (int) $status);
         } while ($retriesLeft--);
