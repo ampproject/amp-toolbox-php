@@ -182,7 +182,7 @@ final class Url
      */
     public function isValidNonDataUrl()
     {
-        // Bail early on 'data://' assets.
+        // Bail early on 'data:' assets.
         if ($this->scheme === 'data') {
             return false;
         }
