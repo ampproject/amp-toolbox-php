@@ -88,7 +88,7 @@ final class RewriteAmpUrls implements Transformer
     public function transform(Document $document, ErrorCollection $errors)
     {
         $host          = $this->calculateHost();
-        $referenceNode = $this->findReferenceNode($document);
+        $referenceNode = $document->viewport;
 
         $preloadNodes = array_filter($this->collectPreloadNodes($document, $host));
         foreach ($preloadNodes as $preloadNode) {
@@ -346,30 +346,5 @@ final class RewriteAmpUrls implements Transformer
         $meta->setAttribute(Attribute::CONTENT, $content);
         $firstScript = $document->xpath->query('./script', $document->head)->item(0);
         $document->head->insertBefore($meta, $firstScript);
-    }
-
-    /**
-     * Find the reference node to use for adding elements.
-     *
-     * It fetches the last <link> after the viewport as the reference node, falling back to the viewport if needed.
-     *
-     * @param Document $document Document to find the reference node in.
-     * @return Element|null Reference node to use, or null if none found.
-     */
-    private function findReferenceNode(Document $document)
-    {
-        $referenceNode = $document->viewport;
-
-        while (
-            $referenceNode !== null
-            &&
-            $referenceNode->nextSibling instanceof Element
-            &&
-            $referenceNode->nextSibling->tagName === Tag::LINK
-        ) {
-            $referenceNode = $referenceNode->nextSibling;
-        }
-
-        return $referenceNode;
     }
 }
