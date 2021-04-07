@@ -59,6 +59,7 @@ final class ReorderHead implements Transformer
     private $linkStyleAmpRuntime               = null;
     private $linkStylesheetsBeforeAmpCustom    = [];
     private $metaCharset                       = null;
+    private $metaViewport                      = null;
     private $metaOther                         = [];
     private $noscript                          = null;
     private $others                            = [];
@@ -142,6 +143,11 @@ final class ReorderHead implements Transformer
     {
         if ($node->hasAttribute(Attribute::CHARSET)) {
             $this->metaCharset = $node;
+            return;
+        }
+
+        if ($node->getAttribute(Attribute::NAME) === Attribute::VIEWPORT) {
+            $this->metaViewport = $node;
             return;
         }
 
@@ -274,6 +280,7 @@ final class ReorderHead implements Transformer
     {
         $categories = [
             'metaCharset',
+            'metaViewport',
             'ampResourceHints',
             'linkStyleAmpRuntime',
             'styleAmpRuntime',
