@@ -14,6 +14,7 @@ use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\RuntimeVersion;
 use AmpProject\Tag;
+use AmpProject\Url;
 use DOMNode;
 use Exception;
 
@@ -268,9 +269,14 @@ final class RewriteAmpUrls implements Transformer
             ! $this->configuration->get(RewriteAmpUrlsConfiguration::LTS)
         ) {
             try {
-                $urlParts = parse_url($host);
-                $origin   = "{$urlParts['scheme']}://{$urlParts['host']}";
-                $this->addMeta($document, 'runtime-host', $origin);
+                $url = new Url($host);
+
+                if (!empty($url->scheme) && !empty($url->host)) {
+                    $origin = "{$url->scheme}://{$url->host}";
+                    $this->addMeta($document, 'runtime-host', $origin);
+                } else {
+                    $errors->add(CannotAdaptDocumentForSelfHosting::forNonAbsoluteUrl($host));
+                }
             } catch (Exception $exception) {
                 $errors->add(CannotAdaptDocumentForSelfHosting::fromException($exception));
             }

@@ -9,7 +9,8 @@ final class CannotAdaptDocumentForSelfHosting implements Error
 {
     use ErrorProperties;
 
-    const FAILED_TO_ADAPT_WITH_EXCEPTION  = 'Cannot adapt document for a self-hosted runtime: ';
+    const FAILED_TO_ADAPT_WITH_EXCEPTION       = 'Cannot adapt document for a self-hosted runtime: ';
+    const FAILED_TO_ADAPT_FOR_NON_ABSOLUTE_URL = 'Cannot add runtime host, ampUrlPrefix must be an absolute URL, got: ';
 
     /**
      * Instantiate a CannotAdaptDocumentForSelfHosting object for an exception that blocked adapting the document.
@@ -20,5 +21,16 @@ final class CannotAdaptDocumentForSelfHosting implements Error
     public static function fromException(Exception $exception)
     {
         return new self(self::FAILED_TO_ADAPT_WITH_EXCEPTION . $exception->getMessage());
+    }
+
+    /**
+     * Instantiate a CannotAdaptDocumentForSelfHosting object for a non-absolute URL provided via ampUrlPrefix.
+     *
+     * @param string $url URL that was provided.
+     * @return self
+     */
+    public static function forNonAbsoluteUrl($url)
+    {
+        return new self(self::FAILED_TO_ADAPT_FOR_NON_ABSOLUTE_URL . $url);
     }
 }
