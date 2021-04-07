@@ -32,6 +32,6 @@ class UrlTest extends TestCase
      */
     public function testIsValidNonDataUrl($src, $expected)
     {
-        $this->assertEquals($expected, Url::isValidNonDataUrl($src));
+        $this->assertEquals($expected, (new Url($src))->isValidNonDataUrl());
     }
 }

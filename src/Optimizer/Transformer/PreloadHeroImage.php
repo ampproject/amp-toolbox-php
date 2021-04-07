@@ -270,7 +270,7 @@ final class PreloadHeroImage implements Transformer
         }
 
         $src = $element->getAttribute(Attribute::SRC);
-        if ($element->tagName === Extension::IMG && Url::isValidNonDataUrl($src)) {
+        if ($element->tagName === Extension::IMG && (new Url($src))->isValidNonDataUrl()) {
             return new HeroImage(
                 $src,
                 $element->getAttribute(Attribute::MEDIA),
@@ -288,7 +288,7 @@ final class PreloadHeroImage implements Transformer
 
         $cssBackgroundImage = $this->getCssBackgroundImageUrl($element);
 
-        if (Url::isValidNonDataUrl($cssBackgroundImage)) {
+        if ((new Url($cssBackgroundImage))->isValidNonDataUrl()) {
             return new HeroImage(
                 $cssBackgroundImage,
                 $element->getAttribute(Attribute::MEDIA),
@@ -346,7 +346,7 @@ final class PreloadHeroImage implements Transformer
             return null;
         }
 
-        if (! Url::isValidNonDataUrl($src)) {
+        if (! (new Url($src))->isValidNonDataUrl()) {
             return null;
         }
 
@@ -374,7 +374,7 @@ final class PreloadHeroImage implements Transformer
             return null;
         }
 
-        if (! Url::isValidNonDataUrl($poster)) {
+        if (! (new Url($poster))->isValidNonDataUrl()) {
             return null;
         }
 
@@ -454,7 +454,7 @@ final class PreloadHeroImage implements Transformer
 
             $src = $placeholder->getAttribute(Attribute::SRC);
 
-            if (! Url::isValidNonDataUrl($src)) {
+            if (! (new Url($src))->isValidNonDataUrl()) {
                 break;
             }
 
