@@ -54,6 +54,22 @@ class UrlTest extends TestCase
         new Url('https:///example.com');
     }
 
+    public function testMagicProperties()
+    {
+        $url = new Url('https://john:123@example.com:2222/demo/#anchor?filter=true');
+        $this->assertEquals('https', $url->scheme);
+        $this->assertEquals('example.com', $url->host);
+        $this->assertEquals('2222', $url->port);
+        $this->assertEquals('john', $url->user);
+        $this->assertEquals('123', $url->pass);
+        $this->assertEquals('/demo/', $url->path);
+        $this->assertEquals('filter=true', $url->query);
+        $this->assertEquals('anchor', $url->fragment);
+
+        $this->expectError();
+        $url->nonsense;
+    }
+
     public function dataIsValidNonDataUrl()
     {
         return [

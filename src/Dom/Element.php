@@ -274,10 +274,7 @@ final class Element extends DOMElement
         }
 
         // Mimic regular PHP behavior for missing notices.
-        trigger_error(
-            self::PROPERTY_GETTER_ERROR_MESSAGE . $name,
-            E_USER_NOTICE
-        ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions,WordPress.Security.EscapeOutput,Generic.Files.LineLength.TooLong
+        trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
 
         return null;
     }

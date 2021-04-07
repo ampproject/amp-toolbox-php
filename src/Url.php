@@ -7,6 +7,15 @@ use AmpProject\Exception\FailedToParseUrl;
 /**
  * Helper class to work with URLs.
  *
+ * @property-read string|null $scheme
+ * @property-read string|null $host
+ * @property-read string|null $port
+ * @property-read string|null $user
+ * @property-read string|null $pass
+ * @property-read string|null $path
+ * @property-read string|null $query
+ * @property-read string|null $fragment
+ *
  * @package ampproject/amp-toolbox
  */
 final class Url
@@ -36,58 +45,65 @@ final class Url
     const COLLAPSE_RELATIVE_PATHS_REGEX_PATTERN = '#(?<=/)(?!\.\./)[^/]+/\.\./#';
 
     /**
-     * Scheme.
+     * Error message to use when the __get() is triggered for an unknown property.
      *
      * @var string
+     */
+    const PROPERTY_GETTER_ERROR_MESSAGE = 'Undefined property: AmpProject\\Url::';
+
+    /**
+     * Scheme.
+     *
+     * @var string|null
      */
     private $scheme;
 
     /**
      * Host.
      *
-     * @var string
+     * @var string|null
      */
     private $host;
 
     /**
      * Port.
      *
-     * @var string
+     * @var string|null
      */
     private $port;
 
     /**
      * User.
      *
-     * @var string
+     * @var string|null
      */
     private $user;
 
     /**
      * Password.
      *
-     * @var string
+     * @var string|null
      */
     private $pass;
 
     /**
      * Query string.
      *
-     * @var string
+     * @var string|null
      */
     private $query;
 
     /**
      * Path.
      *
-     * @var string
+     * @var string|null
      */
     private $path;
 
     /**
      * Fragment.
      *
-     * @var string
+     * @var string|null
      */
     private $fragment;
 
@@ -99,12 +115,12 @@ final class Url
     const URL_DEFAULT_PARTS = [
         self::SCHEME   => 'https',
         self::HOST     => 'example.com',
-        self::PORT     => '',
-        self::USER     => '',
-        self::PASS     => '',
-        self::PATH     => '',
-        self::QUERY    => '',
-        self::FRAGMENT => '',
+        self::PORT     => null,
+        self::USER     => null,
+        self::PASS     => null,
+        self::PATH     => null,
+        self::QUERY    => null,
+        self::FRAGMENT => null,
     ];
 
     /**
@@ -262,5 +278,22 @@ final class Url
         }
 
         return $url;
+    }
+
+    /**
+     * Magic getter to return the individual parts.
+     *
+     * @param string $name Name of the part to return.
+     * @return string|null Part string or null if it was not found during parsing.
+     */
+    public function __get($name)
+    {
+        if (array_key_exists($name, self::URL_DEFAULT_PARTS)) {
+            return $this->$name;
+        }
+
+        // Mimic regular PHP behavior for missing notices.
+        trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+        return null;
     }
 }
