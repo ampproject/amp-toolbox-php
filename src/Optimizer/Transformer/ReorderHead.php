@@ -278,12 +278,12 @@ final class ReorderHead implements Transformer
             'linkStyleAmpRuntime',
             'styleAmpRuntime',
             'metaOther',
+            'resourceHintLinks',
             'scriptAmpRuntime',
             'scriptAmpViewer',
             'scriptRenderDelayingExtensions',
             'scriptNonRenderDelayingExtensions',
             'linkIcons',
-            'resourceHintLinks', // This should probably be higher, but both the Go and NodeJS optimizers have it here.
             'linkStylesheetsBeforeAmpCustom',
             'styleAmpCustom',
             'others',
