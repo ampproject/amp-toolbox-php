@@ -56,7 +56,7 @@ class UrlTest extends TestCase
 
     public function testMagicProperties()
     {
-        $url = new Url('https://john:123@example.com:2222/demo/#anchor?filter=true');
+        $url = new Url('https://john:123@example.com:2222/demo/?filter=true#anchor');
         $this->assertEquals('https', $url->scheme);
         $this->assertEquals('example.com', $url->host);
         $this->assertEquals('2222', $url->port);
