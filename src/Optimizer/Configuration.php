@@ -51,9 +51,9 @@ final class Configuration
         ServerSideRendering::class,
         AmpRuntimeCss::class,
         TransformedIdentifier::class,
-        ReorderHead::class,
         PreloadHeroImage::class,
         RewriteAmpUrls::class,
+        ReorderHead::class,
     ];
 
     /**
