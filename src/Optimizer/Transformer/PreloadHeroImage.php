@@ -481,6 +481,12 @@ final class PreloadHeroImage implements Transformer
         Document $document,
         ErrorCollection $errors
     ) {
+        if (empty($heroImage->getMedia())) {
+            // We can only safely preload a hero image if there's a media attribute
+            // as we can't detect whether it's hidden on certain viewport sizes otherwise.
+            return;
+        }
+
         if ($heroImage->getSrcset() && ! $this->supportsSrcset()) {
             $errors->add(Error\CannotPreloadImage::fromImageWithSrcsetAttribute($heroImage->getAmpImg()));
             return;
@@ -494,12 +500,6 @@ final class PreloadHeroImage implements Transformer
             ! $img->hasAttribute(Attribute::DATA_AMP_STORY_PLAYER_POSTER_IMG)
         ) {
             $img->removeAttribute(Attribute::LOADING);
-        }
-
-        if (empty($heroImage->getMedia())) {
-            // We can only safely preload a hero image if there's a media attribute
-            // as we can't detect whether it's hidden on certain viewport sizes otherwise.
-            return;
         }
 
         if ($this->hasExistingImagePreload($document, $heroImage->getSrc())) {
