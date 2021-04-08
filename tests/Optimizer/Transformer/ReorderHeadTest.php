@@ -44,32 +44,33 @@ final class ReorderHeadTest extends TestCase
                 TestMarkup::DOCTYPE . '<html ⚡><head>' .
                 // (0) <meta charset> tag
                 TestMarkup::META_CHARSET .
-                // (1) <style amp-runtime> (inserted by ampruntimecss.go)
-                TestMarkup::STYLE_AMPRUNTIME .
-                // (2) remaining <meta> tags (those other than <meta charset>)
+                // (1) <meta viewport> tag
                 TestMarkup::META_VIEWPORT .
-                // (3) <link> tag for resource hints
+                // (2) <style amp-runtime> (inserted by ampruntimecss.go)
+                TestMarkup::STYLE_AMPRUNTIME .
+                // (3) remaining <meta> tags (those other than <meta charset>)
+                // (4) <link> tag for resource hints
                 TestMarkup::LINK_GOOGLE_FONT_PRECONNECT .
-                // (4) AMP runtime .js <script> tag
+                // (5) AMP runtime .js <script> tag
                 TestMarkup::SCRIPT_AMPRUNTIME .
-                // (5) AMP viewer runtime .js <script> tag (inserted by AmpViewerScript)
+                // (6) AMP viewer runtime .js <script> tag (inserted by AmpViewerScript)
                 TestMarkup::SCRIPT_AMPVIEWER_RUNTIME .
-                // (6) <script> tags that are render delaying
+                // (7) <script> tags that are render delaying
                 TestMarkup::SCRIPT_AMPEXPERIMENT .
-                // (7) <script> tags for remaining extensions
+                // (8) <script> tags for remaining extensions
                 TestMarkup::SCRIPT_AMPAUDIO .
                 TestMarkup::SCRIPT_AMPMRAID .
                 TestMarkup::SCRIPT_AMPMUSTACHE .
-                // (8) <link> tag for favicons
+                // (9) <link> tag for favicons
                 TestMarkup::LINK_FAVICON .
-                // (9) <link rel=stylesheet> tags before <style amp-custom>
+                // (10) <link rel=stylesheet> tags before <style amp-custom>
                 TestMarkup::LINK_STYLESHEET_GOOGLE_FONT .
-                // (10) <style amp-custom>
+                // (11) <style amp-custom>
                 TestMarkup::STYLE_AMPCUSTOM .
-                // (11) any other tags allowed in <head>
+                // (12) any other tags allowed in <head>
                 TestMarkup::TITLE .
                 TestMarkup::LINK_CANONICAL .
-                // (12) amp boilerplate (first style amp-boilerplate, then noscript)
+                // (13) amp boilerplate (first style amp-boilerplate, then noscript)
                 TestMarkup::STYLE_AMPBOILERPLATE . TestMarkup::NOSCRIPT_AMPBOILERPLATE .
                 '</head><body></body></html>',
             ],
@@ -239,15 +240,17 @@ final class ReorderHeadTest extends TestCase
                 '<link rel="dns-prefetch" href="//cdn.ampproject.org">' .
                 '<link rel="preload" as="script" href="cdn.ampproject.org">' .
                 '<link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-dynamic-css-classes-0.1.js">' .
+                '<link rel="modulepreload" as="script" href="https://cdn.ampproject.org/v0/amp-dynamic-css-classes-0.1.mjs">' .
                 '</head><body></body></html>',
 
                 TestMarkup::DOCTYPE . '<html ⚡><head>' .
                 TestMarkup::META_CHARSET .
+                TestMarkup::META_VIEWPORT .
                 '<link rel="preconnect" href="https://cdn.ampproject.org">' .
                 '<link rel="dns-prefetch" href="//cdn.ampproject.org">' .
                 '<link rel="preload" as="script" href="cdn.ampproject.org">' .
                 '<link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-dynamic-css-classes-0.1.js">' .
-                TestMarkup::META_VIEWPORT .
+                '<link rel="modulepreload" as="script" href="https://cdn.ampproject.org/v0/amp-dynamic-css-classes-0.1.mjs">' .
                 '<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">' .
                 TestMarkup::SCRIPT_AMPRUNTIME . TestMarkup::SCRIPT_AMPAUDIO .
                 TestMarkup::LINK_CANONICAL . TestMarkup::STYLE_AMPBOILERPLATE . TestMarkup::NOSCRIPT_AMPBOILERPLATE .
