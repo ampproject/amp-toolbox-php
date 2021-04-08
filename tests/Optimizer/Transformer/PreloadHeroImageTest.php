@@ -107,12 +107,13 @@ final class PreloadHeroImageTest extends TestCase
                     . '</amp-img>'
                     . '<amp-img data-hero media="(min-width: 250px)" width="500" height="400" i-amphtml-ssr src="https://example-com.cdn.ampproject.org/hero2.png">'
                     . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="https://example-com.cdn.ampproject.org/hero2.png">'
-                    . '</amp-img>'
+                    . '</amp-img>',
+                    '<link as="image" data-hero href="https://example-com.cdn.ampproject.org/hero2.png" media="(min-width: 250px)" rel="preload">'
                 ),
                 [
                     Error\CannotPreloadImage::fromImageWithSrcsetAttribute(
                         Document::fromHtmlFragment(
-                            '<amp-img data-hero width="500" height="400" src="https://example-com.cdn.ampproject.org/hero1.png" srcset="test 100w test2 3dpr"></amp-img>'
+                            '<amp-img data-hero media="(min-width: 250px)" width="500" height="400" src="https://example-com.cdn.ampproject.org/hero1.png" srcset="test 100w test2 3dpr"></amp-img>'
                         )->body->firstChild
                     ),
                 ],

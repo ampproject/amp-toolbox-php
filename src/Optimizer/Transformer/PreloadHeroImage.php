@@ -495,7 +495,8 @@ final class PreloadHeroImage implements Transformer
      * @param Document        $document  Document to generate the preload link in.
      * @param ErrorCollection $errors    Collection of errors that are collected during transformation.
      */
-    private function generatePreload(HeroImage $heroImage, Document $document, ErrorCollection $errors) {
+    private function generatePreload(HeroImage $heroImage, Document $document, ErrorCollection $errors)
+    {
         if (empty($heroImage->getMedia())) {
             // We can only safely preload a hero image if there's a media attribute
             // as we can't detect whether it's hidden on certain viewport sizes otherwise.
