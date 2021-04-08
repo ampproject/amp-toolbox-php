@@ -176,7 +176,7 @@ final class RewriteAmpUrls implements Transformer
             return false;
         }
 
-        return substr_compare($url, Amp::CACHE_HOST, 0, strlen(Amp::CACHE_HOST)) === 0;
+        return strpos($url, Amp::CACHE_HOST) === 0;
     }
 
     /**
