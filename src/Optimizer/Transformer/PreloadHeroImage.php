@@ -496,6 +496,12 @@ final class PreloadHeroImage implements Transformer
             $img->removeAttribute(Attribute::LOADING);
         }
 
+        if (empty($heroImage->getMedia())) {
+            // We can only safely preload a hero image if there's a media attribute
+            // as we can't detect whether it's hidden on certain viewport sizes otherwise.
+            return;
+        }
+
         if ($this->hasExistingImagePreload($document, $heroImage->getSrc())) {
             return;
         }
@@ -514,12 +520,6 @@ final class PreloadHeroImage implements Transformer
             if ($img && $img->hasAttribute(Attribute::SIZES)) {
                 $preload->setAttribute(Attribute::IMAGESIZES, $img->getAttribute(Attribute::SIZES));
             }
-        }
-
-        if (empty($heroImage->getMedia())) {
-            // We can only safely preload a hero image if there's a media attribute
-            // as we can't detect whether it's hidden on certain viewport sizes otherwise.
-            return;
         }
 
         $preload->setAttribute(Attribute::MEDIA, $heroImage->getMedia());
