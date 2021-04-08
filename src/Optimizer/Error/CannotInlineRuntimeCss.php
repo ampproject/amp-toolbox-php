@@ -7,6 +7,11 @@ use AmpProject\Dom\ElementDump;
 use AmpProject\Optimizer\Error;
 use Exception;
 
+/**
+ * Optimizer error object for when the AMP runtime CSS cannot be inlined.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class CannotInlineRuntimeCss implements Error
 {
     use ErrorProperties;

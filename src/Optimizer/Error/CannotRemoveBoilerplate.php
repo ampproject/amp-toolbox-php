@@ -7,6 +7,11 @@ use AmpProject\Dom\ElementDump;
 use AmpProject\Optimizer\Error;
 use Exception;
 
+/**
+ * Optimizer error object for when the AMP boilerplate style cannot be removed.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class CannotRemoveBoilerplate implements Error
 {
     use ErrorProperties;

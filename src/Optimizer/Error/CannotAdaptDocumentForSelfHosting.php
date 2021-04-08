@@ -5,6 +5,11 @@ namespace AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\Error;
 use Exception;
 
+/**
+ * Optimizer error object for when a document cannot be adapted for self-hosting the AMP runtime.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class CannotAdaptDocumentForSelfHosting implements Error
 {
     use ErrorProperties;

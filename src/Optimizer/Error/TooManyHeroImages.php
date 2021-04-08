@@ -5,6 +5,11 @@ namespace AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 
+/**
+ * Optimizer error object for when too many images are marked for being optimized as hero images.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class TooManyHeroImages implements Error
 {
     use ErrorProperties;

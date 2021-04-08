@@ -7,6 +7,11 @@ use AmpProject\Dom\ElementDump;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\Error;
 
+/**
+ * Optimizer error object for when server-side rendering cannot be performed.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class CannotPerformServerSideRendering implements Error
 {
     use ErrorProperties;
