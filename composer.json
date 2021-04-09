@@ -39,6 +39,9 @@
       }
     }
   },
+  "bin": [
+    "bin/amp"
+  ],
   "autoload": {
     "psr-4": {
       "AmpProject\\": "src/"
