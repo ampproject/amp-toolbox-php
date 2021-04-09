@@ -181,6 +181,7 @@ final class PreloadHeroImage implements Transformer
         }
 
         for ($index = 0; $index < $heroImageCount; $index++) {
+            $this->removeLazyLoading($heroImages[$index]);
             $this->generatePreload($heroImages[$index], $document, $errors);
             $this->generateImg($heroImages[$index], $document);
         }
@@ -470,22 +471,12 @@ final class PreloadHeroImage implements Transformer
     }
 
     /**
-     * Generate the preload link for a given hero image.
+     * Remove the lazy loading from the hero image.
      *
-     * @param HeroImage       $heroImage Hero image to generate the preload link for.
-     * @param Document        $document  Document to generate the preload link in.
-     * @param ErrorCollection $errors    Collection of errors that are collected during transformation.
+     * @param HeroImage $heroImage Hero image to remove the lazy loading for.
      */
-    private function generatePreload(
-        HeroImage $heroImage,
-        Document $document,
-        ErrorCollection $errors
-    ) {
-        if ($heroImage->getSrcset() && ! $this->supportsSrcset()) {
-            $errors->add(Error\CannotPreloadImage::fromImageWithSrcsetAttribute($heroImage->getAmpImg()));
-            return;
-        }
-
+    private function removeLazyLoading(HeroImage $heroImage)
+    {
         $img = $heroImage->getAmpImg();
 
         if (
@@ -495,10 +486,25 @@ final class PreloadHeroImage implements Transformer
         ) {
             $img->removeAttribute(Attribute::LOADING);
         }
+    }
 
+    /**
+     * Generate the preload link for a given hero image.
+     *
+     * @param HeroImage       $heroImage Hero image to generate the preload link for.
+     * @param Document        $document  Document to generate the preload link in.
+     * @param ErrorCollection $errors    Collection of errors that are collected during transformation.
+     */
+    private function generatePreload(HeroImage $heroImage, Document $document, ErrorCollection $errors)
+    {
         if (empty($heroImage->getMedia())) {
             // We can only safely preload a hero image if there's a media attribute
             // as we can't detect whether it's hidden on certain viewport sizes otherwise.
+            return;
+        }
+
+        if ($heroImage->getSrcset() && ! $this->supportsSrcset()) {
+            $errors->add(Error\CannotPreloadImage::fromImageWithSrcsetAttribute($heroImage->getAmpImg()));
             return;
         }
 
@@ -517,6 +523,7 @@ final class PreloadHeroImage implements Transformer
         $preload->appendChild($document->createAttribute(Attribute::DATA_HERO));
         if ($heroImage->getSrcset()) {
             $preload->setAttribute(Attribute::IMAGESRCSET, $heroImage->getSrcset());
+            $img = $heroImage->getAmpImg();
             if ($img && $img->hasAttribute(Attribute::SIZES)) {
                 $preload->setAttribute(Attribute::IMAGESIZES, $img->getAttribute(Attribute::SIZES));
             }
