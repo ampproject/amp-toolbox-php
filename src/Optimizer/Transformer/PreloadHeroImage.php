@@ -572,9 +572,12 @@ final class PreloadHeroImage implements Transformer
         // If the image was detected as hero image candidate (and thus lacks an explicit data-hero), mark it as a hero
         // and add loading=lazy to guard against making the page performance even worse by eagerly loading an image
         // outside the viewport.
-        if (! $element->hasAttribute(Attribute::DATA_HERO)) {
-            $element->appendChild($document->createAttribute(Attribute::DATA_HERO));
+        if (! $this->isMarkedAsHeroImage($element)) {
             $imgElement->setAttribute(Attribute::LOADING, 'lazy');
+        }
+
+        if (!$element->hasAttribute(Attribute::DATA_HERO)) {
+            $element->appendChild($document->createAttribute(Attribute::DATA_HERO));
         }
 
         foreach (self::ATTRIBUTES_TO_COPY as $attribute) {
@@ -729,5 +732,33 @@ final class PreloadHeroImage implements Transformer
     private function supportsSrcset()
     {
         return $this->configuration->get(PreloadHeroImageConfiguration::PRELOAD_SRCSET);
+    }
+
+    /**
+     * Check if an element or its ancestors is marked as a hero image.
+     *
+     * @param Element $element Element to check.
+     * @return bool Whether the element or one of its ancestors is marked as a hero image.
+     */
+    private function isMarkedAsHeroImage(Element $element)
+    {
+        while($element) {
+            if (!$element instanceof Element) {
+                $element = $element->parentNode;
+                continue;
+            }
+
+            if ($element->hasAttribute(Attribute::DATA_HERO)) {
+                return true;
+            }
+
+            if ($element->tagName === Tag::BODY || $element->tagName === Tag::HTML) {
+                return false;
+            }
+
+            $element = $element->parentNode;
+        }
+
+        return false;
     }
 }
