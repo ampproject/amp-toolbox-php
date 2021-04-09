@@ -119,6 +119,22 @@ final class PreloadHeroImageTest extends TestCase
                 ],
             ],
 
+            'preloads scrset image when configured to do so' => [
+                $input(
+                    '<amp-img data-hero media="(min-width: 250px)" width="500" height="400" src="https://example-com.cdn.ampproject.org/hero.png" srcset="test 100w test2 3dpr" sizes="100vw"></amp-img>'
+                ),
+                $output(
+                    '<amp-img data-hero media="(min-width: 250px)" width="500" height="400" i-amphtml-ssr src="https://example-com.cdn.ampproject.org/hero.png" srcset="test 100w test2 3dpr" sizes="100vw">'
+                    . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="https://example-com.cdn.ampproject.org/hero.png" srcset="test 100w test2 3dpr" sizes="100vw">'
+                    . '</amp-img>',
+                    '<link as="image" data-hero href="https://example-com.cdn.ampproject.org/hero.png" imagesizes="100vw" imagesrcset="test 100w test2 3dpr" media="(min-width: 250px)" rel="preload">'
+                ),
+                [],
+                [
+                    PreloadHeroImageConfiguration::PRELOAD_SRCSET => true,
+                ]
+            ],
+
             'fetches placeholders for animations' => [
                 $input(
                     '<amp-anim data-hero width="500" height="400" src="/foo.gif">'
