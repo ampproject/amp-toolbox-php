@@ -4,6 +4,7 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
+use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
 use AmpProject\Optimizer\Configuration\TransformedIdentifierConfiguration;
 use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 use AmpProject\Optimizer\Exception\UnknownConfigurationClass;
@@ -12,6 +13,7 @@ use AmpProject\Optimizer\Transformer\AmpBoilerplate;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
+use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
 use AmpProject\Optimizer\Transformer\ServerSideRendering;
 use AmpProject\Optimizer\Transformer\TransformedIdentifier;
 
@@ -49,8 +51,9 @@ final class Configuration
         ServerSideRendering::class,
         AmpRuntimeCss::class,
         TransformedIdentifier::class,
-        ReorderHead::class,
         PreloadHeroImage::class,
+        RewriteAmpUrls::class,
+        ReorderHead::class,
     ];
 
     /**
@@ -72,6 +75,7 @@ final class Configuration
     private $transformerConfigurationClasses = [
         AmpRuntimeCss::class         => AmpRuntimeCssConfiguration::class,
         PreloadHeroImage::class      => PreloadHeroImageConfiguration::class,
+        RewriteAmpUrls::class        => RewriteAmpUrlsConfiguration::class,
         TransformedIdentifier::class => TransformedIdentifierConfiguration::class,
     ];
 

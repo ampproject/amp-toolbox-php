@@ -59,12 +59,13 @@ final class ReorderHead implements Transformer
     private $linkStyleAmpRuntime               = null;
     private $linkStylesheetsBeforeAmpCustom    = [];
     private $metaCharset                       = null;
+    private $metaViewport                      = null;
     private $metaOther                         = [];
     private $noscript                          = null;
     private $others                            = [];
     private $resourceHintLinks                 = [];
-    private $scriptAmpRuntime                  = null;
-    private $scriptAmpViewer                   = null;
+    private $scriptAmpRuntime                  = [];
+    private $scriptAmpViewer                   = [];
     private $scriptNonRenderDelayingExtensions = [];
     private $scriptRenderDelayingExtensions    = [];
     private $styleAmpBoilerplate               = null;
@@ -91,7 +92,6 @@ final class ReorderHead implements Transformer
             $this->registerNode($node);
         }
 
-        $this->deduplicateAndSortCustomNodes();
         $this->appendToHead($document);
     }
 
@@ -127,7 +127,7 @@ final class ReorderHead implements Transformer
                 $this->registerLink($node);
                 break;
             case Tag::NOSCRIPT:
-                $this->noscript = $node;
+                $this->noscript = $node; // @todo Make this an array.
                 break;
             default:
                 $this->others[] = $node;
@@ -146,6 +146,11 @@ final class ReorderHead implements Transformer
             return;
         }
 
+        if ($node->getAttribute(Attribute::NAME) === Attribute::VIEWPORT) {
+            $this->metaViewport = $node;
+            return;
+        }
+
         $this->metaOther[] = $node;
     }
 
@@ -156,32 +161,37 @@ final class ReorderHead implements Transformer
      */
     private function registerScript(Element $node)
     {
+        $nomodule = (int)$node->hasAttribute('nomodule');
+
         if (Amp::isRuntimeScript($node)) {
-            $this->scriptAmpRuntime = $node;
+            $this->scriptAmpRuntime[$nomodule] = $node;
             return;
         }
 
         if (Amp::isViewerScript($node)) {
-            $this->scriptAmpViewer = $node;
+            $this->scriptAmpViewer[$nomodule] = $node;
             return;
         }
 
         if ($node->hasAttribute(Attribute::CUSTOM_ELEMENT)) {
+            $name = $node->getAttribute(Attribute::CUSTOM_ELEMENT);
             if (Amp::isRenderDelayingExtension($node)) {
-                $this->scriptRenderDelayingExtensions[] = $node;
+                $this->scriptRenderDelayingExtensions[$name][$nomodule] = $node;
                 return;
             }
-            $this->scriptNonRenderDelayingExtensions[] = $node;
+            $this->scriptNonRenderDelayingExtensions[$name][$nomodule] = $node;
             return;
         }
 
         if ($node->hasAttribute(Attribute::CUSTOM_TEMPLATE)) {
-            $this->scriptNonRenderDelayingExtensions[] = $node;
+            $name = $node->getAttribute(Attribute::CUSTOM_TEMPLATE);
+            $this->scriptNonRenderDelayingExtensions[$name][$nomodule] = $node;
             return;
         }
 
         if ($node->hasAttribute(Attribute::HOST_SERVICE)) {
-            $this->scriptNonRenderDelayingExtensions[] = $node;
+            $name = $node->getAttribute(Attribute::HOST_SERVICE);
+            $this->scriptNonRenderDelayingExtensions[$name][$nomodule] = $node;
             return;
         }
 
@@ -248,6 +258,7 @@ final class ReorderHead implements Transformer
             || $this->containsWord($rel, Attribute::REL_PREFETCH)
             || $this->containsWord($rel, Attribute::REL_DNS_PREFETCH)
             || $this->containsWord($rel, Attribute::REL_PRECONNECT)
+            || $this->containsWord($rel, Attribute::REL_MODULEPRELOAD)
         ) {
             if ($this->isHintForAmp($node)) {
                 $this->ampResourceHints[] = $node;
@@ -261,25 +272,6 @@ final class ReorderHead implements Transformer
     }
 
     /**
-     * Get the name of the custom node or template.
-     *
-     * @param Element $node Node to get the name of.
-     * @return string Name of the custom node or template. Empty string if none found.
-     */
-    private function getName(Element $node)
-    {
-        if ($node->hasAttribute(Attribute::CUSTOM_ELEMENT)) {
-            return $node->getAttribute(Attribute::CUSTOM_ELEMENT);
-        }
-
-        if ($node->hasAttribute(Attribute::CUSTOM_TEMPLATE)) {
-            return $node->getAttribute(Attribute::CUSTOM_TEMPLATE);
-        }
-
-        return '';
-    }
-
-    /**
      * Append all registered nodes to the <head> node.
      *
      * @param Document $document Document to append the nodes to.
@@ -288,16 +280,17 @@ final class ReorderHead implements Transformer
     {
         $categories = [
             'metaCharset',
+            'metaViewport',
             'ampResourceHints',
             'linkStyleAmpRuntime',
             'styleAmpRuntime',
             'metaOther',
+            'resourceHintLinks',
             'scriptAmpRuntime',
             'scriptAmpViewer',
             'scriptRenderDelayingExtensions',
             'scriptNonRenderDelayingExtensions',
             'linkIcons',
-            'resourceHintLinks', // This should probably be higher, but both the Go and NodeJS optimizers have it here.
             'linkStylesheetsBeforeAmpCustom',
             'styleAmpCustom',
             'others',
@@ -314,27 +307,28 @@ final class ReorderHead implements Transformer
                 $node = $document->importNode($this->$category);
                 $document->head->appendChild($node);
             } elseif (is_array($this->$category)) {
-                // @todo Maybe sort by attribute-name, attribute-value?
-                foreach ($this->$category as $node) {
-                    $node = $document->importNode($node);
-                    $document->head->appendChild($node);
-                }
+                $this->recursiveKeySort($this->$category);
+                array_walk_recursive(
+                    $this->$category,
+                    static function (DOMNode $node) use ($document) {
+                        $node = $document->importNode($node);
+                        $document->head->appendChild($node);
+                    }
+                );
             }
         }
     }
 
     /**
-     * Deduplicate and sort custom extensions.
+     * Sort array keys recursively.
+     *
+     * @param array|mixed $item Item.
      */
-    private function deduplicateAndSortCustomNodes()
+    private function recursiveKeySort(&$item)
     {
-        foreach (['scriptRenderDelayingExtensions', 'scriptNonRenderDelayingExtensions'] as $set) {
-            $sortedNodes = [];
-            foreach ($this->$set as $node) {
-                $sortedNodes[$this->getName($node)] = $node;
-            }
-            ksort($sortedNodes);
-            $this->$set = array_values($sortedNodes);
+        if (is_array($item)) {
+            ksort($item);
+            array_walk($item, [$this, 'recursiveKeySort']);
         }
     }
 

@@ -51,7 +51,7 @@ final class TransformedIdentifierConfiguration extends BaseTransformerConfigurat
                         self::class,
                         self::VERSION,
                         'integer',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 break;

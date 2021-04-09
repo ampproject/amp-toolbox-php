@@ -4,6 +4,8 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
+use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
+use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
@@ -26,7 +28,7 @@ final class SpecTest extends TestCase
 {
     use MarkupComparison;
 
-    const TRANSFORMER_SPEC_PATH = __DIR__ . '/../spec/transformers/valid';
+    const TRANSFORMER_SPEC_PATH = __DIR__ . '/../spec/transformers';
 
     const TESTS_TO_SKIP = [
         'ReorderHead - reorders_head_a4a'                => 'see https://github.com/ampproject/amp-toolbox/issues/583',
@@ -60,16 +62,43 @@ final class SpecTest extends TestCase
     {
         $scenarios = [];
         $suites    = [
-            'ReorderHead'         => [ReorderHead::class, self::TRANSFORMER_SPEC_PATH . '/ReorderHeadTransformer'],
-            'ServerSideRendering' => [ServerSideRendering::class, self::TRANSFORMER_SPEC_PATH . '/ServerSideRendering'],
             'AmpRuntimeCss'       => [
                 AmpRuntimeCss::class,
-                self::TRANSFORMER_SPEC_PATH . '/AmpBoilerplateTransformer',
+                self::TRANSFORMER_SPEC_PATH . '/valid/AmpBoilerplateTransformer',
             ],
-            'PreloadHeroImage'    => [PreloadHeroImage::class, self::TRANSFORMER_SPEC_PATH . '/OptimizeHeroImages'],
+            'PreloadHeroImage'              => [
+                PreloadHeroImage::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeHeroImages'
+            ],
+            'ReorderHead'                   => [
+                ReorderHead::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/ReorderHeadTransformer'
+            ],
+            'RewriteAmpUrls'                => [
+                RewriteAmpUrls::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/RewriteAmpUrls'
+            ],
+            'RewriteAmpUrls (experimental)' => [
+                RewriteAmpUrls::class,
+                self::TRANSFORMER_SPEC_PATH . '/experimental/RewriteAmpUrls'
+            ],
+            'ServerSideRendering'           => [
+                ServerSideRendering::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/ServerSideRendering'
+            ],
         ];
 
         foreach ($suites as $key => list($transformerClass, $specFileFolder)) {
+            $suiteConfig = [];
+
+            if (file_exists("{$specFileFolder}/config.json")) {
+                $suiteConfigJson = file_get_contents("{$specFileFolder}/config.json");
+                $suiteConfig = (array)json_decode($suiteConfigJson, true);
+                if (empty($suiteConfig) || json_last_error() !== JSON_ERROR_NONE) {
+                    $suiteConfig = [];
+                }
+            }
+
             foreach (new DirectoryIterator($specFileFolder) as $subFolder) {
                 if ($subFolder->isFile() || $subFolder->isDot()) {
                     continue;
@@ -81,6 +110,7 @@ final class SpecTest extends TestCase
                     $scenarios[$scenario] = [
                         $scenario,
                         self::CLASS_SKIP_TEST,
+                        [],
                         $scenario,
                         self::TESTS_TO_SKIP[$scenario],
                     ];
@@ -91,6 +121,7 @@ final class SpecTest extends TestCase
                 $scenarios[$scenario] = [
                     $scenario,
                     $transformerClass,
+                    $suiteConfig,
                     file_get_contents("{$subFolder->getPathname()}/input.html"),
                     file_get_contents("{$subFolder->getPathname()}/expected_output.html"),
                 ];
@@ -107,20 +138,25 @@ final class SpecTest extends TestCase
      *
      * @param string $scenario         Test scenario.
      * @param string $transformerClass Class of the transformer to test.
+     * @param array  $suiteConfig      Suite-wide config file to use.
      * @param string $source           Source file to transform.
      * @param string $expected         Expected transformed result.
      */
-    public function testTransformerSpecFiles($scenario, $transformerClass, $source, $expected)
+    public function testTransformerSpecFiles($scenario, $transformerClass, $suiteConfig, $source, $expected)
     {
         if ($transformerClass === self::CLASS_SKIP_TEST) {
             // $source contains the scenario name, $expected the reason.
             $this->markTestSkipped("Skipping {$source}, {$expected}");
         }
 
-        $configuration = $this->mapConfigurationData($this->extractConfigurationData($source));
+        $configuration = $this->mapConfigurationData(
+            array_merge(
+                $suiteConfig,
+                $this->extractConfigurationData($source)
+            )
+        );
 
-        $document = Document::fromHtmlFragment($source);
-
+        $document      = Document::fromHtmlFragment($source);
         $transformer   = $this->getTransformer($scenario, $transformerClass, $configuration);
         $errors        = new ErrorCollection();
 
@@ -146,19 +182,31 @@ final class SpecTest extends TestCase
                     break;
                 case 'ampRuntimeVersion':
                     $mappedConfiguration[AmpRuntimeCss::class][AmpRuntimeCssConfiguration::VERSION] = $value;
+                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::AMP_RUNTIME_VERSION] = $value;
+                    break;
+                case 'ampUrlPrefix':
+                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::AMP_URL_PREFIX] = $value;
+                    break;
+                case 'esmModulesEnabled':
+                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::ESM_MODULES_ENABLED] = $value;
+                    break;
+                case 'geoApiUrl':
+                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::GEO_API_URL] = $value;
+                    break;
+                case 'lts':
+                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::LTS] = $value;
                     break;
                 case 'preloadHeroImage':
                     $mappedConfiguration[PreloadHeroImage::class][PreloadHeroImageConfiguration::PRELOAD_HERO_IMAGE] = $value;
                     break;
+                case 'rtv':
+                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::RTV] = $value;
+                    break;
 
                 // @TODO: Known configuration arguments used in spec tests that are not implemented yet.
-                case 'ampUrlPrefix':
                 case 'ampUrl':
                 case 'canonical':
                 case 'experimentBindAttribute':
-                case 'geoApiUrl':
-                case 'lts':
-                case 'rtv':
                 default:
                     $this->fail("Configuration argument not yet implemented: {$key}.");
             }
@@ -176,7 +224,7 @@ final class SpecTest extends TestCase
      * @param string $source Input source file to parse for a configuration snippet.
      * @return array Associative array of configuration data found in the input HTML file.
      */
-    public function extractConfigurationData(&$source)
+    private function extractConfigurationData(&$source)
     {
         $matches = [];
         if (!preg_match(self::LEADING_HTML_COMMENT_REGEX_PATTERN, $source, $matches)) {

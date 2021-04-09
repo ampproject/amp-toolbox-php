@@ -346,6 +346,7 @@ final class Document extends DOMDocument
         $this->originalEncoding = (string)$encoding ?: Encoding::UNKNOWN;
         parent::__construct($version ?: '1.0', Encoding::AMP);
         $this->registerNodeClass(DOMElement::class, Element::class);
+        $this->options = Option::DEFAULTS;
     }
 
     /**
@@ -500,7 +501,7 @@ final class Document extends DOMDocument
             $options = [Option::LIBXML_FLAGS => $options];
         }
 
-        $this->options = array_merge(Option::DEFAULTS, $options);
+        $this->options = array_merge($this->options, $options);
 
         $this->reset();
 
@@ -2022,7 +2023,7 @@ final class Document extends DOMDocument
         }
 
         // Mimic regular PHP behavior for missing notices.
-        trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE); // phpcs:ignore WordPress.PHP.DevelopmentFunctions,WordPress.Security.EscapeOutput,Generic.Files.LineLength.TooLong
+        trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
         return null;
     }
 
@@ -2060,6 +2061,32 @@ final class Document extends DOMDocument
     }
 
     /**
+     * Create new element node.
+     *
+     * @link https://php.net/manual/domdocument.createelement.php
+     *
+     * This override only serves to provide the correct object type-hint for our extended Dom/Element class.
+     *
+     * @param string $name       The tag name of the element.
+     * @param array  $attributes Attributes to add to the newly created element.
+     * @param string $value      Optional. The value of the element. By default, an empty element will be created.
+     *                           You can also set the value later with Element->nodeValue.
+     * @return Element|false A new instance of class Element or false if an error occurred.
+     */
+    public function createElementWithAttributes($name, $attributes, $value = null)
+    {
+        $element = parent::createElement($name, $value);
+
+        if (!$element instanceof Element) {
+            return false;
+        }
+
+        $element->addAttributes($attributes);
+
+        return $element;
+    }
+
+    /**
      * Check whether the CSS maximum byte count is enforced.
      *
      * @return bool Whether the CSS maximum byte count is enforced.
@@ -2074,7 +2101,7 @@ final class Document extends DOMDocument
      *
      * @param int $maxByteCount Maximum number of bytes to limit the CSS to. A negative number disables the limit.
      */
-    public function enforceCssMaxByteCount($maxByteCount = AMP::MAX_CSS_BYTE_COUNT)
+    public function enforceCssMaxByteCount($maxByteCount = Amp::MAX_CSS_BYTE_COUNT)
     {
         $this->cssMaxByteCountEnforced = $maxByteCount;
     }

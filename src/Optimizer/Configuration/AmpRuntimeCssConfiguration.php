@@ -8,8 +8,9 @@ use AmpProject\RuntimeVersion;
 /**
  * Configuration for the AmpRuntimeCss transformer.
  *
+ * @property bool    $canary  Whether to use the canary version or not. Defaults to false.
+ * @property string  $styles  Runtime styles to use.
  * @property string  $version Version string to use. Defaults to an empty string.
- * @property boolean $canary  Whether to use the canary version or not. Defaults to false.
  *
  * @package ampproject/amp-toolbox
  */
@@ -17,13 +18,11 @@ final class AmpRuntimeCssConfiguration extends BaseTransformerConfiguration
 {
 
     /**
-     * Configuration key that holds the version number to use.
-     *
-     * If the version is not provided, the latest runtime version is fetched from cdn.ampproject.org.
+     * Configuration key that holds the flag for the canary version of the runtime style.
      *
      * @var string
      */
-    const VERSION = 'version';
+    const CANARY = RuntimeVersion::OPTION_CANARY;
 
     /**
      * Configuration key that holds the actual runtime CSS styles to use.
@@ -35,11 +34,13 @@ final class AmpRuntimeCssConfiguration extends BaseTransformerConfiguration
     const STYLES = 'styles';
 
     /**
-     * Configuration key that holds the flag for the canary version of the runtime style.
+     * Configuration key that holds the version number to use.
+     *
+     * If the version is not provided, the latest runtime version is fetched from cdn.ampproject.org.
      *
      * @var string
      */
-    const CANARY = RuntimeVersion::OPTION_CANARY;
+    const VERSION = 'version';
 
     /**
      * Get the associative array of allowed keys and their respective default values.
@@ -51,9 +52,9 @@ final class AmpRuntimeCssConfiguration extends BaseTransformerConfiguration
     protected function getAllowedKeys()
     {
         return [
-            self::VERSION => '',
-            self::STYLES  => '',
             self::CANARY  => false,
+            self::STYLES  => '',
+            self::VERSION => '',
         ];
     }
 
@@ -67,16 +68,15 @@ final class AmpRuntimeCssConfiguration extends BaseTransformerConfiguration
     protected function validate($key, $value)
     {
         switch ($key) {
-            case self::VERSION:
-                if (! is_string($value)) {
+            case self::CANARY:
+                if (! is_bool($value)) {
                     throw InvalidConfigurationValue::forInvalidSubValueType(
                         self::class,
-                        self::VERSION,
-                        'string',
-                        gettype($value)
+                        self::CANARY,
+                        'boolean',
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
-                $value = trim($value);
                 break;
 
             case self::STYLES:
@@ -85,21 +85,22 @@ final class AmpRuntimeCssConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::STYLES,
                         'string',
-                        gettype($value)
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
                 $value = trim($value);
                 break;
 
-            case self::CANARY:
-                if (! is_bool($value)) {
+            case self::VERSION:
+                if (! is_string($value)) {
                     throw InvalidConfigurationValue::forInvalidSubValueType(
                         self::class,
-                        self::CANARY,
-                        'boolean',
-                        gettype($value)
+                        self::VERSION,
+                        'string',
+                        is_object($value) ? get_class($value) : gettype($value)
                     );
                 }
+                $value = trim($value);
                 break;
         }
 

@@ -6,6 +6,11 @@ use AmpProject\Dom\Element;
 use AmpProject\Dom\ElementDump;
 use AmpProject\Optimizer\Error;
 
+/**
+ * Optimizer error object for when a hero image cannot be preloaded.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class CannotPreloadImage implements Error
 {
     use ErrorProperties;

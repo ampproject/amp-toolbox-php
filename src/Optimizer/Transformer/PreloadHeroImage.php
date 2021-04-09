@@ -6,6 +6,7 @@ use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
+use AmpProject\Exception\FailedToParseUrl;
 use AmpProject\Extension;
 use AmpProject\Layout;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
@@ -263,6 +264,7 @@ final class PreloadHeroImage implements Transformer
      * @param Element $element   Element to detect for.
      * @param string  $attribute Attribute to look for.
      * @return HeroImage|null Detected hero image, or null if none detected.
+     * @throws FailedToParseUrl Exception when the URL or Base URL is malformed.
      */
     private function detectImageWithAttribute(Element $element, $attribute)
     {
@@ -271,7 +273,7 @@ final class PreloadHeroImage implements Transformer
         }
 
         $src = $element->getAttribute(Attribute::SRC);
-        if ($element->tagName === Extension::IMG && Url::isValidNonDataUrl($src)) {
+        if ($element->tagName === Extension::IMG && (new Url($src))->isValidNonDataUrl()) {
             return new HeroImage(
                 $src,
                 $element->getAttribute(Attribute::MEDIA),
@@ -289,7 +291,7 @@ final class PreloadHeroImage implements Transformer
 
         $cssBackgroundImage = $this->getCssBackgroundImageUrl($element);
 
-        if (Url::isValidNonDataUrl($cssBackgroundImage)) {
+        if ((new Url($cssBackgroundImage))->isValidNonDataUrl()) {
             return new HeroImage(
                 $cssBackgroundImage,
                 $element->getAttribute(Attribute::MEDIA),
@@ -347,7 +349,7 @@ final class PreloadHeroImage implements Transformer
             return null;
         }
 
-        if (! Url::isValidNonDataUrl($src)) {
+        if (! (new Url($src))->isValidNonDataUrl()) {
             return null;
         }
 
@@ -375,7 +377,7 @@ final class PreloadHeroImage implements Transformer
             return null;
         }
 
-        if (! Url::isValidNonDataUrl($poster)) {
+        if (! (new Url($poster))->isValidNonDataUrl()) {
             return null;
         }
 
@@ -455,7 +457,7 @@ final class PreloadHeroImage implements Transformer
 
             $src = $placeholder->getAttribute(Attribute::SRC);
 
-            if (! Url::isValidNonDataUrl($src)) {
+            if (! (new Url($src))->isValidNonDataUrl()) {
                 break;
             }
 
