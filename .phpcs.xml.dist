@@ -7,12 +7,6 @@
 		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
 	</rule>
 
-	<!-- Exclude resources folder -->
-	<exclude-pattern>resources/*</exclude-pattern>
-
-	<!-- Exclude Composer vendor folder -->
-	<exclude-pattern>vendor/*</exclude-pattern>
-
 	<!-- Include sniffs for PHP cross-version compatibility. -->
 	<config name="testVersion" value="5.6-"/>
 	<rule ref="PHPCompatibilityWP">
@@ -21,7 +15,11 @@
 
 	<arg value="s"/>
 	<arg name="extensions" value="php"/>
-	<file>.</file>
+
+	<!-- Include only the directories containing PHP files. -->
+	<file>bin/</file>
+	<file>src/</file>
+	<file>tests/</file>
 
 	<!-- Strip the filepaths down to the relevant bit. -->
 	<arg name="basepath" value="./"/>
