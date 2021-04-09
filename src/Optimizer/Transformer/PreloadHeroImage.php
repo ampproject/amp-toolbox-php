@@ -200,6 +200,7 @@ final class PreloadHeroImage implements Transformer
         $heroImageCandidates       = [];
         $heroImageFallbacks        = [];
         $previousHeroImageFallback = null;
+        $seenParagraphCount        = 0;
         $node                      = $document->body;
 
         while ($node !== null) {
@@ -208,10 +209,14 @@ final class PreloadHeroImage implements Transformer
                 continue;
             }
 
+            if ($node->tagName === Tag::P) {
+                $seenParagraphCount++;
+            }
+
             $heroImage = $this->detectImageWithAttribute($node, Attribute::DATA_HERO);
             if ($heroImage) {
                 $heroImages[] = $heroImage;
-            } elseif (count($heroImageCandidates) < self::DATA_HERO_MAX) {
+            } elseif ($seenParagraphCount < 2 && count($heroImageCandidates) < self::DATA_HERO_MAX) {
                 $heroImageCandidate = $this->detectImageWithAttribute($node, Attribute::DATA_HERO_CANDIDATE);
                 if ($heroImageCandidate) {
                     $heroImageCandidates[] = $heroImageCandidate;
@@ -563,6 +568,15 @@ final class PreloadHeroImage implements Transformer
         $imgElement->setAttribute(Attribute::CLASS_, self::SSR_IMAGE_CLASS);
         $imgElement->setAttribute(Attribute::DECODING, 'async');
 
+
+        // If the image was detected as hero image candidate (and thus lacks an explicit data-hero), mark it as a hero
+        // and add loading=lazy to guard against making the page performance even worse by eagerly loading an image
+        // outside the viewport.
+        if (! $element->hasAttribute(Attribute::DATA_HERO)) {
+            $element->appendChild($document->createAttribute(Attribute::DATA_HERO));
+            $imgElement->setAttribute(Attribute::LOADING, 'lazy');
+        }
+
         foreach (self::ATTRIBUTES_TO_COPY as $attribute) {
             if ($element->hasAttribute($attribute)) {
                 $imgElement->setAttribute($attribute, $element->getAttribute($attribute));
@@ -578,7 +592,6 @@ final class PreloadHeroImage implements Transformer
         }
 
         $element->appendChild($document->createAttribute(Attribute::I_AMPHTML_SSR));
-        $element->appendChild($document->createAttribute(Attribute::DATA_HERO));
 
         $element->appendChild($imgElement);
 
