@@ -742,7 +742,7 @@ final class PreloadHeroImage implements Transformer
      */
     private function isMarkedAsHeroImage(Element $element)
     {
-        while($element) {
+        while ($element) {
             if (!$element instanceof Element) {
                 $element = $element->parentNode;
                 continue;
