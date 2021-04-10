@@ -84,7 +84,12 @@ class AmpExecutableTest extends TestCase
                    echo "[{$channel}]<{$color}> {$message}";
                });
 
-        $executable = new AmpExecutable(false, null, $colors);
+        $options = $this->createMock(Options::class);
+        $options->method('getOption')
+                ->with('loglevel')
+                ->willReturn('debug');
+
+        $executable = new AmpExecutable(false, $options, $colors);
 
         $this->expectOutputString("[{$channel}]<{$color}> {$prefix}{$logLevel} message");
         $executable->$logLevel('{level} message', ['level' => $logLevel]);
@@ -110,7 +115,12 @@ class AmpExecutableTest extends TestCase
                    echo "[{$channel}]<{$color}> {$message}";
                });
 
-        $executable = new AmpExecutable(false, null, $colors);
+        $options = $this->createMock(Options::class);
+        $options->method('getOption')
+                ->with('loglevel')
+                ->willReturn('debug');
+
+        $executable = new AmpExecutable(false, $options, $colors);
 
         $this->expectOutputString("[{$channel}]<{$color}> {$logLevel} message");
         $executable->log($logLevel, '{level} message', ['level' => $logLevel]);
