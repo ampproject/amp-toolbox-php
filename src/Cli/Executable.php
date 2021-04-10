@@ -358,9 +358,9 @@ abstract class Executable
      */
     protected function setupLogging()
     {
-        $this->level = $this->options->getOption('loglevel', $this->loglevel);
+        $this->loglevel = $this->options->getOption('loglevel', $this->loglevel);
 
-        if (! in_array($this->level, LogLevel::ORDER)) {
+        if (! in_array($this->loglevel, LogLevel::ORDER)) {
             $this->fatal('Unknown log level');
         }
     }
