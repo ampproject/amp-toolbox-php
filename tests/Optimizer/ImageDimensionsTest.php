@@ -410,28 +410,46 @@ class ImageDimensionsTest extends TestCase
     public function testItCanCheckIfAnImageIsTiny($width, $height, $layout, $threshold, $expected)
     {
         $dom   = new Document();
-        $image = $dom->createElement(Tag::IMG);
+        $attrs = [];
 
         if ($width !== null) {
-            $image->setAttribute(Attribute::WIDTH, $width);
+            $attrs[Attribute::WIDTH] = $width;
         }
 
         if ($height !== null) {
-            $image->setAttribute(Attribute::HEIGHT, $height);
+            $attrs[Attribute::HEIGHT] = $height;
         }
 
         if ($layout !== null) {
-            $image->setAttribute(Attribute::LAYOUT, $layout);
+            $attrs[Attribute::LAYOUT] = $layout;
         }
 
-        $parent = $dom->createElement(Tag::FIGURE);
-        $parent->setAttribute(Attribute::WIDTH, 400);
-        $parent->setAttribute(Attribute::HEIGHT, 200);
-
+        // Check in fixed layout parent.
+        $parent = $dom->createElementWithAttributes(
+            'amp-layout',
+            [
+                Attribute::LAYOUT => Layout::FIXED,
+                Attribute::WIDTH  => 400,
+                Attribute::HEIGHT => 200,
+            ]
+        );
+        $image = $dom->createElementWithAttributes(Tag::IMG, $attrs);
         $parent->appendChild($image);
-
         $imageDimensions = new ImageDimensions($image);
+        $this->assertEquals($expected, $imageDimensions->isTiny($threshold));
 
+        // Check in responsive layout parent.
+        $parent = $dom->createElementWithAttributes(
+            'amp-layout',
+            [
+                Attribute::LAYOUT => Layout::RESPONSIVE,
+                Attribute::WIDTH  => 3,
+                Attribute::HEIGHT => 4,
+            ]
+        );
+        $image = $dom->createElementWithAttributes(Tag::IMG, $attrs);
+        $parent->appendChild($image);
+        $imageDimensions = new ImageDimensions($image);
         $this->assertEquals($expected, $imageDimensions->isTiny($threshold));
     }
 }
