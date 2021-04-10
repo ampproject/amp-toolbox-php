@@ -2,10 +2,8 @@
 
 namespace AmpProject\Optimizer\Transformer;
 
-use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
-use AmpProject\Dom\Element;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Tag;
