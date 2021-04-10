@@ -240,7 +240,7 @@ final class Element extends DOMElement
      *
      * @param string[] $attributes One or more attributes for the node's HTML element.
      */
-    public function addAttributes($attributes)
+    public function setAttributes($attributes)
     {
         foreach ($attributes as $name => $value) {
             try {
