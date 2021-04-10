@@ -216,6 +216,7 @@ final class RewriteAmpUrls implements Transformer
         $nomoduleNode->addBooleanAttribute(Attribute::ASYNC);
         $nomoduleNode->addBooleanAttribute(Attribute::NOMODULE);
         $nomoduleNode->setAttribute(Attribute::SRC, $scriptUrl);
+        $nomoduleNode->setAttribute(Attribute::CROSSORIGIN, Attribute::CROSSORIGIN_ANONYMOUS);
 
         $scriptNode->copyAttributes([Attribute::CUSTOM_ELEMENT, Attribute::CUSTOM_TEMPLATE], $nomoduleNode);
 
