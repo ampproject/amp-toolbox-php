@@ -2,6 +2,8 @@
 
 namespace AmpProject\Cli;
 
+use AmpProject\Exception\Cli\InvalidCommand;
+
 /**
  * Executable that assembles all of the commands.
  *
@@ -54,7 +56,18 @@ final class AmpExecutable extends Executable
      */
     protected function main(Options $options)
     {
-        $command = $this->commandInstances[$options->getCommand()];
+        $commandName = $options->getCommand();
+
+        if (empty($commandName)) {
+            echo $this->options->help();
+            exit(1);
+        }
+
+        if (! array_key_exists($commandName, $this->commandInstances)) {
+            throw InvalidCommand::forUnregisteredCommand($commandName);
+        }
+
+        $command = $this->commandInstances[$commandName];
 
         $command->process($options);
     }

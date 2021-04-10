@@ -47,16 +47,16 @@ abstract class Executable
      *
      * @var array<array>
      */
-    protected $loglevel = [
-        'debug'     => ['', Colors::C_RESET, STDOUT],
-        'info'      => ['ℹ ', Colors::C_CYAN, STDOUT],
-        'notice'    => ['☛ ', Colors::C_CYAN, STDOUT],
-        'success'   => ['✓ ', Colors::C_GREEN, STDOUT],
-        'warning'   => ['⚠ ', Colors::C_BROWN, STDERR],
-        'error'     => ['✗ ', Colors::C_RED, STDERR],
-        'critical'  => ['☠ ', Colors::C_LIGHTRED, STDERR],
-        'alert'     => ['✖ ', Colors::C_LIGHTRED, STDERR],
-        'emergency' => ['✘ ', Colors::C_LIGHTRED, STDERR],
+    protected $loglevels = [
+        LogLevel::DEBUG     => ['', Colors::C_RESET, STDOUT],
+        LogLevel::INFO      => ['ℹ ', Colors::C_CYAN, STDOUT],
+        LogLevel::NOTICE    => ['☛ ', Colors::C_CYAN, STDOUT],
+        LogLevel::SUCCESS   => ['✓ ', Colors::C_GREEN, STDOUT],
+        LogLevel::WARNING   => ['⚠ ', Colors::C_BROWN, STDERR],
+        LogLevel::ERROR     => ['✗ ', Colors::C_RED, STDERR],
+        LogLevel::CRITICAL  => ['☠ ', Colors::C_LIGHTRED, STDERR],
+        LogLevel::ALERT     => ['✖ ', Colors::C_LIGHTRED, STDERR],
+        LogLevel::EMERGENCY => ['✘ ', Colors::C_LIGHTRED, STDERR],
     ];
 
     /**
@@ -64,7 +64,7 @@ abstract class Executable
      *
      * @var string
      */
-    protected $logdefault = 'info';
+    protected $loglevel = 'info';
 
     /**
      * Constructor.
@@ -155,7 +155,7 @@ abstract class Executable
      */
     public function emergency($message, array $context = [])
     {
-        $this->log('emergency', $message, $context);
+        $this->log(LogLevel::EMERGENCY, $message, $context);
     }
 
     /**
@@ -169,7 +169,7 @@ abstract class Executable
      */
     public function alert($message, array $context = [])
     {
-        $this->log('alert', $message, $context);
+        $this->log(LogLevel::ALERT, $message, $context);
     }
 
     /**
@@ -183,7 +183,7 @@ abstract class Executable
      */
     public function critical($message, array $context = [])
     {
-        $this->log('critical', $message, $context);
+        $this->log(LogLevel::CRITICAL, $message, $context);
     }
 
     /**
@@ -195,7 +195,7 @@ abstract class Executable
      */
     public function error($message, array $context = [])
     {
-        $this->log('error', $message, $context);
+        $this->log(LogLevel::ERROR, $message, $context);
     }
 
     /**
@@ -209,7 +209,7 @@ abstract class Executable
      */
     public function warning($message, array $context = [])
     {
-        $this->log('warning', $message, $context);
+        $this->log(LogLevel::WARNING, $message, $context);
     }
 
     /**
@@ -221,7 +221,7 @@ abstract class Executable
      */
     public function success($string, array $context = [])
     {
-        $this->log('success', $string, $context);
+        $this->log(LogLevel::SUCCESS, $string, $context);
     }
 
     /**
@@ -233,7 +233,7 @@ abstract class Executable
      */
     public function notice($message, array $context = [])
     {
-        $this->log('notice', $message, $context);
+        $this->log(LogLevel::NOTICE, $message, $context);
     }
 
     /**
@@ -247,7 +247,7 @@ abstract class Executable
      */
     public function info($message, array $context = [])
     {
-        $this->log('info', $message, $context);
+        $this->log(LogLevel::INFO, $message, $context);
     }
 
     /**
@@ -259,7 +259,7 @@ abstract class Executable
      */
     public function debug($message, array $context = [])
     {
-        $this->log('debug', $message, $context);
+        $this->log(LogLevel::DEBUG, $message, $context);
     }
 
     /**
@@ -272,12 +272,11 @@ abstract class Executable
      */
     public function log($level, $message, array $context = [])
     {
-        // Is this log level wanted?
-        if (! isset($this->loglevel[$level])) {
+        if (! LogLevel::matches($level, $this->options->getOption('loglevel', $this->loglevel))) {
             return;
         }
 
-        list($prefix, $color, $channel) = $this->loglevel[$level];
+        list($prefix, $color, $channel) = $this->loglevels[$level];
 
         if (! $this->colors->isEnabled()) {
             $prefix = '';
@@ -333,7 +332,7 @@ abstract class Executable
         );
         $this->options->registerOption(
             'loglevel',
-            "Minimum level of messages to display. Default is {$this->colors->wrap($this->logdefault, Colors::C_CYAN)}."
+            "Minimum level of messages to display. Default is {$this->colors->wrap($this->loglevel, Colors::C_CYAN)}."
             . ' Valid levels are: debug, info, notice, success, warning, error, critical, alert, emergency.',
             null,
             'level'
@@ -359,17 +358,10 @@ abstract class Executable
      */
     protected function setupLogging()
     {
-        $level = $this->options->getOption('loglevel', $this->logdefault);
+        $this->loglevel = $this->options->getOption('loglevel', $this->loglevel);
 
-        if (! isset($this->loglevel[$level])) {
+        if (! in_array($this->loglevel, LogLevel::ORDER)) {
             $this->fatal('Unknown log level');
-        }
-
-        foreach (array_keys($this->loglevel) as $l) {
-            if ($l == $level) {
-                break;
-            }
-            unset($this->loglevel[$l]);
         }
     }
 
