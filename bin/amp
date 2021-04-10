@@ -8,6 +8,7 @@ if (!class_exists('AmpProject\Cli\AmpExecutable')) {
     $possibleAutoloaderLocations = [
         dirname(__DIR__) . '/vendor/autoload.php',
         dirname(__DIR__) . '/autoload.php',
+        dirname(dirname(dirname(__DIR__))) . 'autoload.php',
     ];
 
     foreach ($possibleAutoloaderLocations as $possibleAutoloaderLocation) {
