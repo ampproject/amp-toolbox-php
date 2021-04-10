@@ -10,6 +10,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 use AmpProject\Optimizer\Exception\UnknownConfigurationClass;
 use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
 use AmpProject\Optimizer\Transformer\AmpBoilerplate;
+use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
@@ -50,6 +51,7 @@ final class Configuration
         AmpBoilerplate::class,
         ServerSideRendering::class,
         AmpRuntimeCss::class,
+        AmpBoilerplateErrorHandler::class,
         TransformedIdentifier::class,
         PreloadHeroImage::class,
         RewriteAmpUrls::class,
