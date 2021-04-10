@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
 use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
+use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
@@ -63,7 +64,11 @@ final class SpecTest extends TestCase
     {
         $scenarios = [];
         $suites    = [
-            'AmpRuntimeCss'       => [
+            'AmpBoilerplateErrorHandler'    => [
+                AmpBoilerplateErrorHandler::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/AmpBoilerplateErrorHandler',
+            ],
+            'AmpRuntimeCss'                 => [
                 AmpRuntimeCss::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/AmpBoilerplateTransformer',
             ],
