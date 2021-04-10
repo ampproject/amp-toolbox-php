@@ -56,7 +56,7 @@ final class RewriteAmpUrlsTest extends TestCase
             TestMarkup::DOCTYPE . '<html amp><head>' . TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT
             . '<link as="script" crossorigin="anonymous" href="https://cdn.ampproject.org/v0.mjs" rel="modulepreload">'
             . TestMarkup::LINK_CANONICAL . TestMarkup::LINK_GOOGLE_FONT_PRECONNECT
-            . '<script async nomodule src="https://cdn.ampproject.org/v0.js"></script>'
+            . '<script async crossorigin="anonymous" nomodule src="https://cdn.ampproject.org/v0.js"></script>'
             . '<script async crossorigin="anonymous" src="https://cdn.ampproject.org/v0.mjs" type="module"></script>'
             . '</head><body></body></html>',
             $document->saveHTML()
