@@ -8,6 +8,7 @@ if (!class_exists('AmpProject\Cli\AmpExecutable')) {
     $possibleAutoloaderLocations = [
         dirname(__DIR__) . '/vendor/autoload.php',
         dirname(__DIR__) . '/autoload.php',
+        // TODO: This should make use of dirname(__DIR__, 3) once we have a PHP minimum of 7+.
         dirname(dirname(dirname(__DIR__))) . 'autoload.php',
     ];
 
