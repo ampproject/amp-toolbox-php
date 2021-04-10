@@ -33,6 +33,7 @@ interface Tag
     const LINK       = 'link';
     const META       = 'meta';
     const NOSCRIPT   = 'noscript';
+    const P          = 'p';
     const PARAM      = 'param';
     const SCRIPT     = 'script';
     const SOURCE     = 'source';

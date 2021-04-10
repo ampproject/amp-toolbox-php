@@ -55,7 +55,7 @@ final class PreloadHeroImageTest extends TestCase
                     . '<amp-img width="500" height="400" src="/img3.png"></amp-img>'
                 ),
                 $output(
-                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png"></amp-img>'
+                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="lazy" src="/img1.png"></amp-img>'
                     . '<amp-img width="500" height="400" src="/img2.png"></amp-img>'
                     . '<amp-img width="500" height="400" src="/img3.png"></amp-img>'
                 ),
@@ -69,7 +69,7 @@ final class PreloadHeroImageTest extends TestCase
                 ),
                 $output(
                     '<amp-img width="100" height="100" src="/img1.png"></amp-img>'
-                    . '<amp-img data-hero width="500" height="400" src="/img2.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img2.png"></amp-img>'
+                    . '<amp-img data-hero width="500" height="400" src="/img2.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="lazy" src="/img2.png"></amp-img>'
                     . '<amp-img width="500" height="400" src="/img3.png"></amp-img>'
                 ),
             ],
@@ -229,7 +229,7 @@ final class PreloadHeroImageTest extends TestCase
                 ),
                 $output(
                     '<amp-img data-hero data-hero-candidate width="500" height="400" src="/img1.png" i-amphtml-ssr>'
-                    . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png">'
+                    . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="lazy" src="/img1.png">'
                     . '</amp-img>'
                 ),
             ],
@@ -245,8 +245,8 @@ final class PreloadHeroImageTest extends TestCase
                 ),
                 $output(
                     '<amp-img width="500" height="400" src="/foo.png"></amp-img>'
-                    . '<amp-img data-hero data-hero-candidate width="500" height="400" src="/hero1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/hero1.png"></amp-img>'
-                    . '<amp-img data-hero data-hero-candidate width="500" height="400" src="/hero2.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/hero2.png"></amp-img>'
+                    . '<amp-img data-hero data-hero-candidate width="500" height="400" src="/hero1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="lazy" src="/hero1.png"></amp-img>'
+                    . '<amp-img data-hero data-hero-candidate width="500" height="400" src="/hero2.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="lazy" src="/hero2.png"></amp-img>'
                     . '<amp-img data-hero-candidate width="500" height="400" src="/hero3.png"></amp-img>'
                     . '<amp-img data-hero-candidate width="500" height="400" src="/hero4.png"></amp-img>'
                     . '<amp-img data-hero-candidate width="500" height="400" src="/hero5.png"></amp-img>'
@@ -277,7 +277,7 @@ final class PreloadHeroImageTest extends TestCase
                     '<amp-img width="500" height="400" src="/img1.png" loading="lazy"></amp-img>'
                 ),
                 $output(
-                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png"></amp-img>'
+                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="lazy" src="/img1.png"></amp-img>'
                 ),
             ],
 

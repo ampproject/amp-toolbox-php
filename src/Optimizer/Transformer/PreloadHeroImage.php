@@ -200,6 +200,7 @@ final class PreloadHeroImage implements Transformer
         $heroImageCandidates       = [];
         $heroImageFallbacks        = [];
         $previousHeroImageFallback = null;
+        $seenParagraphCount        = 0;
         $node                      = $document->body;
 
         while ($node !== null) {
@@ -208,10 +209,14 @@ final class PreloadHeroImage implements Transformer
                 continue;
             }
 
+            if ($node->tagName === Tag::P) {
+                $seenParagraphCount++;
+            }
+
             $heroImage = $this->detectImageWithAttribute($node, Attribute::DATA_HERO);
             if ($heroImage) {
                 $heroImages[] = $heroImage;
-            } elseif (count($heroImageCandidates) < self::DATA_HERO_MAX) {
+            } elseif ($seenParagraphCount < 2 && count($heroImageCandidates) < self::DATA_HERO_MAX) {
                 $heroImageCandidate = $this->detectImageWithAttribute($node, Attribute::DATA_HERO_CANDIDATE);
                 if ($heroImageCandidate) {
                     $heroImageCandidates[] = $heroImageCandidate;
@@ -563,6 +568,18 @@ final class PreloadHeroImage implements Transformer
         $imgElement->setAttribute(Attribute::CLASS_, self::SSR_IMAGE_CLASS);
         $imgElement->setAttribute(Attribute::DECODING, 'async');
 
+
+        // If the image was detected as hero image candidate (and thus lacks an explicit data-hero), mark it as a hero
+        // and add loading=lazy to guard against making the page performance even worse by eagerly loading an image
+        // outside the viewport.
+        if (! $this->isMarkedAsHeroImage($element)) {
+            $imgElement->setAttribute(Attribute::LOADING, 'lazy');
+        }
+
+        if (!$element->hasAttribute(Attribute::DATA_HERO)) {
+            $element->appendChild($document->createAttribute(Attribute::DATA_HERO));
+        }
+
         foreach (self::ATTRIBUTES_TO_COPY as $attribute) {
             if ($element->hasAttribute($attribute)) {
                 $imgElement->setAttribute($attribute, $element->getAttribute($attribute));
@@ -578,7 +595,6 @@ final class PreloadHeroImage implements Transformer
         }
 
         $element->appendChild($document->createAttribute(Attribute::I_AMPHTML_SSR));
-        $element->appendChild($document->createAttribute(Attribute::DATA_HERO));
 
         $element->appendChild($imgElement);
 
@@ -716,5 +732,33 @@ final class PreloadHeroImage implements Transformer
     private function supportsSrcset()
     {
         return $this->configuration->get(PreloadHeroImageConfiguration::PRELOAD_SRCSET);
+    }
+
+    /**
+     * Check if an element or its ancestors is marked as a hero image.
+     *
+     * @param Element $element Element to check.
+     * @return bool Whether the element or one of its ancestors is marked as a hero image.
+     */
+    private function isMarkedAsHeroImage(Element $element)
+    {
+        while ($element) {
+            if (!$element instanceof Element) {
+                $element = $element->parentNode;
+                continue;
+            }
+
+            if ($element->hasAttribute(Attribute::DATA_HERO)) {
+                return true;
+            }
+
+            if ($element->tagName === Tag::BODY || $element->tagName === Tag::HTML) {
+                return false;
+            }
+
+            $element = $element->parentNode;
+        }
+
+        return false;
     }
 }
