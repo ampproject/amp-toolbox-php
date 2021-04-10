@@ -393,27 +393,27 @@ class ElementTest extends TestCase
     /**
      * Test adding no attributes to node.
      *
-     * @covers \AmpProject\Dom\Element::addAttributes()
+     * @covers \AmpProject\Dom\Element::setAttributes()
      */
     public function testAddAttributesToNodeForNoAttributes()
     {
         $dom     = Document::fromHtml('<p>Hello World</p>');
         $element = $dom->createElement('b');
-        $element->addAttributes([]);
+        $element->setAttributes([]);
         $this->assertFalse($element->hasAttributes());
     }
 
     /**
      * Test adding attribute with no value to node.
      *
-     * @covers \AmpProject\Dom\Element::addAttributes()
+     * @covers \AmpProject\Dom\Element::setAttributes()
      */
     public function testAddAttributesToNodeForAttributeWithoutValue()
     {
         $dom        = Document::fromHtml('<p>Hello World</p>');
         $element    = $dom->createElement('div');
         $attributes = [ 'placeholder' => '' ];
-        $element->addAttributes($attributes);
+        $element->setAttributes($attributes);
 
         $this->assertTrue($element->hasAttributes());
         $this->checkElementHasAttributes($element, $attributes);
@@ -422,7 +422,7 @@ class ElementTest extends TestCase
     /**
      * Test adding attribute with value to node.
      *
-     * @covers \AmpProject\Dom\Element::addAttributes()
+     * @covers \AmpProject\Dom\Element::setAttributes()
      */
     public function testAddAttributesToNodeForAttributeWithValue()
     {
@@ -432,7 +432,7 @@ class ElementTest extends TestCase
             'class' => 'myClass',
             'id'    => 'myId',
         ];
-        $element->addAttributes($attributes);
+        $element->setAttributes($attributes);
 
         $this->assertTrue($element->hasAttributes());
         $this->checkElementHasAttributes($element, $attributes);

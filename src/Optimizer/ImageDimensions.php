@@ -113,6 +113,11 @@ final class ImageDimensions
                 continue;
             }
 
+            // If layout is responsive, consider dimensions to be unbounded.
+            if (Layout::RESPONSIVE === $element->getAttribute(Attribute::LAYOUT)) {
+                return [PHP_INT_MAX, PHP_INT_MAX];
+            }
+
             return [(int)$width, (int)$height];
         }
 

@@ -2081,7 +2081,7 @@ final class Document extends DOMDocument
             return false;
         }
 
-        $element->addAttributes($attributes);
+        $element->setAttributes($attributes);
 
         return $element;
     }
