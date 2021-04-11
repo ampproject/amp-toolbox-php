@@ -46,7 +46,7 @@ final class TransformationEngine
      */
     public function __construct(Configuration $configuration = null, RemoteGetRequest $remoteRequest = null)
     {
-        $this->configuration = isset($configuration) ? $configuration : new Configuration();
+        $this->configuration = isset($configuration) ? $configuration : new DefaultConfiguration();
         $this->remoteRequest = isset($remoteRequest) ? $remoteRequest : new CurlRemoteGetRequest();
 
         $this->initializeTransformers();

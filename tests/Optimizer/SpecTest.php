@@ -213,7 +213,7 @@ final class SpecTest extends TestCase
             }
         }
 
-        return new Configuration($mappedConfiguration);
+        return new DefaultConfiguration($mappedConfiguration);
     }
 
     /**

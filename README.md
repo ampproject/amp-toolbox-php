@@ -37,8 +37,6 @@ AMP Optimizer is a library for doing server-side optimization to AMP markup by a
 
 ### Conceptual Overview
 
-<!-- TODO: Once the repositories have been extracted out, all PHP references should link to the corresponding files in the repositories -->
-
 The AMP Optimizer is a [`AmpProject\Optimizer\TransformationEngine`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/TransformationEngine.php) object that sets up a pipeline of consecutive [`AmpProject\Optimizer\Transformer`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/Transformer.php) objects. The engine takes unoptimized input in the form of either a HTML markup string or an [`AmpProject\Dom\Document`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Dom/Document.php) object and turns it into an optimized HTML markup string.
 
 During the process, errors might occur that make parts of the optimization impossible. These are collected within an [`AmpProject\Optimizer\ErrorCollection`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/ErrorCollection.php) object that you can then iterate over to find out more and provide feedback as needed.
@@ -152,12 +150,13 @@ Note that this only lets you check whether an error "category" popped up. It can
 
 You can inject a configuration object into the [`AmpProject\Optimizer\TransformationEngine`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/TransformationEngine.php) to override the default configuration.
 
-The main [`AmpProject\Optimizer\Configuration`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/Configuration.php) object will provide the list of transformers to use, as well as give access to child objects it stores that are Transformer-specific configuration objects.
+The [`AmpProject\Optimizer\Configuration`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/Configuration.php) interface and its default implementation [`AmpProject\Optimizer\DefaultConfiguration`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/DefaultConfiguration.php) will provide the list of transformers to use, as well as give access to child objects they store that are Transformer-specific configuration objects.
 
 To override the list of transformers to use, you can provide an array containing the `AmpProject\Optimizer\Configuration::KEY_TRANSFORMERS` key.
 
 ```php
 use AmpProject\Optimizer\Configuration;
+use AmpProject\Optimizer\DefaultConfiguration;
 use AmpProject\Optimizer\TransformationEngine;
 use AmpProject\Optimizer\Transformer;
 
@@ -170,7 +169,7 @@ $configurationData = [
 ];
 
 $transformationEngine = new TransformationEngine(
-	new Configuration($configurationData)
+	new DefaultConfiguration($configurationData)
 );
 ```
 
@@ -182,6 +181,7 @@ In the following example, we configure the [`AmpProject\Optimizer\Transformer\Am
 
 ```php
 use AmpProject\Optimizer\Configuration;
+use AmpProject\Optimizer\DefaultConfiguration;
 use AmpProject\Optimizer\TransformationEngine;
 use AmpProject\Optimizer\Transformer;
 
@@ -192,7 +192,7 @@ $configurationData = [
 ];
 
 $transformationEngine = new TransformationEngine(
-	new Configuration($configurationData)
+	new DefaultConfiguration($configurationData)
 );
 ```
 
@@ -215,6 +215,7 @@ To make this transformer then known to the transformation engine, you add it to 
 
 ```php
 use AmpProject\Optimizer\Configuration;
+use AmpProject\Optimizer\DefaultConfiguration;
 use AmpProject\Optimizer\TransformationEngine;
 use MyProject\MyCustomTransformer;
 
@@ -228,7 +229,7 @@ $configurationData = [
 ];
 
 $transformationEngine = new TransformationEngine(
-	new Configuration($configurationData)
+	new DefaultConfiguration($configurationData)
 );
 ```
 
@@ -242,6 +243,7 @@ In the following example, we add a new `MyProject\MyCustomTransformer` transform
 
 ```php
 use AmpProject\Optimizer\Configuration;
+use AmpProject\Optimizer\DefaultConfiguration;
 use AmpProject\Optimizer\TransformationEngine;
 use MyProject\MyCustomTransformer;
 use MyProject\MyCustomTransformerConfiguration;
@@ -258,7 +260,7 @@ $configurationData = [
 	],
 ];
 
-$configuration = new Configuration($configurationData);
+$configuration = new DefaultConfiguration($configurationData);
 
 $configuration->registerConfigurationClass(
 	MyCustomTransformer::class,
@@ -389,11 +391,11 @@ final class MyCustomTransformer implements Transformer
 The implementation to use for fulfilling requests made via the [`AmpProject\RemoteGetRequest`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/RemoteGetRequest.php) interface can be injected into the [`AmpProject\Optimizer\TransformationEngine`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/TransformationEngine.php) via its second, optional argument:
 
 ```php
-use AmpProject\Optimizer\Configuration;
+use AmpProject\Optimizer\DefaultConfiguration;
 use AmpProject\Optimizer\TransformationEngine;
 
 $transformationEngine = new TransformationEngine(
-	new Configuration(),
+	new DefaultConfiguration(),
 
 	// A custom implementation that lets you control how remote requests are handled.
 	new MyCustomRemoteGetRequestImplementation()
@@ -414,7 +416,7 @@ There are other implementations already provided that can be useful:
 The following code shows an example of how to use a remote request via cURL while falling back to files stored on the disk when an external request fails (probably due to network issues).
 
 ```php
-use AmpProject\Optimizer\Configuration;
+use AmpProject\Optimizer\DefaultConfiguration;
 use AmpProject\Optimizer\TransformationEngine;
 use AmpProject\RemoteRequest\CurlRemoteGetRequest;
 use AmpProject\RemoteRequest\FallbackRemoteGetRequest;
@@ -429,7 +431,7 @@ $remoteRequest = new FallbackRemoteGetRequest(
 	new FilesystemRemoteGetRequest(self::FALLBACK_MAPPING) // ... fall back to shipped files.
 );
 
-$transformationEngine = new TransformationEngine(new Configuration(), $remoteRequest);
+$transformationEngine = new TransformationEngine(new DefaultConfiguration(), $remoteRequest);
 ```
 
 To build your own transport, you'll need to implement the [`AmpProject\RemoteGetRequest`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/RemoteGetRequest.php) interface. For a more involved example of a custom transport or for integrating with your stack of choice, see the two implementations provided by the `Amp for WordPress` WordPress plugin:
