@@ -234,6 +234,21 @@ final class PreloadHeroImageTest extends TestCase
                 ),
             ],
 
+            'hero image candidates after paragraphs are turned into hero images' => [
+                $input(
+                    '<p>First Paragraph</p>'
+                    . '<p>Second Paragraph</p>'
+                    . '<amp-img data-hero-candidate width="500" height="400" src="/img1.png"></amp-img>'
+                ),
+                $output(
+                    '<p>First Paragraph</p>'
+                    . '<p>Second Paragraph</p>'
+                    . '<amp-img data-hero data-hero-candidate width="500" height="400" src="/img1.png" i-amphtml-ssr>'
+                    . '<img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="lazy" src="/img1.png">'
+                    . '</amp-img>'
+                ),
+            ],
+
             'superfluous candidates are ignored without throwing an error' => [
                 $input(
                     '<amp-img width="500" height="400" src="/foo.png"></amp-img>'

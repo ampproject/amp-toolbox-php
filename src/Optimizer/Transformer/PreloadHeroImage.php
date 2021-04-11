@@ -216,11 +216,11 @@ final class PreloadHeroImage implements Transformer
             $heroImage = $this->detectImageWithAttribute($node, Attribute::DATA_HERO);
             if ($heroImage) {
                 $heroImages[] = $heroImage;
-            } elseif ($seenParagraphCount < 2 && count($heroImageCandidates) < self::DATA_HERO_MAX) {
+            } elseif (count($heroImageCandidates) < self::DATA_HERO_MAX) {
                 $heroImageCandidate = $this->detectImageWithAttribute($node, Attribute::DATA_HERO_CANDIDATE);
                 if ($heroImageCandidate) {
                     $heroImageCandidates[] = $heroImageCandidate;
-                } elseif (count($heroImageFallbacks) < self::DATA_HERO_MAX) {
+                } elseif ($seenParagraphCount < 2 && count($heroImageFallbacks) < self::DATA_HERO_MAX) {
                     $heroImageFallback = $this->detectPossibleHeroImageFallbacks($node);
 
                     // Ensure we don't flag the same image twice. This can happen for placeholder images, which are
