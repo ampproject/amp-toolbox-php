@@ -54,7 +54,7 @@ class DefaultConfiguration implements Configuration
     public function __construct($configurationData = [])
     {
         $this->configuration = array_merge(
-            Configuration::DEFAULTS,
+            static::DEFAULTS,
             $this->validateConfigurationKeys($configurationData)
         );
     }
