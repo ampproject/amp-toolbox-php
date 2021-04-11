@@ -115,7 +115,7 @@ final class TransformationEngineTest extends TestCase
             ],
         ];
 
-        $configuration = new Configuration($configurationData);
+        $configuration = new DefaultConfiguration($configurationData);
         $configuration->registerConfigurationClass($transformerClass, TestTransformer\DummyTransformerConfiguration::class);
 
         $transformationEngine = $this->getTransformationEngine($configuration);
