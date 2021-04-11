@@ -287,12 +287,30 @@ final class PreloadHeroImageTest extends TestCase
                 ),
             ],
 
-            'strips lazy-loading attribute' => [
+            'adds lazy-loading attribute on auto-detected hero images' => [
                 $input(
-                    '<amp-img width="500" height="400" src="/img1.png" loading="lazy"></amp-img>'
+                    '<amp-img width="500" height="400" src="/img1.png"></amp-img>'
                 ),
                 $output(
                     '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="lazy" src="/img1.png"></amp-img>'
+                ),
+            ],
+
+            'preserves loading attribute from noscript fallback img on prerendered image' => [
+                $input(
+                    '<amp-img width="500" height="400" src="/img1.png"><noscript><img src="/img1.png" width="500" height="400" loading="eager"></noscript></amp-img>'
+                ),
+                $output(
+                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" loading="eager" src="/img1.png"></amp-img>'
+                ),
+            ],
+
+            'omits loading attribute on prerendered image when noscript fallback img lacks it' => [
+                $input(
+                    '<amp-img width="500" height="400" src="/img1.png"><noscript><img src="/img1.png" width="500" height="400"></noscript></amp-img>'
+                ),
+                $output(
+                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png"></amp-img>'
                 ),
             ],
 
