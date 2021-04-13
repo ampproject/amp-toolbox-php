@@ -4,6 +4,7 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
 use AmpProject\Optimizer\Transformer\AmpBoilerplate;
+use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
@@ -44,6 +45,7 @@ interface Configuration
         AmpBoilerplate::class,
         ServerSideRendering::class,
         AmpRuntimeCss::class,
+        AmpBoilerplateErrorHandler::class,
         TransformedIdentifier::class,
         PreloadHeroImage::class,
         RewriteAmpUrls::class,
