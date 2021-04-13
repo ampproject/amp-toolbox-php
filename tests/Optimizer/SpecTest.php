@@ -40,7 +40,6 @@ final class SpecTest extends TestCase
 
         'PreloadHeroImage - max-hero-image-count-param'    => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
         'PreloadHeroImage - disable_via_param'             => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
-        'PreloadHeroImage - amp-iframe_data-hero'          => 'see https://github.com/ampproject/amp-toolbox/pull/1198'
     ];
 
     const CLASS_SKIP_TEST = '__SKIP__';
@@ -69,23 +68,23 @@ final class SpecTest extends TestCase
             ],
             'PreloadHeroImage'              => [
                 PreloadHeroImage::class,
-                self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeHeroImages'
+                self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeHeroImages',
             ],
             'ReorderHead'                   => [
                 ReorderHead::class,
-                self::TRANSFORMER_SPEC_PATH . '/valid/ReorderHeadTransformer'
+                self::TRANSFORMER_SPEC_PATH . '/valid/ReorderHeadTransformer',
             ],
             'RewriteAmpUrls'                => [
                 RewriteAmpUrls::class,
-                self::TRANSFORMER_SPEC_PATH . '/valid/RewriteAmpUrls'
+                self::TRANSFORMER_SPEC_PATH . '/valid/RewriteAmpUrls',
             ],
             'RewriteAmpUrls (experimental)' => [
                 RewriteAmpUrls::class,
-                self::TRANSFORMER_SPEC_PATH . '/experimental/RewriteAmpUrls'
+                self::TRANSFORMER_SPEC_PATH . '/experimental/RewriteAmpUrls',
             ],
             'ServerSideRendering'           => [
                 ServerSideRendering::class,
-                self::TRANSFORMER_SPEC_PATH . '/valid/ServerSideRendering'
+                self::TRANSFORMER_SPEC_PATH . '/valid/ServerSideRendering',
             ],
         ];
 

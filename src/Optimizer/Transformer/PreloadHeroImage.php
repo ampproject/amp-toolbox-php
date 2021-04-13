@@ -115,7 +115,7 @@ final class PreloadHeroImage implements Transformer
      *
      * @var string
      */
-    const NOSCRIPT_IMG_XPATH_QUERY = './/noscript[ img ]';
+    const NOSCRIPT_IMG_XPATH_QUERY = './noscript/img';
 
     /**
      * Regular expression pattern to extract the URL from a CSS background-image property.
@@ -216,11 +216,11 @@ final class PreloadHeroImage implements Transformer
             $heroImage = $this->detectImageWithAttribute($node, Attribute::DATA_HERO);
             if ($heroImage) {
                 $heroImages[] = $heroImage;
-            } elseif ($seenParagraphCount < 2 && count($heroImageCandidates) < self::DATA_HERO_MAX) {
+            } elseif (count($heroImageCandidates) < self::DATA_HERO_MAX) {
                 $heroImageCandidate = $this->detectImageWithAttribute($node, Attribute::DATA_HERO_CANDIDATE);
                 if ($heroImageCandidate) {
                     $heroImageCandidates[] = $heroImageCandidate;
-                } elseif (count($heroImageFallbacks) < self::DATA_HERO_MAX) {
+                } elseif ($seenParagraphCount < 2 && count($heroImageFallbacks) < self::DATA_HERO_MAX) {
                     $heroImageFallback = $this->detectPossibleHeroImageFallbacks($node);
 
                     // Ensure we don't flag the same image twice. This can happen for placeholder images, which are
@@ -568,11 +568,19 @@ final class PreloadHeroImage implements Transformer
         $imgElement->setAttribute(Attribute::CLASS_, self::SSR_IMAGE_CLASS);
         $imgElement->setAttribute(Attribute::DECODING, 'async');
 
-
         // If the image was detected as hero image candidate (and thus lacks an explicit data-hero), mark it as a hero
         // and add loading=lazy to guard against making the page performance even worse by eagerly loading an image
-        // outside the viewport.
-        if (! $this->isMarkedAsHeroImage($element)) {
+        // outside the viewport. But if there is a noscript > img then preserve its original loading attribute.
+        $noscript_img = $document->xpath->query(self::NOSCRIPT_IMG_XPATH_QUERY, $element)->item(0);
+        if ($noscript_img instanceof Element) {
+            // Preserve the original loading attribute from the noscript fallback img.
+            if ($noscript_img->hasAttribute(Attribute::LOADING)) {
+                $imgElement->setAttribute(Attribute::LOADING, $noscript_img->getAttribute(Attribute::LOADING));
+            }
+
+            // Remove any noscript>img when an amp-img is pre-rendered.
+            $noscript_img->parentNode->parentNode->removeChild($noscript_img->parentNode);
+        } elseif (! $this->isMarkedAsHeroImage($element)) {
             $imgElement->setAttribute(Attribute::LOADING, 'lazy');
         }
 
@@ -597,12 +605,6 @@ final class PreloadHeroImage implements Transformer
         $element->appendChild($document->createAttribute(Attribute::I_AMPHTML_SSR));
 
         $element->appendChild($imgElement);
-
-        // Remove any noscript>img when an amp-img is pre-rendered.
-        $noscript = $document->xpath->query(self::NOSCRIPT_IMG_XPATH_QUERY, $element)->item(0);
-        if ($noscript instanceof Element) {
-            $noscript->parentNode->removeChild($noscript);
-        }
     }
 
     /**
