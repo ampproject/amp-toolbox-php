@@ -14,6 +14,7 @@ use stdClass;
  * Test the AmpBoilerplate transformer.
  *
  * @covers \AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration
+ * @covers \AmpProject\Optimizer\Configuration\BaseTransformerConfiguration
  * @package ampproject/amp-toolbox
  */
 final class RewriteAmpUrlsConfigurationTest extends TestCase
@@ -35,6 +36,17 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
         $this->assertFalse($configuration->lts);
         $this->assertFalse($configuration->get('rtv'));
         $this->assertFalse($configuration->rtv);
+        $this->assertEquals(
+            [
+                'ampRuntimeVersion' => '',
+                'ampUrlPrefix'      => Amp::CACHE_HOST,
+                'esmModulesEnabled' => true,
+                'geoApiUrl'         => '',
+                'lts'               => false,
+                'rtv'               => false,
+            ],
+            $configuration->toArray()
+        );
     }
 
     public function testInitialization()
@@ -62,6 +74,17 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
         $this->assertTrue($configuration->lts);
         $this->assertTrue($configuration->get('rtv'));
         $this->assertTrue($configuration->rtv);
+        $this->assertEquals(
+            [
+                'ampRuntimeVersion' => '123',
+                'ampUrlPrefix'      => 'amp/',
+                'esmModulesEnabled' => false,
+                'geoApiUrl'         => 'example.com/api',
+                'lts'               => true,
+                'rtv'               => true,
+            ],
+            $configuration->toArray()
+        );
     }
 
     public function testThrowsOnInvalidKey()

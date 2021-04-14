@@ -13,6 +13,7 @@ use stdClass;
  * Test the AmpBoilerplate transformer.
  *
  * @covers \AmpProject\Optimizer\Configuration\TransformedIdentifierConfiguration
+ * @covers \AmpProject\Optimizer\Configuration\BaseTransformerConfiguration
  * @package ampproject/amp-toolbox
  */
 final class TransformedIdentifierConfigurationTest extends TestCase
@@ -24,6 +25,7 @@ final class TransformedIdentifierConfigurationTest extends TestCase
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
         $this->assertEquals(1, $configuration->get('version'));
         $this->assertEquals(1, $configuration->version);
+        $this->assertEquals(['version' => 1], $configuration->toArray());
     }
 
     public function testInitialization()
@@ -36,6 +38,7 @@ final class TransformedIdentifierConfigurationTest extends TestCase
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
         $this->assertEquals(5, $configuration->get('version'));
         $this->assertEquals(5, $configuration->version);
+        $this->assertEquals(['version' => 5], $configuration->toArray());
     }
 
     public function testThrowsOnInvalidKey()

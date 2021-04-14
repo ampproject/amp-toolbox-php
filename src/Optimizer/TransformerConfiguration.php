@@ -23,4 +23,11 @@ interface TransformerConfiguration
      * @throws UnknownConfigurationKey If an unknown key was provided.
      */
     public function get($key);
+
+    /**
+     * Get an array of configuration entries for this transformer configuration.
+     *
+     * @return array Associative array of configuration entries.
+     */
+    public function toArray();
 }

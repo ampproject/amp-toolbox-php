@@ -13,6 +13,7 @@ use stdClass;
  * Test the AmpBoilerplate transformer.
  *
  * @covers \AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration
+ * @covers \AmpProject\Optimizer\Configuration\BaseTransformerConfiguration
  * @package ampproject/amp-toolbox
  */
 final class PreloadHeroImageConfigurationTest extends TestCase
@@ -28,6 +29,14 @@ final class PreloadHeroImageConfigurationTest extends TestCase
         $this->assertTrue($configuration->preloadHeroImage);
         $this->assertFalse($configuration->get('preloadSrcset'));
         $this->assertFalse($configuration->preloadSrcset);
+        $this->assertEquals(
+            [
+                'inlineStyleBackupAttribute' => '',
+                'preloadHeroImage'           => true,
+                'preloadSrcset'              => false,
+            ],
+            $configuration->toArray()
+        );
     }
 
     public function testInitialization()
@@ -46,6 +55,14 @@ final class PreloadHeroImageConfigurationTest extends TestCase
         $this->assertFalse($configuration->preloadHeroImage);
         $this->assertTrue($configuration->get('preloadSrcset'));
         $this->assertTrue($configuration->preloadSrcset);
+        $this->assertEquals(
+            [
+                'inlineStyleBackupAttribute' => 'style-backup',
+                'preloadHeroImage'           => false,
+                'preloadSrcset'              => true,
+            ],
+            $configuration->toArray()
+        );
     }
 
     public function testThrowsOnInvalidKey()
