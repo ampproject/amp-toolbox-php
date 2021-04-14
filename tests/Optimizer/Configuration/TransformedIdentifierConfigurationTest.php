@@ -13,6 +13,7 @@ use stdClass;
  * Test the AmpBoilerplate transformer.
  *
  * @covers \AmpProject\Optimizer\Configuration\TransformedIdentifierConfiguration
+ * @covers \AmpProject\Optimizer\Configuration\BaseTransformerConfiguration
  * @package ampproject/amp-toolbox
  */
 final class TransformedIdentifierConfigurationTest extends TestCase
