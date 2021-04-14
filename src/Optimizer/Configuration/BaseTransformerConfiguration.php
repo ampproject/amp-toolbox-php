@@ -63,6 +63,22 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
     }
 
     /**
+     * Get an array of configuration entries for this transformer configuration.
+     *
+     * @return array Associative array of configuration entries.
+     */
+    public function toArray()
+    {
+        $configArray = [];
+
+        foreach (array_keys($this->allowedKeys) as $key) {
+            $configArray[$key] = $this->$key;
+        }
+
+        return $configArray;
+    }
+
+    /**
      * Get the associative array of allowed keys and their respective default values.
      *
      * The array index is the key and the array value is the key's default value.

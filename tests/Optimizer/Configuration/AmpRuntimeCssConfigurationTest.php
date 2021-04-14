@@ -28,6 +28,14 @@ final class AmpRuntimeCssConfigurationTest extends TestCase
         $this->assertEquals('', $configuration->styles);
         $this->assertEquals('', $configuration->get('version'));
         $this->assertEquals('', $configuration->version);
+        $this->assertEquals(
+            [
+                'canary'  => false,
+                'styles'  => '',
+                'version' => '',
+            ],
+            $configuration->toArray()
+        );
     }
 
     public function testInitialization()
@@ -46,6 +54,14 @@ final class AmpRuntimeCssConfigurationTest extends TestCase
         $this->assertEquals('h1: red;', $configuration->styles);
         $this->assertEquals('1.0', $configuration->get('version'));
         $this->assertEquals('1.0', $configuration->version);
+        $this->assertEquals(
+            [
+                'canary'  => true,
+                'styles'  => 'h1: red;',
+                'version' => '1.0',
+            ],
+            $configuration->toArray()
+        );
     }
 
     public function testThrowsOnInvalidKey()
