@@ -50,6 +50,10 @@ final class NodeWalker
             return $node->nextSibling;
         }
 
+        if ($node->parentNode === null) {
+            return null;
+        }
+
         return self::skipNodeAndChildren($node->parentNode);
     }
 }
