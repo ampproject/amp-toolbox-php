@@ -3,6 +3,7 @@
 namespace AmpProject\Optimizer;
 
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
+use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
 use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
 use AmpProject\Optimizer\Configuration\TransformedIdentifierConfiguration;
@@ -10,6 +11,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 use AmpProject\Optimizer\Exception\UnknownConfigurationClass;
 use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
+use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
 use AmpProject\Optimizer\Transformer\TransformedIdentifier;
@@ -40,6 +42,7 @@ class DefaultConfiguration implements Configuration
      */
     protected $transformerConfigurationClasses = [
         AmpRuntimeCss::class         => AmpRuntimeCssConfiguration::class,
+        OptimizeAmpBind::class       => OptimizeAmpBindConfiguration::class,
         PreloadHeroImage::class      => PreloadHeroImageConfiguration::class,
         RewriteAmpUrls::class        => RewriteAmpUrlsConfiguration::class,
         TransformedIdentifier::class => TransformedIdentifierConfiguration::class,
