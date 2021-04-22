@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Tests for AmpProject\Dom\NodeWalker.
  *
- * @covers \AmpProject\Dom\NodeWalker
+ * @coversDefaultClass \AmpProject\Dom\NodeWalker
  * @package ampproject/amp-toolbox
  */
 class NodeWalkerTest extends TestCase
@@ -27,6 +27,7 @@ class NodeWalkerTest extends TestCase
         <div id="8"></div>
     ';
 
+    /** @covers ::nextNode() */
     public function testNextNode()
     {
         $node   = Document::fromHtml(self::HTML)->body->firstChild;
@@ -43,7 +44,8 @@ class NodeWalkerTest extends TestCase
         $this->assertEquals('12345678', $output);
     }
 
-    public function testskipNodeAndChildren()
+    /** @covers ::skipNodeAndChildren() */
+    public function testSkipNodeAndChildren()
     {
         $node   = Document::fromHtml(self::HTML)->body->firstChild;
         $output = '';

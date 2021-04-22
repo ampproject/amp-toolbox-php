@@ -13,6 +13,7 @@ use AmpProject\Tests\TestCase;
  * Test the OptimizeAmpBind transformer.
  *
  * @covers \AmpProject\Optimizer\Transformer\OptimizeAmpBind
+ * @covers \AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration
  * @package ampproject/amp-toolbox
  */
 final class OptimizeAmpBindTest extends TestCase

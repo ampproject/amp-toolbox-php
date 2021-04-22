@@ -3,7 +3,6 @@
 namespace AmpProject\Optimizer\Configuration;
 
 use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
-use AmpProject\RuntimeVersion;
 
 /**
  * Configuration for the OptimizeAmpBind transformer.
