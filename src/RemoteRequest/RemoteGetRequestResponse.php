@@ -144,7 +144,7 @@ final class RemoteGetRequestResponse implements Response
             return '';
         }
 
-        return implode(',', $this->headers[$this->headersIndex[$key]]);
+        return implode(',', (array)$this->headers[$this->headersIndex[$key]]);
     }
 
     /**
