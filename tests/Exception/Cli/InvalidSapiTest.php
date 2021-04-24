@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Test the InvalidSapi exception.
  *
- * @covers \AmpProject\Exception\InvalidSapi
+ * @covers \AmpProject\Exception\Cli\InvalidSapi
  * @package ampproject/amp-toolbox
  */
 class InvalidSapiTest extends TestCase

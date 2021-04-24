@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Test the InvalidArgument exception.
  *
- * @covers \AmpProject\Exception\InvalidArgument
+ * @covers \AmpProject\Exception\Cli\InvalidArgument
  * @package ampproject/amp-toolbox
  */
 class InvalidArgumentTest extends TestCase

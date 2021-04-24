@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Test the InvalidCommand exception.
  *
- * @covers \AmpProject\Exception\InvalidCommand
+ * @covers \AmpProject\Exception\Cli\InvalidCommand
  * @package ampproject/amp-toolbox
  */
 class InvalidCommandTest extends TestCase

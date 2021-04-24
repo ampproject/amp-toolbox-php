@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Test the MissingArgument exception.
  *
- * @covers \AmpProject\Exception\MissingArgument
+ * @covers \AmpProject\Exception\Cli\MissingArgument
  * @package ampproject/amp-toolbox
  */
 class MissingArgumentTest extends TestCase

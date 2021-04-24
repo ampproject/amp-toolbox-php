@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Test the InvalidColor exception.
  *
- * @covers \AmpProject\Exception\InvalidColor
+ * @covers \AmpProject\Exception\Cli\InvalidColor
  * @package ampproject/amp-toolbox
  */
 class InvalidColorTest extends TestCase

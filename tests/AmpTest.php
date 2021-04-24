@@ -33,6 +33,8 @@ class AmpTest extends TestCase
             'amp-extension-script' => [$this->createExtensionScript($dom, 'amp-runtime'), false],
             'not-a-script'         => [$dom->createElement(Tag::STYLE), false],
             'not-an-element'       => [$dom->createTextNode(Extension::EXPERIMENT), false],
+            'not-on-cache-root'    => [$this->createAmpCDNScript($dom, 'https://example.com/v0.js'), false],
+            'not-script-file'      => [$this->createAmpCDNScript($dom, "{$ampSrc}.css"), false],
         ];
     }
 
@@ -61,10 +63,12 @@ class AmpTest extends TestCase
         $url = 'https://cdn.ampproject.org/v0/amp-viewer-integration-123.js';
 
         return [
-            'amp-viewer'           => [$this->createAmpCDNScript($dom, $url), true],
-            'amp-extension-script' => [$this->createExtensionScript($dom, 'amp-viewer'), false],
-            'not-a-script'         => [$dom->createElement(Tag::STYLE), false],
-            'not-an-element'       => [$dom->createTextNode(Extension::EXPERIMENT), false],
+            'amp-viewer'            => [$this->createAmpCDNScript($dom, $url), true],
+            'amp-extension-script'  => [$this->createExtensionScript($dom, 'amp-viewer'), false],
+            'not-a-script'          => [$dom->createElement(Tag::STYLE), false],
+            'not-an-element'        => [$dom->createTextNode(Extension::EXPERIMENT), false],
+            'not-a-js-file'         => [$this->createAmpCDNScript($dom, "{$url}.css"), false],
+            'not-amp-viewer-script' => [$this->createAmpCDNScript($dom, 'some-file.js'), false],
         ];
     }
 
@@ -162,9 +166,13 @@ class AmpTest extends TestCase
         $customTemplate = $dom->createElement(Tag::SCRIPT);
         $customTemplate->setAttribute(Attribute::CUSTOM_TEMPLATE, 'amp-custom-template-example');
 
+        $hostService = $dom->createElement(Tag::SCRIPT);
+        $hostService->setAttribute(Attribute::HOST_SERVICE, 'amp-host-service-example');
+
         return [
             Attribute::CUSTOM_ELEMENT  => [$customElement, 'amp-custom-element-example', true],
             Attribute::CUSTOM_TEMPLATE => [$customTemplate, 'amp-custom-template-example', true],
+            Attribute::HOST_SERVICE    => [$hostService, 'amp-host-service-example', true],
             'script-without-attribute' => [$dom->createElement(Tag::SCRIPT), '', false],
             'template-tag'             => [$dom->createElement(Tag::TEMPLATE), '', false],
             'non-element'              => [$dom->createTextNode(Attribute::CUSTOM_ELEMENT), '', false],

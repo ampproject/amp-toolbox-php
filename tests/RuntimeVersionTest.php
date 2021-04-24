@@ -2,6 +2,7 @@
 
 namespace AmpProject;
 
+use AmpProject\RemoteRequest\RemoteGetRequestResponse;
 use AmpProject\RemoteRequest\StubbedRemoteGetRequest;
 use AmpProject\Tests\TestCase;
 
@@ -15,13 +16,6 @@ class RuntimeVersionTest extends TestCase
 {
 
     /**
-     * RuntimeVersion object to test against.
-     *
-     * @var RuntimeVersion
-     */
-    protected $runtimeVersion;
-
-    /**
      * Associative array of mapping data for stubbing remote requests.
      *
      * @var array
@@ -31,12 +25,6 @@ class RuntimeVersionTest extends TestCase
         'https://cdn.ampproject.org/v0.css'       => '/* v0.css */',
     ];
 
-    public function __construct(...$args)
-    {
-        $this->runtimeVersion = new RuntimeVersion(new StubbedRemoteGetRequest(self::STUBBED_REMOTE_REQUESTS));
-        parent::__construct(...$args);
-    }
-
     /**
      * Test whether the release version is returned by default.
      *
@@ -44,7 +32,8 @@ class RuntimeVersionTest extends TestCase
      */
     public function testItReturnsReleaseVersionByDefault()
     {
-        $version = $this->runtimeVersion->currentVersion();
+        $runtimeVersion = new RuntimeVersion(new StubbedRemoteGetRequest(self::STUBBED_REMOTE_REQUESTS));
+        $version        = $runtimeVersion->currentVersion();
         $this->assertEquals('012345678900000', $version);
     }
 
@@ -55,7 +44,23 @@ class RuntimeVersionTest extends TestCase
      */
     public function testItReturnsCanaryVersionViaOption()
     {
-        $version = $this->runtimeVersion->currentVersion(['canary' => true]);
+        $runtimeVersion = new RuntimeVersion(new StubbedRemoteGetRequest(self::STUBBED_REMOTE_REQUESTS));
+        $version = $runtimeVersion->currentVersion(['canary' => true]);
         $this->assertEquals('023456789000000', $version);
+    }
+
+    /**
+     * Test remote request returning bad status code.
+     *
+     * @covers \AmpProject\RuntimeVersion::currentVersion()
+     */
+    public function testItReturnsZeroOnFailedRequests()
+    {
+        $remoteRequest = $this->createMock(RemoteGetRequest::class);
+        $remoteRequest->method('get')->willReturn(new RemoteGetRequestResponse('', [], 500));
+
+        $runtimeVersion = new RuntimeVersion($remoteRequest);
+
+        $this->assertEquals('0', $runtimeVersion->currentVersion());
     }
 }

@@ -15,17 +15,31 @@ use AmpProject\Tests\TestCase;
 class CssLengthTest extends TestCase
 {
 
-    /**
-     * Test instantiating empty CssLength.
-     *
-     * @covers \AmpProject\CssLength::__construct()
-     * @covers \AmpProject\CssLength::isValid()
-     * @covers \AmpProject\CssLength::isDefined()
-     */
-    public function testEmptyCssLengthIsValidButNotDefined()
+    public function dataCssLength()
     {
-        $length = new CssLength(null);
-        $this->assertTrue($length->isValid());
-        $this->assertFalse($length->isDefined());
+        return [
+            'empty'            => [null, false, false, true, false, false, false],
+            'allowed auto'     => ['auto', true, false, true, true, true, false],
+            'disallowed auto'  => ['auto', false, false, false, true, true, false],
+            'allowed fluid'    => ['fluid', false, true, true, true, false, true],
+            'disallowed fluid' => ['fluid', false, false, false, true, false, true],
+            '10px'             => ['10px', false, false, true, true, false, false],
+        ];
+    }
+
+    /**
+     * Test CssLength.
+     *
+     * @dataProvider dataCssLength()
+     */
+    public function testCssLength($value, $allowAuto, $allowFluid, $valid, $defined, $auto, $fluid)
+    {
+        $length = new CssLength($value);
+        $length->validate($allowAuto, $allowFluid);
+
+        $this->assertEquals($valid, $length->isValid());
+        $this->assertEquals($defined, $length->isDefined());
+        $this->assertEquals($fluid, $length->isFluid());
+        $this->assertEquals($auto, $length->isAuto());
     }
 }

@@ -143,7 +143,8 @@ final class Url
 
         if ($baseUrl) {
             if (isset($parsedUrl[self::PATH]) && 0 !== strpos($parsedUrl[self::PATH], '/')) {
-                $parsedUrl[self::PATH] = $this->unrelativizePath("{$baseUrl->path}/{$parsedUrl[self::PATH]}");
+                $root                  = rtrim($baseUrl->path, '/');
+                $parsedUrl[self::PATH] = $this->unrelativizePath("{$root}/{$parsedUrl[self::PATH]}");
             }
             $parsedUrl = array_merge($baseUrl->toArray(), $parsedUrl);
         }
