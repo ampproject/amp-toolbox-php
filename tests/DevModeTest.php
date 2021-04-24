@@ -3,6 +3,7 @@
 namespace AmpProject;
 
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Element;
 use AmpProject\Tests\TestCase;
 
 /**
@@ -76,5 +77,22 @@ class DevModeTest extends TestCase
         $document = Document::fromHtml($html);
         $node = $document->xpath->query('//*[@id="node_to_test"]')->item(0);
         $this->assertEquals($expected, DevMode::isExemptFromValidation($node));
+    }
+
+    public function testNonElement()
+    {
+        $document = Document::fromHtml(
+            '<html data-ampdevmode><body><!-- comment --></body></html>'
+        );
+
+        $node = $document->body->firstChild;
+
+        $this->assertEquals(false, DevMode::isExemptFromValidation($node));
+    }
+
+    public function testNonAttachedElement()
+    {
+        $element = new Element('div');
+        $this->assertEquals(false, DevMode::isExemptFromValidation($element));
     }
 }
