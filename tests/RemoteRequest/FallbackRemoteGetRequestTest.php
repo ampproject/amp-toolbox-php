@@ -4,7 +4,6 @@ namespace AmpProject\RemoteRequest;
 
 use AmpProject\RemoteGetRequest;
 use AmpProject\Tests\TestCase;
-use LogicException;
 use RuntimeException;
 
 /**
