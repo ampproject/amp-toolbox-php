@@ -37,6 +37,7 @@ class LengthUnitTest extends TestCase
             'VH'   => [123, 'vh', false],
             'VMIN' => [123, 'vmin', false],
             'VMAX' => [123, 'vmax', false],
+            '0'    => [0, 'px', 0],
         ];
     }
 
