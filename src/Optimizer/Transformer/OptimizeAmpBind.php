@@ -78,15 +78,7 @@ final class OptimizeAmpBind implements Transformer
 
             /** @var DOMAttr $attribute */
             foreach ($node->attributes as $attribute) {
-                if (
-                    strpos($attribute->name, Document::AMP_BIND_DATA_ATTR_PREFIX) === 0
-                    ||
-                    (
-                        $attribute->name[0] === '['
-                        &&
-                        $attribute->name[strlen($attribute->name) - 1] === ']'
-                    )
-                ) {
+                if (strpos($attribute->name, Document::AMP_BIND_DATA_ATTR_PREFIX) === 0) {
                     $node->addBooleanAttribute(Attribute::I_AMPHTML_BINDING);
                     break;
                 }
