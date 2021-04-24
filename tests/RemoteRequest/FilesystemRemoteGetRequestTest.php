@@ -2,7 +2,6 @@
 
 namespace AmpProject\RemoteRequest;
 
-use AmpProject\Exception\FailedToGetFromRemoteUrl;
 use AmpProject\Tests\TestCase;
 use LogicException;
 

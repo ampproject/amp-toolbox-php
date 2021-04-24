@@ -61,7 +61,12 @@ final class FallbackRemoteGetRequest implements RemoteGetRequest
     {
         foreach ($this->pipeline as $remoteGetRequest) {
             try {
-                $response   = $remoteGetRequest->get($url);
+                $response = $remoteGetRequest->get($url);
+
+                if (! $response instanceof RemoteGetRequestResponse) {
+                    continue;
+                }
+
                 $statusCode = $response->getStatusCode();
 
                 if (200 <= $statusCode && $statusCode < 300) {
