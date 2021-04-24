@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Test the InvalidColumnFormat exception.
  *
- * @covers \AmpProject\Exception\InvalidColumnFormat
+ * @covers \AmpProject\Exception\Cli\InvalidColumnFormat
  * @package ampproject/amp-toolbox
  */
 class InvalidColumnFormatTest extends TestCase

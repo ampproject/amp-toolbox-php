@@ -8,7 +8,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Test the InvalidOption exception.
  *
- * @covers \AmpProject\Exception\InvalidOption
+ * @covers \AmpProject\Exception\Cli\InvalidOption
  * @package ampproject/amp-toolbox
  */
 class InvalidOptionTest extends TestCase
