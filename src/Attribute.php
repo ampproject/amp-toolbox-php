@@ -49,6 +49,7 @@ interface Attribute
     const HOST_SERVICE             = 'host-service';
     const HREF                     = 'href';
     const HTTP_EQUIV               = 'http-equiv';
+    const I_AMPHTML_BINDING        = 'i-amphtml-binding';
     const I_AMPHTML_NO_BOILERPLATE = 'i-amphtml-no-boilerplate';
     const I_AMPHTML_SSR            = 'i-amphtml-ssr';
     const I_AMPHTML_VERSION        = 'i-amphtml-version';

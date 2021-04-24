@@ -21,8 +21,6 @@ use DOMText;
 use DOMXPath;
 
 /**
- * Class AmpProject\Dom\Document.
- *
  * Abstract away some of the difficulties of working with PHP's DOMDocument.
  *
  * @property DOMXPath     $xpath                   XPath query object for this document.

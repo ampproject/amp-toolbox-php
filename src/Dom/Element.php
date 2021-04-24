@@ -10,7 +10,7 @@ use DOMElement;
 use DOMException;
 
 /**
- * Class AmpProject\Dom\Element.
+ * Abstract away some convenience logic for handling DOMElement objects.
  *
  * @property Document $ownerDocument        The ownerDocument for these elements should always be a Dom\Document.
  * @property int      $inlineStyleByteCount Number of bytes that are consumed by the inline style attribute.

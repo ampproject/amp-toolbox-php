@@ -9,6 +9,8 @@ use DOMAttr;
  *
  * This is meant for quick identification of an element and does not dump the child element or other inner content
  * from that element.
+ *
+ * @package ampproject/amp-toolbox
  */
 final class ElementDump
 {
