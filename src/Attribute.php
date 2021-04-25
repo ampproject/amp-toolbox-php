@@ -31,6 +31,7 @@ interface Attribute
     const AMP_RUNTIME              = 'amp-runtime';
     const AMP_SCRIPT_SRC           = 'amp-script-src';
     const ARIA_HIDDEN              = 'aria-hidden';
+    const ARIA_LABEL               = 'aria-label';
     const AS_                      = 'as'; // Underscore needed because 'as' is a PHP keyword.
     const ASYNC                    = 'async';
     const ATTRIBUTION              = 'attribution';
@@ -41,6 +42,7 @@ interface Attribute
     const CROSSORIGIN              = 'crossorigin';
     const CUSTOM_ELEMENT           = 'custom-element';
     const CUSTOM_TEMPLATE          = 'custom-template';
+    const DATA                     = 'data';
     const DECODING                 = 'decoding';
     const DISABLE_INLINE_WIDTH     = 'disable-inline-width';
     const HEIGHT                   = 'height';
@@ -96,6 +98,7 @@ interface Attribute
     const TYPE_HTML       = 'text/html';
     const TYPE_JSON       = 'application/json';
     const TYPE_LD_JSON    = 'application/ld+json';
+    const TYPE_PDF        = 'application/pdf';
     const TYPE_MODULE     = 'module';
     const TYPE_TEXT_PLAIN = 'text/plain';
 
