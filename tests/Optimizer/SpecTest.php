@@ -75,7 +75,7 @@ final class SpecTest extends TestCase
             ],
             'OptimizeAmpBind'               => [
                 OptimizeAmpBind::class,
-                self::TRANSFORMER_SPEC_PATH . '/experimental/OptimizeAmpBind',
+                self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeAmpBind',
             ],
             'PreloadHeroImage'              => [
                 PreloadHeroImage::class,
