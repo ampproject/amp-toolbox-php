@@ -14,16 +14,15 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpInstagram extends Tag implements TagWithExtensionSpec
+final class ScriptAmpCacheUrl extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-instagram',
+        SpecRule::NAME => 'amp-cache-url',
         SpecRule::VERSION => [
-            '1.0',
+            '0.1',
         ],
-        SpecRule::VERSION_NAME => 'v1.0',
     ];
 
     const SPEC = [
@@ -34,12 +33,6 @@ final class ScriptAmpInstagram extends Tag implements TagWithExtensionSpec
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::SATISFIES => [
-            'amp-instagram 1.0',
-        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
-        SpecRule::EXCLUDES => [
-            'amp-instagram 0.1',
-        ],
     ];
 }

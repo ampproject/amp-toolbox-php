@@ -28,6 +28,14 @@ final class AmpLightbox extends Tag
                 ],
             ],
             [
+                SpecRule::NAME => Attribute::ANIMATION,
+                SpecRule::VALUE_CASEI => [
+                    'fade-in',
+                    'fly-in-bottom',
+                    'fly-in-top',
+                ],
+            ],
+            [
                 SpecRule::NAME => Attribute::CONTROLS,
             ],
             [

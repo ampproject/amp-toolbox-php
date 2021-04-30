@@ -22,6 +22,7 @@ final class ScriptAmpTimeago extends Tag implements TagWithExtensionSpec
         SpecRule::NAME => 'amp-timeago',
         SpecRule::VERSION => [
             '0.1',
+            '1.0',
             'latest',
         ],
     ];

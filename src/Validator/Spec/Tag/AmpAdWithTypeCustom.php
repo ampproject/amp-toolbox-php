@@ -45,7 +45,7 @@ final class AmpAdWithTypeCustom extends Tag
         SpecRule::ATTR_LISTS => [
             'extended-amp-global',
         ],
-        SpecRule::SPEC_URL => 'https://github.com/ampproject/amphtml/blob/master/ads/custom.md',
+        SpecRule::SPEC_URL => 'https://github.com/ampproject/amphtml/blob/main/ads/custom.md',
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FILL,

@@ -25,6 +25,7 @@ final class ScriptCustomElementAmpFitTextAmp4email extends Tag implements TagWit
         ],
         SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
         SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     const SPEC = [

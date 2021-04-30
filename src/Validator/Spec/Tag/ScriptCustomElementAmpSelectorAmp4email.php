@@ -24,6 +24,7 @@ final class ScriptCustomElementAmpSelectorAmp4email extends Tag implements TagWi
             '0.1',
         ],
         SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     const SPEC = [

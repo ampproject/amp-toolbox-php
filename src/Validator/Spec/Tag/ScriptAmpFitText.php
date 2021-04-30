@@ -21,11 +21,9 @@ final class ScriptAmpFitText extends Tag implements TagWithExtensionSpec
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-fit-text',
         SpecRule::VERSION => [
-            '0.1',
-            'latest',
+            '1.0',
         ],
-        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
-        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v1.0',
     ];
 
     const SPEC = [
@@ -35,8 +33,13 @@ final class ScriptAmpFitText extends Tag implements TagWithExtensionSpec
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
-            Format::AMP4ADS,
+        ],
+        SpecRule::SATISFIES => [
+            'amp-fit-text 1.0',
         ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-fit-text 0.1',
+        ],
     ];
 }

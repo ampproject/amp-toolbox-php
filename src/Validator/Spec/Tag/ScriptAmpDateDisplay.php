@@ -22,6 +22,7 @@ final class ScriptAmpDateDisplay extends Tag implements TagWithExtensionSpec
         SpecRule::NAME => 'amp-date-display',
         SpecRule::VERSION => [
             '0.1',
+            '1.0',
             'latest',
         ],
     ];

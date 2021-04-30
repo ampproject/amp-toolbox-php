@@ -25,6 +25,8 @@ final class AmpStoryAmpSidebar extends Tag
                 Layout::NODISPLAY,
             ],
         ],
+        SpecRule::DEPRECATION => 'anchor tags or amp-story-player controls',
+        SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/33293',
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],

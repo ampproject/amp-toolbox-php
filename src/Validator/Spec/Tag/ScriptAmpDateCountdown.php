@@ -22,6 +22,7 @@ final class ScriptAmpDateCountdown extends Tag implements TagWithExtensionSpec
         SpecRule::NAME => 'amp-date-countdown',
         SpecRule::VERSION => [
             '0.1',
+            '1.0',
             'latest',
         ],
     ];

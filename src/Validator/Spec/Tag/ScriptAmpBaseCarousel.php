@@ -22,6 +22,7 @@ final class ScriptAmpBaseCarousel extends Tag implements TagWithExtensionSpec
         SpecRule::NAME => 'amp-base-carousel',
         SpecRule::VERSION => [
             '0.1',
+            '1.0',
             'latest',
         ],
     ];

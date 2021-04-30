@@ -116,5 +116,6 @@ interface SpecRule
     const VALUE_REGEX_CASEI = 'valueRegexCasei';
     const VALUE_URL = 'valueUrl';
     const VERSION = 'version';
+    const VERSION_NAME = 'versionName';
     const WHITESPACE_ONLY = 'whitespaceOnly';
 }

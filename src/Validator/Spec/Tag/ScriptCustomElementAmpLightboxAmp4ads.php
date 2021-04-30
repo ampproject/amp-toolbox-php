@@ -24,6 +24,7 @@ final class ScriptCustomElementAmpLightboxAmp4ads extends Tag implements TagWith
             '0.1',
             'latest',
         ],
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     const SPEC = [

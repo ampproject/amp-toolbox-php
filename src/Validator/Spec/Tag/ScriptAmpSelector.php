@@ -21,10 +21,9 @@ final class ScriptAmpSelector extends Tag implements TagWithExtensionSpec
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-selector',
         SpecRule::VERSION => [
-            '0.1',
-            'latest',
+            '1.0',
         ],
-        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v1.0',
     ];
 
     const SPEC = [
@@ -34,8 +33,13 @@ final class ScriptAmpSelector extends Tag implements TagWithExtensionSpec
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
-            Format::AMP4ADS,
+        ],
+        SpecRule::SATISFIES => [
+            'amp-selector 1.0',
         ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-selector 0.1',
+        ],
     ];
 }

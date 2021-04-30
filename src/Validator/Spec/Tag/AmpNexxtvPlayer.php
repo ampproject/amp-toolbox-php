@@ -11,7 +11,6 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
-use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -37,24 +36,26 @@ final class AmpNexxtvPlayer extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => Attribute::DATA_ORIGIN,
-                SpecRule::VALUE_URL => [
-                    SpecRule::PROTOCOL => [
-                        Protocol::HTTPS,
-                        Protocol::HTTP,
-                    ],
-                    SpecRule::ALLOW_EMPTY => true,
-                ],
-            ],
-            [
                 SpecRule::NAME => Attribute::DATA_STREAMTYPE,
                 SpecRule::VALUE => [
                     'album',
                     'audio',
+                    'audioalbum',
+                    'collection',
                     'live',
                     'playlist',
                     'playlist-marked',
+                    'radio',
+                    'set',
                     'video',
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::DATA_EXIT_MODE,
+                SpecRule::VALUE => [
+                    'load',
+                    'loop',
+                    'replay',
                 ],
             ],
         ],

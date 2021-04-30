@@ -29,6 +29,12 @@ final class AmpDateCountdown extends Tag
                 ],
             ],
             [
+                SpecRule::NAME => Attribute::COUNT_UP,
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
                 SpecRule::NAME => Attribute::DATA_COUNT_UP,
                 SpecRule::VALUE => [
                     '',

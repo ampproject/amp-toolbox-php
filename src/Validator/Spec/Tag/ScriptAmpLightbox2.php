@@ -14,16 +14,19 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpInstagram extends Tag implements TagWithExtensionSpec
+final class ScriptAmpLightbox2 extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-instagram',
+        SpecRule::NAME => 'amp-lightbox',
         SpecRule::VERSION => [
-            '1.0',
+            '0.1',
+            'latest',
         ],
-        SpecRule::VERSION_NAME => 'v1.0',
+        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     const SPEC = [
@@ -35,11 +38,11 @@ final class ScriptAmpInstagram extends Tag implements TagWithExtensionSpec
             Format::AMP,
         ],
         SpecRule::SATISFIES => [
-            'amp-instagram 1.0',
+            'amp-lightbox 0.1',
         ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
         SpecRule::EXCLUDES => [
-            'amp-instagram 0.1',
+            'amp-lightbox 1.0',
         ],
     ];
 }

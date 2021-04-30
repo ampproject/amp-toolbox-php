@@ -147,7 +147,7 @@ final class Tags implements Section
         }
 
         if ($specName === 'SCRIPT' && array_key_exists('extensionSpec', $attributes)) {
-            $specName .= " ({$attributes['extensionSpec']['name']})";
+            $specName .= " [{$attributes['extensionSpec']['name']}]";
         }
 
         $tagId = $specName;

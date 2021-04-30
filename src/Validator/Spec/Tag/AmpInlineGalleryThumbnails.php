@@ -40,6 +40,11 @@ final class AmpInlineGalleryThumbnails extends Tag
                 ],
             ],
             [
+                SpecRule::NAME => Attribute::ASPECT_RATIO,
+                SpecRule::DISALLOWED_VALUE_REGEX => '^0+(\.0+)?$',
+                SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
+            ],
+            [
                 SpecRule::NAME => Attribute::LOOP,
                 SpecRule::VALUE => [
                     'true',

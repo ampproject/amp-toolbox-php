@@ -886,6 +886,9 @@ final class AttributeLists
                     Attribute::MIXED_LENGTH => [
                         SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
                     ],
+                    Attribute::ORIENTATION => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(horizontal|vertical),\s*)*(horizontal|vertical)',
+                    ],
                     Attribute::SLIDE => [
                         SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)',
                     ],
@@ -909,6 +912,7 @@ final class AttributeLists
                     '[horizontal]' => [],
                     '[loop]' => [],
                     '[mixed-length]' => [],
+                    '[orientation]' => [],
                     '[slide]' => [],
                     '[snap]' => [],
                     '[snap-align]' => [],
@@ -1201,6 +1205,56 @@ final class AttributeLists
                             ],
                         ],
                     ],
+                ]
+            ),
+            'amp-stream-gallery-common' => new Spec\AttributeList(
+                [
+                    Attribute::CONTROLS => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(always|auto|never),\s*)*(always|auto|never)',
+                    ],
+                    Attribute::EXTRA_SPACE => [
+                        SpecRule::VALUE => [
+                            'between',
+                        ],
+                    ],
+                    Attribute::LOOP => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
+                    ],
+                    Attribute::MIN_VISIBLE_COUNT => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+(\.\d+)?),\s*)*(\d+(\.\d+)?)',
+                    ],
+                    Attribute::MAX_VISIBLE_COUNT => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+(\.\d+)?),\s*)*(\d+(\.\d+)?)',
+                    ],
+                    Attribute::MIN_ITEM_WIDTH => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)',
+                    ],
+                    Attribute::MAX_ITEM_WIDTH => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+),\s*)*(\d+)',
+                    ],
+                    Attribute::OUTSET_ARROWS => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
+                    ],
+                    Attribute::PEEK => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(\d+(\.\d+)?),\s*)*(\d+(\.\d+)?)',
+                    ],
+                    Attribute::SLIDE_ALIGN => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(start|center),\s*)*(start|center)',
+                    ],
+                    Attribute::SNAP => [
+                        SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
+                    ],
+                    '[controls]' => [],
+                    '[extra-space]' => [],
+                    '[loop]' => [],
+                    '[min-visible-count]' => [],
+                    '[max-visible-count]' => [],
+                    '[min-item-width]' => [],
+                    '[max-item-width]' => [],
+                    '[outset-arrows]' => [],
+                    '[peek]' => [],
+                    '[slide-align]' => [],
+                    '[snap]' => [],
                 ]
             ),
             'amp-video-iframe-common' => new Spec\AttributeList(

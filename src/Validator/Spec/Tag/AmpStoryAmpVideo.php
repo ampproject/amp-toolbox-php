@@ -44,6 +44,15 @@ final class AmpStoryAmpVideo extends Tag
                 SpecRule::NAME => Attribute::POSTER,
                 SpecRule::MANDATORY => true,
             ],
+            [
+                SpecRule::NAME => Attribute::CACHE,
+                SpecRule::VALUE => [
+                    'google',
+                ],
+                SpecRule::REQUIRES_EXTENSION => [
+                    Extension::CACHE_URL,
+                ],
+            ],
         ],
         SpecRule::ATTR_LISTS => [
             'extended-amp-global',

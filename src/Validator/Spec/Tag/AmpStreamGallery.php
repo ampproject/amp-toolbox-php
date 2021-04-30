@@ -7,29 +7,21 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryAmpStoryPageAttachmentAmpVideo extends Tag
+final class AmpStreamGallery extends Tag
 {
     const SPEC = [
-        SpecRule::TAG_NAME => Extension::VIDEO,
-        SpecRule::SPEC_NAME => 'amp-story >> amp-story-page-attachment >> amp-video',
-        SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::POSTER,
-            ],
-        ],
+        SpecRule::TAG_NAME => Extension::STREAM_GALLERY,
         SpecRule::ATTR_LISTS => [
+            'amp-stream-gallery-common',
             'extended-amp-global',
-            'amp-video-common',
-            'lightboxable-elements',
         ],
-        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video/',
+        SpecRule::SPEC_URL => 'https://github.com/ampproject/amphtml/blob/master/extensions/amp-stream-gallery/amp-stream-gallery.md',
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [
                 Layout::FILL,
@@ -41,13 +33,11 @@ final class AmpStoryAmpStoryPageAttachmentAmpVideo extends Tag
                 Layout::RESPONSIVE,
             ],
         ],
-        SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE_ATTACHMENT,
         SpecRule::HTML_FORMAT => [
             Format::AMP,
-            Format::AMP4ADS,
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            Extension::VIDEO,
+            Extension::STREAM_GALLERY,
         ],
     ];
 }

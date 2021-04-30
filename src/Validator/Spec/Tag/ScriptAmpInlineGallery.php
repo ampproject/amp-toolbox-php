@@ -22,6 +22,7 @@ final class ScriptAmpInlineGallery extends Tag implements TagWithExtensionSpec
         SpecRule::NAME => 'amp-inline-gallery',
         SpecRule::VERSION => [
             '0.1',
+            '1.0',
             'latest',
         ],
     ];

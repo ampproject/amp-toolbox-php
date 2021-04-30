@@ -30,8 +30,19 @@ final class AmpStoryPageAttachmentHref extends Tag
             [
                 SpecRule::NAME => Attribute::THEME,
                 SpecRule::VALUE => [
+                    'custom',
                     'dark',
                     'light',
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::CTA_ACCENT_COLOR,
+            ],
+            [
+                SpecRule::NAME => Attribute::CTA_ACCENT_ELEMENT,
+                SpecRule::VALUE => [
+                    'background',
+                    'text',
                 ],
             ],
             [
@@ -42,6 +53,15 @@ final class AmpStoryPageAttachmentHref extends Tag
                         Protocol::HTTP,
                         Protocol::HTTPS,
                     ],
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::CTA_IMAGE,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        Protocol::HTTPS,
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
         ],

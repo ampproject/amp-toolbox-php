@@ -39,6 +39,9 @@ final class AmpAccordionSection extends Tag
             [
                 SpecRule::NAME => '[data-expand]',
             ],
+            [
+                SpecRule::NAME => '[expanded]',
+            ],
         ],
         SpecRule::CHILD_TAGS => [
             SpecRule::MANDATORY_NUM_CHILD_TAGS => 2,

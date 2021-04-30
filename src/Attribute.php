@@ -212,6 +212,7 @@ interface Attribute
     const BREAK_AFTER                     = 'break-after';
     const BREAK_BEFORE                    = 'break-before';
     const BREAK_INSIDE                    = 'break-inside';
+    const CACHE                           = 'cache';
     const CAPTION_SIDE                    = 'caption-side';
     const CARET_COLOR                     = 'caret-color';
     const CELLPADDING                     = 'cellpadding';
@@ -253,11 +254,14 @@ interface Attribute
     const CONTENTSTYLETYPE                = 'contentstyletype';
     const CONTROLS                        = 'controls';
     const CONTROLSLIST                    = 'controlslist';
+    const COUNT_UP                        = 'count-up';
     const COUNTER_INCREMENT               = 'counter-increment';
     const COUNTER_RESET                   = 'counter-reset';
     const CREDENTIALS                     = 'credentials';
     const CROSSORIGIN                     = 'crossorigin';
     const CRYPTOKEYS                      = 'cryptokeys';
+    const CTA_ACCENT_COLOR                = 'cta-accent-color';
+    const CTA_ACCENT_ELEMENT              = 'cta-accent-element';
     const CTA_IMAGE                       = 'cta-image';
     const CTA_IMAGE_2                     = 'cta-image-2';
     const CURSOR                          = 'cursor';
@@ -324,6 +328,7 @@ interface Attribute
     const EXPONENT                        = 'exponent';
     const EXPRESSION                      = 'expression';
     const EXTERNALRESOURCESREQUIRED       = 'externalresourcesrequired';
+    const EXTRA_SPACE                     = 'extra-space';
     const FALLBACK                        = 'fallback';
     const FETCH_ERROR                     = 'fetch-error';
     const FILL                            = 'fill';
@@ -541,9 +546,11 @@ interface Attribute
     const MAX_ENTRIES                     = 'max-entries';
     const MAX_FONT_SIZE                   = 'max-font-size';
     const MAX_HEIGHT                      = 'max-height';
+    const MAX_ITEM_WIDTH                  = 'max-item-width';
     const MAX_ITEMS                       = 'max-items';
     const MAX_PAGES                       = 'max-pages';
     const MAX_SCALE                       = 'max-scale';
+    const MAX_VISIBLE_COUNT               = 'max-visible-count';
     const MAX_WIDTH                       = 'max-width';
     const MEDIA                           = 'media';
     const METHOD                          = 'method';
@@ -553,6 +560,8 @@ interface Attribute
     const MIN_CHARACTERS                  = 'min-characters';
     const MIN_FONT_SIZE                   = 'min-font-size';
     const MIN_HEIGHT                      = 'min-height';
+    const MIN_ITEM_WIDTH                  = 'min-item-width';
+    const MIN_VISIBLE_COUNT               = 'min-visible-count';
     const MIN_WIDTH                       = 'min-width';
     const MIXED_LENGTH                    = 'mixed-length';
     const MIX_BLEND_MODE                  = 'mix-blend-mode';
@@ -628,6 +637,7 @@ interface Attribute
     const OUTLINE_OFFSET                  = 'outline-offset';
     const OUTLINE_STYLE                   = 'outline-style';
     const OUTLINE_WIDTH                   = 'outline-width';
+    const OUTSET_ARROWS                   = 'outset-arrows';
     const OVERFLOW                        = 'overflow';
     const OVERFLOW_STYLE                  = 'overflow-style';
     const OVERFLOW_WRAP                   = 'overflow-wrap';
@@ -651,6 +661,7 @@ interface Attribute
     const PAUSE                           = 'pause';
     const PAUSE_AFTER                     = 'pause-after';
     const PAUSE_BEFORE                    = 'pause-before';
+    const PEEK                            = 'peek';
     const PERMISSION_DIALOG_URL           = 'permission-dialog-url';
     const PERSPECTIVE                     = 'perspective';
     const PERSPECTIVE_ORIGIN              = 'perspective-origin';
@@ -722,6 +733,7 @@ interface Attribute
     const RX                              = 'rx';
     const RY                              = 'ry';
     const SANDBOX                         = 'sandbox';
+    const SANDBOXED                       = 'sandboxed';
     const SCALE                           = 'scale';
     const SCALE_END                       = 'scale-end';
     const SCALE_START                     = 'scale-start';
@@ -751,6 +763,7 @@ interface Attribute
     const SIZES                           = 'sizes';
     const SKETCH_TYPE                     = 'sketch-type';
     const SLIDE                           = 'slide';
+    const SLIDE_ALIGN                     = 'slide-align';
     const SLOPE                           = 'slope';
     const SLOT                            = 'slot';
     const SMOOTHING                       = 'smoothing';
@@ -984,6 +997,7 @@ interface Attribute
     const DATA_APP_KEY                     = 'data-app-key';
     const DATA_BCID                        = 'data-bcid';
     const DATA_CARDS                       = 'data-cards';
+    const DATA_CAROUSEL                    = 'data-carousel';
     const DATA_CLIENT                      = 'data-client';
     const DATA_COLOR                       = 'data-color';
     const DATA_COMMENTS                    = 'data-comments';
@@ -1007,6 +1021,7 @@ interface Attribute
     const DATA_ENDSCREEN_ENABLE            = 'data-endscreen-enable';
     const DATA_EPISODE                     = 'data-episode';
     const DATA_EPISODES                    = 'data-episodes';
+    const DATA_EXIT_MODE                   = 'data-exit-mode';
     const DATA_FORMULA                     = 'data-formula';
     const DATA_GFYID                       = 'data-gfyid';
     const DATA_GISTID                      = 'data-gistid';

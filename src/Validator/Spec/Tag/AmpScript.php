@@ -43,6 +43,12 @@ final class AmpScript extends Tag
                 ],
             ],
             [
+                SpecRule::NAME => Attribute::SANDBOXED,
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+            [
                 SpecRule::NAME => Attribute::SANDBOX,
             ],
             [

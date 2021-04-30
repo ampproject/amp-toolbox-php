@@ -28,7 +28,7 @@ final class AmpBridPlayer extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_OUTSTREAM,
-                SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
+                SpecRule::MANDATORY_ONEOF => '[\'data-carousel\', \'data-outstream\', \'data-playlist\', \'data-video\']',
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
@@ -43,12 +43,17 @@ final class AmpBridPlayer extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_PLAYLIST,
-                SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
+                SpecRule::MANDATORY_ONEOF => '[\'data-carousel\', \'data-outstream\', \'data-playlist\', \'data-video\']',
                 SpecRule::VALUE_REGEX => '.+',
             ],
             [
                 SpecRule::NAME => Attribute::DATA_VIDEO,
-                SpecRule::MANDATORY_ONEOF => '[\'data-outstream\', \'data-playlist\', \'data-video\']',
+                SpecRule::MANDATORY_ONEOF => '[\'data-carousel\', \'data-outstream\', \'data-playlist\', \'data-video\']',
+                SpecRule::VALUE_REGEX => '[0-9]+',
+            ],
+            [
+                SpecRule::NAME => Attribute::DATA_CAROUSEL,
+                SpecRule::MANDATORY_ONEOF => '[\'data-carousel\', \'data-outstream\', \'data-playlist\', \'data-video\']',
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [

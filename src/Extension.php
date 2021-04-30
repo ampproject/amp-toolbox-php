@@ -36,6 +36,7 @@ interface Extension
     const BRID_PLAYER                            = 'amp-brid-player';
     const BRIGHTCOVE                             = 'amp-brightcove';
     const BYSIDE_CONTENT                         = 'amp-byside-content';
+    const CACHE_URL                              = 'amp-cache-url';
     const CALL_TRACKING                          = 'amp-call-tracking';
     const CAROUSEL                               = 'amp-carousel';
     const CONNATIX_PLAYER                        = 'amp-connatix-player';
@@ -147,6 +148,7 @@ interface Extension
     const STORY_PANNING_MEDIA                    = 'amp-story-panning-media';
     const STORY_PLAYER                           = 'amp-story-player';
     const STORY_SOCIAL_SHARE                     = 'amp-story-social-share';
+    const STREAM_GALLERY                         = 'amp-stream-gallery';
     const SUBSCRIPTIONS                          = 'amp-subscriptions';
     const SUBSCRIPTIONS_GOOGLE                   = 'amp-subscriptions-google';
     const TIMEAGO                                = 'amp-timeago';

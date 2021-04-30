@@ -119,6 +119,7 @@ final class Dumper
         'valueRegexCasei',
         'valueUrl',
         'version',
+        'versionName',
     ];
 
     /**
