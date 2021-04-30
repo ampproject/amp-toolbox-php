@@ -1097,4 +1097,6 @@ interface Attribute
     const DATA_WEBCARE_ID                  = 'data-webcare-id';
     const DATA_WIDGET_ID                   = 'data-widget-id';
     const DATA_WIDGET_TYPE                 = 'data-widget-type';
+
+    const CROSSORIGIN_ANONYMOUS = 'anonymous';
 }

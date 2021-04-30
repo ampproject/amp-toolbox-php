@@ -70,6 +70,7 @@ final class Element extends DOMElement
      * @param string $value The value of the attribute.
      * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
      * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
+     * @throws DOMException With code DOM_NO_MODIFICATION_ALLOWED_ERR if the node is readonly.
      */
     public function setAttribute($name, $value)
     {
