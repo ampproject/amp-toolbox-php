@@ -14,7 +14,7 @@ final class Dumper
     /** @var string[] */
     const SPEC_RULE_KEYS = [
         'addValueToSet',
-        'allowAllDeclarationInStyleTag',
+        'allowAllDeclarationInStyle',
         'allowEmpty',
         'allowImportant',
         'allowRelative',
@@ -70,6 +70,7 @@ final class Dumper
         'mandatoryAncestor',
         'mandatoryAncestorSuggestedAlternative',
         'mandatoryAnyof',
+        'mandatoryCdata',
         'mandatoryLastChild',
         'mandatoryMinNumChildTags',
         'mandatoryNumChildTags',
@@ -120,6 +121,7 @@ final class Dumper
         'valueUrl',
         'version',
         'versionName',
+        'whitespaceOnly',
     ];
 
     /**

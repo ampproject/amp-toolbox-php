@@ -72,7 +72,7 @@ final class Css
                 SpecRule::MAX_BYTES_PER_INLINE_STYLE => 1000,
                 SpecRule::URL_BYTES_INCLUDED => true,
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                'allowAllDeclarationInStyle' => true,
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE => true,
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -104,7 +104,7 @@ final class Css
                 SpecRule::MAX_BYTES_PER_INLINE_STYLE => 1500,
                 SpecRule::URL_BYTES_INCLUDED => false,
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                'allowAllDeclarationInStyle' => true,
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE => true,
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -130,7 +130,7 @@ final class Css
                 ],
                 SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
-                'allowAllDeclarationInStyle' => true,
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE => true,
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -162,7 +162,7 @@ final class Css
                 SpecRule::MAX_BYTES_PER_INLINE_STYLE => 1000,
                 SpecRule::URL_BYTES_INCLUDED => true,
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                'allowAllDeclarationInStyle' => true,
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE => true,
                 SpecRule::DECLARATION_LIST => [
                     DeclarationList::BASIC_DECLARATIONS,
                 ],
@@ -190,7 +190,7 @@ final class Css
                 SpecRule::MAX_BYTES_PER_INLINE_STYLE => 1000,
                 SpecRule::URL_BYTES_INCLUDED => true,
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
-                'allowAllDeclarationInStyle' => false,
+                SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE => false,
                 SpecRule::DECLARATION_LIST => [
                     DeclarationList::EMAIL_SPECIFIC_DECLARATIONS,
                 ],

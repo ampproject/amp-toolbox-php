@@ -31,7 +31,7 @@ final class ScriptAmpOnerror extends Tag
             ],
         ],
         SpecRule::CDATA => [
-            'mandatoryCdata' => 'document.querySelector("script[src*=\'/v0.js\']").onerror=function(){document.querySelector(\'style[amp-boilerplate]\').textContent=\'\'}',
+            SpecRule::MANDATORY_CDATA => 'document.querySelector("script[src*=\'/v0.js\']").onerror=function(){document.querySelector(\'style[amp-boilerplate]\').textContent=\'\'}',
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

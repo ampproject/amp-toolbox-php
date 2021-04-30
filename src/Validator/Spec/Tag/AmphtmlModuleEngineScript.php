@@ -37,7 +37,7 @@ final class AmphtmlModuleEngineScript extends Tag
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
         SpecRule::CDATA => [
-            'whitespaceOnly' => true,
+            SpecRule::WHITESPACE_ONLY => true,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
