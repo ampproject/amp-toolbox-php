@@ -49,6 +49,7 @@ interface Configuration
         PreloadHeroImage::class,
         ServerSideRendering::class,
         AmpRuntimeCss::class,
+        AmpRuntimePreloads::class,
         AmpBoilerplateErrorHandler::class,
         GoogleFontsPreconnect::class,
         ResourceHints::class,
