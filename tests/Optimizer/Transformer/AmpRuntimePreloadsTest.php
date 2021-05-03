@@ -69,7 +69,11 @@ final class AmpRuntimePreloadsTest extends TestCase
     /**
      * Test the transform() method.
      *
-     * @covers       \AmpProject\Optimizer\Transformer\AmpRuntimePreloads::transform()
+     * @covers \AmpProject\Optimizer\Transformer\AmpRuntimePreloads::transform()
+     * @covers \AmpProject\Optimizer\Transformer\AmpRuntimePreloads::isAmpRuntimeCssNeeded()
+     * @covers \AmpProject\Optimizer\Transformer\AmpRuntimePreloads::isAmpRuntimeScriptNeeded()
+     * @covers \AmpProject\Optimizer\Transformer\AmpRuntimePreloads::getAmpRuntimeCssHost()
+     * @covers \AmpProject\Optimizer\Transformer\AmpRuntimePreloads::getAmpRuntimeScriptHost()
      * @dataProvider dataTransform()
      *
      * @param string                  $source         String of source HTML.
