@@ -60,6 +60,7 @@ final class FileManager
         $folders = [
             $this->destination,
             "{$this->destination}/Spec",
+            "{$this->destination}/Spec/AttributeList",
             "{$this->destination}/Spec/Section",
             "{$this->destination}/Spec/Tag",
         ];

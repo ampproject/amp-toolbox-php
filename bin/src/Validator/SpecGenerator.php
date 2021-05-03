@@ -38,6 +38,7 @@ final class SpecGenerator
 
         list($file, $namespace) = $fileManager->createNewNamespacedFile();
 
+        /** @var ClassType $class */
         $class = $namespace->addClass('Spec')
                            ->setFinal();
 
@@ -50,6 +51,8 @@ final class SpecGenerator
         $this->generateEntityClass('AttributeList', $fileManager);
         $this->generateEntityClass('TagWithExtensionSpec', $fileManager, 'interface');
         $this->generateEntityClass('ExtensionSpec', $fileManager, 'trait');
+        $this->generateEntityClass('IterableSection', $fileManager, 'interface');
+        $this->generateEntityClass('Iteration', $fileManager, 'trait');
         $this->generateErrorCodeInterface($jsonSpec, $fileManager);
         $this->generateSpecRuleInterface($specRuleKeys, $fileManager);
 

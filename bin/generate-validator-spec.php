@@ -36,9 +36,9 @@ function recursivelyRemoveDirectory($directory)
     }
 }
 
-recursivelyRemoveDirectory($destination);
-
 try {
+    recursivelyRemoveDirectory($destination);
+
     $specGenerator->generate(
         json_decode(file_get_contents('https://cdn.ampproject.org/v0/validator.json'), true),
         'AmpProject\Validator',

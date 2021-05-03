@@ -104,6 +104,7 @@ class TagsTest extends TestCase
 
     public function testIteration()
     {
+        $this->assertGreaterThan(10, count($this->tags));
         foreach ($this->tags as $tag) {
             $this->assertInstanceOf(Spec\Tag::class, $tag);
             $this->assertNotEmpty($tag::SPEC);

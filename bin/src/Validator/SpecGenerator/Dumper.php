@@ -251,6 +251,8 @@ final class Dumper
             strpos($value, 'static::') === 0
             ||
             strpos($value, '::class') !== false
+            ||
+            strpos($value, '::ID') !== false
         ) {
             return $value;
         }

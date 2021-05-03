@@ -9,8 +9,9 @@ use AmpProject\Exception\InvalidTagId;
 use Iterator;
 use LogicException;
 
-final class Tags implements Iterator
+final class Tags
 {
+
     const TAGS = [];
 
     const BY_TAG_NAME       = [];
@@ -24,13 +25,6 @@ final class Tags implements Iterator
      * @var \AmpProject\Validator\Spec\Tag[]
      */
     private $tagsCache = [];
-
-    /**
-     * Array to use for iteration.
-     *
-     * @var string[]
-     */
-    private $iterationArray;
 
     /**
      * Get a collection of tags by tag name.
@@ -148,74 +142,37 @@ final class Tags implements Iterator
     }
 
     /**
-     * Return the current Tag object.
+     * Get the list of available keys.
+     *
+     * @return array<string> Array of available keys.
+     */
+    public function getAvailableKeys()
+    {
+        return array_keys(self::TAGS);
+    }
+
+    /**
+     * Find the instantiated object for the current key.
+     *
+     * This should use its own caching mechanism as needed.
+     *
+     * Ideally, current() should be overridden as well to provide the correct object type-hint.
+     *
+     * @param string $key Key to retrieve the instantiated object for.
+     * @return object Instantiated object for the current key.
+     */
+    public function findByKey($key)
+    {
+        return $this->byTagId($key);
+    }
+
+    /**
+     * Return the current iterable object.
      *
      * @return Tag Tag object.
      */
     public function current()
     {
-        $this->initIterationArray();
-
-        $tagId = current($this->iterationArray);
-
-        return $this->byTagId($tagId);
-    }
-
-    /**
-     * Move forward to next Tag object.
-     *
-     * @return void Any returned value is ignored.
-     */
-    public function next()
-    {
-        $this->initIterationArray();
-
-        next($this->iterationArray);
-    }
-
-    /**
-     * Return the Tag ID of the current Tag object.
-     *
-     * @return string|null Tag ID of the current Tag object, or null if out of bounds.
-     */
-    public function key()
-    {
-        $this->initIterationArray();
-
-        return key($this->iterationArray);
-    }
-
-    /**
-     * Checks if current position is valid.
-     *
-     * @return bool The return value will be casted to boolean and then evaluated.
-     *              Returns true on success or false on failure.
-     */
-    public function valid()
-    {
-        $this->initIterationArray();
-
-        $key = $this->key();
-
-        return $key !== null && $key !== false;
-    }
-
-    /**
-     * Rewind the Iterator to the first Tag object.
-     *
-     * @return void Any returned value is ignored.
-     */
-    public function rewind()
-    {
-        $this->initIterationArray();
-
-        reset($this->iterationArray);
-    }
-
-    private function initIterationArray()
-    {
-        if ($this->iterationArray === null) {
-            $this->iterationArray = array_keys(self::TAGS);
-        }
+        return $this->parentCurrent();
     }
 }

@@ -49,8 +49,9 @@ final class Tags implements Section
         $byFormat        = [];
         $byExtensionSpec = [];
 
-        $namespace->addUse("Iterator");
         $namespace->addUse("LogicException");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
 
@@ -59,7 +60,11 @@ final class Tags implements Section
             $class->addMember($method);
         }
 
-        $class->addImplement('Iterator');
+        $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
+        $class->addTrait(
+            "{$fileManager->getRootNamespace()}\\Spec\\Iteration",
+            ['Iteration::current as parentCurrent']
+        );
 
         $class->addProperty('tagsCache')
               ->setPrivate()

@@ -101,7 +101,8 @@ final class SpecPrinter extends Printer
                 ? 'extends ' . implode(', ', array_map($resolver, (array) $class->getExtends())) . ' '
                 : '')
                 . ($class->getImplements()
-                ? 'implements ' . implode(', ', array_map($resolver, $class->getImplements())) . ' '
+                ? ($class->isInterface() ? 'extends ' : 'implements ')
+                  . implode(', ', array_map($resolver, $class->getImplements())) . ' '
                 : '')
                 . ($class->getName() ? "\n" : '') . "{\n"
                 . ($members ? $this->indent(implode("\n", $members)) : '')

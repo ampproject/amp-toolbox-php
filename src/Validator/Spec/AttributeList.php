@@ -9,24 +9,9 @@ namespace AmpProject\Validator\Spec;
 
 use AmpProject\Exception\InvalidAttributeName;
 
-final class AttributeList
+class AttributeList
 {
-    /**
-     * Associative array of attributes.
-     *
-     * @var array<array>
-     */
-    private $attributes;
-
-    /**
-     * AttributeList constructor.
-     *
-     * @param array<array> $attributes Associative array of attributes.
-     */
-    public function __construct($attributes)
-    {
-        $this->attributes = $attributes;
-    }
+    const ATTRIBUTES = [];
 
     /**
      * Check whether a given attribute is contained within the list.
@@ -36,7 +21,7 @@ final class AttributeList
      */
     public function has($attribute)
     {
-        return array_key_exists($attribute, $this->attributes);
+        return array_key_exists($attribute, static::ATTRIBUTES);
     }
 
     /**
@@ -51,6 +36,6 @@ final class AttributeList
             throw InvalidAttributeName::forAttribute($attribute);
         }
 
-        return $this->attributes[$attribute];
+        return static::ATTRIBUTES[$attribute];
     }
 }
