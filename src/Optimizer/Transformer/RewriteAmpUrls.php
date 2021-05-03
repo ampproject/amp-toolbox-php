@@ -118,8 +118,9 @@ final class RewriteAmpUrls implements Transformer
 
         $node = $document->head->firstChild;
         while ($node) {
+            $nextSibling = $node->nextSibling;
             if (! $node instanceof Element) {
-                $node = $node->nextSibling;
+                $node = $nextSibling;
                 continue;
             }
 
@@ -158,7 +159,7 @@ final class RewriteAmpUrls implements Transformer
                 }
             }
 
-            $node = $node->nextSibling;
+            $node = $nextSibling;
         }
 
         return $preloadNodes;
