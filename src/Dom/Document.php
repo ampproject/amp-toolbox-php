@@ -335,11 +335,11 @@ final class Document extends DOMDocument
     private $convertedAmpBindAttributes = [];
 
     /**
-     * Link manager to manage <link> tags in the <head>.
+     * Resource hint manager to manage resource hint <link> tags in the <head>.
      *
      * @var ResourceHintManager|null
      */
-    private $linkManager;
+    private $resourceHints;
 
     /**
      * Creates a new AmpProject\Dom\Document object
@@ -2038,11 +2038,11 @@ final class Document extends DOMDocument
                 return $this->inlineStyleByteCount;
 
             case 'resourceHints':
-                if (! isset($this->linkManager)) {
-                    $this->linkManager = new ResourceHintManager($this);
+                if (! isset($this->resourceHints)) {
+                    $this->resourceHints = new ResourceHintManager($this);
                 }
 
-                return $this->linkManager;
+                return $this->resourceHints;
         }
 
         // Mimic regular PHP behavior for missing notices.
