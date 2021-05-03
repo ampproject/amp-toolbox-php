@@ -79,7 +79,7 @@ final class SpecTest extends TestCase
             'GoogleFontsPreconnect' => [
                 GoogleFontsPreconnect::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/GoogleFontsPreconnect'
-            ]
+            ],
             'OptimizeAmpBind'               => [
                 OptimizeAmpBind::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeAmpBind',

@@ -50,6 +50,7 @@ interface Configuration
         ServerSideRendering::class,
         AmpRuntimeCss::class,
         AmpBoilerplateErrorHandler::class,
+        GoogleFontsPreconnect::class,
         ResourceHints::class,
         RewriteAmpUrls::class,
         ReorderHead::class,
