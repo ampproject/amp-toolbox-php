@@ -124,6 +124,13 @@ trait MarkupComparison
         $actual   = array_map($normalizeAttributes, array_filter($actual));
         $expected = array_map($normalizeAttributes, array_filter($expected));
 
+        $replacePipes = static function ($attribute) {
+            return str_replace('%7C', '|', $attribute);
+        };
+
+        $actual   = array_map($replacePipes, $actual);
+        $expected = array_map($replacePipes, $expected);
+
         $this->assertEquals($expected, $actual);
     }
 }
