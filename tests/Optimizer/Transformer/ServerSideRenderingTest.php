@@ -6,7 +6,6 @@ use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Exception\InvalidHtmlAttribute;
-use AmpProject\Tag;
 use AmpProject\Tests\ErrorComparison;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
@@ -316,6 +315,16 @@ final class ServerSideRenderingTest extends TestCase
                     '<style amp-custom>@media not screen and (min-width: 650px){#i-amp-0{display:none}}</style>'
                 ),
                 [],
+            ],
+
+            'amp-ad with fluid layout' => [
+                $input('<amp-ad type="doubleclick" data-slot="/6355419/Travel" layout="fluid" height="fluid"></amp-ad>'),
+                $expectWithoutBoilerplate('<amp-ad class="i-amphtml-layout-fluid i-amphtml-layout-awaiting-size" data-slot="/6355419/Travel" height="fluid" i-amphtml-layout="fluid" layout="fluid" style="height:0;" type="doubleclick"></amp-ad>'),
+            ],
+
+            'amp-ad with fluid layout and width defined' => [
+                $input('<amp-ad type="doubleclick" data-slot="/6355419/Travel" layout="fluid" height="fluid" width="300"></amp-ad>'),
+                $expectWithoutBoilerplate('<amp-ad class="i-amphtml-layout-fluid i-amphtml-layout-awaiting-size" data-slot="/6355419/Travel" height="fluid" width="300" i-amphtml-layout="fluid" layout="fluid" style="width:300px;height:0;" type="doubleclick"></amp-ad>'),
             ],
         ];
     }
