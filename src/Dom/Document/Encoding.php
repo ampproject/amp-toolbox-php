@@ -38,6 +38,9 @@ interface Encoding
     const MAPPINGS = [
         // Assume ISO-8859-1 for some charsets.
         'latin-1' => 'ISO-8859-1',
+        // US-ASCII is one of the most popular ASCII names and used as HTML charset,
+        // but mb_list_encodings contains only "ASCII".
+        'us-ascii' => 'ascii',
     ];
 
     /**
