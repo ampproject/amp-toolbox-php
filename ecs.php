@@ -37,5 +37,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set(Fixer\Operator\BinaryOperatorSpacesFixer::class)
         ->call('configure', [[
             'default' => 'align',
+        ]])
+        ->set(Fixer\ClassNotation\ClassAttributesSeparationFixer::class)
+        ->call('configure', [[
+            'elements' => [
+                'method'   => Fixer\ClassNotation\ClassAttributesSeparationFixer::SPACING_ONE,
+                'property' => Fixer\ClassNotation\ClassAttributesSeparationFixer::SPACING_ONE,
+            ],
         ]]);
 };
