@@ -42,6 +42,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
+      - name: Remove ECS on lower PHP versions
+        if: ${{ matrix.php == '5.6' || matrix.php == '7.0' }}
+        run: composer remove symplify/easy-coding-standard
+
       - name: Install Composer dependencies
         run: composer install
 
@@ -75,7 +79,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4']
+        php: ['8.0']
 
     steps:
       - name: Checkout
