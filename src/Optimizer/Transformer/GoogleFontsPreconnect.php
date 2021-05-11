@@ -33,7 +33,7 @@ final class GoogleFontsPreconnect implements Transformer
      *
      * @var string
      */
-    const XPATH_GOOGLE_FONTS_API_QUERY = './/link[starts-with(@href, "' . self::GOOGLE_FONTS_API_DOMAIN . '")]';
+    const XPATH_GOOGLE_FONTS_API_QUERY = './/link[starts-with(@href, "' . self::GOOGLE_FONTS_API_BASE_URL . '")]';
 
     /**
      * Apply transformations to the provided DOM document.
@@ -45,7 +45,7 @@ final class GoogleFontsPreconnect implements Transformer
     public function transform(Document $document, ErrorCollection $errors)
     {
         if ($this->usesGoogleFonts($document)) {
-            $document->links->addPreconnect(self::GOOGLE_FONTS_STATIC_DOMAIN);
+            $document->links->addPreconnect(self::GOOGLE_FONTS_STATIC_ORIGIN);
         }
     }
 
