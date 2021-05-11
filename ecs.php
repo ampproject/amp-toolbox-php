@@ -18,6 +18,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ])->set(Option::SKIP, [
         ArrayListItemNewlineFixer::class => null,
         ArrayOpenerAndCloserNewlineFixer::class => null,
+        Fixer\Phpdoc\NoSuperfluousPhpdocTagsFixer::class => null,
+        Fixer\Phpdoc\PhpdocNoEmptyReturnFixer::class => null,
     ]);
 
     $containerConfigurator->import(SetList::PSR_12);
