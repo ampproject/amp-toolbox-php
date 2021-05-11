@@ -58,15 +58,17 @@ final class LinkManager
      *
      * @see https://www.w3.org/TR/resource-hints/#dfn-preconnect
      *
-     * @param string $href      Origin to preconnect to.
-     * @param bool   $anonymous Optional. Whether to make a crossorigin link anonymous. Defaults to true.
+     * @param string      $href        Origin to preconnect to.
+     * @param bool|string $crossorigin Optional. Whether and how to configure CORS. Accepts a boolean for adding a
+     *                                 boolean crossorigin flag, or a string to set a specific crossorigin strategy.
+     *                                 Allowed values are 'anonymous' and 'use-credentials'. Defaults to true.
      */
-    public function addPreconnect($href, $anonymous = true)
+    public function addPreconnect($href, $crossorigin = true)
     {
         $this->add(
             Attribute::REL_PRECONNECT,
             $href,
-            $anonymous ? [Attribute::CROSSORIGIN => Attribute::CROSSORIGIN_ANONYMOUS] : []
+            $crossorigin !== false ? [Attribute::CROSSORIGIN => (is_string($crossorigin) ? $crossorigin : null)] : []
         );
 
         // Use dns-prefetch as fallback for browser that don't support preconnect.
@@ -79,18 +81,20 @@ final class LinkManager
      *
      * @see https://www.w3.org/TR/resource-hints/#prefetch
      *
-     * @param string $href      URL to the resource to prefetch.
-     * @param string $type      Optional. Type of the resource. Defaults to type 'image'.
-     * @param bool   $anonymous Optional. Whether to make a crossorigin link anonymous. Defaults to true.
+     * @param string      $href        URL to the resource to prefetch.
+     * @param string      $type        Optional. Type of the resource. Defaults to type 'image'.
+     * @param bool|string $crossorigin Optional. Whether and how to configure CORS. Accepts a boolean for adding a
+     *                                 boolean crossorigin flag, or a string to set a specific crossorigin strategy.
+     *                                 Allowed values are 'anonymous' and 'use-credentials'. Defaults to true.
      */
-    public function addPrefetch($href, $type = RequestDestination::IMAGE, $anonymous = true)
+    public function addPrefetch($href, $type = RequestDestination::IMAGE, $crossorigin = true)
     {
         // TODO: Should we enforce a valid $type here?
 
         $attributes = [Attribute::AS_ => $type];
 
-        if ($anonymous) {
-            $attributes[Attribute::CROSSORIGIN] = Attribute::CROSSORIGIN_ANONYMOUS;
+        if ($crossorigin !== false) {
+            $attributes[Attribute::CROSSORIGIN] = is_string($crossorigin) ? $crossorigin : null;
         }
 
         $this->add(Attribute::REL_PREFETCH, $href, $attributes);
@@ -101,11 +105,14 @@ final class LinkManager
      *
      * @see https://www.w3.org/TR/preload/
      *
-     * @param string      $href  URL to link to.
-     * @param string      $type  Optional. Type of the resource. Defaults to type 'image'.
-     * @param string|null $media Optional. Media query to add to the preload. Defaults to none.
+     * @param string      $href        URL to link to.
+     * @param string      $type        Optional. Type of the resource. Defaults to type 'image'.
+     * @param string|null $media       Optional. Media query to add to the preload. Defaults to none.
+     * @param bool|string $crossorigin Optional. Whether and how to configure CORS. Accepts a boolean for adding a
+     *                                 boolean crossorigin flag, or a string to set a specific crossorigin strategy.
+     *                                 Allowed values are 'anonymous' and 'use-credentials'. Defaults to true.
      */
-    public function addPreload($href, $type = RequestDestination::IMAGE, $media = null)
+    public function addPreload($href, $type = RequestDestination::IMAGE, $media = null, $crossorigin = true)
     {
         // TODO: Should we enforce a valid $type here?
 
@@ -113,6 +120,10 @@ final class LinkManager
 
         if (!empty($media)) {
             $attributes[Attribute::MEDIA] = $media;
+        }
+
+        if ($crossorigin !== false) {
+            $attributes[Attribute::CROSSORIGIN] = is_string($crossorigin) ? $crossorigin : null;
         }
 
         $this->add(Attribute::REL_PRELOAD, $href, $attributes);

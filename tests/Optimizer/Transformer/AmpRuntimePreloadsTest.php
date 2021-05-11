@@ -50,7 +50,7 @@ final class AmpRuntimePreloadsTest extends TestCase
                 ),
                 $output(
                     '',
-                    '<link rel="preload" href="https://cdn.ampproject.org/v0.css" as="style">'
+                    '<link rel="preload" crossorigin href="https://cdn.ampproject.org/v0.css" as="style">'
                 ),
             ],
 
