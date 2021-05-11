@@ -153,7 +153,7 @@ class OptionsTest extends TestCase
         $GLOBALS['argv'] = [
             '/usr/bin/amp',
             'optimize',
-            '-'
+            '-',
         ];
 
         $options = new Options();
@@ -168,7 +168,7 @@ class OptionsTest extends TestCase
         $_SERVER['argv'] = [
             '/usr/bin/amp',
             'optimize',
-            '-'
+            '-',
         ];
 
         $options = new Options();
@@ -185,8 +185,8 @@ class OptionsTest extends TestCase
             'argv' => [
                 '/usr/bin/amp',
                 'optimize',
-                '-'
-            ]
+                '-',
+            ],
         ];
 
         $options = new Options();

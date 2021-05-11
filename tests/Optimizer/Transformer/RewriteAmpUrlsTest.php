@@ -29,7 +29,7 @@ final class RewriteAmpUrlsTest extends TestCase
         $configuration = new RewriteAmpUrlsConfiguration(
             [
                 'lts' => true,
-                'rtv' => true
+                'rtv' => true,
             ]
         );
 

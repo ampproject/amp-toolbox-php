@@ -49,7 +49,7 @@ class CssRuleTest extends TestCase
             'normalizes selectors and properties' => [
                 " \t\t  ,  #some-id  \n  \n\n >  \t .some-class  \t \n  .another-class  \t \n +  element  ~ another-element  \n   \t    ,  ,,   #another-id \n  .with-class  \n \t  ,  ",
                 " \t\t  ;  color \n \t : \n \t\n  red  ;;;   ; \n ; \t \n   background-color:white;;  \t  \n ; ",
-                '#some-id>.some-class .another-class+element~another-element,#another-id .with-class{background-color:white;color:red}'
+                '#some-id>.some-class .another-class+element~another-element,#another-id .with-class{background-color:white;color:red}',
             ],
         ];
     }
