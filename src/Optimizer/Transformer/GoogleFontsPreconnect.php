@@ -19,14 +19,14 @@ final class GoogleFontsPreconnect implements Transformer
      *
      * @var string
      */
-    const GOOGLE_FONTS_STATIC_DOMAIN = 'https://fonts.gstatic.com';
+    const GOOGLE_FONTS_STATIC_ORIGIN = 'https://fonts.gstatic.com';
 
     /**
      * Domain that the Google Fonts API is accepting requests from.
      *
      * @var string
      */
-    const GOOGLE_FONTS_API_DOMAIN = 'https://fonts.googleapis.com/';
+    const GOOGLE_FONTS_API_BASE_URL = 'https://fonts.googleapis.com/';
 
     /**
      * XPath query to fetch links pointing to the Google Fonts API.
