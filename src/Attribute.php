@@ -1117,5 +1117,6 @@ interface Attribute
     const DATA_WIDGET_ID                   = 'data-widget-id';
     const DATA_WIDGET_TYPE                 = 'data-widget-type';
 
-    const CROSSORIGIN_ANONYMOUS = 'anonymous';
+    const CROSSORIGIN_ANONYMOUS       = 'anonymous';
+    const CROSSORIGIN_USE_CREDENTIALS = 'use-credentials';
 }

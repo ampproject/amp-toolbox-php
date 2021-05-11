@@ -42,11 +42,23 @@ final class LinkManager
     }
 
     /**
+     * Add a dns-prefetch resource hint.
+     *
+     * @see https://www.w3.org/TR/resource-hints/#dns-prefetch
+     *
+     * @param string $href Origin to prefetch the DNS for.
+     */
+    public function addDnsPrefetch($href)
+    {
+        $this->add(Attribute::REL_DNS_PREFETCH, $href);
+    }
+
+    /**
      * Add a preconnect resource hint.
      *
      * @see https://www.w3.org/TR/resource-hints/#dfn-preconnect
      *
-     * @param string $href      URL to link to.
+     * @param string $href      Origin to preconnect to.
      * @param bool   $anonymous Optional. Whether to make a crossorigin link anonymous. Defaults to true.
      */
     public function addPreconnect($href, $anonymous = true)
@@ -54,12 +66,34 @@ final class LinkManager
         $this->add(
             Attribute::REL_PRECONNECT,
             $href,
-            $anonymous ? [ Attribute::CROSSORIGIN => Attribute::CROSSORIGIN_ANONYMOUS ] : []
+            $anonymous ? [Attribute::CROSSORIGIN => Attribute::CROSSORIGIN_ANONYMOUS] : []
         );
 
         // Use dns-prefetch as fallback for browser that don't support preconnect.
         // See https://web.dev/preconnect-and-dns-prefetch/#resolve-domain-name-early-with-reldns-prefetch
-        $this->add(Attribute::REL_DNS_PREFETCH, $href);
+        $this->addDnsPrefetch($href);
+    }
+
+    /**
+     * Add a prefetch resource hint.
+     *
+     * @see https://www.w3.org/TR/resource-hints/#prefetch
+     *
+     * @param string $href      URL to the resource to prefetch.
+     * @param string $type      Optional. Type of the resource. Defaults to type 'image'.
+     * @param bool   $anonymous Optional. Whether to make a crossorigin link anonymous. Defaults to true.
+     */
+    public function addPrefetch($href, $type = RequestDestination::IMAGE, $anonymous = true)
+    {
+        // TODO: Should we enforce a valid $type here?
+
+        $attributes = [Attribute::AS_ => $type];
+
+        if ($anonymous) {
+            $attributes[Attribute::CROSSORIGIN] = Attribute::CROSSORIGIN_ANONYMOUS;
+        }
+
+        $this->add(Attribute::REL_PREFETCH, $href, $attributes);
     }
 
     /**
@@ -75,12 +109,25 @@ final class LinkManager
     {
         // TODO: Should we enforce a valid $type here?
 
-        $attributes = [ Attribute::AS_ => $type ];
+        $attributes = [Attribute::AS_ => $type];
+
         if (!empty($media)) {
             $attributes[Attribute::MEDIA] = $media;
         }
 
         $this->add(Attribute::REL_PRELOAD, $href, $attributes);
+    }
+
+    /**
+     * Add a prerender resource hint.
+     *
+     * @see https://www.w3.org/TR/resource-hints/#prerender
+     *
+     * @param string $href URL of the page to prerender.
+     */
+    public function addPrerender($href)
+    {
+        $this->add(Attribute::REL_PRERENDER, $href);
     }
 
     /**
