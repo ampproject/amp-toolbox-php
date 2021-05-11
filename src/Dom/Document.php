@@ -350,6 +350,9 @@ final class Document extends DOMDocument
     /**
      * Named constructor to provide convenient way of transforming HTML into DOM.
      *
+     * Due to slow automatic encoding detection, it is recommended to provide an explicit
+     * charset either via a <meta charset> tag or via $options.
+     *
      * @param string       $html    HTML to turn into a DOM.
      * @param array|string $options Optional. Array of options to configure the document. Used as encoding if a string
      *                              is passed. Defaults to an empty array.
@@ -377,6 +380,9 @@ final class Document extends DOMDocument
      * Named constructor to provide convenient way of transforming a HTML fragment into DOM.
      *
      * The difference to Document::fromHtml() is that fragments are not normalized as to their structure.
+     *
+     * Due to slow automatic encoding detection, it is recommended to pass in an explicit
+     * charset via $options.
      *
      * @param string       $html    HTML to turn into a DOM.
      * @param array|string $options Optional. Array of options to configure the document. Used as encoding if a string
