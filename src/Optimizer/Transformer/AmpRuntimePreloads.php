@@ -25,11 +25,11 @@ final class AmpRuntimePreloads implements Transformer
     public function transform(Document $document, ErrorCollection $errors)
     {
         if ($this->isAmpRuntimeScriptNeeded($document)) {
-            $document->resourceHints->addPreload($this->getAmpRuntimeScriptHost(), RequestDestination::SCRIPT);
+            $document->links->addPreload($this->getAmpRuntimeScriptHost(), RequestDestination::SCRIPT);
         }
 
         if ($this->isAmpRuntimeCssNeeded($document)) {
-            $document->resourceHints->addPreload($this->getAmpRuntimeCssHost(), RequestDestination::STYLE);
+            $document->links->addPreload($this->getAmpRuntimeCssHost(), RequestDestination::STYLE);
         }
     }
 

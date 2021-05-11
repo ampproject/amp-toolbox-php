@@ -25,16 +25,16 @@ use DOMXPath;
 /**
  * Abstract away some of the difficulties of working with PHP's DOMDocument.
  *
- * @property DOMXPath            $xpath                   XPath query object for this document.
- * @property Element             $html                    The document's <html> element.
- * @property Element             $head                    The document's <head> element.
- * @property Element             $body                    The document's <body> element.
- * @property Element|null        $viewport                The document's viewport meta element.
- * @property DOMNodeList         $ampElements             The document's <amp-*> elements.
- * @property Element             $ampCustomStyle          The document's <style amp-custom> element.
- * @property int                 $ampCustomStyleByteCount Count of bytes of CSS in the <style amp-custom> tag.
- * @property int                 $inlineStyleByteCount    Count of bytes of CSS in all of the inline style attributes.
- * @property ResourceHintManager $resourceHints           Resource hint manager to manage <link> tags in the <head>.
+ * @property DOMXPath     $xpath                   XPath query object for this document.
+ * @property Element      $html                    The document's <html> element.
+ * @property Element      $head                    The document's <head> element.
+ * @property Element      $body                    The document's <body> element.
+ * @property Element|null $viewport                The document's viewport meta element.
+ * @property DOMNodeList  $ampElements             The document's <amp-*> elements.
+ * @property Element      $ampCustomStyle          The document's <style amp-custom> element.
+ * @property int          $ampCustomStyleByteCount Count of bytes of CSS in the <style amp-custom> tag.
+ * @property int          $inlineStyleByteCount    Count of bytes of CSS in all of the inline style attributes.
+ * @property LinkManager  $links                   Link manager to manage <link> tags in the <head>.
  *
  * @package ampproject/amp-toolbox
  */
@@ -337,9 +337,9 @@ final class Document extends DOMDocument
     /**
      * Resource hint manager to manage resource hint <link> tags in the <head>.
      *
-     * @var ResourceHintManager|null
+     * @var LinkManager|null
      */
-    private $resourceHints;
+    private $links;
 
     /**
      * Creates a new AmpProject\Dom\Document object
@@ -2037,12 +2037,12 @@ final class Document extends DOMDocument
 
                 return $this->inlineStyleByteCount;
 
-            case 'resourceHints':
-                if (! isset($this->resourceHints)) {
-                    $this->resourceHints = new ResourceHintManager($this);
+            case 'links':
+                if (! isset($this->links)) {
+                    $this->links = new LinkManager($this);
                 }
 
-                return $this->resourceHints;
+                return $this->links;
         }
 
         // Mimic regular PHP behavior for missing notices.

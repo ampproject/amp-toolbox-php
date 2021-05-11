@@ -10,7 +10,7 @@ use AmpProject\Tests\TestCase;
 /**
  * Tests for AmpProject\Dom\ResourceHintManager.
  *
- * @covers \AmpProject\Dom\ResourceHintManager
+ * @covers \AmpProject\Dom\LinkManager
  * @package ampproject/amp-toolbox
  */
 class ResourceHintManagerTest extends TestCase
@@ -42,12 +42,12 @@ class ResourceHintManagerTest extends TestCase
 
     /**
      * @dataProvider dataAddPreconnect()
-     * @covers \AmpProject\Dom\ResourceHintManager::addPreconnect()
+     * @covers \AmpProject\Dom\LinkManager::addPreconnect()
      */
     public function testAddPreconnect($href, $crossorigin, $expectedLinks)
     {
         $document = Document::fromHtml('<body></body>');
-        $document->resourceHints->addPreconnect($href, $crossorigin);
+        $document->links->addPreconnect($href, $crossorigin);
 
         $this->assertSimilarMarkup(
             '<head>'
@@ -83,12 +83,12 @@ class ResourceHintManagerTest extends TestCase
 
     /**
      * @dataProvider dataAddPreload()
-     * @covers \AmpProject\Dom\ResourceHintManager::addPreload()
+     * @covers \AmpProject\Dom\LinkManager::addPreload()
      */
     public function testAddPreload($href, $type, $media, $expectedLinks)
     {
         $document = Document::fromHtml('<body></body>');
-        $document->resourceHints->addPreload($href, $type, $media);
+        $document->links->addPreload($href, $type, $media);
 
         $this->assertSimilarMarkup(
             '<head>'
@@ -127,12 +127,12 @@ class ResourceHintManagerTest extends TestCase
 
     /**
      * @dataProvider dataAddLinkTag()
-     * @covers \AmpProject\Dom\ResourceHintManager::addLinkTag()
+     * @covers \AmpProject\Dom\LinkManager::add()
      */
     public function testAddLinkTag($rel, $href, $attributes, $expectedLinks)
     {
         $document = Document::fromHtml('<body></body>');
-        $document->resourceHints->addLinkTag($rel, $href, $attributes);
+        $document->links->add($rel, $href, $attributes);
 
         $this->assertSimilarMarkup(
             '<head>'
@@ -144,7 +144,7 @@ class ResourceHintManagerTest extends TestCase
     }
 
     /**
-     * @covers \AmpProject\Dom\ResourceHintManager::addLinkTag()
+     * @covers \AmpProject\Dom\LinkManager::add()
      */
     public function testLinkOrdering()
     {
@@ -156,9 +156,9 @@ class ResourceHintManagerTest extends TestCase
             . '</head>'
         );
 
-        $document->resourceHints->addLinkTag('test', 'https://example.com/1');
-        $document->resourceHints->addLinkTag('test', 'https://example.com/2');
-        $document->resourceHints->addLinkTag('test', 'https://example.com/3');
+        $document->links->add('test', 'https://example.com/1');
+        $document->links->add('test', 'https://example.com/2');
+        $document->links->add('test', 'https://example.com/3');
 
         $this->assertSimilarMarkup(
             '<head>'

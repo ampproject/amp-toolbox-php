@@ -45,7 +45,7 @@ final class GoogleFontsPreconnect implements Transformer
     public function transform(Document $document, ErrorCollection $errors)
     {
         if ($this->usesGoogleFonts($document)) {
-            $document->resourceHints->addPreconnect(self::GOOGLE_FONTS_STATIC_DOMAIN);
+            $document->links->addPreconnect(self::GOOGLE_FONTS_STATIC_DOMAIN);
         }
     }
 

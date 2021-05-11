@@ -8,16 +8,17 @@ use AmpProject\Tag;
 use DOMNode;
 
 /**
- * Resource hint manager class that is used to manage the <link> tags within a document's <head> to give the browser
- * hints about how to prioritize resources.
+ * Link manager class that is used to manage the <link> tags within a document's <head>.
+ *
+ * These can be used for example to give the browser hints about how to prioritize resources.
  *
  * @package ampproject/amp-toolbox
  */
-final class ResourceHintManager
+final class LinkManager
 {
 
     /**
-     * Document to manage the resource hints for.
+     * Document to manage the links for.
      *
      * @var Document
      */
@@ -31,7 +32,7 @@ final class ResourceHintManager
     private $referenceNode;
 
     /**
-     * ResourceHintManager constructor.
+     * LinkManager constructor.
      *
      * @param Document $document
      */
@@ -48,7 +49,7 @@ final class ResourceHintManager
      */
     public function addPreconnect($href, $crossorigin = true)
     {
-        $this->addLinkTag(
+        $this->add(
             Attribute::REL_PRECONNECT,
             $href,
             $crossorigin ? [ Attribute::CROSSORIGIN => null ] : []
@@ -56,7 +57,7 @@ final class ResourceHintManager
 
         // Use dns-prefetch as fallback for browser that don't support preconnect.
         // See https://web.dev/preconnect-and-dns-prefetch/#resolve-domain-name-early-with-reldns-prefetch
-        $this->addLinkTag(Attribute::REL_DNS_PREFETCH, $href);
+        $this->add(Attribute::REL_DNS_PREFETCH, $href);
     }
 
     /**
@@ -75,17 +76,17 @@ final class ResourceHintManager
             $attributes[Attribute::MEDIA] = $media;
         }
 
-        $this->addLinkTag(Attribute::REL_PRELOAD, $href, $attributes);
+        $this->add(Attribute::REL_PRELOAD, $href, $attributes);
     }
 
     /**
-     * Add a link tag.
+     * Add a link to the document.
      *
      * @param string   $rel        A 'rel' string.
      * @param string   $href       URL to link to.
      * @param string[] $attributes Associative array of attributes and their values.
      */
-    public function addLinkTag($rel, $href, $attributes = [])
+    public function add($rel, $href, $attributes = [])
     {
         $link = $this->document->createElement(Tag::LINK);
         $link->setAttribute(Attribute::REL, $rel);
