@@ -47,6 +47,74 @@ class LinkManagerTest extends TestCase
         );
     }
 
+    public function dataAddModulePreload()
+    {
+        return [
+            'crossorigin false, no type' => [
+                'https://example.com/logic.mjs',
+                null,
+                false,
+                [
+                    '<link href="https://example.com/logic.mjs" rel="modulepreload">'
+                ]
+            ],
+
+            'with type script' => [
+                'https://example.com/logic.mjs',
+                RequestDestination::SCRIPT,
+                false,
+                [
+                    '<link as="script" href="https://example.com/logic.mjs" rel="modulepreload">'
+                ]
+            ],
+
+            'crossorigin true' => [
+                'https://example.com/logic.mjs',
+                null,
+                true,
+                [
+                    '<link crossorigin href="https://example.com/logic.mjs" rel="modulepreload">'
+                ]
+            ],
+
+            'crossorigin anonymous' => [
+                'https://example.com/logic.mjs',
+                null,
+                Attribute::CROSSORIGIN_ANONYMOUS,
+                [
+                    '<link crossorigin="anonymous" href="https://example.com/logic.mjs" rel="modulepreload">'
+                ]
+            ],
+
+            'crossorigin use-credentials' => [
+                'https://example.com/logic.mjs',
+                null,
+                Attribute::CROSSORIGIN_USE_CREDENTIALS,
+                [
+                    '<link crossorigin="use-credentials" href="https://example.com/logic.mjs" rel="modulepreload">'
+                ]
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider dataAddModulePreload()
+     * @covers \AmpProject\Dom\LinkManager::addModulePreload()
+     */
+    public function testAddModulePreload($href, $type, $crossorigin, $expectedLinks)
+    {
+        $document = Document::fromHtml('<body></body>');
+        $document->links->addModulePreload($href, $type, $crossorigin);
+
+        $this->assertSimilarMarkup(
+            '<head>'
+            . '<meta charset="utf-8">'
+            . implode('', $expectedLinks)
+            . '</head>',
+            $document->saveHTMLFragment($document->head)
+        );
+    }
+
     public function dataAddPreconnect()
     {
         return [

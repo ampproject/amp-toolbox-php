@@ -54,6 +54,32 @@ final class LinkManager
     }
 
     /**
+     * Add a modulepreload declarative fetch primitive.
+     *
+     * @see https://html.spec.whatwg.org/multipage/links.html#link-type-modulepreload
+     *
+     * @param string      $href        Modular resource to preload.
+     * @param string|null $type        Optional. Type of the resource. Defaults to not specified, which equals 'script'.
+     * @param bool|string $crossorigin Optional. Whether and how to configure CORS. Accepts a boolean for adding a
+     *                                 boolean crossorigin flag, or a string to set a specific crossorigin strategy.
+     *                                 Allowed values are 'anonymous' and 'use-credentials'. Defaults to true.
+     */
+    public function addModulePreload($href, $type = null, $crossorigin = true)
+    {
+        $attributes = [];
+
+        if ($type !== null) {
+            $attributes = [Attribute::AS_ => $type];
+        }
+
+        if ($crossorigin !== false) {
+            $attributes[Attribute::CROSSORIGIN] = is_string($crossorigin) ? $crossorigin : null;
+        }
+
+        $this->add(Attribute::REL_MODULEPRELOAD, $href, $attributes);
+    }
+
+    /**
      * Add a preconnect resource hint.
      *
      * @see https://www.w3.org/TR/resource-hints/#dfn-preconnect
@@ -105,7 +131,7 @@ final class LinkManager
      *
      * @see https://www.w3.org/TR/preload/
      *
-     * @param string      $href        URL to link to.
+     * @param string      $href        Resource to preload.
      * @param string      $type        Optional. Type of the resource. Defaults to type 'image'.
      * @param string|null $media       Optional. Media query to add to the preload. Defaults to none.
      * @param bool|string $crossorigin Optional. Whether and how to configure CORS. Accepts a boolean for adding a
