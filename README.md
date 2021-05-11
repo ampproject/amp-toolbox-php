@@ -60,7 +60,7 @@ use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\TransformationEngine;
 
 $transformationEngine = new TransformationEngine();    // 1.
-$errorCollection      = new ErrorCollection;           // 2.
+$errorCollection      = new ErrorCollection();         // 2.
 
 $optimizedHtml = $transformationEngine->optimizeHtml(  // 3.
     $unoptimizedHtml,                                  // 4.
@@ -90,7 +90,7 @@ if (! $dom instanceof Document) {
 }
 
 $transformationEngine = new TransformationEngine();
-$errorCollection      = new ErrorCollection;
+$errorCollection      = new ErrorCollection();
 $transformationEngine->optimizeDom($dom, $errorCollection);
 ```
 
@@ -103,16 +103,16 @@ The [`AmpProject\Optimizer\ErrorCollection`](https://github.com/ampproject/amp-t
 To check whether errors were found, you can iterate over the collection, which will provide you with 0 or more [`AmpProject\Optimizer\Error`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/Error.php) objects.
 
 ```php
-$errorCollection = new ErrorCollection;
+$errorCollection = new ErrorCollection();
 
 // Do the transformation here, while passing in the $errorCollection object.
 
 foreach ($errorCollection as $error) {
-	printf(
-	    "Error code: %s\nError Message: %s\n",
-	    $error->getCode(),
-	    $error->getMessage()
-	);
+    printf(
+        "Error code: %s\nError Message: %s\n",
+        $error->getCode(),
+        $error->getMessage()
+    );
 }
 ```
 
@@ -120,7 +120,7 @@ A quick count of the errors can be done for early returns as needed:
 
 ```php
 if ($errorCollection->count() > 0) {
-	$this->log('The AMP serverside optimization process produced one or more errors.');
+    $this->log('The AMP serverside optimization process produced one or more errors.');
 }
 ```
 
@@ -128,7 +128,7 @@ You can check whether the collection of errors contains an error with a specific
 
 ```php
 if ($errorCollection->has('CannotRemoveBoilerplate')) {
-	$this->log('The boilerplate was not removed by the Optimizer.');
+    $this->log('The boilerplate was not removed by the Optimizer.');
 }
 ```
 
@@ -161,15 +161,15 @@ use AmpProject\Optimizer\TransformationEngine;
 use AmpProject\Optimizer\Transformer;
 
 $configurationData = [
-	Configuration::KEY_TRANSFORMERS => [
-		Transformer\ServerSideRendering::class,
-		Transformer\AmpRuntimeCss::class,
-		Transformer\TransformedIdentifier::class,
-	],
+    Configuration::KEY_TRANSFORMERS => [
+        Transformer\ServerSideRendering::class,
+        Transformer\AmpRuntimeCss::class,
+        Transformer\TransformedIdentifier::class,
+    ],
 ];
 
 $transformationEngine = new TransformationEngine(
-	new DefaultConfiguration($configurationData)
+    new DefaultConfiguration($configurationData)
 );
 ```
 
@@ -186,13 +186,13 @@ use AmpProject\Optimizer\TransformationEngine;
 use AmpProject\Optimizer\Transformer;
 
 $configurationData = [
-	Transformer\AmpRuntimeCss::class => [
-		Configuration\AmpRuntimeCssConfiguration::CANARY => true,
-	],
+    Transformer\AmpRuntimeCss::class => [
+        Configuration\AmpRuntimeCssConfiguration::CANARY => true,
+    ],
 ];
 
 $transformationEngine = new TransformationEngine(
-	new DefaultConfiguration($configurationData)
+    new DefaultConfiguration($configurationData)
 );
 ```
 
@@ -220,16 +220,16 @@ use AmpProject\Optimizer\TransformationEngine;
 use MyProject\MyCustomTransformer;
 
 $configurationData = [
-	Configuration::KEY_TRANSFORMERS => array_merge(
-		Configuration::DEFAULT_TRANSFORMERS,
-		[
-			MyCustomTransformer::class
-		],
-	),
+    Configuration::KEY_TRANSFORMERS => array_merge(
+        Configuration::DEFAULT_TRANSFORMERS,
+        [
+            MyCustomTransformer::class,
+        ],
+    ),
 ];
 
 $transformationEngine = new TransformationEngine(
-	new DefaultConfiguration($configurationData)
+    new DefaultConfiguration($configurationData)
 );
 ```
 
@@ -249,22 +249,22 @@ use MyProject\MyCustomTransformer;
 use MyProject\MyCustomTransformerConfiguration;
 
 $configurationData = [
-	Configuration::KEY_TRANSFORMERS => array_merge(
-		Configuration::DEFAULT_TRANSFORMERS,
-		[
-			MyCustomTransformer::class
-		],
-	),
-	MyCustomTransformer::class => [
-		MyCustomTransformerConfiguration::SOME_CONFIG_KEY => 'some value',
-	],
+    Configuration::KEY_TRANSFORMERS => array_merge(
+        Configuration::DEFAULT_TRANSFORMERS,
+        [
+            MyCustomTransformer::class,
+        ],
+    ),
+    MyCustomTransformer::class => [
+        MyCustomTransformerConfiguration::SOME_CONFIG_KEY => 'some value',
+    ],
 ];
 
 $configuration = new DefaultConfiguration($configurationData);
 
 $configuration->registerConfigurationClass(
-	MyCustomTransformer::class,
-	MyCustomTransformerConfiguration::class
+    MyCustomTransformer::class,
+    MyCustomTransformerConfiguration::class
 );
 
 $transformationEngine = new TransformationEngine($configuration);
@@ -285,24 +285,24 @@ use AmpProject\Optimizer\Configuration\BaseTransformerConfiguration;
 
 final class MyCustomTransformerConfiguration extends BaseTransformerConfiguration
 {
-	const SOME_CONFIG_KEY = 'some_config_key';
+    const SOME_CONFIG_KEY = 'some_config_key';
 
-	protected function getAllowedKeys()
-	{
-		return [
-			self::SOME_CONFIG_KEY => 'default value',
-		];
-	}
+    protected function getAllowedKeys()
+    {
+        return [
+            self::SOME_CONFIG_KEY => 'default value',
+        ];
+    }
 
-	protected function validate($key, $value)
-	{
-		switch ($key) {
-			case self::SOME_CONFIG_KEY:
-				// Validate configuration value here.
-		}
+    protected function validate($key, $value)
+    {
+        switch ($key) {
+            case self::SOME_CONFIG_KEY:
+                // Validate configuration value here.
+        }
 
-		return $value;
-	}
+        return $value;
+    }
 }
 ```
 
@@ -349,40 +349,40 @@ This layer of abstraction allows code outside of the transformation engine to co
 namespace MyProject;
 
 use AmpProject\Dom\Document;
-use AmpProject\RemoteGetRequest;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
+use AmpProject\RemoteGetRequest;
 use Throwable;
 
 final class MyCustomTransformer implements Transformer
 {
-	const END_POINT = 'https://example.com/some_endpoint/';
+    const END_POINT = 'https://example.com/some_endpoint/';
 
-	private $remoteRequest;
+    private $remoteRequest;
 
-	public function __construct(RemoteGetRequest $remoteRequest)
-	{
-		$this->remoteRequest = $remoteRequest;
-	}
+    public function __construct(RemoteGetRequest $remoteRequest)
+    {
+        $this->remoteRequest = $remoteRequest;
+    }
 
-	public function transform(Document $document, ErrorCollection $errors)
-	{
-		try {
-			$response = $this->remoteRequest->get(self::END_POINT);
-		} catch (Throwable $exception) {
-			// Add error handling here.
-		}
+    public function transform(Document $document, ErrorCollection $errors)
+    {
+        try {
+            $response = $this->remoteRequest->get(self::END_POINT);
+        } catch (Throwable $exception) {
+            // Add error handling here.
+        }
 
-		$statusCode = $response->getStatusCode();
+        $statusCode = $response->getStatusCode();
 
-		if (200 < $statusCode || $statusCode >= 300) {
-			// Add error handling here.
-		}
+        if (200 < $statusCode || $statusCode >= 300) {
+            // Add error handling here.
+        }
 
-		$content = $response->getBody();
-		
-		// Make use of the $content you've just retrieved from an external source.
-	}
+        $content = $response->getBody();
+
+        // Make use of the $content you've just retrieved from an external source.
+    }
 }
 ```
 
@@ -395,10 +395,10 @@ use AmpProject\Optimizer\DefaultConfiguration;
 use AmpProject\Optimizer\TransformationEngine;
 
 $transformationEngine = new TransformationEngine(
-	new DefaultConfiguration(),
+    new DefaultConfiguration(),
 
-	// A custom implementation that lets you control how remote requests are handled.
-	new MyCustomRemoteGetRequestImplementation()
+    // A custom implementation that lets you control how remote requests are handled.
+    new MyCustomRemoteGetRequestImplementation()
 );
 ```
 
@@ -423,12 +423,12 @@ use AmpProject\RemoteRequest\FallbackRemoteGetRequest;
 use AmpProject\RemoteRequest\FilesystemRemoteGetRequest;
 
 const FALLBACK_MAPPING = [
-	'https://example.com/some_endpoint/' => __DIR__ . '/../fallback_files/some_endpoint.json',
+    'https://example.com/some_endpoint/' => __DIR__ . '/../fallback_files/some_endpoint.json',
 ];
 
 $remoteRequest = new FallbackRemoteGetRequest(
-	new CurlRemoteGetRequest(true, 5, 0),                  // 5 second timeout with no retries, and ...
-	new FilesystemRemoteGetRequest(self::FALLBACK_MAPPING) // ... fall back to shipped files.
+    new CurlRemoteGetRequest(true, 5, 0),                  // 5 second timeout with no retries, and ...
+    new FilesystemRemoteGetRequest(self::FALLBACK_MAPPING) // ... fall back to shipped files.
 );
 
 $transformationEngine = new TransformationEngine(new DefaultConfiguration(), $remoteRequest);
