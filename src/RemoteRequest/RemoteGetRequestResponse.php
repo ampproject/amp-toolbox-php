@@ -11,7 +11,6 @@ use AmpProject\Response;
  */
 final class RemoteGetRequestResponse implements Response
 {
-
     /**
      * Body of the response.
      *
@@ -144,7 +143,7 @@ final class RemoteGetRequestResponse implements Response
             return '';
         }
 
-        return implode(',', (array)$this->headers[$this->headersIndex[$key]]);
+        return implode(',', (array) $this->headers[$this->headersIndex[$key]]);
     }
 
     /**

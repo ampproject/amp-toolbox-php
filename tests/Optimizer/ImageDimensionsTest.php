@@ -18,7 +18,6 @@ use stdClass;
  */
 class ImageDimensionsTest extends TestCase
 {
-
     /**
      * Test instantiating the ImageDimensions object.
      *
@@ -325,7 +324,7 @@ class ImageDimensionsTest extends TestCase
         $parentB->setAttribute(Attribute::HEIGHT, 200);
 
         $parentB->appendChild($parentA)
-                ->appendChild($image);
+            ->appendChild($image);
 
         $imageDimensions = new ImageDimensions($image);
 
@@ -351,8 +350,8 @@ class ImageDimensionsTest extends TestCase
         $parentC->setAttribute(Attribute::HEIGHT, 200);
 
         $parentC->appendChild($parentB)
-                ->appendChild($parentA)
-                ->appendChild($image);
+            ->appendChild($parentA)
+            ->appendChild($image);
 
         $imageDimensions = new ImageDimensions($image);
 

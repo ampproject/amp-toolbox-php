@@ -18,7 +18,6 @@ use AmpProject\Tag;
  */
 final class AmpBoilerplateErrorHandler implements Transformer
 {
-
     /**
      * Error handler script to be added to the document's <head>.
      *

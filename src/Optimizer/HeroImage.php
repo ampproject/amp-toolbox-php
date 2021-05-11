@@ -13,7 +13,6 @@ use AmpProject\Dom\Element;
  */
 final class HeroImage
 {
-
     /**
      * <amp-img> element wrapping the actual hero image.
      *

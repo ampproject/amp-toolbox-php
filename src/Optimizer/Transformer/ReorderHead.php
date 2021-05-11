@@ -45,7 +45,6 @@ use DOMNodeList;
  */
 final class ReorderHead implements Transformer
 {
-
     /**
      * Regular expression pattern to match resource hints pointing to an AMP resource.
      */
@@ -55,21 +54,37 @@ final class ReorderHead implements Transformer
      * Different categories of <head> tags to track and reorder.
      */
     private $ampResourceHints                  = [];
+
     private $linkIcons                         = [];
+
     private $linkStyleAmpRuntime               = null;
+
     private $linkStylesheetsBeforeAmpCustom    = [];
+
     private $metaCharset                       = null;
+
     private $metaViewport                      = null;
+
     private $metaOther                         = [];
+
     private $noscript                          = null;
+
     private $others                            = [];
+
     private $resourceHintLinks                 = [];
+
     private $scriptAmpRuntime                  = [];
+
     private $scriptAmpViewer                   = [];
+
     private $scriptNonRenderDelayingExtensions = [];
+
     private $scriptRenderDelayingExtensions    = [];
+
     private $styleAmpBoilerplate               = null;
+
     private $styleAmpCustom                    = null;
+
     private $styleAmpRuntime                   = null;
 
     /**
@@ -161,7 +176,7 @@ final class ReorderHead implements Transformer
      */
     private function registerScript(Element $node)
     {
-        $nomodule = (int)$node->hasAttribute('nomodule');
+        $nomodule = (int) $node->hasAttribute('nomodule');
 
         if (Amp::isRuntimeScript($node)) {
             $this->scriptAmpRuntime[$nomodule] = $node;
@@ -184,13 +199,13 @@ final class ReorderHead implements Transformer
         }
 
         if ($node->hasAttribute(Attribute::CUSTOM_TEMPLATE)) {
-            $name = $node->getAttribute(Attribute::CUSTOM_TEMPLATE);
+            $name                                                      = $node->getAttribute(Attribute::CUSTOM_TEMPLATE);
             $this->scriptNonRenderDelayingExtensions[$name][$nomodule] = $node;
             return;
         }
 
         if ($node->hasAttribute(Attribute::HOST_SERVICE)) {
-            $name = $node->getAttribute(Attribute::HOST_SERVICE);
+            $name                                                      = $node->getAttribute(Attribute::HOST_SERVICE);
             $this->scriptNonRenderDelayingExtensions[$name][$nomodule] = $node;
             return;
         }
@@ -361,6 +376,6 @@ final class ReorderHead implements Transformer
             return false;
         }
 
-        return (bool)preg_match(self::AMP_RESOURCE_HINT_SRC_PATTERN, $href);
+        return (bool) preg_match(self::AMP_RESOURCE_HINT_SRC_PATTERN, $href);
     }
 }

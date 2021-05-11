@@ -14,7 +14,6 @@ use ReflectionException;
  */
 trait PrivateAccess
 {
-
     /**
      * Call a private method as if it was public.
      *

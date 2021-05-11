@@ -11,7 +11,6 @@ use AmpProject\Dom\Document;
  */
 interface Transformer
 {
-
     /**
      * Apply transformations to the provided DOM document.
      *

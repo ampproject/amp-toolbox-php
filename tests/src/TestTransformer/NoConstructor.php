@@ -8,7 +8,6 @@ use AmpProject\Optimizer\Transformer;
 
 final class NoConstructor implements Transformer
 {
-
     public function transform(Document $document, ErrorCollection $errors)
     {
     }

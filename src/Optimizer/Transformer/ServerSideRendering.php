@@ -39,7 +39,6 @@ use Exception;
  */
 final class ServerSideRendering implements Transformer
 {
-
     /**
      * List of layouts that support server-side rendering.
      *
@@ -506,7 +505,7 @@ final class ServerSideRendering implements Transformer
                 break;
         }
 
-        if (!empty($styles)) {
+        if (! empty($styles)) {
             $element->addInlineStyle($styles);
         }
 
@@ -585,7 +584,7 @@ final class ServerSideRendering implements Transformer
 
         if ($layout === Layout::RESPONSIVE) {
             $elementId = $element->getAttribute(Attribute::ID);
-            if (!empty($elementId) && array_key_exists($elementId, $this->customSizerStyles)) {
+            if (! empty($elementId) && array_key_exists($elementId, $this->customSizerStyles)) {
                 $sizer = $this->createResponsiveSizer($document, $width, $height, $this->customSizerStyles[$elementId]);
             } else {
                 $sizer = $this->createResponsiveSizer($document, $width, $height);
@@ -857,7 +856,7 @@ final class ServerSideRendering implements Transformer
      */
     private function extractSizesAttributeCss(Document $document, Element $element, DOMAttr $attribute)
     {
-        if (!$element->hasAttribute(Attribute::SRCSET) || empty($element->getAttribute(Attribute::SRCSET))) {
+        if (! $element->hasAttribute(Attribute::SRCSET) || empty($element->getAttribute(Attribute::SRCSET))) {
             // According to the Mozilla docs, a sizes attribute without a valid srcset attribute should have no effect.
             // Therefore, it should simply be stripped, without producing media queries.
             // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes
@@ -939,7 +938,7 @@ final class ServerSideRendering implements Transformer
 
         foreach (array_reverse($sourceSizes) as $sourceSize) {
             $matches = [];
-            if (!preg_match(self::CSS_DIMENSION_WITH_MEDIA_CONDITION_REGEX_PATTERN, $sourceSize, $matches)) {
+            if (! preg_match(self::CSS_DIMENSION_WITH_MEDIA_CONDITION_REGEX_PATTERN, $sourceSize, $matches)) {
                 throw InvalidHtmlAttribute::fromAttribute($attribute->nodeName, $element);
             }
 
@@ -1006,7 +1005,7 @@ final class ServerSideRendering implements Transformer
 
         return [
             CssRule::withMediaQuery("@media {$not}{$attributeValue}", '#__ID__', 'display:none')
-                   ->applyID($document->getElementId($element)),
+                ->applyID($document->getElementId($element)),
         ];
     }
 
@@ -1036,7 +1035,7 @@ final class ServerSideRendering implements Transformer
             return $number === 0;
         }
 
-        if (!is_float($number)) {
+        if (! is_float($number)) {
             throw InvalidArgument::forNumericComparison($number);
         }
 

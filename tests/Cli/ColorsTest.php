@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class ColorsTest extends TestCase
 {
-
     public function testInstantiation()
     {
         // No TERM present, color should be the result of posix_isatty(STDOUT).
@@ -42,7 +41,7 @@ class ColorsTest extends TestCase
 
     public function testLineWithoutColors()
     {
-        $colors = new Colors();
+        $colors       = new Colors();
         $outputStream = fopen('php://memory', 'rw+');
         $colors->disable();
         $colors->line('test', Colors::C_BLUE, $outputStream);
@@ -53,7 +52,7 @@ class ColorsTest extends TestCase
 
     public function testLineWithColors()
     {
-        $colors = new Colors();
+        $colors       = new Colors();
         $outputStream = fopen('php://memory', 'rw+');
         $colors->enable();
         $colors->line('test', Colors::C_BLUE, $outputStream);

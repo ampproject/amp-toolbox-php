@@ -30,11 +30,11 @@ class OptimizeTest extends TestCase
     {
         $options = $this->createMock(Options::class);
         $options->expects($this->once())
-                ->method('registerCommand')
-                ->with($this->equalTo('optimize'));
+            ->method('registerCommand')
+            ->with($this->equalTo('optimize'));
         $options->expects($this->once())
-                ->method('registerArgument')
-                ->with($this->equalTo('file'));
+            ->method('registerArgument')
+            ->with($this->equalTo('file'));
         $command = new Optimize();
         $command->register($options);
     }
@@ -45,8 +45,8 @@ class OptimizeTest extends TestCase
         $command = new Optimize();
         $command->register($options);
         $options->expects($this->once())
-                ->method('getArguments')
-                ->willReturn([__DIR__ . '/../../spec/end-to-end/hello-world/input.html']);
+            ->method('getArguments')
+            ->willReturn([__DIR__ . '/../../spec/end-to-end/hello-world/input.html']);
         ob_start();
         $command->process($options);
         $output = ob_get_clean();
@@ -59,8 +59,8 @@ class OptimizeTest extends TestCase
         $command = new Optimize();
         $command->register($options);
         $options->expects($this->once())
-                ->method('getArguments')
-                ->willReturn(['nonsense']);
+            ->method('getArguments')
+            ->willReturn(['nonsense']);
         $this->expectException(InvalidArgument::class);
         $command->process($options);
     }

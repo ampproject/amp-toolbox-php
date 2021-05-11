@@ -13,7 +13,6 @@ use ReflectionClass;
  */
 trait ErrorComparison
 {
-
     /**
      * Assert that two sets of errors are the same.
      *

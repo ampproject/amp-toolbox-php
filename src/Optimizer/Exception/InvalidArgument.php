@@ -11,7 +11,6 @@ use InvalidArgumentException;
  */
 final class InvalidArgument extends InvalidArgumentException implements AmpOptimizerException
 {
-
     /**
      * Instantiate an InvalidArgument exception for an invalid argument type for numeric comparison.
      *

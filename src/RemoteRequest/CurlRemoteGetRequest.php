@@ -14,7 +14,6 @@ use AmpProject\Response;
  */
 final class CurlRemoteGetRequest implements RemoteGetRequest
 {
-
     /**
      * Default timeout value to use in seconds.
      *

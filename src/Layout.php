@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 interface Layout
 {
-
     const NODISPLAY    = 'nodisplay';
     const FIXED        = 'fixed';
     const RESPONSIVE   = 'responsive';
@@ -33,15 +32,15 @@ interface Layout
     ];
 
     const TO_SPEC = [
-        self::NODISPLAY => 1,
-        self::FIXED => 2,
+        self::NODISPLAY    => 1,
+        self::FIXED        => 2,
         self::FIXED_HEIGHT => 3,
-        self::RESPONSIVE => 4,
-        self::CONTAINER => 5,
-        self::FILL => 6,
-        self::FLEX_ITEM => 7,
-        self::FLUID => 8,
-        self::INTRINSIC => 9,
+        self::RESPONSIVE   => 4,
+        self::CONTAINER    => 5,
+        self::FILL         => 6,
+        self::FLEX_ITEM    => 7,
+        self::FLUID        => 8,
+        self::INTRINSIC    => 9,
     ];
 
     const SIZE_DEFINED_LAYOUTS = [

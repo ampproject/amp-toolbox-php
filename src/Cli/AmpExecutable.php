@@ -11,7 +11,6 @@ use AmpProject\Exception\Cli\InvalidCommand;
  */
 final class AmpExecutable extends Executable
 {
-
     /**
      * Array of command classes to register.
      *

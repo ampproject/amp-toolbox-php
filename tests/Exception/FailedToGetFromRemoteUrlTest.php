@@ -13,7 +13,6 @@ use RuntimeException;
  */
 class FailedToGetFromRemoteUrlTest extends TestCase
 {
-
     /**
      * Test throwing the exception with a URL and an HTTP status.
      */

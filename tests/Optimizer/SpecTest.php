@@ -104,7 +104,7 @@ final class SpecTest extends TestCase
 
             if (file_exists("{$specFileFolder}/config.json")) {
                 $suiteConfigJson = file_get_contents("{$specFileFolder}/config.json");
-                $suiteConfig = (array)json_decode($suiteConfigJson, true);
+                $suiteConfig     = (array) json_decode($suiteConfigJson, true);
                 if (empty($suiteConfig) || json_last_error() !== JSON_ERROR_NONE) {
                     $suiteConfig = [];
                 }
@@ -192,7 +192,7 @@ final class SpecTest extends TestCase
                     $mappedConfiguration[AmpRuntimeCss::class][AmpRuntimeCssConfiguration::STYLES] = $value;
                     break;
                 case 'ampRuntimeVersion':
-                    $mappedConfiguration[AmpRuntimeCss::class][AmpRuntimeCssConfiguration::VERSION] = $value;
+                    $mappedConfiguration[AmpRuntimeCss::class][AmpRuntimeCssConfiguration::VERSION]               = $value;
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::AMP_RUNTIME_VERSION] = $value;
                     break;
                 case 'ampUrlPrefix':
@@ -241,7 +241,7 @@ final class SpecTest extends TestCase
     private function extractConfigurationData(&$source)
     {
         $matches = [];
-        if (!preg_match(self::LEADING_HTML_COMMENT_REGEX_PATTERN, $source, $matches)) {
+        if (! preg_match(self::LEADING_HTML_COMMENT_REGEX_PATTERN, $source, $matches)) {
             return [];
         }
 
@@ -252,7 +252,7 @@ final class SpecTest extends TestCase
             return [];
         }
 
-        $configurationData = (array)json_decode($json, true);
+        $configurationData = (array) json_decode($json, true);
         if (empty($configurationData) || json_last_error() !== JSON_ERROR_NONE) {
             return [];
         }

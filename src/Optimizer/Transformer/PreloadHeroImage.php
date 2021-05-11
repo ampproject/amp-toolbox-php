@@ -44,7 +44,6 @@ use DOMNode;
  */
 final class PreloadHeroImage implements Transformer
 {
-
     /**
      * Class(es) to apply to a serverside-rendered image element.
      *
@@ -274,7 +273,7 @@ final class PreloadHeroImage implements Transformer
      */
     private function detectImageWithAttribute(Element $element, $attribute)
     {
-        if (!$element->hasAttribute($attribute)) {
+        if (! $element->hasAttribute($attribute)) {
             return null;
         }
 
@@ -457,7 +456,7 @@ final class PreloadHeroImage implements Transformer
                 }
             }
 
-            if (!$placeholder instanceof Element) {
+            if (! $placeholder instanceof Element) {
                 break;
             }
 
@@ -585,7 +584,7 @@ final class PreloadHeroImage implements Transformer
             $imgElement->setAttribute(Attribute::LOADING, 'lazy');
         }
 
-        if (!$element->hasAttribute(Attribute::DATA_HERO)) {
+        if (! $element->hasAttribute(Attribute::DATA_HERO)) {
             $element->appendChild($document->createAttribute(Attribute::DATA_HERO));
         }
 
@@ -673,7 +672,7 @@ final class PreloadHeroImage implements Transformer
         }
 
         if (
-            !empty($this->inlineStyleBackupAttribute)
+            ! empty($this->inlineStyleBackupAttribute)
             && preg_match(
                 self::CSS_BACKGROUND_IMAGE_URL_REGEX_PATTERN,
                 $element->getAttribute($this->inlineStyleBackupAttribute),
@@ -705,7 +704,7 @@ final class PreloadHeroImage implements Transformer
     private function isMarkedAsHeroImage(Element $element)
     {
         while ($element) {
-            if (!$element instanceof Element) {
+            if (! $element instanceof Element) {
                 $element = $element->parentNode;
                 continue;
             }

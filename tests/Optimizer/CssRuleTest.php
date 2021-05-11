@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class CssRuleTest extends TestCase
 {
-
     public function dataCssRuleOutput()
     {
         // ID will always be set to i-amp-42 for the tests.
@@ -27,25 +26,25 @@ class CssRuleTest extends TestCase
             'empty string with property' => ['', 'color:red', ''],
 
             'single string selector, single string property' => ['h1', 'color:red', 'h1{color:red}'],
-            'single array selector, single array property' => [['h1'], ['color:red'], 'h1{color:red}'],
+            'single array selector, single array property'   => [['h1'], ['color:red'], 'h1{color:red}'],
 
             'single string selector, multiple properties in string' => ['h1', 'color:red;background-color:green;font-weight:bold', 'h1{background-color:green;color:red;font-weight:bold}'],
-            'single string selector, multiple properties in array' => ['h1', ['color:red', 'background-color:green', 'font-weight:bold'], 'h1{background-color:green;color:red;font-weight:bold}'],
-            'single array selector, multiple properties in string' => [['h1'], 'color:red;background-color:green;font-weight:bold', 'h1{background-color:green;color:red;font-weight:bold}'],
-            'single array selector, multiple properties in array' => [['h1'], ['color:red', 'background-color:green', 'font-weight:bold'], 'h1{background-color:green;color:red;font-weight:bold}'],
+            'single string selector, multiple properties in array'  => ['h1', ['color:red', 'background-color:green', 'font-weight:bold'], 'h1{background-color:green;color:red;font-weight:bold}'],
+            'single array selector, multiple properties in string'  => [['h1'], 'color:red;background-color:green;font-weight:bold', 'h1{background-color:green;color:red;font-weight:bold}'],
+            'single array selector, multiple properties in array'   => [['h1'], ['color:red', 'background-color:green', 'font-weight:bold'], 'h1{background-color:green;color:red;font-weight:bold}'],
 
             'multiple selectors in string, single string property' => ['h1,h2,h3', 'color:red', 'h1,h2,h3{color:red}'],
-            'multiple selectors in array, single string property' => [['h1', 'h2', 'h3'], 'color:red', 'h1,h2,h3{color:red}'],
-            'multiple selectors in string, single array property' => ['h1,h2,h3', ['color:red'], 'h1,h2,h3{color:red}'],
-            'multiple selectors in array, single array property' => [['h1', 'h2', 'h3'], ['color:red'], 'h1,h2,h3{color:red}'],
+            'multiple selectors in array, single string property'  => [['h1', 'h2', 'h3'], 'color:red', 'h1,h2,h3{color:red}'],
+            'multiple selectors in string, single array property'  => ['h1,h2,h3', ['color:red'], 'h1,h2,h3{color:red}'],
+            'multiple selectors in array, single array property'   => [['h1', 'h2', 'h3'], ['color:red'], 'h1,h2,h3{color:red}'],
 
             'multiple selectors in string, multiple properties in string' => ['h1,h2,h3', 'color:red;background-color:green;font-weight:bold', 'h1,h2,h3{background-color:green;color:red;font-weight:bold}'],
-            'multiple selectors in array, multiple properties in string' => [['h1', 'h2', 'h3'], 'color:red;background-color:green;font-weight:bold', 'h1,h2,h3{background-color:green;color:red;font-weight:bold}'],
-            'multiple selectors in string, multiple properties in array' => ['h1,h2,h3', ['color:red', 'background-color:green', 'font-weight:bold'], 'h1,h2,h3{background-color:green;color:red;font-weight:bold}'],
-            'multiple selectors in array, multiple properties in array' => [['h1', 'h2', 'h3'], ['color:red', 'background-color:green', 'font-weight:bold'], 'h1,h2,h3{background-color:green;color:red;font-weight:bold}'],
+            'multiple selectors in array, multiple properties in string'  => [['h1', 'h2', 'h3'], 'color:red;background-color:green;font-weight:bold', 'h1,h2,h3{background-color:green;color:red;font-weight:bold}'],
+            'multiple selectors in string, multiple properties in array'  => ['h1,h2,h3', ['color:red', 'background-color:green', 'font-weight:bold'], 'h1,h2,h3{background-color:green;color:red;font-weight:bold}'],
+            'multiple selectors in array, multiple properties in array'   => [['h1', 'h2', 'h3'], ['color:red', 'background-color:green', 'font-weight:bold'], 'h1,h2,h3{background-color:green;color:red;font-weight:bold}'],
 
-            'id in selector' => [ '#__ID__', 'color:red', '#i-amp-42{color:red}'],
-            'multiple ids in selector' => [ '#__ID__.__ID__-button', 'color:red', '#i-amp-42.i-amp-42-button{color:red}'],
+            'id in selector'           => ['#__ID__', 'color:red', '#i-amp-42{color:red}'],
+            'multiple ids in selector' => ['#__ID__.__ID__-button', 'color:red', '#i-amp-42.i-amp-42-button{color:red}'],
 
             'normalizes selectors and properties' => [
                 " \t\t  ,  #some-id  \n  \n\n >  \t .some-class  \t \n  .another-class  \t \n +  element  ~ another-element  \n   \t    ,  ,,   #another-id \n  .with-class  \n \t  ,  ",
@@ -67,7 +66,7 @@ class CssRuleTest extends TestCase
     public function testCssRuleOutput($selectors, $properties, $expected)
     {
         $cssRule = new CssRule($selectors, $properties);
-        $css = $cssRule
+        $css     = $cssRule
             ->applyID('i-amp-42')
             ->getCss();
         $this->assertEquals($expected, $css);
