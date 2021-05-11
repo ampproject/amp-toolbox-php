@@ -50,13 +50,16 @@
     }
   },
   "scripts": {
-    "fix": "ecs --fix",
-    "cs": "ecs",
+    "fix": "ecs check --fix",
+    "fix-md": "ecs check-markdown README.md --fix",
+    "cs": "ecs check",
+    "cs-md": "ecs check-markdown README.md",
     "lint": "parallel-lint -j 10 --colors --exclude vendor .",
     "test": [
       "@lint",
       "@unit",
       "@cs",
+      "@cs-md",
       "@analyze"
     ],
     "analyze": "phpstan --version; phpstan analyze --ansi",
