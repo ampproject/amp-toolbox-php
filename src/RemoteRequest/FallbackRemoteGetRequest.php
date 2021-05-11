@@ -19,7 +19,6 @@ use Exception;
  */
 final class FallbackRemoteGetRequest implements RemoteGetRequest
 {
-
     /**
      * Array of RemoteGetRequest instances to churn through.
      *

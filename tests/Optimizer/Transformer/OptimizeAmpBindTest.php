@@ -18,7 +18,6 @@ use AmpProject\Tests\TestCase;
  */
 final class OptimizeAmpBindTest extends TestCase
 {
-
     const HTML = '
         <!doctype html>
         <html ⚡>

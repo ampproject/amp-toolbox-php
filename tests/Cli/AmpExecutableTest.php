@@ -71,23 +71,23 @@ class AmpExecutableTest extends TestCase
     {
         $colors = $this->createMock(Colors::class);
         $colors->method('isEnabled')
-               ->willReturn(true);
+            ->willReturn(true);
         $colors->method('line')
-               ->willReturnCallback(static function ($message, $color, $channel) {
-                if (is_resource($channel)) {
-                    if ($channel === STDOUT) {
-                        $channel = 'stdout';
-                    } elseif ($channel === STDERR) {
-                        $channel = 'stderr';
-                    }
-                }
+            ->willReturnCallback(static function ($message, $color, $channel) {
+                   if (is_resource($channel)) {
+                       if ($channel === STDOUT) {
+                           $channel = 'stdout';
+                       } elseif ($channel === STDERR) {
+                           $channel = 'stderr';
+                       }
+                   }
                    echo "[{$channel}]<{$color}> {$message}";
                });
 
         $options = $this->createMock(Options::class);
         $options->method('getOption')
-                ->with('loglevel')
-                ->willReturn('debug');
+            ->with('loglevel')
+            ->willReturn('debug');
 
         $executable = new AmpExecutable(false, $options, $colors);
 
@@ -102,23 +102,23 @@ class AmpExecutableTest extends TestCase
     {
         $colors = $this->createMock(Colors::class);
         $colors->method('isEnabled')
-               ->willReturn(false);
+            ->willReturn(false);
         $colors->method('line')
-               ->willReturnCallback(static function ($message, $color, $channel) {
-                if (is_resource($channel)) {
-                    if ($channel === STDOUT) {
-                        $channel = 'stdout';
-                    } elseif ($channel === STDERR) {
-                        $channel = 'stderr';
-                    }
-                }
+            ->willReturnCallback(static function ($message, $color, $channel) {
+                   if (is_resource($channel)) {
+                       if ($channel === STDOUT) {
+                           $channel = 'stdout';
+                       } elseif ($channel === STDERR) {
+                           $channel = 'stderr';
+                       }
+                   }
                    echo "[{$channel}]<{$color}> {$message}";
                });
 
         $options = $this->createMock(Options::class);
         $options->method('getOption')
-                ->with('loglevel')
-                ->willReturn('debug');
+            ->with('loglevel')
+            ->willReturn('debug');
 
         $executable = new AmpExecutable(false, $options, $colors);
 
@@ -128,23 +128,23 @@ class AmpExecutableTest extends TestCase
 
     public function testCommandSetupAndProcessing()
     {
-        $options = $this->createMock(Options::class);
+        $options    = $this->createMock(Options::class);
         $executable = new AmpExecutable(false, $options);
 
         $options->expects($this->once())
-                ->method('registerCommand')
-                ->with('optimize');
+            ->method('registerCommand')
+            ->with('optimize');
         $options->expects($this->once())
-                ->method('registerArgument')
-                ->withAnyParameters();
+            ->method('registerArgument')
+            ->withAnyParameters();
         $this->callPrivateMethod($executable, 'setup', [$options]);
 
         $options->expects($this->once())
-                ->method('getCommand')
-                ->willReturn('optimize');
+            ->method('getCommand')
+            ->willReturn('optimize');
         $options->expects($this->once())
-                ->method('getArguments')
-                ->willReturn([__DIR__ . '/../spec/end-to-end/hello-world/input.html']);
+            ->method('getArguments')
+            ->willReturn([__DIR__ . '/../spec/end-to-end/hello-world/input.html']);
         ob_start();
         $this->callPrivateMethod($executable, 'main', [$options]);
         $output = ob_get_clean();

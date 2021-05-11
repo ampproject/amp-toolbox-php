@@ -13,7 +13,6 @@ use stdClass;
  */
 class FailedToRetrieveRequiredDomElementTest extends TestCase
 {
-
     /**
      * Provide data for the <html> element.
      *

@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidArgumentTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an unreadable file.
      */

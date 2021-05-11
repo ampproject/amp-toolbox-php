@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class FailedToGetCachedResponseTest extends TestCase
 {
-
     /**
      * Test throwing the exception with a URL.
      */

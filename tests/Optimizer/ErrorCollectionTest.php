@@ -14,7 +14,6 @@ use ReflectionClass;
  */
 final class ErrorCollectionTest extends TestCase
 {
-
     /**
      * Test whether we can add errors to the collection.
      *

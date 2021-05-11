@@ -13,7 +13,6 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  */
 final class OptimizeAmpBindConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Whether the amp-bind optimizer is enabled.
      *
@@ -34,7 +33,6 @@ final class OptimizeAmpBindConfiguration extends BaseTransformerConfiguration
             self::ENABLED => true,
         ];
     }
-
 
     /**
      * Validate an individual configuration entry.

@@ -15,7 +15,6 @@ use DOMNode;
  */
 final class DevMode
 {
-
     /**
      * Attribute name for AMP dev mode.
      *

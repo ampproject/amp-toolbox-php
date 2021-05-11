@@ -18,7 +18,6 @@ use AmpProject\Exception\Cli\InvalidColumnFormat;
  */
 class TableFormatter
 {
-
     /**
      * Border between columns.
      *
@@ -163,7 +162,7 @@ class TableFormatter
     {
         // From environment.
         if (isset($_SERVER['COLUMNS'])) {
-            return (int)$_SERVER['COLUMNS'];
+            return (int) $_SERVER['COLUMNS'];
         }
 
         // Via tput.
@@ -176,7 +175,7 @@ class TableFormatter
             $pipes
         );
 
-        $width = (int)stream_get_contents($pipes[1]);
+        $width = (int) stream_get_contents($pipes[1]);
 
         proc_close($process);
 
@@ -204,7 +203,7 @@ class TableFormatter
         // First pass for format check and fixed columns.
         foreach ($columns as $index => $column) {
             // Handle fixed columns.
-            if ((string)intval($column) === (string)$column) {
+            if ((string) intval($column) === (string) $column) {
                 $fixed += $column;
                 continue;
             }
@@ -234,7 +233,7 @@ class TableFormatter
             }
             $percent = floatval($column);
 
-            $real = (int)floor(($percent * $remain) / 100);
+            $real = (int) floor(($percent * $remain) / 100);
 
             $columns[$index] = $real;
             $allocated       += $real;

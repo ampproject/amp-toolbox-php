@@ -14,7 +14,6 @@ namespace AmpProject\Optimizer;
  */
 final class CssRule
 {
-
     /**
      * Characters to use for trimming CSS values.
      *
@@ -109,7 +108,7 @@ final class CssRule
      */
     public static function withMediaQuery($mediaQuery, $selectors, $properties)
     {
-        $cssRule = new self($selectors, $properties);
+        $cssRule             = new self($selectors, $properties);
         $cssRule->mediaQuery = $mediaQuery;
         return $cssRule;
     }
@@ -310,7 +309,7 @@ final class CssRule
     {
         $separatedSelectors = [];
 
-        foreach ((array)$selectors as $selectorString) {
+        foreach ((array) $selectors as $selectorString) {
             if (is_array($selectorString)) {
                 $separatedSelectors = array_merge($separatedSelectors, $this->separateSelectors($selectorString));
             } else {
@@ -331,7 +330,7 @@ final class CssRule
     {
         $separatedProperties = [];
 
-        foreach ((array)$properties as $propertyString) {
+        foreach ((array) $properties as $propertyString) {
             if (is_array($propertyString)) {
                 $separatedProperties = array_merge($separatedProperties, $this->separateProperties($propertyString));
             } else {

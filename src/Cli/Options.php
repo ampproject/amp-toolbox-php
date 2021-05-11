@@ -22,7 +22,6 @@ use AmpProject\Exception\Cli\MissingArgument;
  */
 class Options
 {
-
     /**
      * List of options to parse.
      *
@@ -410,8 +409,8 @@ class Options
         $commandHelp = $this->setup['']['commandHelp'];
 
         foreach ($this->setup as $command => $config) {
-            $hasOptions   = (bool)$this->setup[$command]['options'];
-            $hasArguments = (bool)$this->setup[$command]['arguments'];
+            $hasOptions   = (bool) $this->setup[$command]['options'];
+            $hasArguments = (bool) $this->setup[$command]['arguments'];
 
             // Usage or command syntax line.
             if (! $command) {

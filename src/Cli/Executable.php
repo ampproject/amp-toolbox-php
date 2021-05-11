@@ -20,7 +20,6 @@ use Exception;
  */
 abstract class Executable
 {
-
     /**
      * Instance of the Colors helper object.
      *

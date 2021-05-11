@@ -86,19 +86,20 @@ final class TransformationEngineTest extends TestCase
     public function dataDependencyResolution()
     {
         return [
-            'no_constructor' => [ TestTransformer\NoConstructor::class ],
+            'no_constructor' => [TestTransformer\NoConstructor::class],
 
-            'no_dependencies' => [ TestTransformer\NoDependencies::class ],
+            'no_dependencies' => [TestTransformer\NoDependencies::class],
 
-            'remote_request_only' => [ TestTransformer\RemoteRequestOnly::class ],
+            'remote_request_only' => [TestTransformer\RemoteRequestOnly::class],
 
-            'configuration_only' => [ TestTransformer\ConfigurationOnly::class ],
+            'configuration_only' => [TestTransformer\ConfigurationOnly::class],
 
-            'configuration_then_remote_request' => [ TestTransformer\ConfigurationThenRemoteRequest::class ],
+            'configuration_then_remote_request' => [TestTransformer\ConfigurationThenRemoteRequest::class],
 
-            'remote_request_then_configuration' => [ TestTransformer\RemoteRequestThenConfiguration::class ],
+            'remote_request_then_configuration' => [TestTransformer\RemoteRequestThenConfiguration::class],
         ];
     }
+
     /**
      * Test dependency resolution.
      *

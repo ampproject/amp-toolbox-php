@@ -19,7 +19,6 @@ use DOMException;
  */
 final class Element extends DOMElement
 {
-
     /**
      * Regular expression pattern to match events and actions within an 'on' attribute.
      *
@@ -52,8 +51,8 @@ final class Element extends DOMElement
     {
         $style = trim($style, CssRule::CSS_TRIM_CHARACTERS);
 
-        $existingStyle = (string)trim($this->getAttribute(Attribute::STYLE));
-        if (!empty($existingStyle)) {
+        $existingStyle = (string) trim($this->getAttribute(Attribute::STYLE));
+        if (! empty($existingStyle)) {
             $existingStyle = rtrim($existingStyle, ';') . ';';
         }
 
@@ -104,7 +103,7 @@ final class Element extends DOMElement
         $attribute = new DOMAttr($name);
         $result    = $this->setAttributeNode($attribute);
 
-        if (!$result instanceof DOMAttr) {
+        if (! $result instanceof DOMAttr) {
             return false;
         }
 
@@ -187,7 +186,7 @@ final class Element extends DOMElement
             }
 
             foreach ($matches['event'] as $index => $event) {
-                $events[$event][] = $matches['actions'][ $index ];
+                $events[$event][] = $matches['actions'][$index];
             }
         }
 
@@ -210,7 +209,7 @@ final class Element extends DOMElement
             );
 
             $actions         = implode(',', array_unique(array_filter($actionsArray)));
-            $valueStrings[] = "{$event}:{$actions}";
+            $valueStrings[]  = "{$event}:{$actions}";
         }
 
         return implode(';', $valueStrings);
@@ -229,7 +228,7 @@ final class Element extends DOMElement
         }
 
         foreach ($this->attributes as $attribute) {
-            $attributes[ $attribute->nodeName ] = $attribute->nodeValue;
+            $attributes[$attribute->nodeName] = $attribute->nodeValue;
         }
 
         return $attributes;
@@ -266,8 +265,8 @@ final class Element extends DOMElement
     {
         switch ($name) {
             case 'inlineStyleByteCount':
-                if (!isset($this->inlineStyleByteCount)) {
-                    $this->inlineStyleByteCount = strlen((string)$this->getAttribute(Attribute::STYLE));
+                if (! isset($this->inlineStyleByteCount)) {
+                    $this->inlineStyleByteCount = strlen((string) $this->getAttribute(Attribute::STYLE));
                 }
 
                 return $this->inlineStyleByteCount;

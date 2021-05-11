@@ -25,7 +25,6 @@ use AmpProject\Tag;
  */
 final class AmpBoilerplate implements Transformer
 {
-
     /**
      * Apply transformations to the provided DOM document.
      *

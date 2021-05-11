@@ -20,7 +20,6 @@ use AmpProject\Optimizer\Transformer\TransformedIdentifier;
  */
 interface Configuration
 {
-
     /**
      * Key to use for managing the array of active transformers.
      *

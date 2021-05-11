@@ -20,7 +20,6 @@ use AmpProject\Exception\FailedToParseUrl;
  */
 final class Url
 {
-
     const SCHEME   = 'scheme';
     const HOST     = 'host';
     const PORT     = 'port';
@@ -208,7 +207,7 @@ final class Url
 
         $parts = array_merge(self::URL_DEFAULT_PARTS, $this->toArray(true));
 
-        return (bool)filter_var(self::toString($parts), FILTER_VALIDATE_URL);
+        return (bool) filter_var(self::toString($parts), FILTER_VALIDATE_URL);
     }
 
     /**

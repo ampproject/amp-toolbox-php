@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 interface Tag
 {
-
     const A          = 'a';
     const AREA       = 'area';
     const BASE       = 'base';

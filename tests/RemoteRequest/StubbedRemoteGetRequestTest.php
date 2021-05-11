@@ -13,7 +13,6 @@ use LogicException;
  */
 class StubbedRemoteGetRequestTest extends TestCase
 {
-
     public function testGetReturnsStubbedUrl()
     {
         $stubbedRequest = new StubbedRemoteGetRequest(

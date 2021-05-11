@@ -12,7 +12,6 @@ use InvalidArgumentException;
  */
 final class InvalidCommand extends InvalidArgumentException implements AmpCliException
 {
-
     /**
      * Instantiate an InvalidCommand exception for an unregistered command that is being referenced.
      *
@@ -25,7 +24,6 @@ final class InvalidCommand extends InvalidArgumentException implements AmpCliExc
 
         return new self($message, AmpCliException::E_INVALID_CMD);
     }
-
 
     /**
      * Instantiate an InvalidCommand exception for an already registered command that is to be re-registered.

@@ -16,7 +16,6 @@ use AmpProject\RuntimeVersion;
  */
 final class AmpRuntimeCssConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Configuration key that holds the flag for the canary version of the runtime style.
      *

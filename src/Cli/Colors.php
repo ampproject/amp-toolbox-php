@@ -18,7 +18,6 @@ use AmpProject\Exception\Cli\InvalidColor;
  */
 class Colors
 {
-
     const C_BLACK       = 'black';
     const C_BLUE        = 'blue';
     const C_BROWN       = 'brown';

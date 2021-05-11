@@ -15,7 +15,6 @@ namespace AmpProject;
  */
 interface RequestDestination
 {
-
     /**
      * Audio file, as typically used in <audio>.
      *
