@@ -44,6 +44,8 @@ final class LinkManager
     /**
      * Add a preconnect resource hint.
      *
+     * @see https://www.w3.org/TR/resource-hints/#dfn-preconnect
+     *
      * @param string $href      URL to link to.
      * @param bool   $anonymous Optional. Whether to make a crossorigin link anonymous. Defaults to true.
      */
@@ -61,7 +63,9 @@ final class LinkManager
     }
 
     /**
-     * Add a preconnect resource hint.
+     * Add a preload declarative fetch primitive.
+     *
+     * @see https://www.w3.org/TR/preload/
      *
      * @param string      $href  URL to link to.
      * @param string      $type  Optional. Type of the resource. Defaults to type 'image'.
