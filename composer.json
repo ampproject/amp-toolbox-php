@@ -50,7 +50,7 @@
     }
   },
   "scripts": {
-    "cbf": "ecs --fix",
+    "fix": "ecs --fix",
     "cs": "ecs",
     "lint": "parallel-lint -j 10 --colors --exclude vendor .",
     "test": [
