@@ -86,7 +86,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, iconv, json, libxml, zip
-          tools: composer, cs2pr
+          tools: composer
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -102,8 +102,8 @@ jobs:
       - name: Install Composer dependencies
         run: composer install
 
-      - name: Detect coding standard violations (PHPCS)
-        run: vendor/bin/phpcs -q --report=checkstyle --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 | cs2pr --graceful-warnings
+      - name: Detect coding standard violations (ECS)
+        run: vendor/bin/ecs
 
   static-analysis:
     name: Static analysis / PHP ${{ matrix.php }}
