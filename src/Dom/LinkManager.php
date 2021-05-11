@@ -44,15 +44,15 @@ final class LinkManager
     /**
      * Add a preconnect resource hint.
      *
-     * @param string $href        URL to link to.
-     * @param bool   $crossorigin Whether the link is crossorigin.
+     * @param string $href      URL to link to.
+     * @param bool   $anonymous Optional. Whether to make a crossorigin link anonymous. Defaults to true.
      */
-    public function addPreconnect($href, $crossorigin = true)
+    public function addPreconnect($href, $anonymous = true)
     {
         $this->add(
             Attribute::REL_PRECONNECT,
             $href,
-            $crossorigin ? [ Attribute::CROSSORIGIN => null ] : []
+            $anonymous ? [ Attribute::CROSSORIGIN => Attribute::CROSSORIGIN_ANONYMOUS ] : []
         );
 
         // Use dns-prefetch as fallback for browser that don't support preconnect.
