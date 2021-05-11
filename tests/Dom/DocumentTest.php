@@ -834,7 +834,7 @@ class DocumentTest extends TestCase
         $domWithoutDevModeOnRoot = Document::fromHtml('<!doctype html><html><head></head><body></body></html>');
         $domWithoutDevModeOnRoot->documentElement->setAttribute('data-ampdevmode', '');
         $tesData['dev_mode_added_after'] = [
-            $domWithoutDevModeOnRoot, false
+            $domWithoutDevModeOnRoot, false,
         ];
 
         return $tesData;

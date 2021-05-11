@@ -255,7 +255,7 @@ final class ReorderHeadTest extends TestCase
                 TestMarkup::SCRIPT_AMPRUNTIME . TestMarkup::SCRIPT_AMPAUDIO .
                 TestMarkup::LINK_CANONICAL . TestMarkup::STYLE_AMPBOILERPLATE . TestMarkup::NOSCRIPT_AMPBOILERPLATE .
                 '</head><body></body></html>',
-            ]
+            ],
         ];
     }
 

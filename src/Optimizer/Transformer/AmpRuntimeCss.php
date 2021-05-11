@@ -157,7 +157,7 @@ final class AmpRuntimeCss implements Transformer
         } else {
             $v0CssUrl = self::V0_CSS_URL;
             $options  = [
-                RuntimeVersion::OPTION_CANARY => $this->configuration->get(AmpRuntimeCssConfiguration::CANARY)
+                RuntimeVersion::OPTION_CANARY => $this->configuration->get(AmpRuntimeCssConfiguration::CANARY),
             ];
             $version  = (new RuntimeVersion($this->remoteRequest))->currentVersion($options);
         }
