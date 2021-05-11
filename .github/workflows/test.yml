@@ -44,7 +44,7 @@ jobs:
 
       - name: Remove ECS on lower PHP versions
         if: ${{ matrix.php == '5.6' || matrix.php == '7.0' }}
-        run: composer remove symplify/easy-coding-standard --ignore-platform-reqs -W
+        run: composer remove --dev symplify/easy-coding-standard --ignore-platform-reqs -W
 
       - name: Install Composer dependencies
         run: composer install
