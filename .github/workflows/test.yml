@@ -102,8 +102,11 @@ jobs:
       - name: Install Composer dependencies
         run: composer install
 
-      - name: Detect coding standard violations (ECS)
-        run: vendor/bin/ecs
+      - name: Detect coding standard violations in source code
+        run: composer cs
+
+      - name: Detect coding standard violations in documentation
+        run: composer cs-md
 
   static-analysis:
     name: Static analysis / PHP ${{ matrix.php }}
