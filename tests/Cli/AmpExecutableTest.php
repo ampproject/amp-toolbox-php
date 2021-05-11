@@ -74,15 +74,15 @@ class AmpExecutableTest extends TestCase
             ->willReturn(true);
         $colors->method('line')
             ->willReturnCallback(static function ($message, $color, $channel) {
-                   if (is_resource($channel)) {
-                       if ($channel === STDOUT) {
-                           $channel = 'stdout';
-                       } elseif ($channel === STDERR) {
-                           $channel = 'stderr';
-                       }
-                   }
-                   echo "[{$channel}]<{$color}> {$message}";
-               });
+                if (is_resource($channel)) {
+                    if ($channel === STDOUT) {
+                        $channel = 'stdout';
+                    } elseif ($channel === STDERR) {
+                        $channel = 'stderr';
+                    }
+                }
+                echo "[{$channel}]<{$color}> {$message}";
+            });
 
         $options = $this->createMock(Options::class);
         $options->method('getOption')
@@ -105,15 +105,15 @@ class AmpExecutableTest extends TestCase
             ->willReturn(false);
         $colors->method('line')
             ->willReturnCallback(static function ($message, $color, $channel) {
-                   if (is_resource($channel)) {
-                       if ($channel === STDOUT) {
-                           $channel = 'stdout';
-                       } elseif ($channel === STDERR) {
-                           $channel = 'stderr';
-                       }
-                   }
-                   echo "[{$channel}]<{$color}> {$message}";
-               });
+                if (is_resource($channel)) {
+                    if ($channel === STDOUT) {
+                        $channel = 'stdout';
+                    } elseif ($channel === STDERR) {
+                        $channel = 'stderr';
+                    }
+                }
+                echo "[{$channel}]<{$color}> {$message}";
+            });
 
         $options = $this->createMock(Options::class);
         $options->method('getOption')
