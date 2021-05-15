@@ -32,14 +32,22 @@ interface Option
     const LIBXML_FLAGS = 'libxml_flags';
 
     /**
+     * Option to perform additional validations of the document but increase parsing execution time.
+     *
+     * @var string
+     */
+    const ADDITIONAL_VALIDATION = 'additional_validation';
+
+    /**
      * Associative array of known options and their respective default value.
      *
      * @var array
      */
     const DEFAULTS = [
-        self::AMP_BIND_SYNTAX => self::AMP_BIND_SYNTAX_AUTO,
-        self::ENCODING        => null,
-        self::LIBXML_FLAGS    => 0,
+        self::AMP_BIND_SYNTAX       => self::AMP_BIND_SYNTAX_AUTO,
+        self::ENCODING              => null,
+        self::LIBXML_FLAGS          => 0,
+        self::ADDITIONAL_VALIDATION => false,
     ];
 
     /**

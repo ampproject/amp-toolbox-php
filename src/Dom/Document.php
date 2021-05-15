@@ -503,6 +503,8 @@ final class Document extends DOMDocument
 
         $this->reset();
 
+        $this->assertNoneMalformedByteSequences($source);
+
         $source = $this->convertAmpEmojiAttribute($source);
         $source = $this->convertAmpBindAttributes($source);
         $source = $this->replaceSelfClosingTags($source);
@@ -2144,5 +2146,23 @@ final class Document extends DOMDocument
         }
 
         return $html;
+    }
+
+    /**
+     * Check if there are malformed byte sequences.
+     *
+     * If passed bad byte sequences DOMDocument would fail in a random way (silently) and produces garbage.
+     *
+     * @param string $source The HTML fragment string.
+     * @throws \InvalidArgumentException if source contains some malformed byte sequences
+     */
+    private function assertNoneMalformedByteSequences($source)
+    {
+        if ($this->options[Option::ADDITIONAL_VALIDATION] && ! mb_check_encoding($source)) {
+            throw new \InvalidArgumentException(
+                'Passed html contains some malformed byte sequences. ' .
+                'Perhaps you use function "substr" instead of "mb_substr".'
+            );
+        }
     }
 }
