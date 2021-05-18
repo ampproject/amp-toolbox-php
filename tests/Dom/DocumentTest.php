@@ -1280,4 +1280,34 @@ class DocumentTest extends TestCase
             $document->saveHTMLFragment($element)
         );
     }
+
+    /**
+     * Test asserting none malformed byte sequences
+     *
+     * @covers \AmpProject\Dom\Document::assertNoneMalformedByteSequences()
+     */
+    public function testAssertNoneMalformedByteSequences()
+    {
+        $document = new Document();
+        $this->expectException(\InvalidArgumentException::class);
+        $document::fromHtmlFragment(
+            "<div>Some text \x00\x81<div>",
+            [Option::ADDITIONAL_VALIDATION => true]
+        );
+    }
+
+    /**
+     * Test asserting none bad byte sequences
+     *
+     * @covers \AmpProject\Dom\Document::assertNoneMalformedByteSequences()
+     */
+    public function testAssertNoneBadByteSequences()
+    {
+        $document = new Document();
+        $this->expectException(\InvalidArgumentException::class);
+        $document::fromHtmlFragment(
+            '<p>There is ' . substr('アプリ', 0, strlen('アプリ') - 1) . ' some other text</p>',
+            [Option::ADDITIONAL_VALIDATION => true]
+        );
+    }
 }
