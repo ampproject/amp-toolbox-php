@@ -5,7 +5,7 @@ namespace AmpProject\Exception;
 use OutOfRangeException;
 
 /**
- * Exception thrown when an invalid declaration name is requested from the validator spec.
+ * Exception thrown when an invalid attribute name is requested from the validator spec.
  *
  * @package ampproject/amp-toolbox
  */

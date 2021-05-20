@@ -11,7 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
-use AmpProject\Validator\Spec\Section\DescendantTagList;
+use AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -41,7 +41,7 @@ final class AmpStorySocialShare extends Tag
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList::AMP_STORY_SOCIAL_SHARE_ALLOWED_DESCENDANTS,
+        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList\AmpStorySocialShareAllowedDescendants::ID,
         SpecRule::MANDATORY_LAST_CHILD => true,
     ];
 }

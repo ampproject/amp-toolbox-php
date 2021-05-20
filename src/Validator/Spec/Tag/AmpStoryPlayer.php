@@ -10,7 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
-use AmpProject\Validator\Spec\Section\DescendantTagList;
+use AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -35,6 +35,6 @@ final class AmpStoryPlayer extends Tag
         SpecRule::REQUIRES_EXTENSION => [
             Extension::STORY_PLAYER,
         ],
-        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList::AMP_STORY_PLAYER_ALLOWED_DESCENDANTS,
+        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList\AmpStoryPlayerAllowedDescendants::ID,
     ];
 }

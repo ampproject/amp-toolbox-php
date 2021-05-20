@@ -9,7 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Extension;
 use AmpProject\Format;
-use AmpProject\Validator\Spec\Section\DescendantTagList;
+use AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -26,7 +26,7 @@ final class AmpStoryCtaLayer extends Tag
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList::AMP_STORY_CTA_LAYER_ALLOWED_DESCENDANTS,
+        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList\AmpStoryCtaLayerAllowedDescendants::ID,
         SpecRule::MANDATORY_LAST_CHILD => true,
     ];
 }

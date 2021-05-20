@@ -5,7 +5,6 @@ namespace AmpProject\Validator\Spec\Section;
 use AmpProject\Attribute;
 use AmpProject\Exception\InvalidAttributeName;
 use AmpProject\Exception\InvalidListName;
-use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Tests\TestCase;
 use AmpProject\Validator\Spec;
 
@@ -38,6 +37,7 @@ class AttributeListsTest extends TestCase
         $this->assertNotEmpty($attributeList::ATTRIBUTES);
 
         $this->assertTrue($attributeList->has(Attribute::TITLE));
+        $this->assertFalse($attributeList->has('utter nonsense'));
         $this->assertEquals([], $attributeList->get(Attribute::TITLE));
     }
 

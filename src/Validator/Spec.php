@@ -24,23 +24,23 @@ final class Spec
     /** @var string */
     private $stylesSpecUrl = 'https://amp.dev/documentation/guides-and-tutorials/develop/style_and_layout/style_pages/';
 
-    /** @var Spec\Section\DescendantTagList */
-    private $descendantTagList;
-
     /** @var string */
     private $scriptSpecUrl = 'https://amp.dev/documentation/guides-and-tutorials/learn/validation-workflow/validation_errors/#custom-javascript-is-not-allowed';
 
     /** @var Spec\Section\Css */
     private $css;
 
-    /** @var Spec\Section\DeclarationList */
-    private $declarationList;
-
     /** @var Spec\Section\Doc */
     private $doc;
 
     /** @var Spec\Section\AttributeLists */
     private $attributeLists;
+
+    /** @var Spec\Section\DeclarationLists */
+    private $declarationLists;
+
+    /** @var Spec\Section\DescendantTagLists */
+    private $descendantTagLists;
 
     /** @var Spec\Section\Errors */
     private $errors;
@@ -89,17 +89,6 @@ final class Spec
     }
 
     /**
-     * @return Spec\Section\DescendantTagList
-     */
-    public function descendantTagList()
-    {
-        if ($this->descendantTagList === null) {
-            $this->descendantTagList = new Spec\Section\DescendantTagList();
-        }
-        return $this->descendantTagList;
-    }
-
-    /**
      * @return string
      */
     public function scriptSpecUrl()
@@ -116,17 +105,6 @@ final class Spec
             $this->css = new Spec\Section\Css();
         }
         return $this->css;
-    }
-
-    /**
-     * @return Spec\Section\DeclarationList
-     */
-    public function declarationList()
-    {
-        if ($this->declarationList === null) {
-            $this->declarationList = new Spec\Section\DeclarationList();
-        }
-        return $this->declarationList;
     }
 
     /**
@@ -149,6 +127,28 @@ final class Spec
             $this->attributeLists = new Spec\Section\AttributeLists();
         }
         return $this->attributeLists;
+    }
+
+    /**
+     * @return Spec\Section\DeclarationLists
+     */
+    public function declarationLists()
+    {
+        if ($this->declarationLists === null) {
+            $this->declarationLists = new Spec\Section\DeclarationLists();
+        }
+        return $this->declarationLists;
+    }
+
+    /**
+     * @return Spec\Section\DescendantTagLists
+     */
+    public function descendantTagLists()
+    {
+        if ($this->descendantTagLists === null) {
+            $this->descendantTagLists = new Spec\Section\DescendantTagLists();
+        }
+        return $this->descendantTagLists;
     }
 
     /**

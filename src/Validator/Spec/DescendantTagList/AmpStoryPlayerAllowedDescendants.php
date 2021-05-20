@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * DO NOT EDIT!
+ * This file was automatically generated via bin/generate-validator-spec.php.
+ */
+
+namespace AmpProject\Validator\Spec\DescendantTagList;
+
+use AmpProject\Internal;
+use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\DescendantTagList;
+use AmpProject\Validator\Spec\SpecRule;
+
+final class AmpStoryPlayerAllowedDescendants extends DescendantTagList
+{
+    /** @var string */
+    const ID = 'amp-story-player-allowed-descendants';
+
+    /** @var array<array> */
+    const DESCENDANT_TAGS = [
+        Element::A,
+        Element::SPAN,
+        Internal::SIZER,
+        Element::IMG,
+    ];
+}

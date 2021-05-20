@@ -61,6 +61,8 @@ final class FileManager
             $this->destination,
             "{$this->destination}/Spec",
             "{$this->destination}/Spec/AttributeList",
+            "{$this->destination}/Spec/DeclarationList",
+            "{$this->destination}/Spec/DescendantTagList",
             "{$this->destination}/Spec/Section",
             "{$this->destination}/Spec/Tag",
         ];
@@ -289,11 +291,19 @@ final class FileManager
             return $class;
         }
 
-        if (in_array($class, ['SpecRule'], true)) {
+        if (strpos($class, 'DeclarationList\\') === 0) {
+            return "AmpProject\\Validator\\Spec\\DeclarationList";
+        }
+
+        if (strpos($class, 'DescendantTagList\\') === 0) {
+            return "AmpProject\\Validator\\Spec\\DescendantTagList";
+        }
+
+        if (in_array($class, ['DeclarationList', 'DescendantTagList', 'SpecRule'], true)) {
             return "AmpProject\\Validator\\Spec\\{$class}";
         }
 
-        if (in_array($class, ['DeclarationList', 'DescendantTagList'], true)) {
+        if (in_array($class, ['DeclarationLists', 'DescendantTagLists'], true)) {
             return "AmpProject\\Validator\\Spec\\Section\\{$class}";
         }
 

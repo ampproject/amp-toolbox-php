@@ -2,6 +2,9 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator;
 
+use AmpProject\Tooling\Validator\SpecGenerator;
+use AmpProject\Tooling\Validator\SpecGenerator\Section\DeclarationLists;
+use AmpProject\Tooling\Validator\SpecGenerator\Section\DescendantTagLists;
 use Nette\PhpGenerator\Dumper as NetteDumper;
 
 final class Dumper
@@ -228,7 +231,11 @@ final class Dumper
             ||
             strpos($value, 'DeclarationList::') === 0
             ||
+            strpos($value, 'DeclarationList\\') === 0
+            ||
             strpos($value, 'DescendantTagList::') === 0
+            ||
+            strpos($value, 'DescendantTagList\\') === 0
             ||
             strpos($value, 'Element::') === 0
             ||
@@ -286,11 +293,13 @@ final class Dumper
             case 'declarationList':
                 $declarationLists = [];
                 foreach ($value as $declarationList) {
-                    $declarationLists[] = "DeclarationList::{$this->getConstantName($declarationList)}";
+                    $className = DeclarationLists::getDeclarationListClassFromDeclarationListId($declarationList);
+                    $declarationLists[] = "DeclarationList\\{$className}::ID";
                 }
                 return $declarationLists;
             case 'descendantTagList':
-                return "DescendantTagList::{$this->getConstantName($value)}";
+                $className = DescendantTagLists::getDescendantTagListClassFromDescendantTagListId($value);
+                return "DescendantTagList\\{$className}::ID";
             case 'htmlFormat':
                 $formats = [];
                 foreach ($value as $format) {

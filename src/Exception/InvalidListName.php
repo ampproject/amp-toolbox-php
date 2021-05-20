@@ -39,4 +39,18 @@ final class InvalidListName extends OutOfRangeException implements AmpException
 
         return new self($message);
     }
+
+    /**
+     * Instantiate an InvalidListName exception for a descendant tag that is not found within the descendant tag
+     * list name index.
+     *
+     * @param string $descendantTagList Name of the descendant tag list that was requested.
+     * @return self
+     */
+    public static function forDescendantTagList($descendantTagList)
+    {
+        $message = "Invalid descendant tag list '{$descendantTagList}' was requested from the validator spec.";
+
+        return new self($message);
+    }
 }

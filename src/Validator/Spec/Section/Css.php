@@ -13,6 +13,7 @@ use AmpProject\Exception\InvalidCssName;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Format;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\DeclarationList;
 use AmpProject\Validator\Spec\SpecRule;
 
 final class Css
@@ -164,7 +165,7 @@ final class Css
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
                 SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE => true,
                 SpecRule::DECLARATION_LIST => [
-                    DeclarationList::BASIC_DECLARATIONS,
+                    DeclarationList\BasicDeclarations::ID,
                 ],
                 SpecRule::DECLARATION_LIST_SVG => [
                     'SVG_BASIC_DECLARATIONS',
@@ -192,7 +193,7 @@ final class Css
                 SpecRule::MAX_BYTES_SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#maximum-size',
                 SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE => false,
                 SpecRule::DECLARATION_LIST => [
-                    DeclarationList::EMAIL_SPECIFIC_DECLARATIONS,
+                    DeclarationList\EmailSpecificDeclarations::ID,
                 ],
                 SpecRule::IMAGE_URL_SPEC => [
                     SpecRule::PROTOCOL => [

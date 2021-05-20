@@ -49,6 +49,8 @@ final class SpecGenerator
 
         $this->generateEntityClass('Tag', $fileManager);
         $this->generateEntityClass('AttributeList', $fileManager);
+        $this->generateEntityClass('DeclarationList', $fileManager);
+        $this->generateEntityClass('DescendantTagList', $fileManager);
         $this->generateEntityClass('TagWithExtensionSpec', $fileManager, 'interface');
         $this->generateEntityClass('ExtensionSpec', $fileManager, 'trait');
         $this->generateEntityClass('IterableSection', $fileManager, 'interface');
@@ -217,6 +219,12 @@ final class SpecGenerator
     {
         $jsonSpec['attributeLists'] = $jsonSpec['attrLists'];
         unset($jsonSpec['attrLists']);
+
+        $jsonSpec['declarationLists'] = $jsonSpec['declarationList'];
+        unset($jsonSpec['declarationList']);
+
+        $jsonSpec['descendantTagLists'] = $jsonSpec['descendantTagList'];
+        unset($jsonSpec['descendantTagList']);
 
         $errorArray = [
             'format'      => $jsonSpec['errorFormats'],

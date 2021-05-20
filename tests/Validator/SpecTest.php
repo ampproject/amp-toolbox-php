@@ -34,18 +34,18 @@ class SpecTest extends TestCase
         $this->assertInstanceOf(Section\Css::class, $css);
     }
 
-    public function testItCanProvideTheDeclarationListSection()
+    public function testItCanProvideTheDeclarationListsSection()
     {
         $spec             = new Spec();
-        $declarationLists = $spec->declarationList();
-        $this->assertInstanceOf(Section\DeclarationList::class, $declarationLists);
+        $declarationLists = $spec->declarationLists();
+        $this->assertInstanceOf(Section\DeclarationLists::class, $declarationLists);
     }
 
-    public function testItCanProvideTheDescendantTagListSection()
+    public function testItCanProvideTheDescendantTagListsSection()
     {
         $spec              = new Spec();
-        $descendantTagList = $spec->descendantTagList();
-        $this->assertInstanceOf(Section\DescendantTagList::class, $descendantTagList);
+        $descendantTagList = $spec->descendantTagLists();
+        $this->assertInstanceOf(Section\DescendantTagLists::class, $descendantTagList);
     }
 
     public function testItCanProvideTheDocSection()
