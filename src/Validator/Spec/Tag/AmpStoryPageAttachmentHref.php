@@ -21,6 +21,38 @@ final class AmpStoryPageAttachmentHref extends Tag
         SpecRule::SPEC_NAME => 'amp-story-page-attachment[href]',
         SpecRule::ATTRS => [
             [
+                SpecRule::NAME => Attribute::CTA_ACCENT_COLOR,
+            ],
+            [
+                SpecRule::NAME => Attribute::CTA_ACCENT_ELEMENT,
+                SpecRule::VALUE => [
+                    'background',
+                    'text',
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::CTA_IMAGE,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        Protocol::HTTP,
+                        Protocol::HTTPS,
+                    ],
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::CTA_TEXT,
+            ],
+            [
+                SpecRule::NAME => Attribute::HREF,
+                SpecRule::MANDATORY => true,
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        Protocol::HTTP,
+                        Protocol::HTTPS,
+                    ],
+                ],
+            ],
+            [
                 SpecRule::NAME => Attribute::LAYOUT,
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
@@ -36,33 +68,7 @@ final class AmpStoryPageAttachmentHref extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => Attribute::CTA_ACCENT_COLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::CTA_ACCENT_ELEMENT,
-                SpecRule::VALUE => [
-                    'background',
-                    'text',
-                ],
-            ],
-            [
-                SpecRule::NAME => Attribute::HREF,
-                SpecRule::MANDATORY => true,
-                SpecRule::VALUE_URL => [
-                    SpecRule::PROTOCOL => [
-                        Protocol::HTTP,
-                        Protocol::HTTPS,
-                    ],
-                ],
-            ],
-            [
-                SpecRule::NAME => Attribute::CTA_IMAGE,
-                SpecRule::VALUE_URL => [
-                    SpecRule::PROTOCOL => [
-                        Protocol::HTTPS,
-                    ],
-                    SpecRule::ALLOW_RELATIVE => false,
-                ],
+                SpecRule::NAME => Attribute::TITLE,
             ],
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,

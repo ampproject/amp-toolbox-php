@@ -21,9 +21,9 @@ final class ScriptAmpVideoIframe extends Tag implements TagWithExtensionSpec
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-video-iframe',
         SpecRule::VERSION => [
-            '0.1',
-            'latest',
+            '1.0',
         ],
+        SpecRule::VERSION_NAME => 'v1.0',
     ];
 
     const SPEC = [
@@ -34,6 +34,12 @@ final class ScriptAmpVideoIframe extends Tag implements TagWithExtensionSpec
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-video-iframe 1.0',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-video-iframe 0.1',
+        ],
     ];
 }

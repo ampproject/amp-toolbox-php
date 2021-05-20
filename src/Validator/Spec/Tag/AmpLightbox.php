@@ -34,6 +34,9 @@ final class AmpLightbox extends Tag
                     'fly-in-bottom',
                     'fly-in-top',
                 ],
+                SpecRule::DISABLED_BY => [
+                    Attribute::AMP4EMAIL,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::CONTROLS,

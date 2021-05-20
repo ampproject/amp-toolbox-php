@@ -38,11 +38,11 @@ final class ScriptAmpYoutube2 extends Tag implements TagWithExtensionSpec
             Format::AMP,
         ],
         SpecRule::SATISFIES => [
-            'amp-video 0.1',
+            'amp-youtube 0.1',
         ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
         SpecRule::EXCLUDES => [
-            'amp-video 1.0',
+            'amp-youtube 1.0',
         ],
     ];
 }

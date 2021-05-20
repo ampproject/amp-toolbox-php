@@ -14,12 +14,12 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpYoutube extends Tag implements TagWithExtensionSpec
+final class ScriptAmpVimeo2 extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-youtube',
+        SpecRule::NAME => 'amp-vimeo',
         SpecRule::VERSION => [
             '1.0',
         ],
@@ -35,11 +35,11 @@ final class ScriptAmpYoutube extends Tag implements TagWithExtensionSpec
             Format::AMP,
         ],
         SpecRule::SATISFIES => [
-            'amp-youtube 1.0',
+            'amp-vimeo 1.0',
         ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
         SpecRule::EXCLUDES => [
-            'amp-youtube 0.1',
+            'amp-vimeo 0.1',
         ],
     ];
 }

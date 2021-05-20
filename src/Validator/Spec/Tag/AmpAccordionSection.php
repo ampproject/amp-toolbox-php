@@ -41,6 +41,9 @@ final class AmpAccordionSection extends Tag
             ],
             [
                 SpecRule::NAME => '[expanded]',
+                SpecRule::DISABLED_BY => [
+                    Attribute::AMP4EMAIL,
+                ],
             ],
         ],
         SpecRule::CHILD_TAGS => [

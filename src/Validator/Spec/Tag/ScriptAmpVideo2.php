@@ -14,16 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpYoutube extends Tag implements TagWithExtensionSpec
+final class ScriptAmpVideo2 extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-youtube',
+        SpecRule::NAME => 'amp-video',
         SpecRule::VERSION => [
-            '1.0',
+            '0.1',
+            'latest',
         ],
-        SpecRule::VERSION_NAME => 'v1.0',
+        SpecRule::REQUIRES_USAGE => 'NONE',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     const SPEC = [
@@ -33,13 +35,14 @@ final class ScriptAmpYoutube extends Tag implements TagWithExtensionSpec
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
+            Format::AMP4ADS,
         ],
         SpecRule::SATISFIES => [
-            'amp-youtube 1.0',
+            'amp-video 0.1',
         ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
         SpecRule::EXCLUDES => [
-            'amp-youtube 0.1',
+            'amp-video 1.0',
         ],
     ];
 }

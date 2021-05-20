@@ -26,6 +26,7 @@ final class ScriptAmpVimeo extends Tag implements TagWithExtensionSpec
         ],
         SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
         SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     const SPEC = [
@@ -36,6 +37,12 @@ final class ScriptAmpVimeo extends Tag implements TagWithExtensionSpec
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-vimeo 0.1',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-vimeo 1.0',
+        ],
     ];
 }

@@ -264,6 +264,7 @@ interface Attribute
     const CTA_ACCENT_ELEMENT              = 'cta-accent-element';
     const CTA_IMAGE                       = 'cta-image';
     const CTA_IMAGE_2                     = 'cta-image-2';
+    const CTA_TEXT                        = 'cta-text';
     const CURSOR                          = 'cursor';
     const CUSTOM_ELEMENT                  = 'custom-element';
     const CUSTOM_REDIRECT_DOMAIN          = 'custom-redirect-domain';
@@ -996,6 +997,7 @@ interface Attribute
     const DATA_APESTER_MEDIA_ID            = 'data-apester-media-id';
     const DATA_APP_KEY                     = 'data-app-key';
     const DATA_BCID                        = 'data-bcid';
+    const DATA_BORDER                      = 'data-border';
     const DATA_CARDS                       = 'data-cards';
     const DATA_CAROUSEL                    = 'data-carousel';
     const DATA_CLIENT                      = 'data-client';
@@ -1030,11 +1032,13 @@ interface Attribute
     const DATA_HREF                        = 'data-href';
     const DATA_ID                          = 'data-id';
     const DATA_IFRAME_SRC                  = 'data-iframe-src';
+    const DATA_IMG                         = 'data-img';
     const DATA_IMGUR_ID                    = 'data-imgur-id';
     const DATA_INFO                        = 'data-info';
     const DATA_ITEM                        = 'data-item';
     const DATA_ITEMS                       = 'data-items';
     const DATA_ITEM_INFO                   = 'data-item-info';
+    const DATA_KEY                         = 'data-key';
     const DATA_LABEL                       = 'data-label';
     const DATA_LIGHT                       = 'data-light';
     const DATA_LIMIT                       = 'data-limit';

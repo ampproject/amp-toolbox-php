@@ -11,21 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
-use AmpProject\Validator\Spec\Section\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryPageAttachment extends Tag
+final class AmpStoryPageOutlink extends Tag
 {
     const SPEC = [
-        SpecRule::TAG_NAME => Extension::STORY_PAGE_ATTACHMENT,
-        SpecRule::SPEC_NAME => 'amp-story-page-attachment',
+        SpecRule::TAG_NAME => Extension::STORY_PAGE_OUTLINK,
+        SpecRule::SPEC_NAME => 'amp-story-page-outlink',
         SpecRule::ATTRS => [
             [
-                SpecRule::NAME => Attribute::CTA_TEXT,
+                SpecRule::NAME => Attribute::CTA_ACCENT_COLOR,
             ],
             [
-                SpecRule::NAME => Attribute::TITLE,
+                SpecRule::NAME => Attribute::CTA_ACCENT_ELEMENT,
+                SpecRule::VALUE => [
+                    'background',
+                    'text',
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::CTA_IMAGE,
@@ -37,7 +40,11 @@ final class AmpStoryPageAttachment extends Tag
                 ],
             ],
             [
-                SpecRule::NAME => Attribute::CTA_IMAGE_2,
+                SpecRule::NAME => Attribute::CTA_TEXT,
+            ],
+            [
+                SpecRule::NAME => Attribute::HREF,
+                SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -55,16 +62,22 @@ final class AmpStoryPageAttachment extends Tag
             [
                 SpecRule::NAME => Attribute::THEME,
                 SpecRule::VALUE => [
+                    'custom',
                     'dark',
                     'light',
                 ],
             ],
+            [
+                SpecRule::NAME => Attribute::TITLE,
+            ],
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
+        SpecRule::CHILD_TAGS => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 0,
+        ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::DESCENDANT_TAG_LIST => DescendantTagList::AMP_STORY_PAGE_ATTACHMENT_ALLOWED_DESCENDANTS,
         SpecRule::MANDATORY_LAST_CHILD => true,
     ];
 }

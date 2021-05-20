@@ -72,6 +72,7 @@ interface Extension
     const GWD_ANIMATION                          = 'amp-gwd-animation';
     const HULU                                   = 'amp-hulu';
     const IFRAME                                 = 'amp-iframe';
+    const IFRAMELY                               = 'amp-iframely';
     const IMAGE_LIGHTBOX                         = 'amp-image-lightbox';
     const IMAGE_SLIDER                           = 'amp-image-slider';
     const IMA_VIDEO                              = 'amp-ima-video';
@@ -145,6 +146,7 @@ interface Extension
     const STORY_INTERACTIVE_RESULTS              = 'amp-story-interactive-results';
     const STORY_PAGE                             = 'amp-story-page';
     const STORY_PAGE_ATTACHMENT                  = 'amp-story-page-attachment';
+    const STORY_PAGE_OUTLINK                     = 'amp-story-page-outlink';
     const STORY_PANNING_MEDIA                    = 'amp-story-panning-media';
     const STORY_PLAYER                           = 'amp-story-player';
     const STORY_SOCIAL_SHARE                     = 'amp-story-social-share';
