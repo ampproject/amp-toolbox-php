@@ -49,8 +49,6 @@ final class AttributeLists implements Section
 
         $this->data = $this->adaptSpec($spec);
 
-        $class->addExtend("{$fileManager->getRootNamespace()}\\Spec\\AttributeList");
-
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(
             "{$fileManager->getRootNamespace()}\\Spec\\Iteration",

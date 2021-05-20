@@ -13,7 +13,7 @@ use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 
-final class AttributeLists extends AttributeList implements IterableSection
+final class AttributeLists implements IterableSection
 {
     use Iteration {
         Iteration::current as parentCurrent;
