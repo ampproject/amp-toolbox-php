@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -18,8 +19,8 @@ final class AmpStreamGallery extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STREAM_GALLERY,
         SpecRule::ATTR_LISTS => [
-            'amp-stream-gallery-common',
-            'extended-amp-global',
+            AttributeList\AmpStreamGalleryCommon::ID,
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::SPEC_URL => 'https://github.com/ampproject/amphtml/blob/master/extensions/amp-stream-gallery/amp-stream-gallery.md',
         SpecRule::AMP_LAYOUT => [

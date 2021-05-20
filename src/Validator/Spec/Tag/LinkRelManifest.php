@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -41,7 +42,7 @@ final class LinkRelManifest extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'common-link-attrs',
+            AttributeList\CommonLinkAttrs::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
         SpecRule::HTML_FORMAT => [

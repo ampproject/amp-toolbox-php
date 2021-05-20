@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -37,7 +38,7 @@ final class ScriptAmpMraid extends Tag implements TagWithExtensionSpec
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'common-extension-attrs',
+            AttributeList\CommonExtensionAttrs::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP4ADS,

@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -44,8 +45,8 @@ final class InputTypeFile extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'input-common-attr',
-            'name-attr',
+            AttributeList\InputCommonAttr::ID,
+            AttributeList\NameAttr::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
         SpecRule::MANDATORY_ANCESTOR => 'FORM [method=POST]',

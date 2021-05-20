@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -24,7 +25,7 @@ final class AmpAutoAds extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-auto-ads/',
         SpecRule::DISALLOWED_ANCESTOR => [

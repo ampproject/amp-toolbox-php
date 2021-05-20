@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -44,7 +45,7 @@ final class LinkRelCanonical extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'common-link-attrs',
+            AttributeList\CommonLinkAttrs::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
         SpecRule::HTML_FORMAT => [

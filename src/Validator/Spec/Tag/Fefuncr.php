@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -18,8 +19,8 @@ final class Fefuncr extends Tag
         SpecRule::TAG_NAME => Element::FEFUNCR,
         SpecRule::MANDATORY_PARENT => Element::FECOMPONENTTRANSFER,
         SpecRule::ATTR_LISTS => [
-            'svg-core-attributes',
-            'svg-transfer-function-attributes',
+            AttributeList\SvgCoreAttributes::ID,
+            AttributeList\SvgTransferFunctionAttributes::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#svg',
         SpecRule::MANDATORY_ANCESTOR => Element::SVG,

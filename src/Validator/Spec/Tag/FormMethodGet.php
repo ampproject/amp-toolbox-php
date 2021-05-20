@@ -12,6 +12,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -89,7 +90,7 @@ final class FormMethodGet extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'form-name-attr',
+            AttributeList\FormNameAttr::ID,
         ],
         SpecRule::DISALLOWED_ANCESTOR => [
             'AMP-APP-BANNER',

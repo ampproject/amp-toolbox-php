@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -35,10 +36,10 @@ final class AmpDatePickerTypeRangeModeStatic extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'amp-date-picker-common-attributes',
-            'amp-date-picker-range-type-attributes',
-            'amp-date-picker-static-mode-attributes',
-            'extended-amp-global',
+            AttributeList\AmpDatePickerCommonAttributes::ID,
+            AttributeList\AmpDatePickerRangeTypeAttributes::ID,
+            AttributeList\AmpDatePickerStaticModeAttributes::ID,
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [

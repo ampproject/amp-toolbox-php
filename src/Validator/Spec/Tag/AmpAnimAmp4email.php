@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -28,8 +29,8 @@ final class AmpAnimAmp4email extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
-            'mandatory-src-amp4email',
+            AttributeList\ExtendedAmpGlobal::ID,
+            AttributeList\MandatorySrcAmp4email::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-anim/',
         SpecRule::AMP_LAYOUT => [

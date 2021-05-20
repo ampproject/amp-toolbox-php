@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -19,7 +20,7 @@ final class AmpStoryConsent extends Tag
         SpecRule::TAG_NAME => Extension::STORY_CONSENT,
         SpecRule::MANDATORY_PARENT => Extension::CONSENT,
         SpecRule::ATTR_LISTS => [
-            'mandatory-id-attr',
+            AttributeList\MandatoryIdAttr::ID,
         ],
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [

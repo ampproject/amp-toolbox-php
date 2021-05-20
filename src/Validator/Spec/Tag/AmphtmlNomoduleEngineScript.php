@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -32,8 +33,8 @@ final class AmphtmlNomoduleEngineScript extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'nonce-attr',
-            'amphtml-nomodule-engine-attrs',
+            AttributeList\NonceAttr::ID,
+            AttributeList\AmphtmlNomoduleEngineAttrs::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
         SpecRule::CDATA => [

@@ -2,7 +2,7 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator;
 
-use AmpProject\Tooling\Validator\SpecGenerator;
+use AmpProject\Tooling\Validator\SpecGenerator\Section\AttributeLists;
 use AmpProject\Tooling\Validator\SpecGenerator\Section\DeclarationLists;
 use AmpProject\Tooling\Validator\SpecGenerator\Section\DescendantTagLists;
 use Nette\PhpGenerator\Dumper as NetteDumper;
@@ -229,6 +229,10 @@ final class Dumper
             ||
             strpos($value, 'Attribute::') === 0
             ||
+            strpos($value, 'AttributeList::') === 0
+            ||
+            strpos($value, 'AttributeList\\') === 0
+            ||
             strpos($value, 'DeclarationList::') === 0
             ||
             strpos($value, 'DeclarationList\\') === 0
@@ -290,6 +294,13 @@ final class Dumper
                     }
                 }
                 return $value;
+            case 'attrLists':
+                $attributeLists = [];
+                foreach ($value as $attributeList) {
+                    $className = AttributeLists::getAttributeListClassFromAttributeListId($attributeList);
+                    $attributeLists[] = "AttributeList\\{$className}::ID";
+                }
+                return $attributeLists;
             case 'declarationList':
                 $declarationLists = [];
                 foreach ($value as $declarationList) {

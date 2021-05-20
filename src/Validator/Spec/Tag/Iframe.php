@@ -12,6 +12,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -71,7 +72,7 @@ final class Iframe extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'name-attr',
+            AttributeList\NameAttr::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-iframe/',
         SpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,

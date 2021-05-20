@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -19,7 +20,7 @@ final class AudioTrack extends Tag
         SpecRule::SPEC_NAME => 'audio > track',
         SpecRule::MANDATORY_PARENT => Element::AUDIO,
         SpecRule::ATTR_LISTS => [
-            'track-attrs-no-subtitles',
+            AttributeList\TrackAttrsNoSubtitles::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

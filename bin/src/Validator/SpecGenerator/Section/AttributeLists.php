@@ -112,7 +112,7 @@ final class AttributeLists implements Section
     {
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\AttributeList');
 
-        $className = $this->getAttributeListClassFromAttributeListId($attributeListId);
+        $className = self::getAttributeListClassFromAttributeListId($attributeListId);
 
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\AttributeList");
@@ -144,7 +144,7 @@ final class AttributeLists implements Section
      * @param string $attributeListId Attribute list ID to get a valid PHP class name from.
      * @return string Valid PHP class name.
      */
-    private function getAttributeListClassFromAttributeListId($attributeListId)
+    public static function getAttributeListClassFromAttributeListId($attributeListId)
     {
         $className = str_replace(
             ['(', ')', '[', ']', '-', '=', '>', '.', '_', '/', '*', ':', '+', '$'],

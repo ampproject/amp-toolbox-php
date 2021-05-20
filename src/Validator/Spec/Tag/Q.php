@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -17,7 +18,7 @@ final class Q extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::Q,
         SpecRule::ATTR_LISTS => [
-            'cite-attr',
+            AttributeList\CiteAttr::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

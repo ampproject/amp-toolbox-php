@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -23,7 +24,7 @@ final class Blockquote extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'cite-attr',
+            AttributeList\CiteAttr::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

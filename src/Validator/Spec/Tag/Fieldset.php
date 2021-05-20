@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -26,7 +27,7 @@ final class Fieldset extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'name-attr',
+            AttributeList\NameAttr::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

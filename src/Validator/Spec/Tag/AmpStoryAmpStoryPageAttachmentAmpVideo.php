@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -25,9 +26,9 @@ final class AmpStoryAmpStoryPageAttachmentAmpVideo extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
-            'amp-video-common',
-            'lightboxable-elements',
+            AttributeList\ExtendedAmpGlobal::ID,
+            AttributeList\AmpVideoCommon::ID,
+            AttributeList\LightboxableElements::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video/',
         SpecRule::AMP_LAYOUT => [

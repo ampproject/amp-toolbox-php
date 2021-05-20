@@ -11,6 +11,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -21,8 +22,8 @@ final class AmpAppBanner extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::BODY,
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
-            'mandatory-id-attr',
+            AttributeList\ExtendedAmpGlobal::ID,
+            AttributeList\MandatoryIdAttr::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-app-banner/',
         SpecRule::AMP_LAYOUT => [

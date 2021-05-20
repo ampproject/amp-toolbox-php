@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -19,7 +20,7 @@ final class AmpMegaMenu extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MEGA_MENU,
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-mega-menu/',
         SpecRule::AMP_LAYOUT => [

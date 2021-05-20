@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -35,8 +36,8 @@ final class AmpAudio extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'amp-audio-common',
-            'extended-amp-global',
+            AttributeList\AmpAudioCommon::ID,
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-audio/',
         SpecRule::AMP_LAYOUT => [

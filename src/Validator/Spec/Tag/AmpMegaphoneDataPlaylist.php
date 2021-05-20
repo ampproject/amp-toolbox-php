@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -32,8 +33,8 @@ final class AmpMegaphoneDataPlaylist extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'amp-megaphone-common',
-            'extended-amp-global',
+            AttributeList\AmpMegaphoneCommon::ID,
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [

@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -61,7 +62,7 @@ final class AmpStoryPlayerImg extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'mandatory-src-or-srcset',
+            AttributeList\MandatorySrcOrSrcset::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-player/',
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PLAYER,

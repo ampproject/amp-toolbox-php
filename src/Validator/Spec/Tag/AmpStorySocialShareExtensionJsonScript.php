@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -32,7 +33,7 @@ final class AmpStorySocialShareExtensionJsonScript extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'nonce-attr',
+            AttributeList\NonceAttr::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

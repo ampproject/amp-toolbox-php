@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -19,7 +20,7 @@ final class H6AmpNestedMenu extends Tag
         SpecRule::TAG_NAME => Element::H6,
         SpecRule::SPEC_NAME => 'h6 amp-nested-menu',
         SpecRule::ATTR_LISTS => [
-            'amp-nested-menu-actions',
+            AttributeList\AmpNestedMenuActions::ID,
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::NESTED_MENU,
         SpecRule::HTML_FORMAT => [

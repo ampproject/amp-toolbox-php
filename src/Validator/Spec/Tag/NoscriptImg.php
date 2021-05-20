@@ -12,6 +12,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -71,7 +72,7 @@ final class NoscriptImg extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'mandatory-src-or-srcset',
+            AttributeList\MandatorySrcOrSrcset::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',
         SpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,

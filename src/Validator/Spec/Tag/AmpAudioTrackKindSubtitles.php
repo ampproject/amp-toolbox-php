@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -31,7 +32,7 @@ final class AmpAudioTrackKindSubtitles extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'track-attrs-subtitles',
+            AttributeList\TrackAttrsSubtitles::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

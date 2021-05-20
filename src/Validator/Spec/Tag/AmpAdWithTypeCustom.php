@@ -12,6 +12,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -43,7 +44,7 @@ final class AmpAdWithTypeCustom extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::SPEC_URL => 'https://github.com/ampproject/amphtml/blob/main/ads/custom.md',
         SpecRule::AMP_LAYOUT => [

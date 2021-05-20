@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -17,7 +18,7 @@ final class Slot extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::SLOT,
         SpecRule::ATTR_LISTS => [
-            'name-attr',
+            AttributeList\NameAttr::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -36,7 +37,7 @@ final class ScriptAmpMustache extends Tag implements TagWithExtensionSpec
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [
-            'common-extension-attrs',
+            AttributeList\CommonExtensionAttrs::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

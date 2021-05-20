@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -18,8 +19,8 @@ final class AmpAdExit extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD_EXIT,
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
-            'mandatory-id-attr',
+            AttributeList\ExtendedAmpGlobal::ID,
+            AttributeList\MandatoryIdAttr::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-ad-exit/',
         SpecRule::AMP_LAYOUT => [

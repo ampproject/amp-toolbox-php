@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -37,7 +38,7 @@ final class StyleAmpCustomLengthCheck extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'nonce-attr',
+            AttributeList\NonceAttr::ID,
         ],
         SpecRule::CDATA => [
             SpecRule::MAX_BYTES => -1,

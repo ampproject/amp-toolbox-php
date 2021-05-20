@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -159,7 +160,7 @@ final class Textarea extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'name-attr',
+            AttributeList\NameAttr::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
         SpecRule::HTML_FORMAT => [

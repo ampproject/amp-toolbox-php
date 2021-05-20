@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -33,8 +34,8 @@ final class AmpAnim extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
-            'mandatory-src-or-srcset',
+            AttributeList\ExtendedAmpGlobal::ID,
+            AttributeList\MandatorySrcOrSrcset::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-anim/',
         SpecRule::AMP_LAYOUT => [

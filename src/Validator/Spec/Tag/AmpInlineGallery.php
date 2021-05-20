@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -18,7 +19,7 @@ final class AmpInlineGallery extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INLINE_GALLERY,
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inline-gallery/',
         SpecRule::AMP_LAYOUT => [

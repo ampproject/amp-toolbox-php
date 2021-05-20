@@ -12,6 +12,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -30,7 +31,7 @@ final class AmpRecaptchaInput extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'mandatory-name-attr',
+            AttributeList\MandatoryNameAttr::ID,
         ],
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [

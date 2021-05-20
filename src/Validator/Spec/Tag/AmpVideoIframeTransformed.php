@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -20,9 +21,9 @@ final class AmpVideoIframeTransformed extends Tag
         SpecRule::TAG_NAME => Extension::VIDEO_IFRAME,
         SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME (transformed)',
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
-            'amp-video-iframe-common',
-            'lightboxable-elements',
+            AttributeList\ExtendedAmpGlobal::ID,
+            AttributeList\AmpVideoIframeCommon::ID,
+            AttributeList\LightboxableElements::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video-iframe/',
         SpecRule::AMP_LAYOUT => [

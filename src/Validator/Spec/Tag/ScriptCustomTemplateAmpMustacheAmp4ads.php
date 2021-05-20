@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -35,7 +36,7 @@ final class ScriptCustomTemplateAmpMustacheAmp4ads extends Tag implements TagWit
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-template=amp-mustache] (AMP4ADS)',
         SpecRule::ATTR_LISTS => [
-            'common-extension-attrs',
+            AttributeList\CommonExtensionAttrs::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP4ADS,

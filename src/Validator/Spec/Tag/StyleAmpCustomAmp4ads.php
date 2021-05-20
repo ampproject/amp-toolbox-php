@@ -11,6 +11,7 @@ use AmpProject\AtRule;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -37,7 +38,7 @@ final class StyleAmpCustomAmp4ads extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'nonce-attr',
+            AttributeList\NonceAttr::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/a4a_spec/#css',
         SpecRule::CDATA => [

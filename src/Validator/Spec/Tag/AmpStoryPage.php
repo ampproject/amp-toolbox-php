@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -37,7 +38,7 @@ final class AmpStoryPage extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'mandatory-id-attr',
+            AttributeList\MandatoryIdAttr::ID,
         ],
         SpecRule::CHILD_TAGS => [
             SpecRule::CHILD_TAG_NAME_ONEOF => [

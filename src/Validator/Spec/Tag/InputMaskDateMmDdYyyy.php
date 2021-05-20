@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -30,9 +31,9 @@ final class InputMaskDateMmDdYyyy extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'amp-inputmask-common-attr',
-            'input-common-attr',
-            'name-attr',
+            AttributeList\AmpInputmaskCommonAttr::ID,
+            AttributeList\InputCommonAttr::ID,
+            AttributeList\NameAttr::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-inputmask/',
         SpecRule::HTML_FORMAT => [

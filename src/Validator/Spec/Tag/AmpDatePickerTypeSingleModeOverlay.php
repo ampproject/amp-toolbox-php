@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -36,10 +37,10 @@ final class AmpDatePickerTypeSingleModeOverlay extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'amp-date-picker-common-attributes',
-            'amp-date-picker-overlay-mode-attributes',
-            'amp-date-picker-single-type-attributes',
-            'extended-amp-global',
+            AttributeList\AmpDatePickerCommonAttributes::ID,
+            AttributeList\AmpDatePickerOverlayModeAttributes::ID,
+            AttributeList\AmpDatePickerSingleTypeAttributes::ID,
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [

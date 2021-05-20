@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -27,7 +28,7 @@ final class AmpBindMacro extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'mandatory-id-attr',
+            AttributeList\MandatoryIdAttr::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-bind/',
         SpecRule::HTML_FORMAT => [

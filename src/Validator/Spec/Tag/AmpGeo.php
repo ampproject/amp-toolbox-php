@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -19,7 +20,7 @@ final class AmpGeo extends Tag
         SpecRule::TAG_NAME => Extension::GEO,
         SpecRule::UNIQUE => true,
         SpecRule::ATTR_LISTS => [
-            'extended-amp-global',
+            AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [

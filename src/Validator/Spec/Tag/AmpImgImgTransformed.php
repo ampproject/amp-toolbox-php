@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -62,7 +63,7 @@ final class AmpImgImgTransformed extends Tag
             ],
         ],
         SpecRule::ATTR_LISTS => [
-            'mandatory-src-or-srcset',
+            AttributeList\MandatorySrcOrSrcset::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

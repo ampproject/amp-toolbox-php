@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -30,7 +31,7 @@ final class ScriptCustomElementAmpImageLightboxAmp4email extends Tag implements 
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-element=amp-image-lightbox] (AMP4EMAIL)',
         SpecRule::ATTR_LISTS => [
-            'common-extension-attrs',
+            AttributeList\CommonExtensionAttrs::ID,
         ],
         SpecRule::DEPRECATION => 'amp-image-lightbox cannot be properly positioned in emails and will soon be invalid in AMP4EMAIL.',
         SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/23170',

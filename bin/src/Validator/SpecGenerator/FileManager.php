@@ -291,6 +291,10 @@ final class FileManager
             return $class;
         }
 
+        if (strpos($class, 'AttributeList\\') === 0) {
+            return "AmpProject\\Validator\\Spec\\AttributeList";
+        }
+
         if (strpos($class, 'DeclarationList\\') === 0) {
             return "AmpProject\\Validator\\Spec\\DeclarationList";
         }
@@ -299,11 +303,11 @@ final class FileManager
             return "AmpProject\\Validator\\Spec\\DescendantTagList";
         }
 
-        if (in_array($class, ['DeclarationList', 'DescendantTagList', 'SpecRule'], true)) {
+        if (in_array($class, ['AttributeList', 'DeclarationList', 'DescendantTagList', 'SpecRule'], true)) {
             return "AmpProject\\Validator\\Spec\\{$class}";
         }
 
-        if (in_array($class, ['DeclarationLists', 'DescendantTagLists'], true)) {
+        if (in_array($class, ['AttributeLists', 'DeclarationLists', 'DescendantTagLists'], true)) {
             return "AmpProject\\Validator\\Spec\\Section\\{$class}";
         }
 
