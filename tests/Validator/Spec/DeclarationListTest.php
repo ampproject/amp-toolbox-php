@@ -9,6 +9,11 @@ use AmpProject\Tests\ValidatorFixtures\DummyDeclarationList;
 class DeclarationListTest extends TestCase
 {
 
+    /**
+     * @covers \AmpProject\Validator\Spec\DeclarationList::getId()
+     * @covers \AmpProject\Validator\Spec\DeclarationList::get()
+     * @covers \AmpProject\Validator\Spec\DeclarationList::has()
+     */
     public function testDefaultValues()
     {
         $dummyDeclarationList = new DummyDeclarationList();
@@ -24,11 +29,16 @@ class DeclarationListTest extends TestCase
         $this->assertArrayHasKey('valueCasei', $position);
     }
 
-    public function testByFormatThrowsExceptionForUnknownFormat()
+    /**
+     * @covers \AmpProject\Validator\Spec\DeclarationList::get()
+     * @covers \AmpProject\Exception\InvalidDeclarationName::forDeclaration()
+     */
+    public function testThrowsExceptionForUnknownDeclarationList()
     {
         $dummyDeclarationList = new DummyDeclarationList();
 
         $this->expectException(InvalidDeclarationName::class);
+        $this->expectExceptionMessage("Invalid declaration 'utter nonsense' was requested from the validator spec.");
         $dummyDeclarationList->get('utter nonsense');
     }
 }

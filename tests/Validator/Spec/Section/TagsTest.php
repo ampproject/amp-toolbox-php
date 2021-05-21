@@ -28,6 +28,9 @@ class TagsTest extends TestCase
         $this->tags = $spec->tags();
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byTagName()
+     */
     public function testByTagName()
     {
         $tags = $this->tags->byTagName('STOP');
@@ -44,6 +47,9 @@ class TagsTest extends TestCase
         $this->assertEquals('radialgradient > stop', $tags[1]->specName);
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byTagName()
+     */
     public function testByTagNameReturnsEmptyArrayForUnknownTagName()
     {
         $tags = $this->tags->byTagName('utter nonsense');
@@ -52,6 +58,9 @@ class TagsTest extends TestCase
         $this->assertCount(0, $tags);
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::bySpecName()
+     */
     public function testBySpecName()
     {
         $tag = $this->tags->bySpecName('picture > source');
@@ -61,12 +70,20 @@ class TagsTest extends TestCase
         $this->assertEquals('source', $tag->tagName);
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::bySpecName()
+     * @covers \AmpProject\Exception\InvalidSpecName::forSpecName()
+     */
     public function testBySpecNameThrowsExceptionForUnknownSpecName()
     {
         $this->expectException(InvalidSpecName::class);
+        $this->expectExceptionMessage("Invalid spec name 'utter nonsense' was requested from the validator spec.");
         $this->tags->bySpecName('utter nonsense');
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byFormat()
+     */
     public function testByFormat()
     {
         $tags = $this->tags->byFormat(Format::AMP);
@@ -80,12 +97,20 @@ class TagsTest extends TestCase
         }
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byFormat()
+     * @covers \AmpProject\Exception\InvalidFormat::forFormat()
+     */
     public function testByFormatThrowsExceptionForUnknownFormat()
     {
         $this->expectException(InvalidFormat::class);
+        $this->expectExceptionMessage("Invalid format 'utter nonsense' was requested from the validator spec.");
         $this->tags->byFormat('utter nonsense');
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byExtensionSpec()
+     */
     public function testByExtensionSpec()
     {
         $tag = $this->tags->byExtensionSpec(Extension::LIGHTBOX_GALLERY);
@@ -96,9 +121,14 @@ class TagsTest extends TestCase
         $this->assertEquals(Extension::LIGHTBOX_GALLERY, $tag->extensionSpec[Spec\SpecRule::NAME]);
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byExtensionSpec()
+     * @covers \AmpProject\Exception\InvalidExtension::forExtension()
+     */
     public function testByExtensionSpecThrowsExceptionForUnknownExtension()
     {
         $this->expectException(InvalidExtension::class);
+        $this->expectExceptionMessage("Invalid extension 'utter nonsense' was requested from the validator spec.");
         $this->tags->byExtensionSpec('utter nonsense');
     }
 

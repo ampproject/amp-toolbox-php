@@ -26,18 +26,25 @@ class DescendantTagListsTest extends TestCase
         $this->descendantTagLists = $spec->descendantTagLists();
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\DescendantTagLists::get()
+     */
     public function testGetByDescendantTagListName()
     {
         $descendantTagList = $this->descendantTagLists->get('amp-mega-menu-allowed-descendants');
 
         $this->assertInstanceOf(Spec\DescendantTagList::class, $descendantTagList);
         $this->assertInstanceOf(Spec\DescendantTagList\AmpMegaMenuAllowedDescendants::class, $descendantTagList);
+    }
 
-        $this->assertIsArray($descendantTagList::DESCENDANT_TAGS);
-        $this->assertNotEmpty($descendantTagList::DESCENDANT_TAGS);
-
-        $this->assertTrue($descendantTagList->has(Tag::A));
-        $this->assertFalse($descendantTagList->has('utter nonsense'));
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\DescendantTagLists::get()
+     * @covers \AmpProject\Exception\InvalidListName::forDescendantTagList()
+     */
+    public function testGetThrowsExceptionForUnknownDescendantTagListName()
+    {
+        $this->expectException(InvalidListName::class);
+        $this->descendantTagLists->get('utter nonsense');
     }
 
     public function testIteration()

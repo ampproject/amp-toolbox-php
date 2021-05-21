@@ -26,32 +26,25 @@ class DeclarationListsTest extends TestCase
         $this->declarationLists = $spec->declarationLists();
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\DeclarationLists::get()
+     */
     public function testGetByDeclarationListName()
     {
         $declarationList = $this->declarationLists->get('BASIC_DECLARATIONS');
 
         $this->assertInstanceOf(Spec\DeclarationList::class, $declarationList);
         $this->assertInstanceOf(Spec\DeclarationList\BasicDeclarations::class, $declarationList);
-
-        $this->assertIsArray($declarationList::DECLARATIONS);
-        $this->assertNotEmpty($declarationList::DECLARATIONS);
-
-        $this->assertTrue($declarationList->has(Attribute::FONT));
-        $this->assertFalse($declarationList->has('utter nonsense'));
-        $this->assertEquals([], $declarationList->get(Attribute::FONT));
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\DeclarationLists::get()
+     * @covers \AmpProject\Exception\InvalidListName::forDeclarationList()
+     */
     public function testGetThrowsExceptionForUnknownDeclarationListName()
     {
         $this->expectException(InvalidListName::class);
         $this->declarationLists->get('utter nonsense');
-    }
-
-    public function testGetThrowsExceptionForUnknownDeclarationName()
-    {
-        $this->expectException(InvalidDeclarationName::class);
-        $declarationList = $this->declarationLists->get('BASIC_DECLARATIONS');
-        $declarationList->get('utter nonsense');
     }
 
     public function testIteration()

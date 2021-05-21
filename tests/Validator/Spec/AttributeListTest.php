@@ -9,6 +9,11 @@ use AmpProject\Tests\ValidatorFixtures\DummyAttributeList;
 class AttributeListTest extends TestCase
 {
 
+    /**
+     * @covers \AmpProject\Validator\Spec\AttributeList::getId()
+     * @covers \AmpProject\Validator\Spec\AttributeList::get()
+     * @covers \AmpProject\Validator\Spec\AttributeList::has()
+     */
     public function testDefaultValues()
     {
         $dummyAttributeList = new DummyAttributeList();
@@ -24,11 +29,16 @@ class AttributeListTest extends TestCase
         $this->assertArrayHasKey('valueCasei', $type);
     }
 
-    public function testByFormatThrowsExceptionForUnknownFormat()
+    /**
+     * @covers \AmpProject\Validator\Spec\AttributeList::get()
+     * @covers \AmpProject\Exception\InvalidAttributeName::forAttribute()
+     */
+    public function testThrowsExceptionForUnknownAttributeList()
     {
         $dummyAttributeList = new DummyAttributeList();
 
         $this->expectException(InvalidAttributeName::class);
+        $this->expectExceptionMessage("Invalid attribute 'utter nonsense' was requested from the validator spec.");
         $dummyAttributeList->get('utter nonsense');
     }
 }

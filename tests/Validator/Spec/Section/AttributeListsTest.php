@@ -26,21 +26,21 @@ class AttributeListsTest extends TestCase
         $this->attributeLists = $spec->attributeLists();
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\AttributeLists::get()
+     */
     public function testGetByAttributeListName()
     {
         $attributeList = $this->attributeLists->get('$GLOBAL_ATTRS');
 
         $this->assertInstanceOf(Spec\AttributeList::class, $attributeList);
         $this->assertInstanceOf(Spec\AttributeList\GlobalAttrs::class, $attributeList);
-
-        $this->assertIsArray($attributeList::ATTRIBUTES);
-        $this->assertNotEmpty($attributeList::ATTRIBUTES);
-
-        $this->assertTrue($attributeList->has(Attribute::TITLE));
-        $this->assertFalse($attributeList->has('utter nonsense'));
-        $this->assertEquals([], $attributeList->get(Attribute::TITLE));
     }
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\AttributeLists::get()
+     * @covers \AmpProject\Exception\InvalidListName::forAttributeList()
+     */
     public function testGetThrowsExceptionForUnknownAttributeListName()
     {
         $this->expectException(InvalidListName::class);

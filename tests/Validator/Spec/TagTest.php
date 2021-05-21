@@ -9,6 +9,12 @@ use AmpProject\Tests\ValidatorFixtures\DummyTag;
 class TagTest extends TestCase
 {
 
+    /**
+     * @covers \AmpProject\Validator\Spec\Tag::getId()
+     * @covers \AmpProject\Validator\Spec\Tag::get()
+     * @covers \AmpProject\Validator\Spec\Tag::has()
+     * @covers \AmpProject\Validator\Spec\Tag::__get()
+     */
     public function testDefaultValues()
     {
         $dummyTag = new DummyTag();
@@ -37,11 +43,16 @@ class TagTest extends TestCase
         $this->assertEquals('a', $dummyTag->get('tagName'));
     }
 
-    public function testByFormatThrowsExceptionForUnknownFormat()
+    /**
+     * @covers \AmpProject\Validator\Spec\Tag::get()
+     * @covers \AmpProject\Exception\InvalidSpecRuleName::forSpecRuleName()
+     */
+    public function testThrowsExceptionForUnknownSpecRuleName()
     {
         $dummyTag = new DummyTag();
 
         $this->expectException(InvalidSpecRuleName::class);
+        $this->expectExceptionMessage("Invalid spec rule name 'utter nonsense' was requested from the validator spec.");
         $dummyTag->get('utter nonsense');
     }
 }
