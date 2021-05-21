@@ -10,7 +10,7 @@ namespace AmpProject\Validator\Spec;
 use AmpProject\Exception\InvalidSpecRuleName;
 
 /**
- * Class Tag
+ * Class Tag.
  *
  * @package AmpProject\Tooling\Validator\SpecGenerator\Template
  *

@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class BasicDeclarations extends DeclarationList
 {
-    /** @var string */
+    /**
+     * ID of the declaration list.
+     *
+     * @var string
+     */
     const ID = 'BASIC_DECLARATIONS';
 
-    /** @var array<array> */
+    /**
+     * Array of declarations.
+     *
+     * @var array<array>
+     */
     const DECLARATIONS = [
         Attribute::ALIGN_CONTENT => [],
         Attribute::ALIGN_ITEMS => [],

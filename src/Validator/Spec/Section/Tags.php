@@ -27,6 +27,11 @@ final class Tags implements IterableSection
         Iteration::current as parentCurrent;
     }
 
+    /**
+     * Mapping of tag ID to tag implementation.
+     *
+     * @var array<string>
+     */
     const TAGS = [
         'html doctype' => Tag\HtmlDoctype::class,
         'html doctype (AMP4ADS)' => Tag\HtmlDoctypeAmp4ads::class,
@@ -719,6 +724,13 @@ final class Tags implements IterableSection
         Extension::YOUTUBE => Tag\AmpYoutube::class,
     ];
 
+    /**
+     * Mapping of tag name to tag ID or array of tag IDs.
+     *
+     * This is used to optimize querying by tag name.
+     *
+     * @var array<string|array<string>>
+     */
     const BY_TAG_NAME = [
         Element::A => [
             Element::A,
@@ -1484,6 +1496,13 @@ final class Tags implements IterableSection
         Element::WBR => Element::WBR,
     ];
 
+    /**
+     * Mapping of spec name to tag ID.
+     *
+     * This is used to optimize querying by spec name.
+     *
+     * @var array<string>
+     */
     const BY_SPEC_NAME = [
         'A (AMP4EMAIL)' => 'A (AMP4EMAIL)',
         'amp-access extension .json script' => 'amp-access extension .json script',
@@ -1735,6 +1754,13 @@ final class Tags implements IterableSection
         'video > track[kind=subtitles]' => 'video > track[kind=subtitles]',
     ];
 
+    /**
+     * Mapping of AMP format to array of tag IDs.
+     *
+     * This is used to optimize querying by AMP format.
+     *
+     * @var array<array<string>>
+     */
     const BY_FORMAT = [
         Format::AMP => [
             Element::A,
@@ -2781,6 +2807,13 @@ final class Tags implements IterableSection
         ],
     ];
 
+    /**
+     * Mapping of extension name to tag ID.
+     *
+     * This is used to optimize querying by extension spec.
+     *
+     * @var array<string>
+     */
     const BY_EXTENSION_SPEC = [
         Extension::AD => 'amp-ad extension script',
         Extension::ANIM => 'SCRIPT [amp-anim]',
@@ -2917,10 +2950,18 @@ final class Tags implements IterableSection
         Extension::YOUTUBE => 'SCRIPT [amp-youtube] (2)',
     ];
 
-    /** @var array<Tag> */
+    /**
+     * Cache of instantiated Tag objects.
+     *
+     * @var array<Tag>
+     */
     private $tagsCache = [];
 
-    /** @var array<string>|null */
+    /**
+     * Array used for storing the iteration index in.
+     *
+     * @var array<string>|null
+     */
     private $iterationArray;
 
     /**

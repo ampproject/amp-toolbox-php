@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class SvgCoreAttributes extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'svg-core-attributes';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::XML_LANG => [],
         Attribute::XML_SPACE => [],

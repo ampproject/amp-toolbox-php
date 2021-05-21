@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class EmailSpecificDeclarations extends DeclarationList
 {
-    /** @var string */
+    /**
+     * ID of the declaration list.
+     *
+     * @var string
+     */
     const ID = 'EMAIL_SPECIFIC_DECLARATIONS';
 
-    /** @var array<array> */
+    /**
+     * Array of declarations.
+     *
+     * @var array<array>
+     */
     const DECLARATIONS = [
         Attribute::_MOZ_APPEARANCE => [],
         Attribute::_WEBKIT_APPEARANCE => [],

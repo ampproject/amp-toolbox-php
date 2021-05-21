@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class CommonLinkAttrs extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'common-link-attrs';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::CHARSET => [
             SpecRule::VALUE_CASEI => [

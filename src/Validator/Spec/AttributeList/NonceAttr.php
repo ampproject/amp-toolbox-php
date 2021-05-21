@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class NonceAttr extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'nonce-attr';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::NONCE => [
             SpecRule::DISABLED_BY => [

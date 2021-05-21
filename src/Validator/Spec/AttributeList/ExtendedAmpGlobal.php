@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class ExtendedAmpGlobal extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'extended-amp-global';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::I_AMPHTML_LAYOUT => [
             SpecRule::VALUE_CASEI => [

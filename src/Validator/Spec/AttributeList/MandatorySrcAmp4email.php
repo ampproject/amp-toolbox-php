@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class MandatorySrcAmp4email extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'mandatory-src-amp4email';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::SRC => [
             SpecRule::MANDATORY => true,

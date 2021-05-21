@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class InteractiveOptionsTextAttrs extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'interactive-options-text-attrs';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::OPTION_1_TEXT => [
             SpecRule::MANDATORY => true,

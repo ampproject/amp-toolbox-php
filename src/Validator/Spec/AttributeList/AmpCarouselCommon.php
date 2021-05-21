@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class AmpCarouselCommon extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'amp-carousel-common';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::ARROWS => [
             SpecRule::VALUE => [

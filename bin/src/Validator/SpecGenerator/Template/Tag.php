@@ -6,7 +6,7 @@ use AmpProject\Exception\InvalidSpecRuleName;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
- * Class Tag
+ * Class Tag.
  *
  * @package AmpProject\Tooling\Validator\SpecGenerator\Template
  *

@@ -19,6 +19,11 @@ final class DescendantTagLists implements IterableSection
         Iteration::current as parentCurrent;
     }
 
+    /**
+     * Mapping of descendant tag list ID to descendant tag list implementation.
+     *
+     * @var array<string>
+     */
     const DESCENDANT_TAG_LISTS = [
         DescendantTagList\AmpMegaMenuAllowedDescendants::ID => DescendantTagList\AmpMegaMenuAllowedDescendants::class,
         DescendantTagList\AmpNestedMenuAllowedDescendants::ID => DescendantTagList\AmpNestedMenuAllowedDescendants::class,
@@ -30,7 +35,11 @@ final class DescendantTagLists implements IterableSection
         DescendantTagList\AmpStoryPageAttachmentAllowedDescendants::ID => DescendantTagList\AmpStoryPageAttachmentAllowedDescendants::class,
     ];
 
-    /** @var array<Spec\DescendantTagList> */
+    /**
+     * Cache of instantiated descendant tag list objects.
+     *
+     * @var array<Spec\DescendantTagList>
+     */
     private $descendantTagLists = [];
 
     /**

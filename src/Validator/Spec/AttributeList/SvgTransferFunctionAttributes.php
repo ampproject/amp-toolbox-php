@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class SvgTransferFunctionAttributes extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'svg-transfer-function-attributes';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::AMPLITUDE => [],
         Attribute::EXPONENT => [],

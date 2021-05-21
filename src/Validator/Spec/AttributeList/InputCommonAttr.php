@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class InputCommonAttr extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'input-common-attr';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::ACCEPT => [],
         Attribute::ACCESSKEY => [],

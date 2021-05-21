@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class AmpDatePickerCommonAttributes extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'amp-date-picker-common-attributes';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::ALLOW_BLOCKED_END_DATE => [
             SpecRule::VALUE => [

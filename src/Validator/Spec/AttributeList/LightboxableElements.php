@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class LightboxableElements extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'lightboxable-elements';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::LIGHTBOX => [],
         Attribute::LIGHTBOX_THUMBNAIL_ID => [

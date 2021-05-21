@@ -58,7 +58,7 @@ final class DescendantTagLists implements Section
         $class->addProperty('descendantTagLists')
               ->setValue([])
               ->setPrivate()
-              ->addComment('@var array<Spec\\DescendantTagList>');
+              ->addComment("Cache of instantiated descendant tag list objects.\n\n@var array<Spec\\DescendantTagList>");
 
         $descendantTagLists = [];
         foreach ($this->data as $key => $value) {
@@ -66,7 +66,8 @@ final class DescendantTagLists implements Section
 
             $descendantTagLists["DescendantTagList\\{$className}::ID"] = "DescendantTagList\\{$className}::class";
         }
-        $class->addConstant('DESCENDANT_TAG_LISTS', $descendantTagLists);
+        $class->addConstant('DESCENDANT_TAG_LISTS', $descendantTagLists)
+              ->addComment("Mapping of descendant tag list ID to descendant tag list implementation.\n\n@var array<string>");
 
         $descendantTagListsTemplateClass = ClassType::withBodiesFrom(Template\DescendantTagLists::class);
         foreach ($descendantTagListsTemplateClass->getMethods() as $method) {
@@ -114,7 +115,7 @@ final class DescendantTagLists implements Section
                            ->addExtend('AmpProject\Validator\Spec\DescendantTagList');
 
         $class->addConstant('ID', $descendantTagListId)
-              ->addComment('@var string');
+              ->addComment("ID of the descendant tag list.\n\n@var string");
 
         $descendantTags = [];
         foreach ($jsonSpec as $key => $value) {
@@ -122,7 +123,7 @@ final class DescendantTagLists implements Section
         }
 
         $class->addConstant('DESCENDANT_TAGS', $descendantTags)
-              ->addComment('@var array<array>');
+              ->addComment("Array of descendant tags.\n\n@var array<array>");
 
         $fileManager->saveFile($file, "Spec/DescendantTagList/{$className}.php");
 

@@ -7,6 +7,20 @@ use AmpProject\Exception\InvalidAttributeName;
 class AttributeList
 {
 
+    /**
+     * ID of the attribute list.
+     *
+     * This needs to be overridden in the extending class.
+     *
+     * @var string
+     */
+    const ID = '[attribute list base class]';
+
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [];
 
     /**

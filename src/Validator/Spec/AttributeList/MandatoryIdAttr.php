@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class MandatoryIdAttr extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'mandatory-id-attr';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::ID => [
             SpecRule::MANDATORY => true,

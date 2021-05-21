@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class AmpMegaphoneCommon extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'amp-megaphone-common';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::DATA_LIGHT => [
             SpecRule::VALUE => [

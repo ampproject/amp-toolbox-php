@@ -19,13 +19,22 @@ final class DeclarationLists implements IterableSection
         Iteration::current as parentCurrent;
     }
 
+    /**
+     * Mapping of declaration list ID to declaration list implementation.
+     *
+     * @var array<string>
+     */
     const DECLARATION_LISTS = [
         DeclarationList\BasicDeclarations::ID => DeclarationList\BasicDeclarations::class,
         DeclarationList\SvgBasicDeclarations::ID => DeclarationList\SvgBasicDeclarations::class,
         DeclarationList\EmailSpecificDeclarations::ID => DeclarationList\EmailSpecificDeclarations::class,
     ];
 
-    /** @var array<Spec\DeclarationList> */
+    /**
+     * Cache of instantiated declaration list objects.
+     *
+     * @var array<Spec\DeclarationList>
+     */
     private $declarationLists = [];
 
     /**

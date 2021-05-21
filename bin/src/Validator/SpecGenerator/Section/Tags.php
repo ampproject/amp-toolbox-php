@@ -68,12 +68,12 @@ final class Tags implements Section
 
         $class->addProperty('tagsCache')
               ->setPrivate()
-              ->addComment('@var array<Tag>')
+              ->addComment("Cache of instantiated Tag objects.\n\n@var array<Tag>")
               ->setValue([]);
 
         $class->addProperty('iterationArray')
               ->setPrivate()
-              ->addComment('@var array<string>|null');
+              ->addComment("Array used for storing the iteration index in.\n\n@var array<string>|null");
 
         foreach ($spec as $attributes) {
             $tagId        = $this->getTagId($tags, $attributes);
@@ -83,7 +83,8 @@ final class Tags implements Section
         $tagIds = array_keys($tags);
         natcasesort($tagIds);
 
-        $class->addConstant('TAGS', $this->getTagsMapping($tags));
+        $class->addConstant('TAGS', $this->getTagsMapping($tags))
+              ->addComment("Mapping of tag ID to tag implementation.\n\n@var array<string>");
 
         foreach ($tagIds as $tagId) {
             $this->generateTagSpecificClass($tagId, $tags[$tagId], $fileManager);
@@ -128,10 +129,33 @@ final class Tags implements Section
             }
         }
 
-        $class->addConstant('BY_TAG_NAME', $byTagName);
-        $class->addConstant('BY_SPEC_NAME', $bySpecName);
-        $class->addConstant('BY_FORMAT', $byFormat);
-        $class->addConstant('BY_EXTENSION_SPEC', $byExtensionSpec);
+        $class->addConstant('BY_TAG_NAME', $byTagName)
+              ->addComment(
+                  "Mapping of tag name to tag ID or array of tag IDs.\n\n"
+                  . "This is used to optimize querying by tag name.\n\n"
+                  . "@var array<string|array<string>>"
+              );
+
+        $class->addConstant('BY_SPEC_NAME', $bySpecName)
+            ->addComment(
+                "Mapping of spec name to tag ID.\n\n"
+                . "This is used to optimize querying by spec name.\n\n"
+                . "@var array<string>"
+            );
+
+        $class->addConstant('BY_FORMAT', $byFormat)
+            ->addComment(
+                "Mapping of AMP format to array of tag IDs.\n\n"
+                . "This is used to optimize querying by AMP format.\n\n"
+                . "@var array<array<string>>"
+            );
+
+        $class->addConstant('BY_EXTENSION_SPEC', $byExtensionSpec)
+            ->addComment(
+                "Mapping of extension name to tag ID.\n\n"
+                . "This is used to optimize querying by extension spec.\n\n"
+                . "@var array<string>"
+            );
     }
 
     /**

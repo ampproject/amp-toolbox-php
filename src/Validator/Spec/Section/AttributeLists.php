@@ -19,6 +19,11 @@ final class AttributeLists implements IterableSection
         Iteration::current as parentCurrent;
     }
 
+    /**
+     * Mapping of attribute list ID to attribute list implementation.
+     *
+     * @var array<string>
+     */
     const ATTRIBUTE_LISTS = [
         AttributeList\CommonLinkAttrs::ID => AttributeList\CommonLinkAttrs::class,
         AttributeList\PooolAccessAttrs::ID => AttributeList\PooolAccessAttrs::class,
@@ -69,7 +74,11 @@ final class AttributeLists implements IterableSection
         AttributeList\AmpVideoCommon::ID => AttributeList\AmpVideoCommon::class,
     ];
 
-    /** @var array<Spec\AttributeList> */
+    /**
+     * Cache of instantiated AttributeList objects.
+     *
+     * @var array<Spec\AttributeList>
+     */
     private $attributeLists = [];
 
     /**

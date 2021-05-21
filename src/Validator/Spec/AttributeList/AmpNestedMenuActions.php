@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class AmpNestedMenuActions extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'amp-nested-menu-actions';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::AMP_NESTED_SUBMENU_CLOSE => [
             SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',

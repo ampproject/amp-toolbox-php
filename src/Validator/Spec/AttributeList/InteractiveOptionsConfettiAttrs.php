@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class InteractiveOptionsConfettiAttrs extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'interactive-options-confetti-attrs';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::OPTION_1_CONFETTI => [],
         Attribute::OPTION_2_CONFETTI => [],

@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class AmphtmlModuleEngineAttrs extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'amphtml-module-engine-attrs';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::ASYNC => [
             SpecRule::MANDATORY => true,

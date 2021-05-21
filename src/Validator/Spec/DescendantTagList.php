@@ -9,7 +9,20 @@ namespace AmpProject\Validator\Spec;
 
 class DescendantTagList
 {
-    /** @var array<string> */
+    /**
+     * ID of the descendant tag list.
+     *
+     * This needs to be overridden in the extending class.
+     *
+     * @var string
+     */
+    const ID = '[descendant tag list base class]';
+
+    /**
+     * Array of descendant tags.
+     *
+     * @var array<string>
+     */
     const DESCENDANT_TAGS = [];
 
     /**

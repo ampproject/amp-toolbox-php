@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class SvgBasicDeclarations extends DeclarationList
 {
-    /** @var string */
+    /**
+     * ID of the declaration list.
+     *
+     * @var string
+     */
     const ID = 'SVG_BASIC_DECLARATIONS';
 
-    /** @var array<array> */
+    /**
+     * Array of declarations.
+     *
+     * @var array<array>
+     */
     const DECLARATIONS = [
         Attribute::ALIGNMENT_BASELINE => [],
         Attribute::BASELINE_SHIFT => [],

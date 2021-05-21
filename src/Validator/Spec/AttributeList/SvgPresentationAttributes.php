@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class SvgPresentationAttributes extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'svg-presentation-attributes';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::ALIGNMENT_BASELINE => [],
         Attribute::BASELINE_SHIFT => [],

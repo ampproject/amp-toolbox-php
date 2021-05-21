@@ -58,7 +58,7 @@ final class AttributeLists implements Section
         $class->addProperty('attributeLists')
               ->setValue([])
               ->setPrivate()
-              ->addComment('@var array<Spec\\AttributeList>');
+              ->addComment("Cache of instantiated AttributeList objects.\n\n@var array<Spec\\AttributeList>");
 
         $attributeLists = [];
         foreach ($this->data as $key => $value) {
@@ -66,7 +66,8 @@ final class AttributeLists implements Section
 
             $attributeLists["AttributeList\\{$className}::ID"] = "AttributeList\\{$className}::class";
         }
-        $class->addConstant('ATTRIBUTE_LISTS', $attributeLists);
+        $class->addConstant('ATTRIBUTE_LISTS', $attributeLists)
+              ->addComment("Mapping of attribute list ID to attribute list implementation.\n\n@var array<string>");
 
         $attributeListsTemplateClass = ClassType::withBodiesFrom(Template\AttributeLists::class);
         foreach ($attributeListsTemplateClass->getMethods() as $method) {
@@ -123,7 +124,7 @@ final class AttributeLists implements Section
                            ->addExtend('AmpProject\Validator\Spec\AttributeList');
 
         $class->addConstant('ID', $attributeListId)
-              ->addComment('@var string');
+              ->addComment("ID of the attribute list.\n\n@var string");
 
         $attributes = [];
         foreach ($jsonSpec as $key => $value) {
@@ -131,7 +132,7 @@ final class AttributeLists implements Section
         }
 
         $class->addConstant('ATTRIBUTES', $attributes)
-              ->addComment('@var array<array>');
+              ->addComment("Array of attributes.\n\n@var array<array>");
 
         $fileManager->saveFile($file, "Spec/AttributeList/{$className}.php");
 

@@ -11,7 +11,20 @@ use AmpProject\Exception\InvalidDeclarationName;
 
 class DeclarationList
 {
-    /** @var array<array> */
+    /**
+     * ID of the declaration list.
+     *
+     * This needs to be overridden in the extending class.
+     *
+     * @var string
+     */
+    const ID = '[declaration list base class]';
+
+    /**
+     * Array of declarations.
+     *
+     * @var array<array>
+     */
     const DECLARATIONS = [];
 
     /**

@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class PooolAccessAttrs extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'poool-access-attrs';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::POOOL_ACCESS_PREVIEW => [
             SpecRule::REQUIRES_EXTENSION => [

@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class MandatoryNameAttr extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'mandatory-name-attr';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::NAME => [
             SpecRule::MANDATORY => true,

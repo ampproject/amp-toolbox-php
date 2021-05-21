@@ -58,7 +58,7 @@ final class DeclarationLists implements Section
         $class->addProperty('declarationLists')
               ->setValue([])
               ->setPrivate()
-              ->addComment('@var array<Spec\\DeclarationList>');
+              ->addComment("Cache of instantiated declaration list objects.\n\n@var array<Spec\\DeclarationList>");
 
         $declarationLists = [];
         foreach ($this->data as $key => $value) {
@@ -66,7 +66,8 @@ final class DeclarationLists implements Section
 
             $declarationLists["DeclarationList\\{$className}::ID"] = "DeclarationList\\{$className}::class";
         }
-        $class->addConstant('DECLARATION_LISTS', $declarationLists);
+        $class->addConstant('DECLARATION_LISTS', $declarationLists)
+              ->addComment("Mapping of declaration list ID to declaration list implementation.\n\n@var array<string>");
 
         $declarationListsTemplateClass = ClassType::withBodiesFrom(Template\DeclarationLists::class);
         foreach ($declarationListsTemplateClass->getMethods() as $method) {
@@ -123,7 +124,7 @@ final class DeclarationLists implements Section
                            ->addExtend('AmpProject\Validator\Spec\DeclarationList');
 
         $class->addConstant('ID', $declarationListId)
-              ->addComment('@var string');
+              ->addComment("ID of the declaration list.\n\n@var string");
 
         $declarations = [];
         foreach ($jsonSpec as $key => $value) {
@@ -131,7 +132,7 @@ final class DeclarationLists implements Section
         }
 
         $class->addConstant('DECLARATIONS', $declarations)
-              ->addComment('@var array<array>');
+              ->addComment("Array of declarations.\n\n@var array<array>");
 
         $fileManager->saveFile($file, "Spec/DeclarationList/{$className}.php");
 

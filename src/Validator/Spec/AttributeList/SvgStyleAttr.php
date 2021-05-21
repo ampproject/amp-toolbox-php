@@ -13,10 +13,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class SvgStyleAttr extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'svg-style-attr';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::STYLE => [
             SpecRule::VALUE_DOC_SVG_CSS => true,

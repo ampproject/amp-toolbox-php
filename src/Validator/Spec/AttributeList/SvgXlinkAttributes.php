@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class SvgXlinkAttributes extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'svg-xlink-attributes';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::XLINK_ACTUATE => [],
         Attribute::XLINK_ARCROLE => [],

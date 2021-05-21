@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class InteractiveSharedConfigsAttrs extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'interactive-shared-configs-attrs';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::ID => [
             SpecRule::MANDATORY => true,

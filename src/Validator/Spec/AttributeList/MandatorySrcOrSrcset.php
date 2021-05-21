@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class MandatorySrcOrSrcset extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'mandatory-src-or-srcset';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::SRC => [
             SpecRule::ALTERNATIVE_NAMES => [

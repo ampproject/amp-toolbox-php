@@ -15,10 +15,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class AmpStoryGridLayerAllowedDescendants extends DescendantTagList
 {
-    /** @var string */
+    /**
+     * ID of the descendant tag list.
+     *
+     * @var string
+     */
     const ID = 'amp-story-grid-layer-allowed-descendants';
 
-    /** @var array<array> */
+    /**
+     * Array of descendant tags.
+     *
+     * @var array<array>
+     */
     const DESCENDANT_TAGS = [
         Element::A,
         Element::ABBR,

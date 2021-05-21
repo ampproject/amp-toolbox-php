@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class CiteAttr extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'cite-attr';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::CITE => [
             SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',

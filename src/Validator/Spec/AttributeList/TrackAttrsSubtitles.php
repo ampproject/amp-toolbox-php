@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class TrackAttrsSubtitles extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'track-attrs-subtitles';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::DEFAULT_ => [
             SpecRule::VALUE => [

@@ -14,10 +14,18 @@ use AmpProject\Validator\Spec\SpecRule;
 
 final class AmpAudioCommon extends AttributeList
 {
-    /** @var string */
+    /**
+     * ID of the attribute list.
+     *
+     * @var string
+     */
     const ID = 'amp-audio-common';
 
-    /** @var array<array> */
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
     const ATTRIBUTES = [
         Attribute::ALBUM => [],
         Attribute::ARTIST => [],
