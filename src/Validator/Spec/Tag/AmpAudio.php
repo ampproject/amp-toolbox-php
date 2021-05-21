@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpAudio extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-AUDIO';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUDIO,
         SpecRule::ATTRS => [

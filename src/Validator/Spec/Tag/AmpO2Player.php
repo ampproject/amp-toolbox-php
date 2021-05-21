@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpO2Player extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-O2-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::O2_PLAYER,
         SpecRule::ATTRS => [

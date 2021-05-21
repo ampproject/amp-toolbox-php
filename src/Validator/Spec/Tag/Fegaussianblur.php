@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Fegaussianblur extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEGAUSSIANBLUR';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEGAUSSIANBLUR,
         SpecRule::ATTRS => [

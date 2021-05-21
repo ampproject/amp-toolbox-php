@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class MetaNameViewport extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'meta name=viewport';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name=viewport',

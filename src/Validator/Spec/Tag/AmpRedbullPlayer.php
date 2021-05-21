@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpRedbullPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-REDBULL-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REDBULL_PLAYER,
         SpecRule::ATTRS => [

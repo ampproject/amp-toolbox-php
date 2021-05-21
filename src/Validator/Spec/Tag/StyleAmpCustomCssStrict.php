@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class StyleAmpCustomCssStrict extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'style amp-custom (css-strict)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style amp-custom (css-strict)',

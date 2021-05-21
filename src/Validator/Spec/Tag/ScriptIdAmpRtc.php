@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class ScriptIdAmpRtc extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'script id=amp-rtc';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'script id=amp-rtc',

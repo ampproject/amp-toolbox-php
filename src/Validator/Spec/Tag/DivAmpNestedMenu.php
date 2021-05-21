@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class DivAmpNestedMenu extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'div amp-nested-menu';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'div amp-nested-menu',

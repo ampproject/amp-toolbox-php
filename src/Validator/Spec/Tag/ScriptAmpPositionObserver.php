@@ -19,6 +19,13 @@ final class ScriptAmpPositionObserver extends Tag implements TagWithExtensionSpe
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-position-observer]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-position-observer',
         SpecRule::VERSION => [

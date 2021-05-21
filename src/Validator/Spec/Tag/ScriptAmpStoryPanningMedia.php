@@ -19,6 +19,13 @@ final class ScriptAmpStoryPanningMedia extends Tag implements TagWithExtensionSp
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-story-panning-media]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-story-panning-media',
         SpecRule::VERSION => [

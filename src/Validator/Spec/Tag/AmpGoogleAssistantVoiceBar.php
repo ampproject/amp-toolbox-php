@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpGoogleAssistantVoiceBar extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-GOOGLE-ASSISTANT-VOICE-BAR';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_ASSISTANT_VOICE_BAR,
         SpecRule::ATTR_LISTS => [

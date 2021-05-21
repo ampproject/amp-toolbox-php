@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpMathml extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-MATHML';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MATHML,
         SpecRule::ATTRS => [

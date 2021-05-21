@@ -19,6 +19,13 @@ final class ScriptAmpHulu extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-hulu]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-hulu',
         SpecRule::VERSION => [

@@ -19,6 +19,13 @@ final class ScriptCustomTemplateAmpMustacheAmp4email extends Tag implements TagW
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mustache',
         SpecRule::VERSION => [

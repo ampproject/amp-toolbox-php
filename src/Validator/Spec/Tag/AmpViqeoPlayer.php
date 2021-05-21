@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpViqeoPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-VIQEO-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIQEO_PLAYER,
         SpecRule::ATTRS => [

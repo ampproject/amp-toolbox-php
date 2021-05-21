@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpHulu extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-HULU';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::HULU,
         SpecRule::ATTRS => [

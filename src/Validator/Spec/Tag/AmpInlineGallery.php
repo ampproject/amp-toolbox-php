@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpInlineGallery extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-INLINE-GALLERY';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INLINE_GALLERY,
         SpecRule::ATTR_LISTS => [

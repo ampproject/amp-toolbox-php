@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Lineargradient extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'LINEARGRADIENT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINEARGRADIENT,
         SpecRule::ATTRS => [

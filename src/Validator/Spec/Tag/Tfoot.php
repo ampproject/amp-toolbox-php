@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Tfoot extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'TFOOT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TFOOT,
         SpecRule::HTML_FORMAT => [

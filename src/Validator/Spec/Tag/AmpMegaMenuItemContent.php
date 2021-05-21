@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpMegaMenuItemContent extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-MEGA-MENU item-content';
+
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU item-content',

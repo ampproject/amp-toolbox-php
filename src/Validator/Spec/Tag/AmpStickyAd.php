@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStickyAd extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STICKY-AD';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STICKY_AD,
         SpecRule::UNIQUE => true,

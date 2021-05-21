@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class ScriptTypeTextPlain extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT type=text/plain';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT type=text/plain',

@@ -19,6 +19,13 @@ final class ScriptAmpBodymovinAnimation extends Tag implements TagWithExtensionS
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-bodymovin-animation]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-bodymovin-animation',
         SpecRule::VERSION => [

@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class LinkRelStylesheetForFonts extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'link rel=stylesheet for fonts';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link rel=stylesheet for fonts',

@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpGoogleAssistantInlineSuggestionBar extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-GOOGLE-ASSISTANT-INLINE-SUGGESTION-BAR';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_ASSISTANT_INLINE_SUGGESTION_BAR,
         SpecRule::ATTR_LISTS => [

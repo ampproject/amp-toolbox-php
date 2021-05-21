@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class StyleAmpRuntimeTransformed extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'style[amp-runtime] (transformed)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style[amp-runtime] (transformed)',

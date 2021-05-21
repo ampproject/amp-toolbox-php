@@ -19,6 +19,13 @@ final class ScriptAmpList extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-list]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-list',
         SpecRule::VERSION => [

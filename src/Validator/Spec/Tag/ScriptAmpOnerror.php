@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class ScriptAmpOnerror extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'script amp-onerror';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'script amp-onerror',

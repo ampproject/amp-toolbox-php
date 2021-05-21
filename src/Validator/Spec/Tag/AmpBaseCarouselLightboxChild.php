@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpBaseCarouselLightboxChild extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-BASE-CAROUSEL lightbox [child]';
+
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-BASE-CAROUSEL lightbox [child]',

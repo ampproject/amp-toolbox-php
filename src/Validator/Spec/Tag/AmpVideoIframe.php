@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpVideoIframe extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-VIDEO-IFRAME';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIDEO_IFRAME,
         SpecRule::ATTR_LISTS => [

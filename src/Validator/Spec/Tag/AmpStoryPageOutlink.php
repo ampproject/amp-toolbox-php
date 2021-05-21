@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryPageOutlink extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-story-page-outlink';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PAGE_OUTLINK,
         SpecRule::SPEC_NAME => 'amp-story-page-outlink',

@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpDatePickerTemplateDateTemplate extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-date-picker > template [date-template]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEMPLATE,
         SpecRule::SPEC_NAME => 'amp-date-picker > template [date-template]',

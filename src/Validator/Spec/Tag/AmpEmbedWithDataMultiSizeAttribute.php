@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpEmbedWithDataMultiSizeAttribute extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-embed with data-multi-size attribute';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EMBED,
         SpecRule::SPEC_NAME => 'amp-embed with data-multi-size attribute',

@@ -19,6 +19,13 @@ final class ScriptAmpRedbullPlayer extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-redbull-player]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-redbull-player',
         SpecRule::VERSION => [

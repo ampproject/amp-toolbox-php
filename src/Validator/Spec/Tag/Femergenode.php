@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Femergenode extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEMERGENODE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEMERGENODE,
         SpecRule::ATTRS => [

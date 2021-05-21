@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Thead extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'THEAD';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::THEAD,
         SpecRule::HTML_FORMAT => [

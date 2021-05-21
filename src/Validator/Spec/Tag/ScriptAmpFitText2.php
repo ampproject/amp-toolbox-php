@@ -19,6 +19,13 @@ final class ScriptAmpFitText2 extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-fit-text] (2)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-fit-text',
         SpecRule::VERSION => [

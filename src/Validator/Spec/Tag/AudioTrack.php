@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AudioTrack extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'audio > track';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TRACK,
         SpecRule::SPEC_NAME => 'audio > track',

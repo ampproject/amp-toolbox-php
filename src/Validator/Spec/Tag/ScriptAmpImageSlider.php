@@ -19,6 +19,13 @@ final class ScriptAmpImageSlider extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-image-slider]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-image-slider',
         SpecRule::VERSION => [

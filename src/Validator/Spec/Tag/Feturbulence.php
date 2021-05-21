@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Feturbulence extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FETURBULENCE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FETURBULENCE,
         SpecRule::ATTRS => [

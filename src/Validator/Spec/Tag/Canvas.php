@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Canvas extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'CANVAS';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::CANVAS,
         SpecRule::ATTRS => [

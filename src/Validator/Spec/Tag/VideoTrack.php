@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class VideoTrack extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'video > track';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TRACK,
         SpecRule::SPEC_NAME => 'video > track',

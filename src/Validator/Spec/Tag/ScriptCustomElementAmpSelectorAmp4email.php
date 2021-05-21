@@ -19,6 +19,13 @@ final class ScriptCustomElementAmpSelectorAmp4email extends Tag implements TagWi
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-element=amp-selector] (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-selector',
         SpecRule::VERSION => [

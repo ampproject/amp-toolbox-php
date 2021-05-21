@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Filter extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FILTER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FILTER,
         SpecRule::ATTRS => [

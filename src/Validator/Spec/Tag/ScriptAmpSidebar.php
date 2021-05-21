@@ -19,6 +19,13 @@ final class ScriptAmpSidebar extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-sidebar]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-sidebar',
         SpecRule::VERSION => [

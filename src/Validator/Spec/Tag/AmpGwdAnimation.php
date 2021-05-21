@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpGwdAnimation extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-GWD-ANIMATION';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GWD_ANIMATION,
         SpecRule::ATTRS => [

@@ -19,6 +19,13 @@ final class ScriptAmpPanZoom extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-pan-zoom]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-pan-zoom',
         SpecRule::VERSION => [

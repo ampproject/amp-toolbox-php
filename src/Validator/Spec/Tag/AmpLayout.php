@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpLayout extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-LAYOUT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LAYOUT,
         SpecRule::ATTR_LISTS => [

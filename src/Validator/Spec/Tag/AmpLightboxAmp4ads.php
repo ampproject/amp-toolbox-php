@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpLightboxAmp4ads extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-lightbox [AMP4ADS]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIGHTBOX,
         SpecRule::SPEC_NAME => 'amp-lightbox [AMP4ADS]',

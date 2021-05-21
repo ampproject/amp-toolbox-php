@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Amp3qPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-3Q-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::_3Q_PLAYER,
         SpecRule::ATTRS => [

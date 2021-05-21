@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpAutocomplete extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-autocomplete';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUTOCOMPLETE,
         SpecRule::SPEC_NAME => 'amp-autocomplete',

@@ -19,6 +19,13 @@ final class ScriptAmpYoutube extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-youtube]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-youtube',
         SpecRule::VERSION => [

@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Ins extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'INS';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::INS,
         SpecRule::ATTRS => [

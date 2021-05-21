@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class HeadStyleAmpBoilerplate extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'head > style[amp-boilerplate]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'head > style[amp-boilerplate]',

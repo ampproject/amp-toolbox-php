@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpActionMacro extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-ACTION-MACRO';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ACTION_MACRO,
         SpecRule::ATTRS => [

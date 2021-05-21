@@ -19,6 +19,13 @@ final class ScriptAmpFacebookComments extends Tag implements TagWithExtensionSpe
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-facebook-comments]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-facebook-comments',
         SpecRule::VERSION => [

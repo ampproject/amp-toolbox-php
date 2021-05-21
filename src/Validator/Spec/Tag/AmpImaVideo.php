@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpImaVideo extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-IMA-VIDEO';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMA_VIDEO,
         SpecRule::ATTRS => [

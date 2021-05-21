@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class NoscriptEnclosureForBoilerplateTransformed extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'noscript enclosure for boilerplate (transformed)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::NOSCRIPT,
         SpecRule::SPEC_NAME => 'noscript enclosure for boilerplate (transformed)',

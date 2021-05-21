@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Center extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'CENTER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::CENTER,
         SpecRule::HTML_FORMAT => [

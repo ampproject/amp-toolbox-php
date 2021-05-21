@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class TitleAmp4email extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'title [AMP4EMAIL]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'title [AMP4EMAIL]',

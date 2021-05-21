@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class LinkRelCanonical extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'link rel=canonical';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link rel=canonical',

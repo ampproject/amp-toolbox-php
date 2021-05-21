@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class CryptokeysJsonScript extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'cryptokeys .json script';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'cryptokeys .json script',

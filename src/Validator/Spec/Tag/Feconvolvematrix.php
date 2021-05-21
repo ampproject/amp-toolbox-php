@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Feconvolvematrix extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FECONVOLVEMATRIX';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECONVOLVEMATRIX,
         SpecRule::ATTRS => [

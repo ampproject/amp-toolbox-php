@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class MetaNameAmp3pIframeSrc extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'meta name=amp-3p-iframe-src';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name=amp-3p-iframe-src',

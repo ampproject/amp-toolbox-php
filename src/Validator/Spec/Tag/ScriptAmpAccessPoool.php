@@ -20,6 +20,13 @@ final class ScriptAmpAccessPoool extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-access-poool]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-access-poool',
         SpecRule::VERSION => [

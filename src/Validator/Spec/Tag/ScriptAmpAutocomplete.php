@@ -19,6 +19,13 @@ final class ScriptAmpAutocomplete extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-autocomplete]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-autocomplete',
         SpecRule::VERSION => [

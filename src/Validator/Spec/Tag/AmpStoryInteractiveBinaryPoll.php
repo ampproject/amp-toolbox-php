@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryInteractiveBinaryPoll extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-INTERACTIVE-BINARY-POLL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_BINARY_POLL,
         SpecRule::ATTRS => [

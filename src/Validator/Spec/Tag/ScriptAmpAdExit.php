@@ -19,6 +19,13 @@ final class ScriptAmpAdExit extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-ad-exit]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-ad-exit',
         SpecRule::VERSION => [

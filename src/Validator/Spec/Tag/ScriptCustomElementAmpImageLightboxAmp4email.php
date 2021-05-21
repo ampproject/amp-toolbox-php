@@ -19,6 +19,13 @@ final class ScriptCustomElementAmpImageLightboxAmp4email extends Tag implements 
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-element=amp-image-lightbox] (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-image-lightbox',
         SpecRule::VERSION => [

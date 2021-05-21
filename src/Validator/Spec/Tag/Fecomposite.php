@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Fecomposite extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FECOMPOSITE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECOMPOSITE,
         SpecRule::ATTRS => [

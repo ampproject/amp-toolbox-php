@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStreamGallery extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STREAM-GALLERY';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STREAM_GALLERY,
         SpecRule::ATTR_LISTS => [

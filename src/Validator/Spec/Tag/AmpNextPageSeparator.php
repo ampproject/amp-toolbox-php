@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpNextPageSeparator extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-NEXT-PAGE > [separator]';
+
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [separator]',

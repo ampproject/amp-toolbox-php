@@ -19,6 +19,13 @@ final class ScriptAmpStoryInteractive extends Tag implements TagWithExtensionSpe
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-story-interactive]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-story-interactive',
         SpecRule::VERSION => [

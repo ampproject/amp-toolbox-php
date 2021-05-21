@@ -19,6 +19,13 @@ final class ScriptAmpGeo extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-geo]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-geo',
         SpecRule::VERSION => [

@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Optgroup extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'OPTGROUP';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::OPTGROUP,
         SpecRule::MANDATORY_PARENT => Element::SELECT,

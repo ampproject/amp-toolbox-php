@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class IAmphtmlSizerIntrinsic extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'I-AMPHTML-SIZER-INTRINSIC';
+
     const SPEC = [
         SpecRule::TAG_NAME => Internal::SIZER,
         SpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-INTRINSIC',

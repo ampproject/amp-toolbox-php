@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpLiveListUpdate extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-LIVE-LIST [update]';
+
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [update]',

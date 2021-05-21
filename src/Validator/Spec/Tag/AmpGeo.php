@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpGeo extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-GEO';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GEO,
         SpecRule::UNIQUE => true,

@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class MetaHttpEquivContentType extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'meta http-equiv=Content-Type';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=Content-Type',

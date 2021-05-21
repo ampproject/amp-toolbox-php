@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class H2AmpNestedMenu extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'h2 amp-nested-menu';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::H2,
         SpecRule::SPEC_NAME => 'h2 amp-nested-menu',

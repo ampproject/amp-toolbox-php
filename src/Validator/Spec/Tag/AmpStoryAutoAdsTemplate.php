@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryAutoAdsTemplate extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-story-auto-ads > template';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEMPLATE,
         SpecRule::SPEC_NAME => 'amp-story-auto-ads > template',

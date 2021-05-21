@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpBodymovinAnimation extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-BODYMOVIN-ANIMATION';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BODYMOVIN_ANIMATION,
         SpecRule::ATTRS => [

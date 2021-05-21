@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class SubscriptionsScriptCiphertext extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'subscriptions script ciphertext';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'subscriptions script ciphertext',

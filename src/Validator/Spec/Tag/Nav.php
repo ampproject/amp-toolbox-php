@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Nav extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'NAV';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::NAV,
         SpecRule::HTML_FORMAT => [

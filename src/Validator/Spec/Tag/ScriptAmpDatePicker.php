@@ -19,6 +19,13 @@ final class ScriptAmpDatePicker extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-date-picker]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-date-picker',
         SpecRule::VERSION => [

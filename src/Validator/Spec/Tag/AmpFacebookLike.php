@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpFacebookLike extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-FACEBOOK-LIKE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FACEBOOK_LIKE,
         SpecRule::ATTRS => [

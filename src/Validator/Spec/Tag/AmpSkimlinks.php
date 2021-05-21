@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpSkimlinks extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-SKIMLINKS';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SKIMLINKS,
         SpecRule::ATTRS => [

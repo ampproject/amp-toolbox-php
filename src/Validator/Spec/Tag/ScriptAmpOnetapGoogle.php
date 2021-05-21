@@ -19,6 +19,13 @@ final class ScriptAmpOnetapGoogle extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-onetap-google]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-onetap-google',
         SpecRule::VERSION => [

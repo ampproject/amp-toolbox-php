@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpVimeo extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-VIMEO';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIMEO,
         SpecRule::ATTRS => [

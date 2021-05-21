@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpFont extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-FONT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FONT,
         SpecRule::ATTRS => [

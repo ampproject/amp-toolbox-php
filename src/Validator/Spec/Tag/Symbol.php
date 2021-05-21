@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Symbol extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SYMBOL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SYMBOL,
         SpecRule::ATTRS => [

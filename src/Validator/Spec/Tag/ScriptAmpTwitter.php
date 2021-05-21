@@ -19,6 +19,13 @@ final class ScriptAmpTwitter extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-twitter]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-twitter',
         SpecRule::VERSION => [

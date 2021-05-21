@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpImageLightbox extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-IMAGE-LIGHTBOX';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMAGE_LIGHTBOX,
         SpecRule::ATTRS => [

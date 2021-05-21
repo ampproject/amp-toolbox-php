@@ -19,6 +19,13 @@ final class ScriptAmpFacebookLike extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-facebook-like]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-facebook-like',
         SpecRule::VERSION => [

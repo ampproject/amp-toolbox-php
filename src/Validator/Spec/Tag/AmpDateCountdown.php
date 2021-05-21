@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpDateCountdown extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-DATE-COUNTDOWN';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DATE_COUNTDOWN,
         SpecRule::ATTRS => [

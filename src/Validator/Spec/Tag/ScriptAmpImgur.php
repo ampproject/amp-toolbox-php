@@ -19,6 +19,13 @@ final class ScriptAmpImgur extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-imgur]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-imgur',
         SpecRule::VERSION => [

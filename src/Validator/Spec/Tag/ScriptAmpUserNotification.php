@@ -19,6 +19,13 @@ final class ScriptAmpUserNotification extends Tag implements TagWithExtensionSpe
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-user-notification]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-user-notification',
         SpecRule::VERSION => [

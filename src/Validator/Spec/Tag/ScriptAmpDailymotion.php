@@ -19,6 +19,13 @@ final class ScriptAmpDailymotion extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-dailymotion]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-dailymotion',
         SpecRule::VERSION => [

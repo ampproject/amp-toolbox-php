@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Fefuncg extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEFUNCG';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEFUNCG,
         SpecRule::MANDATORY_PARENT => Element::FECOMPONENTTRANSFER,

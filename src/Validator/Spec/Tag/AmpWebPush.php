@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpWebPush extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-WEB-PUSH';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::WEB_PUSH,
         SpecRule::ATTRS => [

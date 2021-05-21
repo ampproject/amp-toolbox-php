@@ -19,6 +19,13 @@ final class ScriptAmpApesterMedia extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-apester-media]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-apester-media',
         SpecRule::VERSION => [

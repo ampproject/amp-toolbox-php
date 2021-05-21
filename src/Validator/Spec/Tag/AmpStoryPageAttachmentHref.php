@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryPageAttachmentHref extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-story-page-attachment[href]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PAGE_ATTACHMENT,
         SpecRule::SPEC_NAME => 'amp-story-page-attachment[href]',

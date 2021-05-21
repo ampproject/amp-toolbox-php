@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpGist extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-GIST';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GIST,
         SpecRule::ATTRS => [

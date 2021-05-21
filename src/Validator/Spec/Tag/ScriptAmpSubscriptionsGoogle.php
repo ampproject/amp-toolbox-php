@@ -20,6 +20,13 @@ final class ScriptAmpSubscriptionsGoogle extends Tag implements TagWithExtension
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-subscriptions-google]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-subscriptions-google',
         SpecRule::VERSION => [

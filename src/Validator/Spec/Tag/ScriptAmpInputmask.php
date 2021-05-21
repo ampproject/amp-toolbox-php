@@ -19,6 +19,13 @@ final class ScriptAmpInputmask extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-inputmask]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-inputmask',
         SpecRule::VERSION => [

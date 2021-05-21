@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpGoogleAssistantVoiceButton extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-GOOGLE-ASSISTANT-VOICE-BUTTON';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_ASSISTANT_VOICE_BUTTON,
         SpecRule::ATTR_LISTS => [

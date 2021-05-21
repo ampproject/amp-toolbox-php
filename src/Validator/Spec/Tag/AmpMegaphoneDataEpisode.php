@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpMegaphoneDataEpisode extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-megaphone [data-episode]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MEGAPHONE,
         SpecRule::SPEC_NAME => 'amp-megaphone [data-episode]',

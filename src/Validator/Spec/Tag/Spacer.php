@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Spacer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SPACER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SPACER,
         SpecRule::HTML_FORMAT => [

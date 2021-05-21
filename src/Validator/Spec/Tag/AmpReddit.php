@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpReddit extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-REDDIT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REDDIT,
         SpecRule::ATTRS => [

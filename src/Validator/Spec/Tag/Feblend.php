@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Feblend extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEBLEND';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEBLEND,
         SpecRule::ATTRS => [

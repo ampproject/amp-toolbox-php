@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpEmbedlyCard extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-EMBEDLY-CARD';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EMBEDLY_CARD,
         SpecRule::ATTRS => [

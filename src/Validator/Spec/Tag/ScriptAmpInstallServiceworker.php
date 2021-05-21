@@ -19,6 +19,13 @@ final class ScriptAmpInstallServiceworker extends Tag implements TagWithExtensio
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-install-serviceworker]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-install-serviceworker',
         SpecRule::VERSION => [

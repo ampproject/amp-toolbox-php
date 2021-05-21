@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryInteractivePoll extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-INTERACTIVE-POLL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_POLL,
         SpecRule::ATTR_LISTS => [

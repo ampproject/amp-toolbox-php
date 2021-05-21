@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class IAmphtmlSizerResponsive extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'I-AMPHTML-SIZER-RESPONSIVE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Internal::SIZER,
         SpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-RESPONSIVE',

@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Footer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FOOTER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FOOTER,
         SpecRule::HTML_FORMAT => [

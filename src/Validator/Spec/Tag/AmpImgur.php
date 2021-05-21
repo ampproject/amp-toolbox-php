@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpImgur extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-IMGUR';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMGUR,
         SpecRule::ATTRS => [

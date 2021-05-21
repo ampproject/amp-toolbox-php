@@ -19,6 +19,13 @@ final class ScriptAmpIframely extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-iframely]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-iframely',
         SpecRule::VERSION => [

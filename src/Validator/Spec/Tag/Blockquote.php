@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Blockquote extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'BLOCKQUOTE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::BLOCKQUOTE,
         SpecRule::ATTRS => [

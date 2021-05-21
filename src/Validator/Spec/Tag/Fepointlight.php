@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Fepointlight extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEPOINTLIGHT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEPOINTLIGHT,
         SpecRule::ATTRS => [

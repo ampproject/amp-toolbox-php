@@ -19,6 +19,13 @@ final class ScriptAmpJwplayer extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-jwplayer]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-jwplayer',
         SpecRule::VERSION => [

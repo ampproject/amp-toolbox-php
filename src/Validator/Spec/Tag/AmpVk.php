@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpVk extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-VK';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VK,
         SpecRule::ATTRS => [

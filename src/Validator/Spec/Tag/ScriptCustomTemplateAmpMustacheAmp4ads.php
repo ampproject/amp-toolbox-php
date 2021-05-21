@@ -19,6 +19,13 @@ final class ScriptCustomTemplateAmpMustacheAmp4ads extends Tag implements TagWit
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-template=amp-mustache] (AMP4ADS)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mustache',
         SpecRule::VERSION => [

@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpOrientationObserver extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-ORIENTATION-OBSERVER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ORIENTATION_OBSERVER,
         SpecRule::ATTRS => [

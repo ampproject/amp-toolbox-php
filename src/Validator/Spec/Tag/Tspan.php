@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Tspan extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'TSPAN';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TSPAN,
         SpecRule::ATTRS => [

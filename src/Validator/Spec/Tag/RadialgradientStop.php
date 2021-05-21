@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class RadialgradientStop extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'radialgradient > stop';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STOP,
         SpecRule::SPEC_NAME => 'radialgradient > stop',

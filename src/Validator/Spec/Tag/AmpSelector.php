@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpSelector extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-SELECTOR';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SELECTOR,
         SpecRule::ATTRS => [

@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Acronym extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'ACRONYM';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::ACRONYM,
         SpecRule::HTML_FORMAT => [

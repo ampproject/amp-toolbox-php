@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Circle extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'CIRCLE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::CIRCLE,
         SpecRule::ATTRS => [

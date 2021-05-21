@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Bdi extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'BDI';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::BDI,
         SpecRule::HTML_FORMAT => [

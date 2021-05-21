@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class VideoTrackKindSubtitles extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'video > track[kind=subtitles]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TRACK,
         SpecRule::SPEC_NAME => 'video > track[kind=subtitles]',

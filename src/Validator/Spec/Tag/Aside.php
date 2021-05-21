@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Aside extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'ASIDE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::ASIDE,
         SpecRule::HTML_FORMAT => [

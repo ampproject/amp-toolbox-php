@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Feflood extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEFLOOD';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEFLOOD,
         SpecRule::ATTR_LISTS => [

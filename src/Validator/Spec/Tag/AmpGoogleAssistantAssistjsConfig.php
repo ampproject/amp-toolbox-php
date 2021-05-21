@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpGoogleAssistantAssistjsConfig extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-GOOGLE-ASSISTANT-ASSISTJS-CONFIG';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_ASSISTANT_ASSISTJS_CONFIG,
         SpecRule::AMP_LAYOUT => [

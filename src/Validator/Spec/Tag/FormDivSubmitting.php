@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class FormDivSubmitting extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FORM DIV [submitting]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [submitting]',

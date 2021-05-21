@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpUserNotification extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-USER-NOTIFICATION';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::USER_NOTIFICATION,
         SpecRule::ATTRS => [

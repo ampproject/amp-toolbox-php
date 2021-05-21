@@ -13,6 +13,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpMegaMenuNav extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-MEGA-MENU > NAV';
+
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > NAV',

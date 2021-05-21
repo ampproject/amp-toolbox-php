@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class LinkRelPreload extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'link rel=preload';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link rel=preload',

@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpEmbedlyKey extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-EMBEDLY-KEY';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EMBEDLY_KEY,
         SpecRule::UNIQUE => true,

@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class SpanSwgAmpCacheNonce extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'span swg_amp_cache_nonce';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SPAN,
         SpecRule::SPEC_NAME => 'span swg_amp_cache_nonce',

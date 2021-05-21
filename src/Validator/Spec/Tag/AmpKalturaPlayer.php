@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpKalturaPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-KALTURA-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::KALTURA_PLAYER,
         SpecRule::ATTRS => [

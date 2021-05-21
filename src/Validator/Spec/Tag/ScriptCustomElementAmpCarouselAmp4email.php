@@ -19,6 +19,13 @@ final class ScriptCustomElementAmpCarouselAmp4email extends Tag implements TagWi
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-carousel',
         SpecRule::VERSION => [

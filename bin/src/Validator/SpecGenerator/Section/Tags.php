@@ -87,7 +87,10 @@ final class Tags implements Section
         $class->addConstant('TAGS', $this->getTagsMapping($tags))
               ->addComment("Mapping of tag ID to tag implementation.\n\n@var array<string>");
 
+
         foreach ($tagIds as $tagId) {
+            $tagIdString = "Tag\\{$this->getClassNameFromId($tagId)}::ID";
+
             $this->generateTagSpecificClass($tagId, $tags[$tagId], $fileManager);
 
             if (array_key_exists('tagName', $tags[$tagId])) {
@@ -100,16 +103,17 @@ final class Tags implements Section
                             $byTagName[$tagName]   = [];
                             $byTagName[$tagName][] = $previousTagId;
                         }
-                        $byTagName[$tagName][] = $this->getKeyString($tagId);
+                        $byTagName[$tagName][] = $tagIdString;
                     } else {
-                        $byTagName[$tagName] = $this->getKeyString($tagId);
+                        $byTagName[$tagName] = $tagIdString;
                     }
                 }
             }
 
             if (array_key_exists('specName', $tags[$tagId])) {
-                $specName              = $this->getKeyString($tags[$tagId]['specName']);
-                $bySpecName[$specName] = $this->getKeyString($tagId);
+                // Spec name and tag ID happens to be the same at this point but could change in the future.
+                $specName              = $tagIdString;
+                $bySpecName[$specName] = $tagIdString;
             }
 
             if (array_key_exists('htmlFormat', $tags[$tagId])) {
@@ -119,14 +123,14 @@ final class Tags implements Section
                     if (!array_key_exists($format, $byFormat)) {
                         $byFormat[$format] = [];
                     }
-                    $byFormat[$format][] = $this->getKeyString($tagId);
+                    $byFormat[$format][] = $tagIdString;
                 }
             }
 
             if (array_key_exists('extensionSpec', $tags[$tagId])) {
                 $extensionSpec                   = $tags[$tagId]['extensionSpec'];
                 $extensionName                   = $this->getKeyString($extensionSpec['name']);
-                $byExtensionSpec[$extensionName] = $this->getKeyString($tagId);
+                $byExtensionSpec[$extensionName] = $tagIdString;
             }
         }
 
@@ -231,7 +235,7 @@ final class Tags implements Section
             unset($tagMappings[$tagId]);
 
             $class = "Tag\\{$this->getClassNameFromId($tagId)}::class";
-            $tagId = $this->getKeyString($tagId);
+            $tagId = "Tag\\{$this->getClassNameFromId($tagId)}::ID";
 
             $tagMappings[$tagId] = $class;
         }
@@ -259,6 +263,9 @@ final class Tags implements Section
         $class = $namespace->addClass($className)
                            ->setFinal()
                            ->addExtend('AmpProject\Validator\Spec\Tag');
+
+        $class->addConstant('ID', $tagId)
+              ->addComment("ID of the tag.\n\n@var string");
 
         if (array_key_exists('extensionSpec', $jsonSpec)) {
             $extensionSpec             = $jsonSpec['extensionSpec'];

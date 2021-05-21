@@ -19,6 +19,13 @@ final class ScriptCustomElementAmpListAmp4email extends Tag implements TagWithEx
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-element=amp-list] (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-list',
         SpecRule::VERSION => [

@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class SvgTitle extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'svg title';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'svg title',

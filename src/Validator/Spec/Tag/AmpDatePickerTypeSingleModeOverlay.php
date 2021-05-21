@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpDatePickerTypeSingleModeOverlay extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-date-picker[type=single][mode=overlay]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DATE_PICKER,
         SpecRule::SPEC_NAME => 'amp-date-picker[type=single][mode=overlay]',

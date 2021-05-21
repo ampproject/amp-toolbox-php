@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryAutoAnalytics extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-AUTO-ANALYTICS';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_AUTO_ANALYTICS,
         SpecRule::ATTRS => [

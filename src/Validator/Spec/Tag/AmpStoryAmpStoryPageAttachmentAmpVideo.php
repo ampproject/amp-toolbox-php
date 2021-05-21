@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryAmpStoryPageAttachmentAmpVideo extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-story >> amp-story-page-attachment >> amp-video';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIDEO,
         SpecRule::SPEC_NAME => 'amp-story >> amp-story-page-attachment >> amp-video',

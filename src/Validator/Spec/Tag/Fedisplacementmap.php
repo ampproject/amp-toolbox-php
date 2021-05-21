@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Fedisplacementmap extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEDISPLACEMENTMAP';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDISPLACEMENTMAP,
         SpecRule::ATTRS => [

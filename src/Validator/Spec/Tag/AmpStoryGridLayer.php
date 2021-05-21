@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryGridLayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-GRID-LAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_GRID_LAYER,
         SpecRule::ATTRS => [

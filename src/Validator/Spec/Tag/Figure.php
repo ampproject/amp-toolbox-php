@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Figure extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FIGURE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FIGURE,
         SpecRule::HTML_FORMAT => [

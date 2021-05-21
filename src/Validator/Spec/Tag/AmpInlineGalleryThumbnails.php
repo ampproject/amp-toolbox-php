@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpInlineGalleryThumbnails extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-INLINE-GALLERY-THUMBNAILS';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INLINE_GALLERY_THUMBNAILS,
         SpecRule::ATTRS => [

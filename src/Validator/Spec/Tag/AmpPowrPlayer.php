@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpPowrPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-POWR-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::POWR_PLAYER,
         SpecRule::ATTRS => [

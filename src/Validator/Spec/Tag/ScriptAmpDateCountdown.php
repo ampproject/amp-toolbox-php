@@ -19,6 +19,13 @@ final class ScriptAmpDateCountdown extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-date-countdown]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-date-countdown',
         SpecRule::VERSION => [

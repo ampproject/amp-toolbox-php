@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Slot extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SLOT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SLOT,
         SpecRule::ATTR_LISTS => [

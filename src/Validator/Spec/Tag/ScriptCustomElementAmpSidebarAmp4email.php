@@ -19,6 +19,13 @@ final class ScriptCustomElementAmpSidebarAmp4email extends Tag implements TagWit
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-element=amp-sidebar] (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-sidebar',
         SpecRule::VERSION => [

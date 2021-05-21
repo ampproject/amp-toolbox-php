@@ -19,6 +19,13 @@ final class ScriptAmpO2Player extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-o2-player]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-o2-player',
         SpecRule::VERSION => [

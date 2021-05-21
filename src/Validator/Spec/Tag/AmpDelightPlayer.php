@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpDelightPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-DELIGHT-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DELIGHT_PLAYER,
         SpecRule::ATTRS => [

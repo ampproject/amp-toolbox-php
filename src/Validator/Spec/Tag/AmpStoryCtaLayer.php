@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryCtaLayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-CTA-LAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_CTA_LAYER,
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,

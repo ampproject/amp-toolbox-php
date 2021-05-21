@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Iframe extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'IFRAME';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::IFRAME,
         SpecRule::ATTRS => [

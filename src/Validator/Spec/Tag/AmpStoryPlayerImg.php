@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryPlayerImg extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-story-player > img';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::IMG,
         SpecRule::SPEC_NAME => 'amp-story-player > img',

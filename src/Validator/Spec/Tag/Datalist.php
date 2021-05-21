@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Datalist extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'DATALIST';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::DATALIST,
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',

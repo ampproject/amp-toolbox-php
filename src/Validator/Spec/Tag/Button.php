@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Button extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'BUTTON';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::ATTRS => [

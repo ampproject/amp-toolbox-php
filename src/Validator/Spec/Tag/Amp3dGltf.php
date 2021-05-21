@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Amp3dGltf extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-3D-GLTF';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::_3D_GLTF,
         SpecRule::ATTRS => [

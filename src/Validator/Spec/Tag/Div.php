@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Div extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'DIV';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::ATTRS => [

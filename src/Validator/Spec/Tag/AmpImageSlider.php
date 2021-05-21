@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpImageSlider extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-IMAGE-SLIDER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMAGE_SLIDER,
         SpecRule::ATTRS => [

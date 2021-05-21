@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class PictureSource extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'picture > source';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SOURCE,
         SpecRule::SPEC_NAME => 'picture > source',

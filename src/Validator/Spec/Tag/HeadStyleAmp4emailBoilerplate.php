@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class HeadStyleAmp4emailBoilerplate extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'head > style[amp4email-boilerplate]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'head > style[amp4email-boilerplate]',

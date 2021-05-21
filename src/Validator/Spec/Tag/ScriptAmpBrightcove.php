@@ -19,6 +19,13 @@ final class ScriptAmpBrightcove extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-brightcove]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-brightcove',
         SpecRule::VERSION => [

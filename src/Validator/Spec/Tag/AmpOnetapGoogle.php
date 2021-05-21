@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpOnetapGoogle extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-ONETAP-GOOGLE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ONETAP_GOOGLE,
         SpecRule::UNIQUE => true,

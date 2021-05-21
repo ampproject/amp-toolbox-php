@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpGoogleDocumentEmbed extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-GOOGLE-DOCUMENT-EMBED';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_DOCUMENT_EMBED,
         SpecRule::ATTRS => [

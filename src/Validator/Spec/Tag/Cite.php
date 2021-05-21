@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Cite extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'CITE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::CITE,
         SpecRule::HTML_FORMAT => [

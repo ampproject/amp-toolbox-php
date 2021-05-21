@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmphtmlEngineScriptLts extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amphtml engine script (LTS)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amphtml engine script (LTS)',

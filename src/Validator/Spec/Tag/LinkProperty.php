@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class LinkProperty extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'link property=';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link property=',

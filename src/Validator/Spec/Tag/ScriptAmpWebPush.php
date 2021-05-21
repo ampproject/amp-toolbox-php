@@ -19,6 +19,13 @@ final class ScriptAmpWebPush extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-web-push]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-web-push',
         SpecRule::VERSION => [

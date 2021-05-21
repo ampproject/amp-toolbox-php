@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Polyline extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'POLYLINE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::POLYLINE,
         SpecRule::ATTRS => [

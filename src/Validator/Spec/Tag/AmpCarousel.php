@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpCarousel extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-CAROUSEL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CAROUSEL,
         SpecRule::SPEC_NAME => 'AMP-CAROUSEL',

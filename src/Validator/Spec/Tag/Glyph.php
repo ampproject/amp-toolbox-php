@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Glyph extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'GLYPH';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::GLYPH,
         SpecRule::ATTRS => [

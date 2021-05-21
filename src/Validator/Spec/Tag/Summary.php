@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Summary extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SUMMARY';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SUMMARY,
         SpecRule::MANDATORY_PARENT => Element::DETAILS,

@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpAccordionSection extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-accordion > section';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::SPEC_NAME => 'amp-accordion > section',

@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpAdExit extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-AD-EXIT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD_EXIT,
         SpecRule::ATTR_LISTS => [

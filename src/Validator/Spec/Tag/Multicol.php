@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Multicol extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'MULTICOL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::MULTICOL,
         SpecRule::HTML_FORMAT => [

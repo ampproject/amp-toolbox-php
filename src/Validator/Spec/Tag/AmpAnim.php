@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpAnim extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-ANIM';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ANIM,
         SpecRule::ATTRS => [

@@ -19,6 +19,13 @@ final class ScriptAmpGwdAnimation extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-gwd-animation]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-gwd-animation',
         SpecRule::VERSION => [

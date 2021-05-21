@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpBrightcove extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-BRIGHTCOVE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BRIGHTCOVE,
         SpecRule::ATTRS => [

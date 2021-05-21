@@ -19,6 +19,13 @@ final class ScriptAmpInstagram2 extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-instagram] (2)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-instagram',
         SpecRule::VERSION => [

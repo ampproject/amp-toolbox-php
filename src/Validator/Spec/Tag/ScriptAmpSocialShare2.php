@@ -19,6 +19,13 @@ final class ScriptAmpSocialShare2 extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-social-share] (2)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-social-share',
         SpecRule::VERSION => [

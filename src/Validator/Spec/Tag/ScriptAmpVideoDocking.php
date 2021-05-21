@@ -19,6 +19,13 @@ final class ScriptAmpVideoDocking extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-video-docking]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-video-docking',
         SpecRule::VERSION => [

@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpWistiaPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-WISTIA-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::WISTIA_PLAYER,
         SpecRule::ATTRS => [

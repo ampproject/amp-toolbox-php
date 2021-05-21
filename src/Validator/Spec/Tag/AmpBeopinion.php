@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpBeopinion extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-BEOPINION';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BEOPINION,
         SpecRule::ATTRS => [

@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Ruby extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'RUBY';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::RUBY,
         SpecRule::HTML_FORMAT => [

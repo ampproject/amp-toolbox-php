@@ -19,6 +19,13 @@ final class ScriptAmpViqeoPlayer extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-viqeo-player]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-viqeo-player',
         SpecRule::VERSION => [

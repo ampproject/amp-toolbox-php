@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Feoffset extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEOFFSET';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEOFFSET,
         SpecRule::ATTRS => [

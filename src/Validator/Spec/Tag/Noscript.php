@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Noscript extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'NOSCRIPT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::NOSCRIPT,
         SpecRule::DISALLOWED_ANCESTOR => [

@@ -19,6 +19,13 @@ final class ScriptAmpNextPage extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-next-page]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-next-page',
         SpecRule::VERSION => [

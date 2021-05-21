@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpMinuteMediaPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-MINUTE-MEDIA-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MINUTE_MEDIA_PLAYER,
         SpecRule::ATTRS => [

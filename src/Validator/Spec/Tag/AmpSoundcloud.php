@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpSoundcloud extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-SOUNDCLOUD';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SOUNDCLOUD,
         SpecRule::ATTRS => [

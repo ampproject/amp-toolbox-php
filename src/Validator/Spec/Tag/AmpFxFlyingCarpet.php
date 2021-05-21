@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpFxFlyingCarpet extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-FX-FLYING-CARPET';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FX_FLYING_CARPET,
         SpecRule::ATTRS => [

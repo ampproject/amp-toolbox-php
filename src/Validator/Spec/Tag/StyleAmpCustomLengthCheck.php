@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class StyleAmpCustomLengthCheck extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'style amp-custom-length-check';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style amp-custom-length-check',

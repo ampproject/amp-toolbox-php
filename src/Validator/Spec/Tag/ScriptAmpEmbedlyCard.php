@@ -19,6 +19,13 @@ final class ScriptAmpEmbedlyCard extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-embedly-card]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-embedly-card',
         SpecRule::VERSION => [

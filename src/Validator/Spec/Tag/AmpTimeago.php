@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpTimeago extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-TIMEAGO';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::TIMEAGO,
         SpecRule::ATTRS => [

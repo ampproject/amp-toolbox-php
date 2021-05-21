@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpLinkRewriter extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-LINK-REWRITER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LINK_REWRITER,
         SpecRule::UNIQUE => true,

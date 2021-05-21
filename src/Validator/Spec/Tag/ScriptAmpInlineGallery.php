@@ -19,6 +19,13 @@ final class ScriptAmpInlineGallery extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-inline-gallery]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-inline-gallery',
         SpecRule::VERSION => [

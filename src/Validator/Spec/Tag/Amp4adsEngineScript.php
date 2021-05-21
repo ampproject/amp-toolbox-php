@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Amp4adsEngineScript extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp4ads engine script';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp4ads engine script',

@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class HtmlTransformed extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'html (transformed)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::HTML,
         SpecRule::SPEC_NAME => 'html (transformed)',

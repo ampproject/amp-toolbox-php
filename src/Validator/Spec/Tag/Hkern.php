@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Hkern extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'HKERN';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::HKERN,
         SpecRule::ATTRS => [

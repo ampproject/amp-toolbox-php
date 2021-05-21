@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmphtmlNomoduleEngineScript extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amphtml nomodule engine script';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amphtml nomodule engine script',

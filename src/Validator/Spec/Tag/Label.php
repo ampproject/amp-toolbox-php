@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Label extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'LABEL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::LABEL,
         SpecRule::ATTRS => [

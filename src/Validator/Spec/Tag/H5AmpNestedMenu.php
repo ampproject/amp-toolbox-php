@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class H5AmpNestedMenu extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'h5 amp-nested-menu';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::H5,
         SpecRule::SPEC_NAME => 'h5 amp-nested-menu',

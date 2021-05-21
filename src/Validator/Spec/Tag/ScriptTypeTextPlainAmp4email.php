@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class ScriptTypeTextPlainAmp4email extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT type=text/plain (AMP4EMAIL)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT type=text/plain (AMP4EMAIL)',

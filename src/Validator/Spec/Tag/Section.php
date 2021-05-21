@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Section extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SECTION';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::ATTR_LISTS => [

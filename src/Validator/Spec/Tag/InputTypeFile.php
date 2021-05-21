@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class InputTypeFile extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'INPUT [type=file]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'INPUT [type=file]',

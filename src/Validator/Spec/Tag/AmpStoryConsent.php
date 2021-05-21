@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryConsent extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-CONSENT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_CONSENT,
         SpecRule::MANDATORY_PARENT => Extension::CONSENT,

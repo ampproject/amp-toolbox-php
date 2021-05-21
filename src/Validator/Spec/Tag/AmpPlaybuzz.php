@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpPlaybuzz extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-PLAYBUZZ';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PLAYBUZZ,
         SpecRule::ATTRS => [

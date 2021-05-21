@@ -20,6 +20,13 @@ final class ScriptAmpAccessScroll extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-access-scroll]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-access-scroll',
         SpecRule::VERSION => [

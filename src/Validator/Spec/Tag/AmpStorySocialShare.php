@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStorySocialShare extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-SOCIAL-SHARE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_SOCIAL_SHARE,
         SpecRule::ATTRS => [

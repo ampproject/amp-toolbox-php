@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryBookend extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-BOOKEND';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_BOOKEND,
         SpecRule::ATTRS => [

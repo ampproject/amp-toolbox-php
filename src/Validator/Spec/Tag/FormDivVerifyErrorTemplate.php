@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class FormDivVerifyErrorTemplate extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FORM DIV [verify-error][template]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [verify-error][template]',

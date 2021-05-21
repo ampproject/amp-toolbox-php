@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Switch_ extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SWITCH';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SWITCH_,
         SpecRule::ATTR_LISTS => [

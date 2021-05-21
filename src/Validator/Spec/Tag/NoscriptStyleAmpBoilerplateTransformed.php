@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class NoscriptStyleAmpBoilerplateTransformed extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'noscript > style[amp-boilerplate] (transformed)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'noscript > style[amp-boilerplate] (transformed)',

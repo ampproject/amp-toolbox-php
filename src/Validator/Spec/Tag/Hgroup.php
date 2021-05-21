@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Hgroup extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'HGROUP';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::HGROUP,
         SpecRule::HTML_FORMAT => [

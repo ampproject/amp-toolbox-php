@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpApesterMedia extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-APESTER-MEDIA';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::APESTER_MEDIA,
         SpecRule::ATTRS => [

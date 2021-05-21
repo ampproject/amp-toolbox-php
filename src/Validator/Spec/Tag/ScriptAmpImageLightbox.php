@@ -19,6 +19,13 @@ final class ScriptAmpImageLightbox extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-image-lightbox]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-image-lightbox',
         SpecRule::VERSION => [

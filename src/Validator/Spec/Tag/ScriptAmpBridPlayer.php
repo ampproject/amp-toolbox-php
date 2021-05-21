@@ -19,6 +19,13 @@ final class ScriptAmpBridPlayer extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-brid-player]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-brid-player',
         SpecRule::VERSION => [

@@ -19,6 +19,13 @@ final class ScriptAmpVk extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-vk]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-vk',
         SpecRule::VERSION => [

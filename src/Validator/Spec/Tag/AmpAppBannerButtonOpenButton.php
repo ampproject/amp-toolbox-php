@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpAppBannerButtonOpenButton extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-app-banner button[open-button]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::SPEC_NAME => 'amp-app-banner button[open-button]',

@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Picture extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'PICTURE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::PICTURE,
         SpecRule::MANDATORY_PARENT => Element::NOSCRIPT,

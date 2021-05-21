@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class StyleAmpKeyframes extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'style[amp-keyframes]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style[amp-keyframes]',

@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpLiveList extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-LIVE-LIST';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIVE_LIST,
         SpecRule::ATTRS => [

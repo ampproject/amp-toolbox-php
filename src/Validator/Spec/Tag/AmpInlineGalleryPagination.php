@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpInlineGalleryPagination extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-inline-gallery-pagination';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INLINE_GALLERY_PAGINATION,
         SpecRule::SPEC_NAME => 'amp-inline-gallery-pagination',

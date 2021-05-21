@@ -19,6 +19,13 @@ final class ScriptCustomElementAmpAccordionAmp4email extends Tag implements TagW
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-element=amp-accordion] (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-accordion',
         SpecRule::VERSION => [

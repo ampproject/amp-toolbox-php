@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpIframely extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-IFRAMELY';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IFRAMELY,
         SpecRule::ATTRS => [

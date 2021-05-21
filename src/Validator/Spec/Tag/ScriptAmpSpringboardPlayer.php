@@ -19,6 +19,13 @@ final class ScriptAmpSpringboardPlayer extends Tag implements TagWithExtensionSp
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-springboard-player]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-springboard-player',
         SpecRule::VERSION => [

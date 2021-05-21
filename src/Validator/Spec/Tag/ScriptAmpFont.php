@@ -19,6 +19,13 @@ final class ScriptAmpFont extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-font]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-font',
         SpecRule::VERSION => [

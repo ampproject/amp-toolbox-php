@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Mask extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'MASK';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::MASK,
         SpecRule::ATTRS => [

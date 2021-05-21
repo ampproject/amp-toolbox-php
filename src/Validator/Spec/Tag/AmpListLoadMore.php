@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpListLoadMore extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-LIST-LOAD-MORE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIST_LOAD_MORE,
         SpecRule::MANDATORY_PARENT => Extension::LIST_,

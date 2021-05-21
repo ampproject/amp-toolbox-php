@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class InputMaskDateYyyyMmDd extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'input [mask=date-yyyy-mm-dd]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'input [mask=date-yyyy-mm-dd]',

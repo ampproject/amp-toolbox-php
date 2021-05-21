@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpPixel extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-PIXEL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PIXEL,
         SpecRule::ATTRS => [

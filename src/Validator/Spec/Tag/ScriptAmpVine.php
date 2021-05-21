@@ -19,6 +19,13 @@ final class ScriptAmpVine extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-vine]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-vine',
         SpecRule::VERSION => [

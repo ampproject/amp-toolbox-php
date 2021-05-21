@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpNestedMenu extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-NESTED-MENU';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::NESTED_MENU,
         SpecRule::ATTRS => [

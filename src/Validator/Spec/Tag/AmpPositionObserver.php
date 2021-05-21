@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpPositionObserver extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-POSITION-OBSERVER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::POSITION_OBSERVER,
         SpecRule::ATTRS => [

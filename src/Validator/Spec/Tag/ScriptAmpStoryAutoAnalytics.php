@@ -19,6 +19,13 @@ final class ScriptAmpStoryAutoAnalytics extends Tag implements TagWithExtensionS
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-story-auto-analytics]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-story-auto-analytics',
         SpecRule::VERSION => [

@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Kbd extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'KBD';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::KBD,
         SpecRule::HTML_FORMAT => [

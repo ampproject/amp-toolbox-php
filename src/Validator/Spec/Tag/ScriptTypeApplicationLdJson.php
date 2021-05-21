@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class ScriptTypeApplicationLdJson extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'script type=application/ld+json';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'script type=application/ld+json',

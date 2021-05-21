@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStory360 extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-360';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_360,
         SpecRule::ATTRS => [

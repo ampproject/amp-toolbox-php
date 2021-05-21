@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Fedropshadow extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FEDROPSHADOW';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDROPSHADOW,
         SpecRule::MANDATORY_PARENT => Element::FILTER,

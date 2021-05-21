@@ -19,6 +19,13 @@ final class ScriptAmpAppBanner extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-app-banner]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-app-banner',
         SpecRule::VERSION => [

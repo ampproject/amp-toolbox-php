@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpJwplayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-JWPLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::JWPLAYER,
         SpecRule::ATTRS => [

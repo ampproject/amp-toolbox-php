@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpSidebarNav extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-sidebar > nav';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::NAV,
         SpecRule::SPEC_NAME => 'amp-sidebar > nav',

@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpExperiment extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-EXPERIMENT';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EXPERIMENT,
         SpecRule::UNIQUE => true,

@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Col extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'COL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::COL,
         SpecRule::ATTRS => [

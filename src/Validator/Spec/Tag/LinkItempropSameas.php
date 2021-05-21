@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class LinkItempropSameas extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'link itemprop=sameAs';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link itemprop=sameAs',

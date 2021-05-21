@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStoryPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-STORY-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PLAYER,
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-player/',

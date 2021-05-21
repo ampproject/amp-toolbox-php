@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpInstallServiceworker extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-INSTALL-SERVICEWORKER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INSTALL_SERVICEWORKER,
         SpecRule::ATTRS => [

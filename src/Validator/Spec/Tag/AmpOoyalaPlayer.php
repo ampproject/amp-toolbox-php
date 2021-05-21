@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpOoyalaPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-OOYALA-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::OOYALA_PLAYER,
         SpecRule::ATTRS => [

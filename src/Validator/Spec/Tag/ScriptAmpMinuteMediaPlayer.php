@@ -19,6 +19,13 @@ final class ScriptAmpMinuteMediaPlayer extends Tag implements TagWithExtensionSp
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-minute-media-player]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-minute-media-player',
         SpecRule::VERSION => [

@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpFacebookComments extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-FACEBOOK-COMMENTS';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FACEBOOK_COMMENTS,
         SpecRule::ATTRS => [

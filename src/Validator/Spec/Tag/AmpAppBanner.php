@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpAppBanner extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-APP-BANNER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::APP_BANNER,
         SpecRule::UNIQUE => true,

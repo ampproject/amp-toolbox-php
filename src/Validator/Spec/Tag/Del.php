@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Del extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'DEL';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::DEL,
         SpecRule::ATTRS => [

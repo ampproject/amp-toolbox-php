@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpInstagram extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-INSTAGRAM';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INSTAGRAM,
         SpecRule::ATTRS => [

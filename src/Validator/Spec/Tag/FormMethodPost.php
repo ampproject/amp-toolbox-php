@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class FormMethodPost extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FORM [method=POST]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::FORM,
         SpecRule::SPEC_NAME => 'FORM [method=POST]',

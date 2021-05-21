@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpVine extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-VINE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VINE,
         SpecRule::ATTRS => [

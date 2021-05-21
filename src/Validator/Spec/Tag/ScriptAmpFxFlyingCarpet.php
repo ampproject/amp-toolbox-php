@@ -19,6 +19,13 @@ final class ScriptAmpFxFlyingCarpet extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-fx-flying-carpet]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-fx-flying-carpet',
         SpecRule::VERSION => [

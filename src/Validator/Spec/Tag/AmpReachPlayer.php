@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpReachPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-REACH-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REACH_PLAYER,
         SpecRule::ATTRS => [

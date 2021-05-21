@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpBaseCarouselLightbox extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-BASE-CAROUSEL [lightbox]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BASE_CAROUSEL,
         SpecRule::SPEC_NAME => 'AMP-BASE-CAROUSEL [lightbox]',

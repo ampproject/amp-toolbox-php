@@ -19,6 +19,13 @@ final class ScriptAmpVimeo2 extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-vimeo] (2)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-vimeo',
         SpecRule::VERSION => [

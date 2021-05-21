@@ -19,6 +19,13 @@ final class ScriptAmpYotpo extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-yotpo]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-yotpo',
         SpecRule::VERSION => [

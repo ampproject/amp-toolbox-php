@@ -19,6 +19,13 @@ final class ScriptAmpMegaMenu extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-mega-menu]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mega-menu',
         SpecRule::VERSION => [

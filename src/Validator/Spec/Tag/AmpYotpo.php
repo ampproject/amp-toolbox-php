@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpYotpo extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-YOTPO';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::YOTPO,
         SpecRule::ATTRS => [

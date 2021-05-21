@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class SubscriptionsSectionContentSwgAmpCacheNonce extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'subscriptions-section content swg_amp_cache_nonce';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::SPEC_NAME => 'subscriptions-section content swg_amp_cache_nonce',

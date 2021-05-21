@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpPanZoom extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-PAN-ZOOM';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PAN_ZOOM,
         SpecRule::ATTRS => [

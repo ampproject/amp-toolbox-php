@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpBridPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-BRID-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BRID_PLAYER,
         SpecRule::ATTRS => [

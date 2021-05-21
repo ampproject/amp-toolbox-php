@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class NoscriptImg extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'noscript > img';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::IMG,
         SpecRule::SPEC_NAME => 'noscript > img',

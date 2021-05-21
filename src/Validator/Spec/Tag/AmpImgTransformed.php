@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpImgTransformed extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-img (transformed)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMG,
         SpecRule::SPEC_NAME => 'amp-img (transformed)',

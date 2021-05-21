@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpAdWithDataMultiSizeAttribute extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-ad with data-multi-size attribute';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD,
         SpecRule::SPEC_NAME => 'amp-ad with data-multi-size attribute',

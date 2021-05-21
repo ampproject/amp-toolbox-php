@@ -14,6 +14,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Wbr extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'WBR';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::WBR,
         SpecRule::HTML_FORMAT => [

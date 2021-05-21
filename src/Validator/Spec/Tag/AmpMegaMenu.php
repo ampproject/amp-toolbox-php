@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpMegaMenu extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-MEGA-MENU';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MEGA_MENU,
         SpecRule::ATTR_LISTS => [

@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpListLoadMoreButtonLoadMoreClickable extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-list-load-more button[load-more-clickable]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::SPEC_NAME => 'amp-list-load-more button[load-more-clickable]',

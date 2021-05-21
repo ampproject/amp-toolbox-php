@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpCallTracking extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-CALL-TRACKING';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CALL_TRACKING,
         SpecRule::ATTRS => [

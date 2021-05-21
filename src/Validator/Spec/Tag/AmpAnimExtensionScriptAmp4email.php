@@ -19,6 +19,13 @@ final class AmpAnimExtensionScriptAmp4email extends Tag implements TagWithExtens
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-anim extension script (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-anim',
         SpecRule::VERSION => [

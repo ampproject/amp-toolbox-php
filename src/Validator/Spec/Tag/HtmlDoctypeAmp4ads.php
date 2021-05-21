@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class HtmlDoctypeAmp4ads extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'html doctype (AMP4ADS)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::_DOCTYPE,
         SpecRule::SPEC_NAME => 'html doctype (AMP4ADS)',

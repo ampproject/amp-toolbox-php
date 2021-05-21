@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class Polygon extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'POLYGON';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::POLYGON,
         SpecRule::ATTRS => [

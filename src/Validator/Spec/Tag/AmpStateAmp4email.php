@@ -15,6 +15,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpStateAmp4email extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-state (AMP4EMAIL)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STATE,
         SpecRule::SPEC_NAME => 'amp-state (AMP4EMAIL)',

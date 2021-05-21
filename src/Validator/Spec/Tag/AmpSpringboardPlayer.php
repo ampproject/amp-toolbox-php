@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpSpringboardPlayer extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-SPRINGBOARD-PLAYER';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SPRINGBOARD_PLAYER,
         SpecRule::ATTRS => [

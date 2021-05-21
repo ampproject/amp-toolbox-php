@@ -19,6 +19,13 @@ final class ScriptAmpReddit extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-reddit]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-reddit',
         SpecRule::VERSION => [

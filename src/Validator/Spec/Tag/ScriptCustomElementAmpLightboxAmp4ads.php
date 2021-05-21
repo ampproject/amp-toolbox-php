@@ -19,6 +19,13 @@ final class ScriptCustomElementAmpLightboxAmp4ads extends Tag implements TagWith
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-element=amp-lightbox] (AMP4ADS)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-lightbox',
         SpecRule::VERSION => [

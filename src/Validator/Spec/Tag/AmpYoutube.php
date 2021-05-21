@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpYoutube extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-YOUTUBE';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::YOUTUBE,
         SpecRule::ATTRS => [

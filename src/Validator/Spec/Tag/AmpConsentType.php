@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpConsentType extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'amp-consent [type]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CONSENT,
         SpecRule::SPEC_NAME => 'amp-consent [type]',

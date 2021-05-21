@@ -18,6 +18,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpEmbed extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-EMBED';
+
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EMBED,
         SpecRule::ATTRS => [

@@ -17,6 +17,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class StyleAmpCustomAmp4ads extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'style amp-custom (AMP4ADS)';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style amp-custom (AMP4ADS)',

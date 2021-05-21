@@ -13,6 +13,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpSelectorChild extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-SELECTOR child';
+
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-SELECTOR child',

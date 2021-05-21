@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class SpanAmpNestedMenu extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'span amp-nested-menu';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SPAN,
         SpecRule::SPEC_NAME => 'span amp-nested-menu',

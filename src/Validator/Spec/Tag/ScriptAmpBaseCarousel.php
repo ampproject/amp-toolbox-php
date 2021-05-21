@@ -19,6 +19,13 @@ final class ScriptAmpBaseCarousel extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT [amp-base-carousel]';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-base-carousel',
         SpecRule::VERSION => [

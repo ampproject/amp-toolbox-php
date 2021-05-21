@@ -16,6 +16,13 @@ use AmpProject\Validator\Spec\Tag;
 
 final class AmpNextPageScriptTypeApplicationJson extends Tag
 {
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'AMP-NEXT-PAGE > SCRIPT[type=application/json]';
+
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > SCRIPT[type=application/json]',

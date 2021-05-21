@@ -19,6 +19,13 @@ final class ScriptCustomElementAmpAutocompleteAmp4email extends Tag implements T
 {
     use ExtensionSpec;
 
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'SCRIPT[custom-element=amp-autocomplete] (AMP4EMAIL)';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-autocomplete',
         SpecRule::VERSION => [
