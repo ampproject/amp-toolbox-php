@@ -51,6 +51,7 @@ final class SpecGenerator
         $this->generateEntityClass('DeclarationList', $fileManager);
         $this->generateEntityClass('DescendantTagList', $fileManager);
         $this->generateEntityClass('CssRuleset', $fileManager);
+        $this->generateEntityClass('DocRuleset', $fileManager);
         $this->generateEntityClass('Tag', $fileManager);
         $this->generateEntityClass('TagWithExtensionSpec', $fileManager, 'interface');
         $this->generateEntityClass('ExtensionSpec', $fileManager, 'trait');
@@ -218,8 +219,11 @@ final class SpecGenerator
      */
     private function adaptJsonSpec($jsonSpec)
     {
-        $jsonSpec['cssRulesets'] = $jsonSpec['cssRulesets'];
-        unset($jsonSpec['cssRulesets']);
+        $jsonSpec['cssRulesets'] = $jsonSpec['css'];
+        unset($jsonSpec['css']);
+
+        $jsonSpec['docRulesets'] = $jsonSpec['doc'];
+        unset($jsonSpec['doc']);
 
         $jsonSpec['attributeLists'] = $jsonSpec['attrLists'];
         unset($jsonSpec['attrLists']);
@@ -272,7 +276,7 @@ final class SpecGenerator
                     }
                     break;
                 case 'cssRulesets':
-                case 'doc':
+                case 'docRulesets':
                 case 'errors':
                     foreach ($sectionData as $ruleset) {
                         foreach (array_keys($ruleset) as $specRuleKey) {

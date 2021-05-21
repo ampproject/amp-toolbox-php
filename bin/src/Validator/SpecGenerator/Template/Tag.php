@@ -8,8 +8,6 @@ use AmpProject\Validator\Spec\SpecRule;
 /**
  * Class Tag.
  *
- * @package AmpProject\Tooling\Validator\SpecGenerator\Template
- *
  * @property-read array<string> $alsoRequiresTagWarning
  * @property-read array $ampLayout
  * @property-read array<string> $attrLists

@@ -48,11 +48,11 @@ class SpecTest extends TestCase
         $this->assertInstanceOf(Section\DescendantTagLists::class, $descendantTagList);
     }
 
-    public function testItCanProvideTheDocSection()
+    public function testItCanProvideTheDocRulesetsSection()
     {
         $spec = new Spec();
-        $doc  = $spec->doc();
-        $this->assertInstanceOf(Section\Doc::class, $doc);
+        $doc  = $spec->docRulesets();
+        $this->assertInstanceOf(Section\DocRulesets::class, $doc);
     }
 
     public function testItCanProvideTheErrorsSection()

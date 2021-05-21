@@ -27,11 +27,11 @@ final class Spec
     /** @var string */
     private $scriptSpecUrl = 'https://amp.dev/documentation/guides-and-tutorials/learn/validation-workflow/validation_errors/#custom-javascript-is-not-allowed';
 
-    /** @var Spec\Section\Doc */
-    private $doc;
-
     /** @var Spec\Section\CssRulesets */
     private $cssRulesets;
+
+    /** @var Spec\Section\DocRulesets */
+    private $docRulesets;
 
     /** @var Spec\Section\AttributeLists */
     private $attributeLists;
@@ -97,17 +97,6 @@ final class Spec
     }
 
     /**
-     * @return Spec\Section\Doc
-     */
-    public function doc()
-    {
-        if ($this->doc === null) {
-            $this->doc = new Spec\Section\Doc();
-        }
-        return $this->doc;
-    }
-
-    /**
      * @return Spec\Section\CssRulesets
      */
     public function cssRulesets()
@@ -116,6 +105,17 @@ final class Spec
             $this->cssRulesets = new Spec\Section\CssRulesets();
         }
         return $this->cssRulesets;
+    }
+
+    /**
+     * @return Spec\Section\DocRulesets
+     */
+    public function docRulesets()
+    {
+        if ($this->docRulesets === null) {
+            $this->docRulesets = new Spec\Section\DocRulesets();
+        }
+        return $this->docRulesets;
     }
 
     /**

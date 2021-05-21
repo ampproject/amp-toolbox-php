@@ -13,7 +13,6 @@ use AmpProject\Format;
 use AmpProject\Validator\Spec\CssRuleset;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
-use LogicException;
 
 final class CssRulesets implements IterableSection
 {

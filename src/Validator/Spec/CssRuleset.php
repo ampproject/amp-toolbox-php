@@ -12,8 +12,6 @@ use AmpProject\Exception\InvalidSpecRuleName;
 /**
  * Class CssRuleset.
  *
- * @package AmpProject\Tooling\Validator\SpecGenerator\Template
- *
  * @property-read bool $allowAllDeclarationInStyle
  * @property-read bool $allowImportant
  * @property-read bool $expandVendorPrefixes

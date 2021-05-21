@@ -8,8 +8,6 @@ use AmpProject\Validator\Spec\SpecRule;
 /**
  * Class CssRuleset.
  *
- * @package AmpProject\Tooling\Validator\SpecGenerator\Template
- *
  * @property-read bool $allowAllDeclarationInStyle
  * @property-read bool $allowImportant
  * @property-read bool $expandVendorPrefixes
@@ -32,7 +30,7 @@ class CssRuleset
      *
      * @var string
      */
-    const ID = '[cssRulesets ruleset base class]';
+    const ID = '[css ruleset base class]';
 
     /**
      * Spec data of the CSS ruleset.

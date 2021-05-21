@@ -2,17 +2,17 @@
 
 namespace AmpProject\Tests\ValidatorFixtures;
 
-use AmpProject\Validator\Spec\CssRuleset;
+use AmpProject\Validator\Spec\DocRuleset;
 use AmpProject\Validator\Spec\SpecRule;
 
-class DummyCssRuleset extends CssRuleset
+class DummyDocRuleset extends DocRuleset
 {
 
     /** @var string */
-    const ID = 'dummy';
+    const ID = 'DUMMY';
 
     /** @var array<array> */
     const SPEC = [
-        SpecRule::MAX_BYTES => 42,
+        SpecRule::MAX_BYTES => 123,
     ];
 }

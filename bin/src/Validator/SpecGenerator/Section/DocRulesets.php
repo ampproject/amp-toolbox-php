@@ -12,7 +12,7 @@ use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
-final class CssRulesets implements Section
+final class DocRulesets implements Section
 {
     use ArrayKeyFirstPolyfill;
     use ClassNames;
@@ -26,7 +26,7 @@ final class CssRulesets implements Section
     private $dumper;
 
     /**
-     * CssRulesets constructor.
+     * DocRulesets constructor.
      */
     public function __construct()
     {
@@ -44,15 +44,15 @@ final class CssRulesets implements Section
      */
     public function process(FileManager $fileManager, $spec, PhpNamespace $namespace, ClassType $class)
     {
-        $cssRulesets      = [];
+        $docRulesets      = [];
         $byFormat         = [];
 
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\CssRuleset");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\DocRuleset");
 
-        $cssRulesetsTemplateClass = ClassType::withBodiesFrom(Template\CssRulesets::class);
-        foreach ($cssRulesetsTemplateClass->getMethods() as $method) {
+        $docRulesetsTemplateClass = ClassType::withBodiesFrom(Template\DocRulesets::class);
+        foreach ($docRulesetsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
 
@@ -62,9 +62,9 @@ final class CssRulesets implements Section
             ['Iteration::current as parentCurrent']
         );
 
-        $class->addProperty('cssRulesetsCache')
+        $class->addProperty('docRulesetsCache')
               ->setPrivate()
-              ->addComment("Cache of instantiated CssRuleset objects.\n\n@var array<CssRuleset>")
+              ->addComment("Cache of instantiated DocRuleset objects.\n\n@var array<DocRuleset>")
               ->setValue([]);
 
         $class->addProperty('iterationArray')
@@ -72,43 +72,43 @@ final class CssRulesets implements Section
               ->addComment("Array used for storing the iteration index in.\n\n@var array<string>|null");
 
         foreach ($spec as $attributes) {
-            $cssRulesetId               = $this->getNameForRuleset($attributes);
-            $cssRulesets[$cssRulesetId] = $attributes;
+            $docRulesetId               = $this->getNameForRuleset($attributes);
+            $docRulesets[$docRulesetId] = $attributes;
         }
 
-        $cssRulesetIds = array_keys($cssRulesets);
-        natcasesort($cssRulesetIds);
+        $docRulesetIds = array_keys($docRulesets);
+        natcasesort($docRulesetIds);
 
         $rulesets = [];
-        foreach ($cssRulesetIds as $cssRulesetId) {
-            $cssRulesetIdString = "CssRuleset\\{$this->getClassNameFromId($cssRulesetId)}::ID";
+        foreach ($docRulesetIds as $docRulesetId) {
+            $docRulesetIdString = "DocRuleset\\{$this->getClassNameFromId($docRulesetId)}::ID";
 
-            $className = $this->generateCssRulesetSpecificClass(
-                $cssRulesetId,
-                $cssRulesets[$cssRulesetId],
+            $className = $this->generateDocRulesetSpecificClass(
+                $docRulesetId,
+                $docRulesets[$docRulesetId],
                 $fileManager
             );
 
-            $rulesets["CssRuleset\\{$className}::ID"] = "CssRuleset\\{$className}::class";
+            $rulesets["DocRuleset\\{$className}::ID"] = "DocRuleset\\{$className}::class";
 
-            if (array_key_exists('htmlFormat', $cssRulesets[$cssRulesetId])) {
-                $formats = $cssRulesets[$cssRulesetId]['htmlFormat'];
+            if (array_key_exists('htmlFormat', $docRulesets[$docRulesetId])) {
+                $formats = $docRulesets[$docRulesetId]['htmlFormat'];
                 foreach ($formats as $format) {
                     $format = $this->getFormatConstant($this->getConstantName($format));
                     if (!array_key_exists($format, $byFormat)) {
                         $byFormat[$format] = [];
                     }
-                    $byFormat[$format][] = $cssRulesetIdString;
+                    $byFormat[$format][] = $docRulesetIdString;
                 }
             }
         }
 
-        $class->addConstant('CSS_RULESETS', $rulesets)
-              ->addComment("Mapping of CSS ruleset ID to CSS ruleset implementation.\n\n@var array<string>");
+        $class->addConstant('DOC_RULESETS', $rulesets)
+              ->addComment("Mapping of document ruleset ID to document ruleset implementation.\n\n@var array<string>");
 
         $class->addConstant('BY_FORMAT', $byFormat)
               ->addComment(
-                  "Mapping of AMP format to array of CSS ruleset IDs.\n\n"
+                  "Mapping of AMP format to array of document ruleset IDs.\n\n"
                   . "This is used to optimize querying by AMP format.\n\n"
                   . "@var array<array<string>>"
               );
@@ -145,25 +145,25 @@ final class CssRulesets implements Section
     }
 
     /**
-     * Generate the CSS ruleset-specific class file.
+     * Generate the document ruleset-specific class file.
      *
-     * @param string      $ruleset     ID of the CSS ruleset to generate the class for.
-     * @param array       $jsonSpec    Array of spec data for the CSS ruleset.
+     * @param string      $ruleset     ID of the document ruleset to generate the class for.
+     * @param array       $jsonSpec    Array of spec data for the document ruleset.
      * @param FileManager $fileManager File manager instance to use.
      */
-    private function generateCssRulesetSpecificClass($ruleset, $jsonSpec, FileManager $fileManager)
+    private function generateDocRulesetSpecificClass($ruleset, $jsonSpec, FileManager $fileManager)
     {
-        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\CssRuleset');
+        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\DocRuleset');
 
         $className = $this->getClassNameFromId($ruleset);
 
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\CssRuleset");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\DocRuleset");
 
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\CssRuleset');
+                           ->addExtend('AmpProject\Validator\Spec\DocRuleset');
 
         $class->addConstant('ID', $ruleset)
               ->addComment("ID of the ruleset.\n\n@var string");
@@ -171,7 +171,7 @@ final class CssRulesets implements Section
         $class->addConstant('SPEC', $jsonSpec)
               ->addComment("Array of spec rules.\n\n@var array");
 
-        $fileManager->saveFile($file, "Spec/CssRuleset/{$className}.php");
+        $fileManager->saveFile($file, "Spec/DocRuleset/{$className}.php");
 
         return $className;
     }

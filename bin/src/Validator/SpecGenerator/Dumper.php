@@ -231,6 +231,14 @@ final class Dumper
             ||
             strpos($value, 'AttributeList\\') === 0
             ||
+            strpos($value, 'CssRuleset::') === 0
+            ||
+            strpos($value, 'CssRuleset\\') === 0
+            ||
+            strpos($value, 'DocRuleset::') === 0
+            ||
+            strpos($value, 'DocRuleset\\') === 0
+            ||
             strpos($value, 'DeclarationList::') === 0
             ||
             strpos($value, 'DeclarationList\\') === 0
