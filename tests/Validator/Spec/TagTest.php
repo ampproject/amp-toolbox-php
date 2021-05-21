@@ -2,8 +2,9 @@
 
 namespace AmpProject\Validator\Spec;
 
+use AmpProject\Exception\InvalidSpecRuleName;
 use AmpProject\Tests\TestCase;
-use AmpProject\Tests\TestTag\DummyTag;
+use AmpProject\Tests\ValidatorFixtures\DummyTag;
 
 class TagTest extends TestCase
 {
@@ -29,5 +30,18 @@ class TagTest extends TestCase
         $this->assertFalse($dummyTag->siblingsDisallowed);
         $this->assertFalse($dummyTag->unique);
         $this->assertFalse($dummyTag->uniqueWarning);
+
+        $this->assertTrue($dummyTag->has('tagName'));
+        $this->assertFalse($dummyTag->has('utter nonsense'));
+
+        $this->assertEquals('a', $dummyTag->get('tagName'));
+    }
+
+    public function testByFormatThrowsExceptionForUnknownFormat()
+    {
+        $dummyTag = new DummyTag();
+
+        $this->expectException(InvalidSpecRuleName::class);
+        $dummyTag->get('utter nonsense');
     }
 }

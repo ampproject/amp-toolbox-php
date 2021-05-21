@@ -75,6 +75,33 @@ class Tag
         return static::ID;
     }
 
+
+    /**
+     * Check whether a given spec rule is present.
+     *
+     * @param string $specRuleName Name of the spec rule to check for.
+     * @return bool Whether the given spec rule is contained in the spec.
+     */
+    public function has($specRuleName)
+    {
+        return array_key_exists($specRuleName, static::SPEC);
+    }
+
+    /**
+     * Get a specific spec rule.
+     *
+     * @param string $specRuleName Name of the spec rule to get.
+     * @return array Spec rule data that was requested.
+     */
+    public function get($specRuleName)
+    {
+        if (!$this->has($specRuleName)) {
+            throw InvalidSpecRuleName::forSpecRuleName($specRuleName);
+        }
+
+        return static::SPEC[$specRuleName];
+    }
+
     /**
      * Magic getter to return the spec rules.
      *

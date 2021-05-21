@@ -68,7 +68,9 @@ final class DescendantTagLists implements Section
             $descendantTagLists["DescendantTagList\\{$className}::ID"] = "DescendantTagList\\{$className}::class";
         }
         $class->addConstant('DESCENDANT_TAG_LISTS', $descendantTagLists)
-              ->addComment("Mapping of descendant tag list ID to descendant tag list implementation.\n\n@var array<string>");
+              ->addComment(
+                  "Mapping of descendant tag list ID to descendant tag list implementation.\n\n@var array<string>"
+              );
 
         $descendantTagListsTemplateClass = ClassType::withBodiesFrom(Template\DescendantTagLists::class);
         foreach ($descendantTagListsTemplateClass->getMethods() as $method) {
