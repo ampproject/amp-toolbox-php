@@ -2,13 +2,11 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator;
 
-use AmpProject\Tooling\Validator\SpecGenerator\Section\AttributeLists;
-use AmpProject\Tooling\Validator\SpecGenerator\Section\DeclarationLists;
-use AmpProject\Tooling\Validator\SpecGenerator\Section\DescendantTagLists;
 use Nette\PhpGenerator\Dumper as NetteDumper;
 
 final class Dumper
 {
+    use ClassNames;
     use ConstantNames;
 
     /** @var NetteDumper */
@@ -297,19 +295,19 @@ final class Dumper
             case 'attrLists':
                 $attributeLists = [];
                 foreach ($value as $attributeList) {
-                    $className = AttributeLists::getAttributeListClassFromAttributeListId($attributeList);
+                    $className = $this->getClassNameFromId($attributeList);
                     $attributeLists[] = "AttributeList\\{$className}::ID";
                 }
                 return $attributeLists;
             case 'declarationList':
                 $declarationLists = [];
                 foreach ($value as $declarationList) {
-                    $className = DeclarationLists::getDeclarationListClassFromDeclarationListId($declarationList);
+                    $className = $this->getClassNameFromId($declarationList);
                     $declarationLists[] = "DeclarationList\\{$className}::ID";
                 }
                 return $declarationLists;
             case 'descendantTagList':
-                $className = DescendantTagLists::getDescendantTagListClassFromDescendantTagListId($value);
+                $className = $this->getClassNameFromId($value);
                 return "DescendantTagList\\{$className}::ID";
             case 'htmlFormat':
                 $formats = [];

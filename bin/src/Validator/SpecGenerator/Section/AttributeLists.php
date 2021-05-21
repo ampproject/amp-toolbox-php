@@ -2,10 +2,10 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
+use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
-use AmpProject\Tooling\Validator\SpecGenerator\ReservedKeywords;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -13,6 +13,7 @@ use Nette\PhpGenerator\PhpNamespace;
 
 final class AttributeLists implements Section
 {
+    use ClassNames;
     use ConstantNames;
 
     /**
@@ -113,7 +114,7 @@ final class AttributeLists implements Section
     {
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\AttributeList');
 
-        $className = self::getAttributeListClassFromAttributeListId($attributeListId);
+        $className = $this->getClassNameFromId($attributeListId);
 
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\AttributeList");
@@ -135,27 +136,6 @@ final class AttributeLists implements Section
               ->addComment("Array of attributes.\n\n@var array<array>");
 
         $fileManager->saveFile($file, "Spec/AttributeList/{$className}.php");
-
-        return $className;
-    }
-
-    /**
-     * Get a valid PHP class name from the attribute list ID string.
-     *
-     * @param string $attributeListId Attribute list ID to get a valid PHP class name from.
-     * @return string Valid PHP class name.
-     */
-    public static function getAttributeListClassFromAttributeListId($attributeListId)
-    {
-        $className = str_replace(
-            ['(', ')', '[', ']', '-', '=', '>', '.', '_', '/', '*', ':', '+', '$'],
-            ' ',
-            $attributeListId
-        );
-        $className = preg_replace('/\s+/', ' ', trim($className));
-        $className = str_replace(' ', '', ucwords(strtolower($className)));
-
-        $className = (new ReservedKeywords())->maybeAddSuffix($className);
 
         return $className;
     }

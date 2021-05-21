@@ -24,6 +24,16 @@ class AttributeList
     const ATTRIBUTES = [];
 
     /**
+     * Get the ID of the attribute list.
+     *
+     * @return string ID of the attribute list.
+     */
+    public function getId()
+    {
+        return static::ID;
+    }
+
+    /**
      * Check whether a given attribute is contained within the list.
      *
      * @param string $attribute Attribute to check for.

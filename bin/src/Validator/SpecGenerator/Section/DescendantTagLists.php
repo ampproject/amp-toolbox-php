@@ -2,10 +2,10 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
+use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
-use AmpProject\Tooling\Validator\SpecGenerator\ReservedKeywords;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -13,6 +13,7 @@ use Nette\PhpGenerator\PhpNamespace;
 
 final class DescendantTagLists implements Section
 {
+    use ClassNames;
     use ConstantNames;
 
     /**
@@ -104,7 +105,7 @@ final class DescendantTagLists implements Section
     {
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\DescendantTagList');
 
-        $className = self::getDescendantTagListClassFromDescendantTagListId($descendantTagListId);
+        $className = $this->getClassNameFromId($descendantTagListId);
 
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\DescendantTagList");
@@ -126,27 +127,6 @@ final class DescendantTagLists implements Section
               ->addComment("Array of descendant tags.\n\n@var array<array>");
 
         $fileManager->saveFile($file, "Spec/DescendantTagList/{$className}.php");
-
-        return $className;
-    }
-
-    /**
-     * Get a valid PHP class name from the descendant tag list ID string.
-     *
-     * @param string $descendantTagListId Descendant tag list ID to get a valid PHP class name from.
-     * @return string Valid PHP class name.
-     */
-    public static function getDescendantTagListClassFromDescendantTagListId($descendantTagListId)
-    {
-        $className = str_replace(
-            ['(', ')', '[', ']', '-', '=', '>', '.', '_', '/', '*', ':', '+', '$'],
-            ' ',
-            $descendantTagListId
-        );
-        $className = preg_replace('/\s+/', ' ', trim($className));
-        $className = str_replace(' ', '', ucwords(strtolower($className)));
-
-        $className = (new ReservedKeywords())->maybeAddSuffix($className);
 
         return $className;
     }

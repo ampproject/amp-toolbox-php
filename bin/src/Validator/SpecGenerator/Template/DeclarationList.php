@@ -24,6 +24,16 @@ class DeclarationList
     const DECLARATIONS = [];
 
     /**
+     * Get the ID of the declaration list.
+     *
+     * @return string ID of the declaration list.
+     */
+    public function getId()
+    {
+        return static::ID;
+    }
+
+    /**
      * Check whether a given declaration is contained within the list.
      *
      * @param string $declaration Declaration to check for.

@@ -3,10 +3,10 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ArrayKeyFirstPolyfill;
+use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
-use AmpProject\Tooling\Validator\SpecGenerator\ReservedKeywords;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -15,6 +15,7 @@ use Nette\PhpGenerator\PhpNamespace;
 final class Tags implements Section
 {
     use ArrayKeyFirstPolyfill;
+    use ClassNames;
     use ConstantNames;
 
     /**
@@ -229,30 +230,13 @@ final class Tags implements Section
         foreach ($tags as $tagId => $attributes) {
             unset($tagMappings[$tagId]);
 
-            $class = "Tag\\{$this->getTagClassFromTagId($tagId)}::class";
+            $class = "Tag\\{$this->getClassNameFromId($tagId)}::class";
             $tagId = $this->getKeyString($tagId);
 
             $tagMappings[$tagId] = $class;
         }
 
         return $tagMappings;
-    }
-
-    /**
-     * Get a valid PHP class name from the tag ID string.
-     *
-     * @param string $tagId Tag ID to get a valid PHP class name from.
-     * @return string Valid PHP class name.
-     */
-    private function getTagClassFromTagId($tagId)
-    {
-        $className = str_replace(['(', ')', '[', ']', '-', '=', '>', '.', '_', '/', '*', ':', '+'], ' ', $tagId);
-        $className = preg_replace('/\s+/', ' ', trim($className));
-        $className = str_replace(' ', '', ucwords(strtolower($className)));
-
-        $className = (new ReservedKeywords())->maybeAddSuffix($className);
-
-        return $className;
     }
 
     /**
@@ -266,7 +250,7 @@ final class Tags implements Section
     {
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\Tag');
 
-        $className = $this->getTagClassFromTagId($tagId);
+        $className = $this->getClassNameFromId($tagId);
 
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");

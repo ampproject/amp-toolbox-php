@@ -50,11 +50,30 @@ class Tag
 {
 
     /**
+     * ID of the tag.
+     *
+     * This needs to be overridden in the extending class.
+     *
+     * @var string
+     */
+    const ID = '[tag base class]';
+
+    /**
      * Spec data of the tag.
      *
      * @var array
      */
     const SPEC = [];
+
+    /**
+     * Get the ID of the tag.
+     *
+     * @return string ID of the tag.
+     */
+    public function getId()
+    {
+        return static::ID;
+    }
 
     /**
      * Magic getter to return the spec rules.

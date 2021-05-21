@@ -26,6 +26,16 @@ class DescendantTagList
     const DESCENDANT_TAGS = [];
 
     /**
+     * Get the ID of the descendant tag list.
+     *
+     * @return string ID of the descendant tag list.
+     */
+    public function getId()
+    {
+        return static::ID;
+    }
+
+    /**
      * Check whether a given descendant tag is contained within the list.
      *
      * @param string $descendantTag Descendant tag to check for.
