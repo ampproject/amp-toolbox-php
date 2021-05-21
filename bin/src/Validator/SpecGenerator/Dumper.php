@@ -249,6 +249,10 @@ final class Dumper
             ||
             strpos($value, 'Element::') === 0
             ||
+            strpos($value, 'Error::') === 0
+            ||
+            strpos($value, 'Error\\') === 0
+            ||
             strpos($value, 'ErrorCode::') === 0
             ||
             strpos($value, 'Extension::') === 0

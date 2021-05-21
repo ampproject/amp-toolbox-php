@@ -4,7 +4,6 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
 use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
-use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
@@ -15,21 +14,6 @@ final class DescendantTagLists implements Section
 {
     use ClassNames;
     use ConstantNames;
-
-    /**
-     * Dumper instance to use.
-     *
-     * @var Dumper
-     */
-    private $dumper;
-
-    /**
-     * DescendantTagLists constructor.
-     */
-    public function __construct()
-    {
-        $this->dumper = new Dumper();
-    }
 
     /**
      * Process a section.

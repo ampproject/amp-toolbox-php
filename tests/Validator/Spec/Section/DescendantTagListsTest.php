@@ -2,7 +2,6 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
-use AmpProject\Tag;
 use AmpProject\Exception\InvalidDescendantTagName;
 use AmpProject\Exception\InvalidListName;
 use AmpProject\Tests\TestCase;

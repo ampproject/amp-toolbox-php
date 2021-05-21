@@ -7,480 +7,209 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
-use AmpProject\Validator\ErrorCode;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Exception\InvalidErrorCode;
+use AmpProject\Exception\InvalidListName;
+use AmpProject\Validator\Spec;
+use AmpProject\Validator\Spec\Error;
+use AmpProject\Validator\Spec\IterableSection;
+use AmpProject\Validator\Spec\Iteration;
 
-final class Errors
+final class Errors implements IterableSection
 {
-    /** @var array */
-    public $errors;
+    use Iteration {
+        Iteration::current as parentCurrent;
+    }
 
-    public function __construct()
+    /**
+     * Mapping of error code to error implementation.
+     *
+     * @var array<string>
+     */
+    const ERRORS = [
+        Error\UnknownCode::CODE => Error\UnknownCode::class,
+        Error\InvalidDoctypeHtml::CODE => Error\InvalidDoctypeHtml::class,
+        Error\MandatoryTagMissing::CODE => Error\MandatoryTagMissing::class,
+        Error\TagRequiredByMissing::CODE => Error\TagRequiredByMissing::class,
+        Error\WarningTagRequiredByMissing::CODE => Error\WarningTagRequiredByMissing::class,
+        Error\TagExcludedByTag::CODE => Error\TagExcludedByTag::class,
+        Error\WarningExtensionUnused::CODE => Error\WarningExtensionUnused::class,
+        Error\ExtensionUnused::CODE => Error\ExtensionUnused::class,
+        Error\WarningExtensionDeprecatedVersion::CODE => Error\WarningExtensionDeprecatedVersion::class,
+        Error\IncorrectScriptReleaseVersion::CODE => Error\IncorrectScriptReleaseVersion::class,
+        Error\NonLtsScriptAfterLts::CODE => Error\NonLtsScriptAfterLts::class,
+        Error\LtsScriptAfterNonLts::CODE => Error\LtsScriptAfterNonLts::class,
+        Error\AttrRequiredButMissing::CODE => Error\AttrRequiredButMissing::class,
+        Error\DisallowedTag::CODE => Error\DisallowedTag::class,
+        Error\GeneralDisallowedTag::CODE => Error\GeneralDisallowedTag::class,
+        Error\DisallowedScriptTag::CODE => Error\DisallowedScriptTag::class,
+        Error\DisallowedAttr::CODE => Error\DisallowedAttr::class,
+        Error\DisallowedStyleAttr::CODE => Error\DisallowedStyleAttr::class,
+        Error\InvalidAttrValue::CODE => Error\InvalidAttrValue::class,
+        Error\DuplicateAttribute::CODE => Error\DuplicateAttribute::class,
+        Error\AttrValueRequiredByLayout::CODE => Error\AttrValueRequiredByLayout::class,
+        Error\MissingLayoutAttributes::CODE => Error\MissingLayoutAttributes::class,
+        Error\ImpliedLayoutInvalid::CODE => Error\ImpliedLayoutInvalid::class,
+        Error\SpecifiedLayoutInvalid::CODE => Error\SpecifiedLayoutInvalid::class,
+        Error\MandatoryAttrMissing::CODE => Error\MandatoryAttrMissing::class,
+        Error\InconsistentUnitsForWidthAndHeight::CODE => Error\InconsistentUnitsForWidthAndHeight::class,
+        Error\StylesheetTooLong::CODE => Error\StylesheetTooLong::class,
+        Error\StylesheetAndInlineStyleTooLong::CODE => Error\StylesheetAndInlineStyleTooLong::class,
+        Error\InlineStyleTooLong::CODE => Error\InlineStyleTooLong::class,
+        Error\InlineScriptTooLong::CODE => Error\InlineScriptTooLong::class,
+        Error\MandatoryCdataMissingOrIncorrect::CODE => Error\MandatoryCdataMissingOrIncorrect::class,
+        Error\CdataViolatesDenylist::CODE => Error\CdataViolatesDenylist::class,
+        Error\NonWhitespaceCdataEncountered::CODE => Error\NonWhitespaceCdataEncountered::class,
+        Error\InvalidJsonCdata::CODE => Error\InvalidJsonCdata::class,
+        Error\DisallowedPropertyInAttrValue::CODE => Error\DisallowedPropertyInAttrValue::class,
+        Error\InvalidPropertyValueInAttrValue::CODE => Error\InvalidPropertyValueInAttrValue::class,
+        Error\DuplicateDimension::CODE => Error\DuplicateDimension::class,
+        Error\MissingUrl::CODE => Error\MissingUrl::class,
+        Error\InvalidUrl::CODE => Error\InvalidUrl::class,
+        Error\InvalidUrlProtocol::CODE => Error\InvalidUrlProtocol::class,
+        Error\DisallowedDomain::CODE => Error\DisallowedDomain::class,
+        Error\DisallowedRelativeUrl::CODE => Error\DisallowedRelativeUrl::class,
+        Error\MandatoryPropertyMissingFromAttrValue::CODE => Error\MandatoryPropertyMissingFromAttrValue::class,
+        Error\UnescapedTemplateInAttrValue::CODE => Error\UnescapedTemplateInAttrValue::class,
+        Error\TemplatePartialInAttrValue::CODE => Error\TemplatePartialInAttrValue::class,
+        Error\DeprecatedTag::CODE => Error\DeprecatedTag::class,
+        Error\DeprecatedAttr::CODE => Error\DeprecatedAttr::class,
+        Error\MutuallyExclusiveAttrs::CODE => Error\MutuallyExclusiveAttrs::class,
+        Error\MandatoryOneofAttrMissing::CODE => Error\MandatoryOneofAttrMissing::class,
+        Error\MandatoryAnyofAttrMissing::CODE => Error\MandatoryAnyofAttrMissing::class,
+        Error\WrongParentTag::CODE => Error\WrongParentTag::class,
+        Error\DisallowedTagAncestor::CODE => Error\DisallowedTagAncestor::class,
+        Error\MandatoryTagAncestor::CODE => Error\MandatoryTagAncestor::class,
+        Error\MandatoryTagAncestorWithHint::CODE => Error\MandatoryTagAncestorWithHint::class,
+        Error\DuplicateUniqueTag::CODE => Error\DuplicateUniqueTag::class,
+        Error\DuplicateUniqueTagWarning::CODE => Error\DuplicateUniqueTagWarning::class,
+        Error\TemplateInAttrName::CODE => Error\TemplateInAttrName::class,
+        Error\AttrDisallowedByImpliedLayout::CODE => Error\AttrDisallowedByImpliedLayout::class,
+        Error\AttrDisallowedBySpecifiedLayout::CODE => Error\AttrDisallowedBySpecifiedLayout::class,
+        Error\IncorrectNumChildTags::CODE => Error\IncorrectNumChildTags::class,
+        Error\IncorrectMinNumChildTags::CODE => Error\IncorrectMinNumChildTags::class,
+        Error\TagNotAllowedToHaveSiblings::CODE => Error\TagNotAllowedToHaveSiblings::class,
+        Error\MandatoryLastChildTag::CODE => Error\MandatoryLastChildTag::class,
+        Error\DisallowedChildTagName::CODE => Error\DisallowedChildTagName::class,
+        Error\DisallowedFirstChildTagName::CODE => Error\DisallowedFirstChildTagName::class,
+        Error\DisallowedManufacturedBody::CODE => Error\DisallowedManufacturedBody::class,
+        Error\ChildTagDoesNotSatisfyReferencePoint::CODE => Error\ChildTagDoesNotSatisfyReferencePoint::class,
+        Error\ChildTagDoesNotSatisfyReferencePointSingular::CODE => Error\ChildTagDoesNotSatisfyReferencePointSingular::class,
+        Error\MandatoryReferencePointMissing::CODE => Error\MandatoryReferencePointMissing::class,
+        Error\DuplicateReferencePoint::CODE => Error\DuplicateReferencePoint::class,
+        Error\TagReferencePointConflict::CODE => Error\TagReferencePointConflict::class,
+        Error\BaseTagMustPreceedAllUrls::CODE => Error\BaseTagMustPreceedAllUrls::class,
+        Error\MissingRequiredExtension::CODE => Error\MissingRequiredExtension::class,
+        Error\AttrMissingRequiredExtension::CODE => Error\AttrMissingRequiredExtension::class,
+        Error\DocumentTooComplex::CODE => Error\DocumentTooComplex::class,
+        Error\InvalidUtf8::CODE => Error\InvalidUtf8::class,
+        Error\CssSyntaxInvalidAtRule::CODE => Error\CssSyntaxInvalidAtRule::class,
+        Error\CssSyntaxStrayTrailingBackslash::CODE => Error\CssSyntaxStrayTrailingBackslash::class,
+        Error\CssSyntaxUnterminatedComment::CODE => Error\CssSyntaxUnterminatedComment::class,
+        Error\CssSyntaxUnterminatedString::CODE => Error\CssSyntaxUnterminatedString::class,
+        Error\CssSyntaxBadUrl::CODE => Error\CssSyntaxBadUrl::class,
+        Error\CssSyntaxEofInPreludeOfQualifiedRule::CODE => Error\CssSyntaxEofInPreludeOfQualifiedRule::class,
+        Error\CssSyntaxInvalidProperty::CODE => Error\CssSyntaxInvalidProperty::class,
+        Error\CssSyntaxInvalidPropertyNolist::CODE => Error\CssSyntaxInvalidPropertyNolist::class,
+        Error\CssSyntaxQualifiedRuleHasNoDeclarations::CODE => Error\CssSyntaxQualifiedRuleHasNoDeclarations::class,
+        Error\CssSyntaxDisallowedQualifiedRuleMustBeInsideKeyframe::CODE => Error\CssSyntaxDisallowedQualifiedRuleMustBeInsideKeyframe::class,
+        Error\CssSyntaxDisallowedKeyframeInsideKeyframe::CODE => Error\CssSyntaxDisallowedKeyframeInsideKeyframe::class,
+        Error\CssSyntaxInvalidDeclaration::CODE => Error\CssSyntaxInvalidDeclaration::class,
+        Error\CssSyntaxIncompleteDeclaration::CODE => Error\CssSyntaxIncompleteDeclaration::class,
+        Error\CssSyntaxErrorInPseudoSelector::CODE => Error\CssSyntaxErrorInPseudoSelector::class,
+        Error\CssSyntaxMissingSelector::CODE => Error\CssSyntaxMissingSelector::class,
+        Error\CssSyntaxNotASelectorStart::CODE => Error\CssSyntaxNotASelectorStart::class,
+        Error\CssSyntaxUnparsedInputRemainsInSelector::CODE => Error\CssSyntaxUnparsedInputRemainsInSelector::class,
+        Error\CssSyntaxMissingUrl::CODE => Error\CssSyntaxMissingUrl::class,
+        Error\CssSyntaxInvalidUrl::CODE => Error\CssSyntaxInvalidUrl::class,
+        Error\CssSyntaxInvalidUrlProtocol::CODE => Error\CssSyntaxInvalidUrlProtocol::class,
+        Error\CssSyntaxDisallowedDomain::CODE => Error\CssSyntaxDisallowedDomain::class,
+        Error\CssSyntaxDisallowedRelativeUrl::CODE => Error\CssSyntaxDisallowedRelativeUrl::class,
+        Error\CssSyntaxInvalidAttrSelector::CODE => Error\CssSyntaxInvalidAttrSelector::class,
+        Error\CssSyntaxDisallowedPropertyValue::CODE => Error\CssSyntaxDisallowedPropertyValue::class,
+        Error\CssSyntaxDisallowedPropertyValueWithHint::CODE => Error\CssSyntaxDisallowedPropertyValueWithHint::class,
+        Error\CssSyntaxDisallowedImportant::CODE => Error\CssSyntaxDisallowedImportant::class,
+        Error\CssSyntaxPropertyDisallowedWithinAtRule::CODE => Error\CssSyntaxPropertyDisallowedWithinAtRule::class,
+        Error\CssSyntaxPropertyDisallowedTogetherWith::CODE => Error\CssSyntaxPropertyDisallowedTogetherWith::class,
+        Error\CssSyntaxPropertyRequiresQualification::CODE => Error\CssSyntaxPropertyRequiresQualification::class,
+        Error\CssSyntaxMalformedMediaQuery::CODE => Error\CssSyntaxMalformedMediaQuery::class,
+        Error\CssSyntaxDisallowedMediaType::CODE => Error\CssSyntaxDisallowedMediaType::class,
+        Error\CssSyntaxDisallowedMediaFeature::CODE => Error\CssSyntaxDisallowedMediaFeature::class,
+        Error\CssSyntaxDisallowedAttrSelector::CODE => Error\CssSyntaxDisallowedAttrSelector::class,
+        Error\CssSyntaxDisallowedPseudoClass::CODE => Error\CssSyntaxDisallowedPseudoClass::class,
+        Error\CssSyntaxDisallowedPseudoElement::CODE => Error\CssSyntaxDisallowedPseudoElement::class,
+        Error\CssExcessivelyNested::CODE => Error\CssExcessivelyNested::class,
+        Error\DocumentSizeLimitExceeded::CODE => Error\DocumentSizeLimitExceeded::class,
+        Error\ValueSetMismatch::CODE => Error\ValueSetMismatch::class,
+        Error\DevModeOnly::CODE => Error\DevModeOnly::class,
+        Error\AmpEmailMissingStrictCssAttr::CODE => Error\AmpEmailMissingStrictCssAttr::class,
+    ];
+
+    /**
+     * Cache of instantiated Error objects.
+     *
+     * @var array<Spec\Error>
+     */
+    private $errors = [];
+
+    /**
+     * Get a specific error.
+     *
+     * @param string $errorCode Code of the error to get.
+     * @return Spec\Error Error with the given error code.
+     * @throws InvalidErrorCode If an invalid error code is requested.
+     */
+    public function get($errorCode)
     {
-        $this->errors = [
-            ErrorCode::AMP_EMAIL_MISSING_STRICT_CSS_ATTR => [
-                SpecRule::FORMAT => 'Tag \'html\' marked with attribute \'amp4email\' is missing the corresponding attribute \'data-css-strict\' for enabling strict CSS validation. This may become an error in the future.',
-            ],
-            ErrorCode::ATTR_DISALLOWED_BY_IMPLIED_LAYOUT => [
-                SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is disallowed by implied layout \'%3\'.',
-                SpecRule::SPECIFICITY => 48,
-            ],
-            ErrorCode::ATTR_DISALLOWED_BY_SPECIFIED_LAYOUT => [
-                SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is disallowed by specified layout \'%3\'.',
-                SpecRule::SPECIFICITY => 49,
-            ],
-            ErrorCode::ATTR_MISSING_REQUIRED_EXTENSION => [
-                SpecRule::FORMAT => 'The attribute \'%1\' requires including the \'%2\' extension JavaScript.',
-                SpecRule::SPECIFICITY => 13,
-            ],
-            ErrorCode::ATTR_REQUIRED_BUT_MISSING => [
-                SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is missing or incorrect, but required by attribute \'%3\'.',
-                SpecRule::SPECIFICITY => 29,
-            ],
-            ErrorCode::ATTR_VALUE_REQUIRED_BY_LAYOUT => [
-                SpecRule::FORMAT => 'Invalid value \'%1\' for attribute \'%2\' in tag \'%3\' - for layout \'%4\', set the attribute \'%2\' to value \'%5\'.',
-                SpecRule::SPECIFICITY => 25,
-            ],
-            ErrorCode::BASE_TAG_MUST_PRECEED_ALL_URLS => [
-                SpecRule::FORMAT => 'The tag \'%1\', which contains URLs, was found earlier in the document than the BASE element.',
-                SpecRule::SPECIFICITY => 87,
-            ],
-            ErrorCode::CDATA_VIOLATES_DENYLIST => [
-                SpecRule::FORMAT => 'The text inside tag \'%1\' contains \'%2\', which is disallowed.',
-                SpecRule::SPECIFICITY => 2,
-            ],
-            ErrorCode::CHILD_TAG_DOES_NOT_SATISFY_REFERENCE_POINT => [
-                SpecRule::FORMAT => 'The tag \'%1\', a child tag of \'%2\', does not satisfy one of the acceptable reference points: %3.',
-                SpecRule::SPECIFICITY => 77,
-            ],
-            ErrorCode::CHILD_TAG_DOES_NOT_SATISFY_REFERENCE_POINT_SINGULAR => [
-                SpecRule::FORMAT => 'The tag \'%1\', a child tag of \'%2\', does not satisfy the reference point \'%3\'.',
-                SpecRule::SPECIFICITY => 81,
-            ],
-            ErrorCode::CSS_EXCESSIVELY_NESTED => [
-                SpecRule::FORMAT => 'CSS excessively nested in tag \'%1\'.',
-                SpecRule::SPECIFICITY => 125,
-            ],
-            ErrorCode::CSS_SYNTAX_BAD_URL => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - bad url.',
-                SpecRule::SPECIFICITY => 60,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_ATTR_SELECTOR => [
-                SpecRule::FORMAT => 'CSS error in tag \'%1\' - disallowed attribute selector \'%2\'.',
-                SpecRule::SPECIFICITY => 120,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_DOMAIN => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid domain \'%2\'.',
-                SpecRule::SPECIFICITY => 69,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_IMPORTANT => [
-                SpecRule::FORMAT => 'Usage of the !important CSS qualifier is not allowed.',
-                SpecRule::SPECIFICITY => 123,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_KEYFRAME_INSIDE_KEYFRAME => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - keyframe inside keyframe is not allowed.',
-                SpecRule::SPECIFICITY => 115,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_MEDIA_FEATURE => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - disallowed media feature \'%2\'.',
-                SpecRule::SPECIFICITY => 119,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_MEDIA_TYPE => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - disallowed media type \'%2\'.',
-                SpecRule::SPECIFICITY => 118,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_PROPERTY_VALUE => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - the property \'%2\' is set to the disallowed value \'%3\'.',
-                SpecRule::SPECIFICITY => 82,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_PROPERTY_VALUE_WITH_HINT => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - the property \'%2\' is set to the disallowed value \'%3\'. Allowed values: %4.',
-                SpecRule::SPECIFICITY => 83,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_PSEUDO_CLASS => [
-                SpecRule::FORMAT => 'CSS error in tag \'%1\' - disallowed pseudo class \'%2\'.',
-                SpecRule::SPECIFICITY => 121,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_PSEUDO_ELEMENT => [
-                SpecRule::FORMAT => 'CSS error in tag \'%1\' - disallowed pseudo element \'%2\'.',
-                SpecRule::SPECIFICITY => 122,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_QUALIFIED_RULE_MUST_BE_INSIDE_KEYFRAME => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - qualified rule \'%2\' must be located inside of a keyframe.',
-                SpecRule::SPECIFICITY => 114,
-            ],
-            ErrorCode::CSS_SYNTAX_DISALLOWED_RELATIVE_URL => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - disallowed relative url \'%2\'.',
-                SpecRule::SPECIFICITY => 72,
-            ],
-            ErrorCode::CSS_SYNTAX_EOF_IN_PRELUDE_OF_QUALIFIED_RULE => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - end of stylesheet encountered in prelude of a qualified rule.',
-                SpecRule::SPECIFICITY => 61,
-            ],
-            ErrorCode::CSS_SYNTAX_ERROR_IN_PSEUDO_SELECTOR => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid pseudo selector.',
-                SpecRule::SPECIFICITY => 64,
-            ],
-            ErrorCode::CSS_SYNTAX_INCOMPLETE_DECLARATION => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - incomplete declaration.',
-                SpecRule::SPECIFICITY => 63,
-            ],
-            ErrorCode::CSS_SYNTAX_INVALID_ATTR_SELECTOR => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid attribute selector.',
-                SpecRule::SPECIFICITY => 76,
-            ],
-            ErrorCode::CSS_SYNTAX_INVALID_AT_RULE => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - saw invalid at rule \'@%2\'.',
-                SpecRule::SPECIFICITY => 36,
-            ],
-            ErrorCode::CSS_SYNTAX_INVALID_DECLARATION => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid declaration.',
-                SpecRule::SPECIFICITY => 62,
-            ],
-            ErrorCode::CSS_SYNTAX_INVALID_PROPERTY => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid property \'%2\'. The only allowed properties are \'%3\'.',
-                SpecRule::SPECIFICITY => 111,
-            ],
-            ErrorCode::CSS_SYNTAX_INVALID_PROPERTY_NOLIST => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid property \'%2\'.',
-                SpecRule::SPECIFICITY => 112,
-            ],
-            ErrorCode::CSS_SYNTAX_INVALID_URL => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid url \'%2\'.',
-                SpecRule::SPECIFICITY => 70,
-            ],
-            ErrorCode::CSS_SYNTAX_INVALID_URL_PROTOCOL => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid url protocol \'%2:\'.',
-                SpecRule::SPECIFICITY => 71,
-            ],
-            ErrorCode::CSS_SYNTAX_MALFORMED_MEDIA_QUERY => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - malformed media query.',
-                SpecRule::SPECIFICITY => 117,
-            ],
-            ErrorCode::CSS_SYNTAX_MISSING_SELECTOR => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - missing selector.',
-                SpecRule::SPECIFICITY => 65,
-            ],
-            ErrorCode::CSS_SYNTAX_MISSING_URL => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - missing url.',
-                SpecRule::SPECIFICITY => 68,
-            ],
-            ErrorCode::CSS_SYNTAX_NOT_A_SELECTOR_START => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - not a selector start.',
-                SpecRule::SPECIFICITY => 66,
-            ],
-            ErrorCode::CSS_SYNTAX_PROPERTY_DISALLOWED_TOGETHER_WITH => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - the property \'%2\' is disallowed together with \'%3\'. Allowed properties: %4.',
-                SpecRule::SPECIFICITY => 85,
-            ],
-            ErrorCode::CSS_SYNTAX_PROPERTY_DISALLOWED_WITHIN_AT_RULE => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - the property \'%2\' is disallowed within @%3. Allowed properties: %4.',
-                SpecRule::SPECIFICITY => 84,
-            ],
-            ErrorCode::CSS_SYNTAX_PROPERTY_REQUIRES_QUALIFICATION => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - the property \'%2\' is disallowed unless the enclosing rule is prefixed with the \'%3\' qualification.',
-                SpecRule::SPECIFICITY => 86,
-            ],
-            ErrorCode::CSS_SYNTAX_QUALIFIED_RULE_HAS_NO_DECLARATIONS => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - qualified rule \'%2\' has no declarations.',
-                SpecRule::SPECIFICITY => 113,
-            ],
-            ErrorCode::CSS_SYNTAX_STRAY_TRAILING_BACKSLASH => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - stray trailing backslash.',
-                SpecRule::SPECIFICITY => 57,
-            ],
-            ErrorCode::CSS_SYNTAX_UNPARSED_INPUT_REMAINS_IN_SELECTOR => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - unparsed input remains in selector.',
-                SpecRule::SPECIFICITY => 67,
-            ],
-            ErrorCode::CSS_SYNTAX_UNTERMINATED_COMMENT => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - unterminated comment.',
-                SpecRule::SPECIFICITY => 58,
-            ],
-            ErrorCode::CSS_SYNTAX_UNTERMINATED_STRING => [
-                SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - unterminated string.',
-                SpecRule::SPECIFICITY => 59,
-            ],
-            ErrorCode::DEPRECATED_ATTR => [
-                SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is deprecated - use \'%3\' instead.',
-                SpecRule::SPECIFICITY => 104,
-            ],
-            ErrorCode::DEPRECATED_TAG => [
-                SpecRule::FORMAT => 'The tag \'%1\' is deprecated - use \'%2\' instead.',
-                SpecRule::SPECIFICITY => 105,
-            ],
-            ErrorCode::DEV_MODE_ONLY => [
-                SpecRule::FORMAT => 'Tag \'html\' marked with attribute \'data-ampdevmode\'. Validator will suppress errors regarding any other tag with this attribute.',
-                SpecRule::SPECIFICITY => 1000,
-            ],
-            ErrorCode::DISALLOWED_ATTR => [
-                SpecRule::FORMAT => 'The attribute \'%1\' may not appear in tag \'%2\'.',
-                SpecRule::SPECIFICITY => 22,
-            ],
-            ErrorCode::DISALLOWED_CHILD_TAG_NAME => [
-                SpecRule::FORMAT => 'Tag \'%1\' is disallowed as child of tag \'%2\'. Child tag must be one of %3.',
-                SpecRule::SPECIFICITY => 74,
-            ],
-            ErrorCode::DISALLOWED_DOMAIN => [
-                SpecRule::FORMAT => 'The domain \'%3\' for attribute \'%1\' in tag \'%2\' is disallowed.',
-                SpecRule::SPECIFICITY => 53,
-            ],
-            ErrorCode::DISALLOWED_FIRST_CHILD_TAG_NAME => [
-                SpecRule::FORMAT => 'Tag \'%1\' is disallowed as first child of tag \'%2\'. First child tag must be one of %3.',
-                SpecRule::SPECIFICITY => 75,
-            ],
-            ErrorCode::DISALLOWED_MANUFACTURED_BODY => [
-                SpecRule::FORMAT => 'Tag or text which is only allowed inside the body section found outside of the body section.',
-                SpecRule::SPECIFICITY => 106,
-            ],
-            ErrorCode::DISALLOWED_PROPERTY_IN_ATTR_VALUE => [
-                SpecRule::FORMAT => 'The property \'%1\' in attribute \'%2\' in tag \'%3\' is disallowed.',
-                SpecRule::SPECIFICITY => 39,
-            ],
-            ErrorCode::DISALLOWED_RELATIVE_URL => [
-                SpecRule::FORMAT => 'The relative URL \'%3\' for attribute \'%1\' in tag \'%2\' is disallowed.',
-                SpecRule::SPECIFICITY => 51,
-            ],
-            ErrorCode::DISALLOWED_SCRIPT_TAG => [
-                SpecRule::FORMAT => 'Custom JavaScript is not allowed.',
-                SpecRule::SPECIFICITY => 102,
-            ],
-            ErrorCode::DISALLOWED_STYLE_ATTR => [
-                SpecRule::FORMAT => 'The inline \'style\' attribute is not allowed in AMP documents. Use \'style amp-custom\' tag instead.',
-                SpecRule::SPECIFICITY => 56,
-            ],
-            ErrorCode::DISALLOWED_TAG => [
-                SpecRule::FORMAT => 'The tag \'%1\' is disallowed.',
-                SpecRule::SPECIFICITY => 21,
-            ],
-            ErrorCode::DISALLOWED_TAG_ANCESTOR => [
-                SpecRule::FORMAT => 'The tag \'%1\' may not appear as a descendant of tag \'%2\'.',
-                SpecRule::SPECIFICITY => 5,
-            ],
-            ErrorCode::DOCUMENT_SIZE_LIMIT_EXCEEDED => [
-                SpecRule::FORMAT => 'Document exceeded %1 bytes limit. Actual size %2 bytes.',
-                SpecRule::SPECIFICITY => 126,
-            ],
-            ErrorCode::DOCUMENT_TOO_COMPLEX => [
-                SpecRule::FORMAT => 'The document is too complex.',
-                SpecRule::SPECIFICITY => 107,
-            ],
-            ErrorCode::DUPLICATE_ATTRIBUTE => [
-                SpecRule::FORMAT => 'The tag \'%1\' contains the attribute \'%2\' repeated multiple times.',
-                SpecRule::SPECIFICITY => 24,
-            ],
-            ErrorCode::DUPLICATE_DIMENSION => [
-                SpecRule::FORMAT => 'Multiple image candidates with the same width or pixel density found in attribute \'%1\' in tag \'%2\'.',
-                SpecRule::SPECIFICITY => 50,
-            ],
-            ErrorCode::DUPLICATE_REFERENCE_POINT => [
-                SpecRule::FORMAT => 'The reference point \'%1\' for \'%2\' must be unique but a duplicate was encountered.',
-                SpecRule::SPECIFICITY => 79,
-            ],
-            ErrorCode::DUPLICATE_UNIQUE_TAG => [
-                SpecRule::FORMAT => 'The tag \'%1\' appears more than once in the document.',
-                SpecRule::SPECIFICITY => 30,
-            ],
-            ErrorCode::DUPLICATE_UNIQUE_TAG_WARNING => [
-                SpecRule::FORMAT => 'The tag \'%1\' appears more than once in the document. This will soon be an error.',
-                SpecRule::SPECIFICITY => 31,
-            ],
-            ErrorCode::EXTENSION_UNUSED => [
-                SpecRule::FORMAT => 'The extension \'%1\' was found on this page, but is unused. Please remove this extension.',
-                SpecRule::SPECIFICITY => 15,
-            ],
-            ErrorCode::GENERAL_DISALLOWED_TAG => [
-                SpecRule::FORMAT => 'The tag \'%1\' is disallowed except in specific forms.',
-                SpecRule::SPECIFICITY => 103,
-            ],
-            ErrorCode::IMPLIED_LAYOUT_INVALID => [
-                SpecRule::FORMAT => 'The implied layout \'%1\' is not supported by tag \'%2\'.',
-                SpecRule::SPECIFICITY => 46,
-            ],
-            ErrorCode::INCONSISTENT_UNITS_FOR_WIDTH_AND_HEIGHT => [
-                SpecRule::FORMAT => 'Inconsistent units for width and height in tag \'%1\' - width is specified in \'%2\' whereas height is specified in \'%3\'.',
-                SpecRule::SPECIFICITY => 44,
-            ],
-            ErrorCode::INCORRECT_MIN_NUM_CHILD_TAGS => [
-                SpecRule::FORMAT => 'Tag \'%1\' must have a minimum of %2 child tags - saw %3 child tags.',
-                SpecRule::SPECIFICITY => 108,
-            ],
-            ErrorCode::INCORRECT_NUM_CHILD_TAGS => [
-                SpecRule::FORMAT => 'Tag \'%1\' must have %2 child tags - saw %3 child tags.',
-                SpecRule::SPECIFICITY => 73,
-            ],
-            ErrorCode::INCORRECT_SCRIPT_RELEASE_VERSION => [
-                SpecRule::FORMAT => 'The script version for \'%1\' is a %2 version which mismatches with the first script on the page using the %3 version.',
-                SpecRule::SPECIFICITY => 20,
-            ],
-            ErrorCode::INLINE_SCRIPT_TOO_LONG => [
-                SpecRule::FORMAT => 'The inline script is %1 bytes, which exceeds the limit of %2 bytes.',
-                SpecRule::SPECIFICITY => 35,
-            ],
-            ErrorCode::INLINE_STYLE_TOO_LONG => [
-                SpecRule::FORMAT => 'The inline style specified in tag \'%1\' is too long - it contains %2 bytes whereas the limit is %3 bytes.',
-                SpecRule::SPECIFICITY => 34,
-            ],
-            ErrorCode::INVALID_ATTR_VALUE => [
-                SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is set to the invalid value \'%3\'.',
-                SpecRule::SPECIFICITY => 23,
-            ],
-            ErrorCode::INVALID_DOCTYPE_HTML => [
-                SpecRule::FORMAT => 'Invalid or missing doctype declaration. Should be \'!doctype html\'.',
-                SpecRule::SPECIFICITY => 128,
-            ],
-            ErrorCode::INVALID_JSON_CDATA => [
-                SpecRule::FORMAT => 'The script tag contains invalid JSON that cannot be parsed.',
-                SpecRule::SPECIFICITY => 4,
-            ],
-            ErrorCode::INVALID_PROPERTY_VALUE_IN_ATTR_VALUE => [
-                SpecRule::FORMAT => 'The property \'%1\' in attribute \'%2\' in tag \'%3\' is set to \'%4\', which is invalid.',
-                SpecRule::SPECIFICITY => 38,
-            ],
-            ErrorCode::INVALID_URL => [
-                SpecRule::FORMAT => 'Malformed URL \'%3\' for attribute \'%1\' in tag \'%2\'.',
-                SpecRule::SPECIFICITY => 55,
-            ],
-            ErrorCode::INVALID_URL_PROTOCOL => [
-                SpecRule::FORMAT => 'Invalid URL protocol \'%3:\' for attribute \'%1\' in tag \'%2\'.',
-                SpecRule::SPECIFICITY => 54,
-            ],
-            ErrorCode::INVALID_UTF8 => [
-                SpecRule::FORMAT => 'The document contains invalid UTF8.',
-                SpecRule::SPECIFICITY => 124,
-            ],
-            ErrorCode::LTS_SCRIPT_AFTER_NON_LTS => [
-                SpecRule::FORMAT => '\'%1\' must use the non-LTS version to correspond with the first script in the page, which does not use LTS.',
-                SpecRule::SPECIFICITY => 19,
-            ],
-            ErrorCode::MANDATORY_ANYOF_ATTR_MISSING => [
-                SpecRule::FORMAT => 'The tag \'%1\' is missing a mandatory attribute - pick at least one of %2.',
-                SpecRule::SPECIFICITY => 28,
-            ],
-            ErrorCode::MANDATORY_ATTR_MISSING => [
-                SpecRule::FORMAT => 'The mandatory attribute \'%1\' is missing in tag \'%2\'.',
-                SpecRule::SPECIFICITY => 26,
-            ],
-            ErrorCode::MANDATORY_CDATA_MISSING_OR_INCORRECT => [
-                SpecRule::FORMAT => 'The mandatory text inside tag \'%1\' is missing or incorrect.',
-                SpecRule::SPECIFICITY => 1,
-            ],
-            ErrorCode::MANDATORY_LAST_CHILD_TAG => [
-                SpecRule::FORMAT => 'Tag \'%1\', if present, must be the last child of tag \'%2\'.',
-                SpecRule::SPECIFICITY => 110,
-            ],
-            ErrorCode::MANDATORY_ONEOF_ATTR_MISSING => [
-                SpecRule::FORMAT => 'The tag \'%1\' is missing a mandatory attribute - pick one of %2.',
-                SpecRule::SPECIFICITY => 27,
-            ],
-            ErrorCode::MANDATORY_PROPERTY_MISSING_FROM_ATTR_VALUE => [
-                SpecRule::FORMAT => 'The property \'%1\' is missing from attribute \'%2\' in tag \'%3\'.',
-                SpecRule::SPECIFICITY => 37,
-            ],
-            ErrorCode::MANDATORY_REFERENCE_POINT_MISSING => [
-                SpecRule::FORMAT => 'The mandatory reference point \'%1\' for \'%2\' is missing.',
-                SpecRule::SPECIFICITY => 78,
-            ],
-            ErrorCode::MANDATORY_TAG_ANCESTOR => [
-                SpecRule::FORMAT => 'The tag \'%1\' may only appear as a descendant of tag \'%2\'.',
-                SpecRule::SPECIFICITY => 6,
-            ],
-            ErrorCode::MANDATORY_TAG_ANCESTOR_WITH_HINT => [
-                SpecRule::FORMAT => 'The tag \'%1\' may only appear as a descendant of tag \'%2\'. Did you mean \'%3\'?',
-                SpecRule::SPECIFICITY => 7,
-            ],
-            ErrorCode::MANDATORY_TAG_MISSING => [
-                SpecRule::FORMAT => 'The mandatory tag \'%1\' is missing or incorrect.',
-                SpecRule::SPECIFICITY => 8,
-            ],
-            ErrorCode::MISSING_LAYOUT_ATTRIBUTES => [
-                SpecRule::FORMAT => 'Incomplete layout attributes specified for tag \'%1\'. For example, provide attributes \'width\' and \'height\'.',
-                SpecRule::SPECIFICITY => 45,
-            ],
-            ErrorCode::MISSING_REQUIRED_EXTENSION => [
-                SpecRule::FORMAT => 'The tag \'%1\' requires including the \'%2\' extension JavaScript.',
-                SpecRule::SPECIFICITY => 12,
-            ],
-            ErrorCode::MISSING_URL => [
-                SpecRule::FORMAT => 'Missing URL for attribute \'%1\' in tag \'%2\'.',
-                SpecRule::SPECIFICITY => 52,
-            ],
-            ErrorCode::MUTUALLY_EXCLUSIVE_ATTRS => [
-                SpecRule::FORMAT => 'Mutually exclusive attributes encountered in tag \'%1\' - pick one of %2.',
-                SpecRule::SPECIFICITY => 40,
-            ],
-            ErrorCode::NON_LTS_SCRIPT_AFTER_LTS => [
-                SpecRule::FORMAT => '\'%1\' must use the LTS version to correspond with the first script in the page, which uses LTS.',
-                SpecRule::SPECIFICITY => 18,
-            ],
-            ErrorCode::NON_WHITESPACE_CDATA_ENCOUNTERED => [
-                SpecRule::FORMAT => 'The tag \'%1\' contains text, which is disallowed.',
-                SpecRule::SPECIFICITY => 3,
-            ],
-            ErrorCode::SPECIFIED_LAYOUT_INVALID => [
-                SpecRule::FORMAT => 'The specified layout \'%1\' is not supported by tag \'%2\'.',
-                SpecRule::SPECIFICITY => 47,
-            ],
-            ErrorCode::STYLESHEET_AND_INLINE_STYLE_TOO_LONG => [
-                SpecRule::FORMAT => 'The author stylesheet specified in tag \'style amp-custom\' and the combined inline styles is too large - document contains %1 bytes whereas the limit is %2 bytes.',
-                SpecRule::SPECIFICITY => 33,
-            ],
-            ErrorCode::STYLESHEET_TOO_LONG => [
-                SpecRule::FORMAT => 'The author stylesheet specified in tag \'%1\' is too long - document contains %2 bytes whereas the limit is %3 bytes.',
-                SpecRule::SPECIFICITY => 32,
-            ],
-            ErrorCode::TAG_EXCLUDED_BY_TAG => [
-                SpecRule::FORMAT => 'The tag \'%1\' is present, but is excluded by the presence of \'%2\'.',
-                SpecRule::SPECIFICITY => 11,
-            ],
-            ErrorCode::TAG_NOT_ALLOWED_TO_HAVE_SIBLINGS => [
-                SpecRule::FORMAT => 'Tag \'%1\' is not allowed to have any sibling tags (\'%2\' should only have 1 child).',
-                SpecRule::SPECIFICITY => 109,
-            ],
-            ErrorCode::TAG_REFERENCE_POINT_CONFLICT => [
-                SpecRule::FORMAT => 'The tag \'%1\' conflicts with reference point \'%2\' because both define reference points.',
-                SpecRule::SPECIFICITY => 80,
-            ],
-            ErrorCode::TAG_REQUIRED_BY_MISSING => [
-                SpecRule::FORMAT => 'The tag \'%1\' is missing or incorrect, but required by \'%2\'.',
-                SpecRule::SPECIFICITY => 10,
-            ],
-            ErrorCode::TEMPLATE_IN_ATTR_NAME => [
-                SpecRule::FORMAT => 'Mustache template syntax in attribute name \'%1\' in tag \'%2\'.',
-                SpecRule::SPECIFICITY => 43,
-            ],
-            ErrorCode::TEMPLATE_PARTIAL_IN_ATTR_VALUE => [
-                SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is set to \'%3\', which contains a Mustache template partial.',
-                SpecRule::SPECIFICITY => 42,
-            ],
-            ErrorCode::UNESCAPED_TEMPLATE_IN_ATTR_VALUE => [
-                SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is set to \'%3\', which contains unescaped Mustache template syntax.',
-                SpecRule::SPECIFICITY => 41,
-            ],
-            ErrorCode::UNKNOWN_CODE => [
-                SpecRule::FORMAT => 'Unknown error.',
-                SpecRule::SPECIFICITY => 0,
-            ],
-            ErrorCode::VALUE_SET_MISMATCH => [
-                SpecRule::FORMAT => 'Attribute \'%1\' in tag \'%2\' contains a value that does not match any other tags on the page.',
-                SpecRule::SPECIFICITY => 127,
-            ],
-            ErrorCode::WARNING_EXTENSION_DEPRECATED_VERSION => [
-                SpecRule::FORMAT => 'The extension \'%1\' is referenced at version \'%2\' which is a deprecated version. Please use a more recent version of this extension. This may become an error in the future.',
-                SpecRule::SPECIFICITY => 17,
-            ],
-            ErrorCode::WARNING_EXTENSION_UNUSED => [
-                SpecRule::FORMAT => 'The extension \'%1\' was found on this page, but is unused (no \'%2\' tag seen). This may become an error in the future.',
-                SpecRule::SPECIFICITY => 16,
-            ],
-            ErrorCode::WARNING_TAG_REQUIRED_BY_MISSING => [
-                SpecRule::FORMAT => 'The tag \'%1\' is missing or incorrect, but required by \'%2\'. This will soon be an error.',
-                SpecRule::SPECIFICITY => 14,
-            ],
-            ErrorCode::WRONG_PARENT_TAG => [
-                SpecRule::FORMAT => 'The parent tag of tag \'%1\' is \'%2\', but it can only be \'%3\'.',
-                SpecRule::SPECIFICITY => 9,
-            ],
-        ];
+        if (!array_key_exists($errorCode, self::ERRORS)) {
+            throw InvalidErrorCode::forErrorCode($errorCode);
+        }
+
+        if (array_key_exists($errorCode, $this->errors)) {
+            return $this->errors[$errorCode];
+        }
+
+        $errorClassName = self::ERRORS[$errorCode];
+
+        /** @var Spec\Error $error */
+        $error = new $errorClassName();
+
+        $this->errors[$errorCode] = $error;
+
+        return $error;
+    }
+
+    /**
+     * Get the list of available keys.
+     *
+     * @return array<string> Array of available keys.
+     */
+    public function getAvailableKeys()
+    {
+        return array_keys(self::ERRORS);
+    }
+
+    /**
+     * Find the instantiated object for the current key.
+     *
+     * This should use its own caching mechanism as needed.
+     *
+     * Ideally, current() should be overridden as well to provide the correct object type-hint.
+     *
+     * @param string $key Key to retrieve the instantiated object for.
+     * @return object Instantiated object for the current key.
+     */
+    public function findByKey($key)
+    {
+        return $this->get($key);
+    }
+
+    /**
+     * Return the current iterable object.
+     *
+     * @return Error Error object.
+     */
+    public function current()
+    {
+        return $this->parentCurrent();
     }
 }

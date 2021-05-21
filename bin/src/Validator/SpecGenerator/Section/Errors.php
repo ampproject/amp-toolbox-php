@@ -2,31 +2,18 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 
+use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
-use AmpProject\Tooling\Validator\SpecGenerator\Dumper;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
+use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
 final class Errors implements Section
 {
+    use ClassNames;
     use ConstantNames;
-
-    /**
-     * Dumper instance to use.
-     *
-     * @var Dumper
-     */
-    private $dumper;
-
-    /**
-     * Errors constructor.
-     */
-    public function __construct()
-    {
-        $this->dumper = new Dumper();
-    }
 
     /**
      * Process a section.
@@ -39,29 +26,68 @@ final class Errors implements Section
      */
     public function process(FileManager $fileManager, $spec, PhpNamespace $namespace, ClassType $class)
     {
-        $propertyName = lcfirst($class->getName());
+        $namespace->addUse('AmpProject\Exception\InvalidListName');
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Error");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
 
-        $namespace->addUse('AmpProject\\Validator\\ErrorCode');
+        $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
+        $class->addTrait(
+            "{$fileManager->getRootNamespace()}\\Spec\\Iteration",
+            ['Iteration::current as parentCurrent']
+        );
 
-        $class->addProperty($propertyName)
-              ->addComment('@var array');
+        $class->addProperty('errors')
+              ->setValue([])
+              ->setPrivate()
+              ->addComment("Cache of instantiated Error objects.\n\n@var array<Spec\\Error>");
 
-        $errorData = [];
-
+        $errors = [];
         foreach ($spec as $key => $value) {
-            $key             = $this->getErrorCodeConstant($this->getConstantName($key));
-            $errorData[$key] = $value;
+            $className = $this->generateErrorSpecificClass($key, $value, $fileManager);
+
+            $errors["Error\\{$className}::CODE"] = "Error\\{$className}::class";
         }
+        $class->addConstant('ERRORS', $errors)
+              ->addComment("Mapping of error code to error implementation.\n\n@var array<string>");
 
-        ksort($errorData);
-
-        $constructor = $class->addMethod('__construct');
-        $constructor->addBody('$this->? = [', [$propertyName]);
-
-        foreach ($errorData as $key => $value) {
-            $constructor->addBody("    {$this->dumper->dumpWithKey($key, $value, 1)},");
+        $errorsTemplateClass = ClassType::withBodiesFrom(Template\Errors::class);
+        foreach ($errorsTemplateClass->getMethods() as $method) {
+            $class->addMember($method);
         }
+    }
 
-        $constructor->addBody('];');
+    /**
+     * Generate the Error-specific class file.
+     *
+     * @param string      $errorCode   Code of the error to generate the class for.
+     * @param array       $jsonSpec    Array of spec data for the error.
+     * @param FileManager $fileManager File manager instance to use.
+     * @return string Short name of the class that was generated.
+     */
+    private function generateErrorSpecificClass($errorCode, $jsonSpec, FileManager $fileManager)
+    {
+        list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\Error');
+
+        $className = $this->getClassNameFromId($errorCode);
+
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Error");
+
+        /** @var ClassType $class */
+        $class = $namespace->addClass($className)
+                           ->setFinal()
+                           ->addExtend('AmpProject\Validator\Spec\Error');
+
+        $class->addConstant('CODE', $errorCode)
+              ->addComment("Code of the error.\n\n@var string");
+
+        $class->addConstant('SPEC', $jsonSpec)
+              ->addComment("Array of spec data.\n\n@var array<array>");
+
+        $fileManager->saveFile($file, "Spec/Error/{$className}.php");
+
+        return $className;
     }
 }

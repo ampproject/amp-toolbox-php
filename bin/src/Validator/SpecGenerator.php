@@ -52,6 +52,7 @@ final class SpecGenerator
         $this->generateEntityClass('DescendantTagList', $fileManager);
         $this->generateEntityClass('CssRuleset', $fileManager);
         $this->generateEntityClass('DocRuleset', $fileManager);
+        $this->generateEntityClass('Error', $fileManager);
         $this->generateEntityClass('Tag', $fileManager);
         $this->generateEntityClass('TagWithExtensionSpec', $fileManager, 'interface');
         $this->generateEntityClass('ExtensionSpec', $fileManager, 'trait');

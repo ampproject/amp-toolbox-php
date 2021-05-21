@@ -2,8 +2,6 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
-use AmpProject\Attribute;
-use AmpProject\Exception\InvalidDeclarationName;
 use AmpProject\Exception\InvalidListName;
 use AmpProject\Tests\TestCase;
 use AmpProject\Validator\Spec;
