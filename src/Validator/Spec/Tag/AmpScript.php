@@ -25,6 +25,11 @@ final class AmpScript extends Tag
      */
     const ID = 'AMP-SCRIPT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SCRIPT,
         SpecRule::ATTRS => [

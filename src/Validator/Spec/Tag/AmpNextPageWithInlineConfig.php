@@ -22,6 +22,11 @@ final class AmpNextPageWithInlineConfig extends Tag
      */
     const ID = 'amp-next-page with inline config';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::NEXT_PAGE,
         SpecRule::SPEC_NAME => 'amp-next-page with inline config',

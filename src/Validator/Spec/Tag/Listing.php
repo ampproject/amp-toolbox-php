@@ -21,6 +21,11 @@ final class Listing extends Tag
      */
     const ID = 'LISTING';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::LISTING,
         SpecRule::HTML_FORMAT => [

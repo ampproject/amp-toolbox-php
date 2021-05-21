@@ -23,6 +23,11 @@ final class SpanSwgAmpCacheNonce extends Tag
      */
     const ID = 'span swg_amp_cache_nonce';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SPAN,
         SpecRule::SPEC_NAME => 'span swg_amp_cache_nonce',

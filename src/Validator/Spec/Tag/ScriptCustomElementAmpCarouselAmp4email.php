@@ -26,6 +26,11 @@ final class ScriptCustomElementAmpCarouselAmp4email extends Tag implements TagWi
      */
     const ID = 'SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-carousel',
         SpecRule::VERSION => [
@@ -33,6 +38,11 @@ final class ScriptCustomElementAmpCarouselAmp4email extends Tag implements TagWi
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-element=amp-carousel] (AMP4EMAIL)',

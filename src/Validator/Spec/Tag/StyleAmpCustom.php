@@ -24,6 +24,11 @@ final class StyleAmpCustom extends Tag
      */
     const ID = 'style amp-custom';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style amp-custom',

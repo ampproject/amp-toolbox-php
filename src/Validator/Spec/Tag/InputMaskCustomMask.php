@@ -24,6 +24,11 @@ final class InputMaskCustomMask extends Tag
      */
     const ID = 'input [mask] (custom mask)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'input [mask] (custom mask)',

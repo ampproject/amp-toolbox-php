@@ -21,6 +21,11 @@ final class Tbody extends Tag
      */
     const ID = 'TBODY';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TBODY,
         SpecRule::HTML_FORMAT => [

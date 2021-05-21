@@ -21,6 +21,11 @@ final class Figcaption extends Tag
      */
     const ID = 'FIGCAPTION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FIGCAPTION,
         SpecRule::HTML_FORMAT => [

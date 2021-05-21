@@ -21,6 +21,11 @@ final class Header extends Tag
      */
     const ID = 'HEADER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::HEADER,
         SpecRule::HTML_FORMAT => [

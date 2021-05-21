@@ -24,6 +24,11 @@ final class AmpDatePickerTypeSingleModeStatic extends Tag
      */
     const ID = 'amp-date-picker[type=single][mode=static]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DATE_PICKER,
         SpecRule::SPEC_NAME => 'amp-date-picker[type=single][mode=static]',

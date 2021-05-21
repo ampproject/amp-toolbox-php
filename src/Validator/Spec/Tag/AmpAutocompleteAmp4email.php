@@ -25,6 +25,11 @@ final class AmpAutocompleteAmp4email extends Tag
      */
     const ID = 'AMP-AUTOCOMPLETE (AMP4EMAIL)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUTOCOMPLETE,
         SpecRule::SPEC_NAME => 'AMP-AUTOCOMPLETE (AMP4EMAIL)',

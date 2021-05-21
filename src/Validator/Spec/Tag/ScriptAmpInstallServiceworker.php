@@ -26,6 +26,11 @@ final class ScriptAmpInstallServiceworker extends Tag implements TagWithExtensio
      */
     const ID = 'SCRIPT [amp-install-serviceworker]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-install-serviceworker',
         SpecRule::VERSION => [
@@ -36,6 +41,11 @@ final class ScriptAmpInstallServiceworker extends Tag implements TagWithExtensio
         SpecRule::REQUIRES_USAGE => 'EXEMPTED',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

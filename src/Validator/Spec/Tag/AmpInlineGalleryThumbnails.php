@@ -24,6 +24,11 @@ final class AmpInlineGalleryThumbnails extends Tag
      */
     const ID = 'AMP-INLINE-GALLERY-THUMBNAILS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INLINE_GALLERY_THUMBNAILS,
         SpecRule::ATTRS => [

@@ -24,6 +24,11 @@ final class Textarea extends Tag
      */
     const ID = 'TEXTAREA';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEXTAREA,
         SpecRule::ATTRS => [

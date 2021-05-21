@@ -26,6 +26,11 @@ final class ScriptAmpBridPlayer extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-brid-player]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-brid-player',
         SpecRule::VERSION => [
@@ -36,6 +41,11 @@ final class ScriptAmpBridPlayer extends Tag implements TagWithExtensionSpec
         SpecRule::REQUIRES_USAGE => 'EXEMPTED',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

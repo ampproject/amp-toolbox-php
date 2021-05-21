@@ -26,6 +26,11 @@ final class AmpAnimExtensionScriptAmp4email extends Tag implements TagWithExtens
      */
     const ID = 'amp-anim extension script (AMP4EMAIL)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-anim',
         SpecRule::VERSION => [
@@ -33,6 +38,11 @@ final class AmpAnimExtensionScriptAmp4email extends Tag implements TagWithExtens
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-anim extension script (AMP4EMAIL)',

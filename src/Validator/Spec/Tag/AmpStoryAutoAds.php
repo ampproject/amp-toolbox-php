@@ -21,6 +21,11 @@ final class AmpStoryAutoAds extends Tag
      */
     const ID = 'AMP-STORY-AUTO-ADS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_AUTO_ADS,
         SpecRule::UNIQUE => true,

@@ -23,6 +23,11 @@ final class Fegaussianblur extends Tag
      */
     const ID = 'FEGAUSSIANBLUR';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEGAUSSIANBLUR,
         SpecRule::ATTRS => [

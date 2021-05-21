@@ -271,7 +271,8 @@ final class Tags implements Section
             $extensionSpec             = $jsonSpec['extensionSpec'];
             $jsonSpec['extensionSpec'] = "self::EXTENSION_SPEC";
 
-            $class->addConstant('EXTENSION_SPEC', $extensionSpec);
+            $class->addConstant('EXTENSION_SPEC', $extensionSpec)
+                  ->addComment("Array of extension spec rules.\n\n@var array");
 
             $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
             $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
@@ -279,7 +280,8 @@ final class Tags implements Section
             $class->addTrait("{$fileManager->getRootNamespace()}\\Spec\\ExtensionSpec");
         }
 
-        $class->addConstant('SPEC', $jsonSpec);
+        $class->addConstant('SPEC', $jsonSpec)
+              ->addComment("Array of spec rules.\n\n@var array");
 
         $fileManager->saveFile($file, "Spec/Tag/{$className}.php");
     }

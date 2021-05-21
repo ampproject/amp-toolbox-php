@@ -25,6 +25,11 @@ final class AmpFacebookPage extends Tag
      */
     const ID = 'AMP-FACEBOOK-PAGE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FACEBOOK_PAGE,
         SpecRule::ATTRS => [

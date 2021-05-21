@@ -23,6 +23,11 @@ final class AmpFxFlyingCarpet extends Tag
      */
     const ID = 'AMP-FX-FLYING-CARPET';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FX_FLYING_CARPET,
         SpecRule::ATTRS => [

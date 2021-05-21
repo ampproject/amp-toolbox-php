@@ -21,6 +21,11 @@ final class AmpBaseCarouselLightboxChild extends Tag
      */
     const ID = 'AMP-BASE-CAROUSEL lightbox [child]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-BASE-CAROUSEL lightbox [child]',

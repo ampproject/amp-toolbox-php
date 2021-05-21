@@ -26,6 +26,11 @@ final class ScriptAmpReddit extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-reddit]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-reddit',
         SpecRule::VERSION => [
@@ -35,6 +40,11 @@ final class ScriptAmpReddit extends Tag implements TagWithExtensionSpec
         SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

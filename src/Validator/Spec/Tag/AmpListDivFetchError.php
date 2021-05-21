@@ -23,6 +23,11 @@ final class AmpListDivFetchError extends Tag
      */
     const ID = 'AMP-LIST DIV [fetch-error]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'AMP-LIST DIV [fetch-error]',

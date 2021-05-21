@@ -21,6 +21,11 @@ final class Legend extends Tag
      */
     const ID = 'LEGEND';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::LEGEND,
         SpecRule::HTML_FORMAT => [

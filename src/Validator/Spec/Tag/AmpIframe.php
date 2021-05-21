@@ -25,6 +25,11 @@ final class AmpIframe extends Tag
      */
     const ID = 'AMP-IFRAME';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IFRAME,
         SpecRule::ATTRS => [

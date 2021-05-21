@@ -10,7 +10,6 @@ class TagTest extends TestCase
 {
 
     /**
-     * @covers \AmpProject\Validator\Spec\Tag::getId()
      * @covers \AmpProject\Validator\Spec\Tag::get()
      * @covers \AmpProject\Validator\Spec\Tag::has()
      * @covers \AmpProject\Validator\Spec\Tag::__get()
@@ -36,6 +35,21 @@ class TagTest extends TestCase
         $this->assertFalse($dummyTag->siblingsDisallowed);
         $this->assertFalse($dummyTag->unique);
         $this->assertFalse($dummyTag->uniqueWarning);
+    }
+
+    /**
+     * @covers \AmpProject\Validator\Spec\Tag::getId()
+     * @covers \AmpProject\Validator\Spec\Tag::get()
+     * @covers \AmpProject\Validator\Spec\Tag::has()
+     * @covers \AmpProject\Validator\Spec\Tag::__get()
+     */
+    public function testGet()
+    {
+        $dummyTag = new DummyTag();
+
+        $this->assertEquals('dummy', $dummyTag->getId());
+
+        $this->assertEquals($dummyTag->tagName, $dummyTag->get('tagName'));
 
         $this->assertTrue($dummyTag->has('tagName'));
         $this->assertFalse($dummyTag->has('utter nonsense'));

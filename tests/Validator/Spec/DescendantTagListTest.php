@@ -13,7 +13,7 @@ class DescendantTagListTest extends TestCase
      * @covers \AmpProject\Validator\Spec\DescendantTagList::get()
      * @covers \AmpProject\Validator\Spec\DescendantTagList::has()
      */
-    public function testDefaultValues()
+    public function testGet()
     {
         $dummyDescendantTagList = new DummyDescendantTagList();
 

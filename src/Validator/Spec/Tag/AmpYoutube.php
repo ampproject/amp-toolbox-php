@@ -24,6 +24,11 @@ final class AmpYoutube extends Tag
      */
     const ID = 'AMP-YOUTUBE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::YOUTUBE,
         SpecRule::ATTRS => [

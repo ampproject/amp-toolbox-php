@@ -21,6 +21,11 @@ final class Dir extends Tag
      */
     const ID = 'DIR';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIR,
         SpecRule::HTML_FORMAT => [

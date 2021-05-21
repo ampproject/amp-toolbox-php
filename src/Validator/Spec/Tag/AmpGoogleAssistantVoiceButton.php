@@ -23,6 +23,11 @@ final class AmpGoogleAssistantVoiceButton extends Tag
      */
     const ID = 'AMP-GOOGLE-ASSISTANT-VOICE-BUTTON';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_ASSISTANT_VOICE_BUTTON,
         SpecRule::ATTR_LISTS => [

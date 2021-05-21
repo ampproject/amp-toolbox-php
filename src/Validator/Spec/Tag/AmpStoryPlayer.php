@@ -23,6 +23,11 @@ final class AmpStoryPlayer extends Tag
      */
     const ID = 'AMP-STORY-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PLAYER,
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-player/',

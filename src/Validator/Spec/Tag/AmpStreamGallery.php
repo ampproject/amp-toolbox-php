@@ -23,6 +23,11 @@ final class AmpStreamGallery extends Tag
      */
     const ID = 'AMP-STREAM-GALLERY';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STREAM_GALLERY,
         SpecRule::ATTR_LISTS => [

@@ -26,6 +26,11 @@ final class ScriptAmpExperiment extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-experiment]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-experiment',
         SpecRule::VERSION => [
@@ -37,6 +42,11 @@ final class ScriptAmpExperiment extends Tag implements TagWithExtensionSpec
         SpecRule::REQUIRES_USAGE => 'EXEMPTED',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

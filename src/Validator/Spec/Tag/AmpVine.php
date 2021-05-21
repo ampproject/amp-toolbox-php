@@ -24,6 +24,11 @@ final class AmpVine extends Tag
      */
     const ID = 'AMP-VINE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VINE,
         SpecRule::ATTRS => [

@@ -23,6 +23,11 @@ final class Del extends Tag
      */
     const ID = 'DEL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DEL,
         SpecRule::ATTRS => [

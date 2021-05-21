@@ -24,6 +24,11 @@ final class ScriptTypeTextPlain extends Tag
      */
     const ID = 'SCRIPT type=text/plain';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT type=text/plain',

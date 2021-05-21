@@ -24,6 +24,11 @@ final class AmpApesterMedia extends Tag
      */
     const ID = 'AMP-APESTER-MEDIA';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::APESTER_MEDIA,
         SpecRule::ATTRS => [

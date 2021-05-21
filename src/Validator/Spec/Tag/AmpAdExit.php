@@ -23,6 +23,11 @@ final class AmpAdExit extends Tag
      */
     const ID = 'AMP-AD-EXIT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD_EXIT,
         SpecRule::ATTR_LISTS => [

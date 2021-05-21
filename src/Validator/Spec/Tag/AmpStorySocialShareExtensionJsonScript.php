@@ -24,6 +24,11 @@ final class AmpStorySocialShareExtensionJsonScript extends Tag
      */
     const ID = 'amp-story-social-share extension .json script';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-story-social-share extension .json script',

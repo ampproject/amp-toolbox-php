@@ -20,6 +20,11 @@ final class AmpSelectorChild extends Tag
      */
     const ID = 'AMP-SELECTOR child';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-SELECTOR child',

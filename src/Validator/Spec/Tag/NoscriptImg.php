@@ -25,6 +25,11 @@ final class NoscriptImg extends Tag
      */
     const ID = 'noscript > img';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::IMG,
         SpecRule::SPEC_NAME => 'noscript > img',

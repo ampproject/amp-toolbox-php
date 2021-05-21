@@ -25,6 +25,11 @@ final class AmpGoogleDocumentEmbed extends Tag
      */
     const ID = 'AMP-GOOGLE-DOCUMENT-EMBED';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_DOCUMENT_EMBED,
         SpecRule::ATTRS => [

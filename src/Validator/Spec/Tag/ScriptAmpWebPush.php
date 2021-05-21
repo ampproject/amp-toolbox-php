@@ -26,6 +26,11 @@ final class ScriptAmpWebPush extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-web-push]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-web-push',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpWebPush extends Tag implements TagWithExtensionSpec
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

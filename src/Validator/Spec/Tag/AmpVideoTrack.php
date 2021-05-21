@@ -23,6 +23,11 @@ final class AmpVideoTrack extends Tag
      */
     const ID = 'amp-video > track';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TRACK,
         SpecRule::SPEC_NAME => 'amp-video > track',

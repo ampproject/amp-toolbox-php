@@ -21,6 +21,11 @@ final class Picture extends Tag
      */
     const ID = 'PICTURE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::PICTURE,
         SpecRule::MANDATORY_PARENT => Element::NOSCRIPT,

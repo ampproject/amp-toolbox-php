@@ -26,6 +26,11 @@ final class ScriptCustomTemplateAmpMustacheAmp4ads extends Tag implements TagWit
      */
     const ID = 'SCRIPT[custom-template=amp-mustache] (AMP4ADS)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mustache',
         SpecRule::VERSION => [
@@ -39,6 +44,11 @@ final class ScriptCustomTemplateAmpMustacheAmp4ads extends Tag implements TagWit
         SpecRule::EXTENSION_TYPE => 'CUSTOM_TEMPLATE',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-template=amp-mustache] (AMP4ADS)',

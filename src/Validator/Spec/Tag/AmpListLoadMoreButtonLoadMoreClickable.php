@@ -24,6 +24,11 @@ final class AmpListLoadMoreButtonLoadMoreClickable extends Tag
      */
     const ID = 'amp-list-load-more button[load-more-clickable]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::SPEC_NAME => 'amp-list-load-more button[load-more-clickable]',

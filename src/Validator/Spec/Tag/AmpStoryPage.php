@@ -24,6 +24,11 @@ final class AmpStoryPage extends Tag
      */
     const ID = 'AMP-STORY-PAGE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PAGE,
         SpecRule::MANDATORY_PARENT => Extension::STORY,

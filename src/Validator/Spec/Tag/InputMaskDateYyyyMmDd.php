@@ -24,6 +24,11 @@ final class InputMaskDateYyyyMmDd extends Tag
      */
     const ID = 'input [mask=date-yyyy-mm-dd]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'input [mask=date-yyyy-mm-dd]',

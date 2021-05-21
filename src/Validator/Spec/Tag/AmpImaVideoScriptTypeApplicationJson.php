@@ -23,6 +23,11 @@ final class AmpImaVideoScriptTypeApplicationJson extends Tag
      */
     const ID = 'amp-ima-video > script[type=application/json]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-ima-video > script[type=application/json]',

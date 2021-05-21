@@ -23,6 +23,11 @@ final class DivAmpNestedMenu extends Tag
      */
     const ID = 'div amp-nested-menu';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'div amp-nested-menu',

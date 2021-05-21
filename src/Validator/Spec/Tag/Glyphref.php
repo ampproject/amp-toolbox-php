@@ -23,6 +23,11 @@ final class Glyphref extends Tag
      */
     const ID = 'GLYPHREF';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::GLYPHREF,
         SpecRule::ATTRS => [

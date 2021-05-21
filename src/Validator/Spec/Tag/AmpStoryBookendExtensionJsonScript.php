@@ -24,6 +24,11 @@ final class AmpStoryBookendExtensionJsonScript extends Tag
      */
     const ID = 'amp-story-bookend extension .json script';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-story-bookend extension .json script',

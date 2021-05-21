@@ -26,6 +26,11 @@ final class ScriptAmpGoogleDocumentEmbed extends Tag implements TagWithExtension
      */
     const ID = 'SCRIPT [amp-google-document-embed]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-google-document-embed',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpGoogleDocumentEmbed extends Tag implements TagWithExtension
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

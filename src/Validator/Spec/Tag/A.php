@@ -24,6 +24,11 @@ final class A extends Tag
      */
     const ID = 'A';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::A,
         SpecRule::ATTRS => [

@@ -24,6 +24,11 @@ final class AmpGfycat extends Tag
      */
     const ID = 'AMP-GFYCAT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GFYCAT,
         SpecRule::ATTRS => [

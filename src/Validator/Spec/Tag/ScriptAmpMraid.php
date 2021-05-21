@@ -27,6 +27,11 @@ final class ScriptAmpMraid extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-mraid]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mraid',
         SpecRule::VERSION => [
@@ -37,6 +42,11 @@ final class ScriptAmpMraid extends Tag implements TagWithExtensionSpec
         SpecRule::EXTENSION_TYPE => 'HOST_SERVICE',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTRS => [

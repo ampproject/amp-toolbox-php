@@ -24,6 +24,11 @@ final class AmpHulu extends Tag
      */
     const ID = 'AMP-HULU';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::HULU,
         SpecRule::ATTRS => [

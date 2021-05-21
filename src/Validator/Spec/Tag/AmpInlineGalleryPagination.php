@@ -23,6 +23,11 @@ final class AmpInlineGalleryPagination extends Tag
      */
     const ID = 'amp-inline-gallery-pagination';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INLINE_GALLERY_PAGINATION,
         SpecRule::SPEC_NAME => 'amp-inline-gallery-pagination',

@@ -23,6 +23,11 @@ final class AmpImageSliderDivFirst extends Tag
      */
     const ID = 'AMP-IMAGE-SLIDER > DIV [first]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'AMP-IMAGE-SLIDER > DIV [first]',

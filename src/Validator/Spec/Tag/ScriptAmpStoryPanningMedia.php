@@ -26,6 +26,11 @@ final class ScriptAmpStoryPanningMedia extends Tag implements TagWithExtensionSp
      */
     const ID = 'SCRIPT [amp-story-panning-media]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-story-panning-media',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpStoryPanningMedia extends Tag implements TagWithExtensionSp
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

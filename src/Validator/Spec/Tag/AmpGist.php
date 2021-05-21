@@ -24,6 +24,11 @@ final class AmpGist extends Tag
      */
     const ID = 'AMP-GIST';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GIST,
         SpecRule::ATTRS => [

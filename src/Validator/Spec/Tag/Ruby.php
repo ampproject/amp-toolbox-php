@@ -21,6 +21,11 @@ final class Ruby extends Tag
      */
     const ID = 'RUBY';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::RUBY,
         SpecRule::HTML_FORMAT => [

@@ -21,6 +21,11 @@ final class Big extends Tag
      */
     const ID = 'BIG';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::BIG,
         SpecRule::HTML_FORMAT => [

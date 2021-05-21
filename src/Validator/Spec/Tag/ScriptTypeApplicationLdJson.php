@@ -23,6 +23,11 @@ final class ScriptTypeApplicationLdJson extends Tag
      */
     const ID = 'script type=application/ld+json';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'script type=application/ld+json',

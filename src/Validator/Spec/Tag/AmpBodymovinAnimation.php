@@ -24,6 +24,11 @@ final class AmpBodymovinAnimation extends Tag
      */
     const ID = 'AMP-BODYMOVIN-ANIMATION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BODYMOVIN_ANIMATION,
         SpecRule::ATTRS => [

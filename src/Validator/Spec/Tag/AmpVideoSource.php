@@ -24,6 +24,11 @@ final class AmpVideoSource extends Tag
      */
     const ID = 'amp-video > source';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SOURCE,
         SpecRule::SPEC_NAME => 'amp-video > source',

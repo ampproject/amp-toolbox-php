@@ -23,6 +23,11 @@ final class Svg extends Tag
      */
     const ID = 'SVG';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SVG,
         SpecRule::ATTRS => [

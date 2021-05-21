@@ -24,6 +24,11 @@ final class AmpViqeoPlayer extends Tag
      */
     const ID = 'AMP-VIQEO-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIQEO_PLAYER,
         SpecRule::ATTRS => [

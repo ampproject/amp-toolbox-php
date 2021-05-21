@@ -24,6 +24,11 @@ final class AmpFont extends Tag
      */
     const ID = 'AMP-FONT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FONT,
         SpecRule::ATTRS => [

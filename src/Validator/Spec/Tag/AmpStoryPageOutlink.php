@@ -23,6 +23,11 @@ final class AmpStoryPageOutlink extends Tag
      */
     const ID = 'amp-story-page-outlink';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PAGE_OUTLINK,
         SpecRule::SPEC_NAME => 'amp-story-page-outlink',

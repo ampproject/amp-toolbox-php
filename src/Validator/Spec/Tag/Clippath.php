@@ -23,6 +23,11 @@ final class Clippath extends Tag
      */
     const ID = 'CLIPPATH';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::CLIPPATH,
         SpecRule::ATTRS => [

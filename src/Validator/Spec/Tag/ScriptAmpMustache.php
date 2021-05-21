@@ -26,6 +26,11 @@ final class ScriptAmpMustache extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-mustache]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mustache',
         SpecRule::VERSION => [
@@ -41,6 +46,11 @@ final class ScriptAmpMustache extends Tag implements TagWithExtensionSpec
         SpecRule::EXTENSION_TYPE => 'CUSTOM_TEMPLATE',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

@@ -24,6 +24,11 @@ final class AmpMegaphoneDataPlaylist extends Tag
      */
     const ID = 'amp-megaphone [data-playlist]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MEGAPHONE,
         SpecRule::SPEC_NAME => 'amp-megaphone [data-playlist]',

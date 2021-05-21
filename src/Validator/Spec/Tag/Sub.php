@@ -21,6 +21,11 @@ final class Sub extends Tag
      */
     const ID = 'SUB';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SUB,
         SpecRule::HTML_FORMAT => [

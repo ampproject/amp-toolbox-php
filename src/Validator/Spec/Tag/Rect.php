@@ -23,6 +23,11 @@ final class Rect extends Tag
      */
     const ID = 'RECT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::RECT,
         SpecRule::ATTRS => [

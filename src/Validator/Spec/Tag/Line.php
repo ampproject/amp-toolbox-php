@@ -23,6 +23,11 @@ final class Line extends Tag
      */
     const ID = 'LINE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINE,
         SpecRule::ATTRS => [

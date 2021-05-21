@@ -23,6 +23,11 @@ final class AmpActionMacro extends Tag
      */
     const ID = 'AMP-ACTION-MACRO';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ACTION_MACRO,
         SpecRule::ATTRS => [

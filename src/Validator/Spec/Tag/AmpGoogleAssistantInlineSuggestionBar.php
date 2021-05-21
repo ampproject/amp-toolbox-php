@@ -23,6 +23,11 @@ final class AmpGoogleAssistantInlineSuggestionBar extends Tag
      */
     const ID = 'AMP-GOOGLE-ASSISTANT-INLINE-SUGGESTION-BAR';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_ASSISTANT_INLINE_SUGGESTION_BAR,
         SpecRule::ATTR_LISTS => [

@@ -23,6 +23,11 @@ final class Pattern extends Tag
      */
     const ID = 'PATTERN';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::PATTERN,
         SpecRule::ATTRS => [

@@ -22,6 +22,11 @@ final class AmpLiveListItemsItem extends Tag
      */
     const ID = 'AMP-LIVE-LIST [items] item';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items] item',

@@ -14,7 +14,7 @@ class AttributeListTest extends TestCase
      * @covers \AmpProject\Validator\Spec\AttributeList::get()
      * @covers \AmpProject\Validator\Spec\AttributeList::has()
      */
-    public function testDefaultValues()
+    public function testGet()
     {
         $dummyAttributeList = new DummyAttributeList();
 

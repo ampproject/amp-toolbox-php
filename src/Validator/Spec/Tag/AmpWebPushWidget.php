@@ -24,6 +24,11 @@ final class AmpWebPushWidget extends Tag
      */
     const ID = 'AMP-WEB-PUSH-WIDGET';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::WEB_PUSH_WIDGET,
         SpecRule::ATTRS => [

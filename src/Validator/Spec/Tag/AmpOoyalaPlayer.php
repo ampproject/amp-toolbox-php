@@ -24,6 +24,11 @@ final class AmpOoyalaPlayer extends Tag
      */
     const ID = 'AMP-OOYALA-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::OOYALA_PLAYER,
         SpecRule::ATTRS => [

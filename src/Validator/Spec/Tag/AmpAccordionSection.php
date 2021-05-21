@@ -23,6 +23,11 @@ final class AmpAccordionSection extends Tag
      */
     const ID = 'amp-accordion > section';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::SPEC_NAME => 'amp-accordion > section',

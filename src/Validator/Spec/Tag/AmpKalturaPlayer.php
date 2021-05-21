@@ -24,6 +24,11 @@ final class AmpKalturaPlayer extends Tag
      */
     const ID = 'AMP-KALTURA-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::KALTURA_PLAYER,
         SpecRule::ATTRS => [

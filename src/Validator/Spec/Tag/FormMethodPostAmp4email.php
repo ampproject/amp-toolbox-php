@@ -24,6 +24,11 @@ final class FormMethodPostAmp4email extends Tag
      */
     const ID = 'FORM [method=POST] (AMP4EMAIL)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FORM,
         SpecRule::SPEC_NAME => 'FORM [method=POST] (AMP4EMAIL)',

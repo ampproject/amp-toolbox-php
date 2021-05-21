@@ -25,6 +25,11 @@ final class AmpOnetapGoogle extends Tag
      */
     const ID = 'AMP-ONETAP-GOOGLE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ONETAP_GOOGLE,
         SpecRule::UNIQUE => true,

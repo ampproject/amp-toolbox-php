@@ -22,6 +22,11 @@ final class Table extends Tag
      */
     const ID = 'TABLE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TABLE,
         SpecRule::ATTRS => [

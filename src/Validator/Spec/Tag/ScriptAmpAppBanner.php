@@ -26,6 +26,11 @@ final class ScriptAmpAppBanner extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-app-banner]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-app-banner',
         SpecRule::VERSION => [
@@ -35,6 +40,11 @@ final class ScriptAmpAppBanner extends Tag implements TagWithExtensionSpec
         SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

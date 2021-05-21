@@ -23,6 +23,11 @@ final class LineargradientStop extends Tag
      */
     const ID = 'lineargradient > stop';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STOP,
         SpecRule::SPEC_NAME => 'lineargradient > stop',

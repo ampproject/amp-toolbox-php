@@ -22,6 +22,11 @@ final class NoscriptEnclosureForBoilerplate extends Tag
      */
     const ID = 'noscript enclosure for boilerplate';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::NOSCRIPT,
         SpecRule::SPEC_NAME => 'noscript enclosure for boilerplate',

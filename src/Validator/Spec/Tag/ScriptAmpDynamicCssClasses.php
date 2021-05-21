@@ -26,6 +26,11 @@ final class ScriptAmpDynamicCssClasses extends Tag implements TagWithExtensionSp
      */
     const ID = 'SCRIPT [amp-dynamic-css-classes]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-dynamic-css-classes',
         SpecRule::VERSION => [
@@ -36,6 +41,11 @@ final class ScriptAmpDynamicCssClasses extends Tag implements TagWithExtensionSp
         SpecRule::REQUIRES_USAGE => 'NONE',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

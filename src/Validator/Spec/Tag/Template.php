@@ -23,6 +23,11 @@ final class Template extends Tag
      */
     const ID = 'TEMPLATE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEMPLATE,
         SpecRule::ATTRS => [

@@ -21,6 +21,11 @@ final class Small extends Tag
      */
     const ID = 'SMALL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SMALL,
         SpecRule::HTML_FORMAT => [

@@ -21,6 +21,11 @@ final class Article extends Tag
      */
     const ID = 'ARTICLE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::ARTICLE,
         SpecRule::HTML_FORMAT => [

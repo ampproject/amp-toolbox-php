@@ -24,6 +24,11 @@ final class AmpStoryBookend extends Tag
      */
     const ID = 'AMP-STORY-BOOKEND';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_BOOKEND,
         SpecRule::ATTRS => [

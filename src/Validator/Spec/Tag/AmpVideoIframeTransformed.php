@@ -24,6 +24,11 @@ final class AmpVideoIframeTransformed extends Tag
      */
     const ID = 'AMP-VIDEO-IFRAME (transformed)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIDEO_IFRAME,
         SpecRule::SPEC_NAME => 'AMP-VIDEO-IFRAME (transformed)',

@@ -22,6 +22,11 @@ final class HtmlDoctype extends Tag
      */
     const ID = 'html doctype';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::_DOCTYPE,
         SpecRule::SPEC_NAME => 'html doctype',

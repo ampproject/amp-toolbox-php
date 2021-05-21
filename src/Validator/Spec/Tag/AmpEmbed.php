@@ -25,6 +25,11 @@ final class AmpEmbed extends Tag
      */
     const ID = 'AMP-EMBED';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EMBED,
         SpecRule::ATTRS => [

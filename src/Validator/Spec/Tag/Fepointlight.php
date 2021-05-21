@@ -23,6 +23,11 @@ final class Fepointlight extends Tag
      */
     const ID = 'FEPOINTLIGHT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEPOINTLIGHT,
         SpecRule::ATTRS => [

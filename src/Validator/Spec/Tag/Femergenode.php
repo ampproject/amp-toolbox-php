@@ -23,6 +23,11 @@ final class Femergenode extends Tag
      */
     const ID = 'FEMERGENODE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEMERGENODE,
         SpecRule::ATTRS => [

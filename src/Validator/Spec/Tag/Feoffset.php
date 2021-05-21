@@ -23,6 +23,11 @@ final class Feoffset extends Tag
      */
     const ID = 'FEOFFSET';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEOFFSET,
         SpecRule::ATTRS => [

@@ -21,6 +21,11 @@ final class Abbr extends Tag
      */
     const ID = 'ABBR';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::ABBR,
         SpecRule::HTML_FORMAT => [

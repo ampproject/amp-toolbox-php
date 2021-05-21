@@ -22,6 +22,11 @@ final class Fefuncb extends Tag
      */
     const ID = 'FEFUNCB';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEFUNCB,
         SpecRule::MANDATORY_PARENT => Element::FECOMPONENTTRANSFER,

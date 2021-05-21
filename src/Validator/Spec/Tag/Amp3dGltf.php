@@ -25,6 +25,11 @@ final class Amp3dGltf extends Tag
      */
     const ID = 'AMP-3D-GLTF';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::_3D_GLTF,
         SpecRule::ATTRS => [

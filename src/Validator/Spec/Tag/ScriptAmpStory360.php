@@ -26,6 +26,11 @@ final class ScriptAmpStory360 extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-story-360]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-story-360',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpStory360 extends Tag implements TagWithExtensionSpec
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

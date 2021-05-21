@@ -24,6 +24,11 @@ final class AmpTruncateText extends Tag
      */
     const ID = 'AMP-TRUNCATE-TEXT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::TRUNCATE_TEXT,
         SpecRule::ATTRS => [

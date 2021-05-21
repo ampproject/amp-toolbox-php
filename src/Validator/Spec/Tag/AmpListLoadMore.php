@@ -22,6 +22,11 @@ final class AmpListLoadMore extends Tag
      */
     const ID = 'AMP-LIST-LOAD-MORE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIST_LOAD_MORE,
         SpecRule::MANDATORY_PARENT => Extension::LIST_,

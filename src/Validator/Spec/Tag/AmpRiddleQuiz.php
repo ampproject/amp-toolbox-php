@@ -24,6 +24,11 @@ final class AmpRiddleQuiz extends Tag
      */
     const ID = 'AMP-RIDDLE-QUIZ';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::RIDDLE_QUIZ,
         SpecRule::ATTRS => [

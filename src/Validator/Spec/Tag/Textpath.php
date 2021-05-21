@@ -23,6 +23,11 @@ final class Textpath extends Tag
      */
     const ID = 'TEXTPATH';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEXTPATH,
         SpecRule::ATTRS => [

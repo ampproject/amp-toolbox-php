@@ -24,6 +24,11 @@ final class AmpImageSliderTransformed extends Tag
      */
     const ID = 'amp-image-slider (transformed)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMAGE_SLIDER,
         SpecRule::SPEC_NAME => 'amp-image-slider (transformed)',

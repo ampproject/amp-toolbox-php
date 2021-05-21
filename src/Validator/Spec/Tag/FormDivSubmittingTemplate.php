@@ -22,6 +22,11 @@ final class FormDivSubmittingTemplate extends Tag
      */
     const ID = 'FORM DIV [submitting][template]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [submitting][template]',

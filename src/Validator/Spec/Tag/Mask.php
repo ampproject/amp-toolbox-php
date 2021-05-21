@@ -23,6 +23,11 @@ final class Mask extends Tag
      */
     const ID = 'MASK';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::MASK,
         SpecRule::ATTRS => [

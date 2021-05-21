@@ -26,6 +26,11 @@ final class ScriptCustomTemplateAmpMustacheAmp4email extends Tag implements TagW
      */
     const ID = 'SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mustache',
         SpecRule::VERSION => [
@@ -38,6 +43,11 @@ final class ScriptCustomTemplateAmpMustacheAmp4email extends Tag implements TagW
         SpecRule::EXTENSION_TYPE => 'CUSTOM_TEMPLATE',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-template=amp-mustache] (AMP4EMAIL)',

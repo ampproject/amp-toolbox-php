@@ -24,6 +24,11 @@ final class AmpReddit extends Tag
      */
     const ID = 'AMP-REDDIT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REDDIT,
         SpecRule::ATTRS => [

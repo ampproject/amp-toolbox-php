@@ -25,6 +25,11 @@ final class FormMethodGet extends Tag
      */
     const ID = 'FORM [method=GET]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FORM,
         SpecRule::SPEC_NAME => 'FORM [method=GET]',

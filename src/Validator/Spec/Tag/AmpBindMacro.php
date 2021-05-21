@@ -23,6 +23,11 @@ final class AmpBindMacro extends Tag
      */
     const ID = 'AMP-BIND-MACRO';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BIND_MACRO,
         SpecRule::ATTRS => [

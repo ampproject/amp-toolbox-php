@@ -21,6 +21,11 @@ final class Bdi extends Tag
      */
     const ID = 'BDI';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::BDI,
         SpecRule::HTML_FORMAT => [

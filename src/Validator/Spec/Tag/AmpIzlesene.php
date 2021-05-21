@@ -24,6 +24,11 @@ final class AmpIzlesene extends Tag
      */
     const ID = 'AMP-IZLESENE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IZLESENE,
         SpecRule::ATTRS => [

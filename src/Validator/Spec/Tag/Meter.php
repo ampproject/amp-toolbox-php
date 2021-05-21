@@ -22,6 +22,11 @@ final class Meter extends Tag
      */
     const ID = 'METER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::METER,
         SpecRule::ATTRS => [

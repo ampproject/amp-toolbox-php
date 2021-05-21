@@ -23,6 +23,11 @@ final class AmpAutocompleteInput extends Tag
      */
     const ID = 'amp-autocomplete > input';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'amp-autocomplete > input',

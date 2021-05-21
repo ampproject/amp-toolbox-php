@@ -26,6 +26,11 @@ final class ScriptCustomElementAmpLightboxAmp4email extends Tag implements TagWi
      */
     const ID = 'SCRIPT[custom-element=amp-lightbox] (AMP4EMAIL)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-lightbox',
         SpecRule::VERSION => [
@@ -35,6 +40,11 @@ final class ScriptCustomElementAmpLightboxAmp4email extends Tag implements TagWi
         SpecRule::VERSION_NAME => 'v0.1',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-element=amp-lightbox] (AMP4EMAIL)',

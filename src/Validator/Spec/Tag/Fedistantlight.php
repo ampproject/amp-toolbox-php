@@ -23,6 +23,11 @@ final class Fedistantlight extends Tag
      */
     const ID = 'FEDISTANTLIGHT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDISTANTLIGHT,
         SpecRule::ATTRS => [

@@ -22,6 +22,11 @@ final class IAmphtmlSizerResponsive extends Tag
      */
     const ID = 'I-AMPHTML-SIZER-RESPONSIVE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Internal::SIZER,
         SpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-RESPONSIVE',

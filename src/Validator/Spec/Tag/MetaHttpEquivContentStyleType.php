@@ -22,6 +22,11 @@ final class MetaHttpEquivContentStyleType extends Tag
      */
     const ID = 'meta http-equiv=Content-Style-Type';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=Content-Style-Type',

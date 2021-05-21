@@ -22,6 +22,11 @@ final class Col extends Tag
      */
     const ID = 'COL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::COL,
         SpecRule::ATTRS => [

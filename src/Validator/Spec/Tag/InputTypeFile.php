@@ -23,6 +23,11 @@ final class InputTypeFile extends Tag
      */
     const ID = 'INPUT [type=file]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'INPUT [type=file]',

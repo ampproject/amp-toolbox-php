@@ -23,6 +23,11 @@ final class AmpStoryPageAttachmentHref extends Tag
      */
     const ID = 'amp-story-page-attachment[href]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PAGE_ATTACHMENT,
         SpecRule::SPEC_NAME => 'amp-story-page-attachment[href]',

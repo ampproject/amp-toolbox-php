@@ -22,6 +22,11 @@ final class MetaHttpEquivImagetoolbar extends Tag
      */
     const ID = 'meta http-equiv=imagetoolbar';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=imagetoolbar',

@@ -24,6 +24,11 @@ final class AmpBysideContent extends Tag
      */
     const ID = 'AMP-BYSIDE-CONTENT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BYSIDE_CONTENT,
         SpecRule::ATTRS => [

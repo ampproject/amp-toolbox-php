@@ -26,6 +26,11 @@ final class ScriptAmpVideo2 extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-video] (2)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-video',
         SpecRule::VERSION => [
@@ -36,6 +41,11 @@ final class ScriptAmpVideo2 extends Tag implements TagWithExtensionSpec
         SpecRule::VERSION_NAME => 'v0.1',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

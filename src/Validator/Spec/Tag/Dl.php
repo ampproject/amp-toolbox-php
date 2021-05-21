@@ -21,6 +21,11 @@ final class Dl extends Tag
      */
     const ID = 'DL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DL,
         SpecRule::HTML_FORMAT => [

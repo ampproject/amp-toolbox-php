@@ -24,6 +24,11 @@ final class AmpIframely extends Tag
      */
     const ID = 'AMP-IFRAMELY';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IFRAMELY,
         SpecRule::ATTRS => [

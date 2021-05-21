@@ -23,6 +23,11 @@ final class View extends Tag
      */
     const ID = 'VIEW';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::VIEW,
         SpecRule::ATTRS => [

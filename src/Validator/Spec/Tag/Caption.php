@@ -21,6 +21,11 @@ final class Caption extends Tag
      */
     const ID = 'CAPTION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::CAPTION,
         SpecRule::HTML_FORMAT => [

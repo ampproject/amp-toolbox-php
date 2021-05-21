@@ -22,6 +22,11 @@ final class AmpStoryGridLayerDefault extends Tag
      */
     const ID = 'AMP-STORY-GRID-LAYER default';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-STORY-GRID-LAYER default',

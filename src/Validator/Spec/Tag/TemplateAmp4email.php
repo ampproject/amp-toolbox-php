@@ -23,6 +23,11 @@ final class TemplateAmp4email extends Tag
      */
     const ID = 'TEMPLATE (AMP4EMAIL)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEMPLATE,
         SpecRule::SPEC_NAME => 'TEMPLATE (AMP4EMAIL)',

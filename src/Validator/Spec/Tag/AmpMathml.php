@@ -24,6 +24,11 @@ final class AmpMathml extends Tag
      */
     const ID = 'AMP-MATHML';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MATHML,
         SpecRule::ATTRS => [

@@ -21,6 +21,11 @@ final class AmpExperiment extends Tag
      */
     const ID = 'AMP-EXPERIMENT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EXPERIMENT,
         SpecRule::UNIQUE => true,

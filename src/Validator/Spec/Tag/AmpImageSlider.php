@@ -24,6 +24,11 @@ final class AmpImageSlider extends Tag
      */
     const ID = 'AMP-IMAGE-SLIDER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMAGE_SLIDER,
         SpecRule::ATTRS => [

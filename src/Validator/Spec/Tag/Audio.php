@@ -24,6 +24,11 @@ final class Audio extends Tag
      */
     const ID = 'AUDIO';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::AUDIO,
         SpecRule::ATTRS => [

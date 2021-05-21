@@ -23,6 +23,11 @@ final class Fetile extends Tag
      */
     const ID = 'FETILE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FETILE,
         SpecRule::ATTRS => [

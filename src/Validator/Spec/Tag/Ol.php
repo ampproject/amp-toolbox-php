@@ -22,6 +22,11 @@ final class Ol extends Tag
      */
     const ID = 'OL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::OL,
         SpecRule::ATTRS => [

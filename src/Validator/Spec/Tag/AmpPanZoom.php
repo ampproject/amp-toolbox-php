@@ -24,6 +24,11 @@ final class AmpPanZoom extends Tag
      */
     const ID = 'AMP-PAN-ZOOM';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PAN_ZOOM,
         SpecRule::ATTRS => [

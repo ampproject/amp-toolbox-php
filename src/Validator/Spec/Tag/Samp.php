@@ -21,6 +21,11 @@ final class Samp extends Tag
      */
     const ID = 'SAMP';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SAMP,
         SpecRule::HTML_FORMAT => [

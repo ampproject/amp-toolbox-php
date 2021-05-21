@@ -22,6 +22,11 @@ final class Optgroup extends Tag
      */
     const ID = 'OPTGROUP';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::OPTGROUP,
         SpecRule::MANDATORY_PARENT => Element::SELECT,

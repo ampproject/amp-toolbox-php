@@ -24,6 +24,11 @@ final class AmpConnatixPlayer extends Tag
      */
     const ID = 'AMP-CONNATIX-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CONNATIX_PLAYER,
         SpecRule::ATTRS => [

@@ -24,6 +24,11 @@ final class AmpImg extends Tag
      */
     const ID = 'AMP-IMG';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMG,
         SpecRule::ATTRS => [

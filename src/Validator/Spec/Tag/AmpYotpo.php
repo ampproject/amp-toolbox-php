@@ -24,6 +24,11 @@ final class AmpYotpo extends Tag
      */
     const ID = 'AMP-YOTPO';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::YOTPO,
         SpecRule::ATTRS => [

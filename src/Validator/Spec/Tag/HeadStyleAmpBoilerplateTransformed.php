@@ -23,6 +23,11 @@ final class HeadStyleAmpBoilerplateTransformed extends Tag
      */
     const ID = 'head > style[amp-boilerplate] (transformed)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'head > style[amp-boilerplate] (transformed)',

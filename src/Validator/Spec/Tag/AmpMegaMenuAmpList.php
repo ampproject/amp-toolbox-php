@@ -21,6 +21,11 @@ final class AmpMegaMenuAmpList extends Tag
      */
     const ID = 'AMP-MEGA-MENU > AMP-LIST';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > AMP-LIST',

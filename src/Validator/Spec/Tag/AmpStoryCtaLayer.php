@@ -22,6 +22,11 @@ final class AmpStoryCtaLayer extends Tag
      */
     const ID = 'AMP-STORY-CTA-LAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_CTA_LAYER,
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,

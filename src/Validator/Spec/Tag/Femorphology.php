@@ -23,6 +23,11 @@ final class Femorphology extends Tag
      */
     const ID = 'FEMORPHOLOGY';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEMORPHOLOGY,
         SpecRule::ATTRS => [

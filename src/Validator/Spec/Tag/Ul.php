@@ -21,6 +21,11 @@ final class Ul extends Tag
      */
     const ID = 'UL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::UL,
         SpecRule::HTML_FORMAT => [

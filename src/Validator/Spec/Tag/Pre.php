@@ -21,6 +21,11 @@ final class Pre extends Tag
      */
     const ID = 'PRE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::PRE,
         SpecRule::HTML_FORMAT => [

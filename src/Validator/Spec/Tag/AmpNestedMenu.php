@@ -25,6 +25,11 @@ final class AmpNestedMenu extends Tag
      */
     const ID = 'AMP-NESTED-MENU';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::NESTED_MENU,
         SpecRule::ATTRS => [

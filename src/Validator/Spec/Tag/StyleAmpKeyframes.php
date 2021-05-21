@@ -23,6 +23,11 @@ final class StyleAmpKeyframes extends Tag
      */
     const ID = 'style[amp-keyframes]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style[amp-keyframes]',

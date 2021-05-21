@@ -6,7 +6,6 @@ use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Exception\InvalidTagId;
-use Iterator;
 use LogicException;
 
 final class Tags
@@ -21,7 +20,7 @@ final class Tags
 
     /**
      * Cache of already instantiated Tag objects.
-
+     *
      * @var \AmpProject\Validator\Spec\Tag[]
      */
     private $tagsCache = [];
@@ -74,7 +73,7 @@ final class Tags
      *
      * @param string $format AMP HTML format to get the tags for.
      * @return array<Tag> Array of tags matching the requested AMP HTML format.
-     * @throws InvalidSpecName If an invalid AMP HTML format is requested.
+     * @throws InvalidFormat If an invalid AMP HTML format is requested.
      */
     public function byFormat($format)
     {

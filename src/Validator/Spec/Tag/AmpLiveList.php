@@ -24,6 +24,11 @@ final class AmpLiveList extends Tag
      */
     const ID = 'AMP-LIVE-LIST';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIVE_LIST,
         SpecRule::ATTRS => [

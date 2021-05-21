@@ -23,6 +23,11 @@ final class Hkern extends Tag
      */
     const ID = 'HKERN';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::HKERN,
         SpecRule::ATTRS => [

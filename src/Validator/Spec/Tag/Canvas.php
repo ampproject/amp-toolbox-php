@@ -23,6 +23,11 @@ final class Canvas extends Tag
      */
     const ID = 'CANVAS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::CANVAS,
         SpecRule::ATTRS => [

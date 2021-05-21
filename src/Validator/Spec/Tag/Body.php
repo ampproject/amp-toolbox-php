@@ -21,6 +21,11 @@ final class Body extends Tag
      */
     const ID = 'BODY';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::BODY,
         SpecRule::MANDATORY => true,

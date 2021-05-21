@@ -23,6 +23,11 @@ final class Polygon extends Tag
      */
     const ID = 'POLYGON';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::POLYGON,
         SpecRule::ATTRS => [

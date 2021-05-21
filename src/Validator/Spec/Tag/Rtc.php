@@ -21,6 +21,11 @@ final class Rtc extends Tag
      */
     const ID = 'RTC';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::RTC,
         SpecRule::HTML_FORMAT => [

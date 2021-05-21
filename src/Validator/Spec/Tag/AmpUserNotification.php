@@ -25,6 +25,11 @@ final class AmpUserNotification extends Tag
      */
     const ID = 'AMP-USER-NOTIFICATION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::USER_NOTIFICATION,
         SpecRule::ATTRS => [

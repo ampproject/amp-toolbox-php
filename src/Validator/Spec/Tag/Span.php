@@ -21,6 +21,11 @@ final class Span extends Tag
      */
     const ID = 'SPAN';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SPAN,
         SpecRule::HTML_FORMAT => [

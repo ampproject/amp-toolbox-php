@@ -24,6 +24,11 @@ final class AmpMegaMenu extends Tag
      */
     const ID = 'AMP-MEGA-MENU';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MEGA_MENU,
         SpecRule::ATTR_LISTS => [

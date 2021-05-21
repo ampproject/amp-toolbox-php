@@ -22,6 +22,11 @@ final class MetaNameAmpScriptSrc extends Tag
      */
     const ID = 'meta name=amp-script-src';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name=amp-script-src',

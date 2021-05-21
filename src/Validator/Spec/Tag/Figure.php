@@ -21,6 +21,11 @@ final class Figure extends Tag
      */
     const ID = 'FIGURE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FIGURE,
         SpecRule::HTML_FORMAT => [

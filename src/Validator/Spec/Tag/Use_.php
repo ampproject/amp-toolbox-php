@@ -23,6 +23,11 @@ final class Use_ extends Tag
      */
     const ID = 'USE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::USE_,
         SpecRule::ATTRS => [

@@ -23,6 +23,11 @@ final class AmpDatePickerTemplateInfoTemplate extends Tag
      */
     const ID = 'amp-date-picker > template [info-template]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEMPLATE,
         SpecRule::SPEC_NAME => 'amp-date-picker > template [info-template]',

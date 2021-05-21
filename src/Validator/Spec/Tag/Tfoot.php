@@ -21,6 +21,11 @@ final class Tfoot extends Tag
      */
     const ID = 'TFOOT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TFOOT,
         SpecRule::HTML_FORMAT => [

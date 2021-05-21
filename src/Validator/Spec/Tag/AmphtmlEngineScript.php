@@ -23,6 +23,11 @@ final class AmphtmlEngineScript extends Tag
      */
     const ID = 'amphtml engine script';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amphtml engine script',

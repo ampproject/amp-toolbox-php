@@ -24,6 +24,11 @@ final class AmpFacebookComments extends Tag
      */
     const ID = 'AMP-FACEBOOK-COMMENTS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FACEBOOK_COMMENTS,
         SpecRule::ATTRS => [

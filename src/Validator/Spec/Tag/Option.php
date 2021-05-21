@@ -22,6 +22,11 @@ final class Option extends Tag
      */
     const ID = 'OPTION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::OPTION,
         SpecRule::ATTRS => [

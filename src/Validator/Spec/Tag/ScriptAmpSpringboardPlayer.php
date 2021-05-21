@@ -26,6 +26,11 @@ final class ScriptAmpSpringboardPlayer extends Tag implements TagWithExtensionSp
      */
     const ID = 'SCRIPT [amp-springboard-player]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-springboard-player',
         SpecRule::VERSION => [
@@ -36,6 +41,11 @@ final class ScriptAmpSpringboardPlayer extends Tag implements TagWithExtensionSp
         SpecRule::REQUIRES_USAGE => 'EXEMPTED',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

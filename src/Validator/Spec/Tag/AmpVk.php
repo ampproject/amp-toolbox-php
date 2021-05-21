@@ -24,6 +24,11 @@ final class AmpVk extends Tag
      */
     const ID = 'AMP-VK';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VK,
         SpecRule::ATTRS => [

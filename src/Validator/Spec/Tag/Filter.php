@@ -23,6 +23,11 @@ final class Filter extends Tag
      */
     const ID = 'FILTER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FILTER,
         SpecRule::ATTRS => [

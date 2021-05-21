@@ -21,6 +21,11 @@ final class Multicol extends Tag
      */
     const ID = 'MULTICOL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::MULTICOL,
         SpecRule::HTML_FORMAT => [

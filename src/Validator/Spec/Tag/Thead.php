@@ -21,6 +21,11 @@ final class Thead extends Tag
      */
     const ID = 'THEAD';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::THEAD,
         SpecRule::HTML_FORMAT => [

@@ -24,6 +24,11 @@ final class AmpStorySocialShare extends Tag
      */
     const ID = 'AMP-STORY-SOCIAL-SHARE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_SOCIAL_SHARE,
         SpecRule::ATTRS => [

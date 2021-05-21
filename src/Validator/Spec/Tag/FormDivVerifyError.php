@@ -22,6 +22,11 @@ final class FormDivVerifyError extends Tag
      */
     const ID = 'FORM DIV [verify-error]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [verify-error]',

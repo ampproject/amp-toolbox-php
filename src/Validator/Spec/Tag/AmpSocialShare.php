@@ -25,6 +25,11 @@ final class AmpSocialShare extends Tag
      */
     const ID = 'AMP-SOCIAL-SHARE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SOCIAL_SHARE,
         SpecRule::ATTRS => [

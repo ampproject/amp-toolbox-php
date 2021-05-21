@@ -23,6 +23,11 @@ final class LinkRel extends Tag
      */
     const ID = 'link rel=';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link rel=',

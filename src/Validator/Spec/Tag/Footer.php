@@ -21,6 +21,11 @@ final class Footer extends Tag
      */
     const ID = 'FOOTER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FOOTER,
         SpecRule::HTML_FORMAT => [

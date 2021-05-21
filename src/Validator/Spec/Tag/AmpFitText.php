@@ -24,6 +24,11 @@ final class AmpFitText extends Tag
      */
     const ID = 'AMP-FIT-TEXT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FIT_TEXT,
         SpecRule::ATTRS => [

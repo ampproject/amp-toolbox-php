@@ -21,6 +21,11 @@ final class Hr extends Tag
      */
     const ID = 'HR';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::HR,
         SpecRule::HTML_FORMAT => [

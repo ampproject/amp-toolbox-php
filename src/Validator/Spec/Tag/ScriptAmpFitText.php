@@ -26,6 +26,11 @@ final class ScriptAmpFitText extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-fit-text]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-fit-text',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpFitText extends Tag implements TagWithExtensionSpec
         SpecRule::VERSION_NAME => 'v1.0',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

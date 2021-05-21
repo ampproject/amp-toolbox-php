@@ -21,6 +21,11 @@ final class AmpStoryCtaLayerAnimateIn extends Tag
      */
     const ID = 'AMP-STORY-CTA-LAYER animate-in';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-STORY-CTA-LAYER animate-in',

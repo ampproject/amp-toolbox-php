@@ -24,6 +24,11 @@ final class AmpSubscriptionsExtensionJsonScript extends Tag
      */
     const ID = 'amp-subscriptions extension .json script';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-subscriptions extension .json script',

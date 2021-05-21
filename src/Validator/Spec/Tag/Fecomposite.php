@@ -23,6 +23,11 @@ final class Fecomposite extends Tag
      */
     const ID = 'FECOMPOSITE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECOMPOSITE,
         SpecRule::ATTRS => [

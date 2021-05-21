@@ -23,6 +23,11 @@ final class Fecolormatrix extends Tag
      */
     const ID = 'FECOLORMATRIX';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECOLORMATRIX,
         SpecRule::ATTRS => [

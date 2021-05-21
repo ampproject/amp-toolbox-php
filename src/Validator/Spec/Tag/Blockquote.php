@@ -23,6 +23,11 @@ final class Blockquote extends Tag
      */
     const ID = 'BLOCKQUOTE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::BLOCKQUOTE,
         SpecRule::ATTRS => [

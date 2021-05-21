@@ -23,6 +23,11 @@ final class Feblend extends Tag
      */
     const ID = 'FEBLEND';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEBLEND,
         SpecRule::ATTRS => [

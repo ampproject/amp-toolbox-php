@@ -23,6 +23,11 @@ final class AmpGoogleAssistantVoiceBar extends Tag
      */
     const ID = 'AMP-GOOGLE-ASSISTANT-VOICE-BAR';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_ASSISTANT_VOICE_BAR,
         SpecRule::ATTR_LISTS => [

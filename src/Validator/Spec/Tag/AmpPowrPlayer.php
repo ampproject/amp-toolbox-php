@@ -24,6 +24,11 @@ final class AmpPowrPlayer extends Tag
      */
     const ID = 'AMP-POWR-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::POWR_PLAYER,
         SpecRule::ATTRS => [

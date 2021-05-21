@@ -24,6 +24,11 @@ final class AmpSidebar extends Tag
      */
     const ID = 'amp-sidebar';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SIDEBAR,
         SpecRule::SPEC_NAME => 'amp-sidebar',

@@ -22,6 +22,11 @@ final class AmpStoryAutoAnalytics extends Tag
      */
     const ID = 'AMP-STORY-AUTO-ANALYTICS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_AUTO_ANALYTICS,
         SpecRule::ATTRS => [

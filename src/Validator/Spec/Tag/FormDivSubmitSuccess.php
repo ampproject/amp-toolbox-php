@@ -22,6 +22,11 @@ final class FormDivSubmitSuccess extends Tag
      */
     const ID = 'FORM DIV [submit-success]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [submit-success]',

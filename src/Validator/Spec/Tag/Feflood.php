@@ -22,6 +22,11 @@ final class Feflood extends Tag
      */
     const ID = 'FEFLOOD';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEFLOOD,
         SpecRule::ATTR_LISTS => [

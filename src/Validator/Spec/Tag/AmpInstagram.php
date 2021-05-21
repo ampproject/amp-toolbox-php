@@ -24,6 +24,11 @@ final class AmpInstagram extends Tag
      */
     const ID = 'AMP-INSTAGRAM';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INSTAGRAM,
         SpecRule::ATTRS => [

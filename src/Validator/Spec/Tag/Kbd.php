@@ -21,6 +21,11 @@ final class Kbd extends Tag
      */
     const ID = 'KBD';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::KBD,
         SpecRule::HTML_FORMAT => [

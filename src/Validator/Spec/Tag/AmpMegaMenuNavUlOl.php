@@ -21,6 +21,11 @@ final class AmpMegaMenuNavUlOl extends Tag
      */
     const ID = 'AMP-MEGA-MENU NAV > UL/OL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU NAV > UL/OL',

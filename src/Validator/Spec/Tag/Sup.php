@@ -21,6 +21,11 @@ final class Sup extends Tag
      */
     const ID = 'SUP';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SUP,
         SpecRule::HTML_FORMAT => [

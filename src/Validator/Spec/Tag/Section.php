@@ -22,6 +22,11 @@ final class Section extends Tag
      */
     const ID = 'SECTION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::ATTR_LISTS => [

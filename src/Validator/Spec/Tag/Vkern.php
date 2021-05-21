@@ -23,6 +23,11 @@ final class Vkern extends Tag
      */
     const ID = 'VKERN';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::VKERN,
         SpecRule::ATTRS => [

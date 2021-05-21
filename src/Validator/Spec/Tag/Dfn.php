@@ -21,6 +21,11 @@ final class Dfn extends Tag
      */
     const ID = 'DFN';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DFN,
         SpecRule::HTML_FORMAT => [

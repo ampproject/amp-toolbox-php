@@ -23,6 +23,11 @@ final class AmpAnalytics extends Tag
      */
     const ID = 'AMP-ANALYTICS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ANALYTICS,
         SpecRule::ATTRS => [

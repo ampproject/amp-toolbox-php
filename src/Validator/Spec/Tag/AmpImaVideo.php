@@ -25,6 +25,11 @@ final class AmpImaVideo extends Tag
      */
     const ID = 'AMP-IMA-VIDEO';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMA_VIDEO,
         SpecRule::ATTRS => [

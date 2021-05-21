@@ -24,6 +24,11 @@ final class AmpWistiaPlayer extends Tag
      */
     const ID = 'AMP-WISTIA-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::WISTIA_PLAYER,
         SpecRule::ATTRS => [

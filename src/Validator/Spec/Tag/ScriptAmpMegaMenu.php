@@ -26,6 +26,11 @@ final class ScriptAmpMegaMenu extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-mega-menu]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mega-menu',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpMegaMenu extends Tag implements TagWithExtensionSpec
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

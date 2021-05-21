@@ -22,6 +22,11 @@ final class HtmlTransformed extends Tag
      */
     const ID = 'html (transformed)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::HTML,
         SpecRule::SPEC_NAME => 'html (transformed)',

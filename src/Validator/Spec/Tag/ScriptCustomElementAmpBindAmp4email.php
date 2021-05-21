@@ -26,6 +26,11 @@ final class ScriptCustomElementAmpBindAmp4email extends Tag implements TagWithEx
      */
     const ID = 'SCRIPT[custom-element=amp-bind] (AMP4EMAIL)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-bind',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptCustomElementAmpBindAmp4email extends Tag implements TagWithEx
         SpecRule::REQUIRES_USAGE => 'NONE',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-element=amp-bind] (AMP4EMAIL)',

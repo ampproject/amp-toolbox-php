@@ -22,6 +22,11 @@ final class AmpStoryInteractiveResults extends Tag
      */
     const ID = 'AMP-STORY-INTERACTIVE-RESULTS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_RESULTS,
         SpecRule::ATTRS => [

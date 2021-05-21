@@ -22,6 +22,11 @@ final class SubscriptionsSectionContentSwgAmpCacheNonce extends Tag
      */
     const ID = 'subscriptions-section content swg_amp_cache_nonce';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::SPEC_NAME => 'subscriptions-section content swg_amp_cache_nonce',

@@ -21,6 +21,11 @@ final class Var_ extends Tag
      */
     const ID = 'VAR';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::VAR_,
         SpecRule::HTML_FORMAT => [

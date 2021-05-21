@@ -24,6 +24,11 @@ final class AmpPositionObserver extends Tag
      */
     const ID = 'AMP-POSITION-OBSERVER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::POSITION_OBSERVER,
         SpecRule::ATTRS => [

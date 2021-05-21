@@ -23,6 +23,11 @@ final class AmpAutoAds extends Tag
      */
     const ID = 'AMP-AUTO-ADS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUTO_ADS,
         SpecRule::ATTRS => [

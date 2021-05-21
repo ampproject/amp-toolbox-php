@@ -23,6 +23,11 @@ final class AmpStickyAd extends Tag
      */
     const ID = 'AMP-STICKY-AD';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STICKY_AD,
         SpecRule::UNIQUE => true,

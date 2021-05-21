@@ -24,6 +24,11 @@ final class Video extends Tag
      */
     const ID = 'VIDEO';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::VIDEO,
         SpecRule::ATTRS => [

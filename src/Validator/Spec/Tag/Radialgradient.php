@@ -23,6 +23,11 @@ final class Radialgradient extends Tag
      */
     const ID = 'RADIALGRADIENT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::RADIALGRADIENT,
         SpecRule::ATTRS => [

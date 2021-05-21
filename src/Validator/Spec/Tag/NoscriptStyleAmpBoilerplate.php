@@ -23,6 +23,11 @@ final class NoscriptStyleAmpBoilerplate extends Tag
      */
     const ID = 'noscript > style[amp-boilerplate]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'noscript > style[amp-boilerplate]',

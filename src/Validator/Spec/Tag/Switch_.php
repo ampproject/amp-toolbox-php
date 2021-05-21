@@ -22,6 +22,11 @@ final class Switch_ extends Tag
      */
     const ID = 'SWITCH';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SWITCH_,
         SpecRule::ATTR_LISTS => [

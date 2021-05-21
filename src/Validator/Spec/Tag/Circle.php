@@ -23,6 +23,11 @@ final class Circle extends Tag
      */
     const ID = 'CIRCLE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::CIRCLE,
         SpecRule::ATTRS => [

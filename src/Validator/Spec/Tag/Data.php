@@ -21,6 +21,11 @@ final class Data extends Tag
      */
     const ID = 'DATA';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DATA,
         SpecRule::HTML_FORMAT => [

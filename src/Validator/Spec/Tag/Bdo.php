@@ -22,6 +22,11 @@ final class Bdo extends Tag
      */
     const ID = 'BDO';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::BDO,
         SpecRule::ATTRS => [

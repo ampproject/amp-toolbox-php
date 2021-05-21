@@ -23,6 +23,11 @@ final class StyleAmpRuntimeTransformed extends Tag
      */
     const ID = 'style[amp-runtime] (transformed)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style[amp-runtime] (transformed)',

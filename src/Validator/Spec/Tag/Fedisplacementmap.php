@@ -23,6 +23,11 @@ final class Fedisplacementmap extends Tag
      */
     const ID = 'FEDISPLACEMENTMAP';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDISPLACEMENTMAP,
         SpecRule::ATTRS => [

@@ -23,6 +23,11 @@ final class AmpBaseCarousel extends Tag
      */
     const ID = 'AMP-BASE-CAROUSEL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BASE_CAROUSEL,
         SpecRule::ATTR_LISTS => [

@@ -23,6 +23,11 @@ final class AmpJwplayer extends Tag
      */
     const ID = 'AMP-JWPLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::JWPLAYER,
         SpecRule::ATTRS => [

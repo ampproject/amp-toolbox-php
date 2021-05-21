@@ -23,6 +23,11 @@ final class AmpAudioTrackKindSubtitles extends Tag
      */
     const ID = 'amp-audio > track[kind=subtitles]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TRACK,
         SpecRule::SPEC_NAME => 'amp-audio > track[kind=subtitles]',

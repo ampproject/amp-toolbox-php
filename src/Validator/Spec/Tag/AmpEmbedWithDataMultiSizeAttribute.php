@@ -25,6 +25,11 @@ final class AmpEmbedWithDataMultiSizeAttribute extends Tag
      */
     const ID = 'amp-embed with data-multi-size attribute';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EMBED,
         SpecRule::SPEC_NAME => 'amp-embed with data-multi-size attribute',

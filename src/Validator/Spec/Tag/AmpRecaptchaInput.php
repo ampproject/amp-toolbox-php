@@ -25,6 +25,11 @@ final class AmpRecaptchaInput extends Tag
      */
     const ID = 'AMP-RECAPTCHA-INPUT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::RECAPTCHA_INPUT,
         SpecRule::ATTRS => [

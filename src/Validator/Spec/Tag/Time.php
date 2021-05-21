@@ -22,6 +22,11 @@ final class Time extends Tag
      */
     const ID = 'TIME';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TIME,
         SpecRule::ATTRS => [

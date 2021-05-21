@@ -25,6 +25,11 @@ final class AmpAutocomplete extends Tag
      */
     const ID = 'amp-autocomplete';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUTOCOMPLETE,
         SpecRule::SPEC_NAME => 'amp-autocomplete',

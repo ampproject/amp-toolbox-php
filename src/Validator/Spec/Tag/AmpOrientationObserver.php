@@ -24,6 +24,11 @@ final class AmpOrientationObserver extends Tag
      */
     const ID = 'AMP-ORIENTATION-OBSERVER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ORIENTATION_OBSERVER,
         SpecRule::ATTRS => [

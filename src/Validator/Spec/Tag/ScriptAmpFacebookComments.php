@@ -26,6 +26,11 @@ final class ScriptAmpFacebookComments extends Tag implements TagWithExtensionSpe
      */
     const ID = 'SCRIPT [amp-facebook-comments]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-facebook-comments',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpFacebookComments extends Tag implements TagWithExtensionSpe
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

@@ -22,6 +22,11 @@ final class H3 extends Tag
      */
     const ID = 'H3';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::H3,
         SpecRule::ATTRS => [

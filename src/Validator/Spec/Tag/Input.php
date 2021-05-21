@@ -23,6 +23,11 @@ final class Input extends Tag
      */
     const ID = 'INPUT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::ATTRS => [

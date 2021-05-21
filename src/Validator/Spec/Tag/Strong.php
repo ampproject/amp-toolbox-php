@@ -21,6 +21,11 @@ final class Strong extends Tag
      */
     const ID = 'STRONG';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STRONG,
         SpecRule::HTML_FORMAT => [

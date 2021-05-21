@@ -22,6 +22,11 @@ final class MetaNameAmpStoryGeneratorVersion extends Tag
      */
     const ID = 'meta name=amp-story-generator-version';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name=amp-story-generator-version',

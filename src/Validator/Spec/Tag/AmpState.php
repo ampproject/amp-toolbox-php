@@ -24,6 +24,11 @@ final class AmpState extends Tag
      */
     const ID = 'amp-state';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STATE,
         SpecRule::SPEC_NAME => 'amp-state',

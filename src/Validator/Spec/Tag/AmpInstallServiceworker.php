@@ -24,6 +24,11 @@ final class AmpInstallServiceworker extends Tag
      */
     const ID = 'AMP-INSTALL-SERVICEWORKER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INSTALL_SERVICEWORKER,
         SpecRule::ATTRS => [

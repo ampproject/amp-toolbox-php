@@ -21,6 +21,11 @@ final class Center extends Tag
      */
     const ID = 'CENTER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::CENTER,
         SpecRule::HTML_FORMAT => [

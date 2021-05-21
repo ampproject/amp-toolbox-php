@@ -21,6 +21,11 @@ final class Title extends Tag
      */
     const ID = 'title';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'title',

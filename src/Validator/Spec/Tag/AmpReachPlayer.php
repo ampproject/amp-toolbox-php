@@ -24,6 +24,11 @@ final class AmpReachPlayer extends Tag
      */
     const ID = 'AMP-REACH-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REACH_PLAYER,
         SpecRule::ATTRS => [

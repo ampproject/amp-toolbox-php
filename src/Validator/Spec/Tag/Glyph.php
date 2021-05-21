@@ -23,6 +23,11 @@ final class Glyph extends Tag
      */
     const ID = 'GLYPH';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::GLYPH,
         SpecRule::ATTRS => [

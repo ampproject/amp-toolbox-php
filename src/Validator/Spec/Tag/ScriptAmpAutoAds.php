@@ -26,6 +26,11 @@ final class ScriptAmpAutoAds extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-auto-ads]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-auto-ads',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpAutoAds extends Tag implements TagWithExtensionSpec
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

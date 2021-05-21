@@ -22,6 +22,11 @@ final class Femerge extends Tag
      */
     const ID = 'FEMERGE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEMERGE,
         SpecRule::ATTR_LISTS => [

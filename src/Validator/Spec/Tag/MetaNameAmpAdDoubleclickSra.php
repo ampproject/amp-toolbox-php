@@ -22,6 +22,11 @@ final class MetaNameAmpAdDoubleclickSra extends Tag
      */
     const ID = 'meta name=amp-ad-doubleclick-sra';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name=amp-ad-doubleclick-sra',

@@ -23,6 +23,11 @@ final class AmpNextPageWithSrcAttribute extends Tag
      */
     const ID = 'amp-next-page with src attribute';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::NEXT_PAGE,
         SpecRule::SPEC_NAME => 'amp-next-page with src attribute',

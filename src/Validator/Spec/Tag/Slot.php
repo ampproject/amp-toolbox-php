@@ -22,6 +22,11 @@ final class Slot extends Tag
      */
     const ID = 'SLOT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SLOT,
         SpecRule::ATTR_LISTS => [

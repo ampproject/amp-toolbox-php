@@ -21,6 +21,11 @@ final class Noscript extends Tag
      */
     const ID = 'NOSCRIPT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::NOSCRIPT,
         SpecRule::DISALLOWED_ANCESTOR => [

@@ -24,6 +24,11 @@ final class AmpAppBanner extends Tag
      */
     const ID = 'AMP-APP-BANNER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::APP_BANNER,
         SpecRule::UNIQUE => true,

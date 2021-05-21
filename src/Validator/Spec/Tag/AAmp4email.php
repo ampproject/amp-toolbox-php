@@ -23,6 +23,11 @@ final class AAmp4email extends Tag
      */
     const ID = 'A (AMP4EMAIL)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::A,
         SpecRule::SPEC_NAME => 'A (AMP4EMAIL)',

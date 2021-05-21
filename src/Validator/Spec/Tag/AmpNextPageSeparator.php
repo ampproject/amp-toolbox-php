@@ -22,6 +22,11 @@ final class AmpNextPageSeparator extends Tag
      */
     const ID = 'AMP-NEXT-PAGE > [separator]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [separator]',

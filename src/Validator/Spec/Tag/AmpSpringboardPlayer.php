@@ -24,6 +24,11 @@ final class AmpSpringboardPlayer extends Tag
      */
     const ID = 'AMP-SPRINGBOARD-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SPRINGBOARD_PLAYER,
         SpecRule::ATTRS => [

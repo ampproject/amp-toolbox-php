@@ -23,6 +23,11 @@ final class VideoSource extends Tag
      */
     const ID = 'video > source';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SOURCE,
         SpecRule::SPEC_NAME => 'video > source',

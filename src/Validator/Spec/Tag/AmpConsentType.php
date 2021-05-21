@@ -24,6 +24,11 @@ final class AmpConsentType extends Tag
      */
     const ID = 'amp-consent [type]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CONSENT,
         SpecRule::SPEC_NAME => 'amp-consent [type]',

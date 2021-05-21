@@ -26,6 +26,11 @@ final class ScriptAmpSlides extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-slides]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-slides',
         SpecRule::VERSION => [
@@ -36,6 +41,11 @@ final class ScriptAmpSlides extends Tag implements TagWithExtensionSpec
         SpecRule::REQUIRES_USAGE => 'NONE',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

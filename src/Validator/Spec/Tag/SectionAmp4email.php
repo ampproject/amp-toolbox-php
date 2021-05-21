@@ -21,6 +21,11 @@ final class SectionAmp4email extends Tag
      */
     const ID = 'section (AMP4EMAIL)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::SPEC_NAME => 'section (AMP4EMAIL)',

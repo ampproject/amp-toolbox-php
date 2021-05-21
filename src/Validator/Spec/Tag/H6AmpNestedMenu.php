@@ -23,6 +23,11 @@ final class H6AmpNestedMenu extends Tag
      */
     const ID = 'h6 amp-nested-menu';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::H6,
         SpecRule::SPEC_NAME => 'h6 amp-nested-menu',

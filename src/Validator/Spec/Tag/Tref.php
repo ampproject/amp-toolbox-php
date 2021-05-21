@@ -23,6 +23,11 @@ final class Tref extends Tag
      */
     const ID = 'TREF';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TREF,
         SpecRule::ATTRS => [

@@ -24,6 +24,11 @@ final class AmpGwdAnimation extends Tag
      */
     const ID = 'AMP-GWD-ANIMATION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GWD_ANIMATION,
         SpecRule::ATTRS => [

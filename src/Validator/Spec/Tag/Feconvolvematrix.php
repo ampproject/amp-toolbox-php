@@ -23,6 +23,11 @@ final class Feconvolvematrix extends Tag
      */
     const ID = 'FECONVOLVEMATRIX';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECONVOLVEMATRIX,
         SpecRule::ATTRS => [

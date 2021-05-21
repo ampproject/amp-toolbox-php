@@ -22,6 +22,11 @@ final class MetaHttpEquivResourceType extends Tag
      */
     const ID = 'meta http-equiv=resource-type';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=resource-type',

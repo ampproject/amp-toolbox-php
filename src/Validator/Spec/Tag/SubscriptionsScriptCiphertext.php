@@ -22,6 +22,11 @@ final class SubscriptionsScriptCiphertext extends Tag
      */
     const ID = 'subscriptions script ciphertext';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'subscriptions script ciphertext',

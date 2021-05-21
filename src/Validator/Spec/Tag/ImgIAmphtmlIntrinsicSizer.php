@@ -23,6 +23,11 @@ final class ImgIAmphtmlIntrinsicSizer extends Tag
      */
     const ID = 'IMG-I-AMPHTML-INTRINSIC-SIZER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::IMG,
         SpecRule::SPEC_NAME => 'IMG-I-AMPHTML-INTRINSIC-SIZER',

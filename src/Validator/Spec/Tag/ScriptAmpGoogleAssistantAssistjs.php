@@ -26,6 +26,11 @@ final class ScriptAmpGoogleAssistantAssistjs extends Tag implements TagWithExten
      */
     const ID = 'SCRIPT [amp-google-assistant-assistjs]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-google-assistant-assistjs',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmpGoogleAssistantAssistjs extends Tag implements TagWithExten
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

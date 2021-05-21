@@ -21,6 +21,11 @@ final class Acronym extends Tag
      */
     const ID = 'ACRONYM';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::ACRONYM,
         SpecRule::HTML_FORMAT => [

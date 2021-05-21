@@ -21,6 +21,11 @@ final class Aside extends Tag
      */
     const ID = 'ASIDE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::ASIDE,
         SpecRule::HTML_FORMAT => [

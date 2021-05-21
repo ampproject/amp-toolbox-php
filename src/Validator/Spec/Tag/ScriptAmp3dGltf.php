@@ -26,6 +26,11 @@ final class ScriptAmp3dGltf extends Tag implements TagWithExtensionSpec
      */
     const ID = 'SCRIPT [amp-3d-gltf]';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-3d-gltf',
         SpecRule::VERSION => [
@@ -34,6 +39,11 @@ final class ScriptAmp3dGltf extends Tag implements TagWithExtensionSpec
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTR_LISTS => [

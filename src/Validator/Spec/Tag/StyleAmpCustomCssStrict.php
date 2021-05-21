@@ -23,6 +23,11 @@ final class StyleAmpCustomCssStrict extends Tag
      */
     const ID = 'style amp-custom (css-strict)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'style amp-custom (css-strict)',

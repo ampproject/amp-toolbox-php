@@ -24,6 +24,11 @@ final class AmpBrightcove extends Tag
      */
     const ID = 'AMP-BRIGHTCOVE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BRIGHTCOVE,
         SpecRule::ATTRS => [

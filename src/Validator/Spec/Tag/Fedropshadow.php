@@ -23,6 +23,11 @@ final class Fedropshadow extends Tag
      */
     const ID = 'FEDROPSHADOW';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDROPSHADOW,
         SpecRule::MANDATORY_PARENT => Element::FILTER,

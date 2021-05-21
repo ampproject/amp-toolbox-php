@@ -23,6 +23,11 @@ final class AmpStoryInteractiveBinaryPoll extends Tag
      */
     const ID = 'AMP-STORY-INTERACTIVE-BINARY-POLL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_BINARY_POLL,
         SpecRule::ATTRS => [

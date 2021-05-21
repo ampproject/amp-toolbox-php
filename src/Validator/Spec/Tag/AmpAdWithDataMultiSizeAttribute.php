@@ -25,6 +25,11 @@ final class AmpAdWithDataMultiSizeAttribute extends Tag
      */
     const ID = 'amp-ad with data-multi-size attribute';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD,
         SpecRule::SPEC_NAME => 'amp-ad with data-multi-size attribute',

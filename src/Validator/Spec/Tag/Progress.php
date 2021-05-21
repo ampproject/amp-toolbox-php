@@ -22,6 +22,11 @@ final class Progress extends Tag
      */
     const ID = 'PROGRESS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::PROGRESS,
         SpecRule::ATTRS => [

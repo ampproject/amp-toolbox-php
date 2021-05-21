@@ -24,6 +24,11 @@ final class AmpImgTransformed extends Tag
      */
     const ID = 'amp-img (transformed)';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMG,
         SpecRule::SPEC_NAME => 'amp-img (transformed)',

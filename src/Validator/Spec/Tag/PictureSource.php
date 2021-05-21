@@ -23,6 +23,11 @@ final class PictureSource extends Tag
      */
     const ID = 'picture > source';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SOURCE,
         SpecRule::SPEC_NAME => 'picture > source',

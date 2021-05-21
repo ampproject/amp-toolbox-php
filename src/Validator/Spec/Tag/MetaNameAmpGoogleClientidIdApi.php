@@ -22,6 +22,11 @@ final class MetaNameAmpGoogleClientidIdApi extends Tag
      */
     const ID = 'meta name=amp-google-clientid-id-api';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name=amp-google-clientid-id-api',

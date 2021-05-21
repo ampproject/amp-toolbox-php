@@ -24,6 +24,11 @@ final class AmpAdExitConfigurationJson extends Tag
      */
     const ID = 'amp-ad-exit configuration JSON';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-ad-exit configuration JSON',

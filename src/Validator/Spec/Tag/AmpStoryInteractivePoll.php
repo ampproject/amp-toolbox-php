@@ -22,6 +22,11 @@ final class AmpStoryInteractivePoll extends Tag
      */
     const ID = 'AMP-STORY-INTERACTIVE-POLL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_POLL,
         SpecRule::ATTR_LISTS => [

@@ -21,6 +21,11 @@ final class Code extends Tag
      */
     const ID = 'CODE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::CODE,
         SpecRule::HTML_FORMAT => [

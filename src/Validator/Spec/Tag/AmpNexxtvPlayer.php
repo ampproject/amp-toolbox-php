@@ -24,6 +24,11 @@ final class AmpNexxtvPlayer extends Tag
      */
     const ID = 'AMP-NEXXTV-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::NEXXTV_PLAYER,
         SpecRule::ATTRS => [

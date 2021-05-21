@@ -22,6 +22,11 @@ final class Fecomponenttransfer extends Tag
      */
     const ID = 'FECOMPONENTTRANSFER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECOMPONENTTRANSFER,
         SpecRule::ATTR_LISTS => [

@@ -24,6 +24,11 @@ final class InputMaskPaymentCard extends Tag
      */
     const ID = 'input [mask=payment-card]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'input [mask=payment-card]',

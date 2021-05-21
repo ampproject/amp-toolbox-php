@@ -21,6 +21,11 @@ final class Summary extends Tag
      */
     const ID = 'SUMMARY';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SUMMARY,
         SpecRule::MANDATORY_PARENT => Element::DETAILS,

@@ -21,6 +21,11 @@ final class Hgroup extends Tag
      */
     const ID = 'HGROUP';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::HGROUP,
         SpecRule::HTML_FORMAT => [

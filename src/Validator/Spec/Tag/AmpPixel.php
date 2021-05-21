@@ -25,6 +25,11 @@ final class AmpPixel extends Tag
      */
     const ID = 'AMP-PIXEL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PIXEL,
         SpecRule::ATTRS => [

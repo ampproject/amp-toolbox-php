@@ -24,6 +24,11 @@ final class AmpAccordion extends Tag
      */
     const ID = 'AMP-ACCORDION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ACCORDION,
         SpecRule::ATTRS => [

@@ -21,6 +21,11 @@ final class Datalist extends Tag
      */
     const ID = 'DATALIST';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DATALIST,
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',

@@ -22,6 +22,11 @@ final class AmpStoryPanningMedia extends Tag
      */
     const ID = 'AMP-STORY-PANNING-MEDIA';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PANNING_MEDIA,
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-panning-media',

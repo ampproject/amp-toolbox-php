@@ -21,6 +21,11 @@ final class Tt extends Tag
      */
     const ID = 'TT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TT,
         SpecRule::HTML_FORMAT => [

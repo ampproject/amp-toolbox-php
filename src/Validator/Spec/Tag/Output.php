@@ -23,6 +23,11 @@ final class Output extends Tag
      */
     const ID = 'OUTPUT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::OUTPUT,
         SpecRule::ATTRS => [

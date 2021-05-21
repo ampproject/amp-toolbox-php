@@ -22,6 +22,11 @@ final class HeadStyleAmp4emailBoilerplate extends Tag
      */
     const ID = 'head > style[amp4email-boilerplate]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'head > style[amp4email-boilerplate]',

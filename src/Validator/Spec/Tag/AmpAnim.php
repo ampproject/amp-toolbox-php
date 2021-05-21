@@ -24,6 +24,11 @@ final class AmpAnim extends Tag
      */
     const ID = 'AMP-ANIM';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ANIM,
         SpecRule::ATTRS => [

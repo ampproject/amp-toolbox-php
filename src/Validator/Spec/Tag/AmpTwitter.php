@@ -25,6 +25,11 @@ final class AmpTwitter extends Tag
      */
     const ID = 'AMP-TWITTER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::TWITTER,
         SpecRule::ATTRS => [

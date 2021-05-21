@@ -21,6 +21,11 @@ final class Mark extends Tag
      */
     const ID = 'MARK';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::MARK,
         SpecRule::HTML_FORMAT => [

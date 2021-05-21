@@ -21,6 +21,11 @@ final class AmpSelectorOption extends Tag
      */
     const ID = 'AMP-SELECTOR option';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-SELECTOR option',

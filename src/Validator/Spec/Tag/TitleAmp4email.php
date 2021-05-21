@@ -21,6 +21,11 @@ final class TitleAmp4email extends Tag
      */
     const ID = 'title [AMP4EMAIL]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'title [AMP4EMAIL]',

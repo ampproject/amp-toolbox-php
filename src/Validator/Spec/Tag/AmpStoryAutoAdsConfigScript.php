@@ -24,6 +24,11 @@ final class AmpStoryAutoAdsConfigScript extends Tag
      */
     const ID = 'amp-story-auto-ads config script';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-story-auto-ads config script',

@@ -24,6 +24,11 @@ final class ImgIAmphtmlIntrinsicSizerAmpStoryPlayer extends Tag
      */
     const ID = 'img-i-amphtml-intrinsic-sizer-amp-story-player';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::IMG,
         SpecRule::SPEC_NAME => 'img-i-amphtml-intrinsic-sizer-amp-story-player',

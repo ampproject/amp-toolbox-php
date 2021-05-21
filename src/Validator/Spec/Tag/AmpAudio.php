@@ -24,6 +24,11 @@ final class AmpAudio extends Tag
      */
     const ID = 'AMP-AUDIO';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUDIO,
         SpecRule::ATTRS => [

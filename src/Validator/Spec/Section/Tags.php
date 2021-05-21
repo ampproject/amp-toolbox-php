@@ -3012,7 +3012,7 @@ final class Tags implements IterableSection
      *
      * @param string $format AMP HTML format to get the tags for.
      * @return array<Tag> Array of tags matching the requested AMP HTML format.
-     * @throws InvalidSpecName If an invalid AMP HTML format is requested.
+     * @throws InvalidFormat If an invalid AMP HTML format is requested.
      */
     public function byFormat($format)
     {

@@ -23,6 +23,11 @@ final class AudioSource extends Tag
      */
     const ID = 'audio > source';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SOURCE,
         SpecRule::SPEC_NAME => 'audio > source',

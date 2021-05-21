@@ -24,6 +24,11 @@ final class AmpStoryAnimation extends Tag
      */
     const ID = 'AMP-STORY-ANIMATION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_ANIMATION,
         SpecRule::MANDATORY_PARENT => Extension::STORY_PAGE,

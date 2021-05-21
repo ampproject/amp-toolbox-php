@@ -23,6 +23,11 @@ final class Feturbulence extends Tag
      */
     const ID = 'FETURBULENCE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::FETURBULENCE,
         SpecRule::ATTRS => [

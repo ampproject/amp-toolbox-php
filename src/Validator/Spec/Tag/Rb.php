@@ -21,6 +21,11 @@ final class Rb extends Tag
      */
     const ID = 'RB';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::RB,
         SpecRule::HTML_FORMAT => [

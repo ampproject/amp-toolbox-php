@@ -24,6 +24,11 @@ final class AmpDelightPlayer extends Tag
      */
     const ID = 'AMP-DELIGHT-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DELIGHT_PLAYER,
         SpecRule::ATTRS => [

@@ -22,6 +22,11 @@ final class MetaHttpEquivContentLanguage extends Tag
      */
     const ID = 'meta http-equiv=content-language';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=content-language',

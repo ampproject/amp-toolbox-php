@@ -22,6 +22,11 @@ final class AmpLinkRewriter extends Tag
      */
     const ID = 'AMP-LINK-REWRITER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LINK_REWRITER,
         SpecRule::UNIQUE => true,

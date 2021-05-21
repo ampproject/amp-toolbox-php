@@ -24,6 +24,11 @@ final class AmpMinuteMediaPlayer extends Tag
      */
     const ID = 'AMP-MINUTE-MEDIA-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MINUTE_MEDIA_PLAYER,
         SpecRule::ATTRS => [

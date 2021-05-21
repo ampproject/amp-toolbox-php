@@ -23,6 +23,11 @@ final class SpanAmpNestedMenu extends Tag
      */
     const ID = 'span amp-nested-menu';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SPAN,
         SpecRule::SPEC_NAME => 'span amp-nested-menu',

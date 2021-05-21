@@ -22,6 +22,11 @@ final class LinkRelModulepreload extends Tag
      */
     const ID = 'link rel=modulepreload';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link rel=modulepreload',

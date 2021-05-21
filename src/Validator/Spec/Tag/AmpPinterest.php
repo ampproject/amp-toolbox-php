@@ -24,6 +24,11 @@ final class AmpPinterest extends Tag
      */
     const ID = 'AMP-PINTEREST';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PINTEREST,
         SpecRule::ATTRS => [

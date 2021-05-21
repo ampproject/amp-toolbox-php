@@ -24,6 +24,11 @@ final class AmpLightbox extends Tag
      */
     const ID = 'AMP-LIGHTBOX';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIGHTBOX,
         SpecRule::ATTRS => [

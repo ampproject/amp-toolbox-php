@@ -21,6 +21,11 @@ final class Nobr extends Tag
      */
     const ID = 'NOBR';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::NOBR,
         SpecRule::HTML_FORMAT => [

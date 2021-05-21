@@ -22,6 +22,11 @@ final class Label extends Tag
      */
     const ID = 'LABEL';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::LABEL,
         SpecRule::ATTRS => [

@@ -23,6 +23,11 @@ final class Marker extends Tag
      */
     const ID = 'MARKER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::MARKER,
         SpecRule::ATTRS => [

@@ -24,6 +24,11 @@ final class AmpRedbullPlayer extends Tag
      */
     const ID = 'AMP-REDBULL-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REDBULL_PLAYER,
         SpecRule::ATTRS => [

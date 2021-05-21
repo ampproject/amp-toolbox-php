@@ -22,6 +22,11 @@ final class Base extends Tag
      */
     const ID = 'BASE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::BASE,
         SpecRule::UNIQUE => true,

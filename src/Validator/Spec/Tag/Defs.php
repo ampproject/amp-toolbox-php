@@ -23,6 +23,11 @@ final class Defs extends Tag
      */
     const ID = 'DEFS';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DEFS,
         SpecRule::ATTRS => [

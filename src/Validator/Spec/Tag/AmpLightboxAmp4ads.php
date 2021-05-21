@@ -24,6 +24,11 @@ final class AmpLightboxAmp4ads extends Tag
      */
     const ID = 'amp-lightbox [AMP4ADS]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIGHTBOX,
         SpecRule::SPEC_NAME => 'amp-lightbox [AMP4ADS]',

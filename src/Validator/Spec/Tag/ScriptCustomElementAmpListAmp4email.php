@@ -26,6 +26,11 @@ final class ScriptCustomElementAmpListAmp4email extends Tag implements TagWithEx
      */
     const ID = 'SCRIPT[custom-element=amp-list] (AMP4EMAIL)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-list',
         SpecRule::VERSION => [
@@ -33,6 +38,11 @@ final class ScriptCustomElementAmpListAmp4email extends Tag implements TagWithEx
         ],
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-element=amp-list] (AMP4EMAIL)',

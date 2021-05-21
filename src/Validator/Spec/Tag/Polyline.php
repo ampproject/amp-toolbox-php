@@ -23,6 +23,11 @@ final class Polyline extends Tag
      */
     const ID = 'POLYLINE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::POLYLINE,
         SpecRule::ATTRS => [

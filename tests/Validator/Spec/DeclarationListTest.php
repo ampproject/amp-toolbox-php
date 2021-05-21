@@ -14,7 +14,7 @@ class DeclarationListTest extends TestCase
      * @covers \AmpProject\Validator\Spec\DeclarationList::get()
      * @covers \AmpProject\Validator\Spec\DeclarationList::has()
      */
-    public function testDefaultValues()
+    public function testGet()
     {
         $dummyDeclarationList = new DummyDeclarationList();
 

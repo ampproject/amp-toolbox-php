@@ -24,6 +24,11 @@ final class AmpBeopinion extends Tag
      */
     const ID = 'AMP-BEOPINION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BEOPINION,
         SpecRule::ATTRS => [

@@ -22,6 +22,11 @@ final class Div extends Tag
      */
     const ID = 'DIV';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::ATTRS => [

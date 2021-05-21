@@ -24,6 +24,11 @@ final class AmpAppBannerButtonOpenButton extends Tag
      */
     const ID = 'amp-app-banner button[open-button]';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::SPEC_NAME => 'amp-app-banner button[open-button]',

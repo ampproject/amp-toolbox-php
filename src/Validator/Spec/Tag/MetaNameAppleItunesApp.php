@@ -22,6 +22,11 @@ final class MetaNameAppleItunesApp extends Tag
      */
     const ID = 'meta name=apple-itunes-app';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name=apple-itunes-app',

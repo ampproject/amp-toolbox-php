@@ -26,6 +26,11 @@ final class ScriptCustomElementAmpFitTextAmp4email extends Tag implements TagWit
      */
     const ID = 'SCRIPT[custom-element=amp-fit-text] (AMP4EMAIL)';
 
+    /**
+     * Array of extension spec rules.
+     *
+     * @var array
+     */
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-fit-text',
         SpecRule::VERSION => [
@@ -36,6 +41,11 @@ final class ScriptCustomElementAmpFitTextAmp4email extends Tag implements TagWit
         SpecRule::VERSION_NAME => 'v0.1',
     ];
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'SCRIPT[custom-element=amp-fit-text] (AMP4EMAIL)',

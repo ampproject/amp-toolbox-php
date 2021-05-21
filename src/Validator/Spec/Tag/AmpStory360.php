@@ -23,6 +23,11 @@ final class AmpStory360 extends Tag
      */
     const ID = 'AMP-STORY-360';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_360,
         SpecRule::ATTRS => [

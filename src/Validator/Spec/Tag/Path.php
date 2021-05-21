@@ -23,6 +23,11 @@ final class Path extends Tag
      */
     const ID = 'PATH';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::PATH,
         SpecRule::ATTRS => [

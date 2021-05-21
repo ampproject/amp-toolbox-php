@@ -23,6 +23,11 @@ final class ScriptIdAmpRtc extends Tag
      */
     const ID = 'script id=amp-rtc';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'script id=amp-rtc',

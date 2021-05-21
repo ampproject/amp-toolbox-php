@@ -22,6 +22,11 @@ final class Desc extends Tag
      */
     const ID = 'DESC';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::DESC,
         SpecRule::ATTR_LISTS => [

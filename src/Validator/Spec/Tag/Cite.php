@@ -21,6 +21,11 @@ final class Cite extends Tag
      */
     const ID = 'CITE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::CITE,
         SpecRule::HTML_FORMAT => [

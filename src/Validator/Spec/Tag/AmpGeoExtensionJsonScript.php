@@ -24,6 +24,11 @@ final class AmpGeoExtensionJsonScript extends Tag
      */
     const ID = 'amp-geo extension .json script';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amp-geo extension .json script',

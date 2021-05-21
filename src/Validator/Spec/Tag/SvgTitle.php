@@ -22,6 +22,11 @@ final class SvgTitle extends Tag
      */
     const ID = 'svg title';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'svg title',

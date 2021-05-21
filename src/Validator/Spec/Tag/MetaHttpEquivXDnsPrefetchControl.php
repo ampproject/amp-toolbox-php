@@ -22,6 +22,11 @@ final class MetaHttpEquivXDnsPrefetchControl extends Tag
      */
     const ID = 'meta http-equiv=x-dns-prefetch-control';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=x-dns-prefetch-control',

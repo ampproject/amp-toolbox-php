@@ -25,6 +25,11 @@ final class AmpAd extends Tag
      */
     const ID = 'AMP-AD';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD,
         SpecRule::ATTRS => [

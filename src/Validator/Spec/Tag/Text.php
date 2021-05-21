@@ -23,6 +23,11 @@ final class Text extends Tag
      */
     const ID = 'TEXT';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEXT,
         SpecRule::ATTRS => [

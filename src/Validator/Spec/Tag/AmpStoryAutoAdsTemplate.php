@@ -24,6 +24,11 @@ final class AmpStoryAutoAdsTemplate extends Tag
      */
     const ID = 'amp-story-auto-ads > template';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEMPLATE,
         SpecRule::SPEC_NAME => 'amp-story-auto-ads > template',

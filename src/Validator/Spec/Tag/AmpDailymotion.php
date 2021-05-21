@@ -24,6 +24,11 @@ final class AmpDailymotion extends Tag
      */
     const ID = 'AMP-DAILYMOTION';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DAILYMOTION,
         SpecRule::ATTRS => [

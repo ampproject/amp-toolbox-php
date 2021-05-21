@@ -24,6 +24,11 @@ final class AmpO2Player extends Tag
      */
     const ID = 'AMP-O2-PLAYER';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::O2_PLAYER,
         SpecRule::ATTRS => [

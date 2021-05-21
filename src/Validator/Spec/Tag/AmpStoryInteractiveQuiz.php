@@ -23,6 +23,11 @@ final class AmpStoryInteractiveQuiz extends Tag
      */
     const ID = 'AMP-STORY-INTERACTIVE-QUIZ';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_QUIZ,
         SpecRule::ATTRS => [

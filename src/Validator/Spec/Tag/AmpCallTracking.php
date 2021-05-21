@@ -25,6 +25,11 @@ final class AmpCallTracking extends Tag
      */
     const ID = 'AMP-CALL-TRACKING';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CALL_TRACKING,
         SpecRule::ATTRS => [

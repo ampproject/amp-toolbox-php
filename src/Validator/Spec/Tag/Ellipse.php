@@ -23,6 +23,11 @@ final class Ellipse extends Tag
      */
     const ID = 'ELLIPSE';
 
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
     const SPEC = [
         SpecRule::TAG_NAME => Element::ELLIPSE,
         SpecRule::ATTRS => [
