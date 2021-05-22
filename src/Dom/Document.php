@@ -2159,7 +2159,8 @@ final class Document extends DOMDocument
      */
     private function detectInvalidByteSequences($source)
     {
-        if ($this->options[Option::CHECK_ENCODING]
+        if (
+            $this->options[Option::CHECK_ENCODING]
             && function_exists('mb_check_encoding')
             && ! mb_check_encoding($source)
         ) {
