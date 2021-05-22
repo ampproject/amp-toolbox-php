@@ -44,11 +44,11 @@ interface Configuration
      */
     const DEFAULT_TRANSFORMERS = [
         AmpBoilerplate::class,
+        PreloadHeroImage::class,
         ServerSideRendering::class,
         AmpRuntimeCss::class,
         AmpBoilerplateErrorHandler::class,
         TransformedIdentifier::class,
-        PreloadHeroImage::class,
         RewriteAmpUrls::class,
         ReorderHead::class,
         OptimizeAmpBind::class,
