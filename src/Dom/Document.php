@@ -503,7 +503,7 @@ final class Document extends DOMDocument
 
         $this->reset();
 
-        $this->assertNoneMalformedByteSequences($source);
+        $this->detectInvalidByteSequences($source);
 
         $source = $this->convertAmpEmojiAttribute($source);
         $source = $this->convertAmpBindAttributes($source);
@@ -2149,19 +2149,19 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Check if there are malformed byte sequences.
+     * Check if the markup contains invalid byte sequences.
      *
-     * If passed bad byte sequences DOMDocument would fail in a random way (silently) and produces garbage.
+     * If invalid byte sequences are passed to `DOMDocument`, it fails silently and produces Mojibake.
      *
      * @param string $source The HTML fragment string.
-     * @throws \InvalidArgumentException if source contains some malformed byte sequences
+     * @throws \InvalidArgumentException If $source contains invalid byte sequences.
      */
-    private function assertNoneMalformedByteSequences($source)
+    private function detectInvalidByteSequences($source)
     {
-        if ($this->options[Option::ADDITIONAL_VALIDATION] && ! mb_check_encoding($source)) {
+        if ($this->options[Option::CHECK_ENCODING] && function_exists('mb_check_encoding') && ! mb_check_encoding($source)) {
             throw new \InvalidArgumentException(
-                'Passed html contains some malformed byte sequences. ' .
-                'Perhaps you use function "substr" instead of "mb_substr".'
+                'Provided HTML contains invalid byte sequences. ' .
+                'This is usually fixed by replacing string manipulation functions with their `mb_*` multibyte counterparts.'
             );
         }
     }

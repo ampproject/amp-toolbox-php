@@ -32,11 +32,11 @@ interface Option
     const LIBXML_FLAGS = 'libxml_flags';
 
     /**
-     * Option to perform additional validations of the document but increase parsing execution time.
+     * Option to check encoding in order to detect invalid byte sequences.
      *
      * @var string
      */
-    const ADDITIONAL_VALIDATION = 'additional_validation';
+    const CHECK_ENCODING = 'check_encoding';
 
     /**
      * Associative array of known options and their respective default value.
@@ -44,10 +44,10 @@ interface Option
      * @var array
      */
     const DEFAULTS = [
-        self::AMP_BIND_SYNTAX       => self::AMP_BIND_SYNTAX_AUTO,
-        self::ENCODING              => null,
-        self::LIBXML_FLAGS          => 0,
-        self::ADDITIONAL_VALIDATION => false,
+        self::AMP_BIND_SYNTAX => self::AMP_BIND_SYNTAX_AUTO,
+        self::ENCODING        => null,
+        self::LIBXML_FLAGS    => 0,
+        self::CHECK_ENCODING  => false,
     ];
 
     /**
