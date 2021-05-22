@@ -5,6 +5,7 @@ namespace AmpProject\Dom;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document\Option;
+use AmpProject\Exception\InvalidByteSequence;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\MarkupComparison;
@@ -1284,30 +1285,30 @@ class DocumentTest extends TestCase
     /**
      * Test asserting none malformed byte sequences
      *
-     * @covers \AmpProject\Dom\Document::assertNoneMalformedByteSequences()
+     * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
      */
-    public function testAssertNoneMalformedByteSequences()
+    public function testDetectMalformedByteSequences()
     {
         $document = new Document();
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidByteSequence::class);
         $document::fromHtmlFragment(
             "<div>Some text \x00\x81<div>",
-            [Option::ADDITIONAL_VALIDATION => true]
+            [Option::CHECK_ENCODING => true]
         );
     }
 
     /**
      * Test asserting none bad byte sequences
      *
-     * @covers \AmpProject\Dom\Document::assertNoneMalformedByteSequences()
+     * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
      */
-    public function testAssertNoneBadByteSequences()
+    public function testDetectBadByteSequences()
     {
         $document = new Document();
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidByteSequence::class);
         $document::fromHtmlFragment(
             '<p>There is ' . substr('アプリ', 0, strlen('アプリ') - 1) . ' some other text</p>',
-            [Option::ADDITIONAL_VALIDATION => true]
+            [Option::CHECK_ENCODING => true]
         );
     }
 }

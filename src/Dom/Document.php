@@ -8,6 +8,7 @@ use AmpProject\DevMode;
 use AmpProject\Dom\Document\Encoding;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
+use AmpProject\Exception\InvalidByteSequence;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
 use AmpProject\Tag;
@@ -2154,15 +2155,15 @@ final class Document extends DOMDocument
      * If invalid byte sequences are passed to `DOMDocument`, it fails silently and produces Mojibake.
      *
      * @param string $source The HTML fragment string.
-     * @throws \InvalidArgumentException If $source contains invalid byte sequences.
+     * @throws InvalidByteSequence If $source contains invalid byte sequences.
      */
     private function detectInvalidByteSequences($source)
     {
-        if ($this->options[Option::CHECK_ENCODING] && function_exists('mb_check_encoding') && ! mb_check_encoding($source)) {
-            throw new \InvalidArgumentException(
-                'Provided HTML contains invalid byte sequences. ' .
-                'This is usually fixed by replacing string manipulation functions with their `mb_*` multibyte counterparts.'
-            );
+        if ($this->options[Option::CHECK_ENCODING]
+            && function_exists('mb_check_encoding')
+            && ! mb_check_encoding($source)
+        ) {
+            throw InvalidByteSequence::forHtml();
         }
     }
 }
