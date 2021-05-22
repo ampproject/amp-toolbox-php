@@ -38,7 +38,9 @@ final class AutoExtensionsTest extends TestCase
 
             'add missing extensions' => [
                 TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET . '</head><body><amp-anim></amp-anim></body></html>',
-                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET . '</head><body><amp-anim></amp-anim></body></html>',
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
+                . '</head><body><amp-anim></amp-anim></body></html>',
             ],
         ];
     }

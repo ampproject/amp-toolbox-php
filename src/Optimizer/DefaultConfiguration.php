@@ -32,6 +32,7 @@ class DefaultConfiguration implements Configuration
      */
     protected $transformerConfigurationClasses = [
         Transformer\AmpRuntimeCss::class         => Configuration\AmpRuntimeCssConfiguration::class,
+        Transformer\AutoExtensions::class        => Configuration\AutoExtensionsConfiguration::class,
         Transformer\OptimizeAmpBind::class       => Configuration\OptimizeAmpBindConfiguration::class,
         Transformer\OptimizeHeroImages::class    => Configuration\OptimizeHeroImagesConfiguration::class,
         Transformer\PreloadHeroImage::class      => Configuration\PreloadHeroImageConfiguration::class,

@@ -5,11 +5,13 @@ namespace AmpProject\Optimizer;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
+use AmpProject\Optimizer\Configuration\AutoExtensionsConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;
 use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
 use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
 use AmpProject\Optimizer\Transformer\GoogleFontsPreconnect;
+use AmpProject\Optimizer\Transformer\AutoExtensions;
 use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
 use AmpProject\Optimizer\Transformer\OptimizeHeroImages;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
@@ -87,6 +89,10 @@ final class SpecTest extends TestCase
             'MinifyHtml'                    => [
                 MinifyHtml::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/MinifyHtml',
+            ],
+            'AutoExtensions'                => [
+                AutoExtensions::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/AutoExtensionImporter',
             ],
             'OptimizeAmpBind'               => [
                 OptimizeAmpBind::class,
@@ -216,8 +222,20 @@ final class SpecTest extends TestCase
                 case 'ampUrlPrefix':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::AMP_URL_PREFIX] = $value;
                     break;
+                case 'autoExtensionImport':
+                    $mappedConfiguration[AutoExtensions::class][AutoExtensionsConfiguration::AUTO_EXTENSION_IMPORT] = $value;
+                    break;
                 case 'esmModulesEnabled':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::ESM_MODULES_ENABLED] = $value;
+                    break;
+                case 'experimentBindAttribute':
+                    $mappedConfiguration[AutoExtensions::class][AutoExtensionsConfiguration::EXPERIMENT_BIND_ATTRIBUTE] = $value;
+                    break;
+                case 'extensionVersions':
+                    $mappedConfiguration[AutoExtensions::class][AutoExtensionsConfiguration::EXTENSION_VERSIONS] = $value;
+                    break;
+                case 'format':
+                    $mappedConfiguration[AutoExtensions::class][AutoExtensionsConfiguration::FORMAT] = $value;
                     break;
                 case 'geoApiUrl':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::GEO_API_URL] = $value;
@@ -248,7 +266,6 @@ final class SpecTest extends TestCase
                 // @TODO: Known configuration arguments used in spec tests that are not implemented yet.
                 case 'ampUrl':
                 case 'canonical':
-                case 'experimentBindAttribute':
                 default:
                     $this->fail("Configuration argument not yet implemented: {$key}.");
             }

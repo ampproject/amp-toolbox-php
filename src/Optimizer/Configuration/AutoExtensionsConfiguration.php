@@ -28,16 +28,23 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
     /**
      * Configuration key that can disable the automatic importing of extension.
      *
-     * @var bool.
+     * @var string.
      */
     const AUTO_EXTENSION_IMPORT = 'autoExtensionImport';
 
     /**
      * Configuration key that enables experimental conversion of bind attributes.
      *
-     * @var bool
+     * @var string
      */
     const EXPERIMENT_BIND_ATTRIBUTE = 'experimentBindAttribute';
+
+    /**
+     * Configuration key that allows individual configuration of extension versions.
+     *
+     * @var string
+     */
+    const EXTENSION_VERSIONS = 'extensionVersions';
 
     /**
      * Get the associative array of allowed keys and their respective default values.
@@ -52,6 +59,7 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
             self::FORMAT                    => Format::AMP,
             self::AUTO_EXTENSION_IMPORT     => true,
             self::EXPERIMENT_BIND_ATTRIBUTE => false,
+            self::EXTENSION_VERSIONS        => [],
         ];
     }
 
@@ -102,6 +110,17 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
                         self::class,
                         self::EXPERIMENT_BIND_ATTRIBUTE,
                         'boolean',
+                        gettype($value)
+                    );
+                }
+                break;
+
+            case self::EXTENSION_VERSIONS:
+                if (! is_array($value)) {
+                    throw InvalidConfigurationValue::forInvalidSubValueType(
+                        self::class,
+                        self::EXTENSION_VERSIONS,
+                        'array',
                         gettype($value)
                     );
                 }
