@@ -225,7 +225,7 @@ final class AutoExtensions implements Transformer
                 $document->head->appendChild($extensionScript);
             }
 
-            //$referenceNode = $extensionScript;
+            $referenceNode = $extensionScript;
         }
     }
 
