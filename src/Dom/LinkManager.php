@@ -18,6 +18,20 @@ final class LinkManager
 {
 
     /**
+     * List of relations currently managed by the link manager.
+     *
+     * @var array<string>
+     */
+    const MANAGED_RELATIONS = [
+        Attribute::REL_DNS_PREFETCH,
+        Attribute::REL_MODULEPRELOAD,
+        Attribute::REL_PRECONNECT,
+        Attribute::REL_PREFETCH,
+        Attribute::REL_PRELOAD,
+        Attribute::REL_PRERENDER,
+    ];
+
+    /**
      * Document to manage the links for.
      *
      * @var Document
@@ -32,6 +46,15 @@ final class LinkManager
     private $referenceNode;
 
     /**
+     * Collection of links already attached to the document.
+     *
+     * The key of the array is a concatenation of the HREF and the REL attributes.
+     *
+     * @var Element[]
+     */
+    private $links = [];
+
+    /**
      * LinkManager constructor.
      *
      * @param Document $document
@@ -39,6 +62,52 @@ final class LinkManager
     public function __construct(Document $document)
     {
         $this->document = $document;
+        $this->detectExistingLinks();
+    }
+
+    private function detectExistingLinks()
+    {
+        $node = $this->document->head->firstChild;
+        while ($node) {
+            $nextSibling = $node->nextSibling;
+            if (
+                ! $node instanceof Element
+                ||
+                $node->tagName !== Tag::LINK
+            ) {
+                $node = $nextSibling;
+                continue;
+            }
+
+            $href = $node->getAttribute(Attribute::HREF);
+            $rel  = $node->getAttribute(Attribute::REL);
+
+            $key = $this->getKey($node);
+
+            if ($key !== '') {
+                $this->links[$this->getKey($node)] = $node;
+            }
+
+            $node = $nextSibling;
+        }
+    }
+
+    /**
+     * Get the key to use for storing the element in the links cache.
+     *
+     * @param Element $element Element to get the key for.
+     * @return string Key to use. Returns an empty string for invalid elements.
+     */
+    private function getKey(Element $element)
+    {
+        $href = $element->getAttribute(Attribute::HREF);
+        $rel  = $element->getAttribute(Attribute::REL);
+
+        if (empty($href) || ! in_array($rel, self::MANAGED_RELATIONS, true)) {
+            return '';
+        }
+
+        return "{$href}{$rel}";
     }
 
     /**
@@ -183,14 +252,59 @@ final class LinkManager
             $link->setAttribute($attribute, $value);
         }
 
+        $this->remove($rel, $href);
+
         if (!isset($this->referenceNode)) {
             $this->referenceNode = $this->document->viewport;
         }
 
+        /** @var Element $link */
         if ($this->referenceNode) {
-            $this->referenceNode = $this->document->head->insertBefore($link, $this->referenceNode->nextSibling);
+            $link = $this->document->head->insertBefore($link, $this->referenceNode->nextSibling);
         } else {
-            $this->referenceNode = $this->document->head->appendChild($link);
+            $link = $this->document->head->appendChild($link);
         }
+
+        $this->links[$this->getKey($link)] = $link;
+
+        $this->referenceNode = $link;
+    }
+
+    /**
+     * Get a specific link from the link manager.
+     *
+     * @param string $rel  Relation to fetch.
+     * @param string $href Reference to fetch.
+     * @return Element|null Requested link as a Dom\Element, or null if not found.
+     */
+    public function get($rel, $href)
+    {
+        $key = "{$href}{$rel}";
+
+        if (! array_key_exists($key, $this->links)) {
+            return null;
+        }
+
+        return $this->links[$key];
+    }
+
+    /**
+     * Remove a specific link from the document.
+     *
+     * @param string $rel  Relation of the link to remove.
+     * @param string $href Reference of the link to remove.
+     */
+    public function remove($rel, $href)
+    {
+        $key = "{$href}{$rel}";
+
+        if (! array_key_exists($key, $this->links)) {
+            return;
+        }
+
+        $link = $this->links[$key];
+        $link->parentNode->removeChild($link);
+
+        unset($this->links[$key]);
     }
 }

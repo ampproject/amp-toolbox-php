@@ -409,4 +409,108 @@ class LinkManagerTest extends TestCase
             $document->saveHTMLFragment($document->head)
         );
     }
+
+    /**
+     * @covers \AmpProject\Dom\LinkManager::add()
+     * @covers \AmpProject\Dom\LinkManager::getKey()
+     * @covers \AmpProject\Dom\LinkManager::remove()
+     */
+    public function testLinkReplacement()
+    {
+        $document = Document::fromHtml(
+            '<head>'
+            . '<meta charset="utf-8">'
+            . '<meta name="viewport" content="width=device-width">'
+            . '<meta name="generator" content="woeful website wizard">'
+            . '</head>'
+        );
+
+        $document->links->addPreconnect('https://example.com/', false);
+
+        $this->assertSimilarMarkup(
+            '<head>'
+            . '<meta charset="utf-8">'
+            . '<meta name="viewport" content="width=device-width">'
+            . '<link rel="preconnect" href="https://example.com/">'
+            . '<link rel="dns-prefetch" href="https://example.com/">'
+            . '<meta name="generator" content="woeful website wizard">'
+            . '</head>',
+            $document->saveHTMLFragment($document->head)
+        );
+
+        $document->links->addPreconnect('https://example.com/', true);
+
+        $this->assertSimilarMarkup(
+            '<head>'
+            . '<meta charset="utf-8">'
+            . '<meta name="viewport" content="width=device-width">'
+            . '<link rel="preconnect" href="https://example.com/" crossorigin>'
+            . '<link rel="dns-prefetch" href="https://example.com/">'
+            . '<meta name="generator" content="woeful website wizard">'
+            . '</head>',
+            $document->saveHTMLFragment($document->head)
+        );
+    }
+
+    /**
+     * @covers \AmpProject\Dom\LinkManager::add()
+     * @covers \AmpProject\Dom\LinkManager::getKey()
+     * @covers \AmpProject\Dom\LinkManager::remove()
+     */
+    public function testLinkRemoval()
+    {
+        $document = Document::fromHtml(
+            '<head>'
+            . '<meta charset="utf-8">'
+            . '<meta name="viewport" content="width=device-width">'
+            . '<meta name="generator" content="woeful website wizard">'
+            . '</head>'
+        );
+
+        $document->links->addPreload(
+            'https://example.com/1.jpg',
+            RequestDestination::IMAGE,
+            '(max-width: 415px)',
+            Attribute::CROSSORIGIN_ANONYMOUS
+        );
+
+        $document->links->addPreload(
+            'https://example.com/2.jpg',
+            RequestDestination::IMAGE,
+            '(max-width: 200px)',
+            Attribute::CROSSORIGIN_ANONYMOUS
+        );
+
+        $document->links->addPreload(
+            'https://example.com/3.jpg',
+            RequestDestination::IMAGE,
+            '(max-width: 80px)',
+            Attribute::CROSSORIGIN_ANONYMOUS
+        );
+
+        $this->assertSimilarMarkup(
+            '<head>'
+            . '<meta charset="utf-8">'
+            . '<meta name="viewport" content="width=device-width">'
+            . '<link as="image" rel="preload" href="https://example.com/1.jpg" media="(max-width: 415px)" crossorigin="anonymous">'
+            . '<link as="image" rel="preload" href="https://example.com/2.jpg" media="(max-width: 200px)" crossorigin="anonymous">'
+            . '<link as="image" rel="preload" href="https://example.com/3.jpg" media="(max-width: 80px)" crossorigin="anonymous">'
+            . '<meta name="generator" content="woeful website wizard">'
+            . '</head>',
+            $document->saveHTMLFragment($document->head)
+        );
+
+        $document->links->remove(Attribute::REL_PRELOAD, 'https://example.com/2.jpg');
+
+        $this->assertSimilarMarkup(
+            '<head>'
+            . '<meta charset="utf-8">'
+            . '<meta name="viewport" content="width=device-width">'
+            . '<link as="image" rel="preload" href="https://example.com/1.jpg" media="(max-width: 415px)" crossorigin="anonymous">'
+            . '<link as="image" rel="preload" href="https://example.com/3.jpg" media="(max-width: 80px)" crossorigin="anonymous">'
+            . '<meta name="generator" content="woeful website wizard">'
+            . '</head>',
+            $document->saveHTMLFragment($document->head)
+        );
+    }
 }
