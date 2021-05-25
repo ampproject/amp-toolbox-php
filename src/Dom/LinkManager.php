@@ -3,6 +3,7 @@
 namespace AmpProject\Dom;
 
 use AmpProject\Attribute;
+use AmpProject\Exception\FailedToCreateLink;
 use AmpProject\RequestDestination;
 use AmpProject\Tag;
 use DOMNode;
@@ -258,11 +259,14 @@ final class LinkManager
             $this->referenceNode = $this->document->viewport;
         }
 
-        /** @var Element $link */
         if ($this->referenceNode) {
             $link = $this->document->head->insertBefore($link, $this->referenceNode->nextSibling);
         } else {
             $link = $this->document->head->appendChild($link);
+        }
+
+        if (! $link instanceof Element) {
+            throw FailedToCreateLink::forLink($link);
         }
 
         $this->links[$this->getKey($link)] = $link;
