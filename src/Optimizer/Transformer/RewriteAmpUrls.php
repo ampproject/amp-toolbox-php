@@ -116,7 +116,7 @@ final class RewriteAmpUrls implements Transformer
             $href = $node->getAttribute(Attribute::HREF);
             if ($node->tagName === Tag::SCRIPT && $this->usesAmpCacheUrl($src)) {
                 $newUrl = $this->replaceUrl($src, $host);
-                $node->setAttribute(Attribute::SRC, $this->replaceUrl($src, $host));
+                $node->setAttribute(Attribute::SRC, $newUrl);
                 if ($usesEsm) {
                     $this->addEsm($document, $node);
                 } else {
@@ -139,7 +139,7 @@ final class RewriteAmpUrls implements Transformer
                 &&
                 $this->usesAmpCacheUrl($href)
             ) {
-                if ($usesEsm && $this->shouldPreload($href)) {
+                if ($usesEsm && substr_compare($href, 'v0.js', -5) === 0) {
                     // Only preload .mjs runtime in ESM mode.
                     $node->parentNode->removeChild($node);
                 } else {
@@ -175,6 +175,12 @@ final class RewriteAmpUrls implements Transformer
      */
     private function replaceUrl($url, $host)
     {
+        // Preloads for scripts/styles that were already created for the adapted host need to be skipped,
+        // otherwise we end up with the lts or rtv suffix being added twice.
+        if (strpos($url, $host) === 0) {
+            return $url;
+        }
+
         return str_replace(Amp::CACHE_HOST, $host, $url);
     }
 
