@@ -10,10 +10,6 @@ coverage:
       default:
         target: auto
         threshold: 0.1%
-      php:
-        paths:
-          - src
-        threshold: 0.1%
 
 # See https://docs.codecov.io/docs/ignoring-paths
 ignore:
