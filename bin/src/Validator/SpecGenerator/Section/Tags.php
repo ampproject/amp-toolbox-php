@@ -42,6 +42,7 @@ final class Tags implements Section
         foreach ($tagsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
+        $class->addComment($tagsTemplateClass->getComment());
 
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(

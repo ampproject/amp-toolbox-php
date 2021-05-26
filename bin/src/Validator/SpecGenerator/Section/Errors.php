@@ -56,6 +56,7 @@ final class Errors implements Section
         foreach ($errorsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
+        $class->addComment($errorsTemplateClass->getComment());
     }
 
     /**

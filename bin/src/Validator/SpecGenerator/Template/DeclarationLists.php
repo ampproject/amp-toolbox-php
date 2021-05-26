@@ -5,6 +5,11 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Exception\InvalidListName;
 use AmpProject\Validator\Spec;
 
+/**
+ * The DeclarationLists section defines the sets of allowed declarations that can further qualify an object.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class DeclarationLists
 {
 

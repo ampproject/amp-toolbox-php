@@ -4,6 +4,11 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
 use AmpProject\Exception\InvalidDeclarationName;
 
+/**
+ * The base class for a single DeclarationList object that defines the set of allowed declarations for a specific type.
+ *
+ * @package ampproject/amp-toolbox
+ */
 class DeclarationList
 {
 

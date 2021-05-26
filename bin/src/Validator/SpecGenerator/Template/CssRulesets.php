@@ -6,6 +6,11 @@ use AmpProject\Exception\InvalidCssRulesetName;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Validator\Spec\CssRuleset;
 
+/**
+ * The CssRulesets section defines the validation rules that apply to the CSS of a document.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class CssRulesets
 {
 

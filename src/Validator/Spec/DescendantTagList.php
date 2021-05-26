@@ -7,6 +7,11 @@
 
 namespace AmpProject\Validator\Spec;
 
+/**
+ * The base class for a single DescendantTagList that defines the set of allowed descendant tags.
+ *
+ * @package ampproject/amp-toolbox
+ */
 class DescendantTagList
 {
     /**

@@ -14,6 +14,11 @@ use AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 
+/**
+ * The Errors section gives access to all the known validation errors.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class Errors implements IterableSection
 {
     use Iteration {

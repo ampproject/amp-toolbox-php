@@ -5,6 +5,11 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Countable;
 use Iterator;
 
+/**
+ * A section that can be iterated in order to get to all of its contents.
+ *
+ * @package ampproject/amp-toolbox
+ */
 interface IterableSection extends Iterator, Countable
 {
 

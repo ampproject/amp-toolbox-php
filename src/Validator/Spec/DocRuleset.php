@@ -10,9 +10,11 @@ namespace AmpProject\Validator\Spec;
 use AmpProject\Exception\InvalidSpecRuleName;
 
 /**
- * Class DocRuleset.
+ * The base class for a single DocRuleset object that defines the validation rules that apply to the entire document.
  *
- * @property-read array<string> $htmlFormat
+ * @package ampproject/amp-toolbox
+ *
+ * @property-read array<string> $htmlFormat HTML format that this DocRuleset applies to.
  */
 class DocRuleset
 {

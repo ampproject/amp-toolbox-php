@@ -2,6 +2,11 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
+/**
+ * An tag specification that provides the script for an AMP extension.
+ *
+ * @package ampproject/amp-toolbox
+ */
 interface TagWithExtensionSpec
 {
     /**

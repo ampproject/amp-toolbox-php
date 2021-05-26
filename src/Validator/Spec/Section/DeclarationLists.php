@@ -13,6 +13,11 @@ use AmpProject\Validator\Spec\DeclarationList;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 
+/**
+ * The DeclarationLists section defines the sets of allowed declarations that can further qualify an object.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class DeclarationLists implements IterableSection
 {
     use Iteration {

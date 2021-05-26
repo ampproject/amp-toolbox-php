@@ -60,6 +60,7 @@ final class DescendantTagLists implements Section
         foreach ($descendantTagListsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
+        $class->addComment($descendantTagListsTemplateClass->getComment());
     }
 
     /**

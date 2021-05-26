@@ -5,6 +5,11 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Exception\InvalidErrorCode;
 use AmpProject\Validator\Spec;
 
+/**
+ * The Errors section gives access to all the known validation errors.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class Errors
 {
 

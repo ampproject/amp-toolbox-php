@@ -5,6 +5,11 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Exception\InvalidListName;
 use AmpProject\Validator\Spec;
 
+/**
+ * The AttributeLists section provides lists of allowed attributes.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class AttributeLists
 {
 

@@ -21,6 +21,11 @@ use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 use LogicException;
 
+/**
+ * The Tags section gives access to all of the validation rules are are specific to an HTML element.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class Tags implements IterableSection
 {
     use Iteration {

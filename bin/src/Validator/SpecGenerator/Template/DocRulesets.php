@@ -6,6 +6,11 @@ use AmpProject\Exception\InvalidDocRulesetName;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Validator\Spec\DocRuleset;
 
+/**
+ * The DocRulesets section defines the validation rules that apply to an entire document.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class DocRulesets
 {
 

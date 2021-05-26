@@ -7,6 +7,11 @@
 
 namespace AmpProject\Validator\Spec;
 
+/**
+ * Convenience trait to help implement the IterableSection interface.
+ *
+ * @package ampproject/amp-toolbox
+ */
 trait Iteration
 {
     /**

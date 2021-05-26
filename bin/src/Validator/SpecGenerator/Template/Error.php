@@ -4,6 +4,11 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
 use AmpProject\Exception\InvalidSpecRuleName;
 
+/**
+ * The base class for a single validation error definition.
+ *
+ * @package ampproject/amp-toolbox
+ */
 class Error
 {
 

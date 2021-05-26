@@ -14,6 +14,11 @@ use AmpProject\Validator\Spec\DocRuleset;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 
+/**
+ * The DocRulesets section defines the validation rules that apply to an entire document.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class DocRulesets implements IterableSection
 {
     use Iteration {

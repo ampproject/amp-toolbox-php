@@ -7,6 +7,11 @@
 
 namespace AmpProject\Validator\Spec;
 
+/**
+ * An tag specification that provides the script for an AMP extension.
+ *
+ * @package ampproject/amp-toolbox
+ */
 interface TagWithExtensionSpec
 {
     /**

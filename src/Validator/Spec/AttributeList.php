@@ -9,6 +9,11 @@ namespace AmpProject\Validator\Spec;
 
 use AmpProject\Exception\InvalidAttributeName;
 
+/**
+ * The base class for a single AttributeList object that defines a possible set of allowed attributes.
+ *
+ * @package ampproject/amp-toolbox
+ */
 class AttributeList
 {
     /**

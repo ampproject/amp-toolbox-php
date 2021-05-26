@@ -13,6 +13,11 @@ use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 
+/**
+ * The AttributeLists section provides lists of allowed attributes.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class AttributeLists implements IterableSection
 {
     use Iteration {

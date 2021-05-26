@@ -14,6 +14,11 @@ use AmpProject\Validator\Spec\CssRuleset;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 
+/**
+ * The CssRulesets section defines the validation rules that apply to the CSS of a document.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class CssRulesets implements IterableSection
 {
     use Iteration {

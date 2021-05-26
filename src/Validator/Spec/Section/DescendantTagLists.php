@@ -13,6 +13,11 @@ use AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 
+/**
+ * The DescendantTagLists section provides lists that define the set of allowed descendant tags.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class DescendantTagLists implements IterableSection
 {
     use Iteration {

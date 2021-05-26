@@ -37,6 +37,7 @@ final class DocRulesets implements Section
         foreach ($docRulesetsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
+        $class->addComment($docRulesetsTemplateClass->getComment());
 
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(

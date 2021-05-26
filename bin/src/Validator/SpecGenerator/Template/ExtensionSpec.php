@@ -5,6 +5,11 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Convenience trait to help implement the TagWithExtensionSpec interface.
+ *
+ * @package ampproject/amp-toolbox
+ */
 trait ExtensionSpec
 {
     /**

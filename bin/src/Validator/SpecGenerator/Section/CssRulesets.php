@@ -37,6 +37,7 @@ final class CssRulesets implements Section
         foreach ($cssRulesetsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
+        $class->addComment($cssRulesetsTemplateClass->getComment());
 
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(

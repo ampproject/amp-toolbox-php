@@ -10,7 +10,9 @@ namespace AmpProject\Validator\Spec;
 use AmpProject\Exception\InvalidSpecRuleName;
 
 /**
- * Class Tag.
+ * The base class for a single Tag spec definition that provides the validation rules for a specific HTML element.
+ *
+ * @package ampproject/amp-toolbox
  *
  * @property-read array<string> $alsoRequiresTagWarning
  * @property-read array $ampLayout

@@ -58,6 +58,7 @@ final class AttributeLists implements Section
         foreach ($attributeListsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
+        $class->addComment($attributeListsTemplateClass->getComment());
     }
 
     /**

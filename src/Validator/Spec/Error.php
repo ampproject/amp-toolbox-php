@@ -9,6 +9,11 @@ namespace AmpProject\Validator\Spec;
 
 use AmpProject\Exception\InvalidSpecRuleName;
 
+/**
+ * The base class for a single validation error definition.
+ *
+ * @package ampproject/amp-toolbox
+ */
 class Error
 {
     /**

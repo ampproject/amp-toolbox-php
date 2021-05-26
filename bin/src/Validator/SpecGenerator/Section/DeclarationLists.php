@@ -58,6 +58,7 @@ final class DeclarationLists implements Section
         foreach ($declarationListsTemplateClass->getMethods() as $method) {
             $class->addMember($method);
         }
+        $class->addComment($declarationListsTemplateClass->getComment());
     }
 
     /**

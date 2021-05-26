@@ -6,7 +6,9 @@ use AmpProject\Exception\InvalidSpecRuleName;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
- * Class CssRuleset.
+ * The base class for a single CSSRuleset object that provides the CSS validation rules for a specific format.
+ *
+ * @package ampproject/amp-toolbox
  *
  * @property-read bool $allowAllDeclarationInStyle
  * @property-read bool $allowImportant
