@@ -8,6 +8,7 @@ use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Dom\NodeWalker;
 use AmpProject\Extension;
+use AmpProject\Optimizer\Configuration\AutoExtensionsConfiguration;
 use AmpProject\Optimizer\Error\CannotParseJsonData;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
@@ -56,7 +57,11 @@ final class AutoExtensions implements Transformer
     public function transform(Document $document, ErrorCollection $errors)
     {
         $extensionScripts = $this->extractExtensionScripts($document, $errors);
-        $extensionScripts = $this->addMissingExtensions($document, $extensionScripts);
+
+        if ($this->configuration->get(AutoExtensionsConfiguration::AUTO_EXTENSION_IMPORT)) {
+            $extensionScripts = $this->addMissingExtensions($document, $extensionScripts);
+        }
+
         $extensionScripts = $this->removeUnneededExtensions($document, $extensionScripts);
 
         $this->renderExtensionScripts($document, $extensionScripts);
@@ -77,6 +82,7 @@ final class AutoExtensions implements Transformer
         $nodesToRemove = [];
 
         foreach ($document->head->getElementsByTagName(Tag::SCRIPT) as $script) {
+            /** @var Element $script */
             if ($script->getAttribute(Attribute::ID) === Extension::ACCESS) {
                 // Explicitly detect amp-access via the script tag in the header to be able to handle amp-access
                 // extensions.
