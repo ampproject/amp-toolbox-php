@@ -16,5 +16,3 @@ ignore:
   - "/bin"
 
 comment: false
-ignore:
-  - "bin"
