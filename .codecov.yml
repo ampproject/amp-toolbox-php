@@ -1,1 +1,22 @@
+coverage:
+  status:
+    # Patch-level coverage (how well is the PR tested)
+    patch:
+      default:
+        threshold: 80%
+
+    # Project-level coverage
+    project:
+      default:
+        target: auto
+        threshold: 0.1%
+      php:
+        paths:
+          - src
+        threshold: 0.1%
+
+# See https://docs.codecov.io/docs/ignoring-paths
+ignore:
+  - "/bin"
+
 comment: false
