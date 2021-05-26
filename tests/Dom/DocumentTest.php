@@ -5,6 +5,7 @@ namespace AmpProject\Dom;
 use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document\Option;
+use AmpProject\Exception\InvalidByteSequence;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\MarkupComparison;
@@ -1278,6 +1279,38 @@ class DocumentTest extends TestCase
         $this->assertEquals(
             '<div class="red blue" data-something="42">Some text</div>',
             $document->saveHTMLFragment($element)
+        );
+    }
+
+    /**
+     * Test asserting none malformed byte sequences
+     *
+     * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
+     * @covers \AmpProject\Exception\InvalidByteSequence::forHtml()
+     */
+    public function testDetectMalformedByteSequences()
+    {
+        $document = new Document();
+        $this->expectException(InvalidByteSequence::class);
+        $document::fromHtmlFragment(
+            "<div>Some text \x00\x81<div>",
+            [Option::CHECK_ENCODING => true]
+        );
+    }
+
+    /**
+     * Test asserting none bad byte sequences
+     *
+     * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
+     * @covers \AmpProject\Exception\InvalidByteSequence::forHtml()
+     */
+    public function testDetectBadByteSequences()
+    {
+        $document = new Document();
+        $this->expectException(InvalidByteSequence::class);
+        $document::fromHtmlFragment(
+            '<p>There is ' . substr('アプリ', 0, strlen('アプリ') - 1) . ' some other text</p>',
+            [Option::CHECK_ENCODING => true]
         );
     }
 }

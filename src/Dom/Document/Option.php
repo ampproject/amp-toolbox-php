@@ -32,6 +32,13 @@ interface Option
     const LIBXML_FLAGS = 'libxml_flags';
 
     /**
+     * Option to check encoding in order to detect invalid byte sequences.
+     *
+     * @var string
+     */
+    const CHECK_ENCODING = 'check_encoding';
+
+    /**
      * Associative array of known options and their respective default value.
      *
      * @var array
@@ -40,6 +47,7 @@ interface Option
         self::AMP_BIND_SYNTAX => self::AMP_BIND_SYNTAX_AUTO,
         self::ENCODING        => null,
         self::LIBXML_FLAGS    => 0,
+        self::CHECK_ENCODING  => false,
     ];
 
     /**

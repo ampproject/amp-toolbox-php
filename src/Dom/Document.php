@@ -8,6 +8,7 @@ use AmpProject\DevMode;
 use AmpProject\Dom\Document\Encoding;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
+use AmpProject\Exception\InvalidByteSequence;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
 use AmpProject\Tag;
@@ -508,6 +509,8 @@ final class Document extends DOMDocument
         $this->options = array_merge($this->options, $options);
 
         $this->reset();
+
+        $this->detectInvalidByteSequences($source);
 
         $source = $this->convertAmpEmojiAttribute($source);
         $source = $this->convertAmpBindAttributes($source);
@@ -2150,5 +2153,24 @@ final class Document extends DOMDocument
         }
 
         return $html;
+    }
+
+    /**
+     * Check if the markup contains invalid byte sequences.
+     *
+     * If invalid byte sequences are passed to `DOMDocument`, it fails silently and produces Mojibake.
+     *
+     * @param string $source The HTML fragment string.
+     * @throws InvalidByteSequence If $source contains invalid byte sequences.
+     */
+    private function detectInvalidByteSequences($source)
+    {
+        if (
+            $this->options[Option::CHECK_ENCODING]
+            && function_exists('mb_check_encoding')
+            && ! mb_check_encoding($source)
+        ) {
+            throw InvalidByteSequence::forHtml();
+        }
     }
 }
