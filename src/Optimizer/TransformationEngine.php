@@ -53,10 +53,15 @@ final class TransformationEngine
      *                                             CurlRemoteGetRequest implementation shipped with the library.
      * @param Spec                  $spec          Optional. Validator spec instance to use.
      */
-    public function __construct(Configuration $configuration = null, RemoteGetRequest $remoteRequest = null)
+    public function __construct(
+        Configuration $configuration = null,
+        RemoteGetRequest $remoteRequest = null,
+        Spec $spec = null
+    )
     {
         $this->configuration = isset($configuration) ? $configuration : new DefaultConfiguration();
-        $this->remoteRequest = isset($remoteRequest) ? $remoteRequest : new CurlRemoteGetRequest();
+        $this->remoteRequest = $remoteRequest;
+        $this->spec          = $spec;
 
         $this->initializeTransformers();
     }
