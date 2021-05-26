@@ -7,7 +7,10 @@
 
 namespace AmpProject\Validator\Spec;
 
-interface IterableSection extends \Iterator, \Countable
+use Countable;
+use Iterator;
+
+interface IterableSection extends Iterator, Countable
 {
     /**
      * Get the list of available keys.

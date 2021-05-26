@@ -10,6 +10,13 @@ final class FileManager
 {
 
     /**
+     * Directory that contains the source for the namespace root.
+     *
+     * @var string
+     */
+    const NAMESPACE_ROOT_FOLDER = __DIR__ . '/../../../../src';
+
+    /**
      * Root namespace to generate the PHP validator spec under.
      *
      * @var string
@@ -165,6 +172,9 @@ final class FileManager
                     $method->setBody($this->adaptSource($source, $methodClasses));
                     $classes = array_merge($classes, $methodClasses);
                 }
+
+                $classes = array_merge($classes, $class->getExtends());
+                $classes = array_merge($classes, $class->getImplements());
             }
 
             foreach (array_unique($classes) as $class) {
@@ -294,6 +304,10 @@ final class FileManager
             return $class;
         }
 
+        if ($class === 'Element') {
+            return "AmpProject\\Element";
+        }
+
         if (strpos($class, 'Tag\\') === 0) {
             return "AmpProject\\Validator\\Spec\\Tag";
         }
@@ -358,8 +372,10 @@ final class FileManager
             return "AmpProject\\Validator\\Spec\\Section\\{$class}";
         }
 
-        // TODO: Add additional logic here.
+        if (file_exists(self::NAMESPACE_ROOT_FOLDER . "/{$class}.php")) {
+            return "AmpProject\\{$class}";
+        }
 
-        return "AmpProject\\{$class}";
+        return $class;
     }
 }
