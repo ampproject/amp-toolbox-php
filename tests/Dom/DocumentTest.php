@@ -1286,6 +1286,7 @@ class DocumentTest extends TestCase
      * Test asserting none malformed byte sequences
      *
      * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
+     * @covers \AmpProject\Exception\InvalidByteSequence::forHtml()
      */
     public function testDetectMalformedByteSequences()
     {
@@ -1301,6 +1302,7 @@ class DocumentTest extends TestCase
      * Test asserting none bad byte sequences
      *
      * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
+     * @covers \AmpProject\Exception\InvalidByteSequence::forHtml()
      */
     public function testDetectBadByteSequences()
     {
