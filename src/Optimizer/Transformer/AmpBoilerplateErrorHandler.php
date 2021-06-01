@@ -20,24 +20,24 @@ final class AmpBoilerplateErrorHandler implements Transformer
 {
 
     /**
-     * Error handler script to be added to the document's <head> for non-transformed AMP pages.
+     * Error handler script to be added to the document's <head> for AMP pages not using ES modules.
      *
      * @var string
      */
-    const ERROR_HANDLER_NOT_TRANSFORMED = 'document.querySelector("script[src*=\'/v0.js\']").onerror=function(){'
-                                          . 'document.querySelector(\'style[amp-boilerplate]\').textContent=\'\'}';
+    const ERROR_HANDLER_NOMODULE = 'document.querySelector("script[src*=\'/v0.js\']").onerror=function(){'
+                                   . 'document.querySelector(\'style[amp-boilerplate]\').textContent=\'\'}';
 
     /**
-     * Error handler script to be added to the document's <head> for transformed AMP pages.
+     * Error handler script to be added to the document's <head> for AMP pages using ES modules.
      *
      * @var string
      */
-    const ERROR_HANDLER_TRANSFORMED = '[].slice.call(document.querySelectorAll('
-                                      . '"script[src*=\'/v0.js\'],script[src*=\'/v0.mjs\']")).forEach('
-                                      . 'function(s){s.onerror='
-                                      . 'function(){'
-                                      . 'document.querySelector(\'style[amp-boilerplate]\').textContent=\'\''
-                                      . '}})';
+    const ERROR_HANDLER_MODULE = '[].slice.call(document.querySelectorAll('
+                                 . '"script[src*=\'/v0.js\'],script[src*=\'/v0.mjs\']")).forEach('
+                                 . 'function(s){s.onerror='
+                                 . 'function(){'
+                                 . 'document.querySelector(\'style[amp-boilerplate]\').textContent=\'\''
+                                 . '}})';
 
     /**
      * Apply transformations to the provided DOM document.
@@ -59,9 +59,9 @@ final class AmpBoilerplateErrorHandler implements Transformer
                 [
                     Attribute::AMP_ONERROR => null,
                 ],
-                $document->html->hasAttribute(Transformer\TransformedIdentifier::TRANSFORMED_ATTRIBUTE) ?
-                    self::ERROR_HANDLER_TRANSFORMED :
-                    self::ERROR_HANDLER_NOT_TRANSFORMED
+                $document->html->hasAttribute(Attribute::I_AMPHTML_MODULE) ?
+                    self::ERROR_HANDLER_MODULE :
+                    self::ERROR_HANDLER_NOMODULE
             )
         );
     }
