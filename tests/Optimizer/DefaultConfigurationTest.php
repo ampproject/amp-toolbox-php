@@ -14,7 +14,6 @@ use AmpProject\Tests\TestCase;
  */
 final class DefaultConfigurationTest extends TestCase
 {
-
     /**
      * Test whether we can retrieve the default configuration.
      *

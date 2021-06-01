@@ -13,7 +13,6 @@ use DomainException;
  */
 final class InvalidHtmlAttribute extends DomainException implements AmpOptimizerException
 {
-
     /**
      * Instantiate an InvalidHtmlAttribute exception for an invalid attribute value.
      *

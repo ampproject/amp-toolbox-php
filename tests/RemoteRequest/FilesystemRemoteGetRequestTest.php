@@ -13,7 +13,6 @@ use LogicException;
  */
 class FilesystemRemoteGetRequestTest extends TestCase
 {
-
     const MAPPING = [
         'https://example.com/existing-file'     => __DIR__ . '/RemoteGetRequestResponseTest.php',
         'https://example.com/non-existing-file' => __DIR__ . '/Nonsense.php',

@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidColorTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an unknown color.
      */

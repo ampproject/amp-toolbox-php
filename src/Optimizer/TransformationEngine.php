@@ -15,7 +15,6 @@ use ReflectionException;
  */
 final class TransformationEngine
 {
-
     /**
      * Internal storage for the configuration settings.
      *
@@ -119,7 +118,7 @@ final class TransformationEngine
             if (PHP_VERSION_ID >= 70100) {
                 if ($parameter->getType()) {
                     /** @var \ReflectionNamedType $returnType */
-                    $returnType = $parameter->getType();
+                    $returnType     = $parameter->getType();
                     $dependencyType = new ReflectionClass($returnType->getName());
                 }
             } else {

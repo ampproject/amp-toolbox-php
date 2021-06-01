@@ -25,7 +25,6 @@ use AmpProject\Optimizer\TransformerConfiguration;
  */
 final class TransformedIdentifier implements Transformer
 {
-
     /**
      * Attribute name of the "transformed" identifier.
      *

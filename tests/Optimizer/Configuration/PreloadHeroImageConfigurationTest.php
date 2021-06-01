@@ -18,7 +18,6 @@ use stdClass;
  */
 final class PreloadHeroImageConfigurationTest extends TestCase
 {
-
     public function testDefaults()
     {
         $configuration = new PreloadHeroImageConfiguration([]);

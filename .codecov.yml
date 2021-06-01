@@ -13,6 +13,7 @@ coverage:
 
 # See https://docs.codecov.io/docs/ignoring-paths
 ignore:
+  - "/ecs.php"
   - "/bin"
 
 comment: false

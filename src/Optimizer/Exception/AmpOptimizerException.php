@@ -11,5 +11,4 @@ use AmpProject\Exception\AmpException;
  */
 interface AmpOptimizerException extends AmpException
 {
-
 }

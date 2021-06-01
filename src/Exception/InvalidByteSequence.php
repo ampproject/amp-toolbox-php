@@ -11,7 +11,6 @@ use InvalidArgumentException;
  */
 final class InvalidByteSequence extends InvalidArgumentException implements AmpException
 {
-
     /**
      * Instantiate a InvalidByteSequence exception for a HTML with invalid byte sequences.
      *

@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class CssRulesTest extends TestCase
 {
-
     /**
      * @covers \AmpProject\Optimizer\CssRules::getCss()
      */

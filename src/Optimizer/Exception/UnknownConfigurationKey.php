@@ -11,7 +11,6 @@ use InvalidArgumentException;
  */
 final class UnknownConfigurationKey extends InvalidArgumentException implements AmpOptimizerException
 {
-
     /**
      * Instantiate an UnknownConfigurationKey exception for an unknown key.
      *

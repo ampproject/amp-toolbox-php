@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class LengthUnitTest extends TestCase
 {
-
     /**
      * Provide data to test conversions into pixels.
      *

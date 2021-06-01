@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class CurlRemoteGetRequestTest extends TestCase
 {
-
     public function testInstantiation()
     {
         $curlRequest = new CurlRemoteGetRequest(false, -1, -1);

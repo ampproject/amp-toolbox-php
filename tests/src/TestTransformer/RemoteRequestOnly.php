@@ -9,7 +9,6 @@ use AmpProject\RemoteGetRequest;
 
 final class RemoteRequestOnly implements Transformer
 {
-
     public function __construct(RemoteGetRequest $remoteRequest)
     {
     }

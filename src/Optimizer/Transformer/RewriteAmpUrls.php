@@ -59,7 +59,6 @@ use Exception;
  */
 final class RewriteAmpUrls implements Transformer
 {
-
     /**
      * Configuration to use.
      *
@@ -273,7 +272,7 @@ final class RewriteAmpUrls implements Transformer
             try {
                 $url = new Url($host);
 
-                if (!empty($url->scheme) && !empty($url->host)) {
+                if (! empty($url->scheme) && ! empty($url->host)) {
                     $origin = "{$url->scheme}://{$url->host}";
                     $this->addMeta($document, 'runtime-host', $origin);
                 } else {

@@ -11,7 +11,6 @@ use DomainException;
  */
 final class InvalidConfiguration extends DomainException implements AmpOptimizerException
 {
-
     /**
      * Instantiate an InvalidConfiguration exception for two mutually exclusive flags.
      *

@@ -11,7 +11,6 @@ use DOMNode;
  */
 final class NodeWalker
 {
-
     /**
      * Depth-first walk through the DOM tree.
      *

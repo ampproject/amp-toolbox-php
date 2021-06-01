@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class RemoteGetRequestResponseTest extends TestCase
 {
-
     public function testGetData()
     {
         $response = new RemoteGetRequestResponse(

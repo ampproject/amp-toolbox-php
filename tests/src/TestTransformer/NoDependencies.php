@@ -8,7 +8,6 @@ use AmpProject\Optimizer\Transformer;
 
 final class NoDependencies implements Transformer
 {
-
     public function __construct()
     {
     }

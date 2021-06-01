@@ -12,7 +12,6 @@ use OutOfBoundsException;
  */
 final class InvalidSapi extends OutOfBoundsException implements AmpCliException
 {
-
     /**
      * Instantiate an InvalidSapi exception for a SAPI other than 'cli'.
      *

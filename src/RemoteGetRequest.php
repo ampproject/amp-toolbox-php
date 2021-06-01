@@ -13,7 +13,6 @@ use AmpProject\Exception\FailedRemoteRequest;
  */
 interface RemoteGetRequest
 {
-
     /**
      * Do a GET request to retrieve the contents of a remote URL.
      *

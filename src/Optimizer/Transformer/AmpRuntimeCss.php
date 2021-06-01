@@ -9,9 +9,9 @@ use AmpProject\Dom\Element;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
+use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\RemoteGetRequest;
-use AmpProject\Optimizer\Transformer;
 use AmpProject\RuntimeVersion;
 use AmpProject\Tag;
 use Exception;
@@ -35,7 +35,6 @@ use Exception;
  */
 final class AmpRuntimeCss implements Transformer
 {
-
     /**
      * XPath query to fetch the <style amp-runtime> element.
      *
@@ -158,7 +157,7 @@ final class AmpRuntimeCss implements Transformer
         } else {
             $v0CssUrl = self::V0_CSS_URL;
             $options  = [
-                RuntimeVersion::OPTION_CANARY => $this->configuration->get(AmpRuntimeCssConfiguration::CANARY)
+                RuntimeVersion::OPTION_CANARY => $this->configuration->get(AmpRuntimeCssConfiguration::CANARY),
             ];
             $version  = (new RuntimeVersion($this->remoteRequest))->currentVersion($options);
         }

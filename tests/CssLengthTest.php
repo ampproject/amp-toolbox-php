@@ -14,7 +14,6 @@ use AmpProject\Tests\TestCase;
  */
 class CssLengthTest extends TestCase
 {
-
     public function dataCssLength()
     {
         return [

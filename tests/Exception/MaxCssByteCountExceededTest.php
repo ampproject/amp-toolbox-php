@@ -14,7 +14,6 @@ use AmpProject\Tests\TestCase;
  */
 class MaxCssByteCountExceededTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an inline style.
      */

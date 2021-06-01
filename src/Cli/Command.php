@@ -9,7 +9,6 @@ namespace AmpProject\Cli;
  */
 abstract class Command
 {
-
     /**
      * Name of the command.
      *

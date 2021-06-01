@@ -9,7 +9,6 @@ namespace AmpProject\Optimizer;
  */
 interface Error
 {
-
     /**
      * Get the code of the error.
      *

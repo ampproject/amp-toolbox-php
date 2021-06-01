@@ -59,7 +59,7 @@ class ElementTest extends TestCase
      */
     public function testAddInlineStyleWithoutLimit()
     {
-        $document = new Document();
+        $document       = new Document();
         $ampCustomStyle = $document->createElement(Tag::STYLE);
         $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
         $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 38, 'X');
@@ -72,17 +72,17 @@ class ElementTest extends TestCase
         // Inline style can be added.
         $element->addInlineStyle('color:red');
 
-        $this->assertEquals('<div style="color:red"></div>', (string)new ElementDump($element));
+        $this->assertEquals('<div style="color:red"></div>', (string) new ElementDump($element));
 
         // Semicolons are handled automatically.
         $element->addInlineStyle('  ;  ;  border-left=0  ;  ;  ');
         $element->addInlineStyle('  ;  ;  border-right=0  ;  ;  ');
 
-        $this->assertEquals('<div style="color:red;border-left=0;border-right=0"></div>', (string)new ElementDump($element));
+        $this->assertEquals('<div style="color:red;border-left=0;border-right=0"></div>', (string) new ElementDump($element));
 
         $element->addInlineStyle('XXXXX');
 
-        $this->assertEquals('<div style="color:red;border-left=0;border-right=0;XXXXX"></div>', (string)new ElementDump($element));
+        $this->assertEquals('<div style="color:red;border-left=0;border-right=0;XXXXX"></div>', (string) new ElementDump($element));
     }
 
     /**
@@ -106,13 +106,13 @@ class ElementTest extends TestCase
         // Inline style can be added.
         $element->addInlineStyle('color:red');
 
-        $this->assertEquals('<div style="color:red"></div>', (string)new ElementDump($element));
+        $this->assertEquals('<div style="color:red"></div>', (string) new ElementDump($element));
 
         // Semicolons are handled automatically.
         $element->addInlineStyle('  ;  ;  border-left=0  ;  ;  ');
         $element->addInlineStyle('  ;  ;  border-right=0  ;  ;  ');
 
-        $this->assertEquals('<div style="color:red;border-left=0;border-right=0"></div>', (string)new ElementDump($element));
+        $this->assertEquals('<div style="color:red;border-left=0;border-right=0"></div>', (string) new ElementDump($element));
 
         // Exception is thrown if maximum allowed byte count is exceeded.
         $this->expectException(MaxCssByteCountExceeded::class);
@@ -131,23 +131,23 @@ class ElementTest extends TestCase
 
         return [
             // Add a toggle class on tap to a button
-            [ $button, 'tap', "some-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class')" ],
+            [$button, 'tap', "some-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class')"],
             // Add another toggle class on tap to a button
-            [ $button, 'tap', "some-other-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class')" ],
+            [$button, 'tap', "some-other-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class')"],
             // Add a third toggle class on tap to a button
-            [ $button, 'tap', "third-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class')" ],
+            [$button, 'tap', "third-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class')"],
             // Add some other event to a button
-            [ $button, 'event', 'action', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class');event:action" ],
+            [$button, 'event', 'action', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class');event:action"],
             // Add another action to the second event to a button
-            [ $button, 'event', 'other-action', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class');event:action,other-action" ],
+            [$button, 'event', 'other-action', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class');event:action,other-action"],
             // Add fourth action to the tap event to a button
-            [ $button, 'tap', 'lightbox', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class'),lightbox;event:action,other-action" ],
+            [$button, 'tap', 'lightbox', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class'),lightbox;event:action,other-action"],
             // Add a submit success action to a form
-            [ $form, 'submit-success', 'success-lightbox', 'submit-success:success-lightbox' ],
+            [$form, 'submit-success', 'success-lightbox', 'submit-success:success-lightbox'],
             // Add a submit error action to a form
-            [ $form, 'submit-error', 'error-lightbox', 'submit-success:success-lightbox;submit-error:error-lightbox' ],
+            [$form, 'submit-error', 'error-lightbox', 'submit-success:success-lightbox;submit-error:error-lightbox'],
             // Make sure separators within methods won't break
-            [ $dom->createElementWithAttributes('div', [ 'on' => "event:action(method='with problematic characters , : ;')" ]), 'event', "second-action('with problematic characters , : ;')", "event:action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')" ],
+            [$dom->createElementWithAttributes('div', ['on' => "event:action(method='with problematic characters , : ;')"]), 'event', "second-action('with problematic characters , : ;')", "event:action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')"],
         ];
     }
 
@@ -172,23 +172,23 @@ class ElementTest extends TestCase
     {
         return [
             // Both empty.
-            [ '', '', '' ],
+            ['', '', ''],
             // First empty.
-            [ '', "tap:some-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class')" ],
+            ['', "tap:some-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class')"],
             // Second empty.
-            [ "tap:some-id.toggleClass(class='some-class')", '', "tap:some-id.toggleClass(class='some-class')" ],
+            ["tap:some-id.toggleClass(class='some-class')", '', "tap:some-id.toggleClass(class='some-class')"],
             // Same event.
-            [ "tap:first-id.toggleClass(class='some-class')", "tap:second-id.toggleClass(class='some-class')", "tap:first-id.toggleClass(class='some-class'),second-id.toggleClass(class='some-class')" ],
+            ["tap:first-id.toggleClass(class='some-class')", "tap:second-id.toggleClass(class='some-class')", "tap:first-id.toggleClass(class='some-class'),second-id.toggleClass(class='some-class')"],
             // Same event twice.
-            [ "tap:first-id.toggleClass(class='some-class'),second-id.toggleClass(class='some-class')", "tap:third-id.toggleClass(class='some-class'),fourth.toggleClass(class='some-class')", "tap:first-id.toggleClass(class='some-class'),second-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class'),fourth.toggleClass(class='some-class')" ],
+            ["tap:first-id.toggleClass(class='some-class'),second-id.toggleClass(class='some-class')", "tap:third-id.toggleClass(class='some-class'),fourth.toggleClass(class='some-class')", "tap:first-id.toggleClass(class='some-class'),second-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class'),fourth.toggleClass(class='some-class')"],
             // Different events.
-            [ 'submit-success:success-lightbox', 'submit-error:error-lightbox', 'submit-success:success-lightbox;submit-error:error-lightbox' ],
+            ['submit-success:success-lightbox', 'submit-error:error-lightbox', 'submit-success:success-lightbox;submit-error:error-lightbox'],
             // Two different events twice.
-            [ 'submit-success:success-lightbox;submit-error:error-lightbox', 'submit-success:success-modal;submit-error:error-modal', 'submit-success:success-lightbox,success-modal;submit-error:error-lightbox,error-modal' ],
+            ['submit-success:success-lightbox;submit-error:error-lightbox', 'submit-success:success-modal;submit-error:error-modal', 'submit-success:success-lightbox,success-modal;submit-error:error-lightbox,error-modal'],
             // Make sure separators within methods won't break
-            [ "event:action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')", "another-event:another-action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')", "event:action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;');another-event:another-action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')" ],
+            ["event:action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')", "another-event:another-action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')", "event:action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;');another-event:another-action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')"],
             // Duplicates should be stripped.
-            [ 'event:action,other-action,action;other-event:action,other-action,action', 'event:action;other-event:action;event:action', 'event:action,other-action;other-event:action,other-action' ],
+            ['event:action,other-action,action;other-event:action,other-action,action', 'event:action;other-event:action;event:action', 'event:action,other-action;other-event:action,other-action'],
         ];
     }
 
@@ -347,7 +347,7 @@ class ElementTest extends TestCase
             ],
             // Two attributes from full to full.
             [
-                [ 'class', 'on' ],
+                ['class', 'on'],
                 $dom->createElementWithAttributes(
                     'div',
                     [
@@ -412,7 +412,7 @@ class ElementTest extends TestCase
     {
         $dom        = Document::fromHtml('<p>Hello World</p>');
         $element    = $dom->createElement('div');
-        $attributes = [ 'placeholder' => '' ];
+        $attributes = ['placeholder' => ''];
         $element->setAttributes($attributes);
 
         $this->assertTrue($element->hasAttributes());
@@ -452,7 +452,7 @@ class ElementTest extends TestCase
             $value = $attr->nodeValue;
 
             $this->assertTrue(array_key_exists($name, $attributes), sprintf('Attribute "%s" not found.', $name));
-            $this->assertEquals($attributes[ $name ], $value, sprintf('Attribute "%s" does not have expected value.', $name));
+            $this->assertEquals($attributes[$name], $value, sprintf('Attribute "%s" does not have expected value.', $name));
         }
     }
 }

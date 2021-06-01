@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidColumnFormatTest extends TestCase
 {
-
     /**
      * Test throwing the exception for multiple fluid columns.
      */

@@ -13,7 +13,6 @@ use DOMNode;
  */
 final class Amp
 {
-
     /**
      * List of AMP attribute tags that can be appended to the <html> element.
      *
@@ -349,7 +348,7 @@ final class Amp
             return false;
         }
 
-        return $node->tagName === Extension::IFRAME
+        return $node->tagName    === Extension::IFRAME
                || $node->tagName === Extension::VIDEO_IFRAME;
     }
 }

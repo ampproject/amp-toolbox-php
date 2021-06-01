@@ -9,7 +9,6 @@ namespace AmpProject\Tests;
  */
 trait MarkupComparison
 {
-
     /**
      * Assert markup is equal.
      *
@@ -79,7 +78,7 @@ trait MarkupComparison
 
         $normalizeAttributes = static function ($element) {
             // Extract attributes for the given element.
-            if (!preg_match('#^(<[a-z0-9-]+)(\s[^>]+)>$#i', $element, $matches)) {
+            if (! preg_match('#^(<[a-z0-9-]+)(\s[^>]+)>$#i', $element, $matches)) {
                 return $element;
             }
 
@@ -109,7 +108,7 @@ trait MarkupComparison
 
             $attributeString = implode(' ', $attributes);
 
-            if (!empty($attributeString)) {
+            if (! empty($attributeString)) {
                 $attributeString = " {$attributeString}";
             }
 

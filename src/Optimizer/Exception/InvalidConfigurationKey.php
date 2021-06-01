@@ -11,7 +11,6 @@ use OutOfBoundsException;
  */
 final class InvalidConfigurationKey extends OutOfBoundsException implements AmpOptimizerException
 {
-
     /**
      * Instantiate an InvalidConfigurationKey exception for an invalid key.
      *

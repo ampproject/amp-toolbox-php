@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 interface Extension
 {
-
     const AD                    = 'amp-ad';
     const ANALYTICS             = 'amp-analytics';
     const ANIM                  = 'amp-anim';

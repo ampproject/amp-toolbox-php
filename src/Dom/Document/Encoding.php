@@ -9,7 +9,6 @@ namespace AmpProject\Dom\Document;
  */
 interface Encoding
 {
-
     /**
      * AMP requires the HTML markup to be encoded in UTF-8.
      *

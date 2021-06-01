@@ -11,7 +11,6 @@ use LogicException;
  */
 final class FailedToRetrieveRequiredDomElement extends LogicException implements AmpException
 {
-
     /**
      * Instantiate a FailedToRetrieveRequiredDomElement exception for the <html> DOM element.
      *

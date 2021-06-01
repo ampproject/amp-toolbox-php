@@ -14,7 +14,6 @@ namespace AmpProject\Optimizer;
  */
 final class CssRules
 {
-
     /**
      * Internal array of CssRule objects.
      *

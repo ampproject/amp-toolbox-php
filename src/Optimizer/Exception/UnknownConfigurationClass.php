@@ -11,7 +11,6 @@ use InvalidArgumentException;
  */
 final class UnknownConfigurationClass extends InvalidArgumentException implements AmpOptimizerException
 {
-
     /**
      * Instantiate an UnknownConfigurationClass exception for an unknown configuration class.
      *

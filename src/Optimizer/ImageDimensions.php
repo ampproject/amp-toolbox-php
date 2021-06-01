@@ -9,7 +9,6 @@ use AmpProject\LengthUnit;
 
 final class ImageDimensions
 {
-
     /**
      * Regular expression pattern to match the trailing unit of a dimension.
      *
@@ -118,7 +117,7 @@ final class ImageDimensions
                 return [PHP_INT_MAX, PHP_INT_MAX];
             }
 
-            return [(int)$width, (int)$height];
+            return [(int) $width, (int) $height];
         }
 
         return [-1, -1];
@@ -168,14 +167,14 @@ final class ImageDimensions
         $heightUnit = $this->getHeightUnit();
 
         // Try to convert absolute units into their equivalent pixel value.
-        if (!empty($widthUnit)) {
+        if (! empty($widthUnit)) {
             $numericWidth = $this->getNumericWidth();
             if (false !== $numericWidth) {
                 $width     = $numericWidth;
                 $widthUnit = '';
             }
         }
-        if (!empty($heightUnit)) {
+        if (! empty($heightUnit)) {
             $numericHeight = $this->getNumericHeight();
             if (false !== $numericHeight) {
                 $height     = $numericHeight;
@@ -256,8 +255,8 @@ final class ImageDimensions
             $width       = $this->image->getAttribute(Attribute::WIDTH);
             if (trim($width) !== '') {
                 if (is_numeric($width)) {
-                    $intWidth    = (int)$width;
-                    $floatWidth  = (float)$width;
+                    $intWidth    = (int) $width;
+                    $floatWidth  = (float) $width;
                     $this->width = $intWidth == $floatWidth ? $intWidth : $floatWidth;
                 } else {
                     $this->width = $width;
@@ -280,8 +279,8 @@ final class ImageDimensions
             $height       = $this->image->getAttribute(Attribute::HEIGHT);
             if (trim($height) !== '') {
                 if (is_numeric($height)) {
-                    $intHeight    = (int)$height;
-                    $floatHeight  = (float)$height;
+                    $intHeight    = (int) $height;
+                    $floatHeight  = (float) $height;
                     $this->height = $intHeight == $floatHeight ? $intHeight : $floatHeight;
                 } else {
                     $this->height = $height;
@@ -308,18 +307,18 @@ final class ImageDimensions
             return $width;
         }
 
-        if (!is_string($width) || empty($widthUnit)) {
+        if (! is_string($width) || empty($widthUnit)) {
             return false;
         }
 
         $width = trim(str_replace($widthUnit, '', $width));
 
-        if (!is_numeric($width)) {
+        if (! is_numeric($width)) {
             return false;
         }
 
-        $intWidth   = (int)$width;
-        $floatWidth = (float)$width;
+        $intWidth   = (int) $width;
+        $floatWidth = (float) $width;
         $width      = $intWidth == $floatWidth ? $intWidth : $floatWidth;
 
         return LengthUnit::convertIntoPixels($width, $widthUnit);
@@ -341,18 +340,18 @@ final class ImageDimensions
             return $height;
         }
 
-        if (!is_string($height) || empty($heightUnit)) {
+        if (! is_string($height) || empty($heightUnit)) {
             return false;
         }
 
         $height = trim(str_replace($heightUnit, '', $height));
 
-        if (!is_numeric($height)) {
+        if (! is_numeric($height)) {
             return false;
         }
 
-        $intHeight   = (int)$height;
-        $floatHeight = (float)$height;
+        $intHeight   = (int) $height;
+        $floatHeight = (float) $height;
         $height      = $intHeight == $floatHeight ? $intHeight : $floatHeight;
 
         return LengthUnit::convertIntoPixels($height, $heightUnit);
@@ -370,14 +369,14 @@ final class ImageDimensions
         }
         $width = $this->getWidth();
 
-        if (!is_string($width)) {
+        if (! is_string($width)) {
             $this->widthUnit = '';
             return $this->widthUnit;
         }
 
         $matches = [];
 
-        if (!preg_match(self::UNIT_REGEX_PATTERN, $width, $matches)) {
+        if (! preg_match(self::UNIT_REGEX_PATTERN, $width, $matches)) {
             $this->widthUnit = '';
             return $this->widthUnit;
         }
@@ -385,7 +384,6 @@ final class ImageDimensions
         $this->widthUnit = strtolower(trim($matches['unit']));
         return $this->widthUnit;
     }
-
 
     /**
      * Get the unit of the height.
@@ -399,14 +397,14 @@ final class ImageDimensions
         }
         $height = $this->getHeight();
 
-        if (!is_string($height)) {
+        if (! is_string($height)) {
             $this->heightUnit = '';
             return $this->heightUnit;
         }
 
         $matches = [];
 
-        if (!preg_match(self::UNIT_REGEX_PATTERN, $height, $matches)) {
+        if (! preg_match(self::UNIT_REGEX_PATTERN, $height, $matches)) {
             $this->heightUnit = '';
             return $this->heightUnit;
         }
@@ -424,7 +422,7 @@ final class ImageDimensions
     {
         if ($this->layout === null) {
             $this->layout = $this->image->hasAttribute(Attribute::LAYOUT)
-                ? (string)$this->image->getAttribute(Attribute::LAYOUT)
+                ? (string) $this->image->getAttribute(Attribute::LAYOUT)
                 : '';
         }
 

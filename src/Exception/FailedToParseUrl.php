@@ -11,7 +11,6 @@ use InvalidArgumentException;
  */
 final class FailedToParseUrl extends InvalidArgumentException implements AmpException
 {
-
     /**
      * Instantiate a FailedToParseUrl exception for a URL that could not be parsed.
      *

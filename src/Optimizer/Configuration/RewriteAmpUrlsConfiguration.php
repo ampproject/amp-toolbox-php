@@ -19,7 +19,6 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  */
 final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Specifies a specific version of the AMP runtime.
      *

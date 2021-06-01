@@ -13,7 +13,6 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  */
 final class TransformedIdentifierConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Configuration key that holds the version number to use.
      *

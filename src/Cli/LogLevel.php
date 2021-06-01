@@ -13,7 +13,6 @@ use Exception;
  */
 abstract class LogLevel
 {
-
     /**
      * Detailed debug information.
      *

@@ -15,7 +15,6 @@ namespace AmpProject;
  */
 final class CssLength
 {
-
     // Special attribute values.
     const AUTO  = 'auto';
     const FLUID = 'fluid';
@@ -112,7 +111,7 @@ final class CssLength
         $pattern = '/^(?<numeral>\d+(?:\.\d+)?)(?<unit>px|em|rem|vh|vw|vmin|vmax)?$/';
         if (preg_match($pattern, $this->attrValue, $match)) {
             $this->isValid = true;
-            $this->numeral = isset($match['numeral']) ? (float)$match['numeral'] : $this->numeral;
+            $this->numeral = isset($match['numeral']) ? (float) $match['numeral'] : $this->numeral;
             $this->unit    = isset($match['unit']) ? $match['unit'] : $this->unit;
         }
     }

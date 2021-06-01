@@ -9,7 +9,6 @@ use AmpProject\Optimizer\TransformerConfiguration;
 
 final class ConfigurationOnly implements Transformer
 {
-
     public function __construct(TransformerConfiguration $configuration)
     {
     }

@@ -12,7 +12,6 @@ use InvalidArgumentException;
  */
 final class InvalidArgument extends InvalidArgumentException implements AmpCliException
 {
-
     /**
      * Instantiate an InvalidArgument exception when arguments could not be read.
      *

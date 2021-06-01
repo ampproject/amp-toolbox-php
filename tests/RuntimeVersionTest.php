@@ -14,7 +14,6 @@ use AmpProject\Tests\TestCase;
  */
 class RuntimeVersionTest extends TestCase
 {
-
     /**
      * Associative array of mapping data for stubbing remote requests.
      *
@@ -45,7 +44,7 @@ class RuntimeVersionTest extends TestCase
     public function testItReturnsCanaryVersionViaOption()
     {
         $runtimeVersion = new RuntimeVersion(new StubbedRemoteGetRequest(self::STUBBED_REMOTE_REQUESTS));
-        $version = $runtimeVersion->currentVersion(['canary' => true]);
+        $version        = $runtimeVersion->currentVersion(['canary' => true]);
         $this->assertEquals('023456789000000', $version);
     }
 

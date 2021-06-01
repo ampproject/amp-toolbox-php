@@ -18,7 +18,6 @@ use stdClass;
  */
 final class OptimizeAmpBindConfigurationTest extends TestCase
 {
-
     public function testDefaults()
     {
         $configuration = new OptimizeAmpBindConfiguration([]);

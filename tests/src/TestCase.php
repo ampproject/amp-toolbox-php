@@ -11,5 +11,4 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase as PolyfilledTestCase;
  */
 abstract class TestCase extends PolyfilledTestCase
 {
-
 }

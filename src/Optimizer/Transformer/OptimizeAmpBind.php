@@ -29,7 +29,6 @@ use DOMAttr;
  */
 final class OptimizeAmpBind implements Transformer
 {
-
     /**
      * Configuration store to use.
      *
@@ -60,14 +59,14 @@ final class OptimizeAmpBind implements Transformer
             return;
         }
 
-        if (!$this->hasAmpBindScriptElement($document)) {
+        if (! $this->hasAmpBindScriptElement($document)) {
             return;
         }
 
         $document->html->addBooleanAttribute(Attribute::I_AMPHTML_BINDING);
 
         for ($node = $document->html; $node !== null; $node = NodeWalker::nextNode($node)) {
-            if (!$node instanceof Element) {
+            if (! $node instanceof Element) {
                 continue;
             }
 
@@ -95,7 +94,7 @@ final class OptimizeAmpBind implements Transformer
     private function hasAmpBindScriptElement(Document $document)
     {
         for ($element = $document->head->firstChild; $element !== null; $element = $element->nextSibling) {
-            if (!$element instanceof Element) {
+            if (! $element instanceof Element) {
                 continue;
             }
 

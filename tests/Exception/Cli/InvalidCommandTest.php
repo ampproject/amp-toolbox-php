@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidCommandTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an unregistered command.
      */

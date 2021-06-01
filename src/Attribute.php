@@ -11,7 +11,6 @@ namespace AmpProject;
  */
 interface Attribute
 {
-
     const ACTION                   = 'action';
     const ALT                      = 'alt';
     const AMP                      = 'amp';

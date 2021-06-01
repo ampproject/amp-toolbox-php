@@ -35,7 +35,6 @@ namespace AmpProject;
  */
 final class RuntimeVersion
 {
-
     /**
      * Option to retrieve the latest canary version data instead of the production version data.
      *
@@ -75,7 +74,7 @@ final class RuntimeVersion
      */
     public function currentVersion($options = [])
     {
-        $response = $this->remoteRequest->get(self::RUNTIME_METADATA_ENDPOINT);
+        $response   = $this->remoteRequest->get(self::RUNTIME_METADATA_ENDPOINT);
         $statusCode = $response->getStatusCode();
 
         if ($statusCode < 200 || $statusCode >= 300) {

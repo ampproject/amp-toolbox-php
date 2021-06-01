@@ -14,7 +14,6 @@ namespace AmpProject;
  */
 interface Response
 {
-
     /**
      * Retrieves all message header values.
      *

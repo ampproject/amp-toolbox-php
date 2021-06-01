@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class MissingArgumentTest extends TestCase
 {
-
     /**
      * Test throwing the exception for no argument.
      */

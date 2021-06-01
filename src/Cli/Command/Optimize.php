@@ -15,7 +15,6 @@ use AmpProject\Optimizer\TransformationEngine;
  */
 final class Optimize extends Command
 {
-
     /**
      * Name of the command.
      *
@@ -59,9 +58,9 @@ final class Optimize extends Command
             $file !== '-'
             &&
             (
-                !is_file($file)
+                ! is_file($file)
                 ||
-                !is_readable($file)
+                ! is_readable($file)
             )
         ) {
             throw InvalidArgument::forUnreadableFile($file);

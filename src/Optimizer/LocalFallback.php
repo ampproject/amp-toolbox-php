@@ -6,7 +6,6 @@ use AmpProject\Amp;
 
 final class LocalFallback
 {
-
     /**
      * Domain for which the mapped files will have a local fallback.
      */

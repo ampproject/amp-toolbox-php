@@ -15,7 +15,6 @@ use DOMNode;
  */
 class AmpTest extends TestCase
 {
-
     /**
      * Provide data for the testIsRuntimeScript() method.
      *

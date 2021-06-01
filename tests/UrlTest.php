@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class UrlTest extends TestCase
 {
-
     public function dataParsing()
     {
         return [
@@ -49,7 +48,7 @@ class UrlTest extends TestCase
         $this->assertEquals($expectedArray, $url->toArray(true));
         $this->assertEquals($expectedString, Url::toString($url->toArray()));
         $this->assertEquals($expectedString, Url::toString($url->toArray(true)));
-        $this->assertEquals($expectedString, (string)$url);
+        $this->assertEquals($expectedString, (string) $url);
     }
 
     public function testThrowsExceptionOnFailedParsing()

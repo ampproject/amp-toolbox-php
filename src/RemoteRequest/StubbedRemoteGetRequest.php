@@ -14,7 +14,6 @@ use LogicException;
  */
 final class StubbedRemoteGetRequest implements RemoteGetRequest
 {
-
     /**
      * Associative array of data for mapping between arguments and returned results.
      *

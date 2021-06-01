@@ -12,7 +12,6 @@ use RuntimeException;
  */
 final class FailedToGetFromRemoteUrl extends RuntimeException implements FailedRemoteRequest
 {
-
     /**
      * Status code of the failed request.
      *

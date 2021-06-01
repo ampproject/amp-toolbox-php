@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidOptionTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an unknown option.
      */

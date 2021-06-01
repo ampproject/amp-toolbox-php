@@ -132,7 +132,7 @@ final class PreloadHeroImageTest extends TestCase
                 [],
                 [
                     PreloadHeroImageConfiguration::PRELOAD_SRCSET => true,
-                ]
+                ],
             ],
 
             'fetches placeholders for animations' => [
@@ -145,7 +145,7 @@ final class PreloadHeroImageTest extends TestCase
                     '<amp-anim data-hero width="500" height="400" src="/foo.gif">'
                     . '<amp-img placeholder data-hero width="500" height="400" src="/foo.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/foo.png"></amp-img>'
                     . '</amp-anim>'
-                )
+                ),
             ],
 
             'fetches placeholders for youtube' => [
@@ -158,7 +158,7 @@ final class PreloadHeroImageTest extends TestCase
                     '<amp-youtube data-hero data-videoid="mGENRKrdoGY" layout="responsive" width="480" height="270">'
                     . '<amp-img placeholder data-hero width="480" height="270" src="/foo.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/foo.png"></amp-img>'
                     . '</amp-youtube>'
-                )
+                ),
             ],
 
             'fetches descendant placeholders and regular images' => [
@@ -177,7 +177,7 @@ final class PreloadHeroImageTest extends TestCase
                     . '<amp-wistia-player data-hero data-media-hashed-id="u8p9wq6mq8" layout="responsive" width="480" height="270">'
                     . '<div placeholder><p><img width="480" height="270" src="/hero2.png"></p></div>'
                     . '</amp-wistia-player>'
-                )
+                ),
             ],
 
             'fetches background images in CSS' => [
@@ -194,7 +194,7 @@ final class PreloadHeroImageTest extends TestCase
                 [],
                 [
                     PreloadHeroImageConfiguration::INLINE_STYLE_BACKUP_ATTRIBUTE => 'data-amp-original-style',
-                ]
+                ],
             ],
 
             'copies alt, attribution, referrerpolicy, src, srcset, sizes and title attributes' => [
@@ -209,7 +209,7 @@ final class PreloadHeroImageTest extends TestCase
                 [],
                 [
                     PreloadHeroImageConfiguration::PRELOAD_SRCSET => true,
-                ]
+                ],
             ],
 
             'inlines object-fit and object-position' => [

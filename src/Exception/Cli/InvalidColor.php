@@ -12,7 +12,6 @@ use OutOfBoundsException;
  */
 final class InvalidColor extends OutOfBoundsException implements AmpCliException
 {
-
     /**
      * Instantiate an InvalidColor exception for an unknown color that was passed to the CLI.
      *

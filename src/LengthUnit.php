@@ -13,7 +13,6 @@ namespace AmpProject;
  */
 final class LengthUnit
 {
-
     /**
      * Centimeters.
      *
