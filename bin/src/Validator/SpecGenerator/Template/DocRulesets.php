@@ -110,6 +110,6 @@ final class DocRulesets
      */
     public function current()
     {
-        return $this->parentCurrent();
+        return $this->parentCurrent(); // @todo Method 'parentCurrent' not found in DocRulesets.
     }
 }

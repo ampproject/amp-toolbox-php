@@ -75,7 +75,6 @@ class Tag
         return static::ID;
     }
 
-
     /**
      * Check whether a given spec rule is present.
      *

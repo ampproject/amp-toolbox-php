@@ -115,6 +115,7 @@ final class SpecPrinter extends Printer
      */
     private function printReturnType($function, ?PhpNamespace $namespace): string
     {
+        // @todo This method is not used.
         return ($tmp = $this->printType($function->getReturnType(), $function->isReturnNullable(), $namespace))
             ? $this->returnTypeColon . $tmp
             : '';
@@ -128,7 +129,7 @@ final class SpecPrinter extends Printer
         }
         $items = [];
         foreach ($attrs as $attr) {
-            $args = (new Dumper())->format('...?:', $attr->getArguments());
+            $args = (new Dumper())->format('...?:', $attr->getArguments()); // @todo Method 'format' not found in Dumper .
             $items[] = $this->printType($attr->getName(), false, $namespace) . ($args ? "($args)" : '');
         }
         return $inline

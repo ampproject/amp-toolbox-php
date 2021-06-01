@@ -21,7 +21,7 @@ class DescendantTagListsTest extends TestCase
     public function __construct()
     {
         parent::__construct();
-        $spec       = new Spec();
+        $spec                     = new Spec();
         $this->descendantTagLists = $spec->descendantTagLists();
     }
 

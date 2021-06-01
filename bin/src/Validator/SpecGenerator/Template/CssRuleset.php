@@ -48,9 +48,9 @@ class CssRuleset
      */
     public function getId()
     {
+        // @todo Is this necessary? Why not just use the class constant?
         return static::ID;
     }
-
 
     /**
      * Check whether a given spec rule is present.

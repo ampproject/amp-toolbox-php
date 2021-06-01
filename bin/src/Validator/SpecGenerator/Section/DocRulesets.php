@@ -48,7 +48,7 @@ final class DocRulesets implements Section
         $class->addProperty('docRulesetsCache')
               ->setPrivate()
               ->addComment("Cache of instantiated DocRuleset objects.\n\n@var array<DocRuleset>")
-              ->setValue([]);
+              ->setValue([]); // @todo Method 'setValue' not found in \Nette\PhpGenerator\ClassType|\Nette\PhpGenerator\Constant|\Nette\PhpGenerator\GlobalFunction|\Nette\PhpGenerator\Method|\Nette\PhpGenerator\PhpFile|\Nette\PhpGenerator\PromotedParameter|\Nette\PhpGenerator\Property|\Nette\PhpGenerator\Traits\CommentAware|\Nette\PhpGenerator\Traits\VisibilityAware.
 
         $class->addProperty('iterationArray')
               ->setPrivate()

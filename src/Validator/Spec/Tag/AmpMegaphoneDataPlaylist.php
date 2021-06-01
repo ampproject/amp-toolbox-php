@@ -36,7 +36,7 @@ final class AmpMegaphoneDataPlaylist extends Tag
             [
                 SpecRule::NAME => Attribute::DATA_PLAYLIST,
                 SpecRule::MANDATORY => true,
-                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
+                SpecRule::DISPATCH_KEY => 'NAME_DISPATCH', // @todo The values for DISPATCH_KEY here could be made constants.
                 SpecRule::VALUE_REGEX => '[A-Za-z0-9]+',
             ],
             [

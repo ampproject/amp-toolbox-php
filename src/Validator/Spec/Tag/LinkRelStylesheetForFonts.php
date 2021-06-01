@@ -42,6 +42,7 @@ final class LinkRelStylesheetForFonts extends Tag
             [
                 SpecRule::NAME => Attribute::HREF,
                 SpecRule::MANDATORY => true,
+                // @todo Since this regex will be sent to preg_match(), we should escape the '/' delimiter. See <https://github.com/ampproject/amp-wp/pull/6303/commits/afd117289ee863011cb1a7dc4e096b49bd4a5f15>.
                 SpecRule::VALUE_REGEX => 'https://cdn\.materialdesignicons\.com/([0-9]+\.?)+/css/materialdesignicons\.min\.css|https://cloud\.typography\.com/[0-9]*/[0-9]*/css/fonts\.css|https://fast\.fonts\.net/.*|https://fonts\.googleapis\.com/css2?\?.*|https://fonts\.googleapis\.com/icon\?.*|https://fonts\.googleapis\.com/earlyaccess/.*\.css|https://maxcdn\.bootstrapcdn\.com/font-awesome/([0-9]+\.?)+/css/font-awesome\.min\.css(\?.*)?|https://(use|pro|kit)\.fontawesome\.com/releases/v([0-9]+\.?)+/css/[0-9a-zA-Z-]+\.css|https://(use|pro|kit)\.fontawesome\.com/[0-9a-zA-Z-]+\.css|https://use\.typekit\.net/[\w\p{L}\p{N}_]+\.css',
             ],
             [

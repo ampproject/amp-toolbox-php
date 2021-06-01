@@ -40,7 +40,7 @@ final class AmphtmlModuleEngineAttrs extends AttributeList
         ],
         Attribute::TYPE => [
             SpecRule::MANDATORY => true,
-            SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
+            SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH', // @todo This value could be put in an interface.
             SpecRule::VALUE_CASEI => [
                 'module',
             ],

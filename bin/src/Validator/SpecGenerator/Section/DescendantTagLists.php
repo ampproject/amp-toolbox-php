@@ -32,7 +32,7 @@ final class DescendantTagLists implements Section
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
 
-        $this->data = $this->adaptSpec($spec);
+        $this->data = $this->adaptSpec($spec); // @todo Property declared dynamically.
 
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(

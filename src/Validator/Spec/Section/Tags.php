@@ -3053,8 +3053,8 @@ final class Tags implements IterableSection
 
         $tag = $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
 
-        if (!$tag instanceof \AmpProject\Validator\Spec\TagWithExtensionSpec) {
-            throw new \LogicException('Tags::byExtensionSpec returned tag without extension spec');
+        if (!$tag instanceof \AmpProject\Validator\Spec\TagWithExtensionSpec) { // @todo Unnecessarily FQN.
+            throw new \LogicException('Tags::byExtensionSpec returned tag without extension spec'); // @todo Unnecessary global namespace since imported.
         }
 
         return $tag;

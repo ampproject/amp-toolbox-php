@@ -10,7 +10,7 @@ namespace AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Extension;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\SpecRule; // @todo Unused import.
 
 final class AmpMegaMenuAllowedDescendants extends DescendantTagList
 {

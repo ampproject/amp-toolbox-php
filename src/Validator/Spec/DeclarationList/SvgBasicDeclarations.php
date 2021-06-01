@@ -9,7 +9,7 @@ namespace AmpProject\Validator\Spec\DeclarationList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\DeclarationList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\SpecRule; // @todo Unused import.
 
 final class SvgBasicDeclarations extends DeclarationList
 {

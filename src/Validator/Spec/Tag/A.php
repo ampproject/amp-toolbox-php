@@ -31,7 +31,7 @@ final class A extends Tag
      */
     const SPEC = [
         SpecRule::TAG_NAME => Element::A,
-        SpecRule::ATTRS => [
+        SpecRule::ATTRS => [ // @todo Shouldn't the attribute name be the key here? Otherwise it will be more expensive to see if a given tag has an attribute.
             [
                 SpecRule::NAME => Attribute::BORDER,
             ],

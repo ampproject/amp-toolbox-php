@@ -38,7 +38,7 @@ final class AmpSoundcloud extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_PLAYLISTID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']',
+                SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']', // @todo Parse JSON.
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
@@ -47,7 +47,7 @@ final class AmpSoundcloud extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_TRACKID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']',
+                SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']', // @todo Parse JSON.
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
             [
