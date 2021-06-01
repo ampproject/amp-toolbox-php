@@ -14,6 +14,7 @@ if (! class_exists('Nette\PhpGenerator\ClassType')) {
 
 $specGenerator = new SpecGenerator();
 $destination   = !empty($argv[1]) ? $argv[1] : dirname(__DIR__) . '/src/Validator';
+$spec_url      = 'https://cdn.ampproject.org/v0/validator.json';
 
 function recursivelyRemoveDirectory($directory)
 {
@@ -37,14 +38,31 @@ function recursivelyRemoveDirectory($directory)
 }
 
 try {
+    echo "Recursively removing $destination";
     recursivelyRemoveDirectory($destination);
+    echo "\n";
 
+    echo "Fetching $spec_url...";
+    $json = file_get_contents('https://cdn.ampproject.org/v0/validator.json');
+    echo "\n";
+
+    $data = json_decode($json, true);
+    if (json_last_error()) {
+        echo " JSON parse error: " . json_last_error_msg() . "\n";
+        exit -1;
+    }
+
+    echo 'Generating spec';
     $specGenerator->generate(
-        json_decode(file_get_contents('https://cdn.ampproject.org/v0/validator.json'), true),
+        json_decode($json, true),
         'AmpProject\Validator',
         $destination
     );
+    echo "\n";
+
+    echo "Done!\n";
+
 } catch (Exception $exception) {
-    echo 'ERROR: ' . $exception->getMessage();
+    echo 'ERROR: ' . $exception->getMessage() . "\n";
     exit -1;
 }
