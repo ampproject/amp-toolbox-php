@@ -35,7 +35,7 @@
 		<exclude-pattern>tests/*</exclude-pattern>
 	</rule>
 
-	<!-- Class names that conflict with PHP reserved keywords need to be sufixed. -->
+	<!-- Class names that conflict with PHP reserved keywords need to be suffixed. -->
 	<rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
 		<exclude-pattern>src/Validator/Spec/Tag/*_.php</exclude-pattern>
 	</rule>
