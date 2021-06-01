@@ -61,7 +61,6 @@ try {
     echo "\n";
 
     echo "Done!\n";
-
 } catch (Exception $exception) {
     echo 'ERROR: ' . $exception->getMessage() . "\n";
     exit -1;
