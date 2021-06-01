@@ -1,0 +1,66 @@
+<?php
+
+namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
+
+use AmpProject\Exception\InvalidAttributeName;
+
+/**
+ * The base class for a single AttributeList object that defines a possible set of allowed attributes.
+ *
+ * @package ampproject/amp-toolbox
+ */
+class AttributeList
+{
+
+    /**
+     * ID of the attribute list.
+     *
+     * This needs to be overridden in the extending class.
+     *
+     * @var string
+     */
+    const ID = '[attribute list base class]';
+
+    /**
+     * Array of attributes.
+     *
+     * @var array<array>
+     */
+    const ATTRIBUTES = [];
+
+    /**
+     * Get the ID of the attribute list.
+     *
+     * @return string ID of the attribute list.
+     */
+    public function getId()
+    {
+        return static::ID;
+    }
+
+    /**
+     * Check whether a given attribute is contained within the list.
+     *
+     * @param string $attribute Attribute to check for.
+     * @return bool Whether the given attribute is contained within the list.
+     */
+    public function has($attribute)
+    {
+        return array_key_exists($attribute, static::ATTRIBUTES);
+    }
+
+    /**
+     * Get a specific attribute.
+     *
+     * @param string $attribute Attribute to get.
+     * @return array Attribute data that was requested.
+     */
+    public function get($attribute)
+    {
+        if (!$this->has($attribute)) {
+            throw InvalidAttributeName::forAttribute($attribute);
+        }
+
+        return static::ATTRIBUTES[$attribute];
+    }
+}

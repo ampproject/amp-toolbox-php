@@ -7,12 +7,7 @@
 		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
 	</rule>
 
-	<!-- Include sniffs for PHP cross-version compatibility. -->
-	<config name="testVersion" value="5.6-"/>
-	<rule ref="PHPCompatibilityWP">
-		<exclude-pattern>bin/*</exclude-pattern>
-	</rule>
-
+	<arg value="p"/>
 	<arg value="s"/>
 	<arg name="extensions" value="php"/>
 
@@ -25,14 +20,23 @@
 	<arg name="basepath" value="./"/>
 
 	<!-- Check up to 20 files simultaneously. -->
-	<arg name="parallel" value="20"/>
+	<arg name="parallel" value="1"/>
 
-    <!-- Executable scripts are meant to have side-effects. -->
-    <rule ref="PSR1.Files.SideEffects">
-        <exclude-pattern>bin/*</exclude-pattern>
-    </rule>
+	<!-- Executable scripts are meant to have side-effects. -->
+	<rule ref="PSR1.Files.SideEffects">
+		<exclude-pattern>bin/*</exclude-pattern>
+	</rule>
 
+	<!-- Line length can not easily be controlled in generated code. -->
 	<rule ref="Generic.Files.LineLength.TooLong">
+		<exclude-pattern>src/Validator/ErrorCode.php</exclude-pattern>
+		<exclude-pattern>src/Validator/Spec.php</exclude-pattern>
+		<exclude-pattern>src/Validator/Spec/*</exclude-pattern>
 		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+
+	<!-- Class names that conflict with PHP reserved keywords need to be suffixed. -->
+	<rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+		<exclude-pattern>src/Validator/Spec/Tag/*_.php</exclude-pattern>
 	</rule>
 </ruleset>

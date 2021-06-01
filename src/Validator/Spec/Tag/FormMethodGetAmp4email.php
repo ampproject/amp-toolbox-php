@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * DO NOT EDIT!
+ * This file was automatically generated via bin/generate-validator-spec.php.
+ */
+
+namespace AmpProject\Validator\Spec\Tag;
+
+use AmpProject\Attribute;
+use AmpProject\Extension;
+use AmpProject\Format;
+use AmpProject\Protocol;
+use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Tag;
+
+final class FormMethodGetAmp4email extends Tag
+{
+    /**
+     * ID of the tag.
+     *
+     * @var string
+     */
+    const ID = 'FORM [method=GET] (AMP4EMAIL)';
+
+    /**
+     * Array of spec rules.
+     *
+     * @var array
+     */
+    const SPEC = [
+        SpecRule::TAG_NAME => Element::FORM,
+        SpecRule::SPEC_NAME => 'FORM [method=GET] (AMP4EMAIL)',
+        SpecRule::ATTRS => [
+            [
+                SpecRule::NAME => Attribute::ACCEPT,
+            ],
+            [
+                SpecRule::NAME => Attribute::ACCEPT_CHARSET,
+            ],
+            [
+                SpecRule::NAME => Attribute::ACTION_XHR,
+                SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
+                SpecRule::VALUE_URL => [
+                    SpecRule::PROTOCOL => [
+                        Protocol::HTTPS,
+                    ],
+                    SpecRule::ALLOW_RELATIVE => false,
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::AUTOCOMPLETE,
+            ],
+            [
+                SpecRule::NAME => Attribute::CUSTOM_VALIDATION_REPORTING,
+                SpecRule::VALUE => [
+                    'as-you-go',
+                    'interact-and-submit',
+                    'show-all-on-submit',
+                    'show-first-on-submit',
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::ENCTYPE,
+            ],
+            [
+                SpecRule::NAME => Attribute::METHOD,
+                SpecRule::VALUE_CASEI => [
+                    'get',
+                ],
+            ],
+            [
+                SpecRule::NAME => Attribute::NOVALIDATE,
+            ],
+            [
+                SpecRule::NAME => Attribute::XSSI_PREFIX,
+            ],
+        ],
+        SpecRule::HTML_FORMAT => [
+            Format::AMP4EMAIL,
+        ],
+        SpecRule::REQUIRES_EXTENSION => [
+            Extension::FORM,
+        ],
+    ];
+}

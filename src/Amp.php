@@ -49,14 +49,14 @@ final class Amp
     const CACHE_ROOT_URL = self::CACHE_HOST . '/';
 
     /**
-     * List of valid AMP formats.
+     * List of valid AMP HTML formats.
      *
      * @var string[]
      */
-    const FORMATS = ['AMP', 'AMP4EMAIL', 'AMP4ADS'];
+    const FORMATS = [Format::AMP, Format::AMP4ADS, Format::AMP4EMAIL];
 
     /**
-     * List of dynamic components
+     * List of dynamic components.
      *
      * This list should be kept in sync with the list of dynamic components at:
      *

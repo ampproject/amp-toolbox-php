@@ -5,7 +5,7 @@ namespace AmpProject\Optimizer;
 use AmpProject\Tests\TestCase;
 
 /**
- * Tests for AmpProject\Optimizer\CssRules.
+ * Tests for AmpProject\Optimizer\Css.
  *
  * @covers  \AmpProject\Optimizer\CssRules
  * @package ampproject/amp-toolbox

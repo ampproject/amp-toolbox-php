@@ -27,7 +27,7 @@ final class ErrorCollection implements Countable, IteratorAggregate
      * @param Error $error Error to add.
      * @return void
      */
-    public function add(Error $error)
+    public function add(Error $error) // phpcs:ignore PHPCompatibility.Classes.NewClasses.errorFound
     {
         $this->errors[] = $error;
     }
