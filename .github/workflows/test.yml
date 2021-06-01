@@ -28,7 +28,7 @@ jobs:
           extensions: dom, iconv, json, libxml, zip
           coverage: ${{ matrix.coverage && 'pcov' || 'none' }}
           ini-values: pcov.directory=.
-          tools: composer, cs2pr
+          tools: composer
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -44,11 +44,6 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install
-
-      # Scan the logs for failing tests and surface that information by creating annotations and log file decorations.
-      - name: Setup problem matcher to provide annotations for PHPUnit
-        # The JSON file is provided by the `shivammathur/setup-php` action. See https://github.com/shivammathur/setup-php#problem-matchers.
-        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run tests
         if: ${{ matrix.coverage == false }}
