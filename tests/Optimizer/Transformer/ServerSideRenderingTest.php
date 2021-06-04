@@ -319,12 +319,12 @@ final class ServerSideRenderingTest extends TestCase
 
             'amp-ad with fluid layout' => [
                 $input('<amp-ad type="doubleclick" data-slot="/6355419/Travel" layout="fluid" height="fluid"></amp-ad>'),
-                $expectWithoutBoilerplate('<amp-ad class="i-amphtml-layout-fluid i-amphtml-layout-awaiting-size" data-slot="/6355419/Travel" height="fluid" i-amphtml-layout="fluid" layout="fluid" style="height:0;" type="doubleclick"></amp-ad>'),
+                $expectWithoutBoilerplate('<amp-ad class="i-amphtml-layout-fluid i-amphtml-layout-awaiting-size" data-slot="/6355419/Travel" height="fluid" i-amphtml-layout="fluid" layout="fluid" style="width:100%;height:0;" type="doubleclick"></amp-ad>'),
             ],
 
             'amp-ad with fluid layout and width defined' => [
                 $input('<amp-ad type="doubleclick" data-slot="/6355419/Travel" layout="fluid" height="fluid" width="300"></amp-ad>'),
-                $expectWithoutBoilerplate('<amp-ad class="i-amphtml-layout-fluid i-amphtml-layout-awaiting-size" data-slot="/6355419/Travel" height="fluid" width="300" i-amphtml-layout="fluid" layout="fluid" style="width:300px;height:0;" type="doubleclick"></amp-ad>'),
+                $expectWithoutBoilerplate('<amp-ad class="i-amphtml-layout-fluid i-amphtml-layout-awaiting-size" data-slot="/6355419/Travel" height="fluid" width="300" i-amphtml-layout="fluid" layout="fluid" style="width:100%;height:0;" type="doubleclick"></amp-ad>'),
             ],
         ];
     }
