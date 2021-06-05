@@ -17,6 +17,7 @@ use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Exception\InvalidArgument;
 use AmpProject\Optimizer\Exception\InvalidHtmlAttribute;
 use AmpProject\Optimizer\Transformer;
+use AmpProject\Optimizer\TransformerRequires;
 use AmpProject\Role;
 use AmpProject\Tag;
 use DOMAttr;
@@ -37,8 +38,10 @@ use Exception;
  *
  * @package ampproject/amp-toolbox
  */
-final class ServerSideRendering implements Transformer
+final class ServerSideRendering implements Transformer, TransformerRequires
 {
+
+    const TAG = 'server_side_rendering';
 
     /**
      * List of layouts that support server-side rendering.
@@ -94,6 +97,11 @@ final class ServerSideRendering implements Transformer
      * @var CssRules
      */
     private $customCss;
+
+    public static function requires()
+    {
+        return [PreloadHeroImage::TAG];
+    }
 
     /**
      * Apply transformations to the provided DOM document.

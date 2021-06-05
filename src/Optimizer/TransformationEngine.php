@@ -88,6 +88,8 @@ final class TransformationEngine
     {
         $this->transformers = [];
 
+        TransformersSequenceValidator::validate($this->configuration->get(Configuration::KEY_TRANSFORMERS));
+
         foreach ($this->configuration->get(Configuration::KEY_TRANSFORMERS) as $transformerClass) {
             $this->transformers[$transformerClass] = new $transformerClass(
                 ...$this->getTransformerDependencies($transformerClass)

@@ -17,6 +17,7 @@ use AmpProject\Optimizer\HeroImage;
 use AmpProject\Optimizer\ImageDimensions;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
+use AmpProject\Optimizer\TransformerProvides;
 use AmpProject\RequestDestination;
 use AmpProject\Tag;
 use AmpProject\Url;
@@ -42,8 +43,10 @@ use DOMNode;
  *
  * @package ampproject/amp-toolbox
  */
-final class PreloadHeroImage implements Transformer
+final class PreloadHeroImage implements Transformer, TransformerProvides
 {
+
+    const TAG = 'preload_hero_image';
 
     /**
      * Class(es) to apply to a serverside-rendered image element.
@@ -156,6 +159,11 @@ final class PreloadHeroImage implements Transformer
     public function __construct(TransformerConfiguration $configuration)
     {
         $this->configuration = $configuration;
+    }
+
+    public static function provides()
+    {
+        return [self::TAG];
     }
 
     /**
