@@ -35,7 +35,10 @@ final class AmpAddthis extends Tag
         SpecRule::ATTRS => [
             [
                 SpecRule::NAME => Attribute::DATA_PRODUCT_CODE,
-                SpecRule::MANDATORY_ONEOF => '[\'data-product-code\', \'data-widget-id\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_PRODUCT_CODE,
+                    Attribute::DATA_WIDGET_ID,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::DATA_SHARE_MEDIA,
@@ -59,7 +62,10 @@ final class AmpAddthis extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_WIDGET_ID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-product-code\', \'data-widget-id\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_PRODUCT_CODE,
+                    Attribute::DATA_WIDGET_ID,
+                ],
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_PUB_ID,

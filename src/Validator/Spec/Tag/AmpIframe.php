@@ -88,7 +88,10 @@ final class AmpIframe extends Tag
             [
                 SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
-                SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::SRC,
+                    Attribute::SRCDOC,
+                ],
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::DATA,
@@ -99,7 +102,10 @@ final class AmpIframe extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::SRCDOC,
-                SpecRule::MANDATORY_ONEOF => '[\'src\', \'srcdoc\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::SRC,
+                    Attribute::SRCDOC,
+                ],
             ],
             [
                 SpecRule::NAME => '[src]',

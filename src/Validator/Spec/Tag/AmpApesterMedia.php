@@ -34,12 +34,18 @@ final class AmpApesterMedia extends Tag
         SpecRule::ATTRS => [
             [
                 SpecRule::NAME => Attribute::DATA_APESTER_CHANNEL_TOKEN,
-                SpecRule::MANDATORY_ONEOF => '[\'data-apester-media-id\', \'data-apester-channel-token\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_APESTER_MEDIA_ID,
+                    Attribute::DATA_APESTER_CHANNEL_TOKEN,
+                ],
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z]+',
             ],
             [
                 SpecRule::NAME => Attribute::DATA_APESTER_MEDIA_ID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-apester-media-id\', \'data-apester-channel-token\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_APESTER_MEDIA_ID,
+                    Attribute::DATA_APESTER_CHANNEL_TOKEN,
+                ],
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z]+',
             ],
         ],

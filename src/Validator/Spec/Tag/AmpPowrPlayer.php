@@ -50,11 +50,17 @@ final class AmpPowrPlayer extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_TERMS,
-                SpecRule::MANDATORY_ONEOF => '[\'data-video\', \'data-terms\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_VIDEO,
+                    Attribute::DATA_TERMS,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::DATA_VIDEO,
-                SpecRule::MANDATORY_ONEOF => '[\'data-video\', \'data-terms\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_VIDEO,
+                    Attribute::DATA_TERMS,
+                ],
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z-]+',
             ],
         ],

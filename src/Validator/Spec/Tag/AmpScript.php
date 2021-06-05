@@ -66,13 +66,19 @@ final class AmpScript extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::SCRIPT,
-                SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::SCRIPT,
+                    Attribute::SRC,
+                ],
                 SpecRule::VALUE_ONEOF_SET => 'AMP_SCRIPT_IDS',
             ],
             [
                 SpecRule::NAME => Attribute::SRC,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
-                SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::SCRIPT,
+                    Attribute::SRC,
+                ],
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,

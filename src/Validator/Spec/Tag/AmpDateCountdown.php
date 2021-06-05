@@ -55,7 +55,12 @@ final class AmpDateCountdown extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::END_DATE,
-                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::END_DATE,
+                    Attribute::TIMELEFT_MS,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(:[0-5]\d(\.\d+)?)?(Z|[+-][0-1][0-9]:[0-5][0-9])',
             ],
             [
@@ -89,17 +94,32 @@ final class AmpDateCountdown extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::TIMELEFT_MS,
-                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::END_DATE,
+                    Attribute::TIMELEFT_MS,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d+',
             ],
             [
                 SpecRule::NAME => Attribute::TIMESTAMP_MS,
-                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::END_DATE,
+                    Attribute::TIMELEFT_MS,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d{13}',
             ],
             [
                 SpecRule::NAME => Attribute::TIMESTAMP_SECONDS,
-                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::END_DATE,
+                    Attribute::TIMELEFT_MS,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d{10}',
             ],
             [

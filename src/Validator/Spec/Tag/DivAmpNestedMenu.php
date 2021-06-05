@@ -34,17 +34,29 @@ final class DivAmpNestedMenu extends Tag
         SpecRule::ATTRS => [
             [
                 SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU,
-                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::AMP_NESTED_SUBMENU,
+                    Attribute::AMP_NESTED_SUBMENU_CLOSE,
+                    Attribute::AMP_NESTED_SUBMENU_OPEN,
+                ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
             [
                 SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_CLOSE,
-                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::AMP_NESTED_SUBMENU,
+                    Attribute::AMP_NESTED_SUBMENU_CLOSE,
+                    Attribute::AMP_NESTED_SUBMENU_OPEN,
+                ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
             [
                 SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_OPEN,
-                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::AMP_NESTED_SUBMENU,
+                    Attribute::AMP_NESTED_SUBMENU_CLOSE,
+                    Attribute::AMP_NESTED_SUBMENU_OPEN,
+                ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
         ],

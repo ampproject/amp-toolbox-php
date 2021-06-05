@@ -40,7 +40,10 @@ final class AmpJwplayer extends Tag
             [
                 SpecRule::NAME => Attribute::DATA_MEDIA_ID,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}|outstream',
-                SpecRule::MANDATORY_ONEOF => '[\'data-media-id\', \'data-playlist-id\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_MEDIA_ID,
+                    Attribute::DATA_PLAYLIST_ID,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::DATA_PLAYER_ID,
@@ -50,7 +53,10 @@ final class AmpJwplayer extends Tag
             [
                 SpecRule::NAME => Attribute::DATA_PLAYLIST_ID,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
-                SpecRule::MANDATORY_ONEOF => '[\'data-media-id\', \'data-playlist-id\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_MEDIA_ID,
+                    Attribute::DATA_PLAYLIST_ID,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::DOCK,

@@ -59,7 +59,11 @@ final class AmpTwitter extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_MOMENTID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_MOMENTID,
+                    Attribute::DATA_TIMELINE_SOURCE_TYPE,
+                    Attribute::DATA_TWEETID,
+                ],
                 SpecRule::VALUE_REGEX => '\d+',
             ],
             [
@@ -89,7 +93,11 @@ final class AmpTwitter extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_TIMELINE_SOURCE_TYPE,
-                SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_MOMENTID,
+                    Attribute::DATA_TIMELINE_SOURCE_TYPE,
+                    Attribute::DATA_TWEETID,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::DATA_TIMELINE_SCREEN_NAME,
@@ -125,7 +133,11 @@ final class AmpTwitter extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_TWEETID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-momentid\', \'data-timeline-source-type\', \'data-tweetid\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_MOMENTID,
+                    Attribute::DATA_TIMELINE_SOURCE_TYPE,
+                    Attribute::DATA_TWEETID,
+                ],
             ],
             [
                 SpecRule::NAME => '[data-tweetid]',

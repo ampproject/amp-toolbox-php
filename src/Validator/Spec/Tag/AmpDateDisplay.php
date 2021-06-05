@@ -34,7 +34,11 @@ final class AmpDateDisplay extends Tag
         SpecRule::ATTRS => [
             [
                 SpecRule::NAME => Attribute::DATETIME,
-                SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATETIME,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => 'now|(\d{4}-[01]\d-[0-3]\d(T[0-2]\d:[0-5]\d(:[0-6]\d(\.\d\d?\d?)?)?(Z|[+-][0-1]\d:[0-5]\d)?)?)',
             ],
             [
@@ -56,12 +60,20 @@ final class AmpDateDisplay extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::TIMESTAMP_MS,
-                SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATETIME,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d+',
             ],
             [
                 SpecRule::NAME => Attribute::TIMESTAMP_SECONDS,
-                SpecRule::MANDATORY_ONEOF => '[\'datetime\', \'timestamp-ms\', \'timestamp-seconds\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATETIME,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d+',
             ],
         ],

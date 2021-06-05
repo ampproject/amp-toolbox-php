@@ -27,10 +27,16 @@ final class AmpNestedMenuActions extends AttributeList
      */
     const ATTRIBUTES = [
         Attribute::AMP_NESTED_SUBMENU_CLOSE => [
-            SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu-close\', \'amp-nested-submenu-open\']', // @todo Should this not be converted into an array?
+            SpecRule::MANDATORY_ONEOF => [
+                Attribute::AMP_NESTED_SUBMENU_CLOSE,
+                Attribute::AMP_NESTED_SUBMENU_OPEN,
+            ],
         ],
         Attribute::AMP_NESTED_SUBMENU_OPEN => [
-            SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu-close\', \'amp-nested-submenu-open\']', // @todo Ditto.
+            SpecRule::MANDATORY_ONEOF => [
+                Attribute::AMP_NESTED_SUBMENU_CLOSE,
+                Attribute::AMP_NESTED_SUBMENU_OPEN,
+            ],
         ],
     ];
 }

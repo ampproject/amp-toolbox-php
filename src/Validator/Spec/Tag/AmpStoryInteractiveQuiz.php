@@ -33,15 +33,30 @@ final class AmpStoryInteractiveQuiz extends Tag
         SpecRule::ATTRS => [
             [
                 SpecRule::NAME => Attribute::OPTION_1_CORRECT,
-                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::OPTION_1_CORRECT,
+                    Attribute::OPTION_2_CORRECT,
+                    Attribute::OPTION_3_CORRECT,
+                    Attribute::OPTION_4_CORRECT,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::OPTION_2_CORRECT,
-                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::OPTION_1_CORRECT,
+                    Attribute::OPTION_2_CORRECT,
+                    Attribute::OPTION_3_CORRECT,
+                    Attribute::OPTION_4_CORRECT,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::OPTION_3_CORRECT,
-                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::OPTION_1_CORRECT,
+                    Attribute::OPTION_2_CORRECT,
+                    Attribute::OPTION_3_CORRECT,
+                    Attribute::OPTION_4_CORRECT,
+                ],
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_3_TEXT,
@@ -50,7 +65,12 @@ final class AmpStoryInteractiveQuiz extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::OPTION_4_CORRECT,
-                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::OPTION_1_CORRECT,
+                    Attribute::OPTION_2_CORRECT,
+                    Attribute::OPTION_3_CORRECT,
+                    Attribute::OPTION_4_CORRECT,
+                ],
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_4_TEXT,

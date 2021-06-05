@@ -41,7 +41,10 @@ final class AmpPlaybuzz extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_ITEM,
-                SpecRule::MANDATORY_ONEOF => '[\'data-item\', \'src\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_ITEM,
+                    Attribute::SRC,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::DATA_ITEM_INFO,
@@ -59,7 +62,10 @@ final class AmpPlaybuzz extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::SRC,
-                SpecRule::MANDATORY_ONEOF => '[\'data-item\', \'src\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_ITEM,
+                    Attribute::SRC,
+                ],
             ],
         ],
         SpecRule::ATTR_LISTS => [

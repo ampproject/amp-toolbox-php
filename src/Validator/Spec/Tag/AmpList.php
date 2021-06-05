@@ -54,7 +54,11 @@ final class AmpList extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_AMP_BIND_SRC,
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[SRC]',
+                    Attribute::DATA_AMP_BIND_SRC,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::DIFFABLE,
@@ -105,7 +109,11 @@ final class AmpList extends Tag
                     ],
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[SRC]',
+                    Attribute::DATA_AMP_BIND_SRC,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::TEMPLATE,
@@ -119,7 +127,11 @@ final class AmpList extends Tag
             ],
             [
                 SpecRule::NAME => '[src]',
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[SRC]',
+                    Attribute::DATA_AMP_BIND_SRC,
+                ],
             ],
         ],
         SpecRule::ATTR_LISTS => [

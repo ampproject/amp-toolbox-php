@@ -174,6 +174,13 @@ final class Dumper
      */
     public function dumpWithKey($key, $value, $level, $parentKeys = [])
     {
+        if (is_string($value) && strpos($value, '[\'') === 0) {
+            $json = json_decode(str_replace('\'', '"', $value), true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $value = $json;
+            }
+        }
+
         $value = $this->replaceConstants($key, $value, $parentKeys);
 
         if (is_string($key)) {
@@ -292,6 +299,8 @@ final class Dumper
             case 'alternativeNames':
             case 'disabledBy':
             case 'enabledBy':
+            case 'mandatoryAnyof':
+            case 'mandatoryOneof':
                 $attributes = [];
                 foreach ($value as $attribute) {
                     $attributes[] = $this->getAttributeConstant($this->getConstantName($attribute));

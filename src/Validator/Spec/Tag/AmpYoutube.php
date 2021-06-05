@@ -47,12 +47,18 @@ final class AmpYoutube extends Tag
             ],
             [
                 SpecRule::NAME => Attribute::DATA_LIVE_CHANNELID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-live-channelid\', \'data-videoid\']', // @todo Parse JSON.
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_LIVE_CHANNELID,
+                    Attribute::DATA_VIDEOID,
+                ],
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
             [
                 SpecRule::NAME => Attribute::DATA_VIDEOID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-live-channelid\', \'data-videoid\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_LIVE_CHANNELID,
+                    Attribute::DATA_VIDEOID,
+                ],
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
             [

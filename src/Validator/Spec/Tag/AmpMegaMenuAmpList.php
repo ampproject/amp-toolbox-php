@@ -32,11 +32,17 @@ final class AmpMegaMenuAmpList extends Tag
         SpecRule::ATTRS => [
             [
                 SpecRule::NAME => Attribute::SRC,
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\']',
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[SRC]',
+                ],
             ],
             [
                 SpecRule::NAME => '[src]',
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\']',
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[SRC]',
+                ],
             ],
         ],
         SpecRule::CHILD_TAGS => [

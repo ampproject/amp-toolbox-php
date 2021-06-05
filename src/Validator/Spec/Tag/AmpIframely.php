@@ -34,11 +34,17 @@ final class AmpIframely extends Tag
         SpecRule::ATTRS => [
             [
                 SpecRule::NAME => Attribute::DATA_ID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-id\', \'data-url\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_ID,
+                    Attribute::DATA_URL,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::DATA_URL,
-                SpecRule::MANDATORY_ONEOF => '[\'data-id\', \'data-url\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_ID,
+                    Attribute::DATA_URL,
+                ],
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_KEY,

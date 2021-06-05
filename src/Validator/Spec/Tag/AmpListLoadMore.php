@@ -36,28 +36,48 @@ final class AmpListLoadMore extends Tag
                 SpecRule::VALUE => [
                     '',
                 ],
-                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::LOAD_MORE_BUTTON,
+                    Attribute::LOAD_MORE_FAILED,
+                    Attribute::LOAD_MORE_END,
+                    Attribute::LOAD_MORE_LOADING,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::LOAD_MORE_FAILED,
                 SpecRule::VALUE => [
                     '',
                 ],
-                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::LOAD_MORE_BUTTON,
+                    Attribute::LOAD_MORE_FAILED,
+                    Attribute::LOAD_MORE_END,
+                    Attribute::LOAD_MORE_LOADING,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::LOAD_MORE_LOADING,
                 SpecRule::VALUE => [
                     '',
                 ],
-                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::LOAD_MORE_BUTTON,
+                    Attribute::LOAD_MORE_FAILED,
+                    Attribute::LOAD_MORE_END,
+                    Attribute::LOAD_MORE_LOADING,
+                ],
             ],
             [
                 SpecRule::NAME => Attribute::LOAD_MORE_END,
                 SpecRule::VALUE => [
                     '',
                 ],
-                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::LOAD_MORE_BUTTON,
+                    Attribute::LOAD_MORE_FAILED,
+                    Attribute::LOAD_MORE_END,
+                    Attribute::LOAD_MORE_LOADING,
+                ],
             ],
         ],
         SpecRule::HTML_FORMAT => [
