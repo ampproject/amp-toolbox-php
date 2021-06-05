@@ -11,7 +11,6 @@ use AmpProject\Extension;
 use AmpProject\Internal;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
-use AmpProject\Validator\Spec\SpecRule; // @todo Unused import.
 
 final class AmpStoryCtaLayerAllowedDescendants extends DescendantTagList
 {

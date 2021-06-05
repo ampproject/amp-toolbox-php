@@ -101,7 +101,6 @@ final class DeclarationLists implements Section
 
         $className = $this->getClassNameFromId($declarationListId);
 
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\DeclarationList");
 
         /** @var ClassType $class */

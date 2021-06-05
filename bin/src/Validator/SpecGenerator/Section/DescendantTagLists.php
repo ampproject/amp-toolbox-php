@@ -94,7 +94,6 @@ final class DescendantTagLists implements Section
 
         $className = $this->getClassNameFromId($descendantTagListId);
 
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\DescendantTagList");
 
         /** @var ClassType $class */

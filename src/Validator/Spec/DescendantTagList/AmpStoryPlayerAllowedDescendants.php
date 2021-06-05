@@ -10,7 +10,6 @@ namespace AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Internal;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
-use AmpProject\Validator\Spec\SpecRule; // @todo Unused import.
 
 final class AmpStoryPlayerAllowedDescendants extends DescendantTagList
 {

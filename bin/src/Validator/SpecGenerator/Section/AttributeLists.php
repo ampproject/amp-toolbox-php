@@ -101,7 +101,6 @@ final class AttributeLists implements Section
 
         $className = $this->getClassNameFromId($attributeListId);
 
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\AttributeList");
 
         /** @var ClassType $class */

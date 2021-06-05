@@ -9,7 +9,6 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\SpecRule; // @todo Unused import.
 
 final class SvgPresentationAttributes extends AttributeList
 {
