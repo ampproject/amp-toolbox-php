@@ -13,6 +13,22 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class HtmlDoctype.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $mandatory
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read bool $explicitAttrsOnly
+ * @property-read string $descriptiveName
+ */
 final class HtmlDoctype extends Tag
 {
     /**

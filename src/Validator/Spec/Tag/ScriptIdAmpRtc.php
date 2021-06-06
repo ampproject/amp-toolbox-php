@@ -14,6 +14,20 @@ use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class ScriptIdAmpRtc.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<array<string>>> $cdata
+ * @property-read array<string> $htmlFormat
+ */
 final class ScriptIdAmpRtc extends Tag
 {
     /**

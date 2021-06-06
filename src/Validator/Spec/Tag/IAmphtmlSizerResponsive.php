@@ -13,6 +13,18 @@ use AmpProject\Internal;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class IAmphtmlSizerResponsive.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $htmlFormat
+ * @property-read bool $explicitAttrsOnly
+ * @property-read array<string> $enabledBy
+ */
 final class IAmphtmlSizerResponsive extends Tag
 {
     /**

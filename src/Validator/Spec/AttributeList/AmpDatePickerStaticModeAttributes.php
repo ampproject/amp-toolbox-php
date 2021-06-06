@@ -11,6 +11,13 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmpDatePickerStaticModeAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $fullscreen
+ */
 final class AmpDatePickerStaticModeAttributes extends AttributeList
 {
     /**

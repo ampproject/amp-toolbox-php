@@ -12,6 +12,14 @@ use AmpProject\Extension;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class PooolAccessAttrs.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $pooolAccessPreview
+ * @property-read array<array<string>> $pooolAccessContent
+ */
 final class PooolAccessAttrs extends AttributeList
 {
     /**

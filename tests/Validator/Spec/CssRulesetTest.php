@@ -42,13 +42,15 @@ class CssRulesetTest extends TestCase
         $dummyCssRuleset = new DummyCssRuleset();
 
         $this->assertEquals('dummy', $dummyCssRuleset->getId());
+        $this->assertEquals('dummy', $dummyCssRuleset->id);
 
-        $this->assertEquals($dummyCssRuleset->maxBytes, $dummyCssRuleset->get('maxBytes')); // @todo Undefined property maxBytes.
+        $this->assertEquals($dummyCssRuleset->maxBytes, $dummyCssRuleset->get('maxBytes'));
 
         $this->assertTrue($dummyCssRuleset->has('maxBytes'));
         $this->assertFalse($dummyCssRuleset->has('utter nonsense'));
 
         $this->assertEquals(42, $dummyCssRuleset->get('maxBytes'));
+        $this->assertEquals(42, $dummyCssRuleset->maxBytes);
     }
 
     /**

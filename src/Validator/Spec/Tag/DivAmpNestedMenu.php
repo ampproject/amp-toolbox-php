@@ -14,6 +14,19 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class DivAmpNestedMenu.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<string>> $attrs
+ * @property-read array<string> $disallowedAncestor
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
 final class DivAmpNestedMenu extends Tag
 {
     /**

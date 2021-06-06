@@ -12,6 +12,17 @@ use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpSelectorOption.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
 final class AmpSelectorOption extends Tag
 {
     /**

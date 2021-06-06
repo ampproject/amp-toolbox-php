@@ -15,6 +15,18 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class Video.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read string $mandatoryAncestorSuggestedAlternative
+ * @property-read array<string> $htmlFormat
+ */
 final class Video extends Tag
 {
     /**

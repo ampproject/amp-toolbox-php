@@ -14,6 +14,17 @@ use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpFxFlyingCarpet.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array<bool>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
 final class AmpFxFlyingCarpet extends Tag
 {
     /**

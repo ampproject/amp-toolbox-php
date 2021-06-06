@@ -11,6 +11,18 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmpDatePickerRangeTypeAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $endDate
+ * @property-read array $endInputSelector
+ * @property-read array<string> $maximumNights
+ * @property-read array<string> $minimumNights
+ * @property-read array $startDate
+ * @property-read array $startInputSelector
+ */
 final class AmpDatePickerRangeTypeAttributes extends AttributeList
 {
     /**

@@ -15,6 +15,16 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
+/**
+ * Tag class ScriptAmpBeopinion.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ * @property-read string $extensionSpec
+ */
 final class ScriptAmpBeopinion extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;

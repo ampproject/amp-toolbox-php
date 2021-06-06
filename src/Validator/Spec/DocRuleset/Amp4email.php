@@ -11,6 +11,15 @@ use AmpProject\Format;
 use AmpProject\Validator\Spec\DocRuleset;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Document ruleset class Amp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $htmlFormat
+ * @property-read int $maxBytes
+ * @property-read string $maxBytesSpecUrl
+ */
 final class Amp4email extends DocRuleset
 {
     /**

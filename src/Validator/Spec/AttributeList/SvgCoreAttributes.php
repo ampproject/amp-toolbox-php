@@ -10,6 +10,16 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 
+/**
+ * Attribute list class SvgCoreAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $xml:lang
+ * @property-read array $xml:space
+ * @property-read array $xmlns
+ * @property-read array $xmlns:xlink
+ */
 final class SvgCoreAttributes extends AttributeList
 {
     /**

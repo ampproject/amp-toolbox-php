@@ -11,6 +11,13 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class NameAttr.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $name
+ */
 final class NameAttr extends AttributeList
 {
     /**

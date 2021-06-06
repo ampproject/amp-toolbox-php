@@ -11,6 +11,16 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class InteractiveOptionsTextAttrs.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<bool> $option1Text
+ * @property-read array<bool> $option2Text
+ * @property-read array $option3Text
+ * @property-read array<array<array<string>>> $option4Text
+ */
 final class InteractiveOptionsTextAttrs extends AttributeList
 {
     /**

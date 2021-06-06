@@ -11,6 +11,16 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class InteractiveOptionsResultsCategoryAttrs.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<array<string>>> $option1ResultsCategory
+ * @property-read array<array<array<string>>> $option2ResultsCategory
+ * @property-read array<array<array<string>>> $option3ResultsCategory
+ * @property-read array<array<array<string>>> $option4ResultsCategory
+ */
 final class InteractiveOptionsResultsCategoryAttrs extends AttributeList
 {
     /**

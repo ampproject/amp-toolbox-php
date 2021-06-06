@@ -11,6 +11,13 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class MandatoryNameAttr.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $name
+ */
 final class MandatoryNameAttr extends AttributeList
 {
     /**

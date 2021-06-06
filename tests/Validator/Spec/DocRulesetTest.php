@@ -17,6 +17,7 @@ class DocRulesetTest extends TestCase
     {
         $dummyDocRuleset = new DummyDocRuleset();
 
+        $this->assertIsString($dummyDocRuleset->id);
         $this->assertIsArray($dummyDocRuleset->htmlFormat);
     }
 
@@ -31,6 +32,7 @@ class DocRulesetTest extends TestCase
         $dummyDocRuleset = new DummyDocRuleset();
 
         $this->assertEquals('DUMMY', $dummyDocRuleset->getId());
+        $this->assertEquals('DUMMY', $dummyDocRuleset->id);
 
         $this->assertEquals($dummyDocRuleset->maxBytes, $dummyDocRuleset->get('maxBytes'));
 

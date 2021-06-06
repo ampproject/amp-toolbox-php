@@ -11,6 +11,14 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmpMegaphoneCommon.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $dataLight
+ * @property-read array<array<string>> $dataSharing
+ */
 final class AmpMegaphoneCommon extends AttributeList
 {
     /**

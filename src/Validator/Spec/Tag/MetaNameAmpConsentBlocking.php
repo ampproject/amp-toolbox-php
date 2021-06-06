@@ -13,6 +13,19 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class MetaNameAmpConsentBlocking.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
+ */
 final class MetaNameAmpConsentBlocking extends Tag
 {
     /**

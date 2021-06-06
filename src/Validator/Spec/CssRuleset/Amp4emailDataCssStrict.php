@@ -14,6 +14,25 @@ use AmpProject\Validator\Spec\CssRuleset;
 use AmpProject\Validator\Spec\DeclarationList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * CSS ruleset class Amp4emailDataCssStrict.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $enabledBy
+ * @property-read string $specUrl
+ * @property-read int $maxBytes
+ * @property-read int $maxBytesPerInlineStyle
+ * @property-read bool $urlBytesIncluded
+ * @property-read string $maxBytesSpecUrl
+ * @property-read bool $allowAllDeclarationInStyle
+ * @property-read array<string> $declarationList
+ * @property-read array<array<string>> $imageUrlSpec
+ * @property-read bool $allowImportant
+ * @property-read bool $maxBytesIsWarning
+ * @property-read bool $expandVendorPrefixes
+ */
 final class Amp4emailDataCssStrict extends CssRuleset
 {
     /**

@@ -10,6 +10,15 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 
+/**
+ * Attribute list class SvgConditionalProcessingAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $requiredextensions
+ * @property-read array $requiredfeatures
+ * @property-read array $systemlanguage
+ */
 final class SvgConditionalProcessingAttributes extends AttributeList
 {
     /**

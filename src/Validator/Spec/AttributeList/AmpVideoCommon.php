@@ -13,6 +13,44 @@ use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmpVideoCommon.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $album
+ * @property-read array $alt
+ * @property-read array $artist
+ * @property-read array $artwork
+ * @property-read array $attribution
+ * @property-read array<array<string>> $autoplay
+ * @property-read array<array<string>> $controls
+ * @property-read array $controlslist
+ * @property-read array $crossorigin
+ * @property-read array<array<string>> $disableremoteplayback
+ * @property-read array<array<string>> $dock
+ * @property-read array<array<string>> $loop
+ * @property-read array<array<string>> $muted
+ * @property-read array<array<string>> $noaudio
+ * @property-read array $objectFit
+ * @property-read array $objectPosition
+ * @property-read array $placeholder
+ * @property-read array<array<string>> $preload
+ * @property-read array<array<string>> $rotateToFullscreen
+ * @property-read array $src
+ * @property-read array $album_binding
+ * @property-read array $alt_binding
+ * @property-read array $artist_binding
+ * @property-read array $artwork_binding
+ * @property-read array $attribution_binding
+ * @property-read array $controls_binding
+ * @property-read array $controlslist_binding
+ * @property-read array $loop_binding
+ * @property-read array $poster_binding
+ * @property-read array $preload_binding
+ * @property-read array $src_binding
+ * @property-read array $title_binding
+ */
 final class AmpVideoCommon extends AttributeList
 {
     /**

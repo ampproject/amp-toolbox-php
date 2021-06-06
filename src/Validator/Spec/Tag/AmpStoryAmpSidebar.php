@@ -13,6 +13,22 @@ use AmpProject\Layout;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpStoryAmpSidebar.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read string $deprecation
+ * @property-read string $deprecationUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ * @property-read array<array<string>> $markDescendants
+ */
 final class AmpStoryAmpSidebar extends Tag
 {
     /**

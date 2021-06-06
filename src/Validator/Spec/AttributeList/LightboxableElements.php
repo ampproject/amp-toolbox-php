@@ -11,6 +11,14 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class LightboxableElements.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $lightbox
+ * @property-read array<string> $lightboxThumbnailId
+ */
 final class LightboxableElements extends AttributeList
 {
     /**

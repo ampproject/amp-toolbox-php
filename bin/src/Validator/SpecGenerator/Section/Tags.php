@@ -5,6 +5,7 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
+use AmpProject\Tooling\Validator\SpecGenerator\MagicPropertyAnnotations;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -14,6 +15,7 @@ final class Tags implements Section
 {
     use ClassNames;
     use ConstantNames;
+    use MagicPropertyAnnotations;
 
     /**
      * Process a section.
@@ -81,7 +83,6 @@ final class Tags implements Section
 
         $class->addConstant('TAGS', $this->getTagsMapping($tags))
               ->addComment("Mapping of tag ID to tag implementation.\n\n@var array<string>");
-
 
         foreach ($tagIds as $tagId) {
             $tagIdString = "Tag\\{$this->getClassNameFromId($tagId)}::ID";
@@ -277,6 +278,11 @@ final class Tags implements Section
 
         $class->addConstant('SPEC', $jsonSpec)
               ->addComment("Array of spec rules.\n\n@var array");
+
+        $classComment = "Tag class {$className}.\n\n";
+        $classComment .= "@package ampproject/amp-toolbox.\n\n";
+        $classComment .= implode("\n", $this->getMagicPropertyAnnotations($jsonSpec));
+        $class->addComment($classComment);
 
         $fileManager->saveFile($file, "Spec/Tag/{$className}.php");
     }

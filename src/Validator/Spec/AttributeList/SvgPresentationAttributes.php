@@ -10,6 +10,73 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 
+/**
+ * Attribute list class SvgPresentationAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $alignmentBaseline
+ * @property-read array $baselineShift
+ * @property-read array $clip
+ * @property-read array $clipPath
+ * @property-read array $clipRule
+ * @property-read array $color
+ * @property-read array $colorInterpolation
+ * @property-read array $colorInterpolationFilters
+ * @property-read array $colorProfile
+ * @property-read array $colorRendering
+ * @property-read array $cursor
+ * @property-read array $direction
+ * @property-read array $display
+ * @property-read array $dominantBaseline
+ * @property-read array $enableBackground
+ * @property-read array $fill
+ * @property-read array $fillOpacity
+ * @property-read array $fillRule
+ * @property-read array $filter
+ * @property-read array $floodColor
+ * @property-read array $floodOpacity
+ * @property-read array $focusable
+ * @property-read array $fontFamily
+ * @property-read array $fontSize
+ * @property-read array $fontSizeAdjust
+ * @property-read array $fontStretch
+ * @property-read array $fontStyle
+ * @property-read array $fontVariant
+ * @property-read array $fontWeight
+ * @property-read array $glyphOrientationHorizontal
+ * @property-read array $glyphOrientationVertical
+ * @property-read array $imageRendering
+ * @property-read array $kerning
+ * @property-read array $letterSpacing
+ * @property-read array $lightingColor
+ * @property-read array $markerEnd
+ * @property-read array $markerMid
+ * @property-read array $markerStart
+ * @property-read array $mask
+ * @property-read array $opacity
+ * @property-read array $overflow
+ * @property-read array $pointerEvents
+ * @property-read array $shapeRendering
+ * @property-read array $stopColor
+ * @property-read array $stopOpacity
+ * @property-read array $stroke
+ * @property-read array $strokeDasharray
+ * @property-read array $strokeDashoffset
+ * @property-read array $strokeLinecap
+ * @property-read array $strokeLinejoin
+ * @property-read array $strokeMiterlimit
+ * @property-read array $strokeOpacity
+ * @property-read array $strokeWidth
+ * @property-read array $textAnchor
+ * @property-read array $textDecoration
+ * @property-read array $textRendering
+ * @property-read array $unicodeBidi
+ * @property-read array $vectorEffect
+ * @property-read array $visibility
+ * @property-read array $wordSpacing
+ * @property-read array $writingMode
+ */
 final class SvgPresentationAttributes extends AttributeList
 {
     /**

@@ -14,17 +14,18 @@ use AmpProject\Exception\InvalidSpecRuleName;
  *
  * @package ampproject/amp-toolbox
  *
- * @property-read bool $allowAllDeclarationInStyle
- * @property-read bool $allowImportant
- * @property-read bool $expandVendorPrefixes
- * @property-read bool $maxBytesIsWarning
- * @property-read bool $urlBytesIncluded
+ * @property-read string        $id                         ID of the CSS ruleset.
+ * @property-read bool          $allowAllDeclarationInStyle
+ * @property-read bool          $allowImportant
+ * @property-read bool          $expandVendorPrefixes
+ * @property-read bool          $maxBytesIsWarning
+ * @property-read bool          $urlBytesIncluded
  * @property-read array<string> $declarationListSvg
  * @property-read array<string> $disabledBy
  * @property-read array<string> $enabledBy
- * @property-read array<array> $fontUrlSpec
+ * @property-read array<array>  $fontUrlSpec
  * @property-read array<string> $htmlFormat
- * @property-read array<array> $imageUrlSpec
+ * @property-read array<array>  $imageUrlSpec
  */
 class CssRuleset
 {
@@ -89,6 +90,8 @@ class CssRuleset
     public function __get($cssRulesetName)
     {
         switch ($cssRulesetName) {
+            case 'id':
+                return static::ID;
             case SpecRule::ALLOW_ALL_DECLARATION_IN_STYLE:
             case SpecRule::ALLOW_IMPORTANT:
             case SpecRule::EXPAND_VENDOR_PREFIXES:

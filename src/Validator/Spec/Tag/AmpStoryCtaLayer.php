@@ -13,6 +13,18 @@ use AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpStoryCtaLayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $mandatoryAncestor
+ * @property-read array<array<string>> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descendantTagList
+ * @property-read bool $mandatoryLastChild
+ */
 final class AmpStoryCtaLayer extends Tag
 {
     /**

@@ -14,6 +14,20 @@ use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpNextPageWithSrcAttribute.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<array> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
 final class AmpNextPageWithSrcAttribute extends Tag
 {
     /**

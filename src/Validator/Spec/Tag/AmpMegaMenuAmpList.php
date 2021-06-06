@@ -12,6 +12,19 @@ use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpMegaMenuAmpList.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<string>> $attrs
+ * @property-read array $childTags
+ * @property-read array<array<string>> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
 final class AmpMegaMenuAmpList extends Tag
 {
     /**

@@ -11,6 +11,21 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmpCarouselCommon.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $arrows
+ * @property-read array<string> $autoplay
+ * @property-read array $controls
+ * @property-read array<string> $delay
+ * @property-read array<array<string>> $dots
+ * @property-read array<array<string>> $loop
+ * @property-read array<string> $slide
+ * @property-read array<array<string>> $type
+ * @property-read array $slide_binding
+ */
 final class AmpCarouselCommon extends AttributeList
 {
     /**

@@ -12,6 +12,16 @@ use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpCarouselLightboxChild.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<string>> $attrs
+ * @property-read array<string> $htmlFormat
+ */
 final class AmpCarouselLightboxChild extends Tag
 {
     /**

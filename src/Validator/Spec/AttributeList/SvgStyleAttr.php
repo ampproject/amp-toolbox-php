@@ -11,6 +11,13 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class SvgStyleAttr.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<bool> $style
+ */
 final class SvgStyleAttr extends AttributeList
 {
     /**

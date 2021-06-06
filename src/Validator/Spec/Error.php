@@ -13,6 +13,9 @@ use AmpProject\Exception\InvalidSpecRuleName;
  * The base class for a single validation error definition.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @property-read string $code   Code of the error.
+ * @property-read string $format Formatting template for the error.
  */
 class Error
 {
@@ -66,5 +69,25 @@ class Error
         }
 
         return static::SPEC[$specRuleName];
+    }
+
+    /**
+     * Magic getter to return the spec rules.
+     *
+     * @param string $docRulesetName Name of the spec rule to return.
+     * @return mixed Value of the spec rule.
+     */
+    public function __get($docRulesetName)
+    {
+        switch ($docRulesetName) {
+            case 'code':
+                return static::CODE;
+            default:
+                if (!array_key_exists($docRulesetName, static::SPEC)) {
+                    throw InvalidSpecRuleName::forSpecRuleName($docRulesetName);
+                }
+
+                return static::SPEC[$docRulesetName];
+        }
     }
 }

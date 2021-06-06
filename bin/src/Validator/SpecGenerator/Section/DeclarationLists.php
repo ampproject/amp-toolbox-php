@@ -5,6 +5,7 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
+use AmpProject\Tooling\Validator\SpecGenerator\MagicPropertyAnnotations;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -14,6 +15,7 @@ final class DeclarationLists implements Section
 {
     use ClassNames;
     use ConstantNames;
+    use MagicPropertyAnnotations;
 
     /**
      * Process a section.
@@ -118,6 +120,11 @@ final class DeclarationLists implements Section
 
         $class->addConstant('DECLARATIONS', $declarations)
               ->addComment("Array of declarations.\n\n@var array<array>");
+
+        $classComment = "Declaration list class {$className}.\n\n";
+        $classComment .= "@package ampproject/amp-toolbox.\n\n";
+        $classComment .= implode("\n", $this->getMagicPropertyAnnotations($jsonSpec));
+        $class->addComment($classComment);
 
         $fileManager->saveFile($file, "Spec/DeclarationList/{$className}.php");
 

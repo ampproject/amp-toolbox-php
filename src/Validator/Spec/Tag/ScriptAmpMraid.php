@@ -16,6 +16,17 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
+/**
+ * Tag class ScriptAmpMraid.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ * @property-read string $extensionSpec
+ */
 final class ScriptAmpMraid extends Tag implements TagWithExtensionSpec
 {
     use ExtensionSpec;

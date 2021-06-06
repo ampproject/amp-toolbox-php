@@ -12,6 +12,32 @@ use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmpDatePickerCommonAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $allowBlockedEndDate
+ * @property-read array<array<string>> $allowBlockedRanges
+ * @property-read array $blocked
+ * @property-read array<string> $daySize
+ * @property-read array<string> $firstDayOfWeek
+ * @property-read array $format
+ * @property-read array $highlighted
+ * @property-read array $locale
+ * @property-read array $max
+ * @property-read array $min
+ * @property-read array $monthFormat
+ * @property-read array<string> $numberOfMonths
+ * @property-read array<array<string>> $openAfterClear
+ * @property-read array<array<string>> $openAfterSelect
+ * @property-read array<array<string>> $hideKeyboardShortcutsPanel
+ * @property-read array $src
+ * @property-read array $weekDayFormat
+ * @property-read array $src_binding
+ * @property-read array $max_binding
+ * @property-read array $min_binding
+ */
 final class AmpDatePickerCommonAttributes extends AttributeList
 {
     /**

@@ -19,14 +19,15 @@ class DeclarationListTest extends TestCase
         $dummyDeclarationList = new DummyDeclarationList();
 
         $this->assertEquals('DUMMY', $dummyDeclarationList->getId());
+        $this->assertEquals('DUMMY', $dummyDeclarationList->id);
 
         $this->assertTrue($dummyDeclarationList->has('position'));
         $this->assertFalse($dummyDeclarationList->has('utter nonsense'));
 
-        $position = $dummyDeclarationList->get('position');
-
-        $this->assertIsArray($position);
-        $this->assertArrayHasKey('valueCasei', $position);
+        $this->assertIsArray($dummyDeclarationList->get('position'));
+        $this->assertIsArray($dummyDeclarationList->position);
+        $this->assertArrayHasKey('valueCasei', $dummyDeclarationList->get('position'));
+        $this->assertArrayHasKey('valueCasei', $dummyDeclarationList->position);
     }
 
     /**

@@ -11,6 +11,13 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmpDatePickerOverlayModeAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $touchKeyboardEditable
+ */
 final class AmpDatePickerOverlayModeAttributes extends AttributeList
 {
     /**

@@ -10,6 +10,14 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 
+/**
+ * Attribute list class AmpDatePickerSingleTypeAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $date
+ * @property-read array $inputSelector
+ */
 final class AmpDatePickerSingleTypeAttributes extends AttributeList
 {
     /**

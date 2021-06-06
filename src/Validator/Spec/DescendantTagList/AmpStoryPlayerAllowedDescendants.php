@@ -11,6 +11,11 @@ use AmpProject\Internal;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
 
+/**
+ * Descendant tag list class AmpStoryPlayerAllowedDescendants.
+ *
+ * @package ampproject/amp-toolbox.
+ */
 final class AmpStoryPlayerAllowedDescendants extends DescendantTagList
 {
     /**

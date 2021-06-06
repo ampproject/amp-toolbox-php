@@ -13,6 +13,16 @@ use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpStoryAutoAnalytics.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
 final class AmpStoryAutoAnalytics extends Tag
 {
     /**

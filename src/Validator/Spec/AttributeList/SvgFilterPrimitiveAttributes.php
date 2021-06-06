@@ -10,6 +10,17 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 
+/**
+ * Attribute list class SvgFilterPrimitiveAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $height
+ * @property-read array $result
+ * @property-read array $width
+ * @property-read array $x
+ * @property-read array $y
+ */
 final class SvgFilterPrimitiveAttributes extends AttributeList
 {
     /**

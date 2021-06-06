@@ -13,6 +13,17 @@ use AmpProject\Format;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpNextPageFooter.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array<bool>> $attrs
+ * @property-read array<string> $htmlFormat
+ */
 final class AmpNextPageFooter extends Tag
 {
     /**

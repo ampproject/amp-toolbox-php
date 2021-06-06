@@ -14,6 +14,19 @@ use AmpProject\Protocol;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class AmpStoryPageAttachmentHref.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read string $mandatoryAncestor
+ * @property-read array<int> $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read bool $mandatoryLastChild
+ */
 final class AmpStoryPageAttachmentHref extends Tag
 {
     /**

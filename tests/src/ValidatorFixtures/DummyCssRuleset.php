@@ -5,6 +5,9 @@ namespace AmpProject\Tests\ValidatorFixtures;
 use AmpProject\Validator\Spec\CssRuleset;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * @property-read int $maxBytes
+ */
 class DummyCssRuleset extends CssRuleset
 {
 

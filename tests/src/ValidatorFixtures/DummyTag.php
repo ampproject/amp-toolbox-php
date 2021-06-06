@@ -6,6 +6,9 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * @property-read string $tagName
+ */
 class DummyTag extends Tag
 {
 

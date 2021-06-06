@@ -10,6 +10,20 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 
+/**
+ * Attribute list class SvgTransferFunctionAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $amplitude
+ * @property-read array $exponent
+ * @property-read array $intercept
+ * @property-read array $offset
+ * @property-read array $slope
+ * @property-read array $table
+ * @property-read array $tablevalues
+ * @property-read array $type
+ */
 final class SvgTransferFunctionAttributes extends AttributeList
 {
     /**

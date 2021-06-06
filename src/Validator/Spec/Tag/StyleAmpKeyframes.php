@@ -14,6 +14,21 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class StyleAmpKeyframes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array $cdata
+ * @property-read array<string> $htmlFormat
+ * @property-read bool $mandatoryLastChild
+ * @property-read string $descriptiveName
+ */
 final class StyleAmpKeyframes extends Tag
 {
     /**

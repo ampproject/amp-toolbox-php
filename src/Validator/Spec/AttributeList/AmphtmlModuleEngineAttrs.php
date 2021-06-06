@@ -11,6 +11,15 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmphtmlModuleEngineAttrs.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $async
+ * @property-read array $crossorigin
+ * @property-read array $type
+ */
 final class AmphtmlModuleEngineAttrs extends AttributeList
 {
     /**

@@ -19,14 +19,22 @@ class AttributeListTest extends TestCase
         $dummyAttributeList = new DummyAttributeList();
 
         $this->assertEquals('dummy', $dummyAttributeList->getId());
+        $this->assertEquals('dummy', $dummyAttributeList->id);
 
         $this->assertTrue($dummyAttributeList->has('type'));
+        $this->assertTrue($dummyAttributeList->has('[value]'));
         $this->assertFalse($dummyAttributeList->has('utter nonsense'));
 
-        $type = $dummyAttributeList->get('type');
+        $this->assertIsArray($dummyAttributeList->get('type'));
+        $this->assertIsArray($dummyAttributeList->type);
+        $this->assertArrayHasKey('valueCasei', $dummyAttributeList->get('type'));
+        $this->assertArrayHasKey('valueCasei', $dummyAttributeList->type);
 
-        $this->assertIsArray($type);
-        $this->assertArrayHasKey('valueCasei', $type);
+        $this->assertEquals(123, $dummyAttributeList->get('[value]'));
+        $this->assertEquals(123, $dummyAttributeList->value_binding);
+
+        $this->assertEquals(567, $dummyAttributeList->get('attribute-with-dashes'));
+        $this->assertEquals(567, $dummyAttributeList->attributeWithDashes);
     }
 
     /**

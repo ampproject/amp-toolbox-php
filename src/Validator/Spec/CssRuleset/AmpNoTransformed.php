@@ -13,6 +13,24 @@ use AmpProject\Protocol;
 use AmpProject\Validator\Spec\CssRuleset;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * CSS ruleset class AmpNoTransformed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $disabledBy
+ * @property-read string $specUrl
+ * @property-read int $maxBytes
+ * @property-read int $maxBytesPerInlineStyle
+ * @property-read bool $urlBytesIncluded
+ * @property-read string $maxBytesSpecUrl
+ * @property-read bool $allowAllDeclarationInStyle
+ * @property-read array $imageUrlSpec
+ * @property-read array $fontUrlSpec
+ * @property-read bool $allowImportant
+ * @property-read bool $expandVendorPrefixes
+ */
 final class AmpNoTransformed extends CssRuleset
 {
     /**

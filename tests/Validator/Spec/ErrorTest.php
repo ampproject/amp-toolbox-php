@@ -19,14 +19,16 @@ class ErrorTest extends TestCase
         $dummyError = new DummyError();
 
         $this->assertEquals('dummy', $dummyError->getCode());
+        $this->assertEquals('dummy', $dummyError->code);
 
         $this->assertTrue($dummyError->has('format'));
         $this->assertFalse($dummyError->has('utter nonsense'));
 
-        $format = $dummyError->get('format');
+        $this->assertIsString($dummyError->get('format'));
+        $this->assertIsString($dummyError->format);
 
-        $this->assertIsString($format);
-        $this->assertEquals('this is an error', $format);
+        $this->assertEquals('this is an error', $dummyError->get('format'));
+        $this->assertEquals('this is an error', $dummyError->format);
     }
 
     /**

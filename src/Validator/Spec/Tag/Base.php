@@ -13,6 +13,17 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class Base.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array<array<string>>> $attrs
+ * @property-read array<string> $htmlFormat
+ */
 final class Base extends Tag
 {
     /**

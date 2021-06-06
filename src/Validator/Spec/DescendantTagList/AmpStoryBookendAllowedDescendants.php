@@ -10,6 +10,11 @@ namespace AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
 
+/**
+ * Descendant tag list class AmpStoryBookendAllowedDescendants.
+ *
+ * @package ampproject/amp-toolbox.
+ */
 final class AmpStoryBookendAllowedDescendants extends DescendantTagList
 {
     /**

@@ -13,6 +13,17 @@ use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
+/**
+ * Tag class MetaNameAmpAdDoubleclickSra.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ */
 final class MetaNameAmpAdDoubleclickSra extends Tag
 {
     /**

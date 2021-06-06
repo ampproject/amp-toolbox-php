@@ -18,6 +18,7 @@ class DescendantTagListTest extends TestCase
         $dummyDescendantTagList = new DummyDescendantTagList();
 
         $this->assertEquals('dummy', $dummyDescendantTagList->getId());
+        $this->assertEquals('dummy', $dummyDescendantTagList->id);
 
         $this->assertTrue($dummyDescendantTagList->has('img'));
         $this->assertFalse($dummyDescendantTagList->has('utter nonsense'));

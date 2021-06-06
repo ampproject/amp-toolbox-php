@@ -11,6 +11,14 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class AmpNestedMenuActions.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $ampNestedSubmenuClose
+ * @property-read array<string> $ampNestedSubmenuOpen
+ */
 final class AmpNestedMenuActions extends AttributeList
 {
     /**

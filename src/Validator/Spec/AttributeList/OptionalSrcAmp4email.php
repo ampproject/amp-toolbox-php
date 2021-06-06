@@ -12,6 +12,13 @@ use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class OptionalSrcAmp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $src
+ */
 final class OptionalSrcAmp4email extends AttributeList
 {
     /**

@@ -12,6 +12,13 @@ use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Attribute list class CiteAttr.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $cite
+ */
 final class CiteAttr extends AttributeList
 {
     /**

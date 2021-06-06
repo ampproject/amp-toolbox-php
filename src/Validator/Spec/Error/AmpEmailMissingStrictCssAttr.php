@@ -10,6 +10,13 @@ namespace AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Error class AmpEmailMissingStrictCssAttr.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $format
+ */
 final class AmpEmailMissingStrictCssAttr extends Error
 {
     /**

@@ -11,6 +11,11 @@ use AmpProject\Extension;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
 
+/**
+ * Descendant tag list class AmpNestedMenuAllowedDescendants.
+ *
+ * @package ampproject/amp-toolbox.
+ */
 final class AmpNestedMenuAllowedDescendants extends DescendantTagList
 {
     /**
