@@ -11,7 +11,6 @@ use AmpProject\Exception\InvalidByteSequence;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
 use AmpProject\Tag;
-use AmpProject\Validator\Spec;
 use AmpProject\Validator\Spec\CssRuleset\AmpTransformed;
 use AmpProject\Validator\Spec\SpecRule;
 use DOMAttr;

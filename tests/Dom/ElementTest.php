@@ -2,7 +2,6 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;

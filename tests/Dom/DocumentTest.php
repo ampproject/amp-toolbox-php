@@ -2,7 +2,6 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\InvalidByteSequence;
