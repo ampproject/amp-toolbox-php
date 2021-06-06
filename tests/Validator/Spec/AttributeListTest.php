@@ -13,6 +13,7 @@ class AttributeListTest extends TestCase
      * @covers \AmpProject\Validator\Spec\AttributeList::getId()
      * @covers \AmpProject\Validator\Spec\AttributeList::get()
      * @covers \AmpProject\Validator\Spec\AttributeList::has()
+     * @covers \AmpProject\Validator\Spec\AttributeList::__get()
      */
     public function testGet()
     {

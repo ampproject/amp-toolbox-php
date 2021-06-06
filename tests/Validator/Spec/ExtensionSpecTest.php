@@ -21,16 +21,25 @@ class ExtensionSpecTest extends TestCase
         SpecRule::EXTENSION_TYPE => 'CUSTOM_TEMPLATE',
     ];
 
+    /**
+     * @covers \AmpProject\Validator\SpecExtensionSpec::getExtensionName()
+     */
     public function testGetExtensionName()
     {
         $this->assertEquals('amp-dummy-extension', $this->getExtensionName());
     }
 
+    /**
+     * @covers \AmpProject\Validator\SpecExtensionSpec::getLatestVersion()
+     */
     public function testGetLatestVersion()
     {
         $this->assertEquals('2.0', $this->getLatestVersion());
     }
 
+    /**
+     * @covers \AmpProject\Validator\SpecExtensionSpec::getExtensionType()
+     */
     public function testGetExtensionType()
     {
         $this->assertEquals('custom-template', $this->getExtensionType());

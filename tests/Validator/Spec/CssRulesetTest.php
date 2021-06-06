@@ -9,9 +9,9 @@ use AmpProject\Tests\ValidatorFixtures\DummyCssRuleset;
 class CssRulesetTest extends TestCase
 {
     /**
-     * @covers \AmpProject\Validator\Spec\Tag::get()
-     * @covers \AmpProject\Validator\Spec\Tag::has()
-     * @covers \AmpProject\Validator\Spec\Tag::__get()
+     * @covers \AmpProject\Validator\Spec\CssRuleset::get()
+     * @covers \AmpProject\Validator\Spec\CssRuleset::has()
+     * @covers \AmpProject\Validator\Spec\CssRuleset::__get()
      */
     public function testDefaultValues()
     {
@@ -35,7 +35,7 @@ class CssRulesetTest extends TestCase
      * @covers \AmpProject\Validator\Spec\CssRuleset::getId()
      * @covers \AmpProject\Validator\Spec\CssRuleset::get()
      * @covers \AmpProject\Validator\Spec\CssRuleset::has()
-     * @covers \AmpProject\Validator\Spec\Tag::__get()
+     * @covers \AmpProject\Validator\Spec\CssRuleset::__get()
      */
     public function testGet()
     {

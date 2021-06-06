@@ -13,6 +13,7 @@ class ErrorTest extends TestCase
      * @covers \AmpProject\Validator\Spec\Error::getCode()
      * @covers \AmpProject\Validator\Spec\Error::get()
      * @covers \AmpProject\Validator\Spec\Error::has()
+     * @covers \AmpProject\Validator\Spec\Error::__get()
      */
     public function testGet()
     {

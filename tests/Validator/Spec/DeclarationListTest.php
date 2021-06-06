@@ -13,6 +13,7 @@ class DeclarationListTest extends TestCase
      * @covers \AmpProject\Validator\Spec\DeclarationList::getId()
      * @covers \AmpProject\Validator\Spec\DeclarationList::get()
      * @covers \AmpProject\Validator\Spec\DeclarationList::has()
+     * @covers \AmpProject\Validator\Spec\DeclarationList::__get()
      */
     public function testGet()
     {
