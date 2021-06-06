@@ -2,7 +2,6 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\InvalidByteSequence;
@@ -10,6 +9,8 @@ use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
+use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
+use AmpProject\Validator\Spec\SpecRule;
 use DOMNode;
 
 /**
@@ -1007,10 +1008,12 @@ class DocumentTest extends TestCase
      */
     public function testGetRemainingCssSpace()
     {
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
+
         $document = new Document();
         $ampCustomStyle = $document->createElement(Tag::STYLE);
         $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
-        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 10, 'X');
+        $ampCustomStyle->textContent = str_pad('', $maxBytes - 10, 'X');
         $document->head->appendChild($ampCustomStyle);
 
         /** @var Element $element */
@@ -1019,7 +1022,7 @@ class DocumentTest extends TestCase
         $element->addInlineStyle('12345');
 
         $this->assertEquals(PHP_INT_MAX, $document->getRemainingCustomCssSpace());
-        $document->enforceCssMaxByteCount(Amp::MAX_CSS_BYTE_COUNT);
+        $document->enforceCssMaxByteCount($maxBytes);
         $this->assertEquals(5, $document->getRemainingCustomCssSpace());
     }
 
@@ -1031,10 +1034,12 @@ class DocumentTest extends TestCase
      */
     public function testAddAmpCustomStyleWithoutLimit()
     {
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
+
         $document = new Document();
         $ampCustomStyle = $document->createElement(Tag::STYLE);
         $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
-        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 28, 'X');
+        $ampCustomStyle->textContent = str_pad('', $maxBytes - 28, 'X');
         $document->head->appendChild($ampCustomStyle);
 
         // Custom styles can be added.
@@ -1056,11 +1061,13 @@ class DocumentTest extends TestCase
      */
     public function testAddAmpCustomStyleWithLimit()
     {
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
+
         $document = new Document();
-        $document->enforceCssMaxByteCount(Amp::MAX_CSS_BYTE_COUNT);
+        $document->enforceCssMaxByteCount($maxBytes);
         $ampCustomStyle = $document->createElement(Tag::STYLE);
         $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
-        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 28, 'X');
+        $ampCustomStyle->textContent = str_pad('', $maxBytes - 28, 'X');
         $document->head->appendChild($ampCustomStyle);
 
         // Custom styles can be added.

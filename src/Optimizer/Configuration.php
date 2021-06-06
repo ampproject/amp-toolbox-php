@@ -43,11 +43,11 @@ interface Configuration
      * @var string[]
      */
     const DEFAULT_TRANSFORMERS = [
+        TransformedIdentifier::class,
         AmpBoilerplate::class,
         PreloadHeroImage::class,
         ServerSideRendering::class,
         AmpRuntimeCss::class,
-        TransformedIdentifier::class,
         AmpBoilerplateErrorHandler::class,
         RewriteAmpUrls::class,
         ReorderHead::class,

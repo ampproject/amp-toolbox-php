@@ -2,11 +2,12 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\TestCase;
+use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
+use AmpProject\Validator\Spec\SpecRule;
 
 /**
  * Tests for AmpProject\Dom\Element.
@@ -59,10 +60,12 @@ class ElementTest extends TestCase
      */
     public function testAddInlineStyleWithoutLimit()
     {
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
+
         $document = new Document();
         $ampCustomStyle = $document->createElement(Tag::STYLE);
         $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
-        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 38, 'X');
+        $ampCustomStyle->textContent = str_pad('', $maxBytes - 38, 'X');
         $document->head->appendChild($ampCustomStyle);
 
         /** @var Element $element */
@@ -92,11 +95,13 @@ class ElementTest extends TestCase
      */
     public function testAddInlineStyleWithLimit()
     {
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
+
         $document = new Document();
-        $document->enforceCssMaxByteCount(Amp::MAX_CSS_BYTE_COUNT);
+        $document->enforceCssMaxByteCount($maxBytes);
         $ampCustomStyle = $document->createElement(Tag::STYLE);
         $ampCustomStyle->setAttribute(Attribute::AMP_CUSTOM, null);
-        $ampCustomStyle->textContent = str_pad('', Amp::MAX_CSS_BYTE_COUNT - 38, 'X');
+        $ampCustomStyle->textContent = str_pad('', $maxBytes - 38, 'X');
         $document->head->appendChild($ampCustomStyle);
 
         /** @var Element $element */

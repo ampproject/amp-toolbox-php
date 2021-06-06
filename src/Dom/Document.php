@@ -2,7 +2,6 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\DevMode;
 use AmpProject\Dom\Document\Encoding;
@@ -12,6 +11,8 @@ use AmpProject\Exception\InvalidByteSequence;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
 use AmpProject\Tag;
+use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
+use AmpProject\Validator\Spec\SpecRule;
 use DOMAttr;
 use DOMComment;
 use DOMDocument;
@@ -2106,10 +2107,16 @@ final class Document extends DOMDocument
     /**
      * Enforce a maximum number of bytes for the CSS.
      *
-     * @param int $maxByteCount Maximum number of bytes to limit the CSS to. A negative number disables the limit.
+     * @param int|null $maxByteCount Maximum number of bytes to limit the CSS to. A negative number disables the limit.
+     *                               If null then the max bytes from AmpNoTransformed is used.
      */
-    public function enforceCssMaxByteCount($maxByteCount = Amp::MAX_CSS_BYTE_COUNT)
+    public function enforceCssMaxByteCount($maxByteCount = null)
     {
+        if ($maxByteCount === null) {
+            // No need to instantiate the spec here, we can just directly reference the needed constant.
+            $maxByteCount = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
+        }
+
         $this->cssMaxByteCountEnforced = $maxByteCount;
     }
 
