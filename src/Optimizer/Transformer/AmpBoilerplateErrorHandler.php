@@ -20,6 +20,15 @@ final class AmpBoilerplateErrorHandler implements Transformer
 {
 
     /**
+     * XPath query to find an AMP runtime script using ES6 modules.
+     *
+     * Note that substring() is used as ends-with() requires XPath 2.0, but PHP comes with XPath 1.0 support only.
+     *
+     * @var string
+     */
+    const AMP_MODULAR_RUNTIME_XPATH_QUERY = './script[substring(@src, string-length(@src) - 6) = \'/v0.mjs\']';
+
+    /**
      * Error handler script to be added to the document's <head> for AMP pages not using ES modules.
      *
      * @var string
@@ -59,10 +68,21 @@ final class AmpBoilerplateErrorHandler implements Transformer
                 [
                     Attribute::AMP_ONERROR => null,
                 ],
-                $document->html->hasAttribute(Attribute::I_AMPHTML_MODULE) ?
-                    self::ERROR_HANDLER_MODULE :
-                    self::ERROR_HANDLER_NOMODULE
+                $this->usesModules($document) ? self::ERROR_HANDLER_MODULE : self::ERROR_HANDLER_NOMODULE
             )
         );
+    }
+
+    /**
+     * Check whether a provided document uses ES6 modules.
+     *
+     * @param Document $document Document to check.
+     * @return bool Whether the provided document uses ES6 modules.
+     */
+    private function usesModules(Document $document)
+    {
+        $scripts = $document->xpath->query(self::AMP_MODULAR_RUNTIME_XPATH_QUERY, $document->head);
+
+        return $scripts->length > 0;
     }
 }

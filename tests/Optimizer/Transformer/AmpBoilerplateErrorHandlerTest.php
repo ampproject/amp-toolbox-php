@@ -29,7 +29,7 @@ final class AmpBoilerplateErrorHandlerTest extends TestCase
     public function dataTransform()
     {
         return [
-            'error handler is added if boilerplate present on non-transformed AMP page' => [
+            'error handler is added if boilerplate present on AMP page without modules' => [
                 TestMarkup::DOCTYPE . '<html ⚡><head>' .
                 TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT .
                 TestMarkup::STYLE_AMPBOILERPLATE . TestMarkup::NOSCRIPT_AMPBOILERPLATE .
@@ -40,22 +40,22 @@ final class AmpBoilerplateErrorHandlerTest extends TestCase
                 TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT .
                 TestMarkup::STYLE_AMPBOILERPLATE . TestMarkup::NOSCRIPT_AMPBOILERPLATE .
                 TestMarkup::STYLE_AMPRUNTIME . TestMarkup::SCRIPT_AMPRUNTIME .
-                '<script amp-onerror>' . AmpBoilerplateErrorHandler::ERROR_HANDLER_NOT_TRANSFORMED . '</script>' .
+                '<script amp-onerror>' . AmpBoilerplateErrorHandler::ERROR_HANDLER_NOMODULE . '</script>' .
                 '</head><body></body></html>',
             ],
 
-            'error handler is added if boilerplate present on transformed AMP page' => [
-                TestMarkup::DOCTYPE . '<html ⚡ transformed="self;v=1"><head>' .
+            'error handler is added if boilerplate present on AMP page with modules' => [
+                TestMarkup::DOCTYPE . '<html ⚡><head>' .
                 TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT .
                 TestMarkup::STYLE_AMPBOILERPLATE . TestMarkup::NOSCRIPT_AMPBOILERPLATE .
-                TestMarkup::STYLE_AMPRUNTIME . TestMarkup::SCRIPT_AMPRUNTIME .
+                TestMarkup::STYLE_AMPRUNTIME . TestMarkup::SCRIPT_AMPRUNTIME_ESM .
                 '</head><body></body></html>',
 
-                TestMarkup::DOCTYPE . '<html ⚡ transformed="self;v=1"><head>' .
+                TestMarkup::DOCTYPE . '<html ⚡><head>' .
                 TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT .
                 TestMarkup::STYLE_AMPBOILERPLATE . TestMarkup::NOSCRIPT_AMPBOILERPLATE .
-                TestMarkup::STYLE_AMPRUNTIME . TestMarkup::SCRIPT_AMPRUNTIME .
-                '<script amp-onerror>' . AmpBoilerplateErrorHandler::ERROR_HANDLER_TRANSFORMED . '</script>' .
+                TestMarkup::STYLE_AMPRUNTIME . TestMarkup::SCRIPT_AMPRUNTIME_ESM .
+                '<script amp-onerror>' . AmpBoilerplateErrorHandler::ERROR_HANDLER_MODULE . '</script>' .
                 '</head><body></body></html>',
             ],
 

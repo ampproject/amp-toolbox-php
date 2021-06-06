@@ -85,6 +85,9 @@ final class TestMarkup
     // ScriptAMPRuntime is the AMP script tag.
     const SCRIPT_AMPRUNTIME = '<script async src="https://cdn.ampproject.org/v0.js"></script>';
 
+    // ScriptAMPRuntimeEsm is the AMP script tag when using ES6 modules.
+    const SCRIPT_AMPRUNTIME_ESM = '<script async crossorigin="anonymous" nomodule src="https://cdn.ampproject.org/v0.js"></script><script async crossorigin="anonymous" src="https://cdn.ampproject.org/v0.mjs" type="module"></script>';
+
     // ScriptAMPViewerRuntime is the AMP viewer runtime script tag.
     const SCRIPT_AMPVIEWER_RUNTIME = '<script async src="https://cdn.ampproject.org/v0/amp-viewer-integration-0.1.js"></script>';
 

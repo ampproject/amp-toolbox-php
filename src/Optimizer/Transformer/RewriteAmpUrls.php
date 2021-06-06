@@ -104,10 +104,6 @@ final class RewriteAmpUrls implements Transformer
     {
         $usesEsm = $this->configuration->get(RewriteAmpUrlsConfiguration::ESM_MODULES_ENABLED);
 
-        if ($usesEsm) {
-            $document->html->setAttribute(Attribute::I_AMPHTML_MODULE, null);
-        }
-
         $node = $document->head->firstChild;
         while ($node) {
             $nextSibling = $node->nextSibling;
