@@ -23,7 +23,7 @@ final class TransformationEngineTest extends TestCase
 
     const MINIMAL_HTML_MARKUP           = '<html></html>';
     const MINIMAL_OPTIMIZED_HTML_MARKUP = TestMarkup::DOCTYPE .
-                                          '<html i-amphtml-layout="" i-amphtml-no-boilerplate="" transformed="self;v=1"><head>' .
+                                          '<html transformed="self;v=1" i-amphtml-layout="" i-amphtml-no-boilerplate=""><head>' .
                                           TestMarkup::META_CHARSET .
                                           '<style amp-runtime="" i-amphtml-version="012345678900000">/* v0.css */</style>' .
                                           '</head><body></body></html>';
