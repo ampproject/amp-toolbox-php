@@ -73,6 +73,7 @@ class DocRulesetsTest extends TestCase
         $this->assertGreaterThan(0, count($this->docRulesets));
         foreach ($this->docRulesets as $docRuleset) {
             $this->assertInstanceOf(Spec\DocRuleset::class, $docRuleset);
+            $this->assertInstanceOf(Spec\Identifiable::class, $docRuleset);
             $this->assertNotEmpty($docRuleset::SPEC);
         }
     }

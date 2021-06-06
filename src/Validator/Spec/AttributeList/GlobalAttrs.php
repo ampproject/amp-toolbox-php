@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -153,7 +154,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array<array<string>> $iAmphtmlBinding
  * @property-read array<array<array<string>>> $autoscroll
  */
-final class GlobalAttrs extends AttributeList
+final class GlobalAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

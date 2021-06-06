@@ -58,6 +58,7 @@ class AttributeListsTest extends TestCase
         $this->assertGreaterThan(10, count($this->attributeLists));
         foreach ($this->attributeLists as $attributeList) {
             $this->assertInstanceOf(Spec\AttributeList::class, $attributeList);
+            $this->assertInstanceOf(Spec\Identifiable::class, $attributeList);
             $this->assertNotEmpty($attributeList::ATTRIBUTES);
         }
     }

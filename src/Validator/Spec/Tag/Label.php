@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -23,7 +24,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array<string> $htmlFormat
  */
-final class Label extends Tag
+final class Label extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

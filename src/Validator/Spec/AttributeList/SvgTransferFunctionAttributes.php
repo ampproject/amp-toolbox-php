@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 
 /**
  * Attribute list class SvgTransferFunctionAttributes.
@@ -24,7 +25,7 @@ use AmpProject\Validator\Spec\AttributeList;
  * @property-read array $tablevalues
  * @property-read array $type
  */
-final class SvgTransferFunctionAttributes extends AttributeList
+final class SvgTransferFunctionAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -25,7 +26,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $mandatoryAncestor
  * @property-read array<string> $htmlFormat
  */
-final class AmpListDivFetchError extends Tag
+final class AmpListDivFetchError extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

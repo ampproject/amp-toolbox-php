@@ -73,6 +73,7 @@ class CssSpecRulesTest extends TestCase
         $this->assertGreaterThan(4, count($this->cssRulesets));
         foreach ($this->cssRulesets as $cssRuleset) {
             $this->assertInstanceOf(Spec\CssRuleset::class, $cssRuleset);
+            $this->assertInstanceOf(Spec\Identifiable::class, $cssRuleset);
             $this->assertNotEmpty($cssRuleset::SPEC);
         }
     }

@@ -11,6 +11,7 @@ use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\ExtensionSpec;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
@@ -26,7 +27,7 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read array<string> $htmlFormat
  * @property-read string $extensionSpec
  */
-final class ScriptAmpYotpo extends Tag implements TagWithExtensionSpec
+final class ScriptAmpYotpo extends Tag implements Identifiable, TagWithExtensionSpec
 {
     use ExtensionSpec;
 

@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -33,7 +34,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $src_binding
  * @property-read array $title_binding
  */
-final class AmpAudioCommon extends AttributeList
+final class AmpAudioCommon extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

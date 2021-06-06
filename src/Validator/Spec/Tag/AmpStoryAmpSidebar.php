@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -29,7 +30,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $requiresExtension
  * @property-read array<array<string>> $markDescendants
  */
-final class AmpStoryAmpSidebar extends Tag
+final class AmpStoryAmpSidebar extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

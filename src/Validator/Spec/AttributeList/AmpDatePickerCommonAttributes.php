@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -38,7 +39,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $max_binding
  * @property-read array $min_binding
  */
-final class AmpDatePickerCommonAttributes extends AttributeList
+final class AmpDatePickerCommonAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

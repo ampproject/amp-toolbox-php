@@ -12,6 +12,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\DescendantTagList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -28,7 +29,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $descendantTagList
  * @property-read bool $mandatoryLastChild
  */
-final class AmpStoryPageAttachment extends Tag
+final class AmpStoryPageAttachment extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

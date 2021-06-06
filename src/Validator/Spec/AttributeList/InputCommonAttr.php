@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -66,7 +67,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $value_binding
  * @property-read array $width_binding
  */
-final class InputCommonAttr extends AttributeList
+final class InputCommonAttr extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.
@@ -91,6 +92,7 @@ final class InputCommonAttr extends AttributeList
         ],
         Attribute::CHECKED => [],
         Attribute::DISABLED => [],
+        Attribute::FORM => [],
         Attribute::HEIGHT => [],
         Attribute::INPUTMODE => [
             SpecRule::DISABLED_BY => [

@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -19,7 +20,7 @@ use AmpProject\Validator\Spec\SpecRule;
  *
  * @property-read array $src
  */
-final class OptionalSrcAmp4email extends AttributeList
+final class OptionalSrcAmp4email extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

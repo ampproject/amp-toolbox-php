@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -39,7 +40,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $slideAlign_binding
  * @property-read array $snap_binding
  */
-final class AmpStreamGalleryCommon extends AttributeList
+final class AmpStreamGalleryCommon extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

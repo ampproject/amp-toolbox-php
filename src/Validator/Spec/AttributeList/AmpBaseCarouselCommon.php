@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -46,7 +47,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $snapBy_binding
  * @property-read array $visibleCount_binding
  */
-final class AmpBaseCarouselCommon extends AttributeList
+final class AmpBaseCarouselCommon extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

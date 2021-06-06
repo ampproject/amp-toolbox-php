@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -25,7 +26,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<array<string>> $referencePoints
  * @property-read array<string> $htmlFormat
  */
-final class AmpStoryGridLayerDefault extends Tag
+final class AmpStoryGridLayerDefault extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

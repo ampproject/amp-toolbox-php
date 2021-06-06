@@ -11,6 +11,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -26,7 +27,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
  */
-final class AmpImaVideoTrack extends Tag
+final class AmpImaVideoTrack extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

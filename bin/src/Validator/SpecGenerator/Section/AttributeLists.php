@@ -108,7 +108,8 @@ final class AttributeLists implements Section
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\AttributeList');
+                           ->addExtend('AmpProject\Validator\Spec\AttributeList')
+                           ->addImplement('AmpProject\Validator\Spec\Identifiable');
 
         $class->addConstant('ID', $attributeListId)
               ->addComment("ID of the attribute list.\n\n@var string");

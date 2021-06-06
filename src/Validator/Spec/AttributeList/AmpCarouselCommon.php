@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -26,7 +27,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array<array<string>> $type
  * @property-read array $slide_binding
  */
-final class AmpCarouselCommon extends AttributeList
+final class AmpCarouselCommon extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

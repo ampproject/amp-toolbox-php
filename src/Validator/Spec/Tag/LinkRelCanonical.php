@@ -12,6 +12,7 @@ use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -31,7 +32,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $htmlFormat
  * @property-read string $descriptiveName
  */
-final class LinkRelCanonical extends Tag
+final class LinkRelCanonical extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

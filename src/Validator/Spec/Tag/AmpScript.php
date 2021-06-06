@@ -13,6 +13,7 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -29,7 +30,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $htmlFormat
  * @property-read array<string> $requiresExtension
  */
-final class AmpScript extends Tag
+final class AmpScript extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

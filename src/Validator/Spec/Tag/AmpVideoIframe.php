@@ -12,6 +12,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -28,7 +29,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $requiresExtension
  * @property-read array<string> $disabledBy
  */
-final class AmpVideoIframe extends Tag
+final class AmpVideoIframe extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -33,7 +34,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $src
  * @property-read array $src_binding
  */
-final class AmpVideoIframeCommon extends AttributeList
+final class AmpVideoIframeCommon extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

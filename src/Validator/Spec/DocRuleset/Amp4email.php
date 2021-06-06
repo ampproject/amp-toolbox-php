@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\DocRuleset;
 
 use AmpProject\Format;
 use AmpProject\Validator\Spec\DocRuleset;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -20,7 +21,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read int $maxBytes
  * @property-read string $maxBytesSpecUrl
  */
-final class Amp4email extends DocRuleset
+final class Amp4email extends DocRuleset implements Identifiable
 {
     /**
      * ID of the ruleset.

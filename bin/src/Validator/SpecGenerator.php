@@ -56,6 +56,7 @@ final class SpecGenerator
         $this->generateEntityClass('Tag', $fileManager);
         $this->generateEntityClass('TagWithExtensionSpec', $fileManager, 'interface');
         $this->generateEntityClass('ExtensionSpec', $fileManager, 'trait');
+        $this->generateEntityClass('Identifiable', $fileManager, 'interface');
         $this->generateEntityClass('IterableSection', $fileManager, 'interface');
         $this->generateEntityClass('Iteration', $fileManager, 'trait');
         $this->generateErrorCodeInterface($jsonSpec, $fileManager);

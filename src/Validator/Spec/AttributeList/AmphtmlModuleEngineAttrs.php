@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -20,7 +21,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $crossorigin
  * @property-read array $type
  */
-final class AmphtmlModuleEngineAttrs extends AttributeList
+final class AmphtmlModuleEngineAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.
@@ -49,7 +50,7 @@ final class AmphtmlModuleEngineAttrs extends AttributeList
         ],
         Attribute::TYPE => [
             SpecRule::MANDATORY => true,
-            SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH', // @todo This value could be put in an interface.
+            SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             SpecRule::VALUE_CASEI => [
                 'module',
             ],

@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 
 /**
  * Attribute list class SvgPresentationAttributes.
@@ -77,7 +78,7 @@ use AmpProject\Validator\Spec\AttributeList;
  * @property-read array $wordSpacing
  * @property-read array $writingMode
  */
-final class SvgPresentationAttributes extends AttributeList
+final class SvgPresentationAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

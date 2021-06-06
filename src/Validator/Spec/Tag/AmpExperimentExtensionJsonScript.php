@@ -12,6 +12,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -29,7 +30,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array $cdata
  * @property-read array<string> $htmlFormat
  */
-final class AmpExperimentExtensionJsonScript extends Tag
+final class AmpExperimentExtensionJsonScript extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

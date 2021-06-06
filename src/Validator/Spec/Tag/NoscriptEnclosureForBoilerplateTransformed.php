@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -27,7 +28,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $enabledBy
  * @property-read string $descriptiveName
  */
-final class NoscriptEnclosureForBoilerplateTransformed extends Tag
+final class NoscriptEnclosureForBoilerplateTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

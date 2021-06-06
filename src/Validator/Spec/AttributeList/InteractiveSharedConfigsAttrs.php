@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -24,7 +25,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array<array<string>> $chipStyle
  * @property-read array<array<string>> $promptSize
  */
-final class InteractiveSharedConfigsAttrs extends AttributeList
+final class InteractiveSharedConfigsAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

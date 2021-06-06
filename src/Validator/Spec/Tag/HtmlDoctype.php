@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -29,7 +30,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read bool $explicitAttrsOnly
  * @property-read string $descriptiveName
  */
-final class HtmlDoctype extends Tag
+final class HtmlDoctype extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

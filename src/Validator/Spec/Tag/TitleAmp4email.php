@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -24,7 +25,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $deprecationUrl
  * @property-read array<string> $htmlFormat
  */
-final class TitleAmp4email extends Tag
+final class TitleAmp4email extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -26,7 +27,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $htmlFormat
  * @property-read array<string> $requiresExtension
  */
-final class Canvas extends Tag
+final class Canvas extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

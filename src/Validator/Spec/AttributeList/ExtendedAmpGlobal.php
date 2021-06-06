@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -20,7 +21,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $media
  * @property-read array<array<string>> $noloading
  */
-final class ExtendedAmpGlobal extends AttributeList
+final class ExtendedAmpGlobal extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

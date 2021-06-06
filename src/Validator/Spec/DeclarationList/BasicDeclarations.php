@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\DeclarationList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\DeclarationList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -244,7 +245,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $writingMode
  * @property-read array<string> $zIndex
  */
-final class BasicDeclarations extends DeclarationList
+final class BasicDeclarations extends DeclarationList implements Identifiable
 {
     /**
      * ID of the declaration list.

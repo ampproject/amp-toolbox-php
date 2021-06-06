@@ -9,13 +9,14 @@ namespace AmpProject\Validator\Spec\DescendantTagList;
 
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
+use AmpProject\Validator\Spec\Identifiable;
 
 /**
  * Descendant tag list class AmpStorySocialShareAllowedDescendants.
  *
  * @package ampproject/amp-toolbox.
  */
-final class AmpStorySocialShareAllowedDescendants extends DescendantTagList
+final class AmpStorySocialShareAllowedDescendants extends DescendantTagList implements Identifiable
 {
     /**
      * ID of the descendant tag list.

@@ -8,6 +8,7 @@
 namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -24,7 +25,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read bool $siblingsDisallowed
  * @property-read string $descriptiveName
  */
-final class AmpMegaMenuNav extends Tag
+final class AmpMegaMenuNav extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

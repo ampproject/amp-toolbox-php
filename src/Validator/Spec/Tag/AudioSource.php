@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -26,7 +27,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array<string> $htmlFormat
  */
-final class AudioSource extends Tag
+final class AudioSource extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

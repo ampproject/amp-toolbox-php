@@ -258,7 +258,8 @@ final class Tags implements Section
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\Tag');
+                           ->addExtend('AmpProject\Validator\Spec\Tag')
+                           ->addImplement('AmpProject\Validator\Spec\Identifiable');
 
         $class->addConstant('ID', $tagId)
               ->addComment("ID of the tag.\n\n@var string");

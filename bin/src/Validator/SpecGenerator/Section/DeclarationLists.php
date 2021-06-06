@@ -108,7 +108,8 @@ final class DeclarationLists implements Section
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\DeclarationList');
+                           ->addExtend('AmpProject\Validator\Spec\DeclarationList')
+                           ->addImplement('AmpProject\Validator\Spec\Identifiable');
 
         $class->addConstant('ID', $declarationListId)
               ->addComment("ID of the declaration list.\n\n@var string");

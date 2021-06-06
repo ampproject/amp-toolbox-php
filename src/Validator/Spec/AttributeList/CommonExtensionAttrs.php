@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -21,7 +22,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array<array<string>> $nonce
  * @property-read array<array<string>> $type
  */
-final class CommonExtensionAttrs extends AttributeList
+final class CommonExtensionAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -24,7 +25,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array $attrs
  * @property-read array<string> $htmlFormat
  */
-final class AAmp4email extends Tag
+final class AAmp4email extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 
 /**
  * Attribute list class AmpLayoutAttrs.
@@ -24,7 +25,7 @@ use AmpProject\Validator\Spec\AttributeList;
  * @property-read array $height_binding
  * @property-read array $width_binding
  */
-final class AmpLayoutAttrs extends AttributeList
+final class AmpLayoutAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

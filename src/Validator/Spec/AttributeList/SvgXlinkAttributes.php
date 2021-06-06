@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -25,7 +26,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $xlink:title
  * @property-read array $xlink:type
  */
-final class SvgXlinkAttributes extends AttributeList
+final class SvgXlinkAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

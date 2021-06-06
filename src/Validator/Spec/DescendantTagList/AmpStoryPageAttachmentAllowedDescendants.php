@@ -11,13 +11,14 @@ use AmpProject\Extension;
 use AmpProject\Internal;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
+use AmpProject\Validator\Spec\Identifiable;
 
 /**
  * Descendant tag list class AmpStoryPageAttachmentAllowedDescendants.
  *
  * @package ampproject/amp-toolbox.
  */
-final class AmpStoryPageAttachmentAllowedDescendants extends DescendantTagList
+final class AmpStoryPageAttachmentAllowedDescendants extends DescendantTagList implements Identifiable
 {
     /**
      * ID of the descendant tag list.

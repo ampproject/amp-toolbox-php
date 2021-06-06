@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -19,7 +20,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array<string> $ampNestedSubmenuClose
  * @property-read array<string> $ampNestedSubmenuOpen
  */
-final class AmpNestedMenuActions extends AttributeList
+final class AmpNestedMenuActions extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

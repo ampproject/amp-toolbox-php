@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\CssRuleset;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -31,7 +32,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read bool $allowImportant
  * @property-read bool $expandVendorPrefixes
  */
-final class AmpNoTransformed extends CssRuleset
+final class AmpNoTransformed extends CssRuleset implements Identifiable
 {
     /**
      * ID of the ruleset.

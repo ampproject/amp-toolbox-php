@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -33,7 +34,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $disabledBy
  * @property-read string $descriptiveName
  */
-final class NoscriptStyleAmpBoilerplate extends Tag
+final class NoscriptStyleAmpBoilerplate extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

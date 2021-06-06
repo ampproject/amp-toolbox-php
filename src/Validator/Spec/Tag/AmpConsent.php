@@ -11,6 +11,7 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -28,7 +29,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $requiresExtension
  * @property-read array<string> $excludes
  */
-final class AmpConsent extends Tag
+final class AmpConsent extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

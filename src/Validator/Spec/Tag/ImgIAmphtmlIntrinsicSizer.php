@@ -11,6 +11,7 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Internal;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -26,7 +27,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $htmlFormat
  * @property-read array<string> $enabledBy
  */
-final class ImgIAmphtmlIntrinsicSizer extends Tag
+final class ImgIAmphtmlIntrinsicSizer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

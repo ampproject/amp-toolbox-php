@@ -11,6 +11,7 @@ use AmpProject\AtRule;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -29,7 +30,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read bool $mandatoryLastChild
  * @property-read string $descriptiveName
  */
-final class StyleAmpKeyframes extends Tag
+final class StyleAmpKeyframes extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

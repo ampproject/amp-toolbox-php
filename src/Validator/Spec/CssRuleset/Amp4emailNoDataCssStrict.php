@@ -12,6 +12,7 @@ use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\CssRuleset;
 use AmpProject\Validator\Spec\DeclarationList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -34,7 +35,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read bool $maxBytesIsWarning
  * @property-read bool $expandVendorPrefixes
  */
-final class Amp4emailNoDataCssStrict extends CssRuleset
+final class Amp4emailNoDataCssStrict extends CssRuleset implements Identifiable
 {
     /**
      * ID of the ruleset.

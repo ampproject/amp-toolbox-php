@@ -101,7 +101,8 @@ final class DescendantTagLists implements Section
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\DescendantTagList');
+                           ->addExtend('AmpProject\Validator\Spec\DescendantTagList')
+                           ->addImplement('AmpProject\Validator\Spec\Identifiable');
 
         $class->addConstant('ID', $descendantTagListId)
               ->addComment("ID of the descendant tag list.\n\n@var string");

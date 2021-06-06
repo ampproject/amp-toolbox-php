@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\DeclarationList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\DeclarationList;
+use AmpProject\Validator\Spec\Identifiable;
 
 /**
  * Declaration list class SvgBasicDeclarations.
@@ -53,7 +54,7 @@ use AmpProject\Validator\Spec\DeclarationList;
  * @property-read array $textAnchor
  * @property-read array $textRendering
  */
-final class SvgBasicDeclarations extends DeclarationList
+final class SvgBasicDeclarations extends DeclarationList implements Identifiable
 {
     /**
      * ID of the declaration list.

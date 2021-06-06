@@ -50,6 +50,7 @@ class DeclarationListsTest extends TestCase
         $this->assertGreaterThan(2, count($this->declarationLists));
         foreach ($this->declarationLists as $declarationList) {
             $this->assertInstanceOf(Spec\DeclarationList::class, $declarationList);
+            $this->assertInstanceOf(Spec\Identifiable::class, $declarationList);
             $this->assertNotEmpty($declarationList::DECLARATIONS);
         }
     }

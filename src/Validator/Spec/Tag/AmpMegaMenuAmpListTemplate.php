@@ -9,6 +9,7 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -25,7 +26,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<string> $htmlFormat
  * @property-read string $descriptiveName
  */
-final class AmpMegaMenuAmpListTemplate extends Tag
+final class AmpMegaMenuAmpListTemplate extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

@@ -148,7 +148,8 @@ final class DocRulesets implements Section
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\DocRuleset');
+                           ->addExtend('AmpProject\Validator\Spec\DocRuleset')
+                           ->addImplement('AmpProject\Validator\Spec\Identifiable');
 
         $class->addConstant('ID', $ruleset)
               ->addComment("ID of the ruleset.\n\n@var string");

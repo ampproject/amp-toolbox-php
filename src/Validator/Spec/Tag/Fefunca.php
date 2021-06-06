@@ -10,6 +10,7 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
@@ -25,7 +26,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $mandatoryAncestor
  * @property-read array<string> $htmlFormat
  */
-final class Fefunca extends Tag
+final class Fefunca extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
