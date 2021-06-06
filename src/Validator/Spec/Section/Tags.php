@@ -1172,7 +1172,7 @@ final class Tags implements IterableSection
         Extension::RECAPTCHA_INPUT => Tag\AmpRecaptchaInput::ID,
         Extension::REDBULL_PLAYER => Tag\AmpRedbullPlayer::ID,
         Extension::REDDIT => Tag\AmpReddit::ID,
-        'AMP-RENDER' => Tag\AmpRender::ID,
+        Extension::RENDER => Tag\AmpRender::ID,
         Extension::RIDDLE_QUIZ => Tag\AmpRiddleQuiz::ID,
         Extension::SCRIPT => Tag\AmpScript::ID,
         Extension::SELECTOR => Tag\AmpSelector::ID,
@@ -2929,7 +2929,7 @@ final class Tags implements IterableSection
         Extension::RECAPTCHA_INPUT => Tag\ScriptAmpRecaptchaInput::ID,
         Extension::REDBULL_PLAYER => Tag\ScriptAmpRedbullPlayer::ID,
         Extension::REDDIT => Tag\ScriptAmpReddit::ID,
-        'amp-render' => Tag\ScriptAmpRender::ID,
+        Extension::RENDER => Tag\ScriptAmpRender::ID,
         Extension::RIDDLE_QUIZ => Tag\ScriptAmpRiddleQuiz::ID,
         Extension::SCRIPT => Tag\ScriptAmpScript::ID,
         Extension::SELECTOR => Tag\ScriptCustomElementAmpSelectorAmp4email::ID,
@@ -3066,8 +3066,8 @@ final class Tags implements IterableSection
 
         $tag = $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
 
-        if (!$tag instanceof \AmpProject\Validator\Spec\TagWithExtensionSpec) { // @todo Unnecessarily FQN.
-            throw new \LogicException('Tags::byExtensionSpec returned tag without extension spec'); // @todo Unnecessary global namespace since imported.
+        if (!$tag instanceof TagWithExtensionSpec) {
+            throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
         }
 
         return $tag;

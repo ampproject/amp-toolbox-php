@@ -6,6 +6,7 @@ use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Exception\InvalidTagId;
+use AmpProject\Validator\Spec\TagWithExtensionSpec;
 use LogicException;
 
 /**
@@ -116,7 +117,7 @@ final class Tags
 
         $tag = $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
 
-        if (!$tag instanceof \AmpProject\Validator\Spec\TagWithExtensionSpec) {
+        if (!$tag instanceof TagWithExtensionSpec) {
             throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
         }
 
