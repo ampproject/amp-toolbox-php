@@ -498,7 +498,7 @@ final class ServerSideRendering implements Transformer
                 // Do nothing here.
                 break;
             case Layout::FLUID:
-                $styles .= 'width:100%;height:0;';
+                $styles = 'width:100%;height:0;';
                 $this->addClass($element, AMP::LAYOUT_AWAITING_SIZE_CLASS);
                 break;
             case Layout::FLEX_ITEM:
