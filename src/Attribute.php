@@ -485,6 +485,7 @@ interface Attribute
     const KERNELMATRIX                    = 'kernelmatrix';
     const KERNELUNITLENGTH                = 'kernelunitlength';
     const KERNING                         = 'kerning';
+    const KEY                             = 'key';
     const KEYBOARD_SELECT_MODE            = 'keyboard-select-mode';
     const KIND                            = 'kind';
     const LABEL                           = 'label';

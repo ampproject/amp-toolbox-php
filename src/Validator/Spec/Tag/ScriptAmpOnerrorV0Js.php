@@ -15,7 +15,7 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
 /**
- * Tag class ScriptAmpOnerror.
+ * Tag class ScriptAmpOnerrorV0Js.
  *
  * @package ampproject/amp-toolbox.
  *
@@ -24,18 +24,18 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read bool $unique
  * @property-read string $mandatoryParent
  * @property-read array<array> $attrs
- * @property-read string $cdata
+ * @property-read array<string> $cdata
  * @property-read array<string> $htmlFormat
  * @property-read string $descriptiveName
  */
-final class ScriptAmpOnerror extends Tag implements Identifiable
+final class ScriptAmpOnerrorV0Js extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
      *
      * @var string
      */
-    const ID = 'script amp-onerror';
+    const ID = 'script amp-onerror (v0.js)';
 
     /**
      * Array of spec rules.
@@ -44,7 +44,7 @@ final class ScriptAmpOnerror extends Tag implements Identifiable
      */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
-        SpecRule::SPEC_NAME => 'script amp-onerror',
+        SpecRule::SPEC_NAME => 'script amp-onerror (v0.js)',
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [

@@ -118,6 +118,7 @@ interface Extension
     const RECAPTCHA_INPUT                        = 'amp-recaptcha-input';
     const REDBULL_PLAYER                         = 'amp-redbull-player';
     const REDDIT                                 = 'amp-reddit';
+    const RENDER                                 = 'amp-render';
     const RIDDLE_QUIZ                            = 'amp-riddle-quiz';
     const SCRIPT                                 = 'amp-script';
     const SELECTOR                               = 'amp-selector';
