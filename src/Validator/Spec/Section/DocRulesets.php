@@ -18,6 +18,8 @@ use AmpProject\Validator\Spec\Iteration;
  * The DocRulesets section defines the validation rules that apply to an entire document.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method DocRuleset parentCurrent()
  */
 final class DocRulesets implements IterableSection
 {

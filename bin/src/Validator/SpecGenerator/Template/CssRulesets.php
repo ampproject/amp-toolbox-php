@@ -10,6 +10,8 @@ use AmpProject\Validator\Spec\CssRuleset;
  * The CssRulesets section defines the validation rules that apply to the CSS of a document.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method CssRuleset parentCurrent()
  */
 final class CssRulesets
 {
@@ -110,6 +112,6 @@ final class CssRulesets
      */
     public function current()
     {
-        return $this->parentCurrent(); // @todo Method 'parentCurrent' not found in CssRulesets.
+        return $this->parentCurrent();
     }
 }

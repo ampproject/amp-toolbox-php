@@ -9,6 +9,8 @@ use AmpProject\Validator\Spec;
  * The AttributeLists section provides lists of allowed attributes.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method AttributeList parentCurrent()
  */
 final class AttributeLists
 {
@@ -78,6 +80,6 @@ final class AttributeLists
      */
     public function current()
     {
-        return $this->parentCurrent(); // @todo Method 'parentCurrent' not found in AttributeLists.
+        return $this->parentCurrent();
     }
 }

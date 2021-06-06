@@ -10,6 +10,8 @@ use AmpProject\Validator\Spec\DocRuleset;
  * The DocRulesets section defines the validation rules that apply to an entire document.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method DocRuleset parentCurrent()
  */
 final class DocRulesets
 {
@@ -110,6 +112,6 @@ final class DocRulesets
      */
     public function current()
     {
-        return $this->parentCurrent(); // @todo Method 'parentCurrent' not found in DocRulesets.
+        return $this->parentCurrent();
     }
 }

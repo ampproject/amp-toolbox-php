@@ -25,6 +25,8 @@ use LogicException;
  * The Tags section gives access to all of the validation rules are are specific to an HTML element.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method Tag parentCurrent()
  */
 final class Tags implements IterableSection
 {

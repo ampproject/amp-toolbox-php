@@ -17,6 +17,8 @@ use AmpProject\Validator\Spec\Iteration;
  * The DeclarationLists section defines the sets of allowed declarations that can further qualify an object.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method DeclarationList parentCurrent()
  */
 final class DeclarationLists implements IterableSection
 {

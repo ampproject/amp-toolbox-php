@@ -9,6 +9,8 @@ use AmpProject\Validator\Spec;
  * The DescendantTagLists section provides lists that define the set of allowed descendant tags.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method DescendantTagList parentCurrent()
  */
 final class DescendantTagLists
 {
@@ -78,6 +80,6 @@ final class DescendantTagLists
      */
     public function current()
     {
-        return $this->parentCurrent(); // @todo Method 'parentCurrent' not found in DescendantTagLists.
+        return $this->parentCurrent();
     }
 }

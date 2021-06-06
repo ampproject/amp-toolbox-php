@@ -12,6 +12,8 @@ use LogicException;
  * The Tags section gives access to all of the validation rules are are specific to an HTML element.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method Tag parentCurrent()
  */
 final class Tags
 {
@@ -177,6 +179,6 @@ final class Tags
      */
     public function current()
     {
-        return $this->parentCurrent(); // @todo Method 'parentCurrent' not found in Tags.
+        return $this->parentCurrent();
     }
 }
