@@ -7,6 +7,8 @@ use AmpProject\Optimizer\Configuration\TransformedIdentifierConfiguration;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
+use AmpProject\Validator\Spec\CssRuleset\AmpTransformed;
+use AmpProject\Validator\Spec\SpecRule;
 
 /**
  * Transformer applying the transformed identifier transformations to the HTML input.
@@ -67,6 +69,10 @@ final class TransformedIdentifier implements Transformer
     public function transform(Document $document, ErrorCollection $errors)
     {
         $document->html->setAttribute(self::TRANSFORMED_ATTRIBUTE, $this->getOrigin());
+
+        // Ensure that the document uses the larges CSS byte limit for transformed documents,
+        // as it would probably be set to the non-transformed limit at this point.
+        $document->enforceCssMaxByteCount(AmpTransformed::SPEC[SpecRule::MAX_BYTES]);
     }
 
     /**
