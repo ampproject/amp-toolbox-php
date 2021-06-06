@@ -34,7 +34,7 @@ final class DescendantTagLists implements Section
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
 
-        $this->data = $this->adaptSpec($spec); // @todo Property declared dynamically.
+        $data = $this->adaptSpec($spec);
 
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(
@@ -48,7 +48,7 @@ final class DescendantTagLists implements Section
               ->addComment("Cache of instantiated descendant tag list objects.\n\n@var array<Spec\\DescendantTagList>");
 
         $descendantTagLists = [];
-        foreach ($this->data as $key => $value) {
+        foreach ($data as $key => $value) {
             $className = $this->generateDescendantTagListSpecificClass($key, $value, $fileManager);
 
             $descendantTagLists["DescendantTagList\\{$className}::ID"] = "DescendantTagList\\{$className}::class";

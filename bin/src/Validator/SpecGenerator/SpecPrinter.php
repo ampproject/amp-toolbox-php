@@ -110,18 +110,6 @@ final class SpecPrinter extends Printer
         ) . ($class->getName() ? "\n" : '');
     }
 
-    /**
-     * @param Closure|GlobalFunction|Method  $function
-     */
-    private function printReturnType($function, ?PhpNamespace $namespace): string
-    {
-        // @todo This method is not used.
-        return ($tmp = $this->printType($function->getReturnType(), $function->isReturnNullable(), $namespace))
-            ? $this->returnTypeColon . $tmp
-            : '';
-    }
-
-
     private function printAttributes(array $attrs, ?PhpNamespace $namespace, bool $inline = false): string
     {
         if (!$attrs) {
