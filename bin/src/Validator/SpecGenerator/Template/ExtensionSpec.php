@@ -29,6 +29,7 @@ trait ExtensionSpec
     /**
      * Get the latest available version of the extension.
      *
+     * phpcs:disable Generic.Files.LineLength.TooLong
      * @todo This will need to be adapted to be informed by <https://github.com/ampproject/amphtml/blob/main/build-system/compile/bundles.config.extensions.json>, where the latestVersion is stored with the spec (and the highest version is not always the same as latest), as well as any additional Bento metadata.
      * @return string Latest available version.
      */

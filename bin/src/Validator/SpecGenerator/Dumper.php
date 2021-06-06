@@ -356,9 +356,11 @@ final class Dumper
                 if ($parentKeys[0] === 'atRuleSpec') {
                     return $this->getAtRuleConstant($this->getConstantName($value));
                 }
-                if ($parentKeys[0] !== 'extensionSpec'
+                if (
+                    $parentKeys[0] !== 'extensionSpec'
                     && $parentKeys[0] !== 'properties'
-                    && strpos($value, '[') !== 0) {
+                    && strpos($value, '[') !== 0
+                ) {
                     return $this->getAttributeConstant($this->getConstantName($value));
                 }
                 return $value;
