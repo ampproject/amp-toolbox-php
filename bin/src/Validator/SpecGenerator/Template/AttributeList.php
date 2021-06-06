@@ -75,7 +75,7 @@ class AttributeList
      */
     public function __get($attribute)
     {
-        $attribute = preg_replace('/([a-z])([A-Z])/', '$1-$2', $attribute);
+        $attribute = strtolower(preg_replace('/([a-z])([A-Z])/', '$1-$2', $attribute));
 
         if (substr($attribute, -8) === '_binding') {
             $attribute = '[' . substr($attribute, 0, -8) . ']';
