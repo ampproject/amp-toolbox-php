@@ -55,7 +55,7 @@ final class Tags implements Section
         $class->addProperty('tagsCache')
               ->setPrivate()
               ->addComment("Cache of instantiated Tag objects.\n\n@var array<Tag>")
-              ->setValue([]); // @todo Method 'setValue' not found in \Nette\PhpGenerator\ClassType|\Nette\PhpGenerator\Constant|\Nette\PhpGenerator\GlobalFunction|\Nette\PhpGenerator\Method|\Nette\PhpGenerator\PhpFile|\Nette\PhpGenerator\PromotedParameter|\Nette\PhpGenerator\Property|\Nette\PhpGenerator\Traits\CommentAware|\Nette\PhpGenerator\Traits\VisibilityAware.
+              ->setValue([]);
 
         $class->addProperty('iterationArray')
               ->setPrivate()

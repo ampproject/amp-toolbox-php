@@ -50,7 +50,7 @@ final class CssRulesets implements Section
         $class->addProperty('cssRulesetsCache')
               ->setPrivate()
               ->addComment("Cache of instantiated CssRuleset objects.\n\n@var array<CssRuleset>")
-              ->setValue([]); // @todo Method 'setValue' not found in \Nette\PhpGenerator\ClassType|\Nette\PhpGenerator\Constant|\Nette\PhpGenerator\GlobalFunction|\Nette\PhpGenerator\Method|\Nette\PhpGenerator\PhpFile|\Nette\PhpGenerator\PromotedParameter|\Nette\PhpGenerator\Property|\Nette\PhpGenerator\Traits\CommentAware|\Nette\PhpGenerator\Traits\VisibilityAware
+              ->setValue([]);
 
         $class->addProperty('iterationArray')
               ->setPrivate()

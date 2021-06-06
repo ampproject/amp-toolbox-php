@@ -117,7 +117,7 @@ final class SpecPrinter extends Printer
         }
         $items = [];
         foreach ($attrs as $attr) {
-            $args = (new Dumper())->format('...?:', $attr->getArguments()); // @todo Method 'format' not found in Dumper .
+            $args = (new Dumper())->format('...?:', $attr->getArguments());
             $items[] = $this->printType($attr->getName(), false, $namespace) . ($args ? "($args)" : '');
         }
         return $inline

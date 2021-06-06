@@ -98,7 +98,7 @@ trait ConstantNames
      */
     private function getAtRuleConstant($atRule)
     {
-        return "AtRule::{$atRule}"; // @todo As with getFormatConstant above, new at-rules could be introduced (even moreso than formats).
+        return "AtRule::{$atRule}";
     }
 
     /**
