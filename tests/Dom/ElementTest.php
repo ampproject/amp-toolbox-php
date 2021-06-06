@@ -6,7 +6,7 @@ use AmpProject\Attribute;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\TestCase;
-use AmpProject\Validator\Spec\CssRuleset\AmpTransformed;
+use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
@@ -60,7 +60,7 @@ class ElementTest extends TestCase
      */
     public function testAddInlineStyleWithoutLimit()
     {
-        $maxBytes = AmpTransformed::SPEC[SpecRule::MAX_BYTES];
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
 
         $document = new Document();
         $ampCustomStyle = $document->createElement(Tag::STYLE);
@@ -95,7 +95,7 @@ class ElementTest extends TestCase
      */
     public function testAddInlineStyleWithLimit()
     {
-        $maxBytes = AmpTransformed::SPEC[SpecRule::MAX_BYTES];
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
 
         $document = new Document();
         $document->enforceCssMaxByteCount($maxBytes);

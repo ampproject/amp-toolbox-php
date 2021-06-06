@@ -9,7 +9,7 @@ use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Tag;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
-use AmpProject\Validator\Spec\CssRuleset\AmpTransformed;
+use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;
 use DOMNode;
 
@@ -1008,7 +1008,7 @@ class DocumentTest extends TestCase
      */
     public function testGetRemainingCssSpace()
     {
-        $maxBytes = AmpTransformed::SPEC[SpecRule::MAX_BYTES];
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
 
         $document = new Document();
         $ampCustomStyle = $document->createElement(Tag::STYLE);
@@ -1034,7 +1034,7 @@ class DocumentTest extends TestCase
      */
     public function testAddAmpCustomStyleWithoutLimit()
     {
-        $maxBytes = AmpTransformed::SPEC[SpecRule::MAX_BYTES];
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
 
         $document = new Document();
         $ampCustomStyle = $document->createElement(Tag::STYLE);
@@ -1061,7 +1061,7 @@ class DocumentTest extends TestCase
      */
     public function testAddAmpCustomStyleWithLimit()
     {
-        $maxBytes = AmpTransformed::SPEC[SpecRule::MAX_BYTES];
+        $maxBytes = AmpNoTransformed::SPEC[SpecRule::MAX_BYTES];
 
         $document = new Document();
         $document->enforceCssMaxByteCount($maxBytes);
