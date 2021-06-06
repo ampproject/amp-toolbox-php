@@ -32,8 +32,7 @@ final class AmpRiddleQuiz extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::RIDDLE_QUIZ,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_RIDDLE_ID,
+            Attribute::DATA_RIDDLE_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],

@@ -34,15 +34,13 @@ final class StyleAmpCustomAmp4email extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_CUSTOM,
+            Attribute::AMP_CUSTOM => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::VALUE_CASEI => [
                     'text/css',
                 ],

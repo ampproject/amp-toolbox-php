@@ -31,15 +31,9 @@ final class Fegaussianblur extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEGAUSSIANBLUR,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EDGEMODE,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::STDDEVIATION,
-            ],
+            Attribute::EDGEMODE => [],
+            Attribute::IN => [],
+            Attribute::STDDEVIATION => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

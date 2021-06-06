@@ -32,18 +32,10 @@ final class AmpAnim extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ANIM,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_FIT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_POSITION,
-            ],
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::OBJECT_FIT => [],
+            Attribute::OBJECT_POSITION => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

@@ -31,27 +31,13 @@ final class Ellipse extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::ELLIPSE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CX,
-            ],
-            [
-                SpecRule::NAME => Attribute::CY,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::RX,
-            ],
-            [
-                SpecRule::NAME => Attribute::RY,
-            ],
-            [
-                SpecRule::NAME => Attribute::SKETCH_TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
+            Attribute::CX => [],
+            Attribute::CY => [],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::RX => [],
+            Attribute::RY => [],
+            Attribute::SKETCH_TYPE => [],
+            Attribute::TRANSFORM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

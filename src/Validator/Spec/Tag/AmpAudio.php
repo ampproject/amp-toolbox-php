@@ -32,14 +32,12 @@ final class AmpAudio extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUDIO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::PRELOAD,
+            Attribute::PRELOAD => [
                 SpecRule::VALUE_CASEI => [
                     'auto',
                     'metadata',

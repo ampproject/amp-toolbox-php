@@ -34,8 +34,7 @@ final class AmpBindExtensionJsonScript extends Tag
         SpecRule::SPEC_NAME => 'amp-bind extension .json script',
         SpecRule::MANDATORY_PARENT => Extension::STATE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
                 SpecRule::VALUE_CASEI => [

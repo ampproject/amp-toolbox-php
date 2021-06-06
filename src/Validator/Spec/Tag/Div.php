@@ -30,9 +30,7 @@ final class Div extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
+            Attribute::ALIGN => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

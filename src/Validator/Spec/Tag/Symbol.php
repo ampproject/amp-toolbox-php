@@ -31,21 +31,11 @@ final class Symbol extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::SYMBOL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::HEIGHT => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::VIEWBOX => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

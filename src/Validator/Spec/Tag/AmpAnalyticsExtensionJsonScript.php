@@ -34,8 +34,7 @@ final class AmpAnalyticsExtensionJsonScript extends Tag
         SpecRule::SPEC_NAME => 'amp-analytics extension .json script',
         SpecRule::MANDATORY_PARENT => Extension::ANALYTICS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
                 SpecRule::VALUE_CASEI => [

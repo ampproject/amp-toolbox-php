@@ -31,18 +31,10 @@ final class Textpath extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEXTPATH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::METHOD,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPACING,
-            ],
-            [
-                SpecRule::NAME => Attribute::STARTOFFSET,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::METHOD => [],
+            Attribute::SPACING => [],
+            Attribute::STARTOFFSET => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

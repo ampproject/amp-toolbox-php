@@ -32,39 +32,17 @@ final class AmpImg extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMG,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::CROSSORIGIN,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_FIT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_POSITION,
-            ],
-            [
-                SpecRule::NAME => Attribute::PLACEHOLDER,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
-            ],
-            [
-                SpecRule::NAME => '[alt]',
-            ],
-            [
-                SpecRule::NAME => '[attribution]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[srcset]',
-            ],
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::CROSSORIGIN => [],
+            Attribute::OBJECT_FIT => [],
+            Attribute::OBJECT_POSITION => [],
+            Attribute::PLACEHOLDER => [],
+            Attribute::REFERRERPOLICY => [],
+            '[alt]' => [],
+            '[attribution]' => [],
+            '[src]' => [],
+            '[srcset]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

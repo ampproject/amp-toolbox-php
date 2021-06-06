@@ -30,30 +30,14 @@ final class Td extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::BGCOLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::COLSPAN,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEADERS,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ROWSPAN,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::ALIGN => [],
+            Attribute::BGCOLOR => [],
+            Attribute::COLSPAN => [],
+            Attribute::HEADERS => [],
+            Attribute::HEIGHT => [],
+            Attribute::ROWSPAN => [],
+            Attribute::VALIGN => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

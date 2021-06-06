@@ -32,35 +32,26 @@ final class AmpSelector extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SELECTOR,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::FORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::KEYBOARD_SELECT_MODE,
+            Attribute::FORM => [],
+            Attribute::KEYBOARD_SELECT_MODE => [
                 SpecRule::VALUE_CASEI => [
                     'focus',
                     'none',
                     'select',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::MULTIPLE,
+            Attribute::MULTIPLE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
-            [
-                SpecRule::NAME => '[selected]',
-            ],
+            '[disabled]' => [],
+            '[selected]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

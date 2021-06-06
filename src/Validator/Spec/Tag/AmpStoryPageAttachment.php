@@ -33,14 +33,9 @@ final class AmpStoryPageAttachment extends Tag
         SpecRule::TAG_NAME => Extension::STORY_PAGE_ATTACHMENT,
         SpecRule::SPEC_NAME => 'amp-story-page-attachment',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CTA_TEXT,
-            ],
-            [
-                SpecRule::NAME => Attribute::TITLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::CTA_IMAGE,
+            Attribute::CTA_TEXT => [],
+            Attribute::TITLE => [],
+            Attribute::CTA_IMAGE => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -48,8 +43,7 @@ final class AmpStoryPageAttachment extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CTA_IMAGE_2,
+            Attribute::CTA_IMAGE_2 => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -57,15 +51,13 @@ final class AmpStoryPageAttachment extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LAYOUT,
+            Attribute::LAYOUT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'nodisplay',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::THEME,
+            Attribute::THEME => [
                 SpecRule::VALUE => [
                     'dark',
                     'light',

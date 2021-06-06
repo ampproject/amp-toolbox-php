@@ -32,9 +32,7 @@ final class AmpGwdAnimation extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GWD_ANIMATION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TIMELINE_EVENT_PREFIX,
-            ],
+            Attribute::TIMELINE_EVENT_PREFIX => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

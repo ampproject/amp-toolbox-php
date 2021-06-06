@@ -31,9 +31,7 @@ final class Blockquote extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::BLOCKQUOTE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
+            Attribute::ALIGN => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\CiteAttr::ID,

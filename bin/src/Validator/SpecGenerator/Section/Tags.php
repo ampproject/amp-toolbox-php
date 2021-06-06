@@ -59,9 +59,21 @@ final class Tags implements Section
               ->setPrivate()
               ->addComment("Array used for storing the iteration index in.\n\n@var array<string>|null");
 
-        foreach ($spec as $attributes) {
-            $tagId        = $this->getTagId($tags, $attributes);
-            $tags[$tagId] = $attributes;
+        foreach ($spec as $tag) {
+            $tagId = $this->getTagId($tags, $tag);
+
+            if (array_key_exists('attrs', $tag)) {
+                $attributes   = $tag['attrs'];
+                $tag['attrs'] = [];
+
+                foreach ($attributes as $attribute) {
+                    $key = $attribute['name'];
+                    unset($attribute['name']);
+                    $tag['attrs'][$key] = $attribute;
+                }
+            }
+
+            $tags[$tagId] = $tag;
         }
 
         $tagIds = array_keys($tags);

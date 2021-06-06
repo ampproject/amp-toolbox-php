@@ -31,11 +31,8 @@ final class AmpBindMacro extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BIND_MACRO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ARGUMENTS,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXPRESSION,
+            Attribute::ARGUMENTS => [],
+            Attribute::EXPRESSION => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -31,36 +31,16 @@ final class Marker extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::MARKER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::MARKERHEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::MARKERUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MARKERWIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::ORIENT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFX,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFY,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::MARKERHEIGHT => [],
+            Attribute::MARKERUNITS => [],
+            Attribute::MARKERWIDTH => [],
+            Attribute::ORIENT => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::REFX => [],
+            Attribute::REFY => [],
+            Attribute::TRANSFORM => [],
+            Attribute::VIEWBOX => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

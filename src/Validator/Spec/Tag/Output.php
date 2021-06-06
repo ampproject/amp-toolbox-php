@@ -31,12 +31,8 @@ final class Output extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::OUTPUT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FOR_,
-            ],
-            [
-                SpecRule::NAME => Attribute::FORM,
-            ],
+            Attribute::FOR_ => [],
+            Attribute::FORM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

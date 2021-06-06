@@ -33,8 +33,7 @@ final class AmpAccordionSection extends Tag
         SpecRule::SPEC_NAME => 'amp-accordion > section',
         SpecRule::MANDATORY_PARENT => Extension::ACCORDION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ACCESS_HIDE,
+            Attribute::ACCESS_HIDE => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -42,17 +41,13 @@ final class AmpAccordionSection extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::EXPANDED,
+            Attribute::EXPANDED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => '[data-expand]',
-            ],
-            [
-                SpecRule::NAME => '[expanded]',
+            '[data-expand]' => [],
+            '[expanded]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],

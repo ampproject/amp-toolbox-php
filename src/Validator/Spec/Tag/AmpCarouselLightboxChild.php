@@ -30,8 +30,7 @@ final class AmpCarouselLightboxChild extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-CAROUSEL lightbox [child]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LIGHTBOX_THUMBNAIL_ID,
+            Attribute::LIGHTBOX_THUMBNAIL_ID => [
                 SpecRule::VALUE_REGEX_CASEI => '^[a-z][a-z\d_-]*',
             ],
         ],

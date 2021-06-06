@@ -31,36 +31,16 @@ final class Pattern extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::PATTERN,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PATTERNCONTENTUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::PATTERNTRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::PATTERNUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::HEIGHT => [],
+            Attribute::PATTERNCONTENTUNITS => [],
+            Attribute::PATTERNTRANSFORM => [],
+            Attribute::PATTERNUNITS => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::VIEWBOX => [],
+            Attribute::WIDTH => [],
+            Attribute::X => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

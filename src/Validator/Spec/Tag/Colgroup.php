@@ -30,9 +30,7 @@ final class Colgroup extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::COLGROUP,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SPAN,
-            ],
+            Attribute::SPAN => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

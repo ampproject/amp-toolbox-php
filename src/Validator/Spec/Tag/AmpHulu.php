@@ -32,8 +32,7 @@ final class AmpHulu extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::HULU,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_EID,
+            Attribute::DATA_EID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -31,8 +31,7 @@ final class AmpAnalytics extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ANALYTICS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONFIG,
+            Attribute::CONFIG => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -42,9 +41,7 @@ final class AmpAnalytics extends Tag
                     SpecRule::ALLOW_EMPTY => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
+            Attribute::TYPE => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-analytics/',
         SpecRule::HTML_FORMAT => [

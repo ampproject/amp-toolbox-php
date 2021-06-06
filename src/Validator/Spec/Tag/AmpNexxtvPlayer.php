@@ -32,24 +32,20 @@ final class AmpNexxtvPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::NEXXTV_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_CLIENT,
+            Attribute::DATA_CLIENT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MEDIAID,
+            Attribute::DATA_MEDIAID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MODE,
+            Attribute::DATA_MODE => [
                 SpecRule::VALUE => [
                     'api',
                     'static',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_STREAMTYPE,
+            Attribute::DATA_STREAMTYPE => [
                 SpecRule::VALUE => [
                     'album',
                     'audio',
@@ -63,8 +59,7 @@ final class AmpNexxtvPlayer extends Tag
                     'video',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_EXIT_MODE,
+            Attribute::DATA_EXIT_MODE => [
                 SpecRule::VALUE => [
                     'load',
                     'loop',

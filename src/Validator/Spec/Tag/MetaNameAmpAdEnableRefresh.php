@@ -31,12 +31,10 @@ final class MetaNameAmpAdEnableRefresh extends Tag
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name=amp-ad-enable-refresh',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::NAME,
+            Attribute::NAME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

@@ -35,8 +35,7 @@ final class Amp4adsEngineScript extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'https://cdn.ampproject.org/amp4ads-v0.js',

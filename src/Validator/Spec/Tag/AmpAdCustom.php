@@ -33,8 +33,7 @@ final class AmpAdCustom extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD_CUSTOM,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

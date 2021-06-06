@@ -31,27 +31,13 @@ final class Fecomposite extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECOMPOSITE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN2,
-            ],
-            [
-                SpecRule::NAME => Attribute::K1,
-            ],
-            [
-                SpecRule::NAME => Attribute::K2,
-            ],
-            [
-                SpecRule::NAME => Attribute::K3,
-            ],
-            [
-                SpecRule::NAME => Attribute::K4,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPERATOR,
-            ],
+            Attribute::IN => [],
+            Attribute::IN2 => [],
+            Attribute::K1 => [],
+            Attribute::K2 => [],
+            Attribute::K3 => [],
+            Attribute::K4 => [],
+            Attribute::OPERATOR => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

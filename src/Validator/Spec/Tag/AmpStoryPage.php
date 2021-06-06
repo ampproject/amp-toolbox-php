@@ -33,11 +33,8 @@ final class AmpStoryPage extends Tag
         SpecRule::TAG_NAME => Extension::STORY_PAGE,
         SpecRule::MANDATORY_PARENT => Extension::STORY,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTO_ADVANCE_AFTER,
-            ],
-            [
-                SpecRule::NAME => Attribute::BACKGROUND_AUDIO,
+            Attribute::AUTO_ADVANCE_AFTER => [],
+            Attribute::BACKGROUND_AUDIO => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -45,9 +42,7 @@ final class AmpStoryPage extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NEXT_PAGE_NO_AD,
-            ],
+            Attribute::NEXT_PAGE_NO_AD => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\MandatoryIdAttr::ID,

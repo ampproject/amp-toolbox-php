@@ -30,18 +30,16 @@ final class AmpMegaMenuAmpList extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > AMP-LIST',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY_ANYOF => [
                     Attribute::SRC,
-                    '[SRC]',
+                    '[src]',
                 ],
             ],
-            [
-                SpecRule::NAME => '[src]',
+            '[src]' => [
                 SpecRule::MANDATORY_ANYOF => [
                     Attribute::SRC,
-                    '[SRC]',
+                    '[src]',
                 ],
             ],
         ],

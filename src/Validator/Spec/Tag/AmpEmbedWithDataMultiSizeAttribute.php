@@ -34,31 +34,19 @@ final class AmpEmbedWithDataMultiSizeAttribute extends Tag
         SpecRule::TAG_NAME => Extension::EMBED,
         SpecRule::SPEC_NAME => 'amp-embed with data-multi-size attribute',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_MULTI_SIZE,
+            Attribute::ALT => [],
+            Attribute::DATA_MULTI_SIZE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::JSON,
-            ],
-            [
-                SpecRule::NAME => Attribute::RTC_CONFIG,
-            ],
-            [
-                SpecRule::NAME => Attribute::ALWAYS_SERVE_NPA,
-            ],
-            [
-                SpecRule::NAME => Attribute::BLOCK_RTC,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::JSON => [],
+            Attribute::RTC_CONFIG => [],
+            Attribute::ALWAYS_SERVE_NPA => [],
+            Attribute::BLOCK_RTC => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -67,8 +55,7 @@ final class AmpEmbedWithDataMultiSizeAttribute extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

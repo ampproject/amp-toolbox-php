@@ -34,11 +34,8 @@ final class AmpImaVideoSource extends Tag
         SpecRule::SPEC_NAME => 'amp-ima-video > source',
         SpecRule::MANDATORY_PARENT => Extension::IMA_VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MEDIA,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::MEDIA => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -47,15 +44,9 @@ final class AmpImaVideoSource extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[type]',
-            ],
+            Attribute::TYPE => [],
+            '[src]' => [],
+            '[type]' => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

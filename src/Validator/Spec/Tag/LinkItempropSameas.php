@@ -32,12 +32,10 @@ final class LinkItempropSameas extends Tag
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link itemprop=sameAs',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::HREF => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::ITEMPROP,
+            Attribute::ITEMPROP => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

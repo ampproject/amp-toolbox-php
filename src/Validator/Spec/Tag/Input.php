@@ -31,8 +31,7 @@ final class Input extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::NO_VERIFY,
+            Attribute::NO_VERIFY => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -40,12 +39,10 @@ final class Input extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(file|image|password|)(\s|$)',
             ],
-            [
-                SpecRule::NAME => '[type]',
+            '[type]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],

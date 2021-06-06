@@ -32,14 +32,12 @@ final class Base extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::HREF => [
                 SpecRule::VALUE => [
                     '/',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TARGET,
+            Attribute::TARGET => [
                 SpecRule::VALUE_CASEI => [
                     '_blank',
                     '_self',

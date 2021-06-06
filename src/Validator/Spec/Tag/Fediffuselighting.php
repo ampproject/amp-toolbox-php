@@ -31,18 +31,10 @@ final class Fediffuselighting extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDIFFUSELIGHTING,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DIFFUSECONSTANT,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::KERNELUNITLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::SURFACESCALE,
-            ],
+            Attribute::DIFFUSECONSTANT => [],
+            Attribute::IN => [],
+            Attribute::KERNELUNITLENGTH => [],
+            Attribute::SURFACESCALE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

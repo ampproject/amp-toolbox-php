@@ -34,8 +34,7 @@ final class MetaNameViewport extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_PROPERTIES => [
                     SpecRule::PROPERTIES => [
@@ -68,8 +67,7 @@ final class MetaNameViewport extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NAME,
+            Attribute::NAME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'viewport',

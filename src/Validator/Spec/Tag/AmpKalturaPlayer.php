@@ -32,8 +32,7 @@ final class AmpKalturaPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::KALTURA_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_PARTNER,
+            Attribute::DATA_PARTNER => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -31,35 +31,30 @@ final class AmpJwplayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::JWPLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MEDIA_ID,
+            Attribute::DATA_MEDIA_ID => [
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}|outstream',
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_MEDIA_ID,
                     Attribute::DATA_PLAYLIST_ID,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYER_ID,
+            Attribute::DATA_PLAYER_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYLIST_ID,
+            Attribute::DATA_PLAYLIST_ID => [
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_MEDIA_ID,
                     Attribute::DATA_PLAYLIST_ID,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

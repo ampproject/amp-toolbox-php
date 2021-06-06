@@ -32,15 +32,9 @@ final class RadialgradientStop extends Tag
         SpecRule::TAG_NAME => Element::STOP,
         SpecRule::SPEC_NAME => 'radialgradient > stop',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OFFSET,
-            ],
-            [
-                SpecRule::NAME => Attribute::STOP_COLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::STOP_OPACITY,
-            ],
+            Attribute::OFFSET => [],
+            Attribute::STOP_COLOR => [],
+            Attribute::STOP_OPACITY => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgStyleAttr::ID,

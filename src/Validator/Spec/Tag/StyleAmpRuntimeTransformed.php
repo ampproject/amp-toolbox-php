@@ -35,16 +35,14 @@ final class StyleAmpRuntimeTransformed extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_RUNTIME,
+            Attribute::AMP_RUNTIME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_VERSION,
+            Attribute::I_AMPHTML_VERSION => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '^\d{15}|latest$',
             ],

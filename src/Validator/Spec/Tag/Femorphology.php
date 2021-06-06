@@ -31,15 +31,9 @@ final class Femorphology extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEMORPHOLOGY,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPERATOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::RADIUS,
-            ],
+            Attribute::IN => [],
+            Attribute::OPERATOR => [],
+            Attribute::RADIUS => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

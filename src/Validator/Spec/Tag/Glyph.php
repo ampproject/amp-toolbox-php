@@ -31,33 +31,15 @@ final class Glyph extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::GLYPH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ARABIC_FORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::D,
-            ],
-            [
-                SpecRule::NAME => Attribute::GLYPH_NAME,
-            ],
-            [
-                SpecRule::NAME => Attribute::HORIZ_ADV_X,
-            ],
-            [
-                SpecRule::NAME => Attribute::ORIENTATION,
-            ],
-            [
-                SpecRule::NAME => Attribute::UNICODE,
-            ],
-            [
-                SpecRule::NAME => Attribute::VERT_ADV_Y,
-            ],
-            [
-                SpecRule::NAME => Attribute::VERT_ORIGIN_X,
-            ],
-            [
-                SpecRule::NAME => Attribute::VERT_ORIGIN_Y,
-            ],
+            Attribute::ARABIC_FORM => [],
+            Attribute::D => [],
+            Attribute::GLYPH_NAME => [],
+            Attribute::HORIZ_ADV_X => [],
+            Attribute::ORIENTATION => [],
+            Attribute::UNICODE => [],
+            Attribute::VERT_ADV_Y => [],
+            Attribute::VERT_ORIGIN_X => [],
+            Attribute::VERT_ORIGIN_Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

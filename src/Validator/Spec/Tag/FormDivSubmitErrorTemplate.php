@@ -31,15 +31,11 @@ final class FormDivSubmitErrorTemplate extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [submit-error][template]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::SUBMIT_ERROR,
+            Attribute::ALIGN => [],
+            Attribute::SUBMIT_ERROR => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

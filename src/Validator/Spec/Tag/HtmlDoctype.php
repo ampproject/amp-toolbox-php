@@ -34,15 +34,13 @@ final class HtmlDoctype extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => '$ROOT',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HTML,
+            Attribute::HTML => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LANG,
+            Attribute::LANG => [
                 SpecRule::DEPRECATION => 'html',
                 SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/25926',
             ],

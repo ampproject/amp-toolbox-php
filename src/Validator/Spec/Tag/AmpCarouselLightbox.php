@@ -33,8 +33,7 @@ final class AmpCarouselLightbox extends Tag
         SpecRule::TAG_NAME => Extension::CAROUSEL,
         SpecRule::SPEC_NAME => 'AMP-CAROUSEL lightbox',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LIGHTBOX,
+            Attribute::LIGHTBOX => [
                 SpecRule::MANDATORY => true,
             ],
         ],

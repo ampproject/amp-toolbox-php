@@ -33,15 +33,9 @@ final class AmpAudioTrackKindSubtitles extends Tag
         SpecRule::SPEC_NAME => 'amp-audio > track[kind=subtitles]',
         SpecRule::MANDATORY_PARENT => Extension::AUDIO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[label]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[srclang]',
-            ],
+            '[label]' => [],
+            '[src]' => [],
+            '[srclang]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\TrackAttrsSubtitles::ID,

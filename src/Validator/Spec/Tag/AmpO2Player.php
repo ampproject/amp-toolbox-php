@@ -32,12 +32,10 @@ final class AmpO2Player extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::O2_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_BCID,
+            Attribute::DATA_BCID => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PID,
+            Attribute::DATA_PID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

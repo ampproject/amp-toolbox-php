@@ -32,16 +32,12 @@ final class AmpViqeoPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIQEO_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_PROFILEID,
+            Attribute::AUTOPLAY => [],
+            Attribute::DATA_PROFILEID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-f]*',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_VIDEOID,
+            Attribute::DATA_VIDEOID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

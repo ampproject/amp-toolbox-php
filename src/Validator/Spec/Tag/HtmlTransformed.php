@@ -34,14 +34,12 @@ final class HtmlTransformed extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::_DOCTYPE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_LAYOUT,
+            Attribute::I_AMPHTML_LAYOUT => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_NO_BOILERPLATE,
+            Attribute::I_AMPHTML_NO_BOILERPLATE => [
                 SpecRule::VALUE => [
                     '',
                 ],

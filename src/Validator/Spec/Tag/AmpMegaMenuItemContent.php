@@ -30,8 +30,7 @@ final class AmpMegaMenuItemContent extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU item-content',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::ROLE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'dialog',

@@ -32,16 +32,14 @@ final class AmpLightbox extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIGHTBOX,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN,
+            Attribute::ANIMATE_IN => [
                 SpecRule::VALUE_CASEI => [
                     'fade-in',
                     'fly-in-bottom',
                     'fly-in-top',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ANIMATION,
+            Attribute::ANIMATION => [
                 SpecRule::VALUE_CASEI => [
                     'fade-in',
                     'fly-in-bottom',
@@ -51,21 +49,14 @@ final class AmpLightbox extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
-            ],
-            [
-                SpecRule::NAME => Attribute::FROM,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCROLLABLE,
+            Attribute::CONTROLS => [],
+            Attribute::FROM => [],
+            Attribute::SCROLLABLE => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => '[open]',
-            ],
+            '[open]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

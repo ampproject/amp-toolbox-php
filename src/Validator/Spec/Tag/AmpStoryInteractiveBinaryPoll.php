@@ -31,20 +31,14 @@ final class AmpStoryInteractiveBinaryPoll extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_BINARY_POLL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OPTION_1_TEXT,
+            Attribute::OPTION_1_TEXT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_TEXT,
+            Attribute::OPTION_2_TEXT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_1_CONFETTI,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_CONFETTI,
-            ],
+            Attribute::OPTION_1_CONFETTI => [],
+            Attribute::OPTION_2_CONFETTI => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\InteractiveSharedConfigsAttrs::ID,

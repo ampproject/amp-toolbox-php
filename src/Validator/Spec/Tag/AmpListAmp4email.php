@@ -34,8 +34,7 @@ final class AmpListAmp4email extends Tag
         SpecRule::TAG_NAME => Extension::LIST_,
         SpecRule::SPEC_NAME => 'AMP-LIST (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BINDING,
+            Attribute::BINDING => [
                 SpecRule::VALUE => [
                     'always',
                     'no',
@@ -43,23 +42,15 @@ final class AmpListAmp4email extends Tag
                     'refresh-evaluate',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DIFFABLE,
+            Attribute::DIFFABLE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::SINGLE_ITEM,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::ITEMS => [],
+            Attribute::MAX_ITEMS => [],
+            Attribute::SINGLE_ITEM => [],
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                 SpecRule::VALUE_URL => [
@@ -69,16 +60,11 @@ final class AmpListAmp4email extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
             ],
-            [
-                SpecRule::NAME => Attribute::XSSI_PREFIX,
-            ],
-            [
-                SpecRule::NAME => '[is-layout-container]',
-            ],
+            Attribute::XSSI_PREFIX => [],
+            '[is-layout-container]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

@@ -33,14 +33,9 @@ final class PictureSource extends Tag
         SpecRule::SPEC_NAME => 'picture > source',
         SpecRule::MANDATORY_PARENT => Element::PICTURE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MEDIA,
-            ],
-            [
-                SpecRule::NAME => Attribute::SIZES,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRCSET,
+            Attribute::MEDIA => [],
+            Attribute::SIZES => [],
+            Attribute::SRCSET => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -51,9 +46,7 @@ final class PictureSource extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
+            Attribute::TYPE => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',
         SpecRule::HTML_FORMAT => [

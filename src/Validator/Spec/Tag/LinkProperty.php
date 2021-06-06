@@ -32,12 +32,10 @@ final class LinkProperty extends Tag
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link property=',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::HREF => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::PROPERTY,
+            Attribute::PROPERTY => [
                 SpecRule::MANDATORY => true,
             ],
         ],

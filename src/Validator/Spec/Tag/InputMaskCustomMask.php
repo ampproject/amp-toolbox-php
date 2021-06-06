@@ -33,19 +33,15 @@ final class InputMaskCustomMask extends Tag
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'input [mask] (custom mask)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MASK,
+            Attribute::MASK => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(payment-card|date-dd-mm-yyyy|date-mm-dd-yyyy|date-mm-yy|date-yyyy-mm-dd)',
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::MASK_TRIM_ZEROS,
+            Attribute::MASK_TRIM_ZEROS => [
                 SpecRule::VALUE_REGEX => '\d+',
             ],
-            [
-                SpecRule::NAME => '[type]',
-            ],
+            '[type]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\AmpInputmaskCommonAttr::ID,

@@ -30,8 +30,7 @@ final class AmpLiveListUpdate extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [update]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::UPDATE,
+            Attribute::UPDATE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

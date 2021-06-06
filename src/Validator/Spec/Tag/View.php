@@ -31,21 +31,11 @@ final class View extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::VIEW,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWTARGET,
-            ],
-            [
-                SpecRule::NAME => Attribute::ZOOMANDPAN,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::VIEWBOX => [],
+            Attribute::VIEWTARGET => [],
+            Attribute::ZOOMANDPAN => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

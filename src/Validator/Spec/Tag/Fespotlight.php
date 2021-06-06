@@ -31,30 +31,14 @@ final class Fespotlight extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FESPOTLIGHT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LIMITINGCONEANGLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::POINTSATX,
-            ],
-            [
-                SpecRule::NAME => Attribute::POINTSATY,
-            ],
-            [
-                SpecRule::NAME => Attribute::POINTSATZ,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPECULAREXPONENT,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
-            [
-                SpecRule::NAME => Attribute::Z,
-            ],
+            Attribute::LIMITINGCONEANGLE => [],
+            Attribute::POINTSATX => [],
+            Attribute::POINTSATY => [],
+            Attribute::POINTSATZ => [],
+            Attribute::SPECULAREXPONENT => [],
+            Attribute::X => [],
+            Attribute::Y => [],
+            Attribute::Z => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

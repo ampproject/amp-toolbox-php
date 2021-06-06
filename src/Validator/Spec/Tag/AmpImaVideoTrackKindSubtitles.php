@@ -33,15 +33,9 @@ final class AmpImaVideoTrackKindSubtitles extends Tag
         SpecRule::SPEC_NAME => 'amp-ima-video > track[kind=subtitles]',
         SpecRule::MANDATORY_PARENT => Extension::IMA_VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[label]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[srclang]',
-            ],
+            '[label]' => [],
+            '[src]' => [],
+            '[srclang]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\TrackAttrsSubtitles::ID,

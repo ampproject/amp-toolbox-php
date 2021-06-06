@@ -32,8 +32,7 @@ final class AmpImgur extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMGUR,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_IMGUR_ID,
+            Attribute::DATA_IMGUR_ID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

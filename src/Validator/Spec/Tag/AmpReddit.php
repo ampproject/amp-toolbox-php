@@ -32,30 +32,26 @@ final class AmpReddit extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REDDIT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_EMBEDLIVE,
+            Attribute::DATA_EMBEDLIVE => [
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_EMBEDPARENT,
+            Attribute::DATA_EMBEDPARENT => [
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_EMBEDTYPE,
+            Attribute::DATA_EMBEDTYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'comment',
                     'post',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SRC,
+            Attribute::DATA_SRC => [
                 SpecRule::MANDATORY => true,
             ],
         ],

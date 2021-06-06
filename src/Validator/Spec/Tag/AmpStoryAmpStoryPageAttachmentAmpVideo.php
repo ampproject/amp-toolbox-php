@@ -33,9 +33,7 @@ final class AmpStoryAmpStoryPageAttachmentAmpVideo extends Tag
         SpecRule::TAG_NAME => Extension::VIDEO,
         SpecRule::SPEC_NAME => 'amp-story >> amp-story-page-attachment >> amp-video',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::POSTER,
-            ],
+            Attribute::POSTER => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

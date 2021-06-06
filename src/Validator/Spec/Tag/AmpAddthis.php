@@ -33,15 +33,13 @@ final class AmpAddthis extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ADDTHIS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_PRODUCT_CODE,
+            Attribute::DATA_PRODUCT_CODE => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_PRODUCT_CODE,
                     Attribute::DATA_WIDGET_ID,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SHARE_MEDIA,
+            Attribute::DATA_SHARE_MEDIA => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -50,8 +48,7 @@ final class AmpAddthis extends Tag
                     SpecRule::ALLOW_EMPTY => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SHARE_URL,
+            Attribute::DATA_SHARE_URL => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -60,8 +57,7 @@ final class AmpAddthis extends Tag
                     SpecRule::ALLOW_EMPTY => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_WIDGET_ID,
+            Attribute::DATA_WIDGET_ID => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_PRODUCT_CODE,
                     Attribute::DATA_WIDGET_ID,

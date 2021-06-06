@@ -31,21 +31,11 @@ final class Feturbulence extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FETURBULENCE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BASEFREQUENCY,
-            ],
-            [
-                SpecRule::NAME => Attribute::NUMOCTAVES,
-            ],
-            [
-                SpecRule::NAME => Attribute::SEED,
-            ],
-            [
-                SpecRule::NAME => Attribute::STITCHTILES,
-            ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
+            Attribute::BASEFREQUENCY => [],
+            Attribute::NUMOCTAVES => [],
+            Attribute::SEED => [],
+            Attribute::STITCHTILES => [],
+            Attribute::TYPE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

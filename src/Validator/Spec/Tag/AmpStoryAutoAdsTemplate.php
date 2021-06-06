@@ -34,8 +34,7 @@ final class AmpStoryAutoAdsTemplate extends Tag
         SpecRule::SPEC_NAME => 'amp-story-auto-ads > template',
         SpecRule::MANDATORY_PARENT => Extension::STORY_AUTO_ADS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-mustache',

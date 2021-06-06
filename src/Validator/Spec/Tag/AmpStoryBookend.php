@@ -32,15 +32,13 @@ final class AmpStoryBookend extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_BOOKEND,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LAYOUT,
+            Attribute::LAYOUT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'nodisplay',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,

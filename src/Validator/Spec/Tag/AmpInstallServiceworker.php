@@ -32,8 +32,7 @@ final class AmpInstallServiceworker extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INSTALL_SERVICEWORKER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_IFRAME_SRC,
+            Attribute::DATA_IFRAME_SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -42,8 +41,7 @@ final class AmpInstallServiceworker extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

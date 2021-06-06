@@ -33,11 +33,8 @@ final class VideoSource extends Tag
         SpecRule::SPEC_NAME => 'video > source',
         SpecRule::MANDATORY_PARENT => Element::VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MEDIA,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::MEDIA => [],
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -47,8 +44,7 @@ final class VideoSource extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

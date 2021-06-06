@@ -30,9 +30,7 @@ final class H6 extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::H6,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
+            Attribute::ALIGN => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

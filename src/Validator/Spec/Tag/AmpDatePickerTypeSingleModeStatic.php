@@ -33,14 +33,12 @@ final class AmpDatePickerTypeSingleModeStatic extends Tag
         SpecRule::TAG_NAME => Extension::DATE_PICKER,
         SpecRule::SPEC_NAME => 'amp-date-picker[type=single][mode=static]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MODE,
+            Attribute::MODE => [
                 SpecRule::VALUE_CASEI => [
                     'static',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::VALUE_CASEI => [
                     'single',
                 ],

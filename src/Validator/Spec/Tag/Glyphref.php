@@ -31,24 +31,12 @@ final class Glyphref extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::GLYPHREF,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DX,
-            ],
-            [
-                SpecRule::NAME => Attribute::DY,
-            ],
-            [
-                SpecRule::NAME => Attribute::FORMAT,
-            ],
-            [
-                SpecRule::NAME => Attribute::GLYPHREF,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::DX => [],
+            Attribute::DY => [],
+            Attribute::FORMAT => [],
+            Attribute::GLYPHREF => [],
+            Attribute::X => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

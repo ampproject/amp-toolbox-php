@@ -32,34 +32,18 @@ final class Video extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::LOOP,
-            ],
-            [
-                SpecRule::NAME => Attribute::MUTED,
+            Attribute::AUTOPLAY => [],
+            Attribute::CONTROLS => [],
+            Attribute::HEIGHT => [],
+            Attribute::LOOP => [],
+            Attribute::MUTED => [
                 SpecRule::DEPRECATION => 'autoplay',
                 SpecRule::DEPRECATION_URL => 'https://amp.dev/documentation/components/amp-video/',
             ],
-            [
-                SpecRule::NAME => Attribute::PLAYSINLINE,
-            ],
-            [
-                SpecRule::NAME => Attribute::POSTER,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRELOAD,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::PLAYSINLINE => [],
+            Attribute::POSTER => [],
+            Attribute::PRELOAD => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -69,9 +53,7 @@ final class Video extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::WIDTH => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video/',
         SpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,

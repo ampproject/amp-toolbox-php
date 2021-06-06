@@ -30,42 +30,21 @@ final class Th extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ABBR,
-            ],
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::BGCOLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::COLSPAN,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEADERS,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ROWSPAN,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCOPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::SORTED,
+            Attribute::ABBR => [],
+            Attribute::ALIGN => [],
+            Attribute::BGCOLOR => [],
+            Attribute::COLSPAN => [],
+            Attribute::HEADERS => [],
+            Attribute::HEIGHT => [],
+            Attribute::ROWSPAN => [],
+            Attribute::SCOPE => [],
+            Attribute::SORTED => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::VALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::VALIGN => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

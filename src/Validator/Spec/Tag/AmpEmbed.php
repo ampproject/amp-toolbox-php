@@ -33,17 +33,10 @@ final class AmpEmbed extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EMBED,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::JSON,
-            ],
-            [
-                SpecRule::NAME => Attribute::RTC_CONFIG,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::ALT => [],
+            Attribute::JSON => [],
+            Attribute::RTC_CONFIG => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -52,16 +45,11 @@ final class AmpEmbed extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::ALWAYS_SERVE_NPA,
-            ],
-            [
-                SpecRule::NAME => Attribute::BLOCK_RTC,
-            ],
+            Attribute::ALWAYS_SERVE_NPA => [],
+            Attribute::BLOCK_RTC => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

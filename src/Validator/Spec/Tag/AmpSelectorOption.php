@@ -30,18 +30,15 @@ final class AmpSelectorOption extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-SELECTOR option',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION,
+            Attribute::OPTION => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::SELECTED,
+            Attribute::SELECTED => [
                 SpecRule::VALUE => [
                     '',
                 ],

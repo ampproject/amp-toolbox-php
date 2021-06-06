@@ -32,8 +32,7 @@ final class SpanSwgAmpCacheNonce extends Tag
         SpecRule::TAG_NAME => Element::SPAN,
         SpecRule::SPEC_NAME => 'span swg_amp_cache_nonce',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SWG_AMP_CACHE_NONCE,
+            Attribute::SWG_AMP_CACHE_NONCE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],

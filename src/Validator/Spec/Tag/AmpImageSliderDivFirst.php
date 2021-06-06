@@ -33,8 +33,7 @@ final class AmpImageSliderDivFirst extends Tag
         SpecRule::SPEC_NAME => 'AMP-IMAGE-SLIDER > DIV [first]',
         SpecRule::MANDATORY_PARENT => Extension::IMAGE_SLIDER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FIRST,
+            Attribute::FIRST => [
                 SpecRule::MANDATORY => true,
             ],
         ],

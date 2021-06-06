@@ -32,8 +32,7 @@ final class AmpWebPushWidget extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::WEB_PUSH_WIDGET,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::VISIBILITY,
+            Attribute::VISIBILITY => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'blocked',

@@ -32,13 +32,11 @@ final class SubscriptionsScriptCiphertext extends Tag
         SpecRule::SPEC_NAME => 'subscriptions script ciphertext',
         SpecRule::MANDATORY_PARENT => 'subscriptions-section content swg_amp_cache_nonce',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CIPHERTEXT,
+            Attribute::CIPHERTEXT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'application/octet-stream',

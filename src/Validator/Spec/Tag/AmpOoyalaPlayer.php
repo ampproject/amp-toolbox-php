@@ -32,16 +32,13 @@ final class AmpOoyalaPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::OOYALA_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_EMBEDCODE,
+            Attribute::DATA_EMBEDCODE => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PCODE,
+            Attribute::DATA_PCODE => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYERID,
+            Attribute::DATA_PLAYERID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

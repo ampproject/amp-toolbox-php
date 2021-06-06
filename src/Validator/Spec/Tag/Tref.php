@@ -31,9 +31,7 @@ final class Tref extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TREF,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

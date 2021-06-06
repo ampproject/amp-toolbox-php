@@ -30,18 +30,10 @@ final class Tr extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TR,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::BGCOLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALIGN,
-            ],
+            Attribute::ALIGN => [],
+            Attribute::BGCOLOR => [],
+            Attribute::HEIGHT => [],
+            Attribute::VALIGN => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

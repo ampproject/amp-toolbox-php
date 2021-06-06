@@ -32,8 +32,7 @@ final class AmpVk extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VK,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_EMBEDTYPE,
+            Attribute::DATA_EMBEDTYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

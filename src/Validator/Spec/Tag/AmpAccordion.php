@@ -32,14 +32,12 @@ final class AmpAccordion extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ACCORDION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE,
+            Attribute::ANIMATE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DISABLE_SESSION_STATES,
+            Attribute::DISABLE_SESSION_STATES => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -47,8 +45,7 @@ final class AmpAccordion extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::EXPAND_SINGLE_SECTION,
+            Attribute::EXPAND_SINGLE_SECTION => [
                 SpecRule::VALUE => [
                     '',
                 ],

@@ -30,12 +30,8 @@ final class Progress extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::PROGRESS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MAX,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
+            Attribute::MAX => [],
+            Attribute::VALUE => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

@@ -32,12 +32,10 @@ final class LinkItemprop extends Tag
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link itemprop=',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::HREF => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::ITEMPROP,
+            Attribute::ITEMPROP => [
                 SpecRule::MANDATORY => true,
             ],
         ],

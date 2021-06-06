@@ -32,26 +32,19 @@ final class AmpSmartlinks extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SMARTLINKS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXCLUSIVE_LINKS,
+            Attribute::EXCLUSIVE_LINKS => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LINK_ATTRIBUTE,
-            ],
-            [
-                SpecRule::NAME => Attribute::LINK_SELECTOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::LINKMATE,
+            Attribute::LINK_ATTRIBUTE => [],
+            Attribute::LINK_SELECTOR => [],
+            Attribute::LINKMATE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NRTV_ACCOUNT_NAME,
+            Attribute::NRTV_ACCOUNT_NAME => [
                 SpecRule::MANDATORY => true,
             ],
         ],

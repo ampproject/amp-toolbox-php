@@ -32,11 +32,8 @@ final class LinkRel extends Tag
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link rel=',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HREF,
-            ],
-            [
-                SpecRule::NAME => Attribute::REL,
+            Attribute::HREF => [],
+            Attribute::REL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(canonical|components|import|manifest|modulepreload|preload|serviceworker|stylesheet|subresource)(\s|$)',
             ],

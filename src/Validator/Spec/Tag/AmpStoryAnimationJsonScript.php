@@ -34,8 +34,7 @@ final class AmpStoryAnimationJsonScript extends Tag
         SpecRule::SPEC_NAME => 'amp-story-animation json script',
         SpecRule::MANDATORY_PARENT => Extension::STORY_ANIMATION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
                 SpecRule::VALUE_CASEI => [

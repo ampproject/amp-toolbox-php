@@ -31,27 +31,13 @@ final class Mask extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::MASK,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::MASKCONTENTUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MASKUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::HEIGHT => [],
+            Attribute::MASKCONTENTUNITS => [],
+            Attribute::MASKUNITS => [],
+            Attribute::WIDTH => [],
+            Attribute::X => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

@@ -32,12 +32,8 @@ final class AmpNextPageWithInlineConfig extends Tag
         SpecRule::SPEC_NAME => 'amp-next-page with inline config',
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DEEP_PARSING,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_PAGES,
-            ],
+            Attribute::DEEP_PARSING => [],
+            Attribute::MAX_PAGES => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',
         SpecRule::REFERENCE_POINTS => [

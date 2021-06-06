@@ -33,11 +33,8 @@ final class AmpStoryAnimation extends Tag
         SpecRule::TAG_NAME => Extension::STORY_ANIMATION,
         SpecRule::MANDATORY_PARENT => Extension::STORY_PAGE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN_AFTER,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRIGGER,
+            Attribute::ANIMATE_IN_AFTER => [],
+            Attribute::TRIGGER => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'visibility',

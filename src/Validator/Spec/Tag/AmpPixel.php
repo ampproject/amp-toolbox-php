@@ -33,17 +33,13 @@ final class AmpPixel extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PIXEL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALLOW_SSR_IMG,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
+            Attribute::ALLOW_SSR_IMG => [],
+            Attribute::REFERRERPOLICY => [
                 SpecRule::VALUE => [
                     'no-referrer',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

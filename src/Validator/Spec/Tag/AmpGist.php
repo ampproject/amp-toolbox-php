@@ -32,8 +32,7 @@ final class AmpGist extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GIST,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_GISTID,
+            Attribute::DATA_GISTID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

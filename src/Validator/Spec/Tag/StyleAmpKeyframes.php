@@ -34,8 +34,7 @@ final class StyleAmpKeyframes extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::BODY,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_KEYFRAMES,
+            Attribute::AMP_KEYFRAMES => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

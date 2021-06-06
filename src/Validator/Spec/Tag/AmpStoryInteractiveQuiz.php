@@ -31,8 +31,7 @@ final class AmpStoryInteractiveQuiz extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_QUIZ,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OPTION_1_CORRECT,
+            Attribute::OPTION_1_CORRECT => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::OPTION_1_CORRECT,
                     Attribute::OPTION_2_CORRECT,
@@ -40,8 +39,7 @@ final class AmpStoryInteractiveQuiz extends Tag
                     Attribute::OPTION_4_CORRECT,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_CORRECT,
+            Attribute::OPTION_2_CORRECT => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::OPTION_1_CORRECT,
                     Attribute::OPTION_2_CORRECT,
@@ -49,8 +47,7 @@ final class AmpStoryInteractiveQuiz extends Tag
                     Attribute::OPTION_4_CORRECT,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_3_CORRECT,
+            Attribute::OPTION_3_CORRECT => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::OPTION_1_CORRECT,
                     Attribute::OPTION_2_CORRECT,
@@ -63,8 +60,7 @@ final class AmpStoryInteractiveQuiz extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_4_CORRECT,
+            Attribute::OPTION_4_CORRECT => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::OPTION_1_CORRECT,
                     Attribute::OPTION_2_CORRECT,

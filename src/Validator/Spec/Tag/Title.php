@@ -30,9 +30,7 @@ final class Title extends Tag
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'title',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[text]',
-            ],
+            '[text]' => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

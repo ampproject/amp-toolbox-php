@@ -32,8 +32,7 @@ final class AmpRedbullPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REDBULL_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_PARAM_VIDEOID,
+            Attribute::DATA_PARAM_VIDEOID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

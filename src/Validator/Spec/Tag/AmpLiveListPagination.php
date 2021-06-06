@@ -30,8 +30,7 @@ final class AmpLiveListPagination extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [pagination]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::PAGINATION,
+            Attribute::PAGINATION => [
                 SpecRule::MANDATORY => true,
             ],
         ],

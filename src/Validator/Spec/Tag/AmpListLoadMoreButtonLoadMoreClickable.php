@@ -34,34 +34,26 @@ final class AmpListLoadMoreButtonLoadMoreClickable extends Tag
         SpecRule::SPEC_NAME => 'amp-list-load-more button[load-more-clickable]',
         SpecRule::MANDATORY_PARENT => Extension::LIST_LOAD_MORE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_CLICKABLE,
+            Attribute::LOAD_MORE_CLICKABLE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::ROLE => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TABINDEX,
+            Attribute::TABINDEX => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
+            Attribute::TYPE => [],
+            Attribute::VALUE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

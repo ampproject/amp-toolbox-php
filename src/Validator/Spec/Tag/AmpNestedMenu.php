@@ -33,8 +33,7 @@ final class AmpNestedMenu extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::NESTED_MENU,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SIDE,
+            Attribute::SIDE => [
                 SpecRule::VALUE => [
                     'left',
                     'right',

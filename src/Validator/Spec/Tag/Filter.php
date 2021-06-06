@@ -31,30 +31,14 @@ final class Filter extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FILTER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::FILTERRES,
-            ],
-            [
-                SpecRule::NAME => Attribute::FILTERUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRIMITIVEUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::FILTERRES => [],
+            Attribute::FILTERUNITS => [],
+            Attribute::HEIGHT => [],
+            Attribute::PRIMITIVEUNITS => [],
+            Attribute::WIDTH => [],
+            Attribute::X => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

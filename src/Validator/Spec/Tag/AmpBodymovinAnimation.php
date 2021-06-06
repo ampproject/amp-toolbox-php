@@ -32,18 +32,15 @@ final class AmpBodymovinAnimation extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BODYMOVIN_ANIMATION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LOOP,
+            Attribute::LOOP => [
                 SpecRule::VALUE_REGEX_CASEI => '[1-9][0-9]*|false|true',
             ],
-            [
-                SpecRule::NAME => Attribute::NOAUTOPLAY,
+            Attribute::NOAUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -52,8 +49,7 @@ final class AmpBodymovinAnimation extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::RENDERER,
+            Attribute::RENDERER => [
                 SpecRule::VALUE_CASEI => [
                     'canvas',
                     'html',

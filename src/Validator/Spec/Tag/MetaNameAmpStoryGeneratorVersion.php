@@ -33,12 +33,10 @@ final class MetaNameAmpStoryGeneratorVersion extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::NAME,
+            Attribute::NAME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'amp-story-generator-version',

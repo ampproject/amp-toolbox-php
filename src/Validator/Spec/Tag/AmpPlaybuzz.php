@@ -32,36 +32,31 @@ final class AmpPlaybuzz extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PLAYBUZZ,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_COMMENTS,
+            Attribute::DATA_COMMENTS => [
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_ITEM,
+            Attribute::DATA_ITEM => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_ITEM,
                     Attribute::SRC,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_ITEM_INFO,
+            Attribute::DATA_ITEM_INFO => [
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SHARE_BUTTONS,
+            Attribute::DATA_SHARE_BUTTONS => [
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_ITEM,
                     Attribute::SRC,

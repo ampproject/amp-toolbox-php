@@ -31,21 +31,11 @@ final class Path extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::PATH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::D,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::PATHLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::SKETCH_TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
+            Attribute::D => [],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::PATHLENGTH => [],
+            Attribute::SKETCH_TYPE => [],
+            Attribute::TRANSFORM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

@@ -30,18 +30,15 @@ final class Ol extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::OL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::REVERSED,
+            Attribute::REVERSED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::START,
+            Attribute::START => [
                 SpecRule::VALUE_REGEX => '[0-9]*',
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::VALUE_REGEX => '[1AaIi]',
             ],
         ],

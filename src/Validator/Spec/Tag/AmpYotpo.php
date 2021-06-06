@@ -32,12 +32,10 @@ final class AmpYotpo extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::YOTPO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_APP_KEY,
+            Attribute::DATA_APP_KEY => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_WIDGET_TYPE,
+            Attribute::DATA_WIDGET_TYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

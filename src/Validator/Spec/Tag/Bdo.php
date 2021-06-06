@@ -30,9 +30,7 @@ final class Bdo extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::BDO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DIR,
-            ],
+            Attribute::DIR => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

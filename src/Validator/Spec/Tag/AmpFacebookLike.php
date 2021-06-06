@@ -33,8 +33,7 @@ final class AmpFacebookLike extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FACEBOOK_LIKE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_HREF,
+            Attribute::DATA_HREF => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

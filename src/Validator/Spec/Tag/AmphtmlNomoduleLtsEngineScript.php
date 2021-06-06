@@ -35,8 +35,7 @@ final class AmphtmlNomoduleLtsEngineScript extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'https://cdn.ampproject.org/lts/v0.js',

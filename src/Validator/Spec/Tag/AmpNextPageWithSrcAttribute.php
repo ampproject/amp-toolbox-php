@@ -33,14 +33,9 @@ final class AmpNextPageWithSrcAttribute extends Tag
         SpecRule::SPEC_NAME => 'amp-next-page with src attribute',
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DEEP_PARSING,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_PAGES,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::DEEP_PARSING => [],
+            Attribute::MAX_PAGES => [],
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -50,9 +45,7 @@ final class AmpNextPageWithSrcAttribute extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::XSSI_PREFIX,
-            ],
+            Attribute::XSSI_PREFIX => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',
         SpecRule::REFERENCE_POINTS => [

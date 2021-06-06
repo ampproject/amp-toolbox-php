@@ -33,12 +33,10 @@ final class AmpRecaptchaInput extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::RECAPTCHA_INPUT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_SITEKEY,
+            Attribute::DATA_SITEKEY => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_ACTION,
+            Attribute::DATA_ACTION => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -31,12 +31,8 @@ final class Canvas extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::CANVAS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::HEIGHT => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
         SpecRule::MANDATORY_ANCESTOR => Extension::SCRIPT,

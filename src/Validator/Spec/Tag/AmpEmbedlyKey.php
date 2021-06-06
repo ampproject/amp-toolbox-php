@@ -32,8 +32,7 @@ final class AmpEmbedlyKey extends Tag
         SpecRule::TAG_NAME => Extension::EMBEDLY_KEY,
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::VALUE,
+            Attribute::VALUE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

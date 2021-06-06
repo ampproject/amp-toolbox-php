@@ -32,15 +32,13 @@ final class AmpIframely extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IFRAMELY,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_ID,
+            Attribute::DATA_ID => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_ID,
                     Attribute::DATA_URL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_URL,
+            Attribute::DATA_URL => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_ID,
                     Attribute::DATA_URL,
@@ -51,25 +49,19 @@ final class AmpIframely extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_KEY,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_IMG,
+            Attribute::DATA_KEY => [],
+            Attribute::DATA_IMG => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_BORDER,
+            Attribute::DATA_BORDER => [
                 SpecRule::VALUE_REGEX => '(\d+)',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_DOMAIN,
+            Attribute::DATA_DOMAIN => [
                 SpecRule::VALUE_REGEX => '^((?:[^\.\/]+\.)?iframe\.ly|if\-cdn\.com|iframely\.net|oembed\.vice\.com|iframe\.nbcnews\.com)$',
             ],
-            [
-                SpecRule::NAME => Attribute::RESIZABLE,
+            Attribute::RESIZABLE => [
                 SpecRule::VALUE => [
                     '',
                 ],

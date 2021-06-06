@@ -33,38 +33,28 @@ final class Iframe extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::IFRAME,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FRAMEBORDER,
+            Attribute::FRAMEBORDER => [
                 SpecRule::VALUE => [
                     '0',
                     '1',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
-            ],
-            [
-                SpecRule::NAME => Attribute::RESIZABLE,
+            Attribute::HEIGHT => [],
+            Attribute::REFERRERPOLICY => [],
+            Attribute::RESIZABLE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SANDBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCROLLING,
+            Attribute::SANDBOX => [],
+            Attribute::SCROLLING => [
                 SpecRule::VALUE => [
                     'auto',
                     'yes',
                     'no',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::SRC,
@@ -78,16 +68,13 @@ final class Iframe extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRCDOC,
+            Attribute::SRCDOC => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::SRC,
                     Attribute::SRCDOC,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::WIDTH => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

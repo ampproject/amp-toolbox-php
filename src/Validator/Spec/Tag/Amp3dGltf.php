@@ -33,43 +33,35 @@ final class Amp3dGltf extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::_3D_GLTF,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALPHA,
+            Attribute::ALPHA => [
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ANTIALIASING,
+            Attribute::ANTIALIASING => [
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::AUTOROTATE,
+            Attribute::AUTOROTATE => [
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CLEARCOLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::ENABLEZOOM,
+            Attribute::CLEARCOLOR => [],
+            Attribute::ENABLEZOOM => [
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::MAXPIXELRATIO,
+            Attribute::MAXPIXELRATIO => [
                 SpecRule::VALUE_REGEX => '[+-]?(\d*\.)?\d+',
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

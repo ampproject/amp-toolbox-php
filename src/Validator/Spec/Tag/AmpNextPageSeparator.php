@@ -32,8 +32,7 @@ final class AmpNextPageSeparator extends Tag
         SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [separator]',
         SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SEPARATOR,
+            Attribute::SEPARATOR => [
                 SpecRule::MANDATORY => true,
             ],
         ],

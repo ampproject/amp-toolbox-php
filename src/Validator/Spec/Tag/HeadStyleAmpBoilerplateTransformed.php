@@ -34,8 +34,7 @@ final class HeadStyleAmpBoilerplateTransformed extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_BOILERPLATE,
+            Attribute::AMP_BOILERPLATE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

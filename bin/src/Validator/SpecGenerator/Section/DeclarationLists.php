@@ -32,7 +32,7 @@ final class DeclarationLists implements Section
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
 
-        $this->data = $this->adaptSpec($spec);
+        $data = $this->adaptSpec($spec);
 
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(
@@ -46,7 +46,7 @@ final class DeclarationLists implements Section
               ->addComment("Cache of instantiated declaration list objects.\n\n@var array<Spec\\DeclarationList>");
 
         $declarationLists = [];
-        foreach ($this->data as $key => $value) {
+        foreach ($data as $key => $value) {
             $className = $this->generateDeclarationListSpecificClass($key, $value, $fileManager);
 
             $declarationLists["DeclarationList\\{$className}::ID"] = "DeclarationList\\{$className}::class";

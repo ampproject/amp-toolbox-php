@@ -32,8 +32,7 @@ final class DivAmpNestedMenu extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'div amp-nested-menu',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU,
+            Attribute::AMP_NESTED_SUBMENU => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::AMP_NESTED_SUBMENU,
                     Attribute::AMP_NESTED_SUBMENU_CLOSE,
@@ -41,8 +40,7 @@ final class DivAmpNestedMenu extends Tag
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_CLOSE,
+            Attribute::AMP_NESTED_SUBMENU_CLOSE => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::AMP_NESTED_SUBMENU,
                     Attribute::AMP_NESTED_SUBMENU_CLOSE,
@@ -50,8 +48,7 @@ final class DivAmpNestedMenu extends Tag
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_OPEN,
+            Attribute::AMP_NESTED_SUBMENU_OPEN => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::AMP_NESTED_SUBMENU,
                     Attribute::AMP_NESTED_SUBMENU_CLOSE,

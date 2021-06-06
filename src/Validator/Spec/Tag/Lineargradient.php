@@ -31,30 +31,14 @@ final class Lineargradient extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINEARGRADIENT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::GRADIENTTRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::GRADIENTUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPREADMETHOD,
-            ],
-            [
-                SpecRule::NAME => Attribute::X1,
-            ],
-            [
-                SpecRule::NAME => Attribute::X2,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y1,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y2,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::GRADIENTTRANSFORM => [],
+            Attribute::GRADIENTUNITS => [],
+            Attribute::SPREADMETHOD => [],
+            Attribute::X1 => [],
+            Attribute::X2 => [],
+            Attribute::Y1 => [],
+            Attribute::Y2 => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

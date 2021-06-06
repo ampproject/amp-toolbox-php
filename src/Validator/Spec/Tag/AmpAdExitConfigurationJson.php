@@ -34,8 +34,7 @@ final class AmpAdExitConfigurationJson extends Tag
         SpecRule::SPEC_NAME => 'amp-ad-exit configuration JSON',
         SpecRule::MANDATORY_PARENT => Extension::AD_EXIT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'application/json',

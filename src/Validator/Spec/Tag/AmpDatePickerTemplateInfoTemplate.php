@@ -33,13 +33,11 @@ final class AmpDatePickerTemplateInfoTemplate extends Tag
         SpecRule::SPEC_NAME => 'amp-date-picker > template [info-template]',
         SpecRule::MANDATORY_PARENT => Extension::DATE_PICKER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::INFO_TEMPLATE,
+            Attribute::INFO_TEMPLATE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-mustache',

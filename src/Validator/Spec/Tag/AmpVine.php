@@ -32,8 +32,7 @@ final class AmpVine extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VINE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_VINEID,
+            Attribute::DATA_VINEID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

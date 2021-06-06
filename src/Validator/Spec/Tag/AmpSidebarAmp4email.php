@@ -33,8 +33,7 @@ final class AmpSidebarAmp4email extends Tag
         SpecRule::TAG_NAME => Extension::SIDEBAR,
         SpecRule::SPEC_NAME => 'amp-sidebar (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SIDE,
+            Attribute::SIDE => [
                 SpecRule::VALUE => [
                     'left',
                     'right',

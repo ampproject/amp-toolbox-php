@@ -32,12 +32,10 @@ final class MetaNameAmp4adsVars extends Tag
         SpecRule::SPEC_NAME => 'meta name=amp4ads-vars-*',
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::NAME,
+            Attribute::NAME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => 'amp4ads-vars-.+',
             ],

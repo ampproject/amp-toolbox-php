@@ -32,8 +32,7 @@ final class AmpConnatixPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CONNATIX_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYER_ID,
+            Attribute::DATA_PLAYER_ID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

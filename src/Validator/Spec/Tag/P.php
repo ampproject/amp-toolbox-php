@@ -30,9 +30,7 @@ final class P extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::P,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
+            Attribute::ALIGN => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

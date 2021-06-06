@@ -32,23 +32,12 @@ final class Audio extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::AUDIO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
-            ],
-            [
-                SpecRule::NAME => Attribute::LOOP,
-            ],
-            [
-                SpecRule::NAME => Attribute::MUTED,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRELOAD,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::AUTOPLAY => [],
+            Attribute::CONTROLS => [],
+            Attribute::LOOP => [],
+            Attribute::MUTED => [],
+            Attribute::PRELOAD => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

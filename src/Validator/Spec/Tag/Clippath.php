@@ -31,15 +31,9 @@ final class Clippath extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::CLIPPATH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CLIPPATHUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
+            Attribute::CLIPPATHUNITS => [],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::TRANSFORM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

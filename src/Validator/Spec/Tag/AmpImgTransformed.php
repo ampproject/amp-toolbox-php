@@ -33,41 +33,20 @@ final class AmpImgTransformed extends Tag
         SpecRule::TAG_NAME => Extension::IMG,
         SpecRule::SPEC_NAME => 'amp-img (transformed)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_SSR,
+            Attribute::I_AMPHTML_SSR => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_FIT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_POSITION,
-            ],
-            [
-                SpecRule::NAME => Attribute::PLACEHOLDER,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
-            ],
-            [
-                SpecRule::NAME => '[alt]',
-            ],
-            [
-                SpecRule::NAME => '[attribution]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[srcset]',
-            ],
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::OBJECT_FIT => [],
+            Attribute::OBJECT_POSITION => [],
+            Attribute::PLACEHOLDER => [],
+            Attribute::REFERRERPOLICY => [],
+            '[alt]' => [],
+            '[attribution]' => [],
+            '[src]' => [],
+            '[srcset]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

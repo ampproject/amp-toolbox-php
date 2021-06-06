@@ -31,18 +31,10 @@ final class Optgroup extends Tag
         SpecRule::TAG_NAME => Element::OPTGROUP,
         SpecRule::MANDATORY_PARENT => Element::SELECT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
-            ],
-            [
-                SpecRule::NAME => Attribute::LABEL,
-            ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
-            [
-                SpecRule::NAME => '[label]',
-            ],
+            Attribute::DISABLED => [],
+            Attribute::LABEL => [],
+            '[disabled]' => [],
+            '[label]' => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
         SpecRule::HTML_FORMAT => [

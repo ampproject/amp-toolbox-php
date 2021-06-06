@@ -31,15 +31,10 @@ final class A extends Tag
      */
     const SPEC = [
         SpecRule::TAG_NAME => Element::A,
-        SpecRule::ATTRS => [ // @todo Shouldn't the attribute name be the key here? Otherwise it will be more expensive to see if a given tag has an attribute.
-            [
-                SpecRule::NAME => Attribute::BORDER,
-            ],
-            [
-                SpecRule::NAME => Attribute::DOWNLOAD,
-            ],
-            [
-                SpecRule::NAME => Attribute::HREF,
+        SpecRule::ATTRS => [
+            Attribute::BORDER => [],
+            Attribute::DOWNLOAD => [],
+            Attribute::HREF => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -75,52 +70,38 @@ final class A extends Tag
                     SpecRule::ALLOW_EMPTY => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HREFLANG,
-            ],
-            [
-                SpecRule::NAME => Attribute::MEDIA,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
-            ],
-            [
-                SpecRule::NAME => Attribute::REL,
+            Attribute::HREFLANG => [],
+            Attribute::MEDIA => [],
+            Attribute::REFERRERPOLICY => [],
+            Attribute::REL => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(components|dns-prefetch|import|manifest|preconnect|prefetch|preload|prerender|serviceworker|stylesheet|subresource)(\s|$)',
             ],
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::ROLE => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TABINDEX,
+            Attribute::TABINDEX => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TARGET,
+            Attribute::TARGET => [
                 SpecRule::VALUE => [
                     '_blank',
                     '_self',
                     '_top',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::VALUE_CASEI => [
                     'text/html',
                     'application/rss+xml',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SHOW_TOOLTIP,
+            Attribute::SHOW_TOOLTIP => [
                 SpecRule::VALUE => [
                     'auto',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => '[href]',
-            ],
+            '[href]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

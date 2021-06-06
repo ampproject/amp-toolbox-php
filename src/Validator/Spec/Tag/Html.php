@@ -33,8 +33,7 @@ final class Html extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::_DOCTYPE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_AMP_AUTOCOMPLETE_OPT_IN,
+            Attribute::DATA_AMP_AUTOCOMPLETE_OPT_IN => [
                 SpecRule::VALUE => [
                     'false',
                 ],

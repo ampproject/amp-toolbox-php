@@ -31,30 +31,14 @@ final class Tspan extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TSPAN,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DX,
-            ],
-            [
-                SpecRule::NAME => Attribute::DY,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::LENGTHADJUST,
-            ],
-            [
-                SpecRule::NAME => Attribute::ROTATE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TEXTLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::DX => [],
+            Attribute::DY => [],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::LENGTHADJUST => [],
+            Attribute::ROTATE => [],
+            Attribute::TEXTLENGTH => [],
+            Attribute::X => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

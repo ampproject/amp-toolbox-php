@@ -33,8 +33,7 @@ final class AmpGoogleDocumentEmbed extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_DOCUMENT_EMBED,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -44,12 +43,8 @@ final class AmpGoogleDocumentEmbed extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[title]',
-            ],
+            '[src]' => [],
+            '[title]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

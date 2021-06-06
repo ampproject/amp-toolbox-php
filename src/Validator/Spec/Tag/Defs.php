@@ -31,12 +31,8 @@ final class Defs extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::DEFS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::TRANSFORM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

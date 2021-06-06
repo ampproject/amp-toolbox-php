@@ -31,18 +31,10 @@ final class Polygon extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::POLYGON,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::POINTS,
-            ],
-            [
-                SpecRule::NAME => Attribute::SKETCH_TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::POINTS => [],
+            Attribute::SKETCH_TYPE => [],
+            Attribute::TRANSFORM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

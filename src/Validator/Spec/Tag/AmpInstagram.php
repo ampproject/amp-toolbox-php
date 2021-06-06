@@ -32,11 +32,8 @@ final class AmpInstagram extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INSTAGRAM,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_SHORTCODE,
+            Attribute::ALT => [],
+            Attribute::DATA_SHORTCODE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

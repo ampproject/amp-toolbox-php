@@ -30,8 +30,7 @@ final class Li extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::LI,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::VALUE,
+            Attribute::VALUE => [
                 SpecRule::VALUE_REGEX => '[0-9]*',
             ],
         ],

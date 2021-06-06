@@ -31,8 +31,7 @@ final class AmpStoryGridLayerAnimateIn extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-STORY-GRID-LAYER animate-in',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN,
+            Attribute::ANIMATE_IN => [
                 SpecRule::VALUE => [
                     'drop',
                     'fade-in',
@@ -56,14 +55,12 @@ final class AmpStoryGridLayerAnimateIn extends Tag
                     'zoom-out',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TARGET,
+            Attribute::TARGET => [
                 SpecRule::VALUE => [
                     '_blank',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TOOLTIP_ICON,
+            Attribute::DATA_TOOLTIP_ICON => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -72,38 +69,25 @@ final class AmpStoryGridLayerAnimateIn extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN_AFTER,
-            ],
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN_DELAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN_DURATION,
-            ],
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN_TIMING_FUNCTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::INTERACTIVE,
+            Attribute::ANIMATE_IN_AFTER => [],
+            Attribute::ANIMATE_IN_DELAY => [],
+            Attribute::ANIMATE_IN_DURATION => [],
+            Attribute::ANIMATE_IN_TIMING_FUNCTION => [],
+            Attribute::INTERACTIVE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SCALE_END,
+            Attribute::SCALE_END => [
                 SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::SCALE_START,
+            Attribute::SCALE_START => [
                 SpecRule::VALUE_REGEX => '[0-9]+([.][0-9]+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::TRANSLATE_X,
+            Attribute::TRANSLATE_X => [
                 SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',
             ],
-            [
-                SpecRule::NAME => Attribute::TRANSLATE_Y,
+            Attribute::TRANSLATE_Y => [
                 SpecRule::VALUE_REGEX_CASEI => '[0-9]+px',
             ],
         ],

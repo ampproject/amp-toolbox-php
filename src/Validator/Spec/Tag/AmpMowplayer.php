@@ -32,11 +32,8 @@ final class AmpMowplayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MOWPLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_MEDIAID,
+            Attribute::AUTOPLAY => [],
+            Attribute::DATA_MEDIAID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

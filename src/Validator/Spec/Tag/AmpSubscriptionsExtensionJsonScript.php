@@ -35,16 +35,14 @@ final class AmpSubscriptionsExtensionJsonScript extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ID,
+            Attribute::ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-subscriptions',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'application/json',

@@ -32,8 +32,7 @@ final class AmpTruncateText extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::TRUNCATE_TEXT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OVERFLOW_STYLE,
+            Attribute::OVERFLOW_STYLE => [
                 SpecRule::VALUE => [
                     'right',
                     'default',

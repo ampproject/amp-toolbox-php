@@ -32,8 +32,7 @@ final class AmpAnimation extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ANIMATION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TRIGGER,
+            Attribute::TRIGGER => [
                 SpecRule::VALUE => [
                     'visibility',
                 ],

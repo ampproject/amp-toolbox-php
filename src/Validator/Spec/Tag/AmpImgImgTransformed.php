@@ -33,41 +33,26 @@ final class AmpImgImgTransformed extends Tag
         SpecRule::SPEC_NAME => 'amp-img > img (transformed)',
         SpecRule::MANDATORY_PARENT => 'amp-img (transformed)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_FIT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_POSITION,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
-            ],
-            [
-                SpecRule::NAME => Attribute::SIZES,
-            ],
-            [
-                SpecRule::NAME => Attribute::TITLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::CLASS_,
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::HEIGHT => [],
+            Attribute::OBJECT_FIT => [],
+            Attribute::OBJECT_POSITION => [],
+            Attribute::REFERRERPOLICY => [],
+            Attribute::SIZES => [],
+            Attribute::TITLE => [],
+            Attribute::WIDTH => [],
+            Attribute::CLASS_ => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => 'i-amphtml-fill-content\s+i-amphtml-replaced-content|i-amphtml-replaced-content\s+i-amphtml-fill-content',
             ],
-            [
-                SpecRule::NAME => Attribute::DECODING,
+            Attribute::DECODING => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'async',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOADING,
+            Attribute::LOADING => [
                 SpecRule::VALUE => [
                     'lazy',
                     'eager',

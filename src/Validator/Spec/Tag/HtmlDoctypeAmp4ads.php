@@ -34,8 +34,7 @@ final class HtmlDoctypeAmp4ads extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => '$ROOT',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HTML,
+            Attribute::HTML => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

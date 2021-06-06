@@ -33,8 +33,7 @@ final class AmpInlineGalleryPaginationInset extends Tag
         SpecRule::TAG_NAME => Extension::INLINE_GALLERY_PAGINATION,
         SpecRule::SPEC_NAME => 'amp-inline-gallery-pagination [inset]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::INSET,
+            Attribute::INSET => [
                 SpecRule::MANDATORY => true,
             ],
         ],

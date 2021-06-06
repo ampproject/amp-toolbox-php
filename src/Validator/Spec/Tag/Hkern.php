@@ -31,21 +31,11 @@ final class Hkern extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::HKERN,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::G1,
-            ],
-            [
-                SpecRule::NAME => Attribute::G2,
-            ],
-            [
-                SpecRule::NAME => Attribute::K,
-            ],
-            [
-                SpecRule::NAME => Attribute::U1,
-            ],
-            [
-                SpecRule::NAME => Attribute::U2,
-            ],
+            Attribute::G1 => [],
+            Attribute::G2 => [],
+            Attribute::K => [],
+            Attribute::U1 => [],
+            Attribute::U2 => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

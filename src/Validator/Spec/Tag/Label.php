@@ -30,9 +30,7 @@ final class Label extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::LABEL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FOR_,
-            ],
+            Attribute::FOR_ => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
         SpecRule::HTML_FORMAT => [

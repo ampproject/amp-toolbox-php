@@ -32,26 +32,17 @@ final class AmpSkimlinks extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SKIMLINKS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CUSTOM_REDIRECT_DOMAIN,
-            ],
-            [
-                SpecRule::NAME => Attribute::CUSTOM_TRACKING_ID,
+            Attribute::CUSTOM_REDIRECT_DOMAIN => [],
+            Attribute::CUSTOM_TRACKING_ID => [
                 SpecRule::VALUE_REGEX_CASEI => '^.{0,50}$',
             ],
-            [
-                SpecRule::NAME => Attribute::EXCLUDED_DOMAINS,
-            ],
-            [
-                SpecRule::NAME => Attribute::LINK_SELECTOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::PUBLISHER_CODE,
+            Attribute::EXCLUDED_DOMAINS => [],
+            Attribute::LINK_SELECTOR => [],
+            Attribute::PUBLISHER_CODE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '^[0-9]+X[0-9]+$',
             ],
-            [
-                SpecRule::NAME => Attribute::TRACKING,
+            Attribute::TRACKING => [
                 SpecRule::VALUE => [
                     'false',
                     'true',

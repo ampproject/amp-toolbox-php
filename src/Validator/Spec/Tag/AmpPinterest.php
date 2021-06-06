@@ -32,11 +32,8 @@ final class AmpPinterest extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PINTEREST,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_DO,
+            Attribute::ALT => [],
+            Attribute::DATA_DO => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -32,12 +32,10 @@ final class AmpDelightPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DELIGHT_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_CONTENT_ID,
+            Attribute::DATA_CONTENT_ID => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

@@ -33,8 +33,7 @@ final class AmpStory extends Tag
         SpecRule::TAG_NAME => Extension::STORY,
         SpecRule::MANDATORY_PARENT => Element::BODY,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BACKGROUND_AUDIO,
+            Attribute::BACKGROUND_AUDIO => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -42,11 +41,8 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ENTITY,
-            ],
-            [
-                SpecRule::NAME => Attribute::ENTITY_LOGO_SRC,
+            Attribute::ENTITY => [],
+            Attribute::ENTITY_LOGO_SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -54,8 +50,7 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ENTITY_URL,
+            Attribute::ENTITY_URL => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -63,8 +58,7 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::POSTER_LANDSCAPE_SRC,
+            Attribute::POSTER_LANDSCAPE_SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -72,8 +66,7 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::POSTER_PORTRAIT_SRC,
+            Attribute::POSTER_PORTRAIT_SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -82,8 +75,7 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::POSTER_SQUARE_SRC,
+            Attribute::POSTER_SQUARE_SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -91,12 +83,10 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::PUBLISHER,
+            Attribute::PUBLISHER => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::PUBLISHER_LOGO_SRC,
+            Attribute::PUBLISHER_LOGO_SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -105,31 +95,26 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::STANDALONE,
+            Attribute::STANDALONE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SUPPORTS_LANDSCAPE,
+            Attribute::SUPPORTS_LANDSCAPE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TITLE,
+            Attribute::TITLE => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::LIVE_STORY,
+            Attribute::LIVE_STORY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LIVE_STORY_DISABLED,
+            Attribute::LIVE_STORY_DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],

@@ -30,9 +30,7 @@ final class TitleAmp4email extends Tag
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'title [AMP4EMAIL]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[text]',
-            ],
+            '[text]' => [],
         ],
         SpecRule::DEPRECATION => 'Title tags in email have no meaning. This tag may become invalid in the future.',
         SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/22318',

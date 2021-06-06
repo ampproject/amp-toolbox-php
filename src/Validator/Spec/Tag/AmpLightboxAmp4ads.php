@@ -33,24 +33,18 @@ final class AmpLightboxAmp4ads extends Tag
         SpecRule::TAG_NAME => Extension::LIGHTBOX,
         SpecRule::SPEC_NAME => 'amp-lightbox [AMP4ADS]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN,
+            Attribute::ANIMATE_IN => [
                 SpecRule::VALUE_CASEI => [
                     'fade-in',
                     'fly-in-bottom',
                     'fly-in-top',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CLOSE_BUTTON,
+            Attribute::CLOSE_BUTTON => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
-            ],
-            [
-                SpecRule::NAME => Attribute::FROM,
-            ],
+            Attribute::CONTROLS => [],
+            Attribute::FROM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

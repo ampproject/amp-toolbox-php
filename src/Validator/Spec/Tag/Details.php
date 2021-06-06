@@ -30,15 +30,12 @@ final class Details extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::DETAILS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OPEN,
+            Attribute::OPEN => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => '[open]',
-            ],
+            '[open]' => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

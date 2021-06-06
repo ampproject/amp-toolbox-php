@@ -32,33 +32,17 @@ final class AmpFont extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FONT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FONT_FAMILY,
+            Attribute::FONT_FAMILY => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::FONT_STYLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::FONT_VARIANT,
-            ],
-            [
-                SpecRule::NAME => Attribute::FONT_WEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ON_ERROR_ADD_CLASS,
-            ],
-            [
-                SpecRule::NAME => Attribute::ON_ERROR_REMOVE_CLASS,
-            ],
-            [
-                SpecRule::NAME => Attribute::ON_LOAD_ADD_CLASS,
-            ],
-            [
-                SpecRule::NAME => Attribute::ON_LOAD_REMOVE_CLASS,
-            ],
-            [
-                SpecRule::NAME => Attribute::TIMEOUT,
+            Attribute::FONT_STYLE => [],
+            Attribute::FONT_VARIANT => [],
+            Attribute::FONT_WEIGHT => [],
+            Attribute::ON_ERROR_ADD_CLASS => [],
+            Attribute::ON_ERROR_REMOVE_CLASS => [],
+            Attribute::ON_LOAD_ADD_CLASS => [],
+            Attribute::ON_LOAD_REMOVE_CLASS => [],
+            Attribute::TIMEOUT => [
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
         ],

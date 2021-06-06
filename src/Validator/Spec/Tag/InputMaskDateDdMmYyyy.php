@@ -33,8 +33,7 @@ final class InputMaskDateDdMmYyyy extends Tag
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'input [mask=date-dd-mm-yyyy]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MASK,
+            Attribute::MASK => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'date-dd-mm-yyyy',

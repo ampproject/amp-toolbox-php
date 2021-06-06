@@ -32,16 +32,14 @@ final class AmpApesterMedia extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::APESTER_MEDIA,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_APESTER_CHANNEL_TOKEN,
+            Attribute::DATA_APESTER_CHANNEL_TOKEN => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_APESTER_MEDIA_ID,
                     Attribute::DATA_APESTER_CHANNEL_TOKEN,
                 ],
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_APESTER_MEDIA_ID,
+            Attribute::DATA_APESTER_MEDIA_ID => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_APESTER_MEDIA_ID,
                     Attribute::DATA_APESTER_CHANNEL_TOKEN,

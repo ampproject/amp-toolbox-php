@@ -32,14 +32,12 @@ final class Amp3qPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::_3Q_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_ID,
+            Attribute::DATA_ID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

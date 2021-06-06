@@ -34,8 +34,7 @@ final class AmpConsentType extends Tag
         SpecRule::SPEC_NAME => 'amp-consent [type]',
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

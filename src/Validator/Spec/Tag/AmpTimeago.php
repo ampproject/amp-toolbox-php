@@ -32,24 +32,16 @@ final class AmpTimeago extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::TIMEAGO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CUTOFF,
+            Attribute::CUTOFF => [
                 SpecRule::VALUE_REGEX => '\d+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATETIME,
+            Attribute::DATETIME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(:[0-5]\d(\.\d+)?)?(Z|[+-][0-1][0-9]:[0-5][0-9])',
             ],
-            [
-                SpecRule::NAME => Attribute::LOCALE,
-            ],
-            [
-                SpecRule::NAME => '[datetime]',
-            ],
-            [
-                SpecRule::NAME => '[title]',
-            ],
+            Attribute::LOCALE => [],
+            '[datetime]' => [],
+            '[title]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

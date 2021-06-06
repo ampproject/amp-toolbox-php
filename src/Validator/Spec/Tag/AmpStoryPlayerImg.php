@@ -34,42 +34,31 @@ final class AmpStoryPlayerImg extends Tag
         SpecRule::SPEC_NAME => 'amp-story-player > img',
         SpecRule::MANDATORY_PARENT => Element::A,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_AMP_STORY_PLAYER_POSTER_IMG,
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::DATA_AMP_STORY_PLAYER_POSTER_IMG => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::DECODING,
+            Attribute::DECODING => [
                 SpecRule::VALUE => [
                     'async',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
+            Attribute::HEIGHT => [
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::LOADING,
+            Attribute::LOADING => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'lazy',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SIZES,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
+            Attribute::SIZES => [],
+            Attribute::WIDTH => [
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
         ],

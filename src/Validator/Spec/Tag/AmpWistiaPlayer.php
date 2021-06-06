@@ -32,13 +32,11 @@ final class AmpWistiaPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::WISTIA_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_MEDIA_HASHED_ID,
+            Attribute::DATA_MEDIA_HASHED_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z]+',
             ],
-            [
-                SpecRule::NAME => Attribute::ROTATE_TO_FULLSCREEN,
+            Attribute::ROTATE_TO_FULLSCREEN => [
                 SpecRule::VALUE => [
                     '',
                 ],

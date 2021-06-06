@@ -32,11 +32,8 @@ final class AAmp4email extends Tag
         SpecRule::TAG_NAME => Element::A,
         SpecRule::SPEC_NAME => 'A (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BORDER,
-            ],
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::BORDER => [],
+            Attribute::HREF => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|(.|\s){{|}}(.|\s)|^{{.*[^}][^}]$|^[^{][^{].*}}$|^}}|{{$|{{#|{{/|{{\^',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -48,28 +45,20 @@ final class AAmp4email extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HREFLANG,
-            ],
-            [
-                SpecRule::NAME => Attribute::MEDIA,
-            ],
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::HREFLANG => [],
+            Attribute::MEDIA => [],
+            Attribute::ROLE => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TABINDEX,
+            Attribute::TABINDEX => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TARGET,
+            Attribute::TARGET => [
                 SpecRule::VALUE => [
                     '_blank',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::VALUE_CASEI => [
                     'text/html',
                 ],

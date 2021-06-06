@@ -31,21 +31,11 @@ final class Fespecularlighting extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FESPECULARLIGHTING,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::KERNELUNITLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPECULARCONSTANT,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPECULAREXPONENT,
-            ],
-            [
-                SpecRule::NAME => Attribute::SURFACESCALE,
-            ],
+            Attribute::IN => [],
+            Attribute::KERNELUNITLENGTH => [],
+            Attribute::SPECULARCONSTANT => [],
+            Attribute::SPECULAREXPONENT => [],
+            Attribute::SURFACESCALE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

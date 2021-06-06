@@ -34,8 +34,7 @@ final class AmpAdWithTypeCustom extends Tag
         SpecRule::TAG_NAME => Extension::AD,
         SpecRule::SPEC_NAME => 'amp-ad with type=custom',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_URL,
+            Attribute::DATA_URL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -43,11 +42,8 @@ final class AmpAdWithTypeCustom extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TEMPLATE => [],
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'custom',

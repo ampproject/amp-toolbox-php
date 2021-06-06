@@ -32,8 +32,7 @@ final class AmpReachPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REACH_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_EMBED_ID,
+            Attribute::DATA_EMBED_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-z-]+',
             ],

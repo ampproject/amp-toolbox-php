@@ -32,12 +32,10 @@ final class AmpBysideContent extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BYSIDE_CONTENT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_LABEL,
+            Attribute::DATA_LABEL => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_WEBCARE_ID,
+            Attribute::DATA_WEBCARE_ID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

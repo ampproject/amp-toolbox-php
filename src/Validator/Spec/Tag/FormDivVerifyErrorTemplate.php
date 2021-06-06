@@ -31,15 +31,11 @@ final class FormDivVerifyErrorTemplate extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [verify-error][template]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::VERIFY_ERROR,
+            Attribute::ALIGN => [],
+            Attribute::VERIFY_ERROR => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

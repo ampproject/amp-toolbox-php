@@ -32,23 +32,19 @@ final class AmpLiveList extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIVE_LIST,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_MAX_ITEMS_PER_PAGE,
+            Attribute::DATA_MAX_ITEMS_PER_PAGE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '\d+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_POLL_INTERVAL,
+            Attribute::DATA_POLL_INTERVAL => [
                 SpecRule::VALUE_REGEX => '\d{5,}',
             ],
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SORT,
+            Attribute::SORT => [
                 SpecRule::VALUE => [
                     'ascending',
                 ],

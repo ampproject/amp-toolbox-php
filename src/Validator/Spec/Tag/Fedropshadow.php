@@ -32,15 +32,9 @@ final class Fedropshadow extends Tag
         SpecRule::TAG_NAME => Element::FEDROPSHADOW,
         SpecRule::MANDATORY_PARENT => Element::FILTER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DX,
-            ],
-            [
-                SpecRule::NAME => Attribute::DY,
-            ],
-            [
-                SpecRule::NAME => Attribute::STDDEVIATION,
-            ],
+            Attribute::DX => [],
+            Attribute::DY => [],
+            Attribute::STDDEVIATION => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

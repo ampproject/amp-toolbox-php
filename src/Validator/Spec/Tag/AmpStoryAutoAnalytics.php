@@ -30,8 +30,7 @@ final class AmpStoryAutoAnalytics extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_AUTO_ANALYTICS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::GTAG_ID,
+            Attribute::GTAG_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[A-Z]{1,2}-[A-Z0-9-]+',
             ],

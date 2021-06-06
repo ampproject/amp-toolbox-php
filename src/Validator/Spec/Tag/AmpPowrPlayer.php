@@ -32,31 +32,23 @@ final class AmpPowrPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::POWR_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_ACCOUNT,
+            Attribute::AUTOPLAY => [],
+            Attribute::DATA_ACCOUNT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z-]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYER,
+            Attribute::DATA_PLAYER => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z-]+',
             ],
-            [
-                SpecRule::NAME => '[data-referrer]',
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_TERMS,
+            '[data-referrer]' => [],
+            Attribute::DATA_TERMS => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_VIDEO,
                     Attribute::DATA_TERMS,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_VIDEO,
+            Attribute::DATA_VIDEO => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_VIDEO,
                     Attribute::DATA_TERMS,

@@ -31,21 +31,11 @@ final class Fedisplacementmap extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDISPLACEMENTMAP,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN2,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCALE,
-            ],
-            [
-                SpecRule::NAME => Attribute::XCHANNELSELECTOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::YCHANNELSELECTOR,
-            ],
+            Attribute::IN => [],
+            Attribute::IN2 => [],
+            Attribute::SCALE => [],
+            Attribute::XCHANNELSELECTOR => [],
+            Attribute::YCHANNELSELECTOR => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

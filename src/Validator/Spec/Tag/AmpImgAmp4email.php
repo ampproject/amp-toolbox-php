@@ -33,21 +33,11 @@ final class AmpImgAmp4email extends Tag
         SpecRule::TAG_NAME => Extension::IMG,
         SpecRule::SPEC_NAME => 'AMP-IMG (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::PLACEHOLDER,
-            ],
-            [
-                SpecRule::NAME => '[alt]',
-            ],
-            [
-                SpecRule::NAME => '[attribution]',
-            ],
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::PLACEHOLDER => [],
+            '[alt]' => [],
+            '[attribution]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

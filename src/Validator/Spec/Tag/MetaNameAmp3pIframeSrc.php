@@ -33,8 +33,7 @@ final class MetaNameAmp3pIframeSrc extends Tag
         SpecRule::SPEC_NAME => 'meta name=amp-3p-iframe-src',
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -42,8 +41,7 @@ final class MetaNameAmp3pIframeSrc extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NAME,
+            Attribute::NAME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

@@ -30,30 +30,14 @@ final class Option extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::OPTION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
-            ],
-            [
-                SpecRule::NAME => Attribute::LABEL,
-            ],
-            [
-                SpecRule::NAME => Attribute::SELECTED,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
-            [
-                SpecRule::NAME => '[label]',
-            ],
-            [
-                SpecRule::NAME => '[selected]',
-            ],
-            [
-                SpecRule::NAME => '[value]',
-            ],
+            Attribute::DISABLED => [],
+            Attribute::LABEL => [],
+            Attribute::SELECTED => [],
+            Attribute::VALUE => [],
+            '[disabled]' => [],
+            '[label]' => [],
+            '[selected]' => [],
+            '[value]' => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
         SpecRule::HTML_FORMAT => [

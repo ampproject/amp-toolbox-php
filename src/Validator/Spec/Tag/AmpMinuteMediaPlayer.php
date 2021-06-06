@@ -32,14 +32,9 @@ final class AmpMinuteMediaPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MINUTE_MEDIA_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_CONTENT_ID,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_CONTENT_TYPE,
+            Attribute::AUTOPLAY => [],
+            Attribute::DATA_CONTENT_ID => [],
+            Attribute::DATA_CONTENT_TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'curated',
@@ -47,28 +42,18 @@ final class AmpMinuteMediaPlayer extends Tag
                     'specific',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MINIMUM_DATE_FACTOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_SCANNED_ELEMENT,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_SCANNED_ELEMENT_TYPE,
+            Attribute::DATA_MINIMUM_DATE_FACTOR => [],
+            Attribute::DATA_SCANNED_ELEMENT => [],
+            Attribute::DATA_SCANNED_ELEMENT_TYPE => [
                 SpecRule::VALUE => [
                     'className',
                     'id',
                     'tag',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SCOPED_KEYWORDS,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_TAGS,
-            ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DATA_SCOPED_KEYWORDS => [],
+            Attribute::DATA_TAGS => [],
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

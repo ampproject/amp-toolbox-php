@@ -33,14 +33,9 @@ final class AmpState extends Tag
         SpecRule::TAG_NAME => Extension::STATE,
         SpecRule::SPEC_NAME => 'amp-state',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CREDENTIALS,
-            ],
-            [
-                SpecRule::NAME => Attribute::OVERRIDABLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::CREDENTIALS => [],
+            Attribute::OVERRIDABLE => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -49,9 +44,7 @@ final class AmpState extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
+            '[src]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\MandatoryIdAttr::ID,

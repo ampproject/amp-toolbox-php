@@ -30,9 +30,7 @@ final class Col extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::COL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SPAN,
-            ],
+            Attribute::SPAN => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

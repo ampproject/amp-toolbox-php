@@ -31,8 +31,7 @@ final class AmpAutoAds extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUTO_ADS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -33,26 +33,19 @@ final class AmpAppBannerButtonOpenButton extends Tag
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::SPEC_NAME => 'amp-app-banner button[open-button]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OPEN_BUTTON,
+            Attribute::OPEN_BUTTON => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::ROLE => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TABINDEX,
+            Attribute::TABINDEX => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
+            Attribute::TYPE => [],
+            Attribute::VALUE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

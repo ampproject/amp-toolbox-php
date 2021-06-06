@@ -34,8 +34,7 @@ final class AmpStoryAutoAdsConfigScript extends Tag
         SpecRule::SPEC_NAME => 'amp-story-auto-ads config script',
         SpecRule::MANDATORY_PARENT => Extension::STORY_AUTO_ADS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
                 SpecRule::VALUE_CASEI => [

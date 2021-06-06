@@ -31,15 +31,9 @@ final class Fepointlight extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEPOINTLIGHT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
-            [
-                SpecRule::NAME => Attribute::Z,
-            ],
+            Attribute::X => [],
+            Attribute::Y => [],
+            Attribute::Z => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

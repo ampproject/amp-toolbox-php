@@ -32,33 +32,27 @@ final class AmpSpringboardPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SPRINGBOARD_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_CONTENT_ID,
+            Attribute::DATA_CONTENT_ID => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_DOMAIN,
+            Attribute::DATA_DOMAIN => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_ITEMS,
+            Attribute::DATA_ITEMS => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MODE,
+            Attribute::DATA_MODE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'playlist',
                     'video',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYER_ID,
+            Attribute::DATA_PLAYER_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[a-z0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SITE_ID,
+            Attribute::DATA_SITE_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],

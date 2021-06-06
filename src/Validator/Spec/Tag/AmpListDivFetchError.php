@@ -32,11 +32,8 @@ final class AmpListDivFetchError extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'AMP-LIST DIV [fetch-error]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::FETCH_ERROR,
+            Attribute::ALIGN => [],
+            Attribute::FETCH_ERROR => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -33,8 +33,7 @@ final class AmpStoryAmpAudio extends Tag
         SpecRule::TAG_NAME => Extension::AUDIO,
         SpecRule::SPEC_NAME => 'amp-story >> amp-audio',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

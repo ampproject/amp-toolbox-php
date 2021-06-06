@@ -30,11 +30,8 @@ final class Time extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TIME,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATETIME,
-            ],
-            [
-                SpecRule::NAME => Attribute::PUBDATE,
+            Attribute::DATETIME => [],
+            Attribute::PUBDATE => [
                 SpecRule::VALUE => [
                     '',
                 ],

@@ -31,8 +31,7 @@ final class IAmphtmlSizerResponsive extends Tag
         SpecRule::TAG_NAME => Internal::SIZER,
         SpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-RESPONSIVE',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::STYLE,
+            Attribute::STYLE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '!\s*important',
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
@@ -48,8 +47,7 @@ final class IAmphtmlSizerResponsive extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_DISABLE_AR,
+            Attribute::I_AMPHTML_DISABLE_AR => [
                 SpecRule::VALUE => [
                     '',
                 ],

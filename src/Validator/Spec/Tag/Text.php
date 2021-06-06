@@ -31,36 +31,16 @@ final class Text extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEXT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DX,
-            ],
-            [
-                SpecRule::NAME => Attribute::DY,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::LENGTHADJUST,
-            ],
-            [
-                SpecRule::NAME => Attribute::ROTATE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TEXT_ANCHOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::TEXTLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::DX => [],
+            Attribute::DY => [],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::LENGTHADJUST => [],
+            Attribute::ROTATE => [],
+            Attribute::TEXT_ANCHOR => [],
+            Attribute::TEXTLENGTH => [],
+            Attribute::TRANSFORM => [],
+            Attribute::X => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

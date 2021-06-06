@@ -303,7 +303,10 @@ final class Dumper
             case 'mandatoryOneof':
                 $attributes = [];
                 foreach ($value as $attribute) {
-                    $attributes[] = $this->getAttributeConstant($this->getConstantName($attribute));
+                    if (is_string($attribute) && strpos($attribute, '[') !== 0) {
+                        $attribute = $this->getAttributeConstant($this->getConstantName($attribute));
+                    }
+                    $attributes[] = $attribute;
                 }
                 return $attributes;
             case 'ampLayout':
@@ -320,6 +323,16 @@ final class Dumper
                     $attributeLists[] = "AttributeList\\{$className}::ID";
                 }
                 return $attributeLists;
+            case 'attrs':
+                $attributes = [];
+                foreach ($value as $name => $specRules) {
+                    $key = $name;
+                    if (strpos($name, '[') !== 0) {
+                        $key = $this->getAttributeConstant($this->getConstantName($name));
+                    }
+                    $attributes[$key] = $specRules;
+                }
+                return $attributes;
             case 'declarationList':
                 $declarationLists = [];
                 foreach ($value as $declarationList) {
@@ -337,17 +350,16 @@ final class Dumper
                 }
                 return $formats;
             case 'name':
-                if (empty($parentKeys[0])) {
+                if (! is_string($value) || empty($parentKeys[0])) {
                     return $value;
                 }
                 if ($parentKeys[0] === 'atRuleSpec') {
                     return $this->getAtRuleConstant($this->getConstantName($value));
                 }
-                if ($parentKeys[0] !== 'extensionSpec' && $parentKeys[0] !== 'properties') {
-                    $constant = $this->getAttributeConstant($this->getConstantName($value));
-                    if (strpos($value, '[') !== 0) {
-                        return $constant;
-                    }
+                if ($parentKeys[0] !== 'extensionSpec'
+                    && $parentKeys[0] !== 'properties'
+                    && strpos($value, '[') !== 0) {
+                    return $this->getAttributeConstant($this->getConstantName($value));
                 }
                 return $value;
             case 'protocol':

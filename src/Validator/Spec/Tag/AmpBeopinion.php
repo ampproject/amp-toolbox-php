@@ -32,25 +32,20 @@ final class AmpBeopinion extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BEOPINION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_ACCOUNT,
+            Attribute::DATA_ACCOUNT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-f]{24}',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_CONTENT,
+            Attribute::DATA_CONTENT => [
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-f]{24}',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MY_CONTENT,
+            Attribute::DATA_MY_CONTENT => [
                 SpecRule::VALUE => [
                     '0',
                     '1',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_NAME,
-            ],
+            Attribute::DATA_NAME => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

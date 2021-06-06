@@ -32,20 +32,16 @@ final class AmpOrientationObserver extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ORIENTATION_OBSERVER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALPHA_RANGE,
+            Attribute::ALPHA_RANGE => [
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
-            [
-                SpecRule::NAME => Attribute::BETA_RANGE,
+            Attribute::BETA_RANGE => [
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
-            [
-                SpecRule::NAME => Attribute::GAMMA_RANGE,
+            Attribute::GAMMA_RANGE => [
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
-            [
-                SpecRule::NAME => Attribute::SMOOTHING,
+            Attribute::SMOOTHING => [
                 SpecRule::VALUE_REGEX => '[0-9]+|',
             ],
         ],

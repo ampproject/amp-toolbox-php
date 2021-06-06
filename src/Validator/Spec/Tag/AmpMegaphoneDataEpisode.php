@@ -33,18 +33,15 @@ final class AmpMegaphoneDataEpisode extends Tag
         SpecRule::TAG_NAME => Extension::MEGAPHONE,
         SpecRule::SPEC_NAME => 'amp-megaphone [data-episode]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_EPISODE,
+            Attribute::DATA_EPISODE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
                 SpecRule::VALUE_REGEX => '[A-Za-z0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_START,
+            Attribute::DATA_START => [
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TILE,
+            Attribute::DATA_TILE => [
                 SpecRule::VALUE => [
                     '',
                 ],

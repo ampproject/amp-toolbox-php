@@ -32,18 +32,14 @@ final class AmpStoryPageOutlink extends Tag
         SpecRule::TAG_NAME => Extension::STORY_PAGE_OUTLINK,
         SpecRule::SPEC_NAME => 'amp-story-page-outlink',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CTA_ACCENT_COLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::CTA_ACCENT_ELEMENT,
+            Attribute::CTA_ACCENT_COLOR => [],
+            Attribute::CTA_ACCENT_ELEMENT => [
                 SpecRule::VALUE => [
                     'background',
                     'text',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CTA_IMAGE,
+            Attribute::CTA_IMAGE => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -51,11 +47,8 @@ final class AmpStoryPageOutlink extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CTA_TEXT,
-            ],
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::CTA_TEXT => [],
+            Attribute::HREF => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -64,24 +57,20 @@ final class AmpStoryPageOutlink extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LAYOUT,
+            Attribute::LAYOUT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'nodisplay',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::THEME,
+            Attribute::THEME => [
                 SpecRule::VALUE => [
                     'custom',
                     'dark',
                     'light',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TITLE,
-            ],
+            Attribute::TITLE => [],
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
         SpecRule::CHILD_TAGS => [

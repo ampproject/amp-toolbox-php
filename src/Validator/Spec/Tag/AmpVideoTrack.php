@@ -33,15 +33,9 @@ final class AmpVideoTrack extends Tag
         SpecRule::SPEC_NAME => 'amp-video > track',
         SpecRule::MANDATORY_PARENT => Extension::VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[label]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[srclang]',
-            ],
+            '[label]' => [],
+            '[src]' => [],
+            '[srclang]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\TrackAttrsNoSubtitles::ID,

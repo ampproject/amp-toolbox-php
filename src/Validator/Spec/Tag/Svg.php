@@ -31,43 +31,22 @@ final class Svg extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::SVG,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENTSCRIPTTYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::CONTENTSTYLETYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::VERSION,
+            Attribute::CONTENTSCRIPTTYPE => [],
+            Attribute::CONTENTSTYLETYPE => [],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::HEIGHT => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::VERSION => [
                 SpecRule::VALUE => [
                     '1.0',
                     '1.1',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
-            [
-                SpecRule::NAME => Attribute::ZOOMANDPAN,
-            ],
+            Attribute::VIEWBOX => [],
+            Attribute::WIDTH => [],
+            Attribute::X => [],
+            Attribute::Y => [],
+            Attribute::ZOOMANDPAN => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

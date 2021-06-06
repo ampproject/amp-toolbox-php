@@ -32,12 +32,8 @@ final class AmpFitText extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FIT_TEXT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MAX_FONT_SIZE,
-            ],
-            [
-                SpecRule::NAME => Attribute::MIN_FONT_SIZE,
-            ],
+            Attribute::MAX_FONT_SIZE => [],
+            Attribute::MIN_FONT_SIZE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

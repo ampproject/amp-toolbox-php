@@ -33,8 +33,7 @@ final class AmpEmbedlyCard extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::EMBEDLY_CARD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_URL,
+            Attribute::DATA_URL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

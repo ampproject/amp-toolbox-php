@@ -34,40 +34,22 @@ final class NoscriptImg extends Tag
         SpecRule::TAG_NAME => Element::IMG,
         SpecRule::SPEC_NAME => 'noscript > img',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::BORDER,
-            ],
-            [
-                SpecRule::NAME => Attribute::DECODING,
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::BORDER => [],
+            Attribute::DECODING => [
                 SpecRule::VALUE => [
                     'async',
                     'auto',
                     'sync',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::IMPORTANCE,
-            ],
-            [
-                SpecRule::NAME => Attribute::ISMAP,
-            ],
-            [
-                SpecRule::NAME => Attribute::INTRINSICSIZE,
-            ],
-            [
-                SpecRule::NAME => Attribute::LOADING,
-            ],
-            [
-                SpecRule::NAME => Attribute::LONGDESC,
+            Attribute::HEIGHT => [],
+            Attribute::IMPORTANCE => [],
+            Attribute::ISMAP => [],
+            Attribute::INTRINSICSIZE => [],
+            Attribute::LOADING => [],
+            Attribute::LONGDESC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -76,12 +58,8 @@ final class NoscriptImg extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SIZES,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::SIZES => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\MandatorySrcOrSrcset::ID,

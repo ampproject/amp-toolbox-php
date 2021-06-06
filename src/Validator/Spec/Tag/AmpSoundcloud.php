@@ -32,32 +32,27 @@ final class AmpSoundcloud extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SOUNDCLOUD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_COLOR,
+            Attribute::DATA_COLOR => [
                 SpecRule::VALUE_REGEX_CASEI => '([0-9a-f]{3}){1,2}',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYLISTID,
+            Attribute::DATA_PLAYLISTID => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_TRACKID,
                     Attribute::DATA_PLAYLISTID,
                 ],
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SECRET_TOKEN,
+            Attribute::DATA_SECRET_TOKEN => [
                 SpecRule::VALUE_REGEX => '[A-Za-z0-9_-]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TRACKID,
+            Attribute::DATA_TRACKID => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_TRACKID,
                     Attribute::DATA_PLAYLISTID,
                 ],
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_VISUAL,
+            Attribute::DATA_VISUAL => [
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',

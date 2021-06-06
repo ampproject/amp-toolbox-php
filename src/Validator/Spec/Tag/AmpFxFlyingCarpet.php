@@ -31,8 +31,7 @@ final class AmpFxFlyingCarpet extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FX_FLYING_CARPET,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
+            Attribute::HEIGHT => [
                 SpecRule::MANDATORY => true,
             ],
         ],

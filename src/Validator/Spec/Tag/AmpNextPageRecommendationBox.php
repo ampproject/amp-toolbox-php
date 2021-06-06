@@ -32,8 +32,7 @@ final class AmpNextPageRecommendationBox extends Tag
         SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [recommendation-box]',
         SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::RECOMMENDATION_BOX,
+            Attribute::RECOMMENDATION_BOX => [
                 SpecRule::MANDATORY => true,
             ],
         ],

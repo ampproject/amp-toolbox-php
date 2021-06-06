@@ -33,16 +33,14 @@ final class AmpDatePickerTypeRangeModeOverlay extends Tag
         SpecRule::TAG_NAME => Extension::DATE_PICKER,
         SpecRule::SPEC_NAME => 'amp-date-picker[type=range][mode=overlay]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MODE,
+            Attribute::MODE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [
                     'overlay',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'range',

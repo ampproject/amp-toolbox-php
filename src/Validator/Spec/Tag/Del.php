@@ -31,9 +31,7 @@ final class Del extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::DEL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATETIME,
-            ],
+            Attribute::DATETIME => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\CiteAttr::ID,

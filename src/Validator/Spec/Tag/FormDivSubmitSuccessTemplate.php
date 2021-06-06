@@ -31,15 +31,11 @@ final class FormDivSubmitSuccessTemplate extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [submit-success][template]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::SUBMIT_SUCCESS,
+            Attribute::ALIGN => [],
+            Attribute::SUBMIT_SUCCESS => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

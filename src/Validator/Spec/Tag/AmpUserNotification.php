@@ -33,8 +33,7 @@ final class AmpUserNotification extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::USER_NOTIFICATION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_DISMISS_HREF,
+            Attribute::DATA_DISMISS_HREF => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -43,8 +42,7 @@ final class AmpUserNotification extends Tag
                     SpecRule::ALLOW_EMPTY => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SHOW_IF_HREF,
+            Attribute::DATA_SHOW_IF_HREF => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -53,8 +51,7 @@ final class AmpUserNotification extends Tag
                     SpecRule::ALLOW_EMPTY => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ENCTYPE,
+            Attribute::ENCTYPE => [
                 SpecRule::VALUE => [
                     'application/x-www-form-urlencoded',
                 ],

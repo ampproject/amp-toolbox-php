@@ -33,8 +33,7 @@ final class AmpSocialShare extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SOCIAL_SHARE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_SHARE_ENDPOINT,
+            Attribute::DATA_SHARE_ENDPOINT => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -60,8 +59,7 @@ final class AmpSocialShare extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -32,8 +32,7 @@ final class AmpNextPageFooter extends Tag
         SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [footer]',
         SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FOOTER,
+            Attribute::FOOTER => [
                 SpecRule::MANDATORY => true,
             ],
         ],

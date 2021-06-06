@@ -33,8 +33,7 @@ final class AmpAutocompleteInput extends Tag
         SpecRule::SPEC_NAME => 'amp-autocomplete > input',
         SpecRule::MANDATORY_PARENT => Extension::AUTOCOMPLETE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'search',

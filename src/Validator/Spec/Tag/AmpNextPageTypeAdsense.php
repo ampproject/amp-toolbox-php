@@ -32,22 +32,15 @@ final class AmpNextPageTypeAdsense extends Tag
         SpecRule::SPEC_NAME => 'amp-next-page [type=adsense]',
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_CLIENT,
+            Attribute::DATA_CLIENT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SLOT,
+            Attribute::DATA_SLOT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DEEP_PARSING,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_PAGES,
-            ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::DEEP_PARSING => [],
+            Attribute::MAX_PAGES => [],
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'adsense',

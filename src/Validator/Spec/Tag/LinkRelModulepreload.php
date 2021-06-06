@@ -32,27 +32,23 @@ final class LinkRelModulepreload extends Tag
         SpecRule::SPEC_NAME => 'link rel=modulepreload',
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AS_,
+            Attribute::AS_ => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'script',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CROSSORIGIN,
+            Attribute::CROSSORIGIN => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'anonymous',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::HREF => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '.*\.mjs$',
             ],
-            [
-                SpecRule::NAME => Attribute::REL,
+            Attribute::REL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

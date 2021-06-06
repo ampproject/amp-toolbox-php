@@ -33,37 +33,29 @@ final class AmpStoryAmpVideo extends Tag
         SpecRule::TAG_NAME => Extension::VIDEO,
         SpecRule::SPEC_NAME => 'amp-story >> amp-video',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
+            Attribute::CONTROLS => [
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DEPRECATION => '- no replacement',
                 SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/23798',
             ],
-            [
-                SpecRule::NAME => '[controls]',
+            '[controls]' => [
                 SpecRule::DEPRECATION => '- no replacement',
                 SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/23798',
             ],
-            [
-                SpecRule::NAME => Attribute::POSTER,
+            Attribute::POSTER => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::CACHE,
+            Attribute::CACHE => [
                 SpecRule::VALUE => [
                     'google',
-                ],
-                SpecRule::REQUIRES_EXTENSION => [
-                    Extension::CACHE_URL,
                 ],
             ],
         ],

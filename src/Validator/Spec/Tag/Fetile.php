@@ -31,9 +31,7 @@ final class Fetile extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FETILE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
+            Attribute::IN => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

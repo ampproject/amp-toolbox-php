@@ -31,8 +31,7 @@ final class AmpListLoadMore extends Tag
         SpecRule::TAG_NAME => Extension::LIST_LOAD_MORE,
         SpecRule::MANDATORY_PARENT => Extension::LIST_,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_BUTTON,
+            Attribute::LOAD_MORE_BUTTON => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -43,8 +42,7 @@ final class AmpListLoadMore extends Tag
                     Attribute::LOAD_MORE_LOADING,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_FAILED,
+            Attribute::LOAD_MORE_FAILED => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -55,8 +53,7 @@ final class AmpListLoadMore extends Tag
                     Attribute::LOAD_MORE_LOADING,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_LOADING,
+            Attribute::LOAD_MORE_LOADING => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -67,8 +64,7 @@ final class AmpListLoadMore extends Tag
                     Attribute::LOAD_MORE_LOADING,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_END,
+            Attribute::LOAD_MORE_END => [
                 SpecRule::VALUE => [
                     '',
                 ],

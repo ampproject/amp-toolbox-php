@@ -32,14 +32,12 @@ final class AmpVimeo extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIMEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_VIDEOID,
+            Attribute::DATA_VIDEOID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],

@@ -33,8 +33,7 @@ final class AmpSidebar extends Tag
         SpecRule::TAG_NAME => Extension::SIDEBAR,
         SpecRule::SPEC_NAME => 'amp-sidebar',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SIDE,
+            Attribute::SIDE => [
                 SpecRule::VALUE => [
                     'left',
                     'right',

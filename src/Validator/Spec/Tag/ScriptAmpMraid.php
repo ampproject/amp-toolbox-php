@@ -50,9 +50,7 @@ final class ScriptAmpMraid extends Tag implements TagWithExtensionSpec
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::NO_FALLBACK,
-            ],
+            Attribute::NO_FALLBACK => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\CommonExtensionAttrs::ID,

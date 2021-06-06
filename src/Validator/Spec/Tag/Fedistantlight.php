@@ -31,12 +31,8 @@ final class Fedistantlight extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDISTANTLIGHT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AZIMUTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::ELEVATION,
-            ],
+            Attribute::AZIMUTH => [],
+            Attribute::ELEVATION => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

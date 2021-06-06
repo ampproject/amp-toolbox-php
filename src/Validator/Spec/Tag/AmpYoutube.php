@@ -32,44 +32,34 @@ final class AmpYoutube extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::YOUTUBE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::LOOP,
-            ],
-            [
-                SpecRule::NAME => Attribute::CREDENTIALS,
+            Attribute::AUTOPLAY => [],
+            Attribute::LOOP => [],
+            Attribute::CREDENTIALS => [
                 SpecRule::VALUE_CASEI => [
                     'include',
                     'omit',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_LIVE_CHANNELID,
+            Attribute::DATA_LIVE_CHANNELID => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_LIVE_CHANNELID,
                     Attribute::DATA_VIDEOID,
                 ],
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_VIDEOID,
+            Attribute::DATA_VIDEOID => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::DATA_LIVE_CHANNELID,
                     Attribute::DATA_VIDEOID,
                 ],
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],
             ],
-            [
-                SpecRule::NAME => '[data-videoid]',
-            ],
+            '[data-videoid]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

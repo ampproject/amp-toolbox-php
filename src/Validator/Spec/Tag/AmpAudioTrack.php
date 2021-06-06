@@ -33,15 +33,9 @@ final class AmpAudioTrack extends Tag
         SpecRule::SPEC_NAME => 'amp-audio > track',
         SpecRule::MANDATORY_PARENT => Extension::AUDIO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[label]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[srclang]',
-            ],
+            '[label]' => [],
+            '[src]' => [],
+            '[srclang]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\TrackAttrsNoSubtitles::ID,

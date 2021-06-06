@@ -30,8 +30,7 @@ final class AmpCarouselLightboxLightboxExclude extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-CAROUSEL lightbox [lightbox-exclude]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LIGHTBOX_EXCLUDE,
+            Attribute::LIGHTBOX_EXCLUDE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

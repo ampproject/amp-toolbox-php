@@ -33,8 +33,7 @@ final class AmpCallTracking extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CALL_TRACKING,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONFIG,
+            Attribute::CONFIG => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

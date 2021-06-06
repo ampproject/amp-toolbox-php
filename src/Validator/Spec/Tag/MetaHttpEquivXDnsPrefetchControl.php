@@ -31,16 +31,14 @@ final class MetaHttpEquivXDnsPrefetchControl extends Tag
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=x-dns-prefetch-control',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'off',
                     'on',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HTTP_EQUIV,
+            Attribute::HTTP_EQUIV => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

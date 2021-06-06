@@ -32,9 +32,7 @@ final class AmpImageLightbox extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMAGE_LIGHTBOX,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
-            ],
+            Attribute::CONTROLS => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

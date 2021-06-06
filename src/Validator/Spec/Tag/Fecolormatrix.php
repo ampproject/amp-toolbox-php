@@ -31,15 +31,9 @@ final class Fecolormatrix extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECOLORMATRIX,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUES,
-            ],
+            Attribute::IN => [],
+            Attribute::TYPE => [],
+            Attribute::VALUES => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

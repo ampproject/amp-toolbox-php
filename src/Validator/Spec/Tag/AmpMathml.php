@@ -32,13 +32,10 @@ final class AmpMathml extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MATHML,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_FORMULA,
+            Attribute::DATA_FORMULA => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::INLINE,
-            ],
+            Attribute::INLINE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

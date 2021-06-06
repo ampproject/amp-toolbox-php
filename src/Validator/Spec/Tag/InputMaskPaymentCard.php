@@ -33,8 +33,7 @@ final class InputMaskPaymentCard extends Tag
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'input [mask=payment-card]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MASK,
+            Attribute::MASK => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'payment-card',

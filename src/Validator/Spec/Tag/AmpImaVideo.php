@@ -33,14 +33,12 @@ final class AmpImaVideo extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMA_VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SRC,
+            Attribute::DATA_SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -49,8 +47,7 @@ final class AmpImaVideo extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TAG,
+            Attribute::DATA_TAG => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -59,14 +56,12 @@ final class AmpImaVideo extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ROTATE_TO_FULLSCREEN,
+            Attribute::ROTATE_TO_FULLSCREEN => [
                 SpecRule::VALUE => [
                     '',
                 ],

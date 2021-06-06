@@ -30,34 +30,22 @@ final class Table extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TABLE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::BGCOLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::BORDER,
+            Attribute::ALIGN => [],
+            Attribute::BGCOLOR => [],
+            Attribute::BORDER => [
                 SpecRule::VALUE => [
                     '0',
                     '1',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CELLPADDING,
-            ],
-            [
-                SpecRule::NAME => Attribute::CELLSPACING,
-            ],
-            [
-                SpecRule::NAME => Attribute::SORTABLE,
+            Attribute::CELLPADDING => [],
+            Attribute::CELLSPACING => [],
+            Attribute::SORTABLE => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::WIDTH => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

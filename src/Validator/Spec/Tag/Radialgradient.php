@@ -31,36 +31,16 @@ final class Radialgradient extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::RADIALGRADIENT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CX,
-            ],
-            [
-                SpecRule::NAME => Attribute::CY,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::FR,
-            ],
-            [
-                SpecRule::NAME => Attribute::FX,
-            ],
-            [
-                SpecRule::NAME => Attribute::FY,
-            ],
-            [
-                SpecRule::NAME => Attribute::GRADIENTTRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::GRADIENTUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::R,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPREADMETHOD,
-            ],
+            Attribute::CX => [],
+            Attribute::CY => [],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::FR => [],
+            Attribute::FX => [],
+            Attribute::FY => [],
+            Attribute::GRADIENTTRANSFORM => [],
+            Attribute::GRADIENTUNITS => [],
+            Attribute::R => [],
+            Attribute::SPREADMETHOD => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

@@ -31,30 +31,25 @@ final class AmpStoryGridLayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_GRID_LAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANCHOR,
+            Attribute::ANCHOR => [
                 SpecRule::VALUE_REGEX => 'top|bottom|left|right|(top|bottom)[ -](left|right)|(left|right)[ -](top|bottom)',
             ],
-            [
-                SpecRule::NAME => Attribute::ASPECT_RATIO,
+            Attribute::ASPECT_RATIO => [
                 SpecRule::VALUE_REGEX => '\d+:\d+',
             ],
-            [
-                SpecRule::NAME => Attribute::POSITION,
+            Attribute::POSITION => [
                 SpecRule::VALUE => [
                     'landscape-half-left',
                     'landscape-half-right',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::PRESET,
+            Attribute::PRESET => [
                 SpecRule::VALUE => [
                     '2021-background',
                     '2021-foreground',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'fill',

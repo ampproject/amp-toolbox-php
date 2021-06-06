@@ -31,12 +31,8 @@ final class Fieldset extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FIELDSET,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
-            ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
+            Attribute::DISABLED => [],
+            '[disabled]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

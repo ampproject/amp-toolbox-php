@@ -31,15 +31,13 @@ final class MetaHttpEquivContentStyleType extends Tag
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=Content-Style-Type',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'text/css',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HTTP_EQUIV,
+            Attribute::HTTP_EQUIV => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

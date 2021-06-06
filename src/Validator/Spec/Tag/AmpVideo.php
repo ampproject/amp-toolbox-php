@@ -32,9 +32,7 @@ final class AmpVideo extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::POSTER,
-            ],
+            Attribute::POSTER => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

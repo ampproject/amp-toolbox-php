@@ -31,16 +31,11 @@ final class AmpLiveListItemsItem extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items] item',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_SORT_TIME,
+            Attribute::DATA_SORT_TIME => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TOMBSTONE,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_UPDATE_TIME,
-            ],
+            Attribute::DATA_TOMBSTONE => [],
+            Attribute::DATA_UPDATE_TIME => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\MandatoryIdAttr::ID,

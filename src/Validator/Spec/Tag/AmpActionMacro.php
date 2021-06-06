@@ -31,11 +31,8 @@ final class AmpActionMacro extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ACTION_MACRO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ARGUMENTS,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXECUTE,
+            Attribute::ARGUMENTS => [],
+            Attribute::EXECUTE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

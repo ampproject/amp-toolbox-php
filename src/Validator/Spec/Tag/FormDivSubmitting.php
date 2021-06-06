@@ -31,11 +31,8 @@ final class FormDivSubmitting extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [submitting]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::SUBMITTING,
+            Attribute::ALIGN => [],
+            Attribute::SUBMITTING => [
                 SpecRule::MANDATORY => true,
             ],
         ],

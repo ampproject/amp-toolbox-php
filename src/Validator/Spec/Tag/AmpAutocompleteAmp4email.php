@@ -34,40 +34,22 @@ final class AmpAutocompleteAmp4email extends Tag
         SpecRule::TAG_NAME => Extension::AUTOCOMPLETE,
         SpecRule::SPEC_NAME => 'AMP-AUTOCOMPLETE (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HIGHLIGHT_USER_ENTRY,
-            ],
-            [
-                SpecRule::NAME => Attribute::INLINE,
-            ],
-            [
-                SpecRule::NAME => Attribute::ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MIN_CHARACTERS,
-            ],
-            [
-                SpecRule::NAME => Attribute::PREFETCH,
-            ],
-            [
-                SpecRule::NAME => Attribute::QUERY,
+            Attribute::HIGHLIGHT_USER_ENTRY => [],
+            Attribute::INLINE => [],
+            Attribute::ITEMS => [],
+            Attribute::MAX_ITEMS => [],
+            Attribute::MIN_CHARACTERS => [],
+            Attribute::PREFETCH => [],
+            Attribute::QUERY => [
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::SRC,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SUBMIT_ON_ENTER,
-            ],
-            [
-                SpecRule::NAME => Attribute::SUGGEST_FIRST,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SUBMIT_ON_ENTER => [],
+            Attribute::SUGGEST_FIRST => [],
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                 SpecRule::VALUE_URL => [
@@ -77,8 +59,7 @@ final class AmpAutocompleteAmp4email extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
             ],
         ],

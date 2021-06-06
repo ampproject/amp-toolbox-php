@@ -32,43 +32,26 @@ final class AmpBrightcove extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BRIGHTCOVE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_ACCOUNT,
+            Attribute::DATA_ACCOUNT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],
             ],
-            [
-                SpecRule::NAME => '[data-account]',
-            ],
-            [
-                SpecRule::NAME => '[data-embed]',
-            ],
-            [
-                SpecRule::NAME => '[data-player-id]',
-            ],
-            [
-                SpecRule::NAME => '[data-player]',
-            ],
-            [
-                SpecRule::NAME => '[data-playlist-id]',
-            ],
-            [
-                SpecRule::NAME => '[data-video-id]',
-            ],
-            [
-                SpecRule::NAME => '[data-referrer]',
-            ],
+            '[data-account]' => [],
+            '[data-embed]' => [],
+            '[data-player-id]' => [],
+            '[data-player]' => [],
+            '[data-playlist-id]' => [],
+            '[data-video-id]' => [],
+            '[data-referrer]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

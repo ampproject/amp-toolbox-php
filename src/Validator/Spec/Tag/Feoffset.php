@@ -31,15 +31,9 @@ final class Feoffset extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEOFFSET,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DX,
-            ],
-            [
-                SpecRule::NAME => Attribute::DY,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
+            Attribute::DX => [],
+            Attribute::DY => [],
+            Attribute::IN => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

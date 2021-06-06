@@ -33,15 +33,13 @@ final class AmpScript extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SCRIPT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_AMPDEVMODE,
+            Attribute::DATA_AMPDEVMODE => [
                 SpecRule::VALUE => [
                     'false',
                 ],
                 SpecRule::DISALLOWED_VALUE_REGEX => 'false',
             ],
-            [
-                SpecRule::NAME => Attribute::MAX_AGE,
+            Attribute::MAX_AGE => [
                 SpecRule::VALUE_REGEX => '[0-9]+',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -49,31 +47,25 @@ final class AmpScript extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NODOM,
+            Attribute::NODOM => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SANDBOXED,
+            Attribute::SANDBOXED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SANDBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCRIPT,
+            Attribute::SANDBOX => [],
+            Attribute::SCRIPT => [
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::SCRIPT,
                     Attribute::SRC,
                 ],
                 SpecRule::VALUE_ONEOF_SET => 'AMP_SCRIPT_IDS',
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::MANDATORY_ONEOF => [
                     Attribute::SCRIPT,

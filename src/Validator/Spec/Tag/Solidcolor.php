@@ -31,12 +31,8 @@ final class Solidcolor extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::SOLIDCOLOR,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SOLID_COLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::SOLID_OPACITY,
-            ],
+            Attribute::SOLID_COLOR => [],
+            Attribute::SOLID_OPACITY => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

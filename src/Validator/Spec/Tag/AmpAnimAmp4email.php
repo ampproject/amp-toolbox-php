@@ -33,12 +33,8 @@ final class AmpAnimAmp4email extends Tag
         SpecRule::TAG_NAME => Extension::ANIM,
         SpecRule::SPEC_NAME => 'AMP-ANIM (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

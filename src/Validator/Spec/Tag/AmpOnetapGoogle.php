@@ -34,8 +34,7 @@ final class AmpOnetapGoogle extends Tag
         SpecRule::TAG_NAME => Extension::ONETAP_GOOGLE,
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_SRC,
+            Attribute::DATA_SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

@@ -30,8 +30,7 @@ final class AmpMegaMenuItemHeading extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU item-heading',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::ROLE => [
                 SpecRule::VALUE => [
                     'button',
                 ],

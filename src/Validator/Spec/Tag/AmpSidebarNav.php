@@ -33,13 +33,11 @@ final class AmpSidebarNav extends Tag
         SpecRule::SPEC_NAME => 'amp-sidebar > nav',
         SpecRule::MANDATORY_PARENT => Extension::SIDEBAR,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TOOLBAR,
+            Attribute::TOOLBAR => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::TOOLBAR_TARGET,
+            Attribute::TOOLBAR_TARGET => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -33,42 +33,26 @@ final class AmpImgImgPlaceholderTransformed extends Tag
         SpecRule::SPEC_NAME => 'amp-img > img[placeholder] (transformed)',
         SpecRule::MANDATORY_PARENT => 'amp-img (transformed)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::CLASS_,
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::CLASS_ => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'i-amphtml-blurry-placeholder',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_FIT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_POSITION,
-            ],
-            [
-                SpecRule::NAME => Attribute::PLACEHOLDER,
+            Attribute::OBJECT_FIT => [],
+            Attribute::OBJECT_POSITION => [],
+            Attribute::PLACEHOLDER => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
-            ],
-            [
-                SpecRule::NAME => Attribute::SIZES,
-            ],
-            [
-                SpecRule::NAME => Attribute::TITLE,
-            ],
+            Attribute::REFERRERPOLICY => [],
+            Attribute::SIZES => [],
+            Attribute::TITLE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\MandatorySrcOrSrcset::ID,

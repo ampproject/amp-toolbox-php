@@ -35,8 +35,7 @@ final class HeadStyleAmp4adsBoilerplate extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP4ADS_BOILERPLATE,
+            Attribute::AMP4ADS_BOILERPLATE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

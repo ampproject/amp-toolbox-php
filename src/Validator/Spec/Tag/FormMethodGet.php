@@ -34,14 +34,9 @@ final class FormMethodGet extends Tag
         SpecRule::TAG_NAME => Element::FORM,
         SpecRule::SPEC_NAME => 'FORM [method=GET]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ACCEPT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ACCEPT_CHARSET,
-            ],
-            [
-                SpecRule::NAME => Attribute::ACTION,
+            Attribute::ACCEPT => [],
+            Attribute::ACCEPT_CHARSET => [],
+            Attribute::ACTION => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -50,8 +45,7 @@ final class FormMethodGet extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ACTION_XHR,
+            Attribute::ACTION_XHR => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -59,11 +53,8 @@ final class FormMethodGet extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::AUTOCOMPLETE,
-            ],
-            [
-                SpecRule::NAME => Attribute::CUSTOM_VALIDATION_REPORTING,
+            Attribute::AUTOCOMPLETE => [],
+            Attribute::CUSTOM_VALIDATION_REPORTING => [
                 SpecRule::VALUE => [
                     'as-you-go',
                     'interact-and-submit',
@@ -71,28 +62,21 @@ final class FormMethodGet extends Tag
                     'show-first-on-submit',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ENCTYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::METHOD,
+            Attribute::ENCTYPE => [],
+            Attribute::METHOD => [
                 SpecRule::VALUE_CASEI => [
                     'get',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NOVALIDATE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TARGET,
+            Attribute::NOVALIDATE => [],
+            Attribute::TARGET => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     '_blank',
                     '_top',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::VERIFY_XHR,
+            Attribute::VERIFY_XHR => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

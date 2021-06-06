@@ -31,19 +31,16 @@ final class SubscriptionsSectionContentSwgAmpCacheNonce extends Tag
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::SPEC_NAME => 'subscriptions-section content swg_amp_cache_nonce',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ENCRYPTED,
+            Attribute::ENCRYPTED => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::SUBSCRIPTIONS_SECTION,
+            Attribute::SUBSCRIPTIONS_SECTION => [
                 SpecRule::VALUE_CASEI => [
                     'content',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SWG_AMP_CACHE_NONCE,
+            Attribute::SWG_AMP_CACHE_NONCE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

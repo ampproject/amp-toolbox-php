@@ -32,12 +32,10 @@ final class AmpGfycat extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GFYCAT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_GFYID,
+            Attribute::DATA_GFYID => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::NOAUTOPLAY,
+            Attribute::NOAUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
