@@ -54,6 +54,7 @@ final class ServerSideRendering implements Transformer
         Layout::CONTAINER,
         Layout::FILL,
         Layout::FLEX_ITEM,
+        Layout::FLUID,
         Layout::INTRINSIC,
     ];
 
@@ -495,6 +496,10 @@ final class ServerSideRendering implements Transformer
             case Layout::FILL:
             case Layout::CONTAINER:
                 // Do nothing here.
+                break;
+            case Layout::FLUID:
+                $styles = 'width:100%;height:0;';
+                $this->addClass($element, AMP::LAYOUT_AWAITING_SIZE_CLASS);
                 break;
             case Layout::FLEX_ITEM:
                 if ($width->isDefined()) {
