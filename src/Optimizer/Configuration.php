@@ -8,6 +8,7 @@ use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
 use AmpProject\Optimizer\Transformer\AmpRuntimePreloads;
 use AmpProject\Optimizer\Transformer\GoogleFontsPreconnect;
+use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
@@ -52,7 +53,6 @@ interface Configuration
         AmpRuntimePreloads::class,
         AmpBoilerplateErrorHandler::class,
         GoogleFontsPreconnect::class,
-        ResourceHints::class,
         RewriteAmpUrls::class,
         ReorderHead::class,
         OptimizeAmpBind::class,
