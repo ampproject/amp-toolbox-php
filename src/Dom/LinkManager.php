@@ -80,9 +80,6 @@ final class LinkManager
                 continue;
             }
 
-            $href = $node->getAttribute(Attribute::HREF);
-            $rel  = $node->getAttribute(Attribute::REL);
-
             $key = $this->getKey($node);
 
             if ($key !== '') {
