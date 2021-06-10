@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryInteractiveQuiz extends Tag
+/**
+ * Tag class AmpStoryInteractiveQuiz.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpStoryInteractiveQuiz extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,26 +44,42 @@ final class AmpStoryInteractiveQuiz extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_QUIZ,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OPTION_1_CORRECT,
-                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+            Attribute::OPTION_1_CORRECT => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::OPTION_1_CORRECT,
+                    Attribute::OPTION_2_CORRECT,
+                    Attribute::OPTION_3_CORRECT,
+                    Attribute::OPTION_4_CORRECT,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_CORRECT,
-                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+            Attribute::OPTION_2_CORRECT => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::OPTION_1_CORRECT,
+                    Attribute::OPTION_2_CORRECT,
+                    Attribute::OPTION_3_CORRECT,
+                    Attribute::OPTION_4_CORRECT,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_3_CORRECT,
-                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+            Attribute::OPTION_3_CORRECT => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::OPTION_1_CORRECT,
+                    Attribute::OPTION_2_CORRECT,
+                    Attribute::OPTION_3_CORRECT,
+                    Attribute::OPTION_4_CORRECT,
+                ],
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_3_TEXT,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_4_CORRECT,
-                SpecRule::MANDATORY_ONEOF => '[\'option-1-correct\', \'option-2-correct\', \'option-3-correct\', \'option-4-correct\']',
+            Attribute::OPTION_4_CORRECT => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::OPTION_1_CORRECT,
+                    Attribute::OPTION_2_CORRECT,
+                    Attribute::OPTION_3_CORRECT,
+                    Attribute::OPTION_4_CORRECT,
+                ],
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_4_TEXT,

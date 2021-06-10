@@ -9,9 +9,18 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class AmpMegaphoneCommon extends AttributeList
+/**
+ * Attribute list class AmpMegaphoneCommon.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $dataLight
+ * @property-read array<array<string>> $dataSharing
+ */
+final class AmpMegaphoneCommon extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

@@ -11,10 +11,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\DescendantTagList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryPlayer extends Tag
+/**
+ * Tag class AmpStoryPlayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ * @property-read string $descendantTagList
+ */
+final class AmpStoryPlayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

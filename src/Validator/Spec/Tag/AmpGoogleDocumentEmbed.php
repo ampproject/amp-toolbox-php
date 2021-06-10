@@ -13,10 +13,24 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpGoogleDocumentEmbed extends Tag
+/**
+ * Tag class AmpGoogleDocumentEmbed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpGoogleDocumentEmbed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +47,7 @@ final class AmpGoogleDocumentEmbed extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GOOGLE_DOCUMENT_EMBED,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -44,12 +57,8 @@ final class AmpGoogleDocumentEmbed extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[title]',
-            ],
+            '[src]' => [],
+            '[title]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

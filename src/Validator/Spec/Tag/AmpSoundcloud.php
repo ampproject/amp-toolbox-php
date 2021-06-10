@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpSoundcloud extends Tag
+/**
+ * Tag class AmpSoundcloud.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpSoundcloud extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,26 +45,27 @@ final class AmpSoundcloud extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SOUNDCLOUD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_COLOR,
+            Attribute::DATA_COLOR => [
                 SpecRule::VALUE_REGEX_CASEI => '([0-9a-f]{3}){1,2}',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYLISTID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']',
+            Attribute::DATA_PLAYLISTID => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_TRACKID,
+                    Attribute::DATA_PLAYLISTID,
+                ],
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SECRET_TOKEN,
+            Attribute::DATA_SECRET_TOKEN => [
                 SpecRule::VALUE_REGEX => '[A-Za-z0-9_-]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TRACKID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-trackid\', \'data-playlistid\']',
+            Attribute::DATA_TRACKID => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_TRACKID,
+                    Attribute::DATA_PLAYLISTID,
+                ],
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_VISUAL,
+            Attribute::DATA_VISUAL => [
                 SpecRule::VALUE_CASEI => [
                     'false',
                     'true',

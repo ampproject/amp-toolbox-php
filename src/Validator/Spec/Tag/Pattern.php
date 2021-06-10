@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Pattern extends Tag
+/**
+ * Tag class Pattern.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Pattern extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,36 +44,16 @@ final class Pattern extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::PATTERN,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PATTERNCONTENTUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::PATTERNTRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::PATTERNUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::HEIGHT => [],
+            Attribute::PATTERNCONTENTUNITS => [],
+            Attribute::PATTERNTRANSFORM => [],
+            Attribute::PATTERNUNITS => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::VIEWBOX => [],
+            Attribute::WIDTH => [],
+            Attribute::X => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

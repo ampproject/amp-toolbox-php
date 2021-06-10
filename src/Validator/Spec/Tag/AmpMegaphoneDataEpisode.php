@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpMegaphoneDataEpisode extends Tag
+/**
+ * Tag class AmpMegaphoneDataEpisode.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpMegaphoneDataEpisode extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,18 +47,15 @@ final class AmpMegaphoneDataEpisode extends Tag
         SpecRule::TAG_NAME => Extension::MEGAPHONE,
         SpecRule::SPEC_NAME => 'amp-megaphone [data-episode]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_EPISODE,
+            Attribute::DATA_EPISODE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
                 SpecRule::VALUE_REGEX => '[A-Za-z0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_START,
+            Attribute::DATA_START => [
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TILE,
+            Attribute::DATA_TILE => [
                 SpecRule::VALUE => [
                     '',
                 ],

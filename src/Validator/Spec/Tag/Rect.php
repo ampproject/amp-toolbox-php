@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Rect extends Tag
+/**
+ * Tag class Rect.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Rect extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,33 +44,15 @@ final class Rect extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::RECT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::RX,
-            ],
-            [
-                SpecRule::NAME => Attribute::RY,
-            ],
-            [
-                SpecRule::NAME => Attribute::SKETCH_TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::HEIGHT => [],
+            Attribute::RX => [],
+            Attribute::RY => [],
+            Attribute::SKETCH_TYPE => [],
+            Attribute::TRANSFORM => [],
+            Attribute::WIDTH => [],
+            Attribute::X => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

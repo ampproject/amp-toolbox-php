@@ -12,11 +12,23 @@ use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\ExtensionSpec;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpSubscriptionsGoogle extends Tag implements TagWithExtensionSpec
+/**
+ * Tag class ScriptAmpSubscriptionsGoogle.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ * @property-read string $extensionSpec
+ * @property-read array<string> $requiresExtension
+ */
+final class ScriptAmpSubscriptionsGoogle extends Tag implements Identifiable, TagWithExtensionSpec
 {
     use ExtensionSpec;
 

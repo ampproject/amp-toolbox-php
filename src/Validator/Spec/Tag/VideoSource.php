@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class VideoSource extends Tag
+/**
+ * Tag class VideoSource.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class VideoSource extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,11 +46,8 @@ final class VideoSource extends Tag
         SpecRule::SPEC_NAME => 'video > source',
         SpecRule::MANDATORY_PARENT => Element::VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MEDIA,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::MEDIA => [],
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -47,8 +57,7 @@ final class VideoSource extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

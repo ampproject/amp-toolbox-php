@@ -10,10 +10,25 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpNextPageTypeAdsense extends Tag
+/**
+ * Tag class AmpNextPageTypeAdsense.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read array<array> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpNextPageTypeAdsense extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,22 +47,15 @@ final class AmpNextPageTypeAdsense extends Tag
         SpecRule::SPEC_NAME => 'amp-next-page [type=adsense]',
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_CLIENT,
+            Attribute::DATA_CLIENT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SLOT,
+            Attribute::DATA_SLOT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DEEP_PARSING,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_PAGES,
-            ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::DEEP_PARSING => [],
+            Attribute::MAX_PAGES => [],
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'adsense',

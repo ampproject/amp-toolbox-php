@@ -12,10 +12,26 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAccessExtensionJsonScript extends Tag
+/**
+ * Tag class AmpAccessExtensionJsonScript.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<array<string>>> $cdata
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAccessExtensionJsonScript extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -35,16 +51,14 @@ final class AmpAccessExtensionJsonScript extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ID,
+            Attribute::ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-access',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'application/json',

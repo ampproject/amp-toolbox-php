@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpYotpo extends Tag
+/**
+ * Tag class AmpYotpo.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array<bool>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpYotpo extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,12 +46,10 @@ final class AmpYotpo extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::YOTPO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_APP_KEY,
+            Attribute::DATA_APP_KEY => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_WIDGET_TYPE,
+            Attribute::DATA_WIDGET_TYPE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

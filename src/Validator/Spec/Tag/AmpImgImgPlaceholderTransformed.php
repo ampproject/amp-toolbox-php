@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpImgImgPlaceholderTransformed extends Tag
+/**
+ * Tag class AmpImgImgPlaceholderTransformed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $enabledBy
+ */
+final class AmpImgImgPlaceholderTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,42 +47,26 @@ final class AmpImgImgPlaceholderTransformed extends Tag
         SpecRule::SPEC_NAME => 'amp-img > img[placeholder] (transformed)',
         SpecRule::MANDATORY_PARENT => 'amp-img (transformed)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::CLASS_,
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::CLASS_ => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'i-amphtml-blurry-placeholder',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_FIT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_POSITION,
-            ],
-            [
-                SpecRule::NAME => Attribute::PLACEHOLDER,
+            Attribute::OBJECT_FIT => [],
+            Attribute::OBJECT_POSITION => [],
+            Attribute::PLACEHOLDER => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
-            ],
-            [
-                SpecRule::NAME => Attribute::SIZES,
-            ],
-            [
-                SpecRule::NAME => Attribute::TITLE,
-            ],
+            Attribute::REFERRERPOLICY => [],
+            Attribute::SIZES => [],
+            Attribute::TITLE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\MandatorySrcOrSrcset::ID,

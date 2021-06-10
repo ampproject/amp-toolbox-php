@@ -11,10 +11,22 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class H6AmpNestedMenu extends Tag
+/**
+ * Tag class H6AmpNestedMenu.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<string> $attrLists
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class H6AmpNestedMenu extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

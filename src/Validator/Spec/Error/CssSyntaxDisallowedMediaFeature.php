@@ -10,6 +10,14 @@ namespace AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Error class CssSyntaxDisallowedMediaFeature.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $format
+ * @property-read int $specificity
+ */
 final class CssSyntaxDisallowedMediaFeature extends Error
 {
     /**

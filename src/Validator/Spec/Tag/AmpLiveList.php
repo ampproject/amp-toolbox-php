@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveList extends Tag
+/**
+ * Tag class AmpLiveList.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<array> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpLiveList extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,23 +46,19 @@ final class AmpLiveList extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIVE_LIST,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_MAX_ITEMS_PER_PAGE,
+            Attribute::DATA_MAX_ITEMS_PER_PAGE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '\d+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_POLL_INTERVAL,
+            Attribute::DATA_POLL_INTERVAL => [
                 SpecRule::VALUE_REGEX => '\d{5,}',
             ],
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SORT,
+            Attribute::SORT => [
                 SpecRule::VALUE => [
                     'ascending',
                 ],

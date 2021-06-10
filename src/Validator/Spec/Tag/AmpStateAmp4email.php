@@ -10,10 +10,25 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStateAmp4email extends Tag
+/**
+ * Tag class AmpStateAmp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<array<string>> $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpStateAmp4email extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

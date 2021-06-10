@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpState extends Tag
+/**
+ * Tag class AmpState.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpState extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,14 +48,9 @@ final class AmpState extends Tag
         SpecRule::TAG_NAME => Extension::STATE,
         SpecRule::SPEC_NAME => 'amp-state',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CREDENTIALS,
-            ],
-            [
-                SpecRule::NAME => Attribute::OVERRIDABLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::CREDENTIALS => [],
+            Attribute::OVERRIDABLE => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -49,9 +59,7 @@ final class AmpState extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
+            '[src]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\MandatoryIdAttr::ID,

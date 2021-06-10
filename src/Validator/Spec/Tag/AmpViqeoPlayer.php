@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpViqeoPlayer extends Tag
+/**
+ * Tag class AmpViqeoPlayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpViqeoPlayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,16 +45,12 @@ final class AmpViqeoPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::VIQEO_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_PROFILEID,
+            Attribute::AUTOPLAY => [],
+            Attribute::DATA_PROFILEID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-f]*',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_VIDEOID,
+            Attribute::DATA_VIDEOID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

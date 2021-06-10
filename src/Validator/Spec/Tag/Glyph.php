@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Glyph extends Tag
+/**
+ * Tag class Glyph.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Glyph extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,33 +44,15 @@ final class Glyph extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::GLYPH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ARABIC_FORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::D,
-            ],
-            [
-                SpecRule::NAME => Attribute::GLYPH_NAME,
-            ],
-            [
-                SpecRule::NAME => Attribute::HORIZ_ADV_X,
-            ],
-            [
-                SpecRule::NAME => Attribute::ORIENTATION,
-            ],
-            [
-                SpecRule::NAME => Attribute::UNICODE,
-            ],
-            [
-                SpecRule::NAME => Attribute::VERT_ADV_Y,
-            ],
-            [
-                SpecRule::NAME => Attribute::VERT_ORIGIN_X,
-            ],
-            [
-                SpecRule::NAME => Attribute::VERT_ORIGIN_Y,
-            ],
+            Attribute::ARABIC_FORM => [],
+            Attribute::D => [],
+            Attribute::GLYPH_NAME => [],
+            Attribute::HORIZ_ADV_X => [],
+            Attribute::ORIENTATION => [],
+            Attribute::UNICODE => [],
+            Attribute::VERT_ADV_Y => [],
+            Attribute::VERT_ORIGIN_X => [],
+            Attribute::VERT_ORIGIN_Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

@@ -10,10 +10,26 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class MetaCharsetUtf8 extends Tag
+/**
+ * Tag class MetaCharsetUtf8.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $mandatory
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class MetaCharsetUtf8 extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +50,7 @@ final class MetaCharsetUtf8 extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CHARSET,
+            Attribute::CHARSET => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
                 SpecRule::VALUE_CASEI => [

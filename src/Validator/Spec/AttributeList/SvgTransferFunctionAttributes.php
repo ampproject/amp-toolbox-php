@@ -9,9 +9,23 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Identifiable;
 
-final class SvgTransferFunctionAttributes extends AttributeList
+/**
+ * Attribute list class SvgTransferFunctionAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $amplitude
+ * @property-read array $exponent
+ * @property-read array $intercept
+ * @property-read array $offset
+ * @property-read array $slope
+ * @property-read array $table
+ * @property-read array $tablevalues
+ * @property-read array $type
+ */
+final class SvgTransferFunctionAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

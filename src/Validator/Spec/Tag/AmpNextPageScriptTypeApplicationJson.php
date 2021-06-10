@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpNextPageScriptTypeApplicationJson extends Tag
+/**
+ * Tag class AmpNextPageScriptTypeApplicationJson.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpNextPageScriptTypeApplicationJson extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +47,7 @@ final class AmpNextPageScriptTypeApplicationJson extends Tag
         SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > SCRIPT[type=application/json]',
         SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
                 SpecRule::VALUE_CASEI => [

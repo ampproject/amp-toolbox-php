@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpDelightPlayer extends Tag
+/**
+ * Tag class AmpDelightPlayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpDelightPlayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,12 +45,10 @@ final class AmpDelightPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DELIGHT_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_CONTENT_ID,
+            Attribute::DATA_CONTENT_ID => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

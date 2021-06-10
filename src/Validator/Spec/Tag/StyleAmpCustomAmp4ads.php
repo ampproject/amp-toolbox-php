@@ -12,10 +12,27 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class StyleAmpCustomAmp4ads extends Tag
+/**
+ * Tag class StyleAmpCustomAmp4ads.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array $cdata
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class StyleAmpCustomAmp4ads extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -35,15 +52,13 @@ final class StyleAmpCustomAmp4ads extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_CUSTOM,
+            Attribute::AMP_CUSTOM => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::VALUE_CASEI => [
                     'text/css',
                 ],

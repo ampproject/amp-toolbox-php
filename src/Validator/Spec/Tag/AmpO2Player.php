@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpO2Player extends Tag
+/**
+ * Tag class AmpO2Player.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array<bool>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpO2Player extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,12 +45,10 @@ final class AmpO2Player extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::O2_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_BCID,
+            Attribute::DATA_BCID => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PID,
+            Attribute::DATA_PID => [
                 SpecRule::MANDATORY => true,
             ],
         ],

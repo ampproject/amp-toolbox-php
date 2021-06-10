@@ -7,10 +7,14 @@
 
 namespace AmpProject\Validator\Spec;
 
+use AmpProject\Exception\InvalidSpecRuleName;
+
 /**
  * The base class for a single DescendantTagList that defines the set of allowed descendant tags.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @property-read string $id ID of the descendant tag list.
  */
 class DescendantTagList
 {
@@ -49,5 +53,25 @@ class DescendantTagList
     public function has($descendantTag)
     {
         return in_array($descendantTag, static::DESCENDANT_TAGS, true);
+    }
+
+    /**
+     * Magic getter to return the spec rules.
+     *
+     * @param string $specRuleName Name of the spec rule to return.
+     * @return mixed Value of the spec rule.
+     */
+    public function __get($specRuleName)
+    {
+        switch ($specRuleName) {
+            case 'id':
+                return static::ID;
+            default:
+                if (!array_key_exists($specRuleName, static::DESCENDANT_TAGS)) {
+                    throw InvalidSpecRuleName::forSpecRuleName($specRuleName);
+                }
+
+                return static::DESCENDANT_TAGS[$specRuleName];
+        }
     }
 }

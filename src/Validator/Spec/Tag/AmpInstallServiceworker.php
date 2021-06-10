@@ -12,10 +12,22 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpInstallServiceworker extends Tag
+/**
+ * Tag class AmpInstallServiceworker.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpInstallServiceworker extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,8 +44,7 @@ final class AmpInstallServiceworker extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::INSTALL_SERVICEWORKER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_IFRAME_SRC,
+            Attribute::DATA_IFRAME_SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -42,8 +53,7 @@ final class AmpInstallServiceworker extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

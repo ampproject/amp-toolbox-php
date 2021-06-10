@@ -21,7 +21,7 @@ class DescendantTagListsTest extends TestCase
     public function __construct()
     {
         parent::__construct();
-        $spec       = new Spec();
+        $spec                     = new Spec();
         $this->descendantTagLists = $spec->descendantTagLists();
     }
 
@@ -51,6 +51,7 @@ class DescendantTagListsTest extends TestCase
         $this->assertGreaterThan(7, count($this->descendantTagLists));
         foreach ($this->descendantTagLists as $descendantTagList) {
             $this->assertInstanceOf(Spec\DescendantTagList::class, $descendantTagList);
+            $this->assertInstanceOf(Spec\Identifiable::class, $descendantTagList);
             $this->assertNotEmpty($descendantTagList::DESCENDANT_TAGS);
         }
     }

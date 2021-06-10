@@ -10,10 +10,20 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Colgroup extends Tag
+/**
+ * Tag class Colgroup.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class Colgroup extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,9 +40,7 @@ final class Colgroup extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::COLGROUP,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SPAN,
-            ],
+            Attribute::SPAN => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

@@ -10,10 +10,23 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class MetaNameAmpCtaLandingPageType extends Tag
+/**
+ * Tag class MetaNameAmpCtaLandingPageType.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class MetaNameAmpCtaLandingPageType extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +46,7 @@ final class MetaNameAmpCtaLandingPageType extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'amp',
@@ -42,8 +54,7 @@ final class MetaNameAmpCtaLandingPageType extends Tag
                     'story',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NAME,
+            Attribute::NAME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

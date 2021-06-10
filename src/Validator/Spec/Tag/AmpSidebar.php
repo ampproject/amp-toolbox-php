@@ -12,10 +12,27 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpSidebar extends Tag
+/**
+ * Tag class AmpSidebar.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<array<string>>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ * @property-read array<array<string>> $markDescendants
+ */
+final class AmpSidebar extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +50,7 @@ final class AmpSidebar extends Tag
         SpecRule::TAG_NAME => Extension::SIDEBAR,
         SpecRule::SPEC_NAME => 'amp-sidebar',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SIDE,
+            Attribute::SIDE => [
                 SpecRule::VALUE => [
                     'left',
                     'right',

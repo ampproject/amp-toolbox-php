@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class InputTypePassword extends Tag
+/**
+ * Tag class InputTypePassword.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class InputTypePassword extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,16 +46,14 @@ final class InputTypePassword extends Tag
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'INPUT [type=password]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [
                     'password',
                 ],
             ],
-            [
-                SpecRule::NAME => '[type]',
+            '[type]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],

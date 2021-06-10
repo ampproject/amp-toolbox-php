@@ -13,10 +13,25 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpListAmp4email extends Tag
+/**
+ * Tag class AmpListAmp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpListAmp4email extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +49,7 @@ final class AmpListAmp4email extends Tag
         SpecRule::TAG_NAME => Extension::LIST_,
         SpecRule::SPEC_NAME => 'AMP-LIST (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BINDING,
+            Attribute::BINDING => [
                 SpecRule::VALUE => [
                     'always',
                     'no',
@@ -43,23 +57,15 @@ final class AmpListAmp4email extends Tag
                     'refresh-evaluate',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DIFFABLE,
+            Attribute::DIFFABLE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::SINGLE_ITEM,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::ITEMS => [],
+            Attribute::MAX_ITEMS => [],
+            Attribute::SINGLE_ITEM => [],
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                 SpecRule::VALUE_URL => [
@@ -69,16 +75,11 @@ final class AmpListAmp4email extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
             ],
-            [
-                SpecRule::NAME => Attribute::XSSI_PREFIX,
-            ],
-            [
-                SpecRule::NAME => '[is-layout-container]',
-            ],
+            Attribute::XSSI_PREFIX => [],
+            '[is-layout-container]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

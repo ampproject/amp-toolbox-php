@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryPageAttachmentHref extends Tag
+/**
+ * Tag class AmpStoryPageAttachmentHref.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read string $mandatoryAncestor
+ * @property-read array<int> $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read bool $mandatoryLastChild
+ */
+final class AmpStoryPageAttachmentHref extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,18 +46,14 @@ final class AmpStoryPageAttachmentHref extends Tag
         SpecRule::TAG_NAME => Extension::STORY_PAGE_ATTACHMENT,
         SpecRule::SPEC_NAME => 'amp-story-page-attachment[href]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CTA_ACCENT_COLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::CTA_ACCENT_ELEMENT,
+            Attribute::CTA_ACCENT_COLOR => [],
+            Attribute::CTA_ACCENT_ELEMENT => [
                 SpecRule::VALUE => [
                     'background',
                     'text',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CTA_IMAGE,
+            Attribute::CTA_IMAGE => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -51,11 +61,8 @@ final class AmpStoryPageAttachmentHref extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CTA_TEXT,
-            ],
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::CTA_TEXT => [],
+            Attribute::HREF => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -64,24 +71,20 @@ final class AmpStoryPageAttachmentHref extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LAYOUT,
+            Attribute::LAYOUT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'nodisplay',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::THEME,
+            Attribute::THEME => [
                 SpecRule::VALUE => [
                     'custom',
                     'dark',
                     'light',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TITLE,
-            ],
+            Attribute::TITLE => [],
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
         SpecRule::CHILD_TAGS => [

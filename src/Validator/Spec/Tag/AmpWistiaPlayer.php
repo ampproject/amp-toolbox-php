@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpWistiaPlayer extends Tag
+/**
+ * Tag class AmpWistiaPlayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpWistiaPlayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,13 +45,11 @@ final class AmpWistiaPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::WISTIA_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_MEDIA_HASHED_ID,
+            Attribute::DATA_MEDIA_HASHED_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-zA-Z]+',
             ],
-            [
-                SpecRule::NAME => Attribute::ROTATE_TO_FULLSCREEN,
+            Attribute::ROTATE_TO_FULLSCREEN => [
                 SpecRule::VALUE => [
                     '',
                 ],

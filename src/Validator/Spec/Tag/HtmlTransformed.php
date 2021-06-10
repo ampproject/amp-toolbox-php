@@ -10,10 +10,26 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class HtmlTransformed extends Tag
+/**
+ * Tag class HtmlTransformed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $mandatory
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array<array<string>>> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $enabledBy
+ */
+final class HtmlTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,14 +50,12 @@ final class HtmlTransformed extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::_DOCTYPE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_LAYOUT,
+            Attribute::I_AMPHTML_LAYOUT => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_NO_BOILERPLATE,
+            Attribute::I_AMPHTML_NO_BOILERPLATE => [
                 SpecRule::VALUE => [
                     '',
                 ],

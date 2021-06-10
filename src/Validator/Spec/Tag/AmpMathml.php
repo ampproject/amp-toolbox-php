@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpMathml extends Tag
+/**
+ * Tag class AmpMathml.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpMathml extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,13 +45,10 @@ final class AmpMathml extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::MATHML,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_FORMULA,
+            Attribute::DATA_FORMULA => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::INLINE,
-            ],
+            Attribute::INLINE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

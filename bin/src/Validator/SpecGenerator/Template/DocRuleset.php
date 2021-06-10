@@ -10,6 +10,7 @@ use AmpProject\Validator\Spec\SpecRule;
  *
  * @package ampproject/amp-toolbox
  *
+ * @property-read string        $id         ID of the document ruleset.
  * @property-read array<string> $htmlFormat HTML format that this DocRuleset applies to.
  */
 class DocRuleset
@@ -40,7 +41,6 @@ class DocRuleset
     {
         return static::ID;
     }
-
 
     /**
      * Check whether a given spec rule is present.
@@ -77,6 +77,8 @@ class DocRuleset
     public function __get($docRulesetName)
     {
         switch ($docRulesetName) {
+            case 'id':
+                return static::ID;
             case SpecRule::HTML_FORMAT:
                 return array_key_exists($docRulesetName, static::SPEC) ? static::SPEC[$docRulesetName] : [];
             default:

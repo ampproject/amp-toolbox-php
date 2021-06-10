@@ -8,11 +8,14 @@
 namespace AmpProject\Validator\Spec;
 
 use AmpProject\Exception\InvalidDeclarationName;
+use AmpProject\Exception\InvalidSpecRuleName;
 
 /**
  * The base class for a single DeclarationList object that defines the set of allowed declarations for a specific type.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @property-read string $id ID of the declaration list.
  */
 class DeclarationList
 {
@@ -66,5 +69,25 @@ class DeclarationList
         }
 
         return static::DECLARATIONS[$declaration];
+    }
+
+    /**
+     * Magic getter to return the spec rules.
+     *
+     * @param string $specRuleName Name of the spec rule to return.
+     * @return mixed Value of the spec rule.
+     */
+    public function __get($specRuleName)
+    {
+        switch ($specRuleName) {
+            case 'id':
+                return static::ID;
+            default:
+                if (!array_key_exists($specRuleName, static::DECLARATIONS)) {
+                    throw InvalidSpecRuleName::forSpecRuleName($specRuleName);
+                }
+
+                return static::DECLARATIONS[$specRuleName];
+        }
     }
 }

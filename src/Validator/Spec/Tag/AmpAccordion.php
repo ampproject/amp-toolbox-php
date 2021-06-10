@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAccordion extends Tag
+/**
+ * Tag class AmpAccordion.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array<array<string>>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<array<string>> $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAccordion extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,14 +47,12 @@ final class AmpAccordion extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ACCORDION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE,
+            Attribute::ANIMATE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DISABLE_SESSION_STATES,
+            Attribute::DISABLE_SESSION_STATES => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -47,8 +60,7 @@ final class AmpAccordion extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::EXPAND_SINGLE_SECTION,
+            Attribute::EXPAND_SINGLE_SECTION => [
                 SpecRule::VALUE => [
                     '',
                 ],

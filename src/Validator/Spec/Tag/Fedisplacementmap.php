@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Fedisplacementmap extends Tag
+/**
+ * Tag class Fedisplacementmap.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Fedisplacementmap extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,21 +44,11 @@ final class Fedisplacementmap extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDISPLACEMENTMAP,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN2,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCALE,
-            ],
-            [
-                SpecRule::NAME => Attribute::XCHANNELSELECTOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::YCHANNELSELECTOR,
-            ],
+            Attribute::IN => [],
+            Attribute::IN2 => [],
+            Attribute::SCALE => [],
+            Attribute::XCHANNELSELECTOR => [],
+            Attribute::YCHANNELSELECTOR => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

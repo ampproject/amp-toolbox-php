@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpJwplayer extends Tag
+/**
+ * Tag class AmpJwplayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpJwplayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,29 +44,30 @@ final class AmpJwplayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::JWPLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MEDIA_ID,
+            Attribute::DATA_MEDIA_ID => [
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}|outstream',
-                SpecRule::MANDATORY_ONEOF => '[\'data-media-id\', \'data-playlist-id\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_MEDIA_ID,
+                    Attribute::DATA_PLAYLIST_ID,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYER_ID,
+            Attribute::DATA_PLAYER_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYLIST_ID,
+            Attribute::DATA_PLAYLIST_ID => [
                 SpecRule::VALUE_REGEX_CASEI => '[0-9a-z]{8}',
-                SpecRule::MANDATORY_ONEOF => '[\'data-media-id\', \'data-playlist-id\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_MEDIA_ID,
+                    Attribute::DATA_PLAYLIST_ID,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

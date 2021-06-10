@@ -11,10 +11,28 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class HeadStyleAmpBoilerplateTransformed extends Tag
+/**
+ * Tag class HeadStyleAmpBoilerplateTransformed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array $cdata
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $enabledBy
+ * @property-read string $descriptiveName
+ */
+final class HeadStyleAmpBoilerplateTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +52,7 @@ final class HeadStyleAmpBoilerplateTransformed extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_BOILERPLATE,
+            Attribute::AMP_BOILERPLATE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

@@ -8,11 +8,14 @@
 namespace AmpProject\Validator\Spec;
 
 use AmpProject\Exception\InvalidAttributeName;
+use AmpProject\Exception\InvalidSpecRuleName;
 
 /**
  * The base class for a single AttributeList object that defines a possible set of allowed attributes.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @property-read string $id ID of the attribute list.
  */
 class AttributeList
 {
@@ -66,5 +69,31 @@ class AttributeList
         }
 
         return static::ATTRIBUTES[$attribute];
+    }
+
+    /**
+     * Magic getter to return the attributes.
+     *
+     * @param string $attribute Name of the attribute to return.
+     * @return mixed Value of the spec rule.
+     */
+    public function __get($attribute)
+    {
+        $attribute = strtolower(preg_replace('/([a-z])([A-Z])/', '$1-$2', $attribute));
+
+        if (substr($attribute, -8) === '_binding') {
+            $attribute = '[' . substr($attribute, 0, -8) . ']';
+        }
+
+        switch ($attribute) {
+            case 'id':
+                return static::ID;
+            default:
+                if (!array_key_exists($attribute, static::ATTRIBUTES)) {
+                    throw InvalidSpecRuleName::forSpecRuleName($attribute);
+                }
+
+                return static::ATTRIBUTES[$attribute];
+        }
     }
 }

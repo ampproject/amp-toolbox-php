@@ -12,10 +12,25 @@ use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class LinkRelPreload extends Tag
+/**
+ * Tag class LinkRelPreload.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class LinkRelPreload extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,22 +48,16 @@ final class LinkRelPreload extends Tag
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link rel=preload',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AS_,
-            ],
-            [
-                SpecRule::NAME => Attribute::HREF,
-            ],
-            [
-                SpecRule::NAME => Attribute::REL,
+            Attribute::AS_ => [],
+            Attribute::HREF => [],
+            Attribute::REL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [
                     'preload',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::IMAGESRCSET,
+            Attribute::IMAGESRCSET => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -57,9 +66,7 @@ final class LinkRelPreload extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::IMAGESIZES,
-            ],
+            Attribute::IMAGESIZES => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\CommonLinkAttrs::ID,

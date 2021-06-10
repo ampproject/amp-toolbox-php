@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpSelector extends Tag
+/**
+ * Tag class AmpSelector.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<array<string>> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpSelector extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,35 +47,26 @@ final class AmpSelector extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SELECTOR,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::FORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::KEYBOARD_SELECT_MODE,
+            Attribute::FORM => [],
+            Attribute::KEYBOARD_SELECT_MODE => [
                 SpecRule::VALUE_CASEI => [
                     'focus',
                     'none',
                     'select',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::MULTIPLE,
+            Attribute::MULTIPLE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
-            [
-                SpecRule::NAME => '[selected]',
-            ],
+            '[disabled]' => [],
+            '[selected]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

@@ -10,10 +10,22 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class FormDivSubmittingTemplate extends Tag
+/**
+ * Tag class FormDivSubmittingTemplate.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class FormDivSubmittingTemplate extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,15 +43,11 @@ final class FormDivSubmittingTemplate extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'FORM DIV [submitting][template]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::SUBMITTING,
+            Attribute::ALIGN => [],
+            Attribute::SUBMITTING => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

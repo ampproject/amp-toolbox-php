@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpGfycat extends Tag
+/**
+ * Tag class AmpGfycat.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpGfycat extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,12 +46,10 @@ final class AmpGfycat extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::GFYCAT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_GFYID,
+            Attribute::DATA_GFYID => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::NOAUTOPLAY,
+            Attribute::NOAUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],

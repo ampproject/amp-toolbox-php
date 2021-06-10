@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAudio extends Tag
+/**
+ * Tag class AmpAudio.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array<array<string>>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array $ampLayout
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAudio extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,14 +47,12 @@ final class AmpAudio extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AUDIO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::PRELOAD,
+            Attribute::PRELOAD => [
                 SpecRule::VALUE_CASEI => [
                     'auto',
                     'metadata',

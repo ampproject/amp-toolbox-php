@@ -9,9 +9,18 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class LightboxableElements extends AttributeList
+/**
+ * Attribute list class LightboxableElements.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $lightbox
+ * @property-read array<string> $lightboxThumbnailId
+ */
+final class LightboxableElements extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

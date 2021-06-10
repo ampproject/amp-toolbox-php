@@ -12,10 +12,26 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryAutoAdsConfigScript extends Tag
+/**
+ * Tag class AmpStoryAutoAdsConfigScript.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<array<string>>> $cdata
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpStoryAutoAdsConfigScript extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +50,7 @@ final class AmpStoryAutoAdsConfigScript extends Tag
         SpecRule::SPEC_NAME => 'amp-story-auto-ads config script',
         SpecRule::MANDATORY_PARENT => Extension::STORY_AUTO_ADS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
                 SpecRule::VALUE_CASEI => [

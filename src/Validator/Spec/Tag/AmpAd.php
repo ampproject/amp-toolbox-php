@@ -13,10 +13,26 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAd extends Tag
+/**
+ * Tag class AmpAd.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $alsoRequiresTagWarning
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAd extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,17 +49,10 @@ final class AmpAd extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::JSON,
-            ],
-            [
-                SpecRule::NAME => Attribute::RTC_CONFIG,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::ALT => [],
+            Attribute::JSON => [],
+            Attribute::RTC_CONFIG => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -52,25 +61,17 @@ final class AmpAd extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TEMPLATE => [],
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::STICKY,
+            Attribute::STICKY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ALWAYS_SERVE_NPA,
-            ],
-            [
-                SpecRule::NAME => Attribute::BLOCK_RTC,
-            ],
+            Attribute::ALWAYS_SERVE_NPA => [],
+            Attribute::BLOCK_RTC => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

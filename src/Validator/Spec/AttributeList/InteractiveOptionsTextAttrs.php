@@ -9,9 +9,20 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class InteractiveOptionsTextAttrs extends AttributeList
+/**
+ * Attribute list class InteractiveOptionsTextAttrs.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<bool> $option1Text
+ * @property-read array<bool> $option2Text
+ * @property-read array $option3Text
+ * @property-read array<array<array<string>>> $option4Text
+ */
+final class InteractiveOptionsTextAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

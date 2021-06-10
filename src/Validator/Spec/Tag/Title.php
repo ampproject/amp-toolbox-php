@@ -9,10 +9,21 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Title extends Tag
+/**
+ * Tag class Title.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class Title extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,9 +41,7 @@ final class Title extends Tag
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'title',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[text]',
-            ],
+            '[text]' => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

@@ -6,6 +6,9 @@ use AmpProject\Attribute;
 use AmpProject\Validator\Spec\DeclarationList;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * @property-read array $position
+ */
 class DummyDeclarationList extends DeclarationList
 {
     /** @var string */

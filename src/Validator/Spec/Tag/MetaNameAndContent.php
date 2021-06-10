@@ -10,10 +10,21 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class MetaNameAndContent extends Tag
+/**
+ * Tag class MetaNameAndContent.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class MetaNameAndContent extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,22 +42,13 @@ final class MetaNameAndContent extends Tag
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta name= and content=',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ITEMPROP,
-            ],
-            [
-                SpecRule::NAME => Attribute::NAME,
+            Attribute::CONTENT => [],
+            Attribute::ITEMPROP => [],
+            Attribute::NAME => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(amp-.*|amp4ads-.*|apple-itunes-app|content-disposition|revisit-after|viewport)(\s|$)',
             ],
-            [
-                SpecRule::NAME => Attribute::PROPERTY,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCHEME,
-            ],
+            Attribute::PROPERTY => [],
+            Attribute::SCHEME => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

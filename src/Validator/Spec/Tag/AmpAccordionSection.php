@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAccordionSection extends Tag
+/**
+ * Tag class AmpAccordionSection.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read array $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class AmpAccordionSection extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +47,7 @@ final class AmpAccordionSection extends Tag
         SpecRule::SPEC_NAME => 'amp-accordion > section',
         SpecRule::MANDATORY_PARENT => Extension::ACCORDION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ACCESS_HIDE,
+            Attribute::ACCESS_HIDE => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -42,17 +55,13 @@ final class AmpAccordionSection extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::EXPANDED,
+            Attribute::EXPANDED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => '[data-expand]',
-            ],
-            [
-                SpecRule::NAME => '[expanded]',
+            '[data-expand]' => [],
+            '[expanded]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],

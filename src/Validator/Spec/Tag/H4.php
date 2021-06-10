@@ -10,10 +10,20 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class H4 extends Tag
+/**
+ * Tag class H4.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class H4 extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,9 +40,7 @@ final class H4 extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::H4,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
+            Attribute::ALIGN => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Canvas extends Tag
+/**
+ * Tag class Canvas.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class Canvas extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,12 +44,8 @@ final class Canvas extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::CANVAS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::HEIGHT => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#html-tags',
         SpecRule::MANDATORY_ANCESTOR => Extension::SCRIPT,

@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpExperimentExtensionJsonScript extends Tag
+/**
+ * Tag class AmpExperimentExtensionJsonScript.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array $cdata
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpExperimentExtensionJsonScript extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +49,7 @@ final class AmpExperimentExtensionJsonScript extends Tag
         SpecRule::SPEC_NAME => 'amp-experiment extension .json script',
         SpecRule::MANDATORY_PARENT => Extension::EXPERIMENT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
                 SpecRule::VALUE_CASEI => [

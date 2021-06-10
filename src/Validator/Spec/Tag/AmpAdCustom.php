@@ -13,10 +13,24 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAdCustom extends Tag
+/**
+ * Tag class AmpAdCustom.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAdCustom extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +47,7 @@ final class AmpAdCustom extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::AD_CUSTOM,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

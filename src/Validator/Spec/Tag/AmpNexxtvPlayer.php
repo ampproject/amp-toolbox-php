@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpNexxtvPlayer extends Tag
+/**
+ * Tag class AmpNexxtvPlayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpNexxtvPlayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,24 +45,20 @@ final class AmpNexxtvPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::NEXXTV_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_CLIENT,
+            Attribute::DATA_CLIENT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MEDIAID,
+            Attribute::DATA_MEDIAID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[^=/?:]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MODE,
+            Attribute::DATA_MODE => [
                 SpecRule::VALUE => [
                     'api',
                     'static',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_STREAMTYPE,
+            Attribute::DATA_STREAMTYPE => [
                 SpecRule::VALUE => [
                     'album',
                     'audio',
@@ -63,8 +72,7 @@ final class AmpNexxtvPlayer extends Tag
                     'video',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_EXIT_MODE,
+            Attribute::DATA_EXIT_MODE => [
                 SpecRule::VALUE => [
                     'load',
                     'loop',

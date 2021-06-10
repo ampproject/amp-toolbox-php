@@ -10,10 +10,22 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryInteractiveResults extends Tag
+/**
+ * Tag class AmpStoryInteractiveResults.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpStoryInteractiveResults extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,79 +42,59 @@ final class AmpStoryInteractiveResults extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_RESULTS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OPTION_1_RESULTS_CATEGORY,
+            Attribute::OPTION_1_RESULTS_CATEGORY => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_RESULTS_CATEGORY,
+            Attribute::OPTION_2_RESULTS_CATEGORY => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_3_RESULTS_CATEGORY,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPTION_4_RESULTS_CATEGORY,
+            Attribute::OPTION_3_RESULTS_CATEGORY => [],
+            Attribute::OPTION_4_RESULTS_CATEGORY => [
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_3_RESULTS_CATEGORY,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_1_IMAGE,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_IMAGE,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPTION_3_IMAGE,
+            Attribute::OPTION_1_IMAGE => [],
+            Attribute::OPTION_2_IMAGE => [],
+            Attribute::OPTION_3_IMAGE => [
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_3_RESULTS_CATEGORY,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_4_IMAGE,
+            Attribute::OPTION_4_IMAGE => [
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_4_RESULTS_CATEGORY,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_1_TEXT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_TEXT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPTION_3_TEXT,
+            Attribute::OPTION_1_TEXT => [],
+            Attribute::OPTION_2_TEXT => [],
+            Attribute::OPTION_3_TEXT => [
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_3_RESULTS_CATEGORY,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_4_TEXT,
+            Attribute::OPTION_4_TEXT => [
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::OPTION_4_RESULTS_CATEGORY,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_1_RESULTS_THRESHOLD,
+            Attribute::OPTION_1_RESULTS_THRESHOLD => [
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_RESULTS_THRESHOLD,
+            Attribute::OPTION_2_RESULTS_THRESHOLD => [
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_3_RESULTS_THRESHOLD,
+            Attribute::OPTION_3_RESULTS_THRESHOLD => [
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -110,8 +102,7 @@ final class AmpStoryInteractiveResults extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_4_RESULTS_THRESHOLD,
+            Attribute::OPTION_4_RESULTS_THRESHOLD => [
                 SpecRule::VALUE_REGEX => '\d+(\.\d+)?',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -119,18 +110,14 @@ final class AmpStoryInteractiveResults extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::PROMPT_TEXT,
-            ],
-            [
-                SpecRule::NAME => Attribute::THEME,
+            Attribute::PROMPT_TEXT => [],
+            Attribute::THEME => [
                 SpecRule::VALUE => [
                     'light',
                     'dark',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CHIP_STYLE,
+            Attribute::CHIP_STYLE => [
                 SpecRule::VALUE => [
                     'flat',
                     'transparent',

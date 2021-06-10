@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Textpath extends Tag
+/**
+ * Tag class Textpath.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Textpath extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,18 +44,10 @@ final class Textpath extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEXTPATH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::METHOD,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPACING,
-            ],
-            [
-                SpecRule::NAME => Attribute::STARTOFFSET,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::METHOD => [],
+            Attribute::SPACING => [],
+            Attribute::STARTOFFSET => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

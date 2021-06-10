@@ -9,9 +9,17 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Identifiable;
 
-final class AmpDatePickerSingleTypeAttributes extends AttributeList
+/**
+ * Attribute list class AmpDatePickerSingleTypeAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $date
+ * @property-read array $inputSelector
+ */
+final class AmpDatePickerSingleTypeAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

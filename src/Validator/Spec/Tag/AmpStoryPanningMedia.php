@@ -10,10 +10,23 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryPanningMedia extends Tag
+/**
+ * Tag class AmpStoryPanningMedia.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpStoryPanningMedia extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

@@ -10,9 +10,17 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class MandatorySrcOrSrcset extends AttributeList
+/**
+ * Attribute list class MandatorySrcOrSrcset.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $src
+ */
+final class MandatorySrcOrSrcset extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

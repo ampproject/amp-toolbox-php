@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\DescendantTagList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryBookend extends Tag
+/**
+ * Tag class AmpStoryBookend.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descendantTagList
+ * @property-read bool $mandatoryLastChild
+ */
+final class AmpStoryBookend extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,15 +45,13 @@ final class AmpStoryBookend extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_BOOKEND,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LAYOUT,
+            Attribute::LAYOUT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'nodisplay',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,

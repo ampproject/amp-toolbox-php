@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpSpringboardPlayer extends Tag
+/**
+ * Tag class AmpSpringboardPlayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpSpringboardPlayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,33 +45,27 @@ final class AmpSpringboardPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SPRINGBOARD_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_CONTENT_ID,
+            Attribute::DATA_CONTENT_ID => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_DOMAIN,
+            Attribute::DATA_DOMAIN => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_ITEMS,
+            Attribute::DATA_ITEMS => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_MODE,
+            Attribute::DATA_MODE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'playlist',
                     'video',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYER_ID,
+            Attribute::DATA_PLAYER_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX_CASEI => '[a-z0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SITE_ID,
+            Attribute::DATA_SITE_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],

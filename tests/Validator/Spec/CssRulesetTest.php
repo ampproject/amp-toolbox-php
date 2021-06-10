@@ -9,9 +9,9 @@ use AmpProject\Tests\ValidatorFixtures\DummyCssRuleset;
 class CssRulesetTest extends TestCase
 {
     /**
-     * @covers \AmpProject\Validator\Spec\Tag::get()
-     * @covers \AmpProject\Validator\Spec\Tag::has()
-     * @covers \AmpProject\Validator\Spec\Tag::__get()
+     * @covers \AmpProject\Validator\Spec\CssRuleset::get()
+     * @covers \AmpProject\Validator\Spec\CssRuleset::has()
+     * @covers \AmpProject\Validator\Spec\CssRuleset::__get()
      */
     public function testDefaultValues()
     {
@@ -35,13 +35,14 @@ class CssRulesetTest extends TestCase
      * @covers \AmpProject\Validator\Spec\CssRuleset::getId()
      * @covers \AmpProject\Validator\Spec\CssRuleset::get()
      * @covers \AmpProject\Validator\Spec\CssRuleset::has()
-     * @covers \AmpProject\Validator\Spec\Tag::__get()
+     * @covers \AmpProject\Validator\Spec\CssRuleset::__get()
      */
     public function testGet()
     {
         $dummyCssRuleset = new DummyCssRuleset();
 
         $this->assertEquals('dummy', $dummyCssRuleset->getId());
+        $this->assertEquals('dummy', $dummyCssRuleset->id);
 
         $this->assertEquals($dummyCssRuleset->maxBytes, $dummyCssRuleset->get('maxBytes'));
 
@@ -49,6 +50,7 @@ class CssRulesetTest extends TestCase
         $this->assertFalse($dummyCssRuleset->has('utter nonsense'));
 
         $this->assertEquals(42, $dummyCssRuleset->get('maxBytes'));
+        $this->assertEquals(42, $dummyCssRuleset->maxBytes);
     }
 
     /**

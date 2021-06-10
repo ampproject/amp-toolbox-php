@@ -9,9 +9,17 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class MandatoryNameAttr extends AttributeList
+/**
+ * Attribute list class MandatoryNameAttr.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $name
+ */
+final class MandatoryNameAttr extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

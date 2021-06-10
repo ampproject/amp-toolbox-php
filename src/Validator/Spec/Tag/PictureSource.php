@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class PictureSource extends Tag
+/**
+ * Tag class PictureSource.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class PictureSource extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,14 +46,9 @@ final class PictureSource extends Tag
         SpecRule::SPEC_NAME => 'picture > source',
         SpecRule::MANDATORY_PARENT => Element::PICTURE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MEDIA,
-            ],
-            [
-                SpecRule::NAME => Attribute::SIZES,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRCSET,
+            Attribute::MEDIA => [],
+            Attribute::SIZES => [],
+            Attribute::SRCSET => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -51,9 +59,7 @@ final class PictureSource extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
+            Attribute::TYPE => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',
         SpecRule::HTML_FORMAT => [

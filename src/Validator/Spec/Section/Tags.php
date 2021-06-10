@@ -25,6 +25,8 @@ use LogicException;
  * The Tags section gives access to all of the validation rules are are specific to an HTML element.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method Tag parentCurrent()
  */
 final class Tags implements IterableSection
 {
@@ -221,7 +223,8 @@ final class Tags implements IterableSection
         Tag\ScriptTypeApplicationLdJson::ID => Tag\ScriptTypeApplicationLdJson::class,
         Tag\ScriptIdAmpRtc::ID => Tag\ScriptIdAmpRtc::class,
         Tag\AmpImaVideoScriptTypeApplicationJson::ID => Tag\AmpImaVideoScriptTypeApplicationJson::class,
-        Tag\ScriptAmpOnerror::ID => Tag\ScriptAmpOnerror::class,
+        Tag\ScriptAmpOnerrorV0JsOrV0Mjs::ID => Tag\ScriptAmpOnerrorV0JsOrV0Mjs::class,
+        Tag\ScriptAmpOnerrorV0Js::ID => Tag\ScriptAmpOnerrorV0Js::class,
         Tag\NoscriptEnclosureForBoilerplate::ID => Tag\NoscriptEnclosureForBoilerplate::class,
         Tag\NoscriptEnclosureForBoilerplateTransformed::ID => Tag\NoscriptEnclosureForBoilerplateTransformed::class,
         Tag\Noscript::ID => Tag\Noscript::class,
@@ -607,6 +610,8 @@ final class Tags implements IterableSection
         Tag\AmpRedbullPlayer::ID => Tag\AmpRedbullPlayer::class,
         Tag\ScriptAmpReddit::ID => Tag\ScriptAmpReddit::class,
         Tag\AmpReddit::ID => Tag\AmpReddit::class,
+        Tag\ScriptAmpRender::ID => Tag\ScriptAmpRender::class,
+        Tag\AmpRender::ID => Tag\AmpRender::class,
         Tag\ScriptAmpRiddleQuiz::ID => Tag\ScriptAmpRiddleQuiz::class,
         Tag\AmpRiddleQuiz::ID => Tag\AmpRiddleQuiz::class,
         Tag\ScriptAmpScript::ID => Tag\ScriptAmpScript::class,
@@ -778,7 +783,8 @@ final class Tags implements IterableSection
             Tag\AmphtmlNomoduleEngineScript::ID,
             Tag\AmphtmlNomoduleLtsEngineScript::ID,
             Tag\CryptokeysJsonScript::ID,
-            Tag\ScriptAmpOnerror::ID,
+            Tag\ScriptAmpOnerrorV0Js::ID,
+            Tag\ScriptAmpOnerrorV0JsOrV0Mjs::ID,
             Tag\ScriptIdAmpRtc::ID,
             Tag\ScriptTypeApplicationLdJson::ID,
             Tag\ScriptTypeTextPlain::ID,
@@ -883,6 +889,7 @@ final class Tags implements IterableSection
             Tag\ScriptAmpRecaptchaInput::ID,
             Tag\ScriptAmpRedbullPlayer::ID,
             Tag\ScriptAmpReddit::ID,
+            Tag\ScriptAmpRender::ID,
             Tag\ScriptAmpRiddleQuiz::ID,
             Tag\ScriptAmpScript::ID,
             Tag\ScriptAmpSelector::ID,
@@ -1165,6 +1172,7 @@ final class Tags implements IterableSection
         Extension::RECAPTCHA_INPUT => Tag\AmpRecaptchaInput::ID,
         Extension::REDBULL_PLAYER => Tag\AmpRedbullPlayer::ID,
         Extension::REDDIT => Tag\AmpReddit::ID,
+        Extension::RENDER => Tag\AmpRender::ID,
         Extension::RIDDLE_QUIZ => Tag\AmpRiddleQuiz::ID,
         Extension::SCRIPT => Tag\AmpScript::ID,
         Extension::SELECTOR => Tag\AmpSelector::ID,
@@ -1718,7 +1726,8 @@ final class Tags implements IterableSection
         Tag\NoscriptEnclosureForBoilerplateTransformed::ID => Tag\NoscriptEnclosureForBoilerplateTransformed::ID,
         Tag\PictureSource::ID => Tag\PictureSource::ID,
         Tag\RadialgradientStop::ID => Tag\RadialgradientStop::ID,
-        Tag\ScriptAmpOnerror::ID => Tag\ScriptAmpOnerror::ID,
+        Tag\ScriptAmpOnerrorV0Js::ID => Tag\ScriptAmpOnerrorV0Js::ID,
+        Tag\ScriptAmpOnerrorV0JsOrV0Mjs::ID => Tag\ScriptAmpOnerrorV0JsOrV0Mjs::ID,
         Tag\ScriptIdAmpRtc::ID => Tag\ScriptIdAmpRtc::ID,
         Tag\ScriptTypeApplicationLdJson::ID => Tag\ScriptTypeApplicationLdJson::ID,
         Tag\ScriptTypeTextPlain::ID => Tag\ScriptTypeTextPlain::ID,
@@ -1930,6 +1939,7 @@ final class Tags implements IterableSection
             Tag\AmpRecaptchaInput::ID,
             Tag\AmpRedbullPlayer::ID,
             Tag\AmpReddit::ID,
+            Tag\AmpRender::ID,
             Tag\AmpRiddleQuiz::ID,
             Tag\AmpScript::ID,
             Tag\AmpScriptExtensionLocalScript::ID,
@@ -2213,7 +2223,8 @@ final class Tags implements IterableSection
             Tag\Ruby::ID,
             Tag\S::ID,
             Tag\Samp::ID,
-            Tag\ScriptAmpOnerror::ID,
+            Tag\ScriptAmpOnerrorV0Js::ID,
+            Tag\ScriptAmpOnerrorV0JsOrV0Mjs::ID,
             Tag\ScriptIdAmpRtc::ID,
             Tag\ScriptTypeApplicationLdJson::ID,
             Tag\ScriptTypeTextPlain::ID,
@@ -2314,6 +2325,7 @@ final class Tags implements IterableSection
             Tag\ScriptAmpRecaptchaInput::ID,
             Tag\ScriptAmpRedbullPlayer::ID,
             Tag\ScriptAmpReddit::ID,
+            Tag\ScriptAmpRender::ID,
             Tag\ScriptAmpRiddleQuiz::ID,
             Tag\ScriptAmpScript::ID,
             Tag\ScriptAmpSelector::ID,
@@ -2917,6 +2929,7 @@ final class Tags implements IterableSection
         Extension::RECAPTCHA_INPUT => Tag\ScriptAmpRecaptchaInput::ID,
         Extension::REDBULL_PLAYER => Tag\ScriptAmpRedbullPlayer::ID,
         Extension::REDDIT => Tag\ScriptAmpReddit::ID,
+        Extension::RENDER => Tag\ScriptAmpRender::ID,
         Extension::RIDDLE_QUIZ => Tag\ScriptAmpRiddleQuiz::ID,
         Extension::SCRIPT => Tag\ScriptAmpScript::ID,
         Extension::SELECTOR => Tag\ScriptCustomElementAmpSelectorAmp4email::ID,
@@ -3053,8 +3066,8 @@ final class Tags implements IterableSection
 
         $tag = $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
 
-        if (!$tag instanceof \AmpProject\Validator\Spec\TagWithExtensionSpec) {
-            throw new \LogicException('Tags::byExtensionSpec returned tag without extension spec');
+        if (!$tag instanceof TagWithExtensionSpec) {
+            throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
         }
 
         return $tag;

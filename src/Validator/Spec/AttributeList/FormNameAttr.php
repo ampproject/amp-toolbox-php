@@ -9,9 +9,17 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class FormNameAttr extends AttributeList
+/**
+ * Attribute list class FormNameAttr.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $name
+ */
+final class FormNameAttr extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

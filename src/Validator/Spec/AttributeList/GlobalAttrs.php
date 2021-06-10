@@ -10,9 +10,151 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class GlobalAttrs extends AttributeList
+/**
+ * Attribute list class GlobalAttrs.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $itemid
+ * @property-read array $itemprop
+ * @property-read array $itemref
+ * @property-read array $itemscope
+ * @property-read array $itemtype
+ * @property-read array $about
+ * @property-read array $content
+ * @property-read array $datatype
+ * @property-read array $inlist
+ * @property-read array $prefix
+ * @property-read array $property
+ * @property-read array<string> $rel
+ * @property-read array $resource
+ * @property-read array $rev
+ * @property-read array<bool> $style
+ * @property-read array $typeof
+ * @property-read array $vocab
+ * @property-read array $accesskey
+ * @property-read array $class
+ * @property-read array $dir
+ * @property-read array $draggable
+ * @property-read array<array<string>> $hidden
+ * @property-read array<string> $id
+ * @property-read array $lang
+ * @property-read array $slot
+ * @property-read array $tabindex
+ * @property-read array $title
+ * @property-read array $translate
+ * @property-read array $ariaActivedescendant
+ * @property-read array $ariaAtomic
+ * @property-read array $ariaAutocomplete
+ * @property-read array $ariaBusy
+ * @property-read array $ariaChecked
+ * @property-read array $ariaControls
+ * @property-read array $ariaCurrent
+ * @property-read array $ariaDescribedby
+ * @property-read array $ariaDisabled
+ * @property-read array $ariaDropeffect
+ * @property-read array $ariaExpanded
+ * @property-read array $ariaFlowto
+ * @property-read array $ariaGrabbed
+ * @property-read array $ariaHaspopup
+ * @property-read array $ariaHidden
+ * @property-read array $ariaInvalid
+ * @property-read array $ariaLabel
+ * @property-read array $ariaLabelledby
+ * @property-read array $ariaLevel
+ * @property-read array $ariaLive
+ * @property-read array $ariaMultiline
+ * @property-read array $ariaMultiselectable
+ * @property-read array $ariaOrientation
+ * @property-read array $ariaOwns
+ * @property-read array $ariaPosinset
+ * @property-read array $ariaPressed
+ * @property-read array $ariaReadonly
+ * @property-read array $ariaRelevant
+ * @property-read array $ariaRequired
+ * @property-read array $ariaSelected
+ * @property-read array $ariaSetsize
+ * @property-read array $ariaSort
+ * @property-read array $ariaValuemax
+ * @property-read array $ariaValuemin
+ * @property-read array $ariaValuenow
+ * @property-read array $ariaValuetext
+ * @property-read array<array> $on
+ * @property-read array $role
+ * @property-read array<array<string>> $placeholder
+ * @property-read array<array<string>> $fallback
+ * @property-read array $overflow
+ * @property-read array $ampAccess
+ * @property-read array $ampAccessBehavior
+ * @property-read array $ampAccessHide
+ * @property-read array $ampAccessId
+ * @property-read array $ampAccessLoader
+ * @property-read array $ampAccessLoading
+ * @property-read array $ampAccessOff
+ * @property-read array $ampAccessOn
+ * @property-read array $ampAccessShow
+ * @property-read array $ampAccessStyle
+ * @property-read array $ampAccessTemplate
+ * @property-read array $iAmpAccessId
+ * @property-read array<array<array<string>>> $validationFor
+ * @property-read array $visibleWhenInvalid
+ * @property-read array $ampFx
+ * @property-read array<array<string>> $subscriptionsAction
+ * @property-read array<array<string>> $subscriptionsActions
+ * @property-read array<array<string>> $subscriptionsDecorate
+ * @property-read array<array<string>> $subscriptionsDialog
+ * @property-read array<array<string>> $subscriptionsDisplay
+ * @property-read array<array<string>> $subscriptionsLang
+ * @property-read array<array<string>> $subscriptionsSection
+ * @property-read array<array<string>> $subscriptionsService
+ * @property-read array<array<string>> $subscriptionsGoogleRtc
+ * @property-read array<array<string>> $nextPageHide
+ * @property-read array<array<string>> $nextPageReplace
+ * @property-read array $ariaActivedescendant_binding
+ * @property-read array $ariaAtomic_binding
+ * @property-read array $ariaAutocomplete_binding
+ * @property-read array $ariaBusy_binding
+ * @property-read array $ariaChecked_binding
+ * @property-read array $ariaControls_binding
+ * @property-read array $ariaDescribedby_binding
+ * @property-read array $ariaDisabled_binding
+ * @property-read array $ariaDropeffect_binding
+ * @property-read array $ariaExpanded_binding
+ * @property-read array $ariaFlowto_binding
+ * @property-read array $ariaGrabbed_binding
+ * @property-read array $ariaHaspopup_binding
+ * @property-read array $ariaHidden_binding
+ * @property-read array $ariaInvalid_binding
+ * @property-read array $ariaLabel_binding
+ * @property-read array $ariaLabelledby_binding
+ * @property-read array $ariaLevel_binding
+ * @property-read array $ariaLive_binding
+ * @property-read array $ariaMultiline_binding
+ * @property-read array $ariaMultiselectable_binding
+ * @property-read array $ariaOrientation_binding
+ * @property-read array $ariaOwns_binding
+ * @property-read array $ariaPosinset_binding
+ * @property-read array $ariaPressed_binding
+ * @property-read array $ariaReadonly_binding
+ * @property-read array $ariaRelevant_binding
+ * @property-read array $ariaRequired_binding
+ * @property-read array $ariaSelected_binding
+ * @property-read array $ariaSetsize_binding
+ * @property-read array $ariaSort_binding
+ * @property-read array $ariaValuemax_binding
+ * @property-read array $ariaValuemin_binding
+ * @property-read array $ariaValuenow_binding
+ * @property-read array $ariaValuetext_binding
+ * @property-read array $class_binding
+ * @property-read array $hidden_binding
+ * @property-read array $text_binding
+ * @property-read array<array<string>> $iAmphtmlBinding
+ * @property-read array<array<array<string>>> $autoscroll
+ */
+final class GlobalAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

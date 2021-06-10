@@ -10,10 +10,23 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Internal;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class IAmphtmlSizerIntrinsic extends Tag
+/**
+ * Tag class IAmphtmlSizerIntrinsic.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $htmlFormat
+ * @property-read bool $explicitAttrsOnly
+ * @property-read array<string> $enabledBy
+ */
+final class IAmphtmlSizerIntrinsic extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,16 +44,14 @@ final class IAmphtmlSizerIntrinsic extends Tag
         SpecRule::TAG_NAME => Internal::SIZER,
         SpecRule::SPEC_NAME => 'I-AMPHTML-SIZER-INTRINSIC',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CLASS_,
+            Attribute::CLASS_ => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'i-amphtml-sizer',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_DISABLE_AR,
+            Attribute::I_AMPHTML_DISABLE_AR => [
                 SpecRule::VALUE => [
                     '',
                 ],

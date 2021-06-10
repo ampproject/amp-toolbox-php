@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpBridPlayer extends Tag
+/**
+ * Tag class AmpBridPlayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpBridPlayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,45 +46,55 @@ final class AmpBridPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BRID_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_DYNAMIC,
+            Attribute::AUTOPLAY => [],
+            Attribute::DATA_DYNAMIC => [
                 SpecRule::VALUE_REGEX => '[a-z]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_OUTSTREAM,
-                SpecRule::MANDATORY_ONEOF => '[\'data-carousel\', \'data-outstream\', \'data-playlist\', \'data-video\']',
+            Attribute::DATA_OUTSTREAM => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_CAROUSEL,
+                    Attribute::DATA_OUTSTREAM,
+                    Attribute::DATA_PLAYLIST,
+                    Attribute::DATA_VIDEO,
+                ],
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PARTNER,
+            Attribute::DATA_PARTNER => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYER,
+            Attribute::DATA_PLAYER => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_PLAYLIST,
-                SpecRule::MANDATORY_ONEOF => '[\'data-carousel\', \'data-outstream\', \'data-playlist\', \'data-video\']',
+            Attribute::DATA_PLAYLIST => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_CAROUSEL,
+                    Attribute::DATA_OUTSTREAM,
+                    Attribute::DATA_PLAYLIST,
+                    Attribute::DATA_VIDEO,
+                ],
                 SpecRule::VALUE_REGEX => '.+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_VIDEO,
-                SpecRule::MANDATORY_ONEOF => '[\'data-carousel\', \'data-outstream\', \'data-playlist\', \'data-video\']',
+            Attribute::DATA_VIDEO => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_CAROUSEL,
+                    Attribute::DATA_OUTSTREAM,
+                    Attribute::DATA_PLAYLIST,
+                    Attribute::DATA_VIDEO,
+                ],
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_CAROUSEL,
-                SpecRule::MANDATORY_ONEOF => '[\'data-carousel\', \'data-outstream\', \'data-playlist\', \'data-video\']',
+            Attribute::DATA_CAROUSEL => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_CAROUSEL,
+                    Attribute::DATA_OUTSTREAM,
+                    Attribute::DATA_PLAYLIST,
+                    Attribute::DATA_VIDEO,
+                ],
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],

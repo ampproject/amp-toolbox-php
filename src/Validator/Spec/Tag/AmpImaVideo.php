@@ -13,10 +13,24 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpImaVideo extends Tag
+/**
+ * Tag class AmpImaVideo.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpImaVideo extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,14 +47,12 @@ final class AmpImaVideo extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IMA_VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SRC,
+            Attribute::DATA_SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -49,8 +61,7 @@ final class AmpImaVideo extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TAG,
+            Attribute::DATA_TAG => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -59,14 +70,12 @@ final class AmpImaVideo extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ROTATE_TO_FULLSCREEN,
+            Attribute::ROTATE_TO_FULLSCREEN => [
                 SpecRule::VALUE => [
                     '',
                 ],

@@ -9,9 +9,19 @@ namespace AmpProject\Validator\Spec\DocRuleset;
 
 use AmpProject\Format;
 use AmpProject\Validator\Spec\DocRuleset;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class Amp4email extends DocRuleset
+/**
+ * Document ruleset class Amp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $htmlFormat
+ * @property-read int $maxBytes
+ * @property-read string $maxBytesSpecUrl
+ */
+final class Amp4email extends DocRuleset implements Identifiable
 {
     /**
      * ID of the ruleset.

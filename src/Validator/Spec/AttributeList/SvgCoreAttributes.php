@@ -9,9 +9,19 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Identifiable;
 
-final class SvgCoreAttributes extends AttributeList
+/**
+ * Attribute list class SvgCoreAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $xml:lang
+ * @property-read array $xml:space
+ * @property-read array $xmlns
+ * @property-read array $xmlns:xlink
+ */
+final class SvgCoreAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

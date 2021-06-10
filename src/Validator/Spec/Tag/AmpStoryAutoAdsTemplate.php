@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryAutoAdsTemplate extends Tag
+/**
+ * Tag class AmpStoryAutoAdsTemplate.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<array<string>> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ * @property-read string $descendantTagList
+ */
+final class AmpStoryAutoAdsTemplate extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +49,7 @@ final class AmpStoryAutoAdsTemplate extends Tag
         SpecRule::SPEC_NAME => 'amp-story-auto-ads > template',
         SpecRule::MANDATORY_PARENT => Extension::STORY_AUTO_ADS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-mustache',

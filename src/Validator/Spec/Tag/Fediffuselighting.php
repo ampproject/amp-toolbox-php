@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Fediffuselighting extends Tag
+/**
+ * Tag class Fediffuselighting.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Fediffuselighting extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,18 +44,10 @@ final class Fediffuselighting extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEDIFFUSELIGHTING,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DIFFUSECONSTANT,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::KERNELUNITLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::SURFACESCALE,
-            ],
+            Attribute::DIFFUSECONSTANT => [],
+            Attribute::IN => [],
+            Attribute::KERNELUNITLENGTH => [],
+            Attribute::SURFACESCALE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

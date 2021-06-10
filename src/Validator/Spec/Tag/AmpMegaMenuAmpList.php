@@ -9,10 +9,24 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Attribute;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpMegaMenuAmpList extends Tag
+/**
+ * Tag class AmpMegaMenuAmpList.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<string>> $attrs
+ * @property-read array $childTags
+ * @property-read array<array<string>> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class AmpMegaMenuAmpList extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,13 +44,17 @@ final class AmpMegaMenuAmpList extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-MEGA-MENU > AMP-LIST',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SRC,
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\']',
+            Attribute::SRC => [
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[src]',
+                ],
             ],
-            [
-                SpecRule::NAME => '[src]',
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\']',
+            '[src]' => [
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[src]',
+                ],
             ],
         ],
         SpecRule::CHILD_TAGS => [

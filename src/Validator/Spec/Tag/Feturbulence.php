@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Feturbulence extends Tag
+/**
+ * Tag class Feturbulence.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Feturbulence extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,21 +44,11 @@ final class Feturbulence extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FETURBULENCE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BASEFREQUENCY,
-            ],
-            [
-                SpecRule::NAME => Attribute::NUMOCTAVES,
-            ],
-            [
-                SpecRule::NAME => Attribute::SEED,
-            ],
-            [
-                SpecRule::NAME => Attribute::STITCHTILES,
-            ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
+            Attribute::BASEFREQUENCY => [],
+            Attribute::NUMOCTAVES => [],
+            Attribute::SEED => [],
+            Attribute::STITCHTILES => [],
+            Attribute::TYPE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

@@ -13,10 +13,25 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAutocomplete extends Tag
+/**
+ * Tag class AmpAutocomplete.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAutocomplete extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +49,7 @@ final class AmpAutocomplete extends Tag
         SpecRule::TAG_NAME => Extension::AUTOCOMPLETE,
         SpecRule::SPEC_NAME => 'amp-autocomplete',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FILTER,
+            Attribute::FILTER => [
                 SpecRule::MANDATORY => true,
                 SpecRule::TRIGGER => [
                     SpecRule::IF_VALUE_REGEX => 'custom',
@@ -52,46 +66,27 @@ final class AmpAutocomplete extends Tag
                     'token-prefix',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::FILTER_EXPR,
+            Attribute::FILTER_EXPR => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::BIND,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::FILTER_VALUE,
-            ],
-            [
-                SpecRule::NAME => Attribute::HIGHLIGHT_USER_ENTRY,
-            ],
-            [
-                SpecRule::NAME => Attribute::INLINE,
-            ],
-            [
-                SpecRule::NAME => Attribute::ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_ENTRIES,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MIN_CHARACTERS,
-            ],
-            [
-                SpecRule::NAME => Attribute::PREFETCH,
-            ],
-            [
-                SpecRule::NAME => Attribute::QUERY,
+            Attribute::FILTER_VALUE => [],
+            Attribute::HIGHLIGHT_USER_ENTRY => [],
+            Attribute::INLINE => [],
+            Attribute::ITEMS => [],
+            Attribute::MAX_ENTRIES => [],
+            Attribute::MAX_ITEMS => [],
+            Attribute::MIN_CHARACTERS => [],
+            Attribute::PREFETCH => [],
+            Attribute::QUERY => [
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::SRC,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -99,18 +94,10 @@ final class AmpAutocomplete extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SUBMIT_ON_ENTER,
-            ],
-            [
-                SpecRule::NAME => Attribute::SUGGEST_FIRST,
-            ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
+            Attribute::SUBMIT_ON_ENTER => [],
+            Attribute::SUGGEST_FIRST => [],
+            Attribute::TEMPLATE => [],
+            '[src]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

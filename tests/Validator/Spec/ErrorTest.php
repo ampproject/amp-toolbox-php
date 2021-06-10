@@ -13,20 +13,23 @@ class ErrorTest extends TestCase
      * @covers \AmpProject\Validator\Spec\Error::getCode()
      * @covers \AmpProject\Validator\Spec\Error::get()
      * @covers \AmpProject\Validator\Spec\Error::has()
+     * @covers \AmpProject\Validator\Spec\Error::__get()
      */
     public function testGet()
     {
         $dummyError = new DummyError();
 
         $this->assertEquals('dummy', $dummyError->getCode());
+        $this->assertEquals('dummy', $dummyError->code);
 
         $this->assertTrue($dummyError->has('format'));
         $this->assertFalse($dummyError->has('utter nonsense'));
 
-        $format = $dummyError->get('format');
+        $this->assertIsString($dummyError->get('format'));
+        $this->assertIsString($dummyError->format);
 
-        $this->assertIsString($format);
-        $this->assertEquals('this is an error', $format);
+        $this->assertEquals('this is an error', $dummyError->get('format'));
+        $this->assertEquals('this is an error', $dummyError->format);
     }
 
     /**

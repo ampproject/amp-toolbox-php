@@ -12,10 +12,26 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAdExitConfigurationJson extends Tag
+/**
+ * Tag class AmpAdExitConfigurationJson.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAdExitConfigurationJson extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +50,7 @@ final class AmpAdExitConfigurationJson extends Tag
         SpecRule::SPEC_NAME => 'amp-ad-exit configuration JSON',
         SpecRule::MANDATORY_PARENT => Extension::AD_EXIT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'application/json',

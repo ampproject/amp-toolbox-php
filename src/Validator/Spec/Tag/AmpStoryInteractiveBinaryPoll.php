@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryInteractiveBinaryPoll extends Tag
+/**
+ * Tag class AmpStoryInteractiveBinaryPoll.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpStoryInteractiveBinaryPoll extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,20 +44,14 @@ final class AmpStoryInteractiveBinaryPoll extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_INTERACTIVE_BINARY_POLL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OPTION_1_TEXT,
+            Attribute::OPTION_1_TEXT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_TEXT,
+            Attribute::OPTION_2_TEXT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION_1_CONFETTI,
-            ],
-            [
-                SpecRule::NAME => Attribute::OPTION_2_CONFETTI,
-            ],
+            Attribute::OPTION_1_CONFETTI => [],
+            Attribute::OPTION_2_CONFETTI => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\InteractiveSharedConfigsAttrs::ID,

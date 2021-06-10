@@ -11,10 +11,22 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Select extends Tag
+/**
+ * Tag class Select.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class Select extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,20 +43,14 @@ final class Select extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::SELECT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOFOCUS,
+            Attribute::AUTOFOCUS => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DISABLED,
-            ],
-            [
-                SpecRule::NAME => Attribute::MULTIPLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::NO_VERIFY,
+            Attribute::DISABLED => [],
+            Attribute::MULTIPLE => [],
+            Attribute::NO_VERIFY => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -52,30 +58,17 @@ final class Select extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::REQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::SIZE,
-            ],
-            [
-                SpecRule::NAME => '[autofocus]',
+            Attribute::REQUIRED => [],
+            Attribute::SIZE => [],
+            '[autofocus]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
-            [
-                SpecRule::NAME => '[multiple]',
-            ],
-            [
-                SpecRule::NAME => '[required]',
-            ],
-            [
-                SpecRule::NAME => '[size]',
-            ],
+            '[disabled]' => [],
+            '[multiple]' => [],
+            '[required]' => [],
+            '[size]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

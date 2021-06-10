@@ -9,9 +9,20 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class AmphtmlNomoduleEngineAttrs extends AttributeList
+/**
+ * Attribute list class AmphtmlNomoduleEngineAttrs.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $async
+ * @property-read array<array<string>> $crossorigin
+ * @property-read array $nomodule
+ * @property-read array<array<string>> $type
+ */
+final class AmphtmlNomoduleEngineAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

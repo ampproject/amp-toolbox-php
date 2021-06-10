@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class LinkRel extends Tag
+/**
+ * Tag class LinkRel.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class LinkRel extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,11 +46,8 @@ final class LinkRel extends Tag
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link rel=',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HREF,
-            ],
-            [
-                SpecRule::NAME => Attribute::REL,
+            Attribute::HREF => [],
+            Attribute::REL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(canonical|components|import|manifest|modulepreload|preload|serviceworker|stylesheet|subresource)(\s|$)',
             ],

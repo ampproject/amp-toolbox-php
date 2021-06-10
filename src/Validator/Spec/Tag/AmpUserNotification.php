@@ -13,10 +13,23 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpUserNotification extends Tag
+/**
+ * Tag class AmpUserNotification.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpUserNotification extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +46,7 @@ final class AmpUserNotification extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::USER_NOTIFICATION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_DISMISS_HREF,
+            Attribute::DATA_DISMISS_HREF => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -43,8 +55,7 @@ final class AmpUserNotification extends Tag
                     SpecRule::ALLOW_EMPTY => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SHOW_IF_HREF,
+            Attribute::DATA_SHOW_IF_HREF => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,
@@ -53,8 +64,7 @@ final class AmpUserNotification extends Tag
                     SpecRule::ALLOW_EMPTY => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ENCTYPE,
+            Attribute::ENCTYPE => [
                 SpecRule::VALUE => [
                     'application/x-www-form-urlencoded',
                 ],

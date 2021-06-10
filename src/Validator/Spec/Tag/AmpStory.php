@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStory extends Tag
+/**
+ * Tag class AmpStory.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read array $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requires
+ * @property-read array<string> $requiresExtension
+ * @property-read bool $siblingsDisallowed
+ */
+final class AmpStory extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +48,7 @@ final class AmpStory extends Tag
         SpecRule::TAG_NAME => Extension::STORY,
         SpecRule::MANDATORY_PARENT => Element::BODY,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BACKGROUND_AUDIO,
+            Attribute::BACKGROUND_AUDIO => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -42,11 +56,8 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ENTITY,
-            ],
-            [
-                SpecRule::NAME => Attribute::ENTITY_LOGO_SRC,
+            Attribute::ENTITY => [],
+            Attribute::ENTITY_LOGO_SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -54,8 +65,7 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ENTITY_URL,
+            Attribute::ENTITY_URL => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -63,8 +73,7 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::POSTER_LANDSCAPE_SRC,
+            Attribute::POSTER_LANDSCAPE_SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -72,8 +81,7 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::POSTER_PORTRAIT_SRC,
+            Attribute::POSTER_PORTRAIT_SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -82,8 +90,7 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::POSTER_SQUARE_SRC,
+            Attribute::POSTER_SQUARE_SRC => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -91,12 +98,10 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::PUBLISHER,
+            Attribute::PUBLISHER => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::PUBLISHER_LOGO_SRC,
+            Attribute::PUBLISHER_LOGO_SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -105,31 +110,26 @@ final class AmpStory extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::STANDALONE,
+            Attribute::STANDALONE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SUPPORTS_LANDSCAPE,
+            Attribute::SUPPORTS_LANDSCAPE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TITLE,
+            Attribute::TITLE => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::LIVE_STORY,
+            Attribute::LIVE_STORY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LIVE_STORY_DISABLED,
+            Attribute::LIVE_STORY_DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],

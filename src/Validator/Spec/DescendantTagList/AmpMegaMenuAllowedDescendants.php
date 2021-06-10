@@ -10,9 +10,14 @@ namespace AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Extension;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Identifiable;
 
-final class AmpMegaMenuAllowedDescendants extends DescendantTagList
+/**
+ * Descendant tag list class AmpMegaMenuAllowedDescendants.
+ *
+ * @package ampproject/amp-toolbox.
+ */
+final class AmpMegaMenuAllowedDescendants extends DescendantTagList implements Identifiable
 {
     /**
      * ID of the descendant tag list.

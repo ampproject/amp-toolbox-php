@@ -9,9 +9,19 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Identifiable;
 
-final class InteractiveOptionsConfettiAttrs extends AttributeList
+/**
+ * Attribute list class InteractiveOptionsConfettiAttrs.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $option1Confetti
+ * @property-read array $option2Confetti
+ * @property-read array $option3Confetti
+ * @property-read array $option4Confetti
+ */
+final class InteractiveOptionsConfettiAttrs extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

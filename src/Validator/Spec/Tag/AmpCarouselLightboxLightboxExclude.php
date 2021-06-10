@@ -9,10 +9,21 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Attribute;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpCarouselLightboxLightboxExclude extends Tag
+/**
+ * Tag class AmpCarouselLightboxLightboxExclude.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<bool>> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpCarouselLightboxLightboxExclude extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,8 +41,7 @@ final class AmpCarouselLightboxLightboxExclude extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-CAROUSEL lightbox [lightbox-exclude]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LIGHTBOX_EXCLUDE,
+            Attribute::LIGHTBOX_EXCLUDE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

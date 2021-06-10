@@ -9,9 +9,20 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Identifiable;
 
-final class SvgFilterPrimitiveAttributes extends AttributeList
+/**
+ * Attribute list class SvgFilterPrimitiveAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $height
+ * @property-read array $result
+ * @property-read array $width
+ * @property-read array $x
+ * @property-read array $y
+ */
+final class SvgFilterPrimitiveAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

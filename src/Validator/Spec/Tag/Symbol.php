@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Symbol extends Tag
+/**
+ * Tag class Symbol.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Symbol extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,21 +44,11 @@ final class Symbol extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::SYMBOL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::HEIGHT => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::VIEWBOX => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

@@ -10,6 +10,8 @@ use AmpProject\Validator\Spec\DocRuleset;
  * The DocRulesets section defines the validation rules that apply to an entire document.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method DocRuleset parentCurrent()
  */
 final class DocRulesets
 {

@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpDateCountdown extends Tag
+/**
+ * Tag class AmpDateCountdown.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpDateCountdown extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,8 +45,7 @@ final class AmpDateCountdown extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::DATE_COUNTDOWN,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BIGGEST_UNIT,
+            Attribute::BIGGEST_UNIT => [
                 SpecRule::VALUE_CASEI => [
                     'days',
                     'hours',
@@ -41,25 +53,26 @@ final class AmpDateCountdown extends Tag
                     'seconds',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::COUNT_UP,
+            Attribute::COUNT_UP => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_COUNT_UP,
+            Attribute::DATA_COUNT_UP => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::END_DATE,
-                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+            Attribute::END_DATE => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::END_DATE,
+                    Attribute::TIMELEFT_MS,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(:[0-5]\d(\.\d+)?)?(Z|[+-][0-1][0-9]:[0-5][0-9])',
             ],
-            [
-                SpecRule::NAME => Attribute::LOCALE,
+            Attribute::LOCALE => [
                 SpecRule::VALUE_CASEI => [
                     'de',
                     'en',
@@ -79,31 +92,40 @@ final class AmpDateCountdown extends Tag
                     'zh-tw',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OFFSET_SECONDS,
+            Attribute::OFFSET_SECONDS => [
                 SpecRule::VALUE_REGEX => '-?\d+',
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
             ],
-            [
-                SpecRule::NAME => Attribute::TIMELEFT_MS,
-                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+            Attribute::TIMELEFT_MS => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::END_DATE,
+                    Attribute::TIMELEFT_MS,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d+',
             ],
-            [
-                SpecRule::NAME => Attribute::TIMESTAMP_MS,
-                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+            Attribute::TIMESTAMP_MS => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::END_DATE,
+                    Attribute::TIMELEFT_MS,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d{13}',
             ],
-            [
-                SpecRule::NAME => Attribute::TIMESTAMP_SECONDS,
-                SpecRule::MANDATORY_ONEOF => '[\'end-date\', \'timeleft-ms\', \'timestamp-ms\', \'timestamp-seconds\']',
+            Attribute::TIMESTAMP_SECONDS => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::END_DATE,
+                    Attribute::TIMELEFT_MS,
+                    Attribute::TIMESTAMP_MS,
+                    Attribute::TIMESTAMP_SECONDS,
+                ],
                 SpecRule::VALUE_REGEX => '\d{10}',
             ],
-            [
-                SpecRule::NAME => Attribute::WHEN_ENDED,
+            Attribute::WHEN_ENDED => [
                 SpecRule::VALUE_CASEI => [
                     'continue',
                     'stop',

@@ -25,4 +25,22 @@ trait ClassNames
 
         return $className;
     }
+
+    /**
+     * Get the short name for a provided class name.
+     *
+     * @param string $class Class name to get the short name for.
+     * @return string Short name of the provided class name.
+     */
+    private function getShortName($class)
+    {
+        $class = ltrim($class, '\\');
+
+        if (strpos($class, 'AmpProject\\') === 0) {
+            $partials = array_filter(explode('\\', $class));
+            $class    = array_pop($partials);
+        }
+
+        return $class;
+    }
 }

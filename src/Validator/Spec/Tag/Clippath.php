@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Clippath extends Tag
+/**
+ * Tag class Clippath.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Clippath extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,15 +44,9 @@ final class Clippath extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::CLIPPATH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CLIPPATHUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
+            Attribute::CLIPPATHUNITS => [],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::TRANSFORM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

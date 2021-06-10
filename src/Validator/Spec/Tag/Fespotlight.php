@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Fespotlight extends Tag
+/**
+ * Tag class Fespotlight.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Fespotlight extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,30 +44,14 @@ final class Fespotlight extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FESPOTLIGHT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LIMITINGCONEANGLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::POINTSATX,
-            ],
-            [
-                SpecRule::NAME => Attribute::POINTSATY,
-            ],
-            [
-                SpecRule::NAME => Attribute::POINTSATZ,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPECULAREXPONENT,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
-            [
-                SpecRule::NAME => Attribute::Z,
-            ],
+            Attribute::LIMITINGCONEANGLE => [],
+            Attribute::POINTSATX => [],
+            Attribute::POINTSATY => [],
+            Attribute::POINTSATZ => [],
+            Attribute::SPECULAREXPONENT => [],
+            Attribute::X => [],
+            Attribute::Y => [],
+            Attribute::Z => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

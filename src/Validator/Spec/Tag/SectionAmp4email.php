@@ -9,10 +9,21 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class SectionAmp4email extends Tag
+/**
+ * Tag class SectionAmp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class SectionAmp4email extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

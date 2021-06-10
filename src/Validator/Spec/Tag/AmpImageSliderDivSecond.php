@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpImageSliderDivSecond extends Tag
+/**
+ * Tag class AmpImageSliderDivSecond.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array<bool>> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpImageSliderDivSecond extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +46,7 @@ final class AmpImageSliderDivSecond extends Tag
         SpecRule::SPEC_NAME => 'AMP-IMAGE-SLIDER > DIV [second]',
         SpecRule::MANDATORY_PARENT => Extension::IMAGE_SLIDER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::SECOND,
+            Attribute::SECOND => [
                 SpecRule::MANDATORY => true,
             ],
         ],

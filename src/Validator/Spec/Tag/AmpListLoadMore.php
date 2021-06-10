@@ -10,10 +10,22 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpListLoadMore extends Tag
+/**
+ * Tag class AmpListLoadMore.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpListLoadMore extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,33 +43,49 @@ final class AmpListLoadMore extends Tag
         SpecRule::TAG_NAME => Extension::LIST_LOAD_MORE,
         SpecRule::MANDATORY_PARENT => Extension::LIST_,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_BUTTON,
+            Attribute::LOAD_MORE_BUTTON => [
                 SpecRule::VALUE => [
                     '',
                 ],
-                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::LOAD_MORE_BUTTON,
+                    Attribute::LOAD_MORE_FAILED,
+                    Attribute::LOAD_MORE_END,
+                    Attribute::LOAD_MORE_LOADING,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_FAILED,
+            Attribute::LOAD_MORE_FAILED => [
                 SpecRule::VALUE => [
                     '',
                 ],
-                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::LOAD_MORE_BUTTON,
+                    Attribute::LOAD_MORE_FAILED,
+                    Attribute::LOAD_MORE_END,
+                    Attribute::LOAD_MORE_LOADING,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_LOADING,
+            Attribute::LOAD_MORE_LOADING => [
                 SpecRule::VALUE => [
                     '',
                 ],
-                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::LOAD_MORE_BUTTON,
+                    Attribute::LOAD_MORE_FAILED,
+                    Attribute::LOAD_MORE_END,
+                    Attribute::LOAD_MORE_LOADING,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_END,
+            Attribute::LOAD_MORE_END => [
                 SpecRule::VALUE => [
                     '',
                 ],
-                SpecRule::MANDATORY_ONEOF => '[\'load-more-button\', \'load-more-failed\', \'load-more-end\', \'load-more-loading\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::LOAD_MORE_BUTTON,
+                    Attribute::LOAD_MORE_FAILED,
+                    Attribute::LOAD_MORE_END,
+                    Attribute::LOAD_MORE_LOADING,
+                ],
             ],
         ],
         SpecRule::HTML_FORMAT => [

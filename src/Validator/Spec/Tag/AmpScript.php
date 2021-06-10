@@ -13,10 +13,24 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpScript extends Tag
+/**
+ * Tag class AmpScript.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpScript extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,15 +47,13 @@ final class AmpScript extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SCRIPT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_AMPDEVMODE,
+            Attribute::DATA_AMPDEVMODE => [
                 SpecRule::VALUE => [
                     'false',
                 ],
                 SpecRule::DISALLOWED_VALUE_REGEX => 'false',
             ],
-            [
-                SpecRule::NAME => Attribute::MAX_AGE,
+            Attribute::MAX_AGE => [
                 SpecRule::VALUE_REGEX => '[0-9]+',
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
@@ -49,30 +61,30 @@ final class AmpScript extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NODOM,
+            Attribute::NODOM => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SANDBOXED,
+            Attribute::SANDBOXED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SANDBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCRIPT,
-                SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
+            Attribute::SANDBOX => [],
+            Attribute::SCRIPT => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::SCRIPT,
+                    Attribute::SRC,
+                ],
                 SpecRule::VALUE_ONEOF_SET => 'AMP_SCRIPT_IDS',
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
-                SpecRule::MANDATORY_ONEOF => '[\'script\', \'src\']',
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::SCRIPT,
+                    Attribute::SRC,
+                ],
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,

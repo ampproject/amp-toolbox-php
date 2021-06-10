@@ -11,9 +11,30 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class AmpVideoIframeCommon extends AttributeList
+/**
+ * Attribute list class AmpVideoIframeCommon.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $album
+ * @property-read array $alt
+ * @property-read array $artist
+ * @property-read array $artwork
+ * @property-read array $attribution
+ * @property-read array<array<string>> $autoplay
+ * @property-read array<array<string>> $dock
+ * @property-read array<array<string>> $implementsMediaSession
+ * @property-read array<array<string>> $implementsRotateToFullscreen
+ * @property-read array $poster
+ * @property-read array $referrerpolicy
+ * @property-read array<array<string>> $rotateToFullscreen
+ * @property-read array $src
+ * @property-read array $src_binding
+ */
+final class AmpVideoIframeCommon extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

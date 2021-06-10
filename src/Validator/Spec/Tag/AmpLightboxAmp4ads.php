@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpLightboxAmp4ads extends Tag
+/**
+ * Tag class AmpLightboxAmp4ads.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpLightboxAmp4ads extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,24 +47,18 @@ final class AmpLightboxAmp4ads extends Tag
         SpecRule::TAG_NAME => Extension::LIGHTBOX,
         SpecRule::SPEC_NAME => 'amp-lightbox [AMP4ADS]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN,
+            Attribute::ANIMATE_IN => [
                 SpecRule::VALUE_CASEI => [
                     'fade-in',
                     'fly-in-bottom',
                     'fly-in-top',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CLOSE_BUTTON,
+            Attribute::CLOSE_BUTTON => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
-            ],
-            [
-                SpecRule::NAME => Attribute::FROM,
-            ],
+            Attribute::CONTROLS => [],
+            Attribute::FROM => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

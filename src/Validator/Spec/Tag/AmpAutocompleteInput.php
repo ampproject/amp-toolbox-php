@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAutocompleteInput extends Tag
+/**
+ * Tag class AmpAutocompleteInput.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAutocompleteInput extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +46,7 @@ final class AmpAutocompleteInput extends Tag
         SpecRule::SPEC_NAME => 'amp-autocomplete > input',
         SpecRule::MANDATORY_PARENT => Extension::AUTOCOMPLETE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'search',

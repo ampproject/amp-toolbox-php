@@ -9,10 +9,23 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class TitleAmp4email extends Tag
+/**
+ * Tag class TitleAmp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read string $deprecation
+ * @property-read string $deprecationUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class TitleAmp4email extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,9 +43,7 @@ final class TitleAmp4email extends Tag
         SpecRule::TAG_NAME => Element::TITLE,
         SpecRule::SPEC_NAME => 'title [AMP4EMAIL]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[text]',
-            ],
+            '[text]' => [],
         ],
         SpecRule::DEPRECATION => 'Title tags in email have no meaning. This tag may become invalid in the future.',
         SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/22318',

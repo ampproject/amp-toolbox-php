@@ -9,9 +9,19 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class ExtendedAmpGlobal extends AttributeList
+/**
+ * Attribute list class ExtendedAmpGlobal.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $iAmphtmlLayout
+ * @property-read array $media
+ * @property-read array<array<string>> $noloading
+ */
+final class ExtendedAmpGlobal extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

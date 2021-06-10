@@ -10,9 +10,21 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class TrackAttrsSubtitles extends AttributeList
+/**
+ * Attribute list class TrackAttrsSubtitles.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $default
+ * @property-read array $kind
+ * @property-read array $label
+ * @property-read array $src
+ * @property-read array<bool> $srclang
+ */
+final class TrackAttrsSubtitles extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

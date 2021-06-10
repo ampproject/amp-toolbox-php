@@ -11,10 +11,22 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAnalytics extends Tag
+/**
+ * Tag class AmpAnalytics.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAnalytics extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,8 +43,7 @@ final class AmpAnalytics extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ANALYTICS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONFIG,
+            Attribute::CONFIG => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -42,9 +53,7 @@ final class AmpAnalytics extends Tag
                     SpecRule::ALLOW_EMPTY => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
+            Attribute::TYPE => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-analytics/',
         SpecRule::HTML_FORMAT => [

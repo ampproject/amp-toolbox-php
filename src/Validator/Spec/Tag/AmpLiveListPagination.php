@@ -9,10 +9,23 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Attribute;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveListPagination extends Tag
+/**
+ * Tag class AmpLiveListPagination.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<bool>> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class AmpLiveListPagination extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,8 +43,7 @@ final class AmpLiveListPagination extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [pagination]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::PAGINATION,
+            Attribute::PAGINATION => [
                 SpecRule::MANDATORY => true,
             ],
         ],

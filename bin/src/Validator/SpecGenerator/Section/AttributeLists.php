@@ -5,6 +5,7 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
+use AmpProject\Tooling\Validator\SpecGenerator\MagicPropertyAnnotations;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -14,6 +15,7 @@ final class AttributeLists implements Section
 {
     use ClassNames;
     use ConstantNames;
+    use MagicPropertyAnnotations;
 
     /**
      * Process a section.
@@ -32,7 +34,7 @@ final class AttributeLists implements Section
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
 
-        $this->data = $this->adaptSpec($spec);
+        $data = $this->adaptSpec($spec);
 
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(
@@ -46,7 +48,7 @@ final class AttributeLists implements Section
               ->addComment("Cache of instantiated AttributeList objects.\n\n@var array<Spec\\AttributeList>");
 
         $attributeLists = [];
-        foreach ($this->data as $key => $value) {
+        foreach ($data as $key => $value) {
             $className = $this->generateAttributeListSpecificClass($key, $value, $fileManager);
 
             $attributeLists["AttributeList\\{$className}::ID"] = "AttributeList\\{$className}::class";
@@ -101,13 +103,13 @@ final class AttributeLists implements Section
 
         $className = $this->getClassNameFromId($attributeListId);
 
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\AttributeList");
 
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\AttributeList');
+                           ->addExtend('AmpProject\Validator\Spec\AttributeList')
+                           ->addImplement('AmpProject\Validator\Spec\Identifiable');
 
         $class->addConstant('ID', $attributeListId)
               ->addComment("ID of the attribute list.\n\n@var string");
@@ -119,6 +121,11 @@ final class AttributeLists implements Section
 
         $class->addConstant('ATTRIBUTES', $attributes)
               ->addComment("Array of attributes.\n\n@var array<array>");
+
+        $classComment = "Attribute list class {$className}.\n\n";
+        $classComment .= "@package ampproject/amp-toolbox.\n\n";
+        $classComment .= implode("\n", $this->getMagicPropertyAnnotations($jsonSpec));
+        $class->addComment($classComment);
 
         $fileManager->saveFile($file, "Spec/AttributeList/{$className}.php");
 

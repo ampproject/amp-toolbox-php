@@ -10,10 +10,24 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class SubscriptionsSectionContentSwgAmpCacheNonce extends Tag
+/**
+ * Tag class SubscriptionsSectionContentSwgAmpCacheNonce.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
+ * @property-read array<string> $requires
+ */
+final class SubscriptionsSectionContentSwgAmpCacheNonce extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,19 +45,16 @@ final class SubscriptionsSectionContentSwgAmpCacheNonce extends Tag
         SpecRule::TAG_NAME => Element::SECTION,
         SpecRule::SPEC_NAME => 'subscriptions-section content swg_amp_cache_nonce',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ENCRYPTED,
+            Attribute::ENCRYPTED => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::SUBSCRIPTIONS_SECTION,
+            Attribute::SUBSCRIPTIONS_SECTION => [
                 SpecRule::VALUE_CASEI => [
                     'content',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SWG_AMP_CACHE_NONCE,
+            Attribute::SWG_AMP_CACHE_NONCE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

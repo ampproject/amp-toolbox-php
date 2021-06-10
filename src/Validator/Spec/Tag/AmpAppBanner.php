@@ -12,10 +12,26 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAppBanner extends Tag
+/**
+ * Tag class AmpAppBanner.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requires
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAppBanner extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

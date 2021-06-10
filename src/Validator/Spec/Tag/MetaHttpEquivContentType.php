@@ -10,10 +10,23 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class MetaHttpEquivContentType extends Tag
+/**
+ * Tag class MetaHttpEquivContentType.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class MetaHttpEquivContentType extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,15 +44,13 @@ final class MetaHttpEquivContentType extends Tag
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=Content-Type',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'text/html; charset=utf-8',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HTTP_EQUIV,
+            Attribute::HTTP_EQUIV => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

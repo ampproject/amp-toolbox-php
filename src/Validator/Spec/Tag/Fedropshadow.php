@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Fedropshadow extends Tag
+/**
+ * Tag class Fedropshadow.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Fedropshadow extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,15 +46,9 @@ final class Fedropshadow extends Tag
         SpecRule::TAG_NAME => Element::FEDROPSHADOW,
         SpecRule::MANDATORY_PARENT => Element::FILTER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DX,
-            ],
-            [
-                SpecRule::NAME => Attribute::DY,
-            ],
-            [
-                SpecRule::NAME => Attribute::STDDEVIATION,
-            ],
+            Attribute::DX => [],
+            Attribute::DY => [],
+            Attribute::STDDEVIATION => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

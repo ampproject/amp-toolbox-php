@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpPanZoom extends Tag
+/**
+ * Tag class AmpPanZoom.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpPanZoom extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,30 +45,24 @@ final class AmpPanZoom extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PAN_ZOOM,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLE_DOUBLE_TAP,
+            Attribute::DISABLE_DOUBLE_TAP => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::INITIAL_SCALE,
+            Attribute::INITIAL_SCALE => [
                 SpecRule::VALUE_REGEX => '[0-9]+(\.[0-9]+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::INITIAL_X,
+            Attribute::INITIAL_X => [
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::INITIAL_Y,
+            Attribute::INITIAL_Y => [
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
-            [
-                SpecRule::NAME => Attribute::MAX_SCALE,
+            Attribute::MAX_SCALE => [
                 SpecRule::VALUE_REGEX => '[0-9]+(\.[0-9]+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::RESET_ON_RESIZE,
+            Attribute::RESET_ON_RESIZE => [
                 SpecRule::VALUE => [
                     '',
                 ],

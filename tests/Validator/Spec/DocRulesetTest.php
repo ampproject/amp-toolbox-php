@@ -9,14 +9,15 @@ use AmpProject\Tests\ValidatorFixtures\DummyDocRuleset;
 class DocRulesetTest extends TestCase
 {
     /**
-     * @covers \AmpProject\Validator\Spec\Tag::get()
-     * @covers \AmpProject\Validator\Spec\Tag::has()
-     * @covers \AmpProject\Validator\Spec\Tag::__get()
+     * @covers \AmpProject\Validator\Spec\DocRuleset::get()
+     * @covers \AmpProject\Validator\Spec\DocRuleset::has()
+     * @covers \AmpProject\Validator\Spec\DocRuleset::__get()
      */
     public function testDefaultValues()
     {
         $dummyDocRuleset = new DummyDocRuleset();
 
+        $this->assertIsString($dummyDocRuleset->id);
         $this->assertIsArray($dummyDocRuleset->htmlFormat);
     }
 
@@ -24,13 +25,14 @@ class DocRulesetTest extends TestCase
      * @covers \AmpProject\Validator\Spec\DocRuleset::getId()
      * @covers \AmpProject\Validator\Spec\DocRuleset::get()
      * @covers \AmpProject\Validator\Spec\DocRuleset::has()
-     * @covers \AmpProject\Validator\Spec\Tag::__get()
+     * @covers \AmpProject\Validator\Spec\DocRuleset::__get()
      */
     public function testGet()
     {
         $dummyDocRuleset = new DummyDocRuleset();
 
         $this->assertEquals('DUMMY', $dummyDocRuleset->getId());
+        $this->assertEquals('DUMMY', $dummyDocRuleset->id);
 
         $this->assertEquals($dummyDocRuleset->maxBytes, $dummyDocRuleset->get('maxBytes'));
 

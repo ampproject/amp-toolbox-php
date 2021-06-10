@@ -13,10 +13,24 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpOnetapGoogle extends Tag
+/**
+ * Tag class AmpOnetapGoogle.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read bool $unique
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpOnetapGoogle extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +48,7 @@ final class AmpOnetapGoogle extends Tag
         SpecRule::TAG_NAME => Extension::ONETAP_GOOGLE,
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_SRC,
+            Attribute::DATA_SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

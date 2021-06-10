@@ -11,10 +11,25 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpNextPageWithSrcAttribute extends Tag
+/**
+ * Tag class AmpNextPageWithSrcAttribute.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<array> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpNextPageWithSrcAttribute extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,14 +48,9 @@ final class AmpNextPageWithSrcAttribute extends Tag
         SpecRule::SPEC_NAME => 'amp-next-page with src attribute',
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DEEP_PARSING,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_PAGES,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::DEEP_PARSING => [],
+            Attribute::MAX_PAGES => [],
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
@@ -50,9 +60,7 @@ final class AmpNextPageWithSrcAttribute extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::XSSI_PREFIX,
-            ],
+            Attribute::XSSI_PREFIX => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',
         SpecRule::REFERENCE_POINTS => [

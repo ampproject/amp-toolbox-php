@@ -10,9 +10,23 @@ namespace AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class SvgXlinkAttributes extends AttributeList
+/**
+ * Attribute list class SvgXlinkAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $xlink:actuate
+ * @property-read array $xlink:arcrole
+ * @property-read array $xlink:href
+ * @property-read array $xlink:role
+ * @property-read array $xlink:show
+ * @property-read array $xlink:title
+ * @property-read array $xlink:type
+ */
+final class SvgXlinkAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

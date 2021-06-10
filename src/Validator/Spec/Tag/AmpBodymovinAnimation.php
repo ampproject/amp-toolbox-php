@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpBodymovinAnimation extends Tag
+/**
+ * Tag class AmpBodymovinAnimation.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpBodymovinAnimation extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,18 +45,15 @@ final class AmpBodymovinAnimation extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BODYMOVIN_ANIMATION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::LOOP,
+            Attribute::LOOP => [
                 SpecRule::VALUE_REGEX_CASEI => '[1-9][0-9]*|false|true',
             ],
-            [
-                SpecRule::NAME => Attribute::NOAUTOPLAY,
+            Attribute::NOAUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -52,8 +62,7 @@ final class AmpBodymovinAnimation extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::RENDERER,
+            Attribute::RENDERER => [
                 SpecRule::VALUE_CASEI => [
                     'canvas',
                     'html',

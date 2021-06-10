@@ -10,10 +10,22 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpNextPageFooter extends Tag
+/**
+ * Tag class AmpNextPageFooter.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array<bool>> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpNextPageFooter extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,8 +44,7 @@ final class AmpNextPageFooter extends Tag
         SpecRule::SPEC_NAME => 'AMP-NEXT-PAGE > [footer]',
         SpecRule::MANDATORY_PARENT => Extension::NEXT_PAGE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FOOTER,
+            Attribute::FOOTER => [
                 SpecRule::MANDATORY => true,
             ],
         ],

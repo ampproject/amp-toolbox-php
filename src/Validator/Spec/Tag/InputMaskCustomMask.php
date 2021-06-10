@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class InputMaskCustomMask extends Tag
+/**
+ * Tag class InputMaskCustomMask.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class InputMaskCustomMask extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,19 +47,15 @@ final class InputMaskCustomMask extends Tag
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'input [mask] (custom mask)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MASK,
+            Attribute::MASK => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '(payment-card|date-dd-mm-yyyy|date-mm-dd-yyyy|date-mm-yy|date-yyyy-mm-dd)',
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::MASK_TRIM_ZEROS,
+            Attribute::MASK_TRIM_ZEROS => [
                 SpecRule::VALUE_REGEX => '\d+',
             ],
-            [
-                SpecRule::NAME => '[type]',
-            ],
+            '[type]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\AmpInputmaskCommonAttr::ID,

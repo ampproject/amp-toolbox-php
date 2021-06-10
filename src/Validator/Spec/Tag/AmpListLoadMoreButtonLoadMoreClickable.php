@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpListLoadMoreButtonLoadMoreClickable extends Tag
+/**
+ * Tag class AmpListLoadMoreButtonLoadMoreClickable.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpListLoadMoreButtonLoadMoreClickable extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,34 +48,26 @@ final class AmpListLoadMoreButtonLoadMoreClickable extends Tag
         SpecRule::SPEC_NAME => 'amp-list-load-more button[load-more-clickable]',
         SpecRule::MANDATORY_PARENT => Extension::LIST_LOAD_MORE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_CLICKABLE,
+            Attribute::LOAD_MORE_CLICKABLE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::ROLE => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TABINDEX,
+            Attribute::TABINDEX => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
+            Attribute::TYPE => [],
+            Attribute::VALUE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

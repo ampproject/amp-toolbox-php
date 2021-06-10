@@ -10,10 +10,24 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveListItemsItem extends Tag
+/**
+ * Tag class AmpLiveListItemsItem.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class AmpLiveListItemsItem extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,16 +45,11 @@ final class AmpLiveListItemsItem extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [items] item',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_SORT_TIME,
+            Attribute::DATA_SORT_TIME => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_TOMBSTONE,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_UPDATE_TIME,
-            ],
+            Attribute::DATA_TOMBSTONE => [],
+            Attribute::DATA_UPDATE_TIME => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\MandatoryIdAttr::ID,

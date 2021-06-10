@@ -10,10 +10,27 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class HtmlDoctype extends Tag
+/**
+ * Tag class HtmlDoctype.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $mandatory
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read bool $explicitAttrsOnly
+ * @property-read string $descriptiveName
+ */
+final class HtmlDoctype extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,15 +51,13 @@ final class HtmlDoctype extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => '$ROOT',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HTML,
+            Attribute::HTML => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LANG,
+            Attribute::LANG => [
                 SpecRule::DEPRECATION => 'html',
                 SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/25926',
             ],

@@ -10,10 +10,20 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Progress extends Tag
+/**
+ * Tag class Progress.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class Progress extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,12 +40,8 @@ final class Progress extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::PROGRESS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MAX,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
+            Attribute::MAX => [],
+            Attribute::VALUE => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

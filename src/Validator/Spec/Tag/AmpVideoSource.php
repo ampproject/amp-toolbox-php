@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpVideoSource extends Tag
+/**
+ * Tag class AmpVideoSource.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpVideoSource extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,11 +47,8 @@ final class AmpVideoSource extends Tag
         SpecRule::SPEC_NAME => 'amp-video > source',
         SpecRule::MANDATORY_PARENT => Extension::VIDEO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MEDIA,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::MEDIA => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -47,15 +57,9 @@ final class AmpVideoSource extends Tag
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[type]',
-            ],
+            Attribute::TYPE => [],
+            '[src]' => [],
+            '[type]' => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-video/',
         SpecRule::HTML_FORMAT => [

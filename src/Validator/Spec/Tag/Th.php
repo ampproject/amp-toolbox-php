@@ -10,10 +10,20 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Th extends Tag
+/**
+ * Tag class Th.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class Th extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,42 +40,21 @@ final class Th extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ABBR,
-            ],
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::BGCOLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::COLSPAN,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEADERS,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ROWSPAN,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCOPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::SORTED,
+            Attribute::ABBR => [],
+            Attribute::ALIGN => [],
+            Attribute::BGCOLOR => [],
+            Attribute::COLSPAN => [],
+            Attribute::HEADERS => [],
+            Attribute::HEIGHT => [],
+            Attribute::ROWSPAN => [],
+            Attribute::SCOPE => [],
+            Attribute::SORTED => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::VALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::VALIGN => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

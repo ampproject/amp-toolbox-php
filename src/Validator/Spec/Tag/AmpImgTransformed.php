@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpImgTransformed extends Tag
+/**
+ * Tag class AmpImgTransformed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $enabledBy
+ */
+final class AmpImgTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,41 +48,20 @@ final class AmpImgTransformed extends Tag
         SpecRule::TAG_NAME => Extension::IMG,
         SpecRule::SPEC_NAME => 'amp-img (transformed)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_SSR,
+            Attribute::I_AMPHTML_SSR => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_FIT,
-            ],
-            [
-                SpecRule::NAME => Attribute::OBJECT_POSITION,
-            ],
-            [
-                SpecRule::NAME => Attribute::PLACEHOLDER,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
-            ],
-            [
-                SpecRule::NAME => '[alt]',
-            ],
-            [
-                SpecRule::NAME => '[attribution]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[srcset]',
-            ],
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
+            Attribute::OBJECT_FIT => [],
+            Attribute::OBJECT_POSITION => [],
+            Attribute::PLACEHOLDER => [],
+            Attribute::REFERRERPOLICY => [],
+            '[alt]' => [],
+            '[attribution]' => [],
+            '[src]' => [],
+            '[srcset]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

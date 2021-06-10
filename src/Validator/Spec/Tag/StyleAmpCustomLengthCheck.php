@@ -11,10 +11,26 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class StyleAmpCustomLengthCheck extends Tag
+/**
+ * Tag class StyleAmpCustomLengthCheck.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<int> $cdata
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class StyleAmpCustomLengthCheck extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,16 +50,14 @@ final class StyleAmpCustomLengthCheck extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_CUSTOM_LENGTH_CHECK,
+            Attribute::AMP_CUSTOM_LENGTH_CHECK => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::VALUE_CASEI => [
                     'text/css',
                 ],

@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class DivAmpNestedMenu extends Tag
+/**
+ * Tag class DivAmpNestedMenu.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<string>> $attrs
+ * @property-read array<string> $disallowedAncestor
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class DivAmpNestedMenu extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,19 +46,28 @@ final class DivAmpNestedMenu extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'div amp-nested-menu',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU,
-                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+            Attribute::AMP_NESTED_SUBMENU => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::AMP_NESTED_SUBMENU,
+                    Attribute::AMP_NESTED_SUBMENU_CLOSE,
+                    Attribute::AMP_NESTED_SUBMENU_OPEN,
+                ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_CLOSE,
-                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+            Attribute::AMP_NESTED_SUBMENU_CLOSE => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::AMP_NESTED_SUBMENU,
+                    Attribute::AMP_NESTED_SUBMENU_CLOSE,
+                    Attribute::AMP_NESTED_SUBMENU_OPEN,
+                ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::AMP_NESTED_SUBMENU_OPEN,
-                SpecRule::MANDATORY_ONEOF => '[\'amp-nested-submenu\', \'amp-nested-submenu-close\', \'amp-nested-submenu-open\']',
+            Attribute::AMP_NESTED_SUBMENU_OPEN => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::AMP_NESTED_SUBMENU,
+                    Attribute::AMP_NESTED_SUBMENU_CLOSE,
+                    Attribute::AMP_NESTED_SUBMENU_OPEN,
+                ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
         ],

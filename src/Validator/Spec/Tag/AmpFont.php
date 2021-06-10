@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpFont extends Tag
+/**
+ * Tag class AmpFont.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpFont extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,33 +45,17 @@ final class AmpFont extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FONT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::FONT_FAMILY,
+            Attribute::FONT_FAMILY => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::FONT_STYLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::FONT_VARIANT,
-            ],
-            [
-                SpecRule::NAME => Attribute::FONT_WEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ON_ERROR_ADD_CLASS,
-            ],
-            [
-                SpecRule::NAME => Attribute::ON_ERROR_REMOVE_CLASS,
-            ],
-            [
-                SpecRule::NAME => Attribute::ON_LOAD_ADD_CLASS,
-            ],
-            [
-                SpecRule::NAME => Attribute::ON_LOAD_REMOVE_CLASS,
-            ],
-            [
-                SpecRule::NAME => Attribute::TIMEOUT,
+            Attribute::FONT_STYLE => [],
+            Attribute::FONT_VARIANT => [],
+            Attribute::FONT_WEIGHT => [],
+            Attribute::ON_ERROR_ADD_CLASS => [],
+            Attribute::ON_ERROR_REMOVE_CLASS => [],
+            Attribute::ON_LOAD_ADD_CLASS => [],
+            Attribute::ON_LOAD_REMOVE_CLASS => [],
+            Attribute::TIMEOUT => [
                 SpecRule::VALUE_REGEX => '[0-9]+',
             ],
         ],

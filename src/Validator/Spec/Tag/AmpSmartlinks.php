@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpSmartlinks extends Tag
+/**
+ * Tag class AmpSmartlinks.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpSmartlinks extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,26 +45,19 @@ final class AmpSmartlinks extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::SMARTLINKS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXCLUSIVE_LINKS,
+            Attribute::EXCLUSIVE_LINKS => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LINK_ATTRIBUTE,
-            ],
-            [
-                SpecRule::NAME => Attribute::LINK_SELECTOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::LINKMATE,
+            Attribute::LINK_ATTRIBUTE => [],
+            Attribute::LINK_SELECTOR => [],
+            Attribute::LINKMATE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NRTV_ACCOUNT_NAME,
+            Attribute::NRTV_ACCOUNT_NAME => [
                 SpecRule::MANDATORY => true,
             ],
         ],

@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAnimAmp4email extends Tag
+/**
+ * Tag class AmpAnimAmp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAnimAmp4email extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,12 +48,8 @@ final class AmpAnimAmp4email extends Tag
         SpecRule::TAG_NAME => Extension::ANIM,
         SpecRule::SPEC_NAME => 'AMP-ANIM (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ATTRIBUTION,
-            ],
+            Attribute::ALT => [],
+            Attribute::ATTRIBUTION => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

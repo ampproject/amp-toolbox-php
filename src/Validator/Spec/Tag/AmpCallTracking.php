@@ -13,10 +13,25 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpCallTracking extends Tag
+/**
+ * Tag class AmpCallTracking.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpCallTracking extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +48,7 @@ final class AmpCallTracking extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::CALL_TRACKING,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONFIG,
+            Attribute::CONFIG => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [

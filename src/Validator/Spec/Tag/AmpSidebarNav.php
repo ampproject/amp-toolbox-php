@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpSidebarNav extends Tag
+/**
+ * Tag class AmpSidebarNav.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read array $childTags
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpSidebarNav extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,13 +46,11 @@ final class AmpSidebarNav extends Tag
         SpecRule::SPEC_NAME => 'amp-sidebar > nav',
         SpecRule::MANDATORY_PARENT => Extension::SIDEBAR,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TOOLBAR,
+            Attribute::TOOLBAR => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::TOOLBAR_TARGET,
+            Attribute::TOOLBAR_TARGET => [
                 SpecRule::MANDATORY => true,
             ],
         ],

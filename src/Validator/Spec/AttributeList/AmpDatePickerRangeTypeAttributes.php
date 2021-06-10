@@ -9,9 +9,22 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class AmpDatePickerRangeTypeAttributes extends AttributeList
+/**
+ * Attribute list class AmpDatePickerRangeTypeAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $endDate
+ * @property-read array $endInputSelector
+ * @property-read array<string> $maximumNights
+ * @property-read array<string> $minimumNights
+ * @property-read array $startDate
+ * @property-read array $startInputSelector
+ */
+final class AmpDatePickerRangeTypeAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

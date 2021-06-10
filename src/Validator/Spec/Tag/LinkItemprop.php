@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class LinkItemprop extends Tag
+/**
+ * Tag class LinkItemprop.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<bool>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class LinkItemprop extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,12 +46,10 @@ final class LinkItemprop extends Tag
         SpecRule::TAG_NAME => Element::LINK,
         SpecRule::SPEC_NAME => 'link itemprop=',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HREF,
+            Attribute::HREF => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::ITEMPROP,
+            Attribute::ITEMPROP => [
                 SpecRule::MANDATORY => true,
             ],
         ],

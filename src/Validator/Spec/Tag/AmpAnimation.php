@@ -12,10 +12,25 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAnimation extends Tag
+/**
+ * Tag class AmpAnimation.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array<array<string>>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requires
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAnimation extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,8 +47,7 @@ final class AmpAnimation extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ANIMATION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::TRIGGER,
+            Attribute::TRIGGER => [
                 SpecRule::VALUE => [
                     'visibility',
                 ],

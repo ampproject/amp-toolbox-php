@@ -10,10 +10,24 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class SubscriptionsScriptCiphertext extends Tag
+/**
+ * Tag class SubscriptionsScriptCiphertext.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<array<array<string>>> $cdata
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class SubscriptionsScriptCiphertext extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,13 +46,11 @@ final class SubscriptionsScriptCiphertext extends Tag
         SpecRule::SPEC_NAME => 'subscriptions script ciphertext',
         SpecRule::MANDATORY_PARENT => 'subscriptions-section content swg_amp_cache_nonce',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CIPHERTEXT,
+            Attribute::CIPHERTEXT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'application/octet-stream',

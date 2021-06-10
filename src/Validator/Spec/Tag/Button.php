@@ -11,10 +11,21 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Button extends Tag
+/**
+ * Tag class Button.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ */
+final class Button extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,38 +42,26 @@ final class Button extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::ROLE => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TABINDEX,
+            Attribute::TABINDEX => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
-            [
-                SpecRule::NAME => '[type]',
+            Attribute::TYPE => [],
+            Attribute::VALUE => [],
+            '[disabled]' => [],
+            '[type]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => '[value]',
-            ],
+            '[value]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

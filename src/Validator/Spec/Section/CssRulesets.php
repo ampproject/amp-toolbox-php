@@ -18,6 +18,8 @@ use AmpProject\Validator\Spec\Iteration;
  * The CssRulesets section defines the validation rules that apply to the CSS of a document.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method CssRuleset parentCurrent()
  */
 final class CssRulesets implements IterableSection
 {

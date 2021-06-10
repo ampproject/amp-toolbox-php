@@ -12,10 +12,22 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class FormMethodGetAmp4email extends Tag
+/**
+ * Tag class FormMethodGetAmp4email.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class FormMethodGetAmp4email extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,14 +45,9 @@ final class FormMethodGetAmp4email extends Tag
         SpecRule::TAG_NAME => Element::FORM,
         SpecRule::SPEC_NAME => 'FORM [method=GET] (AMP4EMAIL)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ACCEPT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ACCEPT_CHARSET,
-            ],
-            [
-                SpecRule::NAME => Attribute::ACTION_XHR,
+            Attribute::ACCEPT => [],
+            Attribute::ACCEPT_CHARSET => [],
+            Attribute::ACTION_XHR => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin|{{|}}',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -49,11 +56,8 @@ final class FormMethodGetAmp4email extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::AUTOCOMPLETE,
-            ],
-            [
-                SpecRule::NAME => Attribute::CUSTOM_VALIDATION_REPORTING,
+            Attribute::AUTOCOMPLETE => [],
+            Attribute::CUSTOM_VALIDATION_REPORTING => [
                 SpecRule::VALUE => [
                     'as-you-go',
                     'interact-and-submit',
@@ -61,21 +65,14 @@ final class FormMethodGetAmp4email extends Tag
                     'show-first-on-submit',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ENCTYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::METHOD,
+            Attribute::ENCTYPE => [],
+            Attribute::METHOD => [
                 SpecRule::VALUE_CASEI => [
                     'get',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NOVALIDATE,
-            ],
-            [
-                SpecRule::NAME => Attribute::XSSI_PREFIX,
-            ],
+            Attribute::NOVALIDATE => [],
+            Attribute::XSSI_PREFIX => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP4EMAIL,

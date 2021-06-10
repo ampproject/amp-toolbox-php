@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpOrientationObserver extends Tag
+/**
+ * Tag class AmpOrientationObserver.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array<string>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpOrientationObserver extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,20 +45,16 @@ final class AmpOrientationObserver extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ORIENTATION_OBSERVER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALPHA_RANGE,
+            Attribute::ALPHA_RANGE => [
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
-            [
-                SpecRule::NAME => Attribute::BETA_RANGE,
+            Attribute::BETA_RANGE => [
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
-            [
-                SpecRule::NAME => Attribute::GAMMA_RANGE,
+            Attribute::GAMMA_RANGE => [
                 SpecRule::VALUE_REGEX => '(\d+)\s{1}(\d+)',
             ],
-            [
-                SpecRule::NAME => Attribute::SMOOTHING,
+            Attribute::SMOOTHING => [
                 SpecRule::VALUE_REGEX => '[0-9]+|',
             ],
         ],

@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class CryptokeysJsonScript extends Tag
+/**
+ * Tag class CryptokeysJsonScript.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array $attrs
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class CryptokeysJsonScript extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,20 +48,17 @@ final class CryptokeysJsonScript extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CRYPTOKEYS,
+            Attribute::CRYPTOKEYS => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::SHA_256_HASH,
+            Attribute::SHA_256_HASH => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'application/json',

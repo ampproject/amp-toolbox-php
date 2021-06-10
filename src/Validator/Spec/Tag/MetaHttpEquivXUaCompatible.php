@@ -10,10 +10,24 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class MetaHttpEquivXUaCompatible extends Tag
+/**
+ * Tag class MetaHttpEquivXUaCompatible.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class MetaHttpEquivXUaCompatible extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,8 +45,7 @@ final class MetaHttpEquivXUaCompatible extends Tag
         SpecRule::TAG_NAME => Element::META,
         SpecRule::SPEC_NAME => 'meta http-equiv=X-UA-Compatible',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_PROPERTIES => [
                     SpecRule::PROPERTIES => [
@@ -47,8 +60,7 @@ final class MetaHttpEquivXUaCompatible extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::HTTP_EQUIV,
+            Attribute::HTTP_EQUIV => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
                 SpecRule::VALUE_CASEI => [

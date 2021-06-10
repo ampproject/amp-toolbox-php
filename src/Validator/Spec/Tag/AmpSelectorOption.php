@@ -9,10 +9,22 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Attribute;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpSelectorOption extends Tag
+/**
+ * Tag class AmpSelectorOption.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpSelectorOption extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,18 +42,15 @@ final class AmpSelectorOption extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-SELECTOR option',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
+            Attribute::DISABLED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::OPTION,
+            Attribute::OPTION => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::SELECTED,
+            Attribute::SELECTED => [
                 SpecRule::VALUE => [
                     '',
                 ],

@@ -9,9 +9,17 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class AmpDatePickerStaticModeAttributes extends AttributeList
+/**
+ * Attribute list class AmpDatePickerStaticModeAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<array<string>> $fullscreen
+ */
+final class AmpDatePickerStaticModeAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

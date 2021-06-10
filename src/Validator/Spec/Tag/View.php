@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class View extends Tag
+/**
+ * Tag class View.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class View extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,21 +44,11 @@ final class View extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::VIEW,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWTARGET,
-            ],
-            [
-                SpecRule::NAME => Attribute::ZOOMANDPAN,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::VIEWBOX => [],
+            Attribute::VIEWTARGET => [],
+            Attribute::ZOOMANDPAN => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

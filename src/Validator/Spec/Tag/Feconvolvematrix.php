@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Feconvolvematrix extends Tag
+/**
+ * Tag class Feconvolvematrix.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Feconvolvematrix extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,36 +44,16 @@ final class Feconvolvematrix extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FECONVOLVEMATRIX,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::BIAS,
-            ],
-            [
-                SpecRule::NAME => Attribute::DIVISOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::EDGEMODE,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
-            [
-                SpecRule::NAME => Attribute::KERNELMATRIX,
-            ],
-            [
-                SpecRule::NAME => Attribute::KERNELUNITLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::ORDER,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEALPHA,
-            ],
-            [
-                SpecRule::NAME => Attribute::TARGETX,
-            ],
-            [
-                SpecRule::NAME => Attribute::TARGETY,
-            ],
+            Attribute::BIAS => [],
+            Attribute::DIVISOR => [],
+            Attribute::EDGEMODE => [],
+            Attribute::IN => [],
+            Attribute::KERNELMATRIX => [],
+            Attribute::KERNELUNITLENGTH => [],
+            Attribute::ORDER => [],
+            Attribute::PRESERVEALPHA => [],
+            Attribute::TARGETX => [],
+            Attribute::TARGETY => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

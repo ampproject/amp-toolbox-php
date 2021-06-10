@@ -10,10 +10,25 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class NoscriptEnclosureForBoilerplateTransformed extends Tag
+/**
+ * Tag class NoscriptEnclosureForBoilerplateTransformed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $enabledBy
+ * @property-read string $descriptiveName
+ */
+final class NoscriptEnclosureForBoilerplateTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

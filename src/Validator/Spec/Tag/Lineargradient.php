@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Lineargradient extends Tag
+/**
+ * Tag class Lineargradient.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Lineargradient extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,30 +44,14 @@ final class Lineargradient extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::LINEARGRADIENT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::GRADIENTTRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::GRADIENTUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::SPREADMETHOD,
-            ],
-            [
-                SpecRule::NAME => Attribute::X1,
-            ],
-            [
-                SpecRule::NAME => Attribute::X2,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y1,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y2,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::GRADIENTTRANSFORM => [],
+            Attribute::GRADIENTUNITS => [],
+            Attribute::SPREADMETHOD => [],
+            Attribute::X1 => [],
+            Attribute::X2 => [],
+            Attribute::Y1 => [],
+            Attribute::Y2 => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

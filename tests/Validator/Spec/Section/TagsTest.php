@@ -137,6 +137,7 @@ class TagsTest extends TestCase
         $this->assertGreaterThan(10, count($this->tags));
         foreach ($this->tags as $tag) {
             $this->assertInstanceOf(Spec\Tag::class, $tag);
+            $this->assertInstanceOf(Spec\Identifiable::class, $tag);
             $this->assertNotEmpty($tag::SPEC);
             if ($tag instanceof Spec\TagWithExtensionSpec) {
                 $this->assertNotEmpty($tag::EXTENSION_SPEC);

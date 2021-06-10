@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Audio extends Tag
+/**
+ * Tag class Audio.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read string $mandatoryAncestorSuggestedAlternative
+ * @property-read array<string> $htmlFormat
+ */
+final class Audio extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,23 +45,12 @@ final class Audio extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::AUDIO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
-            ],
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
-            ],
-            [
-                SpecRule::NAME => Attribute::LOOP,
-            ],
-            [
-                SpecRule::NAME => Attribute::MUTED,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRELOAD,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::AUTOPLAY => [],
+            Attribute::CONTROLS => [],
+            Attribute::LOOP => [],
+            Attribute::MUTED => [],
+            Attribute::PRELOAD => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

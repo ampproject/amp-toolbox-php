@@ -5,6 +5,9 @@ namespace AmpProject\Tests\ValidatorFixtures;
 use AmpProject\Validator\Spec\DocRuleset;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * @property-read int maxBytes
+ */
 class DummyDocRuleset extends DocRuleset
 {
 

@@ -11,10 +11,28 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class StyleAmpRuntimeTransformed extends Tag
+/**
+ * Tag class StyleAmpRuntimeTransformed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $mandatory
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $enabledBy
+ * @property-read string $descriptiveName
+ */
+final class StyleAmpRuntimeTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -35,16 +53,14 @@ final class StyleAmpRuntimeTransformed extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_RUNTIME,
+            Attribute::AMP_RUNTIME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
             ],
-            [
-                SpecRule::NAME => Attribute::I_AMPHTML_VERSION,
+            Attribute::I_AMPHTML_VERSION => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '^\d{15}|latest$',
             ],

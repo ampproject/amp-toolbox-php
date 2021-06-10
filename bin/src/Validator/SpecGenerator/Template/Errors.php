@@ -9,6 +9,8 @@ use AmpProject\Validator\Spec;
  * The Errors section gives access to all the known validation errors.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method Error parentCurrent()
  */
 final class Errors
 {

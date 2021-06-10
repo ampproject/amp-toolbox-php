@@ -10,9 +10,24 @@ namespace AmpProject\Validator\Spec\CssRuleset;
 use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\CssRuleset;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class Amp4ads extends CssRuleset
+/**
+ * CSS ruleset class Amp4ads.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $htmlFormat
+ * @property-read string $specUrl
+ * @property-read string $maxBytesSpecUrl
+ * @property-read bool $allowAllDeclarationInStyle
+ * @property-read array $imageUrlSpec
+ * @property-read array $fontUrlSpec
+ * @property-read bool $allowImportant
+ * @property-read bool $expandVendorPrefixes
+ */
+final class Amp4ads extends CssRuleset implements Identifiable
 {
     /**
      * ID of the ruleset.

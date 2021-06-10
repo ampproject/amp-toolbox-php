@@ -10,10 +10,20 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Bdo extends Tag
+/**
+ * Tag class Bdo.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class Bdo extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,9 +40,7 @@ final class Bdo extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::BDO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DIR,
-            ],
+            Attribute::DIR => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

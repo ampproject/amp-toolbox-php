@@ -11,10 +11,21 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Fieldset extends Tag
+/**
+ * Tag class Fieldset.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ */
+final class Fieldset extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,12 +42,8 @@ final class Fieldset extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FIELDSET,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
-            ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
+            Attribute::DISABLED => [],
+            '[disabled]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

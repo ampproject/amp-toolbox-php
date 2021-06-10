@@ -11,11 +11,22 @@ use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\ExtensionSpec;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
-final class ScriptAmpO2Player extends Tag implements TagWithExtensionSpec
+/**
+ * Tag class ScriptAmpO2Player.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ * @property-read string $extensionSpec
+ */
+final class ScriptAmpO2Player extends Tag implements Identifiable, TagWithExtensionSpec
 {
     use ExtensionSpec;
 

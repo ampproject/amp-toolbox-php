@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpDatePickerTypeRangeModeStatic extends Tag
+/**
+ * Tag class AmpDatePickerTypeRangeModeStatic.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpDatePickerTypeRangeModeStatic extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,14 +47,12 @@ final class AmpDatePickerTypeRangeModeStatic extends Tag
         SpecRule::TAG_NAME => Extension::DATE_PICKER,
         SpecRule::SPEC_NAME => 'amp-date-picker[type=range][mode=static]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::MODE,
+            Attribute::MODE => [
                 SpecRule::VALUE_CASEI => [
                     'static',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_CASEI => [
                     'range',

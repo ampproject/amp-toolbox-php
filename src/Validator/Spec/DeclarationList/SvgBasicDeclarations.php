@@ -9,9 +9,52 @@ namespace AmpProject\Validator\Spec\DeclarationList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\DeclarationList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Identifiable;
 
-final class SvgBasicDeclarations extends DeclarationList
+/**
+ * Declaration list class SvgBasicDeclarations.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $alignmentBaseline
+ * @property-read array $baselineShift
+ * @property-read array $clipPath
+ * @property-read array $clipRule
+ * @property-read array $colorInterpolation
+ * @property-read array $colorInterpolationFilters
+ * @property-read array $colorProfile
+ * @property-read array $colorRendering
+ * @property-read array $dominantBaseline
+ * @property-read array $enableBackground
+ * @property-read array $fill
+ * @property-read array $fillOpacity
+ * @property-read array $fillRule
+ * @property-read array $floodColor
+ * @property-read array $floodOpacity
+ * @property-read array $glyphOrientationHorizontal
+ * @property-read array $glyphOrientationVertical
+ * @property-read array $kerning
+ * @property-read array $lightingColor
+ * @property-read array $marker
+ * @property-read array $markerEnd
+ * @property-read array $markerMid
+ * @property-read array $markerStart
+ * @property-read array $mask
+ * @property-read array $shapeRendering
+ * @property-read array $stopColor
+ * @property-read array $stopOpacity
+ * @property-read array $stroke
+ * @property-read array $strokeDasharray
+ * @property-read array $strokeDashoffset
+ * @property-read array $strokeLinecap
+ * @property-read array $strokeLinejoin
+ * @property-read array $strokeMiterlimit
+ * @property-read array $strokeOpacity
+ * @property-read array $strokeWidth
+ * @property-read array $textAnchor
+ * @property-read array $textRendering
+ */
+final class SvgBasicDeclarations extends DeclarationList implements Identifiable
 {
     /**
      * ID of the declaration list.

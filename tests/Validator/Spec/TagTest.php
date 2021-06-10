@@ -48,6 +48,7 @@ class TagTest extends TestCase
         $dummyTag = new DummyTag();
 
         $this->assertEquals('dummy', $dummyTag->getId());
+        $this->assertEquals('dummy', $dummyTag->id);
 
         $this->assertEquals($dummyTag->tagName, $dummyTag->get('tagName'));
 

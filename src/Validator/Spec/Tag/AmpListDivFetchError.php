@@ -11,10 +11,22 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpListDivFetchError extends Tag
+/**
+ * Tag class AmpListDivFetchError.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpListDivFetchError extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,11 +44,8 @@ final class AmpListDivFetchError extends Tag
         SpecRule::TAG_NAME => Element::DIV,
         SpecRule::SPEC_NAME => 'AMP-LIST DIV [fetch-error]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::FETCH_ERROR,
+            Attribute::ALIGN => [],
+            Attribute::FETCH_ERROR => [
                 SpecRule::MANDATORY => true,
             ],
         ],

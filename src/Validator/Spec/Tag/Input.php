@@ -11,10 +11,22 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Input extends Tag
+/**
+ * Tag class Input.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class Input extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,8 +43,7 @@ final class Input extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::NO_VERIFY,
+            Attribute::NO_VERIFY => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -40,12 +51,10 @@ final class Input extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(file|image|password|)(\s|$)',
             ],
-            [
-                SpecRule::NAME => '[type]',
+            '[type]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],

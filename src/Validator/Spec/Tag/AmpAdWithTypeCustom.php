@@ -13,10 +13,27 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAdWithTypeCustom extends Tag
+/**
+ * Tag class AmpAdWithTypeCustom.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $disallowedAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $alsoRequiresTagWarning
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAdWithTypeCustom extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +51,7 @@ final class AmpAdWithTypeCustom extends Tag
         SpecRule::TAG_NAME => Extension::AD,
         SpecRule::SPEC_NAME => 'amp-ad with type=custom',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_URL,
+            Attribute::DATA_URL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -43,11 +59,8 @@ final class AmpAdWithTypeCustom extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
-            ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TEMPLATE => [],
+            Attribute::TYPE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'custom',

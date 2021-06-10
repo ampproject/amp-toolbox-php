@@ -9,9 +9,38 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 
-final class AmpStreamGalleryCommon extends AttributeList
+/**
+ * Attribute list class AmpStreamGalleryCommon.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array<string> $controls
+ * @property-read array<array<string>> $extraSpace
+ * @property-read array<string> $loop
+ * @property-read array<string> $minVisibleCount
+ * @property-read array<string> $maxVisibleCount
+ * @property-read array<string> $minItemWidth
+ * @property-read array<string> $maxItemWidth
+ * @property-read array<string> $outsetArrows
+ * @property-read array<string> $peek
+ * @property-read array<string> $slideAlign
+ * @property-read array<string> $snap
+ * @property-read array $controls_binding
+ * @property-read array $extraSpace_binding
+ * @property-read array $loop_binding
+ * @property-read array $minVisibleCount_binding
+ * @property-read array $maxVisibleCount_binding
+ * @property-read array $minItemWidth_binding
+ * @property-read array $maxItemWidth_binding
+ * @property-read array $outsetArrows_binding
+ * @property-read array $peek_binding
+ * @property-read array $slideAlign_binding
+ * @property-read array $snap_binding
+ */
+final class AmpStreamGalleryCommon extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

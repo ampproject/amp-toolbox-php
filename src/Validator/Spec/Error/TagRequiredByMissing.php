@@ -10,6 +10,14 @@ namespace AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\SpecRule;
 
+/**
+ * Error class TagRequiredByMissing.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $format
+ * @property-read int $specificity
+ */
 final class TagRequiredByMissing extends Error
 {
     /**

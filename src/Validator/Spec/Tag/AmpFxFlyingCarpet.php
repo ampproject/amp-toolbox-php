@@ -11,10 +11,22 @@ use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpFxFlyingCarpet extends Tag
+/**
+ * Tag class AmpFxFlyingCarpet.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array<bool>> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpFxFlyingCarpet extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,8 +43,7 @@ final class AmpFxFlyingCarpet extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FX_FLYING_CARPET,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
+            Attribute::HEIGHT => [
                 SpecRule::MANDATORY => true,
             ],
         ],

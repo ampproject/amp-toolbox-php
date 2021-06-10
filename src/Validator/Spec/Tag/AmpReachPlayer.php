@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpReachPlayer extends Tag
+/**
+ * Tag class AmpReachPlayer.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpReachPlayer extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,8 +45,7 @@ final class AmpReachPlayer extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::REACH_PLAYER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_EMBED_ID,
+            Attribute::DATA_EMBED_ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_REGEX => '[0-9a-z-]+',
             ],

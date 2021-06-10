@@ -10,10 +10,26 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class MetaNameViewport extends Tag
+/**
+ * Tag class MetaNameViewport.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $mandatory
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class MetaNameViewport extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -34,8 +50,7 @@ final class MetaNameViewport extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::CONTENT,
+            Attribute::CONTENT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_PROPERTIES => [
                     SpecRule::PROPERTIES => [
@@ -68,8 +83,7 @@ final class MetaNameViewport extends Tag
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::NAME,
+            Attribute::NAME => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'viewport',

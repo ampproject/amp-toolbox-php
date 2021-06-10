@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpLightbox extends Tag
+/**
+ * Tag class AmpLightbox.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpLightbox extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,16 +45,14 @@ final class AmpLightbox extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIGHTBOX,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN,
+            Attribute::ANIMATE_IN => [
                 SpecRule::VALUE_CASEI => [
                     'fade-in',
                     'fly-in-bottom',
                     'fly-in-top',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ANIMATION,
+            Attribute::ANIMATION => [
                 SpecRule::VALUE_CASEI => [
                     'fade-in',
                     'fly-in-bottom',
@@ -51,21 +62,14 @@ final class AmpLightbox extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CONTROLS,
-            ],
-            [
-                SpecRule::NAME => Attribute::FROM,
-            ],
-            [
-                SpecRule::NAME => Attribute::SCROLLABLE,
+            Attribute::CONTROLS => [],
+            Attribute::FROM => [],
+            Attribute::SCROLLABLE => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => '[open]',
-            ],
+            '[open]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

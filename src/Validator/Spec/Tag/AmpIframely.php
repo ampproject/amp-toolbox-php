@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpIframely extends Tag
+/**
+ * Tag class AmpIframely.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpIframely extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,38 +46,36 @@ final class AmpIframely extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::IFRAMELY,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_ID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-id\', \'data-url\']',
+            Attribute::DATA_ID => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_ID,
+                    Attribute::DATA_URL,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_URL,
-                SpecRule::MANDATORY_ONEOF => '[\'data-id\', \'data-url\']',
+            Attribute::DATA_URL => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_ID,
+                    Attribute::DATA_URL,
+                ],
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_KEY,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_KEY,
-            ],
-            [
-                SpecRule::NAME => Attribute::DATA_IMG,
+            Attribute::DATA_KEY => [],
+            Attribute::DATA_IMG => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_BORDER,
+            Attribute::DATA_BORDER => [
                 SpecRule::VALUE_REGEX => '(\d+)',
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_DOMAIN,
+            Attribute::DATA_DOMAIN => [
                 SpecRule::VALUE_REGEX => '^((?:[^\.\/]+\.)?iframe\.ly|if\-cdn\.com|iframely\.net|oembed\.vice\.com|iframe\.nbcnews\.com)$',
             ],
-            [
-                SpecRule::NAME => Attribute::RESIZABLE,
+            Attribute::RESIZABLE => [
                 SpecRule::VALUE => [
                     '',
                 ],

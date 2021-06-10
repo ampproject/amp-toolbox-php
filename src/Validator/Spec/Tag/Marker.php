@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Marker extends Tag
+/**
+ * Tag class Marker.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Marker extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,36 +44,16 @@ final class Marker extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::MARKER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::MARKERHEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::MARKERUNITS,
-            ],
-            [
-                SpecRule::NAME => Attribute::MARKERWIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::ORIENT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFX,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFY,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWBOX,
-            ],
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::MARKERHEIGHT => [],
+            Attribute::MARKERUNITS => [],
+            Attribute::MARKERWIDTH => [],
+            Attribute::ORIENT => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::REFX => [],
+            Attribute::REFY => [],
+            Attribute::TRANSFORM => [],
+            Attribute::VIEWBOX => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

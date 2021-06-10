@@ -10,10 +10,25 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpNextPageWithInlineConfig extends Tag
+/**
+ * Tag class AmpNextPageWithInlineConfig.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $unique
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<array> $referencePoints
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpNextPageWithInlineConfig extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,12 +47,8 @@ final class AmpNextPageWithInlineConfig extends Tag
         SpecRule::SPEC_NAME => 'amp-next-page with inline config',
         SpecRule::UNIQUE => true,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DEEP_PARSING,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAX_PAGES,
-            ],
+            Attribute::DEEP_PARSING => [],
+            Attribute::MAX_PAGES => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-next-page/',
         SpecRule::REFERENCE_POINTS => [

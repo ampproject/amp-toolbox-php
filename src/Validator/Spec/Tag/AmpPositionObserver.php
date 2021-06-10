@@ -12,10 +12,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpPositionObserver extends Tag
+/**
+ * Tag class AmpPositionObserver.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpPositionObserver extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,21 +45,16 @@ final class AmpPositionObserver extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::POSITION_OBSERVER,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::INTERSECTION_RATIOS,
+            Attribute::INTERSECTION_RATIOS => [
                 SpecRule::VALUE_REGEX => '^([0]*?\.\d*$|1$|0$)|([0]*?\.\d*|1|0)\s{1}([0]*?\.\d*$|1$|0$)',
             ],
-            [
-                SpecRule::NAME => Attribute::ONCE,
+            Attribute::ONCE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::TARGET,
-            ],
-            [
-                SpecRule::NAME => Attribute::VIEWPORT_MARGINS,
+            Attribute::TARGET => [],
+            Attribute::VIEWPORT_MARGINS => [
                 SpecRule::VALUE_REGEX => '^(\d+$|\d+px$|\d+vh$)|((\d+|\d+px|\d+vh)\s{1}(\d+$|\d+px$|\d+vh$))',
             ],
         ],

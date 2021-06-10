@@ -10,10 +10,20 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Ol extends Tag
+/**
+ * Tag class Ol.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class Ol extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,18 +40,15 @@ final class Ol extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::OL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::REVERSED,
+            Attribute::REVERSED => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::START,
+            Attribute::START => [
                 SpecRule::VALUE_REGEX => '[0-9]*',
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
+            Attribute::TYPE => [
                 SpecRule::VALUE_REGEX => '[1AaIi]',
             ],
         ],

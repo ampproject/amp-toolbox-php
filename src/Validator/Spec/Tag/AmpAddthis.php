@@ -13,10 +13,23 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAddthis extends Tag
+/**
+ * Tag class AmpAddthis.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpAddthis extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,12 +46,13 @@ final class AmpAddthis extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::ADDTHIS,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DATA_PRODUCT_CODE,
-                SpecRule::MANDATORY_ONEOF => '[\'data-product-code\', \'data-widget-id\']',
+            Attribute::DATA_PRODUCT_CODE => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_PRODUCT_CODE,
+                    Attribute::DATA_WIDGET_ID,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SHARE_MEDIA,
+            Attribute::DATA_SHARE_MEDIA => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -47,8 +61,7 @@ final class AmpAddthis extends Tag
                     SpecRule::ALLOW_EMPTY => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_SHARE_URL,
+            Attribute::DATA_SHARE_URL => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTP,
@@ -57,9 +70,11 @@ final class AmpAddthis extends Tag
                     SpecRule::ALLOW_EMPTY => true,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_WIDGET_ID,
-                SpecRule::MANDATORY_ONEOF => '[\'data-product-code\', \'data-widget-id\']',
+            Attribute::DATA_WIDGET_ID => [
+                SpecRule::MANDATORY_ONEOF => [
+                    Attribute::DATA_PRODUCT_CODE,
+                    Attribute::DATA_WIDGET_ID,
+                ],
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::DATA_PUB_ID,

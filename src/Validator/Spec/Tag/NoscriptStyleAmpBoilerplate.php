@@ -11,10 +11,30 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class NoscriptStyleAmpBoilerplate extends Tag
+/**
+ * Tag class NoscriptStyleAmpBoilerplate.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read bool $mandatory
+ * @property-read bool $unique
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array $cdata
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $disabledBy
+ * @property-read string $descriptiveName
+ */
+final class NoscriptStyleAmpBoilerplate extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -35,8 +55,7 @@ final class NoscriptStyleAmpBoilerplate extends Tag
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::NOSCRIPT,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AMP_BOILERPLATE,
+            Attribute::AMP_BOILERPLATE => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     '',

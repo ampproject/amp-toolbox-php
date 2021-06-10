@@ -12,10 +12,23 @@ use AmpProject\Format;
 use AmpProject\Protocol;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Image extends Tag
+/**
+ * Tag class Image.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Image extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,32 +45,15 @@ final class Image extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::IMAGE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::EXTERNALRESOURCESREQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::PRESERVEASPECTRATIO,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRANSFORM,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::X,
-            ],
-            [
-                SpecRule::NAME => Attribute::XLINK_ACTUATE,
-            ],
-            [
-                SpecRule::NAME => Attribute::XLINK_ARCROLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::XLINK_HREF,
+            Attribute::EXTERNALRESOURCESREQUIRED => [],
+            Attribute::HEIGHT => [],
+            Attribute::PRESERVEASPECTRATIO => [],
+            Attribute::TRANSFORM => [],
+            Attribute::WIDTH => [],
+            Attribute::X => [],
+            Attribute::XLINK_ACTUATE => [],
+            Attribute::XLINK_ARCROLE => [],
+            Attribute::XLINK_HREF => [
                 SpecRule::ALTERNATIVE_NAMES => [
                     Attribute::HREF,
                 ],
@@ -71,21 +67,11 @@ final class Image extends Tag
                     SpecRule::ALLOW_EMPTY => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::XLINK_ROLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::XLINK_SHOW,
-            ],
-            [
-                SpecRule::NAME => Attribute::XLINK_TITLE,
-            ],
-            [
-                SpecRule::NAME => Attribute::XLINK_TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::Y,
-            ],
+            Attribute::XLINK_ROLE => [],
+            Attribute::XLINK_SHOW => [],
+            Attribute::XLINK_TITLE => [],
+            Attribute::XLINK_TYPE => [],
+            Attribute::Y => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgConditionalProcessingAttributes::ID,

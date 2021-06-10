@@ -10,10 +10,21 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Option extends Tag
+/**
+ * Tag class Option.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class Option extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,30 +41,14 @@ final class Option extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::OPTION,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLED,
-            ],
-            [
-                SpecRule::NAME => Attribute::LABEL,
-            ],
-            [
-                SpecRule::NAME => Attribute::SELECTED,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
-            [
-                SpecRule::NAME => '[label]',
-            ],
-            [
-                SpecRule::NAME => '[selected]',
-            ],
-            [
-                SpecRule::NAME => '[value]',
-            ],
+            Attribute::DISABLED => [],
+            Attribute::LABEL => [],
+            Attribute::SELECTED => [],
+            Attribute::VALUE => [],
+            '[disabled]' => [],
+            '[label]' => [],
+            '[selected]' => [],
+            '[value]' => [],
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-form/',
         SpecRule::HTML_FORMAT => [

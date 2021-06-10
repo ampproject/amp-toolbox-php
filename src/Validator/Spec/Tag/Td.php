@@ -10,10 +10,20 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Td extends Tag
+/**
+ * Tag class Td.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $htmlFormat
+ */
+final class Td extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,30 +40,14 @@ final class Td extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TD,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::BGCOLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::COLSPAN,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEADERS,
-            ],
-            [
-                SpecRule::NAME => Attribute::HEIGHT,
-            ],
-            [
-                SpecRule::NAME => Attribute::ROWSPAN,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALIGN,
-            ],
-            [
-                SpecRule::NAME => Attribute::WIDTH,
-            ],
+            Attribute::ALIGN => [],
+            Attribute::BGCOLOR => [],
+            Attribute::COLSPAN => [],
+            Attribute::HEADERS => [],
+            Attribute::HEIGHT => [],
+            Attribute::ROWSPAN => [],
+            Attribute::VALIGN => [],
+            Attribute::WIDTH => [],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

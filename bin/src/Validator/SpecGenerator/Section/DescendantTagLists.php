@@ -5,6 +5,7 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\ClassNames;
 use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
+use AmpProject\Tooling\Validator\SpecGenerator\MagicPropertyAnnotations;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\Template;
 use Nette\PhpGenerator\ClassType;
@@ -14,6 +15,7 @@ final class DescendantTagLists implements Section
 {
     use ClassNames;
     use ConstantNames;
+    use MagicPropertyAnnotations;
 
     /**
      * Process a section.
@@ -32,7 +34,7 @@ final class DescendantTagLists implements Section
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
 
-        $this->data = $this->adaptSpec($spec);
+        $data = $this->adaptSpec($spec);
 
         $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $class->addTrait(
@@ -46,7 +48,7 @@ final class DescendantTagLists implements Section
               ->addComment("Cache of instantiated descendant tag list objects.\n\n@var array<Spec\\DescendantTagList>");
 
         $descendantTagLists = [];
-        foreach ($this->data as $key => $value) {
+        foreach ($data as $key => $value) {
             $className = $this->generateDescendantTagListSpecificClass($key, $value, $fileManager);
 
             $descendantTagLists["DescendantTagList\\{$className}::ID"] = "DescendantTagList\\{$className}::class";
@@ -94,13 +96,13 @@ final class DescendantTagLists implements Section
 
         $className = $this->getClassNameFromId($descendantTagListId);
 
-        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\DescendantTagList");
 
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\DescendantTagList');
+                           ->addExtend('AmpProject\Validator\Spec\DescendantTagList')
+                           ->addImplement('AmpProject\Validator\Spec\Identifiable');
 
         $class->addConstant('ID', $descendantTagListId)
               ->addComment("ID of the descendant tag list.\n\n@var string");
@@ -112,6 +114,11 @@ final class DescendantTagLists implements Section
 
         $class->addConstant('DESCENDANT_TAGS', $descendantTags)
               ->addComment("Array of descendant tags.\n\n@var array<array>");
+
+        $classComment = "Descendant tag list class {$className}.\n\n";
+        $classComment .= "@package ampproject/amp-toolbox.\n\n";
+        $classComment .= implode("\n", $this->getMagicPropertyAnnotations($jsonSpec));
+        $class->addComment($classComment);
 
         $fileManager->saveFile($file, "Spec/DescendantTagList/{$className}.php");
 

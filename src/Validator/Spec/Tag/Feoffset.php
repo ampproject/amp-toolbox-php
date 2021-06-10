@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Feoffset extends Tag
+/**
+ * Tag class Feoffset.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Feoffset extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,15 +44,9 @@ final class Feoffset extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::FEOFFSET,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DX,
-            ],
-            [
-                SpecRule::NAME => Attribute::DY,
-            ],
-            [
-                SpecRule::NAME => Attribute::IN,
-            ],
+            Attribute::DX => [],
+            Attribute::DY => [],
+            Attribute::IN => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

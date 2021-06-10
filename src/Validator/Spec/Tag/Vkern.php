@@ -11,10 +11,23 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Vkern extends Tag
+/**
+ * Tag class Vkern.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class Vkern extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -31,21 +44,11 @@ final class Vkern extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::VKERN,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::G1,
-            ],
-            [
-                SpecRule::NAME => Attribute::G2,
-            ],
-            [
-                SpecRule::NAME => Attribute::K,
-            ],
-            [
-                SpecRule::NAME => Attribute::U1,
-            ],
-            [
-                SpecRule::NAME => Attribute::U2,
-            ],
+            Attribute::G1 => [],
+            Attribute::G2 => [],
+            Attribute::K => [],
+            Attribute::U1 => [],
+            Attribute::U2 => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgCoreAttributes::ID,

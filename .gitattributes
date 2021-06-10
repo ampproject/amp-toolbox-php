@@ -2,8 +2,9 @@
 *.php              diff=php
 
 # Mark generated files so diffs are hidden by default.
-/resources/**/*    linguist-generated=true
-/tests/spec/**/*   linguist-generated=true
+/src/Validator/**/* linguist-generated=true
+/resources/**/*     linguist-generated=true
+/tests/spec/**/*    linguist-generated=true
 
 # Exclude build & test files from dist archives.
 /.github           export-ignore

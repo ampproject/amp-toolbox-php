@@ -9,9 +9,18 @@ namespace AmpProject\Validator\Spec\AttributeList;
 
 use AmpProject\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\SpecRule;
+use AmpProject\Validator\Spec\Identifiable;
 
-final class SvgConditionalProcessingAttributes extends AttributeList
+/**
+ * Attribute list class SvgConditionalProcessingAttributes.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read array $requiredextensions
+ * @property-read array $requiredfeatures
+ * @property-read array $systemlanguage
+ */
+final class SvgConditionalProcessingAttributes extends AttributeList implements Identifiable
 {
     /**
      * ID of the attribute list.

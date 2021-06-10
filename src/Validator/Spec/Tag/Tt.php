@@ -9,10 +9,19 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Tt extends Tag
+/**
+ * Tag class Tt.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array<string> $htmlFormat
+ */
+final class Tt extends Tag implements Identifiable
 {
     /**
      * ID of the tag.

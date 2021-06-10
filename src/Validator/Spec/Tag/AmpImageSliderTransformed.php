@@ -12,10 +12,27 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpImageSliderTransformed extends Tag
+/**
+ * Tag class AmpImageSliderTransformed.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ * @property-read array<string> $enabledBy
+ */
+final class AmpImageSliderTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,15 +50,11 @@ final class AmpImageSliderTransformed extends Tag
         SpecRule::TAG_NAME => Extension::IMAGE_SLIDER,
         SpecRule::SPEC_NAME => 'amp-image-slider (transformed)',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::DISABLE_HINT_REAPPEAR,
-            ],
-            [
-                SpecRule::NAME => Attribute::INITIAL_SLIDER_POSITION,
+            Attribute::DISABLE_HINT_REAPPEAR => [],
+            Attribute::INITIAL_SLIDER_POSITION => [
                 SpecRule::VALUE_REGEX => '0(\.[0-9]+)?|1(\.0+)?',
             ],
-            [
-                SpecRule::NAME => Attribute::STEP_SIZE,
+            Attribute::STEP_SIZE => [
                 SpecRule::VALUE_REGEX => '0(\.[0-9]+)?|1(\.0+)?',
             ],
         ],

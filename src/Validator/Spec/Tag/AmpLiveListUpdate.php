@@ -9,10 +9,23 @@ namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Attribute;
 use AmpProject\Format;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpLiveListUpdate extends Tag
+/**
+ * Tag class AmpLiveListUpdate.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array<bool>> $attrs
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
+ */
+final class AmpLiveListUpdate extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -30,8 +43,7 @@ final class AmpLiveListUpdate extends Tag
         SpecRule::TAG_NAME => '$REFERENCE_POINT',
         SpecRule::SPEC_NAME => 'AMP-LIVE-LIST [update]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::UPDATE,
+            Attribute::UPDATE => [
                 SpecRule::MANDATORY => true,
             ],
         ],

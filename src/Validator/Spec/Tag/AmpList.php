@@ -13,10 +13,23 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpList extends Tag
+/**
+ * Tag class AmpList.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpList extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,69 +46,57 @@ final class AmpList extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::LIST_,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTO_RESIZE,
+            Attribute::AUTO_RESIZE => [
                 SpecRule::VALUE => [
                     '',
                 ],
                 SpecRule::DEPRECATION => 'replacement-to-be-determined-at-a-later-date',
                 SpecRule::DEPRECATION_URL => 'https://github.com/ampproject/amphtml/issues/18849',
             ],
-            [
-                SpecRule::NAME => Attribute::BINDING,
+            Attribute::BINDING => [
                 SpecRule::VALUE => [
                     'always',
                     'no',
                     'refresh',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CREDENTIALS,
+            Attribute::CREDENTIALS => [],
+            Attribute::DATA_AMP_BIND_SRC => [
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[src]',
+                    Attribute::DATA_AMP_BIND_SRC,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_AMP_BIND_SRC,
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
-            ],
-            [
-                SpecRule::NAME => Attribute::DIFFABLE,
+            Attribute::DIFFABLE => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE,
+            Attribute::ITEMS => [],
+            Attribute::LOAD_MORE => [
                 SpecRule::VALUE => [
                     'auto',
                     'manual',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::LOAD_MORE_BOOKMARK,
+            Attribute::LOAD_MORE_BOOKMARK => [
                 SpecRule::TRIGGER => [
                     SpecRule::ALSO_REQUIRES_ATTR => [
                         Attribute::LOAD_MORE,
                     ],
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::MAX_ITEMS,
-            ],
-            [
-                SpecRule::NAME => Attribute::RESET_ON_REFRESH,
+            Attribute::MAX_ITEMS => [],
+            Attribute::RESET_ON_REFRESH => [
                 SpecRule::VALUE => [
                     '',
                     'always',
                     'fetch',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SINGLE_ITEM,
-            ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SINGLE_ITEM => [],
+            Attribute::SRC => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -105,21 +106,23 @@ final class AmpList extends Tag
                     ],
                     SpecRule::ALLOW_RELATIVE => true,
                 ],
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[src]',
+                    Attribute::DATA_AMP_BIND_SRC,
+                ],
             ],
-            [
-                SpecRule::NAME => Attribute::TEMPLATE,
+            Attribute::TEMPLATE => [
                 SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
             ],
-            [
-                SpecRule::NAME => Attribute::XSSI_PREFIX,
-            ],
-            [
-                SpecRule::NAME => '[is-layout-container]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-                SpecRule::MANDATORY_ANYOF => '[\'src\',\'[src]\',\'data-amp-bind-src\']',
+            Attribute::XSSI_PREFIX => [],
+            '[is-layout-container]' => [],
+            '[src]' => [
+                SpecRule::MANDATORY_ANYOF => [
+                    Attribute::SRC,
+                    '[src]',
+                    Attribute::DATA_AMP_BIND_SRC,
+                ],
             ],
         ],
         SpecRule::ATTR_LISTS => [

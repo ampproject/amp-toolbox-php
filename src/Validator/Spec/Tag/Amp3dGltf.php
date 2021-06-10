@@ -13,10 +13,23 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Amp3dGltf extends Tag
+/**
+ * Tag class Amp3dGltf.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class Amp3dGltf extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,43 +46,35 @@ final class Amp3dGltf extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::_3D_GLTF,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALPHA,
+            Attribute::ALPHA => [
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ANTIALIASING,
+            Attribute::ANTIALIASING => [
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::AUTOROTATE,
+            Attribute::AUTOROTATE => [
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::CLEARCOLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::ENABLEZOOM,
+            Attribute::CLEARCOLOR => [],
+            Attribute::ENABLEZOOM => [
                 SpecRule::VALUE => [
                     'false',
                     'true',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::MAXPIXELRATIO,
+            Attribute::MAXPIXELRATIO => [
                 SpecRule::VALUE_REGEX => '[+-]?(\d*\.)?\d+',
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [

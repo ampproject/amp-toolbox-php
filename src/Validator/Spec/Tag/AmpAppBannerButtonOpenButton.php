@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAppBannerButtonOpenButton extends Tag
+/**
+ * Tag class AmpAppBannerButtonOpenButton.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
+ */
+final class AmpAppBannerButtonOpenButton extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,26 +47,19 @@ final class AmpAppBannerButtonOpenButton extends Tag
         SpecRule::TAG_NAME => Element::BUTTON,
         SpecRule::SPEC_NAME => 'amp-app-banner button[open-button]',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OPEN_BUTTON,
+            Attribute::OPEN_BUTTON => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ROLE,
+            Attribute::ROLE => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TABINDEX,
+            Attribute::TABINDEX => [
                 SpecRule::IMPLICIT => true,
             ],
-            [
-                SpecRule::NAME => Attribute::TYPE,
-            ],
-            [
-                SpecRule::NAME => Attribute::VALUE,
-            ],
+            Attribute::TYPE => [],
+            Attribute::VALUE => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

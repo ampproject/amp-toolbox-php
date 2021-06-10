@@ -13,10 +13,24 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpWebPush extends Tag
+/**
+ * Tag class AmpWebPush.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpWebPush extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,8 +47,7 @@ final class AmpWebPush extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::WEB_PUSH,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::HELPER_IFRAME_URL,
+            Attribute::HELPER_IFRAME_URL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -43,15 +56,13 @@ final class AmpWebPush extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::ID,
+            Attribute::ID => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'amp-web-push',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::PERMISSION_DIALOG_URL,
+            Attribute::PERMISSION_DIALOG_URL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -60,8 +71,7 @@ final class AmpWebPush extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SERVICE_WORKER_URL,
+            Attribute::SERVICE_WORKER_URL => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
@@ -70,8 +80,7 @@ final class AmpWebPush extends Tag
                     SpecRule::ALLOW_RELATIVE => false,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SERVICE_WORKER_SCOPE,
+            Attribute::SERVICE_WORKER_SCOPE => [
                 SpecRule::VALUE_URL => [
                     SpecRule::PROTOCOL => [
                         Protocol::HTTPS,

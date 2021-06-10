@@ -11,10 +11,24 @@ use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class LineargradientStop extends Tag
+/**
+ * Tag class LineargradientStop.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read string $mandatoryAncestor
+ * @property-read array<string> $htmlFormat
+ */
+final class LineargradientStop extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,15 +46,9 @@ final class LineargradientStop extends Tag
         SpecRule::TAG_NAME => Element::STOP,
         SpecRule::SPEC_NAME => 'lineargradient > stop',
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::OFFSET,
-            ],
-            [
-                SpecRule::NAME => Attribute::STOP_COLOR,
-            ],
-            [
-                SpecRule::NAME => Attribute::STOP_OPACITY,
-            ],
+            Attribute::OFFSET => [],
+            Attribute::STOP_COLOR => [],
+            Attribute::STOP_OPACITY => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\SvgStyleAttr::ID,

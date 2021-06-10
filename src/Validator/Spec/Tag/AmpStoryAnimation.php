@@ -12,10 +12,26 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpStoryAnimation extends Tag
+/**
+ * Tag class AmpStoryAnimation.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array $childTags
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requires
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpStoryAnimation extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,11 +49,8 @@ final class AmpStoryAnimation extends Tag
         SpecRule::TAG_NAME => Extension::STORY_ANIMATION,
         SpecRule::MANDATORY_PARENT => Extension::STORY_PAGE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ANIMATE_IN_AFTER,
-            ],
-            [
-                SpecRule::NAME => Attribute::TRIGGER,
+            Attribute::ANIMATE_IN_AFTER => [],
+            Attribute::TRIGGER => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
                     'visibility',

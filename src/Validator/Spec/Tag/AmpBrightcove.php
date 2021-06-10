@@ -12,10 +12,24 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpBrightcove extends Tag
+/**
+ * Tag class AmpBrightcove.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<array<string>> $ampLayout
+ * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requiresExtension
+ */
+final class AmpBrightcove extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,43 +46,26 @@ final class AmpBrightcove extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::BRIGHTCOVE,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOPLAY,
+            Attribute::AUTOPLAY => [
                 SpecRule::VALUE => [
                     '',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::DATA_ACCOUNT,
+            Attribute::DATA_ACCOUNT => [
                 SpecRule::MANDATORY => true,
             ],
-            [
-                SpecRule::NAME => Attribute::DOCK,
+            Attribute::DOCK => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::VIDEO_DOCKING,
                 ],
             ],
-            [
-                SpecRule::NAME => '[data-account]',
-            ],
-            [
-                SpecRule::NAME => '[data-embed]',
-            ],
-            [
-                SpecRule::NAME => '[data-player-id]',
-            ],
-            [
-                SpecRule::NAME => '[data-player]',
-            ],
-            [
-                SpecRule::NAME => '[data-playlist-id]',
-            ],
-            [
-                SpecRule::NAME => '[data-video-id]',
-            ],
-            [
-                SpecRule::NAME => '[data-referrer]',
-            ],
+            '[data-account]' => [],
+            '[data-embed]' => [],
+            '[data-player-id]' => [],
+            '[data-player]' => [],
+            '[data-playlist-id]' => [],
+            '[data-video-id]' => [],
+            '[data-referrer]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

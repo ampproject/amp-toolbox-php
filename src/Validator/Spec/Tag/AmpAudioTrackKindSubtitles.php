@@ -11,10 +11,23 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpAudioTrackKindSubtitles extends Tag
+/**
+ * Tag class AmpAudioTrackKindSubtitles.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read string $mandatoryParent
+ * @property-read array<array> $attrs
+ * @property-read array<string> $attrLists
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpAudioTrackKindSubtitles extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,15 +46,9 @@ final class AmpAudioTrackKindSubtitles extends Tag
         SpecRule::SPEC_NAME => 'amp-audio > track[kind=subtitles]',
         SpecRule::MANDATORY_PARENT => Extension::AUDIO,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => '[label]',
-            ],
-            [
-                SpecRule::NAME => '[src]',
-            ],
-            [
-                SpecRule::NAME => '[srclang]',
-            ],
+            '[label]' => [],
+            '[src]' => [],
+            '[srclang]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\TrackAttrsSubtitles::ID,

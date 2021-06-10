@@ -12,6 +12,15 @@ use Nette\Utils\Strings;
 
 final class SpecPrinter extends Printer
 {
+    use ClassNames;
+
+    /**
+     * Regex pattern to fetch class names in method bodies.
+     *
+     * @var string
+     */
+    const CLASS_NAMES_REGEX_PATTERN = '/(?:\s+|^)((?:\\\\{1,2}\w+)+)/';
+
     /** @var string */
     protected $indentation = '    ';
 
@@ -78,7 +87,7 @@ final class SpecPrinter extends Printer
 
         $methods = [];
         foreach ($class->getMethods() as $method) {
-            $methods[] = $this->printMethod($method, $namespace);
+            $methods[] = $this->printResolvedMethod($method, $resolver, $namespace);
         }
 
         $members = array_filter(
@@ -110,16 +119,41 @@ final class SpecPrinter extends Printer
         ) . ($class->getName() ? "\n" : '');
     }
 
-    /**
-     * @param Closure|GlobalFunction|Method  $function
-     */
-    private function printReturnType($function, ?PhpNamespace $namespace): string
+    private function printResolvedMethod(Method $method, callable $resolver, PhpNamespace $namespace = null): string
     {
-        return ($tmp = $this->printType($function->getReturnType(), $function->isReturnNullable(), $namespace))
-            ? $this->returnTypeColon . $tmp
-            : '';
+        $method->validate();
+        $line = ($method->isAbstract() ? 'abstract ' : '')
+                . ($method->isFinal() ? 'final ' : '')
+                . ($method->getVisibility() ? $method->getVisibility() . ' ' : '')
+                . ($method->isStatic() ? 'static ' : '')
+                . 'function '
+                . ($method->getReturnReference() ? '&' : '')
+                . $method->getName();
+
+        return Helpers::formatDocComment($method->getComment() . "\n")
+               . self::printAttributes($method->getAttributes(), $namespace)
+               . $line
+               . ($params = $this->printParameters($method, $namespace, strlen($line) + strlen($this->indentation) + 2))
+               . ($method->isAbstract() || $method->getBody() === null
+                ? ";\n"
+                : (strpos($params, "\n") === false ? "\n" : ' ')
+                  . "{\n"
+                  . $this->indent(ltrim(rtrim($this->resolveBody($method->getBody(), $resolver)) . "\n"))
+                  . "}\n");
     }
 
+    private function resolveBody(string $body, callable $resolver): string
+    {
+        $matches = [];
+
+        if (preg_match_all(self::CLASS_NAMES_REGEX_PATTERN, $body, $matches)) {
+            foreach ($matches[1] as $className) {
+                $body = str_replace($className, $this->getShortName($className), $body);
+            }
+        }
+
+        return $body;
+    }
 
     private function printAttributes(array $attrs, ?PhpNamespace $namespace, bool $inline = false): string
     {

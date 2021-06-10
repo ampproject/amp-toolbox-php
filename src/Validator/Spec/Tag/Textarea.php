@@ -12,10 +12,22 @@ use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class Textarea extends Tag
+/**
+ * Tag class Textarea.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array<string> $htmlFormat
+ */
+final class Textarea extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -32,35 +44,22 @@ final class Textarea extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Element::TEXTAREA,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::AUTOCOMPLETE,
-            ],
-            [
-                SpecRule::NAME => Attribute::AUTOEXPAND,
+            Attribute::AUTOCOMPLETE => [],
+            Attribute::AUTOEXPAND => [
                 SpecRule::REQUIRES_EXTENSION => [
                     Extension::FORM,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::AUTOFOCUS,
+            Attribute::AUTOFOCUS => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::COLS,
-            ],
-            [
-                SpecRule::NAME => Attribute::DISABLED,
-            ],
-            [
-                SpecRule::NAME => Attribute::MAXLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::MINLENGTH,
-            ],
-            [
-                SpecRule::NAME => Attribute::NO_VERIFY,
+            Attribute::COLS => [],
+            Attribute::DISABLED => [],
+            Attribute::MAXLENGTH => [],
+            Attribute::MINLENGTH => [],
+            Attribute::NO_VERIFY => [
                 SpecRule::VALUE => [
                     '',
                 ],
@@ -68,108 +67,61 @@ final class Textarea extends Tag
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::PATTERN,
-            ],
-            [
-                SpecRule::NAME => Attribute::PLACEHOLDER,
-            ],
-            [
-                SpecRule::NAME => Attribute::READONLY,
-            ],
-            [
-                SpecRule::NAME => Attribute::REQUIRED,
-            ],
-            [
-                SpecRule::NAME => Attribute::ROWS,
-            ],
-            [
-                SpecRule::NAME => Attribute::SELECTIONDIRECTION,
+            Attribute::PATTERN => [],
+            Attribute::PLACEHOLDER => [],
+            Attribute::READONLY => [],
+            Attribute::REQUIRED => [],
+            Attribute::ROWS => [],
+            Attribute::SELECTIONDIRECTION => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SELECTIONEND,
+            Attribute::SELECTIONEND => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SELECTIONSTART,
+            Attribute::SELECTIONSTART => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SPELLCHECK,
-            ],
-            [
-                SpecRule::NAME => Attribute::WRAP,
-            ],
-            [
-                SpecRule::NAME => '[autocomplete]',
-            ],
-            [
-                SpecRule::NAME => '[autofocus]',
+            Attribute::SPELLCHECK => [],
+            Attribute::WRAP => [],
+            '[autocomplete]' => [],
+            '[autofocus]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => '[cols]',
-            ],
-            [
-                SpecRule::NAME => '[defaulttext]',
-            ],
-            [
-                SpecRule::NAME => '[disabled]',
-            ],
-            [
-                SpecRule::NAME => '[maxlength]',
-            ],
-            [
-                SpecRule::NAME => '[minlength]',
-            ],
-            [
-                SpecRule::NAME => '[pattern]',
-            ],
-            [
-                SpecRule::NAME => '[placeholder]',
-            ],
-            [
-                SpecRule::NAME => '[readonly]',
-            ],
-            [
-                SpecRule::NAME => '[required]',
-            ],
-            [
-                SpecRule::NAME => '[rows]',
-            ],
-            [
-                SpecRule::NAME => '[selectiondirection]',
+            '[cols]' => [],
+            '[defaulttext]' => [],
+            '[disabled]' => [],
+            '[maxlength]' => [],
+            '[minlength]' => [],
+            '[pattern]' => [],
+            '[placeholder]' => [],
+            '[readonly]' => [],
+            '[required]' => [],
+            '[rows]' => [],
+            '[selectiondirection]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => '[selectionend]',
+            '[selectionend]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => '[selectionstart]',
+            '[selectionstart]' => [
                 SpecRule::DISABLED_BY => [
                     Attribute::AMP4EMAIL,
                 ],
             ],
-            [
-                SpecRule::NAME => '[spellcheck]',
-            ],
-            [
-                SpecRule::NAME => '[wrap]',
-            ],
+            '[spellcheck]' => [],
+            '[wrap]' => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NameAttr::ID,

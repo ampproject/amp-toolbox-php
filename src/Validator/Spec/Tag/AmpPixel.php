@@ -13,10 +13,23 @@ use AmpProject\Format;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
+use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
-final class AmpPixel extends Tag
+/**
+ * Tag class AmpPixel.
+ *
+ * @package ampproject/amp-toolbox.
+ *
+ * @property-read string $tagName
+ * @property-read array $attrs
+ * @property-read array<string> $attrLists
+ * @property-read string $specUrl
+ * @property-read array $ampLayout
+ * @property-read array<string> $htmlFormat
+ */
+final class AmpPixel extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
@@ -33,17 +46,13 @@ final class AmpPixel extends Tag
     const SPEC = [
         SpecRule::TAG_NAME => Extension::PIXEL,
         SpecRule::ATTRS => [
-            [
-                SpecRule::NAME => Attribute::ALLOW_SSR_IMG,
-            ],
-            [
-                SpecRule::NAME => Attribute::REFERRERPOLICY,
+            Attribute::ALLOW_SSR_IMG => [],
+            Attribute::REFERRERPOLICY => [
                 SpecRule::VALUE => [
                     'no-referrer',
                 ],
             ],
-            [
-                SpecRule::NAME => Attribute::SRC,
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::DISALLOWED_VALUE_REGEX => '__amp_source_origin',
                 SpecRule::VALUE_URL => [
