@@ -88,33 +88,21 @@ final class RewriteAmpUrls implements Transformer
      */
     public function transform(Document $document, ErrorCollection $errors)
     {
-        $host          = $this->calculateHost();
-        $referenceNode = $document->viewport;
+        $host = $this->calculateHost();
 
-        $preloadNodes = array_filter($this->collectPreloadNodes($document, $host));
-        foreach ($preloadNodes as $preloadNode) {
-            $document->head->insertBefore(
-                $preloadNode,
-                $referenceNode instanceof DOMNode ? $referenceNode->nextSibling : null
-            );
-
-            $referenceNode = $preloadNode;
-        }
-
+        $this->adaptForEsmSupport($document, $host);
         $this->adaptForSelfHosting($document, $host, $errors);
     }
 
     /**
-     * Collect all the preload nodes to be added to the <head>.
+     * Adapt for ES modules support.
      *
      * @param Document $document Document to collect preload nodes for.
      * @param string   $host     Host URL to use.
-     * @return Element[] Preload nodes.
      */
-    private function collectPreloadNodes(Document $document, $host)
+    private function adaptForEsmSupport(Document $document, $host)
     {
-        $usesEsm      = $this->configuration->get(RewriteAmpUrlsConfiguration::ESM_MODULES_ENABLED);
-        $preloadNodes = [];
+        $usesEsm = $this->configuration->get(RewriteAmpUrlsConfiguration::ESM_MODULES_ENABLED);
 
         $node = $document->head->firstChild;
         while ($node) {
@@ -128,11 +116,11 @@ final class RewriteAmpUrls implements Transformer
             $href = $node->getAttribute(Attribute::HREF);
             if ($node->tagName === Tag::SCRIPT && $this->usesAmpCacheUrl($src)) {
                 $newUrl = $this->replaceUrl($src, $host);
-                $node->setAttribute(Attribute::SRC, $this->replaceUrl($src, $host));
+                $node->setAttribute(Attribute::SRC, $newUrl);
                 if ($usesEsm) {
-                    $preloadNodes[] = $this->addEsm($document, $node);
+                    $this->addEsm($document, $node);
                 } else {
-                    $preloadNodes[] = $this->createPreload($document, $newUrl, Tag::SCRIPT);
+                    $this->addPreload($document, $newUrl, Tag::SCRIPT);
                 }
             } elseif (
                 $node->tagName === Tag::LINK
@@ -143,7 +131,7 @@ final class RewriteAmpUrls implements Transformer
             ) {
                 $newUrl = $this->replaceUrl($href, $host);
                 $node->setAttribute(Attribute::HREF, $newUrl);
-                $preloadNodes[] = $this->createPreload($document, $newUrl, Tag::STYLE);
+                $this->addPreload($document, $newUrl, Tag::STYLE);
             } elseif (
                 $node->tagName === Tag::LINK
                 &&
@@ -151,7 +139,7 @@ final class RewriteAmpUrls implements Transformer
                 &&
                 $this->usesAmpCacheUrl($href)
             ) {
-                if ($usesEsm && $this->shouldPreload($href)) {
+                if ($usesEsm && substr_compare($href, 'v0.js', -5) === 0) {
                     // Only preload .mjs runtime in ESM mode.
                     $node->parentNode->removeChild($node);
                 } else {
@@ -161,8 +149,6 @@ final class RewriteAmpUrls implements Transformer
 
             $node = $nextSibling;
         }
-
-        return $preloadNodes;
     }
 
     /**
@@ -189,6 +175,12 @@ final class RewriteAmpUrls implements Transformer
      */
     private function replaceUrl($url, $host)
     {
+        // Preloads for scripts/styles that were already created for the adapted host need to be skipped,
+        // otherwise we end up with the lts or rtv suffix being added twice.
+        if (strpos($url, $host) === 0) {
+            return $url;
+        }
+
         return str_replace(Amp::CACHE_HOST, $host, $url);
     }
 
@@ -197,20 +189,14 @@ final class RewriteAmpUrls implements Transformer
      *
      * @param Document $document   Document to add the ES module scripts to.
      * @param Element  $scriptNode Script element to replace.
-     * @return Element|null Preload element that was added, or null if none was required or an error occurred.
      */
     private function addEsm(Document $document, Element $scriptNode)
     {
-        $preloadNode  = null;
         $scriptUrl    = $scriptNode->getAttribute(Attribute::SRC);
         $esmScriptUrl = preg_replace('/\.js$/', '.mjs', $scriptUrl);
 
         if ($this->shouldPreload($scriptUrl)) {
-            $preloadNode = $document->createElement(Tag::LINK);
-            $preloadNode->setAttribute(Attribute::AS_, Tag::SCRIPT);
-            $preloadNode->setAttribute(Attribute::CROSSORIGIN, Attribute::CROSSORIGIN_ANONYMOUS);
-            $preloadNode->setAttribute(Attribute::HREF, $esmScriptUrl);
-            $preloadNode->setAttribute(Attribute::REL, Attribute::REL_MODULEPRELOAD);
+            $document->links->addModulePreload($esmScriptUrl, Tag::SCRIPT, Attribute::CROSSORIGIN_ANONYMOUS);
         }
 
         $nomoduleNode = $document->createElement(Tag::SCRIPT);
@@ -228,31 +214,23 @@ final class RewriteAmpUrls implements Transformer
         // of preload.
         $scriptNode->setAttribute(Attribute::CROSSORIGIN, Attribute::CROSSORIGIN_ANONYMOUS);
         $scriptNode->setAttribute(Attribute::SRC, $esmScriptUrl);
-
-        return $preloadNode instanceof Element ? $preloadNode : null;
     }
 
     /**
-     * Create a preload element to add to the head.
+     * Add a preload directive to the document.
      *
-     * @param Document $document Document to create the element in.
+     * @param Document $document Document to add the preload to.
      * @param string   $href     Href to use for the preload.
      * @param string   $type     Type to use for the preload.
-     * @return Element|null Preload element, or null if not created.
      */
-    private function createPreload(Document $document, $href, $type)
+    private function addPreload(Document $document, $href, $type)
     {
         if (! $this->shouldPreload($href)) {
-            return null;
+            return;
         }
 
-        $preloadNode = $document->createElement(Tag::LINK);
-
-        $preloadNode->setAttribute(Attribute::REL, Attribute::REL_PRELOAD);
-        $preloadNode->setAttribute(Attribute::HREF, $href);
-        $preloadNode->setAttribute(Attribute::AS_, $type);
-
-        return $preloadNode;
+        // TODO: Should the preloads be crossorigin here? Maybe conditionally based on host vs origin?
+        $document->links->addPreload($href, $type, null, false);
     }
 
     /**

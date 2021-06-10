@@ -32,8 +32,9 @@ use DOMXPath;
  * @property Element|null $viewport                The document's viewport meta element.
  * @property DOMNodeList  $ampElements             The document's <amp-*> elements.
  * @property Element      $ampCustomStyle          The document's <style amp-custom> element.
- * @property int          $ampCustomStyleByteCount Count of bytes of the CSS in the <style amp-custom> tag.
- * @property int          $inlineStyleByteCount    Count of bytes of the CSS in all of the inline style attributes.
+ * @property int          $ampCustomStyleByteCount Count of bytes of CSS in the <style amp-custom> tag.
+ * @property int          $inlineStyleByteCount    Count of bytes of CSS in all of the inline style attributes.
+ * @property LinkManager  $links                   Link manager to manage <link> tags in the <head>.
  *
  * @package ampproject/amp-toolbox
  */
@@ -332,6 +333,13 @@ final class Document extends DOMDocument
      * @var array<string>
      */
     private $convertedAmpBindAttributes = [];
+
+    /**
+     * Resource hint manager to manage resource hint <link> tags in the <head>.
+     *
+     * @var LinkManager|null
+     */
+    private $links;
 
     /**
      * Creates a new AmpProject\Dom\Document object
@@ -2028,6 +2036,13 @@ final class Document extends DOMDocument
                 }
 
                 return $this->inlineStyleByteCount;
+
+            case 'links':
+                if (! isset($this->links)) {
+                    $this->links = new LinkManager($this);
+                }
+
+                return $this->links;
         }
 
         // Mimic regular PHP behavior for missing notices.
