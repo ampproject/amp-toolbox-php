@@ -37,6 +37,7 @@ trait MagicPropertyAnnotations
      * Get the type of a property by examining its value.
      *
      * @param mixed $value Value to examine to determine the type.
+     * @return string Property type.
      */
     private function getPropertyType($value)
     {
