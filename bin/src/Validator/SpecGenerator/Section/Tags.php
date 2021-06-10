@@ -71,6 +71,9 @@ final class Tags implements Section
                 foreach ($attributes as $attribute) {
                     $key = $attribute['name'];
                     unset($attribute['name']);
+                    if (isset($tag['attrs'][$key])) {
+                        throw new Exception('Attribute was already defined.');
+                    }
                     $tag['attrs'][$key] = $attribute;
                 }
             }
