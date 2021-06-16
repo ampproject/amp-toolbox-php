@@ -43,7 +43,7 @@ try {
     echo "\n";
 
     echo "Fetching $spec_url...";
-    $json = file_get_contents('https://cdn.ampproject.org/v0/validator.json');
+    $json = file_get_contents($spec_url);
     echo "\n";
 
     $data = json_decode($json, true);
