@@ -20,24 +20,33 @@ final class AmpBoilerplateErrorHandler implements Transformer
 {
 
     /**
-     * Error handler script to be added to the document's <head> for non-transformed AMP pages.
+     * XPath query to find an AMP runtime script using ES6 modules.
+     *
+     * Note that substring() is used as ends-with() requires XPath 2.0, but PHP comes with XPath 1.0 support only.
      *
      * @var string
      */
-    const ERROR_HANDLER_NOT_TRANSFORMED = 'document.querySelector("script[src*=\'/v0.js\']").onerror=function(){'
-                                          . 'document.querySelector(\'style[amp-boilerplate]\').textContent=\'\'}';
+    const AMP_MODULAR_RUNTIME_XPATH_QUERY = './script[substring(@src, string-length(@src) - 6) = \'/v0.mjs\']';
 
     /**
-     * Error handler script to be added to the document's <head> for transformed AMP pages.
+     * Error handler script to be added to the document's <head> for AMP pages not using ES modules.
      *
      * @var string
      */
-    const ERROR_HANDLER_TRANSFORMED = '[].slice.call(document.querySelectorAll('
-                                      . '"script[src*=\'/v0.js\'],script[src*=\'/v0.mjs\']")).forEach('
-                                      . 'function(s){s.onerror='
-                                      . 'function(){'
-                                      . 'document.querySelector(\'style[amp-boilerplate]\').textContent=\'\''
-                                      . '}})';
+    const ERROR_HANDLER_NOMODULE = 'document.querySelector("script[src*=\'/v0.js\']").onerror=function(){'
+                                   . 'document.querySelector(\'style[amp-boilerplate]\').textContent=\'\'}';
+
+    /**
+     * Error handler script to be added to the document's <head> for AMP pages using ES modules.
+     *
+     * @var string
+     */
+    const ERROR_HANDLER_MODULE = '[].slice.call(document.querySelectorAll('
+                                 . '"script[src*=\'/v0.js\'],script[src*=\'/v0.mjs\']")).forEach('
+                                 . 'function(s){s.onerror='
+                                 . 'function(){'
+                                 . 'document.querySelector(\'style[amp-boilerplate]\').textContent=\'\''
+                                 . '}})';
 
     /**
      * Apply transformations to the provided DOM document.
@@ -59,10 +68,21 @@ final class AmpBoilerplateErrorHandler implements Transformer
                 [
                     Attribute::AMP_ONERROR => null,
                 ],
-                $document->html->hasAttribute(Transformer\TransformedIdentifier::TRANSFORMED_ATTRIBUTE) ?
-                    self::ERROR_HANDLER_TRANSFORMED :
-                    self::ERROR_HANDLER_NOT_TRANSFORMED
+                $this->usesModules($document) ? self::ERROR_HANDLER_MODULE : self::ERROR_HANDLER_NOMODULE
             )
         );
+    }
+
+    /**
+     * Check whether a provided document uses ES6 modules.
+     *
+     * @param Document $document Document to check.
+     * @return bool Whether the provided document uses ES6 modules.
+     */
+    private function usesModules(Document $document)
+    {
+        $scripts = $document->xpath->query(self::AMP_MODULAR_RUNTIME_XPATH_QUERY, $document->head);
+
+        return $scripts->length > 0;
     }
 }
