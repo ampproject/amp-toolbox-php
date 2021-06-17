@@ -207,19 +207,7 @@ final class AutoExtensions implements Transformer
      */
     private function renderExtensionScripts(Document $document, array $extensionScripts)
     {
-        $referenceNode = $document->viewport;
-
-        if (!$referenceNode) {
-            $referenceNode = $document->charset;
-        }
-
-        if (
-            $referenceNode
-            && $referenceNode->nextSibling instanceof Element
-            && $referenceNode->nextSibling->hasAttribute(Attribute::AMP_BOILERPLATE)
-        ) {
-            $referenceNode = $referenceNode->nextSibling;
-        }
+        $referenceNode = $this->getExtensionScriptsReferenceNode($document);
 
         foreach ($extensionScripts as $extensionScript) {
             if ($referenceNode && $referenceNode->nextSibling) {
@@ -233,6 +221,52 @@ final class AutoExtensions implements Transformer
 
             $referenceNode = $extensionScript;
         }
+    }
+
+    /**
+     * Get the reference node to attach extension scripts to.
+     *
+     * @param Document $document Document to look for the reference node in.
+     * @return Element|null Reference node to use, or null if not found.
+     */
+    private function getExtensionScriptsReferenceNode(Document $document)
+    {
+        $referenceNode = $document->viewport ?: $document->charset;
+
+        if (! $referenceNode instanceof Element) {
+            $referenceNode = $document->head->firstChild;
+        }
+
+        if (! $referenceNode instanceof Element) {
+            return null;
+        }
+
+        // Try to detect the boilerplate style so we can append the scripts after that.
+        $remainingNode = $referenceNode->nextSibling;
+        while ($remainingNode) {
+            if (! $remainingNode instanceof Element) {
+                $remainingNode = $remainingNode->nextSibling;
+                continue;
+            }
+
+            if (
+                $remainingNode->tagName === Tag::STYLE
+                && $remainingNode->hasAttribute(Attribute::AMP_BOILERPLATE)
+            ) {
+                $referenceNode = $remainingNode;
+            } elseif (
+                $remainingNode->tagName === Tag::NOSCRIPT
+                && $remainingNode->firstChild instanceof Element
+                && $remainingNode->firstChild->tagName === Tag::STYLE
+                && $remainingNode->firstChild->hasAttribute(Attribute::AMP_BOILERPLATE)
+            ) {
+                $referenceNode = $remainingNode;
+            }
+
+            $remainingNode = $remainingNode->nextSibling;
+        }
+
+        return $referenceNode;
     }
 
     /**
