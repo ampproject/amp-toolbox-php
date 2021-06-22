@@ -7,7 +7,14 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 /**
  * Configuration for the MinifyHtml transformer.
  *
- * @todo add property list and their description
+ * @property bool $minify                Is minification enabled.
+ * @property bool $minifyAmpScript       Is amp-script minification enabled.
+ * @property bool $minifyJSON            Is JSON data minification enabled.
+ * @property bool $collapseWhitespace    Is collapsing the whitespace enabled.
+ * @property bool $removeComments        Should remove comments.
+ * @property bool $canCollapseWhitespace Can collapse whitespace
+ * @property bool $inBody                Is node in the body
+ * @property bool $commentIgnorePattern  Ignore comments of the form <!-- __AAAA_BBBB___ --> by default (used by Next.js)
  *
  * @package ampproject/amp-toolbox
  */
@@ -15,51 +22,51 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
 {
 
     /**
-     * @todo Add description
+     * Is minification enabled.
      *
-     * @var string
+     * @var bool
      */
     const MINIFIY = 'minify';
 
     /**
-     * @todo Add description
+     * Is amp-script minification enabled.
      *
-     * @var string
+     * @var bool
      */
     const MINIFY_AMP_SCRIPT = 'minifyAmpScript';
 
     /**
-     * @todo Add description
+     * Is JSON data minification enabled.
      *
-     * @var string
+     * @var bool
      */
     const MINIFY_JSON = 'minifyJSON';
 
     /**
-     * @todo Add description
+     * Is collapsing the whitespace enabled.
      *
-     * @var string
+     * @var bool
      */
     const COLLAPSE_WHITESPACE = 'collapseWhitespace';
 
     /**
-     * @todo Add description
+     * Should remove comments.
      *
-     * @var string
+     * @var bool
      */
     const REMOVE_COMMENTS = 'removeComments';
 
     /**
-     * @todo Add description
+     * Can collapse whitespace
      *
-     * @var string
+     * @var bool
      */
     const CAN_COLLAPSE_WHITESPACE = 'canCollapseWhitespace';
 
     /**
-     * @todo Add description
+     * Is node in the body
      *
-     * @var string
+     * @var bool
      */
     const IN_BODY = 'inBody';
 
@@ -69,7 +76,6 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
      * @var string
      */
     const COMMENT_IGNORE_PATTERN = 'commentIgnorePattern';
-
 
     /**
      * Get the associative array of allowed keys and their respective default values.
