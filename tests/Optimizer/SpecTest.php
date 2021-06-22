@@ -4,6 +4,7 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
+use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
 use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
 use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
@@ -15,6 +16,7 @@ use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
+use AmpProject\Optimizer\Transformer\MinifyHtml;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
 use AmpProject\Optimizer\Transformer\ServerSideRendering;
@@ -77,6 +79,10 @@ final class SpecTest extends TestCase
             'GoogleFontsPreconnect' => [
                 GoogleFontsPreconnect::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/GoogleFontsPreconnect'
+            ],
+            'MinifyHtml'                    => [
+                MinifyHtml::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/MinifyHtml',
             ],
             'OptimizeAmpBind'               => [
                 OptimizeAmpBind::class,
@@ -220,6 +226,10 @@ final class SpecTest extends TestCase
                     break;
                 case 'rtv':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::RTV] = $value;
+                    break;
+
+                // @TODO: Need to know what is the better way to handle this?
+                case '__format':
                     break;
 
                 // @TODO: Known configuration arguments used in spec tests that are not implemented yet.
