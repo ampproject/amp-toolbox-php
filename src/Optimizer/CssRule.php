@@ -102,7 +102,7 @@ final class CssRule
     /**
      * Create a new CSS rule that is wrapped in a media query.
      *
-     * @param string $mediaQuery Media query to wrap the CSS rule in.
+     * @param string          $mediaQuery Media query to wrap the CSS rule in.
      * @param string|string[] $selectors  One or more selectors to use.
      * @param string|string[] $properties One or more properties to apply to the selector(s).
      * @return self CSS rule wrapped in a media query.
