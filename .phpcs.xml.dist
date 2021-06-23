@@ -45,6 +45,10 @@
         <!-- This does not allow for useful @see and @todo tags with surrounding remarks. -->
         <exclude name="Generic.Commenting.DocComment.SpacingBeforeTags" />
 
+        <!-- We have not yet defined what a standardized file docblock should look like. -->
+        <!-- See https://github.com/ampproject/amp-toolbox-php/issues/255 -->
+        <exclude name="Squiz.Commenting.FileComment.Missing" />
+
 		<exclude-pattern>tests/*</exclude-pattern>
 	</rule>
 </ruleset>
