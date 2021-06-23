@@ -42,6 +42,9 @@
 
     <!-- WordPress Coding Standards for Inline Documentation and Comments -->
 	<rule ref="WordPress-Docs">
+        <!-- This does not allow for useful @see and @todo tags with surrounding remarks. -->
+        <exclude name="Generic.Commenting.DocComment.SpacingBeforeTags" />
+
 		<exclude-pattern>tests/*</exclude-pattern>
 	</rule>
 </ruleset>
