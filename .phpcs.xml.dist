@@ -39,4 +39,9 @@
 	<rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
 		<exclude-pattern>src/Validator/Spec/Tag/*_.php</exclude-pattern>
 	</rule>
+
+    <!-- WordPress Coding Standards for Inline Documentation and Comments -->
+	<rule ref="WordPress-Docs">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
 </ruleset>
