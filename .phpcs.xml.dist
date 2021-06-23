@@ -1,47 +1,47 @@
 <?xml version="1.0"?>
 <ruleset name="Coding Standard for the AMP Toolbox PHP Library">
 
-	<!-- Use PSR-12 as baseline standard -->
-	<rule ref="PSR12">
-		<!-- We cannot use constant visibility because of PHP 5.6 compat -->
-		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
-	</rule>
+    <!-- Use PSR-12 as baseline standard -->
+    <rule ref="PSR12">
+        <!-- We cannot use constant visibility because of PHP 5.6 compat -->
+        <exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
+    </rule>
 
-	<arg value="p"/>
-	<arg value="s"/>
-	<arg name="extensions" value="php"/>
+    <arg value="p"/>
+    <arg value="s"/>
+    <arg name="extensions" value="php"/>
 
-	<!-- Include only the directories containing PHP files. -->
-	<file>bin/</file>
-	<file>src/</file>
-	<file>tests/</file>
+    <!-- Include only the directories containing PHP files. -->
+    <file>bin/</file>
+    <file>src/</file>
+    <file>tests/</file>
 
-	<!-- Strip the filepaths down to the relevant bit. -->
-	<arg name="basepath" value="./"/>
+    <!-- Strip the filepaths down to the relevant bit. -->
+    <arg name="basepath" value="./"/>
 
-	<!-- Check up to 20 files simultaneously. -->
-	<arg name="parallel" value="1"/>
+    <!-- Check up to 20 files simultaneously. -->
+    <arg name="parallel" value="1"/>
 
-	<!-- Executable scripts are meant to have side-effects. -->
-	<rule ref="PSR1.Files.SideEffects">
-		<exclude-pattern>bin/*</exclude-pattern>
-	</rule>
+    <!-- Executable scripts are meant to have side-effects. -->
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>bin/*</exclude-pattern>
+    </rule>
 
-	<!-- Line length can not easily be controlled in generated code. -->
-	<rule ref="Generic.Files.LineLength.TooLong">
-		<exclude-pattern>src/Validator/ErrorCode.php</exclude-pattern>
-		<exclude-pattern>src/Validator/Spec.php</exclude-pattern>
-		<exclude-pattern>src/Validator/Spec/*</exclude-pattern>
-		<exclude-pattern>tests/*</exclude-pattern>
-	</rule>
+    <!-- Line length can not easily be controlled in generated code. -->
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <exclude-pattern>src/Validator/ErrorCode.php</exclude-pattern>
+        <exclude-pattern>src/Validator/Spec.php</exclude-pattern>
+        <exclude-pattern>src/Validator/Spec/*</exclude-pattern>
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
 
-	<!-- Class names that conflict with PHP reserved keywords need to be suffixed. -->
-	<rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
-		<exclude-pattern>src/Validator/Spec/Tag/*_.php</exclude-pattern>
-	</rule>
+    <!-- Class names that conflict with PHP reserved keywords need to be suffixed. -->
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <exclude-pattern>src/Validator/Spec/Tag/*_.php</exclude-pattern>
+    </rule>
 
     <!-- WordPress Coding Standards for Inline Documentation and Comments -->
-	<rule ref="WordPress-Docs">
+    <rule ref="WordPress-Docs">
         <!-- This does not allow for useful @see and @todo tags with surrounding remarks. -->
         <exclude name="Generic.Commenting.DocComment.SpacingBeforeTags" />
 
@@ -58,6 +58,6 @@
         <!-- Do not enforce short descriptions to allow for short type hints. -->
         <exclude name="Generic.Commenting.DocComment.MissingShort" />
 
-		<exclude-pattern>tests/*</exclude-pattern>
-	</rule>
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
 </ruleset>
