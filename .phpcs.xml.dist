@@ -55,6 +55,9 @@
         <!-- Package tags are in class docblocks, not in file docblocks. -->
         <exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />
 
+        <!-- Do not enforce short descriptions to allow for short type hints. -->
+        <exclude name="Generic.Commenting.DocComment.MissingShort" />
+
 		<exclude-pattern>tests/*</exclude-pattern>
 	</rule>
 </ruleset>
