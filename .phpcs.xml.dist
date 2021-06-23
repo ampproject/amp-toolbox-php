@@ -49,6 +49,12 @@
         <!-- See https://github.com/ampproject/amp-toolbox-php/issues/255 -->
         <exclude name="Squiz.Commenting.FileComment.Missing" />
 
+        <!-- Validator classes are generated with a "DO NOT EDIT" comment that is erroneously output as a docblock. -->
+        <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen" />
+
+        <!-- Package tags are in class docblocks, not in file docblocks. -->
+        <exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />
+
 		<exclude-pattern>tests/*</exclude-pattern>
 	</rule>
 </ruleset>
