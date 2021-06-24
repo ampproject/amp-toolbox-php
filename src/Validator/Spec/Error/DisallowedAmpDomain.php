@@ -11,21 +11,21 @@ use AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
- * Error class MandatoryAttrMissing.
+ * Error class DisallowedAmpDomain.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $format
  * @property-read int $specificity
  */
-final class MandatoryAttrMissing extends Error
+final class DisallowedAmpDomain extends Error
 {
     /**
      * Code of the error.
      *
      * @var string
      */
-    const CODE = 'MANDATORY_ATTR_MISSING';
+    const CODE = 'DISALLOWED_AMP_DOMAIN';
 
     /**
      * Array of spec data.
@@ -33,7 +33,7 @@ final class MandatoryAttrMissing extends Error
      * @var array<array>
      */
     const SPEC = [
-        SpecRule::FORMAT => 'The mandatory attribute \'%1\' is missing in tag \'%2\'.',
-        SpecRule::SPECIFICITY => 27,
+        SpecRule::FORMAT => 'The script tag includes an invalid AMP domain in the src attribute.',
+        SpecRule::SPECIFICITY => 21,
     ];
 }

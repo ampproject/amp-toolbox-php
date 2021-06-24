@@ -34,6 +34,6 @@ final class CssSyntaxEofInPreludeOfQualifiedRule extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - end of stylesheet encountered in prelude of a qualified rule.',
-        SpecRule::SPECIFICITY => 61,
+        SpecRule::SPECIFICITY => 62,
     ];
 }

@@ -34,6 +34,6 @@ final class CssSyntaxUnparsedInputRemainsInSelector extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - unparsed input remains in selector.',
-        SpecRule::SPECIFICITY => 67,
+        SpecRule::SPECIFICITY => 68,
     ];
 }

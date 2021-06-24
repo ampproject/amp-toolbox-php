@@ -34,6 +34,6 @@ final class DisallowedAttr extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The attribute \'%1\' may not appear in tag \'%2\'.',
-        SpecRule::SPECIFICITY => 22,
+        SpecRule::SPECIFICITY => 23,
     ];
 }

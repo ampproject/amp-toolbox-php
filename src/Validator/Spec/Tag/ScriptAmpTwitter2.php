@@ -17,16 +17,18 @@ use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 /**
- * Tag class ScriptAmpCacheUrl.
+ * Tag class ScriptAmpTwitter2.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
-final class ScriptAmpCacheUrl extends Tag implements Identifiable, TagWithExtensionSpec
+final class ScriptAmpTwitter2 extends Tag implements Identifiable, TagWithExtensionSpec
 {
     use ExtensionSpec;
 
@@ -35,7 +37,7 @@ final class ScriptAmpCacheUrl extends Tag implements Identifiable, TagWithExtens
      *
      * @var string
      */
-    const ID = 'SCRIPT [amp-cache-url]';
+    const ID = 'SCRIPT [amp-twitter] (2)';
 
     /**
      * Array of extension spec rules.
@@ -43,11 +45,14 @@ final class ScriptAmpCacheUrl extends Tag implements Identifiable, TagWithExtens
      * @var array
      */
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-cache-url',
+        SpecRule::NAME => 'amp-twitter',
         SpecRule::VERSION => [
             '0.1',
+            'latest',
         ],
-        SpecRule::REQUIRES_USAGE => 'NONE',
+        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     /**
@@ -63,6 +68,12 @@ final class ScriptAmpCacheUrl extends Tag implements Identifiable, TagWithExtens
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-twitter 0.1',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-twitter 1.0',
+        ],
     ];
 }

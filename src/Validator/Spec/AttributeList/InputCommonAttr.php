@@ -23,7 +23,6 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array<array<string>> $autofocus
  * @property-read array $checked
  * @property-read array $disabled
- * @property-read array $form
  * @property-read array $height
  * @property-read array<array<string>> $inputmode
  * @property-read array<array<string>> $list
@@ -92,7 +91,6 @@ final class InputCommonAttr extends AttributeList implements Identifiable
         ],
         Attribute::CHECKED => [],
         Attribute::DISABLED => [],
-        Attribute::FORM => [],
         Attribute::HEIGHT => [],
         Attribute::INPUTMODE => [
             SpecRule::DISABLED_BY => [

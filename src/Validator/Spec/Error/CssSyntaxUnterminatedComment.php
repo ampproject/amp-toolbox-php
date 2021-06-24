@@ -34,6 +34,6 @@ final class CssSyntaxUnterminatedComment extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - unterminated comment.',
-        SpecRule::SPECIFICITY => 58,
+        SpecRule::SPECIFICITY => 59,
     ];
 }

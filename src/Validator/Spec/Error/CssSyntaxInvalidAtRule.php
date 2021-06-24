@@ -34,6 +34,6 @@ final class CssSyntaxInvalidAtRule extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - saw invalid at rule \'@%2\'.',
-        SpecRule::SPECIFICITY => 36,
+        SpecRule::SPECIFICITY => 37,
     ];
 }

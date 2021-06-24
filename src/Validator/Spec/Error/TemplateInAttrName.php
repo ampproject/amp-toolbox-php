@@ -34,6 +34,6 @@ final class TemplateInAttrName extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Mustache template syntax in attribute name \'%1\' in tag \'%2\'.',
-        SpecRule::SPECIFICITY => 43,
+        SpecRule::SPECIFICITY => 44,
     ];
 }

@@ -46,6 +46,7 @@ final class ScriptAmpFacebookLike extends Tag implements Identifiable, TagWithEx
         SpecRule::NAME => 'amp-facebook-like',
         SpecRule::VERSION => [
             '0.1',
+            '1.0',
             'latest',
         ],
     ];

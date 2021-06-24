@@ -34,6 +34,6 @@ final class CssSyntaxBadUrl extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - bad url.',
-        SpecRule::SPECIFICITY => 60,
+        SpecRule::SPECIFICITY => 61,
     ];
 }

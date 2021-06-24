@@ -34,6 +34,6 @@ final class DisallowedFirstChildTagName extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Tag \'%1\' is disallowed as first child of tag \'%2\'. First child tag must be one of %3.',
-        SpecRule::SPECIFICITY => 75,
+        SpecRule::SPECIFICITY => 76,
     ];
 }

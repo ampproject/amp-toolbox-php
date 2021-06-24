@@ -34,6 +34,6 @@ final class TemplatePartialInAttrValue extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is set to \'%3\', which contains a Mustache template partial.',
-        SpecRule::SPECIFICITY => 42,
+        SpecRule::SPECIFICITY => 43,
     ];
 }
