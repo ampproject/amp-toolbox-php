@@ -104,7 +104,7 @@ final class Document extends DOMDocument
     const AMP_BIND_DATA_START_PATTERN = '#<'
                                         . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
                                         . '(?P<attrs>\s+'                           // Attributes.
-                                            . '(?>'                                 // Match at least one attribute
+                                            . '(?>'                                 // Match at least one attribute.
                                                 . '(?>'                             // prefixed with "data-amp-bind-".
                                                     . '(?![a-zA-Z0-9_\-\s]*'
                                                     . self::AMP_BIND_DATA_ATTR_PREFIX

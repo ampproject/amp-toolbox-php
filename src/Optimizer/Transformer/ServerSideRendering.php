@@ -250,8 +250,8 @@ final class ServerSideRendering implements Transformer
     /**
      * Apply the adequate layout to a custom element.
      *
-     * @param Element         $element  Element to apply the layout to.
      * @param Document        $document DOM document to apply the transformations to.
+     * @param Element         $element  Element to apply the layout to.
      * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
      * @return Element|false Adapted element, or false if the layout could not be applied.
      */
@@ -296,7 +296,7 @@ final class ServerSideRendering implements Transformer
             $newElement = $element->cloneNode(false);
 
             // Transformed AMP validation requires layout attribute to be set.
-            // See https://github.com/ampproject/amp-toolbox/issues/959
+            // See https://github.com/ampproject/amp-toolbox/issues/959.
             if ($layout && $layout === Layout::RESPONSIVE) {
                 $newElement->setAttribute(Attribute::LAYOUT, $layout);
             }
@@ -350,7 +350,7 @@ final class ServerSideRendering implements Transformer
     {
         if ((empty($inputLayout) || $inputLayout === Layout::FIXED) && ! $inputWidth->isDefined()) {
             // These values come from AMP's runtime and can be found in
-            // https://github.com/ampproject/amphtml/blob/292dc66b8c0bb078bbe3a1bca960e8f494f7fc8f/src/layout.js#L70-L86
+            // https://github.com/ampproject/amphtml/blob/292dc66b8c0bb078bbe3a1bca960e8f494f7fc8f/src/layout.js#L70-L86.
             switch ($tagName) {
                 case Extension::ANALYTICS:
                 case Extension::PIXEL:
@@ -389,7 +389,7 @@ final class ServerSideRendering implements Transformer
             ) && ! $inputHeight->isDefined()
         ) {
             // These values come from AMP's runtime and can be found in
-            // https://github.com/ampproject/amphtml/blob/292dc66b8c0bb078bbe3a1bca960e8f494f7fc8f/src/layout.js#L70-L86
+            // https://github.com/ampproject/amphtml/blob/292dc66b8c0bb078bbe3a1bca960e8f494f7fc8f/src/layout.js#L70-L86.
             switch ($tagName) {
                 case Extension::ANALYTICS:
                 case Extension::PIXEL:
@@ -784,7 +784,7 @@ final class ServerSideRendering implements Transformer
                     case Attribute::SIZES:
                         if ($ampElement->hasAttribute(Attribute::DISABLE_INLINE_WIDTH)) {
                             // Don't remove sizes when disable-inline-width is set.
-                            // @see https://github.com/ampproject/amphtml/pull/27083
+                            // @see https://github.com/ampproject/amphtml/pull/27083.
                             break;
                         }
 
@@ -865,7 +865,7 @@ final class ServerSideRendering implements Transformer
         if (!$element->hasAttribute(Attribute::SRCSET) || empty($element->getAttribute(Attribute::SRCSET))) {
             // According to the Mozilla docs, a sizes attribute without a valid srcset attribute should have no effect.
             // Therefore, it should simply be stripped, without producing media queries.
-            // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes
+            // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-sizes.
             return [];
         }
 
@@ -900,7 +900,7 @@ final class ServerSideRendering implements Transformer
         // TODO: I'm not sure why I initially added this here, it looks very intentional.
         // However, it doesn't match what the NodeJS version does, which is to add padding-top
         // to the inline style of the element.
-        // $this->customSizerStyles[$document->getElementId($element)] = '';
+        // `$this->customSizerStyles[$document->getElementId($element)] = '';`.
 
         return $this->extractAttributeCss(
             $document,

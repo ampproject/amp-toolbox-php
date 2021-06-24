@@ -86,7 +86,7 @@ final class LengthUnit
     const EM = 'em';
 
     /**
-     * x-height of the element's font.
+     * The x-height of the element's font.
      *
      * @var string
      */

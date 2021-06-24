@@ -43,6 +43,7 @@ final class FilesystemRemoteGetRequest implements RemoteGetRequest
      * @param string $url URL to get.
      * @return Response Response for the executed request.
      * @throws FailedRemoteRequest If retrieving the contents from the URL failed.
+     * @throws LogicException If invalid file path and/or invalid or non-readable file.
      */
     public function get($url)
     {

@@ -51,9 +51,10 @@ final class ReorderHead implements Transformer
      */
     const AMP_RESOURCE_HINT_SRC_PATTERN = '#(^|[\b/])cdn\.ampproject\.org($|[\b/])#i';
 
-    /*
+    /**
      * Different categories of <head> tags to track and reorder.
      */
+    // phpcs:disable Squiz.Commenting.VariableComment.Missing
     private $ampResourceHints                  = [];
     private $linkIcons                         = [];
     private $linkStyleAmpRuntime               = null;

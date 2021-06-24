@@ -43,7 +43,7 @@ final class FallbackRemoteGetRequest implements RemoteGetRequest
      *
      * This adds strong typing to the variadic $pipeline argument in the constructor.
      *
-     * @param RemoteGetRequest $remoteGetRequest
+     * @param RemoteGetRequest $remoteGetRequest RemoteGetRequest instance to the pipeline.
      */
     private function addRemoteGetRequestInstance(RemoteGetRequest $remoteGetRequest)
     {

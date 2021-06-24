@@ -3057,6 +3057,7 @@ final class Tags implements IterableSection
      * @param string $extension Extension name to get the extension spec for.
      * @return TagWithExtensionSpec Tag with the given extension spec name.
      * @throws InvalidExtension If an invalid extension name is requested.
+     * @throws LogicException If tag is not an instance of TagWithExtensionSpec.
      */
     public function byExtensionSpec($extension)
     {
