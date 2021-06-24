@@ -127,6 +127,7 @@ interface Tag
     const NOBR                = 'nobr';
     const NOSCRIPT            = 'noscript';
     const O_P                 = 'o:p'; // @todo Will this be usable at present given PHP DOM?
+    const OBJECT              = 'object';
     const OL                  = 'ol';
     const OPTGROUP            = 'optgroup';
     const OPTION              = 'option';
