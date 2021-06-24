@@ -104,7 +104,7 @@ final class Document extends DOMDocument
     const AMP_BIND_DATA_START_PATTERN = '#<'
                                         . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
                                         . '(?P<attrs>\s+'                           // Attributes.
-                                            . '(?>'                                 // Match at least one attribute
+                                            . '(?>'                                 // Match at least one attribute.
                                                 . '(?>'                             // prefixed with "data-amp-bind-".
                                                     . '(?![a-zA-Z0-9_\-\s]*'
                                                     . self::AMP_BIND_DATA_ATTR_PREFIX
@@ -946,7 +946,6 @@ final class Document extends DOMDocument
      * @param string $html HTML string to adapt.
      * @return string Adapted HTML string.
      * @see restoreSelfClosingTags() Reciprocal function.
-     *
      */
     private function replaceSelfClosingTags($html)
     {
@@ -967,7 +966,6 @@ final class Document extends DOMDocument
      * @param string $html HTML string to adapt.
      * @return string Adapted HTML string.
      * @see replaceSelfClosingTags Reciprocal function.
-     *
      */
     private function restoreSelfClosingTags($html)
     {
@@ -1301,7 +1299,7 @@ final class Document extends DOMDocument
     /**
      * Detect the encoding of the document.
      *
-     * @param string      $content  Content of which to detect the encoding.
+     * @param string $content  Content of which to detect the encoding.
      * @return array {
      *                              Detected encoding of the document, or false if none.
      *
@@ -1505,7 +1503,6 @@ final class Document extends DOMDocument
      * @param string $html HTML string to adapt.
      * @return string Adapted HTML string.
      * @see replaceMustacheTemplateTokens() Reciprocal function.
-     *
      */
     private function restoreMustacheTemplateTokens($html)
     {
@@ -1664,7 +1661,6 @@ final class Document extends DOMDocument
      * @param string $html HTML string to adapt.
      * @return string Adapted HTML string.
      * @see restoreDoctypeNode() Reciprocal function.
-     *
      */
     private function secureDoctypeNode($html)
     {
@@ -1683,7 +1679,6 @@ final class Document extends DOMDocument
      * @param string $html HTML string to adapt.
      * @return string Adapted HTML string.
      * @see secureDoctypeNode() Reciprocal function.
-     *
      */
     private function restoreDoctypeNode($html)
     {

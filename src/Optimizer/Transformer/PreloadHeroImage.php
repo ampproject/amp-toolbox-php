@@ -655,7 +655,7 @@ final class PreloadHeroImage implements Transformer
      * This falls back to the data-amp-original-style attribute if the inline
      * style was already extracted by the CSS tree-shaking.
      *
-     * @param Element $element
+     * @param Element $element Element to detect for.
      * @return string URL of the background image, or an empty string if not found.
      */
     private function getCssBackgroundImageUrl(Element $element)

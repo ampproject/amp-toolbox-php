@@ -7,7 +7,6 @@ use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
 use DOMAttr;
 use DOMElement;
-use DOMException;
 
 /**
  * Abstract away some convenience logic for handling DOMElement objects.
@@ -70,7 +69,6 @@ final class Element extends DOMElement
      * @param string $value The value of the attribute.
      * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
      * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
-     * @throws DOMException With code DOM_NO_MODIFICATION_ALLOWED_ERR if the node is readonly.
      */
     public function setAttribute($name, $value)
     {
@@ -246,7 +244,7 @@ final class Element extends DOMElement
         foreach ($attributes as $name => $value) {
             try {
                 $this->setAttribute($name, $value);
-            } catch (DOMException $e) {
+            } catch (MaxCssByteCountExceeded $e) {
                 /*
                  * Catch a "Invalid Character Error" when libxml is able to parse attributes with invalid characters,
                  * but it throws error when attempting to set them via DOM methods. For example, '...this' can be parsed

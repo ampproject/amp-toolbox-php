@@ -215,8 +215,8 @@ abstract class Executable
     /**
      * Normal, positive outcome.
      *
-     * @param string $string
-     * @param array  $context
+     * @param string $string  Log message.
+     * @param array  $context Optional. Contextual information. Defaults to an empty array.
      * @return void
      */
     public function success($string, array $context = [])
@@ -392,7 +392,7 @@ abstract class Executable
     /**
      * Register options and arguments on the given $options object.
      *
-     * @param Options $options
+     * @param Options $options Options instance to register the commands with.
      * @return void
      */
     abstract protected function setup(Options $options);
@@ -402,7 +402,7 @@ abstract class Executable
      *
      * Arguments and options have been parsed when this is run.
      *
-     * @param Options $options
+     * @param Options $options Options instance to register the commands with.
      * @return void
      */
     abstract protected function main(Options $options);

@@ -58,7 +58,7 @@ final class LinkManager
     /**
      * LinkManager constructor.
      *
-     * @param Document $document
+     * @param Document $document Document to manage the links for.
      */
     public function __construct(Document $document)
     {
@@ -165,7 +165,7 @@ final class LinkManager
         );
 
         // Use dns-prefetch as fallback for browser that don't support preconnect.
-        // See https://web.dev/preconnect-and-dns-prefetch/#resolve-domain-name-early-with-reldns-prefetch
+        // See https://web.dev/preconnect-and-dns-prefetch/#resolve-domain-name-early-with-reldns-prefetch.
         $this->addDnsPrefetch($href);
     }
 

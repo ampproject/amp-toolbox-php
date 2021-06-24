@@ -54,6 +54,7 @@ final class ReorderHead implements Transformer
     /*
      * Different categories of <head> tags to track and reorder.
      */
+    // phpcs:disable Squiz.Commenting.VariableComment.Missing
     private $ampResourceHints                  = [];
     private $linkIcons                         = [];
     private $linkStyleAmpRuntime               = null;

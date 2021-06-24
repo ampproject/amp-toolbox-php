@@ -51,7 +51,7 @@ final class AmpExecutable extends Executable
      *
      * Arguments and options have been parsed when this is run.
      *
-     * @param Options $options
+     * @param Options $options Options instance to register the commands with.
      * @return void
      */
     protected function main(Options $options)
