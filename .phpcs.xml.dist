@@ -58,7 +58,7 @@
         <!-- Do not enforce short descriptions to allow for short type hints. -->
         <exclude name="Generic.Commenting.DocComment.MissingShort" />
 
-        <!-- Skipping following sniffs because of too many occurances that requires manual fixes  -->
+        <!-- Skipping following sniffs because of too many occurrences that require manual fixes. -->
         <exclude name="Squiz.Commenting.FunctionComment.Missing" />
         <exclude name="Squiz.Commenting.ClassComment.Missing" />
         <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" />
