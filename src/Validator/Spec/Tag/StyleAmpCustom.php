@@ -167,6 +167,8 @@ final class StyleAmpCustom extends Tag implements Identifiable
                                 'min-device-pixel-ratio',
                                 'max-device-pixel-ratio2',
                                 'min-device-pixel-ratio2',
+                                'min--moz-device-pixel-ratio',
+                                'max--moz-device-pixel-ratio',
                             ],
                         ],
                     ],

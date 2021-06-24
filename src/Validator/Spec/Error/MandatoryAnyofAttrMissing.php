@@ -34,6 +34,6 @@ final class MandatoryAnyofAttrMissing extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' is missing a mandatory attribute - pick at least one of %2.',
-        SpecRule::SPECIFICITY => 28,
+        SpecRule::SPECIFICITY => 29,
     ];
 }

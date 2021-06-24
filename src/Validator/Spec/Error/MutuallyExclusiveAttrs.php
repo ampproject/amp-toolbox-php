@@ -34,6 +34,6 @@ final class MutuallyExclusiveAttrs extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Mutually exclusive attributes encountered in tag \'%1\' - pick one of %2.',
-        SpecRule::SPECIFICITY => 40,
+        SpecRule::SPECIFICITY => 41,
     ];
 }

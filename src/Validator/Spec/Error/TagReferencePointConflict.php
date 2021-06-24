@@ -34,6 +34,6 @@ final class TagReferencePointConflict extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' conflicts with reference point \'%2\' because both define reference points.',
-        SpecRule::SPECIFICITY => 80,
+        SpecRule::SPECIFICITY => 81,
     ];
 }

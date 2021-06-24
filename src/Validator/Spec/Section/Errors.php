@@ -43,6 +43,7 @@ final class Errors implements IterableSection
         Error\ExtensionUnused::CODE => Error\ExtensionUnused::class,
         Error\WarningExtensionDeprecatedVersion::CODE => Error\WarningExtensionDeprecatedVersion::class,
         Error\IncorrectScriptReleaseVersion::CODE => Error\IncorrectScriptReleaseVersion::class,
+        Error\DisallowedAmpDomain::CODE => Error\DisallowedAmpDomain::class,
         Error\NonLtsScriptAfterLts::CODE => Error\NonLtsScriptAfterLts::class,
         Error\LtsScriptAfterNonLts::CODE => Error\LtsScriptAfterNonLts::class,
         Error\AttrRequiredButMissing::CODE => Error\AttrRequiredButMissing::class,

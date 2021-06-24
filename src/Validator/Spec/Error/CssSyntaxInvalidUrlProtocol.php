@@ -34,6 +34,6 @@ final class CssSyntaxInvalidUrlProtocol extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid url protocol \'%2:\'.',
-        SpecRule::SPECIFICITY => 71,
+        SpecRule::SPECIFICITY => 72,
     ];
 }

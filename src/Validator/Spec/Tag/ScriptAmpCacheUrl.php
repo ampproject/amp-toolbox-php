@@ -47,6 +47,7 @@ final class ScriptAmpCacheUrl extends Tag implements Identifiable, TagWithExtens
         SpecRule::VERSION => [
             '0.1',
         ],
+        SpecRule::REQUIRES_USAGE => 'NONE',
     ];
 
     /**

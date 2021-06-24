@@ -34,6 +34,6 @@ final class InconsistentUnitsForWidthAndHeight extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Inconsistent units for width and height in tag \'%1\' - width is specified in \'%2\' whereas height is specified in \'%3\'.',
-        SpecRule::SPECIFICITY => 44,
+        SpecRule::SPECIFICITY => 45,
     ];
 }

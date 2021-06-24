@@ -46,21 +46,6 @@ final class AmpStoryPageAttachmentHref extends Tag implements Identifiable
         SpecRule::TAG_NAME => Extension::STORY_PAGE_ATTACHMENT,
         SpecRule::SPEC_NAME => 'amp-story-page-attachment[href]',
         SpecRule::ATTRS => [
-            Attribute::CTA_ACCENT_COLOR => [],
-            Attribute::CTA_ACCENT_ELEMENT => [
-                SpecRule::VALUE => [
-                    'background',
-                    'text',
-                ],
-            ],
-            Attribute::CTA_IMAGE => [
-                SpecRule::VALUE_URL => [
-                    SpecRule::PROTOCOL => [
-                        Protocol::HTTP,
-                        Protocol::HTTPS,
-                    ],
-                ],
-            ],
             Attribute::CTA_TEXT => [],
             Attribute::HREF => [
                 SpecRule::MANDATORY => true,
@@ -79,7 +64,6 @@ final class AmpStoryPageAttachmentHref extends Tag implements Identifiable
             ],
             Attribute::THEME => [
                 SpecRule::VALUE => [
-                    'custom',
                     'dark',
                     'light',
                 ],

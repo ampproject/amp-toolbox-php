@@ -34,6 +34,6 @@ final class CssSyntaxMissingSelector extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - missing selector.',
-        SpecRule::SPECIFICITY => 65,
+        SpecRule::SPECIFICITY => 66,
     ];
 }

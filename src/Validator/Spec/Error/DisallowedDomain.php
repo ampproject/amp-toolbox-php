@@ -34,6 +34,6 @@ final class DisallowedDomain extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The domain \'%3\' for attribute \'%1\' in tag \'%2\' is disallowed.',
-        SpecRule::SPECIFICITY => 53,
+        SpecRule::SPECIFICITY => 54,
     ];
 }

@@ -71,6 +71,7 @@ final class AmpStoryPage extends Tag implements Identifiable
                 'AMP-STORY-CTA-LAYER',
                 'AMP-STORY-GRID-LAYER',
                 'AMP-STORY-PAGE-ATTACHMENT',
+                'AMP-STORY-PAGE-OUTLINK',
             ],
             SpecRule::MANDATORY_MIN_NUM_CHILD_TAGS => 1,
         ],

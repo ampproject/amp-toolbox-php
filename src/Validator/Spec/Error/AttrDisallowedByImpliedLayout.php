@@ -34,6 +34,6 @@ final class AttrDisallowedByImpliedLayout extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is disallowed by implied layout \'%3\'.',
-        SpecRule::SPECIFICITY => 48,
+        SpecRule::SPECIFICITY => 49,
     ];
 }

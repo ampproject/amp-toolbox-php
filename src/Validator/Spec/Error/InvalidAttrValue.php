@@ -34,6 +34,6 @@ final class InvalidAttrValue extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is set to the invalid value \'%3\'.',
-        SpecRule::SPECIFICITY => 23,
+        SpecRule::SPECIFICITY => 24,
     ];
 }

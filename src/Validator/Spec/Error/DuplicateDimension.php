@@ -34,6 +34,6 @@ final class DuplicateDimension extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Multiple image candidates with the same width or pixel density found in attribute \'%1\' in tag \'%2\'.',
-        SpecRule::SPECIFICITY => 50,
+        SpecRule::SPECIFICITY => 51,
     ];
 }

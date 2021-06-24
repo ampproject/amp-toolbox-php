@@ -34,6 +34,6 @@ final class MissingLayoutAttributes extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Incomplete layout attributes specified for tag \'%1\'. For example, provide attributes \'width\' and \'height\'.',
-        SpecRule::SPECIFICITY => 45,
+        SpecRule::SPECIFICITY => 46,
     ];
 }

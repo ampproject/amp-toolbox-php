@@ -34,6 +34,6 @@ final class DuplicateReferencePoint extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The reference point \'%1\' for \'%2\' must be unique but a duplicate was encountered.',
-        SpecRule::SPECIFICITY => 79,
+        SpecRule::SPECIFICITY => 80,
     ];
 }

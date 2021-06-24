@@ -50,6 +50,7 @@ final class AmpRender extends Tag implements Identifiable
             Attribute::BINDING => [
                 SpecRule::VALUE => [
                     'always',
+                    'never',
                     'no',
                     'refresh',
                 ],

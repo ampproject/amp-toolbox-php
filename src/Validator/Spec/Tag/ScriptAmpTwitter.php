@@ -24,7 +24,9 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
 final class ScriptAmpTwitter extends Tag implements Identifiable, TagWithExtensionSpec
 {
@@ -45,11 +47,9 @@ final class ScriptAmpTwitter extends Tag implements Identifiable, TagWithExtensi
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-twitter',
         SpecRule::VERSION => [
-            '0.1',
-            'latest',
+            '1.0',
         ],
-        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
-        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v1.0',
     ];
 
     /**
@@ -65,6 +65,12 @@ final class ScriptAmpTwitter extends Tag implements Identifiable, TagWithExtensi
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-twitter 1.0',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-twitter 0.1',
+        ],
     ];
 }

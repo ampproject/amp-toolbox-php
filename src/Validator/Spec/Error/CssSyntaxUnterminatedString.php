@@ -34,6 +34,6 @@ final class CssSyntaxUnterminatedString extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - unterminated string.',
-        SpecRule::SPECIFICITY => 59,
+        SpecRule::SPECIFICITY => 60,
     ];
 }

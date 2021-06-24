@@ -34,6 +34,6 @@ final class CssSyntaxInvalidAttrSelector extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid attribute selector.',
-        SpecRule::SPECIFICITY => 76,
+        SpecRule::SPECIFICITY => 77,
     ];
 }

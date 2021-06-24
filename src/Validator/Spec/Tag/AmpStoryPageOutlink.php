@@ -24,7 +24,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specName
  * @property-read array $attrs
  * @property-read string $mandatoryAncestor
- * @property-read array<int> $childTags
+ * @property-read array $childTags
  * @property-read array<string> $htmlFormat
  * @property-read bool $mandatoryLastChild
  */
@@ -61,16 +61,6 @@ final class AmpStoryPageOutlink extends Tag implements Identifiable
                     ],
                 ],
             ],
-            Attribute::CTA_TEXT => [],
-            Attribute::HREF => [
-                SpecRule::MANDATORY => true,
-                SpecRule::VALUE_URL => [
-                    SpecRule::PROTOCOL => [
-                        Protocol::HTTP,
-                        Protocol::HTTPS,
-                    ],
-                ],
-            ],
             Attribute::LAYOUT => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
@@ -84,11 +74,13 @@ final class AmpStoryPageOutlink extends Tag implements Identifiable
                     'light',
                 ],
             ],
-            Attribute::TITLE => [],
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_PAGE,
         SpecRule::CHILD_TAGS => [
-            SpecRule::MANDATORY_NUM_CHILD_TAGS => 0,
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
+                'A',
+            ],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
