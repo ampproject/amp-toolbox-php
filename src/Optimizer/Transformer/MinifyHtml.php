@@ -57,11 +57,13 @@ final class MinifyHtml implements Transformer
             return;
         }
 
-        // store nodes for later deletion to avoid changing the tree structure
-        // while iterating the DOM
+        /*
+         * Store nodes for later deletion to avoid changing the tree structure
+         * while iterating the DOM.
+         */
         $this->nodesToRemove = [];
 
-        // recursively walk through all nodes and minify if possible
+        // Recursively walk through all nodes and minify if possible.
         $this->minifyNode($document, $this->configuration->toArray());
 
         foreach ($this->nodesToRemove as $nodeToRemove) {
@@ -72,8 +74,8 @@ final class MinifyHtml implements Transformer
     /**
      * Apply minification to a DOM node
      *
-     * @param DOMNode $node
-     * @param array   $opts
+     * @param DOMNode $node Node to apply the transformations to.
+     * @param array   $opts Configuration options.
      * @return void
      */
     private function minifyNode(DOMNode $node, $opts)
@@ -86,7 +88,7 @@ final class MinifyHtml implements Transformer
             $this->minifyScriptNode($node, $opts);
         }
 
-        // update options based on the current node
+        // Update options based on the current node.
         if (isset($node->tagName)) {
             if (
                 $opts[MinifyHtmlConfiguration::CAN_COLLAPSE_WHITESPACE]
@@ -112,8 +114,8 @@ final class MinifyHtml implements Transformer
     /**
      * Minify a Text type DOM node
      *
-     * @param DOMText $node
-     * @param array   $opts
+     * @param DOMText $node Text to apply the transformations to.
+     * @param array   $opts Configuration options.
      * @return void
      */
     private function minifyTextNode(DOMText $node, $opts)
@@ -130,7 +132,7 @@ final class MinifyHtml implements Transformer
             $node->data = trim($node->data);
         }
 
-        // remove empty nodes
+        // Remove empty nodes.
         if (strlen($node->data) === 0) {
             $this->nodesToRemove[] = $node;
         }
@@ -139,8 +141,8 @@ final class MinifyHtml implements Transformer
     /**
      * Minify/remove a comment node
      *
-     * @param DOMComment $node
-     * @param array      $opts
+     * @param DOMComment $node Comment to apply the transformations to.
+     * @param array      $opts Configuration options.
      * @return void
      */
     private function minifyCommentNode(DOMComment $node, $opts)
@@ -153,11 +155,9 @@ final class MinifyHtml implements Transformer
             return;
         }
 
-        // TODO: Need to handle the scenario when there is a comment before DOCTYPE declaration.
-        // In case of the main $document has `securedDoctype`
-        // if (preg_match('/^amp-doctype html/i', $node->data)) {
-        //     return;
-        // }
+        // @todo: Need to handle the scenario when there is a comment before DOCTYPE declaration.
+        // In case of the main $document has `securedDoctype`.
+        // if (preg_match('/^amp-doctype html/i', $node->data)) {return;}
 
         $this->nodesToRemove[] = $node;
     }
@@ -165,8 +165,8 @@ final class MinifyHtml implements Transformer
     /**
      * Minify a script node
      *
-     * @param Element $node
-     * @param array   $opts
+     * @param Element $node Element to apply the transformations to.
+     * @param array   $opts Configuration options.
      * @return void
      */
     private function minifyScriptNode(Element $node, $opts)
@@ -192,7 +192,7 @@ final class MinifyHtml implements Transformer
     /**
      * Check whether a tag is allowed to collapse whitespace
      *
-     * @param string $tagName
+     * @param string $tagName The allowed tag name.
      * @return bool
      */
     private function canCollapseWhitespace($tagName)
@@ -205,7 +205,7 @@ final class MinifyHtml implements Transformer
     /**
      * Normalize whitespace for a string data
      *
-     * @param string $data
+     * @param string $data The data to be normalized.
      * @return string
      */
     private function normalizeWhitespace($data)
@@ -216,7 +216,7 @@ final class MinifyHtml implements Transformer
     /**
      * Checks if a node is JSON type
      *
-     * @param Element $node
+     * @param Element $node The element node need to be checked.
      * @return bool
      */
     private function isJSON(Element $node)
@@ -228,7 +228,7 @@ final class MinifyHtml implements Transformer
     /**
      * Checks if a node is meant to be an inline amp-script
      *
-     * @param Element $node
+     * @param Element $node The element node need to be checked.
      * @return bool
      */
     private function isInlineAmpScript($node)
@@ -245,7 +245,7 @@ final class MinifyHtml implements Transformer
     /**
      * Minify JSON node
      *
-     * @param DOMText $node
+     * @param DOMText $node The node to be minified.
      * @return void
      */
     private function minifyJson(DOMText $node)
@@ -254,7 +254,7 @@ final class MinifyHtml implements Transformer
 
         if (! empty($decodedData)) {
             $data = json_encode($decodedData, JSON_HEX_AMP | JSON_HEX_TAG | JSON_UNESCAPED_SLASHES);
-            // PHP uses uppercase letters for angle bracket codes, so convert them into lowercase
+            // PHP uses uppercase letters for angle bracket codes, so convert them into lowercase.
             $node->data = str_replace(['\u003E', '\u003C'], ['\u003e', '\u003c'], $data);
         }
     }
@@ -262,11 +262,11 @@ final class MinifyHtml implements Transformer
     /**
      * Minify AMP script
      *
-     * @param DOMText $node
+     * @param DOMText $node The node to be minified.
      * @return void
      */
     private function minifyAmpScript($node)
     {
-        // @TODO: complete this method
+        // @todo: complete this method
     }
 }

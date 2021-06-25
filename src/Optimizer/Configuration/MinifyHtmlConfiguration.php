@@ -14,7 +14,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  * @property bool $removeComments        Should remove comments.
  * @property bool $canCollapseWhitespace Can collapse whitespace
  * @property bool $inBody                Is node in the body
- * @property bool $commentIgnorePattern  Ignore comments of the form <!-- __AAAA_BBBB___ --> by default (used by Next.js)
+ * @property bool $commentIgnorePattern  Ignore comments of the form <!-- __AAAA_BBBB___ -->.
  *
  * @package ampproject/amp-toolbox
  */
@@ -57,21 +57,21 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
     const REMOVE_COMMENTS = 'removeComments';
 
     /**
-     * Can collapse whitespace
+     * Can collapse whitespace.
      *
      * @var bool
      */
     const CAN_COLLAPSE_WHITESPACE = 'canCollapseWhitespace';
 
     /**
-     * Is node in the body
+     * Is node in the body.
      *
      * @var bool
      */
     const IN_BODY = 'inBody';
 
     /**
-     * Ignore comments of the form <!-- __AAAA_BBBB___ --> by default (used by Next.js)
+     * Ignore comments of the form <!-- __AAAA_BBBB___ --> by default (used by Next.js).
      *
      * @var string
      */
