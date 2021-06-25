@@ -15,7 +15,6 @@ use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\RuntimeVersion;
 use AmpProject\Tag;
 use AmpProject\Url;
-use DOMNode;
 use Exception;
 
 /**
@@ -282,6 +281,10 @@ final class RewriteAmpUrls implements Transformer
      */
     private function shouldPreload($url)
     {
+        if (! $this->configuration->get(RewriteAmpUrlsConfiguration::PRELOAD_ENABLED)) {
+            return false;
+        }
+
         return substr_compare($url, 'v0.js', -5) === 0
                ||
                substr_compare($url, 'v0.css', -6) === 0;

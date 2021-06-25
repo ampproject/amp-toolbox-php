@@ -44,6 +44,7 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
                 'geoApiUrl'         => '',
                 'lts'               => false,
                 'rtv'               => false,
+                'preloadEnabled'    => false,
             ],
             $configuration->toArray()
         );
@@ -59,6 +60,7 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
                 'geoApiUrl'         => 'example.com/api',
                 'lts'               => true,
                 'rtv'               => true,
+                'preloadEnabled'    => true,
             ]
         );
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
@@ -74,6 +76,7 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
         $this->assertTrue($configuration->lts);
         $this->assertTrue($configuration->get('rtv'));
         $this->assertTrue($configuration->rtv);
+        $this->assertTrue($configuration->preloadEnabled);
         $this->assertEquals(
             [
                 'ampRuntimeVersion' => '123',
@@ -82,6 +85,7 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
                 'geoApiUrl'         => 'example.com/api',
                 'lts'               => true,
                 'rtv'               => true,
+                'preloadEnabled'    => true,
             ],
             $configuration->toArray()
         );

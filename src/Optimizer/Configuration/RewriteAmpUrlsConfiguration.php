@@ -14,6 +14,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  * @property string $geoApiUrl         Specifies amp-geo API URL to use as a fallback.
  * @property bool   $lts               Use long-term stable URLs.
  * @property bool   $rtv               Append the runtime version to the rewritten URLs.
+ * @property bool   $preloadEnabled    Whether to preload the runtime script and style.
  *
  * @package ampproject/amp-toolbox
  */
@@ -79,6 +80,13 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
     const RTV = 'rtv';
 
     /**
+     * Whether to preload runtime script and style.
+     *
+     * @var string
+     */
+    const PRELOAD_ENABLED = 'preloadEnabled';
+
+    /**
      * Get the associative array of allowed keys and their respective default
      * values.
      *
@@ -97,6 +105,7 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
             self::GEO_API_URL         => '',
             self::LTS                 => false,
             self::RTV                 => false,
+            self::PRELOAD_ENABLED     => false,
         ];
     }
 
@@ -173,6 +182,17 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                     throw InvalidConfigurationValue::forInvalidSubValueType(
                         self::class,
                         self::RTV,
+                        'boolean',
+                        is_object($value) ? get_class($value) : gettype($value)
+                    );
+                }
+                break;
+
+            case self::PRELOAD_ENABLED:
+                if (! is_bool($value)) {
+                    throw InvalidConfigurationValue::forInvalidSubValueType(
+                        self::class,
+                        self::PRELOAD_ENABLED,
                         'boolean',
                         is_object($value) ? get_class($value) : gettype($value)
                     );
