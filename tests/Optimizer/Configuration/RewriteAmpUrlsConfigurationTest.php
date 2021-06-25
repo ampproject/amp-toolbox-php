@@ -35,6 +35,7 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
         $this->assertFalse($configuration->get('lts'));
         $this->assertFalse($configuration->lts);
         $this->assertFalse($configuration->get('rtv'));
+        $this->assertFalse($configuration->preloadEnabled);
         $this->assertFalse($configuration->rtv);
         $this->assertEquals(
             [
@@ -43,8 +44,8 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
                 'esmModulesEnabled' => true,
                 'geoApiUrl'         => '',
                 'lts'               => false,
-                'rtv'               => false,
                 'preloadEnabled'    => false,
+                'rtv'               => false,
             ],
             $configuration->toArray()
         );
@@ -59,8 +60,8 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
                 'esmModulesEnabled' => false,
                 'geoApiUrl'         => 'example.com/api',
                 'lts'               => true,
-                'rtv'               => true,
                 'preloadEnabled'    => true,
+                'rtv'               => true,
             ]
         );
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
@@ -75,8 +76,8 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
         $this->assertTrue($configuration->get('lts'));
         $this->assertTrue($configuration->lts);
         $this->assertTrue($configuration->get('rtv'));
-        $this->assertTrue($configuration->rtv);
         $this->assertTrue($configuration->preloadEnabled);
+        $this->assertTrue($configuration->rtv);
         $this->assertEquals(
             [
                 'ampRuntimeVersion' => '123',
@@ -84,8 +85,8 @@ final class RewriteAmpUrlsConfigurationTest extends TestCase
                 'esmModulesEnabled' => false,
                 'geoApiUrl'         => 'example.com/api',
                 'lts'               => true,
-                'rtv'               => true,
                 'preloadEnabled'    => true,
+                'rtv'               => true,
             ],
             $configuration->toArray()
         );
