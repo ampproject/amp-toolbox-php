@@ -3,13 +3,13 @@
 namespace AmpProject\Optimizer\Configuration;
 
 use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
-use AmpProject\Optimizer\Transformer\OptimizeHeroImages;
 
 /**
  * Configuration for the OptimizeHeroImages transformer.
  *
  * @property string $inlineStyleBackupAttribute Name of the attribute that is used to store inline styles that were
  *                                              moved to <style amp-custom>
+ * @property int    $maxHeroImageCount          Maximum number of hero images that are accepted. Defaults to 2.
  * @property bool   $optimizeHeroImages         Whether to optimize hero images. Defaults to true.
  * @property bool   $preloadSrcset              Whether to enable preloading of images with a srcset attribute. Defaults
  *                                              to false.
