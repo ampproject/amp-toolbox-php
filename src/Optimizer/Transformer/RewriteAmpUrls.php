@@ -15,7 +15,6 @@ use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\RuntimeVersion;
 use AmpProject\Tag;
 use AmpProject\Url;
-use DOMNode;
 use Exception;
 
 /**

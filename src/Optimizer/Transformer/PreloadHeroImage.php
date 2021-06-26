@@ -20,7 +20,6 @@ use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\RequestDestination;
 use AmpProject\Tag;
 use AmpProject\Url;
-use DOMNode;
 
 /**
  * PreloadHeroImage - this transformer optimizes image rendering times for hero images. For hero images it will:
