@@ -215,6 +215,9 @@ final class SpecTest extends TestCase
                 case 'optimizeAmpBind':
                     $mappedConfiguration[OptimizeAmpBind::class][OptimizeAmpBindConfiguration::ENABLED] = $value;
                     break;
+                case 'preloadEnabled':
+                    $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::PRELOAD_ENABLED] = $value;
+                    break;
                 case 'preloadHeroImage':
                     $mappedConfiguration[PreloadHeroImage::class][PreloadHeroImageConfiguration::PRELOAD_HERO_IMAGE] = $value;
                     break;
