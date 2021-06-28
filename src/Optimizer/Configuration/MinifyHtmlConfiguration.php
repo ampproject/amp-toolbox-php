@@ -58,20 +58,6 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
     const REMOVE_COMMENTS = 'removeComments';
 
     /**
-     * Whether whitespace can be collapsed.
-     *
-     * @var bool
-     */
-    const CAN_COLLAPSE_WHITESPACE = 'canCollapseWhitespace';
-
-    /**
-     * Whether the node is in the body.
-     *
-     * @var bool
-     */
-    const IN_BODY = 'inBody';
-
-    /**
      * Ignore comments of the form <!-- __AAAA_BBBB___ --> by default (used by Next.js).
      *
      * @var string
@@ -93,8 +79,6 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
             self::MINIFY_JSON             => true,
             self::COLLAPSE_WHITESPACE     => true,
             self::REMOVE_COMMENTS         => true,
-            self::CAN_COLLAPSE_WHITESPACE => true,
-            self::IN_BODY                 => false,
             self::COMMENT_IGNORE_PATTERN  => '/^\s*__[a-bA-Z0-9_-]+__\s*$/',
         ];
     }
@@ -113,8 +97,6 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
             case self::MINIFY_JSON:
             case self::COLLAPSE_WHITESPACE:
             case self::REMOVE_COMMENTS:
-            case self::CAN_COLLAPSE_WHITESPACE:
-            case self::IN_BODY:
                 if (! is_bool($value)) {
                     throw InvalidConfigurationValue::forInvalidSubValueType(
                         self::class,

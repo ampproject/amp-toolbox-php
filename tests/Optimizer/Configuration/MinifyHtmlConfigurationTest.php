@@ -33,10 +33,6 @@ final class MinifyHtmlConfigurationTest extends TestCase
         $this->assertEquals(true, $configuration->collapseWhitespace);
         $this->assertEquals(true, $configuration->get('removeComments'));
         $this->assertEquals(true, $configuration->removeComments);
-        $this->assertEquals(true, $configuration->get('canCollapseWhitespace'));
-        $this->assertEquals(true, $configuration->canCollapseWhitespace);
-        $this->assertEquals(false, $configuration->get('inBody'));
-        $this->assertEquals(false, $configuration->inBody);
         $this->assertEquals('/^\s*__[a-bA-Z0-9_-]+__\s*$/', $configuration->get('commentIgnorePattern'));
         $this->assertEquals('/^\s*__[a-bA-Z0-9_-]+__\s*$/', $configuration->commentIgnorePattern);
         $this->assertEquals(
@@ -46,8 +42,6 @@ final class MinifyHtmlConfigurationTest extends TestCase
                 'minifyJSON'            => true,
                 'collapseWhitespace'    => true,
                 'removeComments'        => true,
-                'canCollapseWhitespace' => true,
-                'inBody'                => false,
                 'commentIgnorePattern'  => '/^\s*__[a-bA-Z0-9_-]+__\s*$/',
             ],
             $configuration->toArray()
@@ -62,8 +56,6 @@ final class MinifyHtmlConfigurationTest extends TestCase
             'minifyJSON'            => false,
             'collapseWhitespace'    => false,
             'removeComments'        => false,
-            'canCollapseWhitespace' => false,
-            'inBody'                => true,
             'commentIgnorePattern'  => '/^\s*__[a-b]+__\s*$/',
         ]);
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
@@ -77,10 +69,6 @@ final class MinifyHtmlConfigurationTest extends TestCase
         $this->assertEquals(false, $configuration->collapseWhitespace);
         $this->assertEquals(false, $configuration->get('removeComments'));
         $this->assertEquals(false, $configuration->removeComments);
-        $this->assertEquals(false, $configuration->get('canCollapseWhitespace'));
-        $this->assertEquals(false, $configuration->canCollapseWhitespace);
-        $this->assertEquals(true, $configuration->get('inBody'));
-        $this->assertEquals(true, $configuration->inBody);
         $this->assertEquals('/^\s*__[a-b]+__\s*$/', $configuration->get('commentIgnorePattern'));
         $this->assertEquals('/^\s*__[a-b]+__\s*$/', $configuration->commentIgnorePattern);
         $this->assertEquals(
@@ -90,8 +78,6 @@ final class MinifyHtmlConfigurationTest extends TestCase
                 'minifyJSON'            => false,
                 'collapseWhitespace'    => false,
                 'removeComments'        => false,
-                'canCollapseWhitespace' => false,
-                'inBody'                => true,
                 'commentIgnorePattern'  => '/^\s*__[a-b]+__\s*$/',
             ],
             $configuration->toArray()
@@ -115,8 +101,6 @@ final class MinifyHtmlConfigurationTest extends TestCase
             ['minifyJSON', 'nonsense', 'boolean', 'string'],
             ['collapseWhitespace', 'nonsense', 'boolean', 'string'],
             ['removeComments', 'nonsense', 'boolean', 'string'],
-            ['canCollapseWhitespace', 'nonsense', 'boolean', 'string'],
-            ['inBody', 'nonsense', 'boolean', 'string'],
             ['commentIgnorePattern', false, 'string', 'boolean'],
         ];
     }
