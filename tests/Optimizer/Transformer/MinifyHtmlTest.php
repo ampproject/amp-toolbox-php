@@ -58,7 +58,7 @@ final class MinifyHtmlTest extends TestCase
                 TestMarkup::META_CHARSET .
                 ' </head> <body>' .
                 '<script type="application/json">' .
-                json_encode( $jsonData, JSON_PRETTY_PRINT ) .
+                json_encode($jsonData, JSON_PRETTY_PRINT) .
                 '</script>' .
                 '</body> </html>',
                 TestMarkup::DOCTYPE . '<html ⚡><head>' .
