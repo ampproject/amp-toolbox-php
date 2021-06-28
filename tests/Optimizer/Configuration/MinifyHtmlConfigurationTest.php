@@ -8,6 +8,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
 use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\Tests\TestCase;
+use InvalidArgumentException;
 
 /**
  * Test the MinifyHtmlConfiguration.
@@ -24,8 +25,8 @@ final class MinifyHtmlConfigurationTest extends TestCase
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
         $this->assertEquals(true, $configuration->get('minify'));
         $this->assertEquals(true, $configuration->minify);
-        $this->assertEquals(true, $configuration->get('minifyAmpScript'));
-        $this->assertEquals(true, $configuration->minifyAmpScript);
+        $this->assertEquals(false, $configuration->get('minifyAmpScript'));
+        $this->assertEquals(false, $configuration->minifyAmpScript);
         $this->assertEquals(true, $configuration->get('minifyJSON'));
         $this->assertEquals(true, $configuration->minifyJSON);
         $this->assertEquals(true, $configuration->get('collapseWhitespace'));
@@ -41,7 +42,7 @@ final class MinifyHtmlConfigurationTest extends TestCase
         $this->assertEquals(
             [
                 'minify'                => true,
-                'minifyAmpScript'       => true,
+                'minifyAmpScript'       => false,
                 'minifyJSON'            => true,
                 'collapseWhitespace'    => true,
                 'removeComments'        => true,
@@ -157,5 +158,12 @@ final class MinifyHtmlConfigurationTest extends TestCase
         );
         $configuration = new MinifyHtmlConfiguration([]);
         $configuration->nonsense;
+    }
+
+    public function testThrowExceptionIfMinifyAmpScriptIsTrue()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Script minification feature is not implemented yet.');
+        new MinifyHtmlConfiguration(['minifyAmpScript' => true]);
     }
 }
