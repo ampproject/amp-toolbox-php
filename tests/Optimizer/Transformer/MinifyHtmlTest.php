@@ -26,6 +26,14 @@ final class MinifyHtmlTest extends TestCase
      */
     public function dataTransform()
     {
+        $jsonData = [
+            'vars' => [
+                'apid'    => 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+                'apv'     => '1.0',
+                'apn'     => 'My AMP Website',
+            ],
+        ];
+
         return [
             'removes unneeded spaces' => [
                 TestMarkup::DOCTYPE . '<html ⚡> <head> ' .
@@ -34,6 +42,32 @@ final class MinifyHtmlTest extends TestCase
                 TestMarkup::DOCTYPE . '<html ⚡><head>' .
                 TestMarkup::META_CHARSET .
                 '</head><body></body></html>',
+            ],
+
+            'removes comment before doctype' => [
+                '<!-- This should be removed -->' . TestMarkup::DOCTYPE . '<html ⚡> <head> ' .
+                TestMarkup::META_CHARSET .
+                ' </head> <body> </body> </html>',
+                TestMarkup::DOCTYPE . '<html ⚡><head>' .
+                TestMarkup::META_CHARSET .
+                '</head><body></body></html>',
+            ],
+
+            'minifies json data' => [
+                TestMarkup::DOCTYPE . '<html ⚡> <head> ' .
+                TestMarkup::META_CHARSET .
+                ' </head> <body>' .
+                '<script type="application/json">' .
+                json_encode( $jsonData, JSON_PRETTY_PRINT ) .
+                '</script>' .
+                '</body> </html>',
+                TestMarkup::DOCTYPE . '<html ⚡><head>' .
+                TestMarkup::META_CHARSET .
+                '</head><body>' .
+                '<script type="application/json">' .
+                '{"vars":{"apid":"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX","apv":"1.0","apn":"My AMP Website"}}' .
+                '</script>' .
+                '</body></html>',
             ]
         ];
     }
@@ -55,7 +89,6 @@ final class MinifyHtmlTest extends TestCase
         $errors        = new ErrorCollection();
 
         $transformer->transform($document, $errors);
-
         $this->assertSimilarMarkup($expectedHtml, $document->saveHTML());
     }
 }

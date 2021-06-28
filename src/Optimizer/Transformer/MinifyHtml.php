@@ -155,9 +155,10 @@ final class MinifyHtml implements Transformer
             return;
         }
 
-        // @todo: Need to handle the scenario when there is a comment before DOCTYPE declaration.
         // In case of the main $document has `securedDoctype`.
-        // if (preg_match('/^amp-doctype html/i', $node->data)) {return;}
+        if (preg_match('/^amp-doctype html/i', $node->data)) {
+            return;
+        }
 
         $this->nodesToRemove[] = $node;
     }
@@ -172,7 +173,6 @@ final class MinifyHtml implements Transformer
     private function minifyScriptNode(Element $node, $opts)
     {
         $isJSON = $this->isJSON($node);
-        $isAmpScript = ! $isJSON && $this->isInlineAmpScript($node);
 
         if ($node->hasChildNodes()) {
             foreach ($node->childNodes as $childNode) {
@@ -180,10 +180,8 @@ final class MinifyHtml implements Transformer
                     continue;
                 }
 
-                if ($isJSON && $opts[MinifyHtmlConfiguration::MINIFY_JSON]) {
+                if ($isJSON && $opts[MinifyHtmlConfiguration::MINIFY_JSON] && $childNode instanceof DOMText) {
                     $this->minifyJson($childNode);
-                } elseif ($isAmpScript && $opts[MinifyHtmlConfiguration::MINIFY_AMP_SCRIPT]) {
-                    $this->minifyAmpScript($childNode);
                 }
             }
         }
@@ -226,23 +224,6 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Checks if a node is meant to be an inline amp-script
-     *
-     * @param Element $node The element node need to be checked.
-     * @return bool
-     */
-    private function isInlineAmpScript($node)
-    {
-        $type = $node->attributes->getNamedItem('type');
-        $target = $node->attributes->getNamedItem('target');
-        return (
-            isset($type->value)
-            && isset($target->value)
-            && ($type->value === 'text/plain' || $target->value === 'amp-script')
-        );
-    }
-
-    /**
      * Minify JSON node
      *
      * @param DOMText $node The node to be minified.
@@ -257,16 +238,5 @@ final class MinifyHtml implements Transformer
             // PHP uses uppercase letters for angle bracket codes, so convert them into lowercase.
             $node->data = str_replace(['\u003E', '\u003C'], ['\u003e', '\u003c'], $data);
         }
-    }
-
-    /**
-     * Minify AMP script
-     *
-     * @param DOMText $node The node to be minified.
-     * @return void
-     */
-    private function minifyAmpScript($node)
-    {
-        // @todo: complete this method
     }
 }
