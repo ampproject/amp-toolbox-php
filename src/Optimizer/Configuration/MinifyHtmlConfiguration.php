@@ -7,14 +7,14 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 /**
  * Configuration for the MinifyHtml transformer.
  *
- * @property bool $minify                Is minification enabled.
- * @property bool $minifyAmpScript       Is amp-script minification enabled.
- * @property bool $minifyJSON            Is JSON data minification enabled.
- * @property bool $collapseWhitespace    Is collapsing the whitespace enabled.
- * @property bool $removeComments        Should remove comments.
- * @property bool $canCollapseWhitespace Can collapse whitespace
- * @property bool $inBody                Is node in the body
- * @property bool $commentIgnorePattern  Ignore comments of the form <!-- __AAAA_BBBB___ -->.
+ * @property bool   $minify                Whether minification is enabled.
+ * @property bool   $minifyAmpScript       Whether amp-script minification is enabled.
+ * @property bool   $minifyJSON            Whether JSON data minification is enabled.
+ * @property bool   $collapseWhitespace    Whether collapsing whitespace is enabled.
+ * @property bool   $removeComments        Whether comments should be removed.
+ * @property bool   $canCollapseWhitespace Whether whitespace can be collapsed.
+ * @property bool   $inBody                Whether the node is in the body.
+ * @property string $commentIgnorePattern  Ignore comments of the form <!-- __AAAA_BBBB___ -->.
  *
  * @package ampproject/amp-toolbox
  */
