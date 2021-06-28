@@ -35,7 +35,7 @@ final class MinifyHtml implements Transformer
     private $nodesToRemove;
 
     /**
-     * Instantiate an OptimizeAmpBind object.
+     * Instantiate a MinifyHtml object.
      *
      * @param TransformerConfiguration $configuration Configuration store to use.
      */
@@ -57,10 +57,7 @@ final class MinifyHtml implements Transformer
             return;
         }
 
-        /*
-         * Store nodes for later deletion to avoid changing the tree structure
-         * while iterating the DOM.
-         */
+        // Store nodes for later deletion to avoid changing the tree structure while iterating the DOM.
         $this->nodesToRemove = [];
 
         // Recursively walk through all nodes and minify if possible.
@@ -72,7 +69,7 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Apply minification to a DOM node
+     * Apply minification to a DOM node.
      *
      * @param DOMNode $node Node to apply the transformations to.
      * @param array   $opts Configuration options.
@@ -112,7 +109,7 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Minify a Text type DOM node
+     * Minify a text type DOM node.
      *
      * @param DOMText $node Text to apply the transformations to.
      * @param array   $opts Configuration options.
@@ -139,7 +136,7 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Minify/remove a comment node
+     * Minify/remove a comment node.
      *
      * @param DOMComment $node Comment to apply the transformations to.
      * @param array      $opts Configuration options.
@@ -155,7 +152,7 @@ final class MinifyHtml implements Transformer
             return;
         }
 
-        // In case of the main $document has `securedDoctype`.
+        // In case the main $document has `securedDoctype`.
         if (preg_match('/^amp-doctype html/i', $node->data)) {
             return;
         }
@@ -164,7 +161,7 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Minify a script node
+     * Minify a script node.
      *
      * @param Element $node Element to apply the transformations to.
      * @param array   $opts Configuration options.
