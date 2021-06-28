@@ -53,7 +53,7 @@ final class MinifyHtml implements Transformer
      */
     public function transform(Document $document, ErrorCollection $errors)
     {
-        if (! $this->configuration->get(MinifyHtmlConfiguration::MINIFIY)) {
+        if (! $this->configuration->get(MinifyHtmlConfiguration::MINIFY)) {
             return;
         }
 

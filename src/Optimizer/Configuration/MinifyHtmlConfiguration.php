@@ -26,7 +26,7 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
      *
      * @var bool
      */
-    const MINIFIY = 'minify';
+    const MINIFY = 'minify';
 
     /**
      * Whether amp-script minification is enabled.
@@ -87,7 +87,7 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
     protected function getAllowedKeys()
     {
         return [
-            self::MINIFIY                 => true,
+            self::MINIFY                 => true,
             self::MINIFY_AMP_SCRIPT       => true,
             self::MINIFY_JSON             => true,
             self::COLLAPSE_WHITESPACE     => true,
@@ -108,7 +108,7 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
     protected function validate($key, $value)
     {
         switch ($key) {
-            case self::MINIFIY:
+            case self::MINIFY:
             case self::MINIFY_AMP_SCRIPT:
             case self::MINIFY_JSON:
             case self::COLLAPSE_WHITESPACE:
