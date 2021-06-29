@@ -13,7 +13,6 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  * @property bool   $esmModulesEnabled Whether to use ES modules for loading the AMP runtime and components.
  * @property string $geoApiUrl         Specifies amp-geo API URL to use as a fallback.
  * @property bool   $lts               Use long-term stable URLs.
- * @property bool   $preloadEnabled    Whether to preload the runtime script and style.
  * @property bool   $rtv               Append the runtime version to the rewritten URLs.
  *
  * @package ampproject/amp-toolbox
@@ -71,13 +70,6 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
     const LTS = 'lts';
 
     /**
-     * Whether to preload runtime script and style.
-     *
-     * @var string
-     */
-    const PRELOAD_ENABLED = 'preloadEnabled';
-
-    /**
      * Append the runtime version to the rewritten URLs.
      *
      * This option is not compatible with `lts`.
@@ -104,7 +96,6 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
             self::ESM_MODULES_ENABLED => true,
             self::GEO_API_URL         => '',
             self::LTS                 => false,
-            self::PRELOAD_ENABLED     => false,
             self::RTV                 => false,
         ];
     }
@@ -171,17 +162,6 @@ final class RewriteAmpUrlsConfiguration extends BaseTransformerConfiguration
                     throw InvalidConfigurationValue::forInvalidSubValueType(
                         self::class,
                         self::LTS,
-                        'boolean',
-                        is_object($value) ? get_class($value) : gettype($value)
-                    );
-                }
-                break;
-
-            case self::PRELOAD_ENABLED:
-                if (! is_bool($value)) {
-                    throw InvalidConfigurationValue::forInvalidSubValueType(
-                        self::class,
-                        self::PRELOAD_ENABLED,
                         'boolean',
                         is_object($value) ? get_class($value) : gettype($value)
                     );
