@@ -31,13 +31,6 @@ final class MinifyHtml implements Transformer
     private $configuration;
 
     /**
-     * Store nodes for later deletion
-     *
-     * @var array
-     */
-    private $nodesToRemove;
-
-    /**
      * Instantiate a MinifyHtml object.
      *
      * @param TransformerConfiguration $configuration Configuration store to use.
@@ -60,14 +53,13 @@ final class MinifyHtml implements Transformer
             return;
         }
 
-        // Store nodes for later deletion to avoid changing the tree structure while iterating the DOM.
-        $this->nodesToRemove = [];
-
         // Recursively walk through all nodes and minify if possible.
-        $this->minifyNode($document, $errors);
+        $nodesToRemove = $this->minifyNode($document, $errors);
 
-        foreach ($this->nodesToRemove as $nodeToRemove) {
-            $nodeToRemove->parentNode->removeChild($nodeToRemove);
+        foreach ($nodesToRemove as $nodeToRemove) {
+            if ($nodeToRemove instanceof DOMNode) {
+                $nodeToRemove->parentNode->removeChild($nodeToRemove);
+            }
         }
     }
 
@@ -78,14 +70,16 @@ final class MinifyHtml implements Transformer
      * @param ErrorCollection $errors                Collection of errors that are collected during transformation.
      * @param bool            $canCollapseWhitespace Whether whitespace can be collapsed.
      * @param bool            $inBody                Whether the node is in the body.
-     * @return void
+     * @return array
      */
     private function minifyNode(DOMNode $node, ErrorCollection $errors, $canCollapseWhitespace = true, $inBody = false)
     {
+        $nodesToRemove = [];
+
         if ($node instanceof DOMText) {
-            $this->minifyTextNode($node, $canCollapseWhitespace, $inBody);
+            $nodesToRemove[] = $this->minifyTextNode($node, $canCollapseWhitespace, $inBody);
         } elseif ($node instanceof DOMComment) {
-            $this->minifyCommentNode($node);
+            $nodesToRemove[] = $this->minifyCommentNode($node);
         } elseif ($node instanceof Element && $node->tagName === Tag::SCRIPT) {
             $this->minifyScriptNode($node, $errors);
         }
@@ -105,9 +99,14 @@ final class MinifyHtml implements Transformer
 
         if ($node->hasChildNodes()) {
             foreach ($node->childNodes as $childNode) {
-                $this->minifyNode($childNode, $errors, $canCollapseWhitespace, $inBody);
+                $nodesToRemove = array_merge(
+                    $nodesToRemove,
+                    $this->minifyNode($childNode, $errors, $canCollapseWhitespace, $inBody)
+                );
             }
         }
+
+        return $nodesToRemove;
     }
 
     /**
@@ -116,12 +115,12 @@ final class MinifyHtml implements Transformer
      * @param DOMText $node                  Text to apply the transformations to.
      * @param bool    $canCollapseWhitespace Whether whitespace can be collapsed.
      * @param bool    $inBody                Whether the node is in the body.
-     * @return void
+     * @return DOMText|null Returns an empty DOMText if found, otherwise null.
      */
     private function minifyTextNode(DOMText $node, $canCollapseWhitespace = true, $inBody = false)
     {
         if (! $node->data || ! $this->configuration->get(MinifyHtmlConfiguration::COLLAPSE_WHITESPACE)) {
-            return;
+            return null;
         }
 
         if ($canCollapseWhitespace) {
@@ -134,32 +133,34 @@ final class MinifyHtml implements Transformer
 
         // Remove empty nodes.
         if (strlen($node->data) === 0) {
-            $this->nodesToRemove[] = $node;
+            return $node;
         }
+
+        return null;
     }
 
     /**
      * Minify/remove a comment node.
      *
      * @param DOMComment $node Comment to apply the transformations to.
-     * @return void
+     * @return DOMComment|null Returns a DOMComment node if matches the conditions, otherwise null.
      */
     private function minifyCommentNode(DOMComment $node)
     {
         if (! $node->data || ! $this->configuration->get(MinifyHtmlConfiguration::REMOVE_COMMENTS)) {
-            return;
+            return null;
         }
 
         if (preg_match($this->configuration->get(MinifyHtmlConfiguration::COMMENT_IGNORE_PATTERN), $node->data)) {
-            return;
+            return null;
         }
 
         // In case the main $document has `securedDoctype`.
         if (preg_match('/^amp-doctype html/i', $node->data)) {
-            return;
+            return null;
         }
 
-        $this->nodesToRemove[] = $node;
+        return $node;
     }
 
     /**
@@ -167,6 +168,7 @@ final class MinifyHtml implements Transformer
      *
      * @param Element         $node     Element to apply the transformations to.
      * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
+     * @return void
      */
     private function minifyScriptNode(Element $node, ErrorCollection $errors)
     {
