@@ -77,9 +77,9 @@ final class MinifyHtml implements Transformer
         $nodesToRemove = [];
 
         if ($node instanceof DOMText) {
-            $nodesToRemove[] = $this->minifyTextNode($node, $canCollapseWhitespace, $inBody);
+            $nodesToRemove = $this->minifyTextNode($node, $canCollapseWhitespace, $inBody);
         } elseif ($node instanceof DOMComment) {
-            $nodesToRemove[] = $this->minifyCommentNode($node);
+            $nodesToRemove = $this->minifyCommentNode($node);
         } elseif ($node instanceof Element && $node->tagName === Tag::SCRIPT) {
             $this->minifyScriptNode($node, $errors);
         }
@@ -115,12 +115,12 @@ final class MinifyHtml implements Transformer
      * @param DOMText $node                  Text to apply the transformations to.
      * @param bool    $canCollapseWhitespace Whether whitespace can be collapsed.
      * @param bool    $inBody                Whether the node is in the body.
-     * @return DOMText|null Returns an empty DOMText if found, otherwise null.
+     * @return array
      */
     private function minifyTextNode(DOMText $node, $canCollapseWhitespace = true, $inBody = false)
     {
         if (! $node->data || ! $this->configuration->get(MinifyHtmlConfiguration::COLLAPSE_WHITESPACE)) {
-            return null;
+            return [];
         }
 
         if ($canCollapseWhitespace) {
@@ -133,34 +133,34 @@ final class MinifyHtml implements Transformer
 
         // Remove empty nodes.
         if (strlen($node->data) === 0) {
-            return $node;
+            return [$node];
         }
 
-        return null;
+        return [];
     }
 
     /**
      * Minify/remove a comment node.
      *
      * @param DOMComment $node Comment to apply the transformations to.
-     * @return DOMComment|null Returns a DOMComment node if matches the conditions, otherwise null.
+     * @return array
      */
     private function minifyCommentNode(DOMComment $node)
     {
         if (! $node->data || ! $this->configuration->get(MinifyHtmlConfiguration::REMOVE_COMMENTS)) {
-            return null;
+            return [];
         }
 
         if (preg_match($this->configuration->get(MinifyHtmlConfiguration::COMMENT_IGNORE_PATTERN), $node->data)) {
-            return null;
+            return [];
         }
 
         // In case the main $document has `securedDoctype`.
         if (preg_match('/^amp-doctype html/i', $node->data)) {
-            return null;
+            return [];
         }
 
-        return $node;
+        return [$node];
     }
 
     /**
