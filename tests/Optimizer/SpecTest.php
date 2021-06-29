@@ -46,6 +46,7 @@ final class SpecTest extends TestCase
 
         'PreloadHeroImage - max-hero-image-count-param'    => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
         'PreloadHeroImage - disable_via_param'             => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
+
         'MinifyHtml - minifies_inline_amp-script'          => 'see https://github.com/ampproject/amp-toolbox-php/issues/260',
     ];
 
@@ -198,6 +199,9 @@ final class SpecTest extends TestCase
     {
         $mappedConfiguration = [];
 
+        // The commentIgnorePattern config for MinifyHtml transformer.
+        $mappedConfiguration[MinifyHtml::class][MinifyHtmlConfiguration::COMMENT_IGNORE_PATTERN] = '/^\s*__[a-bA-Z0-9_-]+__\s*$/';
+
         foreach ($configurationData as $key => $value) {
             switch ($key) {
                 case 'ampRuntimeStyles':
@@ -229,8 +233,8 @@ final class SpecTest extends TestCase
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::RTV] = $value;
                     break;
 
-                // @TODO: Need to know what is the better way to handle this?
                 case '__format':
+                    // Defines how spec test snapshots are generated in the NodeJS toolbox and can be ignored here.
                     break;
 
                 // @TODO: Known configuration arguments used in spec tests that are not implemented yet.

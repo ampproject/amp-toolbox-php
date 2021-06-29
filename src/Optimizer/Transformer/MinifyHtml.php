@@ -68,9 +68,9 @@ final class MinifyHtml implements Transformer
      *
      * @param DOMNode         $node                  Node to apply the transformations to.
      * @param ErrorCollection $errors                Collection of errors that are collected during transformation.
-     * @param bool            $canCollapseWhitespace Whether whitespace can be collapsed.
-     * @param bool            $inBody                Whether the node is in the body.
-     * @return array
+     * @param bool            $canCollapseWhitespace Optional. Whether whitespace can be collapsed. Defaults to true.
+     * @param bool            $inBody                Optional. Whether the node is in the body. Defaults to false.
+     * @return DOMNode[] Array of nodes to be removed.
      */
     private function minifyNode(DOMNode $node, ErrorCollection $errors, $canCollapseWhitespace = true, $inBody = false)
     {
@@ -113,9 +113,9 @@ final class MinifyHtml implements Transformer
      * Minify a text type DOM node.
      *
      * @param DOMText $node                  Text to apply the transformations to.
-     * @param bool    $canCollapseWhitespace Whether whitespace can be collapsed.
-     * @param bool    $inBody                Whether the node is in the body.
-     * @return array
+     * @param bool    $canCollapseWhitespace Optional. Whether whitespace can be collapsed. Defaults to true.
+     * @param bool    $inBody                Optional. Whether the node is in the body. Defaults to false.
+     * @return DOMNode[] Array of nodes to be removed.
      */
     private function minifyTextNode(DOMText $node, $canCollapseWhitespace = true, $inBody = false)
     {
@@ -143,7 +143,7 @@ final class MinifyHtml implements Transformer
      * Minify/remove a comment node.
      *
      * @param DOMComment $node Comment to apply the transformations to.
-     * @return array
+     * @return DOMNode[] Array of nodes to be removed.
      */
     private function minifyCommentNode(DOMComment $node)
     {
@@ -151,7 +151,8 @@ final class MinifyHtml implements Transformer
             return [];
         }
 
-        if (preg_match($this->configuration->get(MinifyHtmlConfiguration::COMMENT_IGNORE_PATTERN), $node->data)) {
+        $commentIgnorePattern = $this->configuration->get(MinifyHtmlConfiguration::COMMENT_IGNORE_PATTERN);
+        if (! empty($commentIgnorePattern) && preg_match($commentIgnorePattern, $node->data)) {
             return [];
         }
 
@@ -166,36 +167,28 @@ final class MinifyHtml implements Transformer
     /**
      * Minify a script node.
      *
-     * @param Element         $node     Element to apply the transformations to.
-     * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
-     * @return void
+     * @param Element         $node   Element to apply the transformations to.
+     * @param ErrorCollection $errors Collection of errors that are collected during transformation.
      */
     private function minifyScriptNode(Element $node, ErrorCollection $errors)
     {
-        $isJSON = $this->isJSON($node);
+        if (! $this->configuration->get(MinifyHtmlConfiguration::MINIFY_JSON) || ! $this->isJSON($node)) {
+            return;
+        }
 
-        if ($node->hasChildNodes()) {
-            foreach ($node->childNodes as $childNode) {
-                if (empty($childNode->data)) {
-                    continue;
-                }
-
-                if (
-                    $isJSON
-                    && $this->configuration->get(MinifyHtmlConfiguration::MINIFY_JSON)
-                    && $childNode instanceof DOMText
-                ) {
-                    $this->minifyJson($childNode, $errors);
-                }
+        foreach ($node->childNodes as $childNode) {
+            if (! $childNode instanceof DOMText || empty($childNode->data)) {
+                continue;
             }
+            $this->minifyJson($childNode, $errors);
         }
     }
 
     /**
-     * Check whether a tag is allowed to collapse whitespace
+     * Check whether a tag is allowed to collapse whitespace.
      *
      * @param string $tagName The allowed tag name.
-     * @return bool
+     * @return bool Whether whitespace can be collapsed.
      */
     private function canCollapseWhitespace($tagName)
     {
@@ -205,10 +198,10 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Normalize whitespace for a string data
+     * Normalize whitespace for a string data.
      *
      * @param string $data The data to be normalized.
-     * @return string
+     * @return string Normalized string data.
      */
     private function normalizeWhitespace($data)
     {
@@ -216,10 +209,10 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Checks if a node is JSON type
+     * Checks if a node is JSON type.
      *
      * @param Element $node The element node need to be checked.
-     * @return bool
+     * @return bool Whether the checked element is a JSON snippet.
      */
     private function isJSON(Element $node)
     {
@@ -228,24 +221,23 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Minify JSON node
+     * Minify JSON node.
      *
-     * @param DOMText         $node     The node to be minified.
-     * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
-     * @return void
+     * @param DOMText         $node   The node to be minified.
+     * @param ErrorCollection $errors Collection of errors that are collected during transformation.
      */
     private function minifyJson(DOMText $node, ErrorCollection $errors)
     {
         $decodedData = json_decode($node->data);
 
-        if (json_last_error()) {
+        if (JSON_ERROR_NONE !== json_last_error()) {
             $errors->add(InvalidJson::fromLastErrorMsgAfterDecoding());
         }
 
         if (! empty($decodedData)) {
             $data = json_encode($decodedData, JSON_HEX_AMP | JSON_HEX_TAG | JSON_UNESCAPED_SLASHES);
 
-            if (json_last_error()) {
+            if (JSON_ERROR_NONE !== json_last_error()) {
                 $errors->add(InvalidJson::fromLastErrorMsgAfterEncoding());
             }
 

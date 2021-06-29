@@ -15,7 +15,7 @@ use InvalidArgumentException;
  * @property bool   $removeComments        Whether comments should be removed.
  * @property bool   $canCollapseWhitespace Whether whitespace can be collapsed.
  * @property bool   $inBody                Whether the node is in the body.
- * @property string $commentIgnorePattern  Ignore comments of the form <!-- __AAAA_BBBB___ -->.
+ * @property string $commentIgnorePattern  Regex pattern of comments to keep.
  *
  * @package ampproject/amp-toolbox
  */
@@ -58,7 +58,7 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
     const REMOVE_COMMENTS = 'removeComments';
 
     /**
-     * Ignore comments of the form <!-- __AAAA_BBBB___ --> by default (used by Next.js).
+     * Regular expression pattern of comments to keep.
      *
      * @var string
      */
@@ -79,7 +79,7 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
             self::MINIFY_JSON             => true,
             self::COLLAPSE_WHITESPACE     => true,
             self::REMOVE_COMMENTS         => true,
-            self::COMMENT_IGNORE_PATTERN  => '/^\s*__[a-bA-Z0-9_-]+__\s*$/',
+            self::COMMENT_IGNORE_PATTERN  => '',
         ];
     }
 

@@ -31,9 +31,9 @@ final class MinifyHtmlTest extends TestCase
     {
         $jsonData = [
             'vars' => [
-                'apid'    => 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
-                'apv'     => '1.0',
-                'apn'     => 'My AMP Website',
+                'apid' => 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+                'apv'  => '1.0',
+                'apn'  => 'My AMP Website',
             ],
         ];
 
