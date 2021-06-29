@@ -2,25 +2,15 @@
 
 namespace AmpProject\Optimizer\Transformer;
 
-use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
-use AmpProject\Dom\Element;
-use AmpProject\Dom\NodeWalker;
-use AmpProject\Exception\FailedToParseUrl;
 use AmpProject\Extension;
-use AmpProject\Layout;
 use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
-use AmpProject\Optimizer\HeroImage;
-use AmpProject\Optimizer\ImageDimensions;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
-use AmpProject\RequestDestination;
-use AmpProject\Tag;
-use AmpProject\Url;
 
 /**
  * PreloadHeroImage - this transformer optimizes image rendering times for hero images. For hero images it will:
