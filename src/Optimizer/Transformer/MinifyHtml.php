@@ -6,6 +6,7 @@ use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
+use AmpProject\Optimizer\Error\InvalidJson;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
@@ -63,7 +64,7 @@ final class MinifyHtml implements Transformer
         $this->nodesToRemove = [];
 
         // Recursively walk through all nodes and minify if possible.
-        $this->minifyNode($document);
+        $this->minifyNode($document, $errors);
 
         foreach ($this->nodesToRemove as $nodeToRemove) {
             $nodeToRemove->parentNode->removeChild($nodeToRemove);
@@ -73,19 +74,20 @@ final class MinifyHtml implements Transformer
     /**
      * Apply minification to a DOM node.
      *
-     * @param DOMNode $node                  Node to apply the transformations to.
-     * @param bool    $canCollapseWhitespace Whether whitespace can be collapsed.
-     * @param bool    $inBody                Whether the node is in the body.
+     * @param DOMNode         $node                  Node to apply the transformations to.
+     * @param ErrorCollection $errors                Collection of errors that are collected during transformation.
+     * @param bool            $canCollapseWhitespace Whether whitespace can be collapsed.
+     * @param bool            $inBody                Whether the node is in the body.
      * @return void
      */
-    private function minifyNode(DOMNode $node, $canCollapseWhitespace = true, $inBody = false)
+    private function minifyNode(DOMNode $node, ErrorCollection $errors, $canCollapseWhitespace = true, $inBody = false)
     {
         if ($node instanceof DOMText) {
             $this->minifyTextNode($node, $canCollapseWhitespace, $inBody);
         } elseif ($node instanceof DOMComment) {
             $this->minifyCommentNode($node);
         } elseif ($node instanceof Element && $node->tagName === Tag::SCRIPT) {
-            $this->minifyScriptNode($node);
+            $this->minifyScriptNode($node, $errors);
         }
 
         // Update options based on the current node.
@@ -103,7 +105,7 @@ final class MinifyHtml implements Transformer
 
         if ($node->hasChildNodes()) {
             foreach ($node->childNodes as $childNode) {
-                $this->minifyNode($childNode, $canCollapseWhitespace, $inBody);
+                $this->minifyNode($childNode, $errors, $canCollapseWhitespace, $inBody);
             }
         }
     }
@@ -163,9 +165,10 @@ final class MinifyHtml implements Transformer
     /**
      * Minify a script node.
      *
-     * @param Element $node Element to apply the transformations to.
+     * @param Element         $node     Element to apply the transformations to.
+     * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
      */
-    private function minifyScriptNode(Element $node)
+    private function minifyScriptNode(Element $node, ErrorCollection $errors)
     {
         $isJSON = $this->isJSON($node);
 
@@ -180,7 +183,7 @@ final class MinifyHtml implements Transformer
                     && $this->configuration->get(MinifyHtmlConfiguration::MINIFY_JSON)
                     && $childNode instanceof DOMText
                 ) {
-                    $this->minifyJson($childNode);
+                    $this->minifyJson($childNode, $errors);
                 }
             }
         }
@@ -225,15 +228,25 @@ final class MinifyHtml implements Transformer
     /**
      * Minify JSON node
      *
-     * @param DOMText $node The node to be minified.
+     * @param DOMText         $node     The node to be minified.
+     * @param ErrorCollection $errors   Collection of errors that are collected during transformation.
      * @return void
      */
-    private function minifyJson(DOMText $node)
+    private function minifyJson(DOMText $node, ErrorCollection $errors)
     {
         $decodedData = json_decode($node->data);
 
+        if (json_last_error()) {
+            $errors->add(InvalidJson::fromLastErrorMsgAfterDecoding());
+        }
+
         if (! empty($decodedData)) {
             $data = json_encode($decodedData, JSON_HEX_AMP | JSON_HEX_TAG | JSON_UNESCAPED_SLASHES);
+
+            if (json_last_error()) {
+                $errors->add(InvalidJson::fromLastErrorMsgAfterEncoding());
+            }
+
             // PHP uses uppercase letters for angle bracket codes, so convert them into lowercase.
             $node->data = str_replace(['\u003E', '\u003C'], ['\u003e', '\u003c'], $data);
         }

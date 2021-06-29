@@ -4,7 +4,9 @@ namespace AmpProject\Optimizer\Transformer;
 
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
+use AmpProject\Optimizer\Error\InvalidJson;
 use AmpProject\Optimizer\ErrorCollection;
+use AmpProject\Tests\ErrorComparison;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
@@ -17,6 +19,7 @@ use AmpProject\Tests\TestMarkup;
  */
 final class MinifyHtmlTest extends TestCase
 {
+    use ErrorComparison;
     use MarkupComparison;
 
     /**
@@ -68,6 +71,22 @@ final class MinifyHtmlTest extends TestCase
                 '{"vars":{"apid":"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX","apv":"1.0","apn":"My AMP Website"}}' .
                 '</script>' .
                 '</body></html>',
+            ],
+
+            'throws exception during JSON minification due to invalid JSON data' => [
+                TestMarkup::DOCTYPE . '<html ⚡> <head> ' .
+                TestMarkup::META_CHARSET .
+                ' </head> <body>' .
+                '<script type="application/json">invalid json</script>' .
+                '</body> </html>',
+                TestMarkup::DOCTYPE . '<html ⚡><head>' .
+                TestMarkup::META_CHARSET .
+                '</head><body>' .
+                '<script type="application/json">invalid json</script>' .
+                '</body></html>',
+                [
+                    new InvalidJson('Error decoding JSON: Syntax error'),
+                ]
             ]
         ];
     }
@@ -78,10 +97,11 @@ final class MinifyHtmlTest extends TestCase
      * @covers       \AmpProject\Optimizer\Transformer\AmpBoilerplate::transform()
      * @dataProvider dataTransform()
      *
-     * @param string $source       String of source HTML.
-     * @param string $expectedHtml String of expected HTML output.
+     * @param string                  $source         String of source HTML.
+     * @param string                  $expectedHtml   String of expected HTML output.
+     * @param ErrorCollection|Error[] $expectedErrors Set of expected errors.
      */
-    public function testTransform($source, $expectedHtml)
+    public function testTransform($source, $expectedHtml, $expectedErrors = [])
     {
         $document      = Document::fromHtml($source);
         $configuration = new MinifyHtmlConfiguration();
@@ -89,6 +109,8 @@ final class MinifyHtmlTest extends TestCase
         $errors        = new ErrorCollection();
 
         $transformer->transform($document, $errors);
+
         $this->assertSimilarMarkup($expectedHtml, $document->saveHTML());
+        $this->assertSameErrors($expectedErrors, $errors);
     }
 }
