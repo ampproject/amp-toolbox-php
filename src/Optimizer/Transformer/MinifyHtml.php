@@ -2,12 +2,14 @@
 
 namespace AmpProject\Optimizer\Transformer;
 
+use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
+use AmpProject\Tag;
 use DOMComment;
 use DOMNode;
 use DOMText;
@@ -61,7 +63,7 @@ final class MinifyHtml implements Transformer
         $this->nodesToRemove = [];
 
         // Recursively walk through all nodes and minify if possible.
-        $this->minifyNode($document, $this->configuration->toArray());
+        $this->minifyNode($document);
 
         foreach ($this->nodesToRemove as $nodeToRemove) {
             $nodeToRemove->parentNode->removeChild($nodeToRemove);
@@ -71,39 +73,37 @@ final class MinifyHtml implements Transformer
     /**
      * Apply minification to a DOM node.
      *
-     * @param DOMNode $node Node to apply the transformations to.
-     * @param array   $opts Configuration options.
+     * @param DOMNode $node                  Node to apply the transformations to.
+     * @param bool    $canCollapseWhitespace Whether whitespace can be collapsed.
+     * @param bool    $inBody                Whether the node is in the body.
      * @return void
      */
-    private function minifyNode(DOMNode $node, $opts)
+    private function minifyNode(DOMNode $node, $canCollapseWhitespace = true, $inBody = false)
     {
         if ($node instanceof DOMText) {
-            $this->minifyTextNode($node, $opts);
+            $this->minifyTextNode($node, $canCollapseWhitespace, $inBody);
         } elseif ($node instanceof DOMComment) {
-            $this->minifyCommentNode($node, $opts);
-        } elseif ($node instanceof Element && $node->tagName === 'script') {
-            $this->minifyScriptNode($node, $opts);
+            $this->minifyCommentNode($node);
+        } elseif ($node instanceof Element && $node->tagName === Tag::SCRIPT) {
+            $this->minifyScriptNode($node);
         }
 
         // Update options based on the current node.
         if (isset($node->tagName)) {
-            if (
-                $opts[MinifyHtmlConfiguration::CAN_COLLAPSE_WHITESPACE]
-                && !$this->canCollapseWhitespace($node->tagName)
-            ) {
-                $opts[MinifyHtmlConfiguration::CAN_COLLAPSE_WHITESPACE] = false;
+            if ($canCollapseWhitespace && !$this->canCollapseWhitespace($node->tagName)) {
+                $canCollapseWhitespace = false;
             }
 
-            if ($node->tagName === 'head' || $node->tagName === 'html') {
-                $opts[MinifyHtmlConfiguration::IN_BODY] = false;
-            } elseif ($node->tagName === 'body') {
-                $opts[MinifyHtmlConfiguration::IN_BODY] = true;
+            if ($node->tagName === Tag::HEAD || $node->tagName === Tag::HTML) {
+                $inBody = false;
+            } elseif ($node->tagName === Tag::BODY) {
+                $inBody = true;
             }
         }
 
         if ($node->hasChildNodes()) {
             foreach ($node->childNodes as $childNode) {
-                $this->minifyNode($childNode, $opts);
+                $this->minifyNode($childNode, $canCollapseWhitespace, $inBody);
             }
         }
     }
@@ -111,21 +111,22 @@ final class MinifyHtml implements Transformer
     /**
      * Minify a text type DOM node.
      *
-     * @param DOMText $node Text to apply the transformations to.
-     * @param array   $opts Configuration options.
+     * @param DOMText $node                  Text to apply the transformations to.
+     * @param bool    $canCollapseWhitespace Whether whitespace can be collapsed.
+     * @param bool    $inBody                Whether the node is in the body.
      * @return void
      */
-    private function minifyTextNode(DOMText $node, $opts)
+    private function minifyTextNode(DOMText $node, $canCollapseWhitespace = true, $inBody = false)
     {
-        if (! $node->data || ! $opts[MinifyHtmlConfiguration::COLLAPSE_WHITESPACE]) {
+        if (! $node->data || ! $this->configuration->get(MinifyHtmlConfiguration::COLLAPSE_WHITESPACE)) {
             return;
         }
 
-        if ($opts[MinifyHtmlConfiguration::CAN_COLLAPSE_WHITESPACE]) {
+        if ($canCollapseWhitespace) {
             $node->data = $this->normalizeWhitespace($node->data);
         }
 
-        if (! $opts[MinifyHtmlConfiguration::IN_BODY]) {
+        if (! $inBody) {
             $node->data = trim($node->data);
         }
 
@@ -139,16 +140,15 @@ final class MinifyHtml implements Transformer
      * Minify/remove a comment node.
      *
      * @param DOMComment $node Comment to apply the transformations to.
-     * @param array      $opts Configuration options.
      * @return void
      */
-    private function minifyCommentNode(DOMComment $node, $opts)
+    private function minifyCommentNode(DOMComment $node)
     {
-        if (! $node->data || ! $opts[MinifyHtmlConfiguration::REMOVE_COMMENTS]) {
+        if (! $node->data || ! $this->configuration->get(MinifyHtmlConfiguration::REMOVE_COMMENTS)) {
             return;
         }
 
-        if (preg_match($opts[MinifyHtmlConfiguration::COMMENT_IGNORE_PATTERN], $node->data)) {
+        if (preg_match($this->configuration->get(MinifyHtmlConfiguration::COMMENT_IGNORE_PATTERN), $node->data)) {
             return;
         }
 
@@ -164,10 +164,8 @@ final class MinifyHtml implements Transformer
      * Minify a script node.
      *
      * @param Element $node Element to apply the transformations to.
-     * @param array   $opts Configuration options.
-     * @return void
      */
-    private function minifyScriptNode(Element $node, $opts)
+    private function minifyScriptNode(Element $node)
     {
         $isJSON = $this->isJSON($node);
 
@@ -177,7 +175,11 @@ final class MinifyHtml implements Transformer
                     continue;
                 }
 
-                if ($isJSON && $opts[MinifyHtmlConfiguration::MINIFY_JSON] && $childNode instanceof DOMText) {
+                if (
+                    $isJSON
+                    && $this->configuration->get(MinifyHtmlConfiguration::MINIFY_JSON)
+                    && $childNode instanceof DOMText
+                ) {
                     $this->minifyJson($childNode);
                 }
             }
@@ -193,7 +195,7 @@ final class MinifyHtml implements Transformer
     private function canCollapseWhitespace($tagName)
     {
         return (
-            'script' !== $tagName && 'style' !== $tagName && 'pre' !== $tagName && 'textarea' !== $tagName
+            Tag::SCRIPT !== $tagName && Tag::STYLE !== $tagName && Tag::PRE !== $tagName && Tag::TEXTAREA !== $tagName
         );
     }
 
@@ -216,8 +218,8 @@ final class MinifyHtml implements Transformer
      */
     private function isJSON(Element $node)
     {
-        $type = $node->attributes->getNamedItem('type');
-        return isset($type->value) && ($type->value === 'application/json' || $type->value === 'application/ld+json');
+        $type = $node->getAttribute(Attribute::TYPE);
+        return $type === Attribute::TYPE_JSON || $type === Attribute::TYPE_LD_JSON;
     }
 
     /**
