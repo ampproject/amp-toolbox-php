@@ -25,10 +25,12 @@ use AmpProject\Url;
  * OptimizeHeroImages - this transformer optimizes image rendering times for hero images. For hero images it will:
  *
  * 1. Inject a preload hint (if possible)
- * 2. Generate an img tag enabling the browser to render the image without the AMP runtime being loaded.
+ * 2. Generate img tag(s) enabling the browser to render the hero image(s) without the AMP runtime being loaded.
  *
- * Hero images are either identified automatically or can be explicitly defined by adding an `data-hero` attribute to
- * the element.
+ * Hero images are either identified automatically or can be explicitly defined by adding an `data-hero` attribute or
+ * `data-hero-candidate` to the element. If `data-hero` is present, then auto-detection will not be used to identify
+ * any other hero images; using `data-hero-candidate` allows for images to be identified as heroes without
+ * short-circuiting automatic detection for other images.
  *
  * This transformer supports the following options:
  *
@@ -233,9 +235,8 @@ final class OptimizeHeroImages implements Transformer
             return $heroImages;
         }
 
-        while (count($heroImages) < $maxHeroImageCount && count($heroImageCandidates) > 0) {
-            $heroImages[] = array_shift($heroImageCandidates);
-        }
+        // Since there were no hero images, use the hero image candidates instead.
+        $heroImages = array_slice($heroImageCandidates, 0, $maxHeroImageCount);
 
         if (count($heroImages) < 1 && $heroImageFallback) {
             $heroImages[] = $heroImageFallback;
