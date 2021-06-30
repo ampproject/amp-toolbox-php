@@ -193,12 +193,11 @@ final class OptimizeHeroImages implements Transformer
      */
     private function findHeroImages(Document $document, $maxHeroImageCount)
     {
-        $heroImages                = [];
-        $heroImageCandidates       = [];
-        $heroImageFallbacks        = [];
-        $previousHeroImageFallback = null;
-        $seenParagraphCount        = 0;
-        $node                      = $document->body;
+        $heroImages          = [];
+        $heroImageCandidates = [];
+        $heroImageFallback   = null;
+        $seenParagraphCount  = 0;
+        $node                = $document->body;
 
         while ($node !== null) {
             if (! $node instanceof Element) {
@@ -217,21 +216,8 @@ final class OptimizeHeroImages implements Transformer
                 $heroImageCandidate = $this->detectImageWithAttribute($node, Attribute::DATA_HERO_CANDIDATE);
                 if ($heroImageCandidate) {
                     $heroImageCandidates[] = $heroImageCandidate;
-                } elseif ($seenParagraphCount < 2 && count($heroImageFallbacks) < $maxHeroImageCount) {
+                } elseif ($seenParagraphCount < 2 && ! $heroImageFallback) {
                     $heroImageFallback = $this->detectPossibleHeroImageFallbacks($node);
-
-                    // Ensure we don't flag the same image twice. This can happen for placeholder images, which are
-                    // flagged on their own and as their parent's placeholder.
-                    if (
-                        $heroImageFallback
-                        && (
-                            ! $previousHeroImageFallback
-                            || $heroImageFallback->getAmpImg() !== $previousHeroImageFallback->getAmpImg()
-                        )
-                    ) {
-                        $heroImageFallbacks[]      = $heroImageFallback;
-                        $previousHeroImageFallback = $heroImageFallback;
-                    }
                 }
             }
 
@@ -251,8 +237,8 @@ final class OptimizeHeroImages implements Transformer
             $heroImages[] = array_shift($heroImageCandidates);
         }
 
-        if (count($heroImages) < 1 && count($heroImageFallbacks) > 0) {
-            $heroImages[] = array_shift($heroImageFallbacks);
+        if (count($heroImages) < 1 && $heroImageFallback) {
+            $heroImages[] = $heroImageFallback;
         }
 
         return $heroImages;
