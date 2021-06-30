@@ -3,7 +3,7 @@
 namespace AmpProject\Optimizer\Transformer;
 
 use AmpProject\Dom\Document;
-use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
+use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Tests\ErrorComparison;
@@ -12,12 +12,12 @@ use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
 
 /**
- * Test the PreloadHeroImage transformer.
+ * Test the OptimizeHeroImages transformer.
  *
- * @covers \AmpProject\Optimizer\Transformer\PreloadHeroImage
+ * @covers \AmpProject\Optimizer\Transformer\OptimizeHeroImages
  * @package ampproject/amp-toolbox
  */
-final class PreloadHeroImageTest extends TestCase
+final class OptimizeHeroImagesTest extends TestCase
 {
     use ErrorComparison;
     use MarkupComparison;
@@ -131,7 +131,7 @@ final class PreloadHeroImageTest extends TestCase
                 ),
                 [],
                 [
-                    PreloadHeroImageConfiguration::PRELOAD_SRCSET => true,
+                    OptimizeHeroImagesConfiguration::PRELOAD_SRCSET => true,
                 ]
             ],
 
@@ -193,7 +193,7 @@ final class PreloadHeroImageTest extends TestCase
                 ),
                 [],
                 [
-                    PreloadHeroImageConfiguration::INLINE_STYLE_BACKUP_ATTRIBUTE => 'data-amp-original-style',
+                    OptimizeHeroImagesConfiguration::INLINE_STYLE_BACKUP_ATTRIBUTE => 'data-amp-original-style',
                 ]
             ],
 
@@ -208,7 +208,7 @@ final class PreloadHeroImageTest extends TestCase
                 ),
                 [],
                 [
-                    PreloadHeroImageConfiguration::PRELOAD_SRCSET => true,
+                    OptimizeHeroImagesConfiguration::PRELOAD_SRCSET => true,
                 ]
             ],
 
@@ -338,7 +338,7 @@ final class PreloadHeroImageTest extends TestCase
     /**
      * Test the transform() method.
      *
-     * @covers       \AmpProject\Optimizer\Transformer\PreloadHeroImage::transform()
+     * @covers       \AmpProject\Optimizer\Transformer\OptimizeHeroImages::transform()
      * @dataProvider dataTransform()
      *
      * @param string                  $source         String of source HTML.
@@ -349,16 +349,8 @@ final class PreloadHeroImageTest extends TestCase
     public function testTransform($source, $expectedHtml, $expectedErrors = [], $config = [])
     {
         $document    = Document::fromHtml($source);
-        $transformer = new PreloadHeroImage(new PreloadHeroImageConfiguration($config));
+        $transformer = new OptimizeHeroImages(new OptimizeHeroImagesConfiguration($config));
         $errors      = new ErrorCollection();
-
-        // Always expect the PreloadHeroImage transformer to throw a deprecation error.
-        $deprecation = Error\DeprecatedTransformer::withReplacement(PreloadHeroImage::class, OptimizeHeroImages::class);
-        if ($expectedErrors instanceof ErrorCollection) {
-            $expectedErrors = iterator_to_array($expectedErrors);
-        }
-
-        array_unshift($expectedErrors, $deprecation);
 
         $transformer->transform($document, $errors);
 
