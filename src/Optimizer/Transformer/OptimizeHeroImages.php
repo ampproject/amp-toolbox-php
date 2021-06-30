@@ -30,7 +30,8 @@ use AmpProject\Url;
  * Hero images are either identified automatically or can be explicitly defined by adding an `data-hero` attribute or
  * `data-hero-candidate` to the element. If `data-hero` is present, then auto-detection will not be used to identify
  * any other hero images; using `data-hero-candidate` allows for images to be identified as heroes without
- * short-circuiting automatic detection for other images.
+ * short-circuiting automatic detection for other images. Lastly, if no image has either `data-hero` or
+ * `data-hero-candidate`, then the first non-tiny image that occurs before two paragraphs is used as the hero.
  *
  * This transformer supports the following options:
  *
