@@ -30,6 +30,9 @@ use AmpProject\Optimizer\TransformerConfiguration;
  * @version 3429af9d91e2c9efe1af85757499e5a308755f5f
  * @link    https://github.com/ampproject/amp-toolbox/blob/3429af9d91e2c9efe1af85757499e5a308755f5f/packages/optimizer/lib/transformers/PreloadHeroImage.js
  *
+ * @deprecated since version 0.6.0
+ * @see \AmpProject\Optimizer\Transformer\OptimizeHeroImages
+ *
  * @package ampproject/amp-toolbox
  */
 final class PreloadHeroImage implements Transformer
