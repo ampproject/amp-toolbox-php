@@ -5,10 +5,12 @@ namespace AmpProject\Optimizer;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
+use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;
 use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
 use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
 use AmpProject\Optimizer\Transformer\GoogleFontsPreconnect;
 use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
+use AmpProject\Optimizer\Transformer\OptimizeHeroImages;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
@@ -41,9 +43,6 @@ final class SpecTest extends TestCase
 
         'ServerSideRendering - converts_sizes_attribute_to_css'                => 'see https://github.com/ampproject/amp-toolbox/issues/819',
         'ServerSideRendering - boilerplate_not_removed_when_amp-story_present' => 'Node.js on stories produces partial SSR whereas PHP leaves the original story intact',
-
-        'PreloadHeroImage - max-hero-image-count-param'    => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
-        'PreloadHeroImage - disable_via_param'             => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
     ];
 
     const CLASS_SKIP_TEST = '__SKIP__';
@@ -82,8 +81,8 @@ final class SpecTest extends TestCase
                 OptimizeAmpBind::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeAmpBind',
             ],
-            'PreloadHeroImage'              => [
-                PreloadHeroImage::class,
+            'OptimizeHeroImages'              => [
+                OptimizeHeroImages::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/OptimizeHeroImages',
             ],
             'ReorderHead'                   => [
@@ -212,8 +211,14 @@ final class SpecTest extends TestCase
                 case 'lts':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::LTS] = $value;
                     break;
+                case 'maxHeroImageCount':
+                    $mappedConfiguration[OptimizeHeroImages::class][OptimizeHeroImagesConfiguration::MAX_HERO_IMAGE_COUNT] = $value;
+                    break;
                 case 'optimizeAmpBind':
                     $mappedConfiguration[OptimizeAmpBind::class][OptimizeAmpBindConfiguration::ENABLED] = $value;
+                    break;
+                case 'optimizeHeroImages':
+                    $mappedConfiguration[OptimizeHeroImages::class][OptimizeHeroImagesConfiguration::OPTIMIZE_HERO_IMAGES] = $value;
                     break;
                 case 'preloadHeroImage':
                     $mappedConfiguration[PreloadHeroImage::class][PreloadHeroImageConfiguration::PRELOAD_HERO_IMAGE] = $value;

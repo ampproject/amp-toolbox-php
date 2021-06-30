@@ -9,6 +9,7 @@ use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
 use AmpProject\Optimizer\Transformer\AmpRuntimePreloads;
 use AmpProject\Optimizer\Transformer\GoogleFontsPreconnect;
 use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
+use AmpProject\Optimizer\Transformer\OptimizeHeroImages;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
 use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
@@ -47,7 +48,7 @@ interface Configuration
     const DEFAULT_TRANSFORMERS = [
         TransformedIdentifier::class,
         AmpBoilerplate::class,
-        PreloadHeroImage::class,
+        OptimizeHeroImages::class,
         ServerSideRendering::class,
         AmpRuntimeCss::class,
         AmpRuntimePreloads::class,
