@@ -40,7 +40,7 @@ final class RewriteAmpUrlsTest extends TestCase
     public function testOrderingOfScripts()
     {
         $document = Document::fromHtml(
-            TestMarkup::DOCTYPE . '<html amp><head>' . TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT
+            TestMarkup::DOCTYPE . '<html amp i-amphtml-no-boilerplate><head>' . TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT
             . TestMarkup::LINK_CANONICAL . TestMarkup::LINK_GOOGLE_FONT_PRECONNECT
             . TestMarkup::SCRIPT_AMPRUNTIME
             . '</head><body></body></html>'
@@ -53,8 +53,7 @@ final class RewriteAmpUrlsTest extends TestCase
 
         $this->assertCount(0, $errors);
         $this->assertSimilarMarkup(
-            TestMarkup::DOCTYPE . '<html amp><head>' . TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT
-            . '<link as="script" crossorigin="anonymous" href="https://cdn.ampproject.org/v0.mjs" rel="modulepreload">'
+            TestMarkup::DOCTYPE . '<html amp i-amphtml-no-boilerplate><head>' . TestMarkup::META_CHARSET . TestMarkup::META_VIEWPORT
             . TestMarkup::LINK_CANONICAL . TestMarkup::LINK_GOOGLE_FONT_PRECONNECT
             . '<script async crossorigin="anonymous" nomodule src="https://cdn.ampproject.org/v0.js"></script>'
             . '<script async crossorigin="anonymous" src="https://cdn.ampproject.org/v0.mjs" type="module"></script>'

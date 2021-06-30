@@ -194,7 +194,7 @@ final class RewriteAmpUrls implements Transformer
         $scriptUrl    = $scriptNode->getAttribute(Attribute::SRC);
         $esmScriptUrl = preg_replace('/\.js$/', '.mjs', $scriptUrl);
 
-        if ($this->shouldPreload($scriptUrl)) {
+        if ($this->shouldPreload($scriptUrl, $document)) {
             $document->links->addModulePreload($esmScriptUrl, Tag::SCRIPT, Attribute::CROSSORIGIN_ANONYMOUS);
         }
 
@@ -224,7 +224,7 @@ final class RewriteAmpUrls implements Transformer
      */
     private function addPreload(Document $document, $href, $type)
     {
-        if (! $this->shouldPreload($href)) {
+        if (! $this->shouldPreload($href, $document)) {
             return;
         }
 
@@ -276,11 +276,16 @@ final class RewriteAmpUrls implements Transformer
     /**
      * Check whether a given URL should be preloaded.
      *
-     * @param string $url Url to check.
+     * @param string   $url      Url to check.
+     * @param Document $document Document on which to check.
      * @return bool Whether the provided URL should be preloaded.
      */
-    private function shouldPreload($url)
+    private function shouldPreload($url, Document $document)
     {
+        if ($document->documentElement->hasAttribute(Amp::NO_BOILERPLATE_ATTRIBUTE)) {
+            return false;
+        }
+
         return substr_compare($url, 'v0.js', -5) === 0
                ||
                substr_compare($url, 'v0.css', -6) === 0;
