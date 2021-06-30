@@ -284,7 +284,7 @@ final class OptimizeHeroImages implements Transformer
             return new HeroImage(
                 $cssBackgroundImage,
                 $element->getAttribute(Attribute::MEDIA),
-                $element->getAttribute(Attribute::SRCSET),
+                '',
                 $element
             );
         }
