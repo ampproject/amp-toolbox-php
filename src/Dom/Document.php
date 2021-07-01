@@ -134,7 +134,7 @@ final class Document extends DOMDocument
 
     // Regex patterns used for securing and restoring the doctype node.
     const HTML_SECURE_DOCTYPE_IF_NOT_FIRST_PATTERN = '/(^[^<]*(?>\s*<!--[^>]*>\s*)+<)(!)(doctype)(\s+[^>]+?)(>)/i';
-    const HTML_RESTORE_DOCTYPE_PATTERN             = '/(^[^<]*(?>\s*<!--[^>]*>\s*)+<)'
+    const HTML_RESTORE_DOCTYPE_PATTERN             = '/(^[^<]*(?>\s*<!--[^>]*>\s*)*<)'
                                                      . '(!--amp-)(doctype)(\s+[^>]+?)(-->)/i';
 
     // Regex pattern used for removing Internet Explorer conditional comments.

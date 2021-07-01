@@ -4,6 +4,7 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
+use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;
 use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
@@ -17,6 +18,7 @@ use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
+use AmpProject\Optimizer\Transformer\MinifyHtml;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
 use AmpProject\Optimizer\Transformer\ReorderHead;
 use AmpProject\Optimizer\Transformer\ServerSideRendering;
@@ -43,6 +45,11 @@ final class SpecTest extends TestCase
 
         'ServerSideRendering - converts_sizes_attribute_to_css'                => 'see https://github.com/ampproject/amp-toolbox/issues/819',
         'ServerSideRendering - boilerplate_not_removed_when_amp-story_present' => 'Node.js on stories produces partial SSR whereas PHP leaves the original story intact',
+
+        'PreloadHeroImage - max-hero-image-count-param'    => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
+        'PreloadHeroImage - disable_via_param'             => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
+
+        'MinifyHtml - minifies_inline_amp-script'          => 'see https://github.com/ampproject/amp-toolbox-php/issues/260',
     ];
 
     const CLASS_SKIP_TEST = '__SKIP__';
@@ -76,6 +83,10 @@ final class SpecTest extends TestCase
             'GoogleFontsPreconnect' => [
                 GoogleFontsPreconnect::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/GoogleFontsPreconnect'
+            ],
+            'MinifyHtml'                    => [
+                MinifyHtml::class,
+                self::TRANSFORMER_SPEC_PATH . '/valid/MinifyHtml',
             ],
             'OptimizeAmpBind'               => [
                 OptimizeAmpBind::class,
@@ -190,6 +201,9 @@ final class SpecTest extends TestCase
     {
         $mappedConfiguration = [];
 
+        // The commentIgnorePattern config for MinifyHtml transformer.
+        $mappedConfiguration[MinifyHtml::class][MinifyHtmlConfiguration::COMMENT_IGNORE_PATTERN] = '/^\s*__[a-bA-Z0-9_-]+__\s*$/';
+
         foreach ($configurationData as $key => $value) {
             switch ($key) {
                 case 'ampRuntimeStyles':
@@ -225,6 +239,10 @@ final class SpecTest extends TestCase
                     break;
                 case 'rtv':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::RTV] = $value;
+                    break;
+
+                case '__format':
+                    // Defines how spec test snapshots are generated in the NodeJS toolbox and can be ignored here.
                     break;
 
                 // @TODO: Known configuration arguments used in spec tests that are not implemented yet.

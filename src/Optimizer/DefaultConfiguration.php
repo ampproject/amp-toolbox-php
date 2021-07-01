@@ -3,6 +3,7 @@
 namespace AmpProject\Optimizer;
 
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
+use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;
 use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
@@ -12,6 +13,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 use AmpProject\Optimizer\Exception\UnknownConfigurationClass;
 use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
 use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
+use AmpProject\Optimizer\Transformer\MinifyHtml;
 use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
 use AmpProject\Optimizer\Transformer\OptimizeHeroImages;
 use AmpProject\Optimizer\Transformer\PreloadHeroImage;
@@ -49,6 +51,7 @@ class DefaultConfiguration implements Configuration
         PreloadHeroImage::class      => PreloadHeroImageConfiguration::class,
         RewriteAmpUrls::class        => RewriteAmpUrlsConfiguration::class,
         TransformedIdentifier::class => TransformedIdentifierConfiguration::class,
+        MinifyHtml::class            => MinifyHtmlConfiguration::class,
     ];
 
     /**
