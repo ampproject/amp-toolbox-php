@@ -1102,10 +1102,10 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::ENCODING => 'something']);
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::ENCODING => 'something']);
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1125,10 +1125,10 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1148,10 +1148,10 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1171,10 +1171,10 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', 'something');
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', 'something');
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1193,11 +1193,11 @@ class DocumentTest extends TestCase
 
         $document = new Document();
         $document->loadHTML('<html><div></div></html>', 524288);
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = new Document();
         $documentFragment->loadHTMLFragment('<div></div>', '524288');
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**

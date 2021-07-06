@@ -238,7 +238,7 @@ final class Document extends DOMDocument
      *
      * @see Option::DEFAULTS For a list of available options.
      *
-     * @var array
+     * @var Options
      */
     private $options;
 
@@ -260,65 +260,6 @@ final class Document extends DOMDocument
     private $originalEncoding;
 
     /**
-     * Store the <noscript> markup that was extracted to preserve it during parsing.
-     *
-     * The array keys are the element IDs for placeholder <meta> tags.
-     *
-     * @see maybeReplaceNoscriptElements()
-     * @see maybeRestoreNoscriptElements()
-     *
-     * @var string[]
-     */
-    private $noscriptPlaceholderComments = [];
-
-    /**
-     * Store whether mustache template tags were replaced and need to be restored.
-     *
-     * @see replaceMustacheTemplateTokens()
-     *
-     * @var bool
-     */
-    private $mustacheTagsReplaced = false;
-
-    /**
-     * Whether we had secured a doctype that needs restoring or not.
-     *
-     * This is an int as it receives the $count from the preg_replace().
-     *
-     * @var int
-     */
-    private $securedDoctype = 0;
-
-    /**
-     * Whether the self-closing tags were transformed and need to be restored.
-     *
-     * This avoids duplicating this effort (maybe corrupting the DOM) on multiple calls to saveHTML().
-     *
-     * @var bool
-     */
-    private $selfClosingTagsTransformed = false;
-
-    /**
-     * Store the emoji that was used to represent the AMP attribute.
-     *
-     * There are a few variations, so we want to keep track of this.
-     *
-     * @see https://github.com/ampproject/amphtml/issues/25990
-     *
-     * @var string
-     */
-    private $usedAmpEmoji;
-
-    /**
-     * Store the current index by prefix.
-     *
-     * This is used to generate unique-per-prefix IDs.
-     *
-     * @var int[]
-     */
-    private $indexCounter = [];
-
-    /**
      * The maximum number of bytes of CSS that is enforced.
      *
      * A negative number will disable the byte count limit.
@@ -328,18 +269,32 @@ final class Document extends DOMDocument
     private $cssMaxByteCountEnforced = -1;
 
     /**
-     * Store the names of the amp-bind attributes that were converted so that we can restore them later on.
-     *
-     * @var array<string>
-     */
-    private $convertedAmpBindAttributes = [];
-
-    /**
      * Resource hint manager to manage resource hint <link> tags in the <head>.
      *
      * @var LinkManager|null
      */
     private $links;
+
+    /**
+     * List of document middleware class names.
+     *
+     * @var string[]
+     */
+    private $documentMiddlewareClasses = [];
+
+    /**
+     * List of document middleware class instances.
+     *
+     * @var DocumentMiddleware[]
+     */
+    private $documentMiddlewareClassInstances = [];
+
+    /**
+     * Unique ID manager for the Document instance.
+     *
+     * @var UniqueIdManager
+     */
+    private $uniqueId;
 
     /**
      * Creates a new AmpProject\Dom\Document object
@@ -354,7 +309,21 @@ final class Document extends DOMDocument
         $this->originalEncoding = (string)$encoding ?: Encoding::UNKNOWN;
         parent::__construct($version ?: '1.0', Encoding::AMP);
         $this->registerNodeClass(DOMElement::class, Element::class);
-        $this->options = Option::DEFAULTS;
+        $this->options = new Options(Option::DEFAULTS);
+        $this->uniqueId = new UniqueIdManager();
+
+        $this->registerMiddlewareClasses([
+            Middleware\SvgSourceAttributeEncoding::class,
+            Middleware\AmpEmojiAttribute::class,
+            Middleware\AmpBindAttributes::class,
+            Middleware\SelfClosingTags::class,
+            Middleware\NoscriptElements::class,
+            Middleware\MustacheScriptTemplates::class,
+            Middleware\DoctypeNode::class,
+            Middleware\NormalizeHtmlAttributes::class,
+            Middleware\DocumentEncoding::class,
+            Middleware\HttpEquivCharset::class,
+        ]);
     }
 
     /**
@@ -515,26 +484,17 @@ final class Document extends DOMDocument
             $options = [Option::LIBXML_FLAGS => $options];
         }
 
-        $this->options = array_merge($this->options, $options);
+        $this->options = $this->options->merge($options);
 
         $this->reset();
 
         $this->detectInvalidByteSequences($source);
 
-        $source = $this->convertAmpEmojiAttribute($source);
-        $source = $this->convertAmpBindAttributes($source);
-        $source = $this->replaceSelfClosingTags($source);
-        $source = $this->maybeReplaceNoscriptElements($source);
-        $source = $this->secureMustacheScriptTemplates($source);
-        $source = $this->secureDoctypeNode($source);
-
-        list($source, $this->originalEncoding) = $this->detectAndStripEncoding($source);
-
-        if (Encoding::AMP !== strtolower($this->originalEncoding)) {
-            $source = $this->adaptEncoding($source);
+        foreach($this->documentMiddlewareClasses as $middlewareClass) {
+            $middlewareClassInstance = new $middlewareClass($this->options, $this->uniqueId, $this->originalEncoding);
+            $source = $middlewareClassInstance->beforeLoad($source);
+            $this->documentMiddlewareClassInstances[] = $middlewareClassInstance;
         }
-
-        $source = $this->addHttpEquivCharset($source);
 
         $libxml_previous_state = libxml_use_internal_errors(true);
 
@@ -555,25 +515,8 @@ final class Document extends DOMDocument
         libxml_use_internal_errors($libxml_previous_state);
 
         if ($success) {
-            $this->normalizeHtmlAttributes();
-            $this->restoreMustacheScriptTemplates();
-            $this->maybeRestoreNoscriptElements();
-
-            // Remove http-equiv charset again.
-            $meta = $this->head->firstChild;
-
-            // We might have leading comments we need to preserve here.
-            while ($meta instanceof DOMComment) {
-                $meta = $meta->nextSibling;
-            }
-
-            if (
-                $meta instanceof Element
-                && Tag::META === $meta->tagName
-                && self::HTML_HTTP_EQUIV_VALUE === $meta->getAttribute(Attribute::HTTP_EQUIV)
-                && (self::HTML_HTTP_EQUIV_CONTENT_VALUE) === $meta->getAttribute(Attribute::CONTENT)
-            ) {
-                $this->head->removeChild($meta);
+            foreach($this->documentMiddlewareClassInstances as $middlewareClassInstance) {
+                $middlewareClassInstance->afterLoad($this);
             }
 
             $this->hasInitialAmpDevMode = $this->documentElement->hasAttribute(DevMode::DEV_MODE_ATTRIBUTE);
@@ -603,7 +546,10 @@ final class Document extends DOMDocument
      */
     public function saveHTMLFragment(DOMNode $node = null)
     {
-        $this->replaceMustacheTemplateTokens();
+        for ($i = count($this->documentMiddlewareClassInstances) - 1; $i >= 0; $i--) {
+            $middlewareClassInstance = $this->documentMiddlewareClassInstances[$i];
+            $middlewareClassInstance->beforeSave($this);
+        }
 
         // Force-add http-equiv charset to make DOMDocument behave as it should.
         // See: http://php.net/manual/en/domdocument.loadhtml.php#78243.
@@ -623,12 +569,10 @@ final class Document extends DOMDocument
         $this->head->removeChild($charset);
         $html = preg_replace(self::HTML_GET_HTTP_EQUIV_TAG_PATTERN, '', $html, 1);
 
-        $html = $this->restoreDoctypeNode($html);
-        $html = $this->restoreMustacheTemplateTokens($html);
-        $html = $this->restoreSelfClosingTags($html);
-        $html = $this->restoreAmpBindAttributes($html);
-        $html = $this->restoreAmpEmojiAttribute($html);
-        $html = $this->fixSvgSourceAttributeEncoding($html);
+        for ($i = count($this->documentMiddlewareClassInstances) - 1; $i >= 0; $i--) {
+            $middlewareClassInstance = $this->documentMiddlewareClassInstances[$i];
+            $html = $middlewareClassInstance->afterSave($html);
+        }
 
         // Whitespace just causes unit tests to fail... so whitespace begone.
         if ('' === trim($html)) {
@@ -641,7 +585,7 @@ final class Document extends DOMDocument
     /**
      * Get the current options of the Document instance.
      *
-     * @return array
+     * @return Options
      */
     public function getOptions()
     {
@@ -677,7 +621,7 @@ final class Document extends DOMDocument
      */
     private function extractNodeViaFragmentBoundaries(DOMNode $node)
     {
-        $boundary      = $this->getUniqueId('fragment_boundary');
+        $boundary      = $this->uniqueId->getUniqueId('fragment_boundary');
         $startBoundary = $boundary . ':start';
         $endBoundary   = $boundary . ':end';
         $commentStart  = $this->createComment($startBoundary);
@@ -843,33 +787,6 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Normalizes HTML attributes to be HTML5 compatible.
-     *
-     * Conditionally removes html[xmlns], and converts html[xml:lang] to html[lang].
-     */
-    private function normalizeHtmlAttributes()
-    {
-        if (! $this->html->hasAttributes()) {
-            return;
-        }
-
-        $xmlns = $this->html->attributes->getNamedItem('xmlns');
-        if ($xmlns instanceof DOMAttr && 'http://www.w3.org/1999/xhtml' === $xmlns->nodeValue) {
-            $this->html->removeAttributeNode($xmlns);
-        }
-
-        $xml_lang = $this->html->attributes->getNamedItem('xml:lang');
-        if ($xml_lang instanceof DOMAttr) {
-            $lang_node = $this->html->attributes->getNamedItem('lang');
-            if ((! $lang_node || ! $lang_node->nodeValue) && $xml_lang->nodeValue) {
-                // Move the html[xml:lang] value to html[lang].
-                $this->html->setAttribute('lang', $xml_lang->nodeValue);
-            }
-            $this->html->removeAttributeNode($xml_lang);
-        }
-    }
-
-    /**
      * Move invalid head nodes back to the body.
      */
     private function moveInvalidHeadNodesToBody()
@@ -936,793 +853,6 @@ final class Document extends DOMDocument
                 $this->body->appendChild($this->documentElement->nextSibling);
             }
         }
-    }
-
-    /**
-     * Force all self-closing tags to have closing tags.
-     *
-     * This is needed because DOMDocument isn't fully aware of these.
-     *
-     * @param string $html HTML string to adapt.
-     * @return string Adapted HTML string.
-     * @see restoreSelfClosingTags() Reciprocal function.
-     */
-    private function replaceSelfClosingTags($html)
-    {
-        static $regexPattern = null;
-
-        if (null === $regexPattern) {
-            $regexPattern = '#<(' . implode('|', Tag::SELF_CLOSING_TAGS) . ')([^>]*?)(?>\s*(?<!\\\\)\/)?>(?!</\1>)#';
-        }
-
-        $this->selfClosingTagsTransformed = true;
-
-        return preg_replace($regexPattern, '<$1$2></$1>', $html);
-    }
-
-    /**
-     * Restore all self-closing tags again.
-     *
-     * @param string $html HTML string to adapt.
-     * @return string Adapted HTML string.
-     * @see replaceSelfClosingTags Reciprocal function.
-     */
-    private function restoreSelfClosingTags($html)
-    {
-        static $regexPattern = null;
-
-        if (! $this->selfClosingTagsTransformed) {
-            return $html;
-        }
-
-        if (null === $regexPattern) {
-            $regexPattern = '#</(' . implode('|', Tag::SELF_CLOSING_TAGS) . ')>#i';
-        }
-
-        $this->selfClosingTagsTransformed = false;
-
-        return preg_replace($regexPattern, '', $html);
-    }
-
-    /**
-     * Maybe replace noscript elements with placeholders.
-     *
-     * This is done because libxml<2.8 might parse them incorrectly.
-     * When appearing in the head element, a noscript can cause the head to close prematurely
-     * and the noscript gets moved to the body and anything after it which was in the head.
-     * See <https://stackoverflow.com/questions/39013102/why-does-noscript-move-into-body-tag-instead-of-head-tag>.
-     * This is limited to only running in the head element because this is where the problem lies,
-     * and it is important for the AMP_Script_Sanitizer to be able to access the noscript elements
-     * in the body otherwise.
-     *
-     * @param string $html HTML string to adapt.
-     * @return string Adapted HTML string.
-     * @see maybeRestoreNoscriptElements() Reciprocal function.
-     */
-    private function maybeReplaceNoscriptElements($html)
-    {
-        if (version_compare(LIBXML_DOTTED_VERSION, '2.8', '<')) {
-            $html = preg_replace_callback(
-                '#^.+?(?=<body)#is',
-                function ($headMatches) {
-                    return preg_replace_callback(
-                        '#<noscript[^>]*>.*?</noscript>#si',
-                        function ($noscriptMatches) {
-                            $id = $this->getUniqueId('noscript');
-                            $this->noscriptPlaceholderComments[$id] = $noscriptMatches[0];
-                            return sprintf('<meta class="noscript-placeholder" id="%s">', $id);
-                        },
-                        $headMatches[0]
-                    );
-                },
-                $html
-            );
-        }
-
-        return $html;
-    }
-
-    /**
-     * Maybe restore noscript elements with placeholders.
-     *
-     * This is done because libxml<2.8 might parse them incorrectly.
-     * When appearing in the head element, a noscript can cause the head to close prematurely
-     * and the noscript gets moved to the body and anything after it which was in the head.
-     * See <https://stackoverflow.com/questions/39013102/why-does-noscript-move-into-body-tag-instead-of-head-tag>.
-     * This is limited to only running in the head element because this is where the problem lies,
-     * and it is important for the AMP_Script_Sanitizer to be able to access the noscript elements
-     * in the body otherwise.
-     *
-     * @see maybeReplaceNoscriptElements() Reciprocal function.
-     */
-    private function maybeRestoreNoscriptElements()
-    {
-        foreach ($this->noscriptPlaceholderComments as $id => $noscriptHtmlFragment) {
-            $placeholderElement = $this->getElementById($id);
-            if (!$placeholderElement || !$placeholderElement->parentNode) {
-                continue;
-            }
-            $noscriptFragmentDocument = self::fromHtmlFragment($noscriptHtmlFragment);
-            if (!$noscriptFragmentDocument) {
-                continue;
-            }
-            $exportBody = $noscriptFragmentDocument->getElementsByTagName(Tag::BODY)->item(0);
-            if (!$exportBody) {
-                continue;
-            }
-
-            $importFragment = $this->createDocumentFragment();
-            while ($exportBody->firstChild) {
-                $importNode = $exportBody->removeChild($exportBody->firstChild);
-                $importNode = $this->importNode($importNode, true);
-                $importFragment->appendChild($importNode);
-            }
-
-            $placeholderElement->parentNode->replaceChild($importFragment, $placeholderElement);
-        }
-    }
-
-    /**
-     * Secures instances of script[template="amp-mustache"] by renaming element to tmp-script, as a workaround to a
-     * libxml parsing issue.
-     *
-     * This script can have closing tags of its children table and td stripped.
-     * So this changes its name from script to tmp-script to avoid this.
-     *
-     * @link https://github.com/ampproject/amp-wp/issues/4254
-     * @see restoreMustacheScriptTemplates() Reciprocal function.
-     *
-     * @param string $html To replace the tag name that contains the mustache templates.
-     * @return string The HTML, with the tag name of the mustache templates replaced.
-     */
-    private function secureMustacheScriptTemplates($html)
-    {
-        return preg_replace(
-            '#<script(\s[^>]*?template=(["\']?)amp-mustache\2[^>]*)>(.*?)</script\s*?>#is',
-            '<tmp-script$1>$3</tmp-script>',
-            $html
-        );
-    }
-
-    /**
-     * Restores the tag names of script[template="amp-mustache"] elements that were replaced earlier.
-     *
-     * @see secureMustacheScriptTemplates() Reciprocal function.
-     */
-    private function restoreMustacheScriptTemplates()
-    {
-        $tmp_script_elements = iterator_to_array($this->getElementsByTagName('tmp-script'));
-        foreach ($tmp_script_elements as $tmp_script_element) {
-            $script = $this->createElement(Tag::SCRIPT);
-            foreach ($tmp_script_element->attributes as $attr) {
-                $script->setAttribute($attr->nodeName, $attr->nodeValue);
-            }
-            while ($tmp_script_element->firstChild) {
-                $script->appendChild($tmp_script_element->firstChild);
-            }
-            $tmp_script_element->parentNode->replaceChild($script, $tmp_script_element);
-        }
-    }
-
-    /**
-     * Replace AMP binding attributes with something that libxml can parse (as HTML5 data-* attributes).
-     *
-     * This is necessary because attributes in square brackets are not understood in PHP and
-     * get dropped with an error raised:
-     * > Warning: DOMDocument::loadHTML(): error parsing attribute name
-     *
-     * @see restoreAmpBindAttributes() Reciprocal function.
-     * @link https://www.ampproject.org/docs/reference/components/amp-bind
-     *
-     * @param string $html HTML containing amp-bind attributes.
-     * @return string HTML with AMP binding attributes replaced with HTML5 data-* attributes.
-     */
-    private function convertAmpBindAttributes($html)
-    {
-        /**
-         * Replace callback.
-         *
-         * @param array $tagMatches Tag matches.
-         * @return string Replacement.
-         */
-        $replaceCallback = function ($tagMatches) {
-
-            // Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
-            $oldAttrs = rtrim(preg_replace('#(?<!=)/$#', '', $tagMatches['attrs']));
-
-            $newAttrs = '';
-            $offset   = 0;
-            while (preg_match(self::AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
-                $offset += strlen($attrMatches[0]);
-
-                if ('[' === $attrMatches['name'][0]) {
-                    $attrName = trim($attrMatches['name'], '[]');
-                    $newAttrs .= ' ' . self::AMP_BIND_DATA_ATTR_PREFIX . $attrName;
-                    if (isset($attrMatches['value'])) {
-                        $newAttrs .= $attrMatches['value'];
-                    }
-                    $this->convertedAmpBindAttributes[] = $attrName;
-                } else {
-                    $newAttrs .= $attrMatches[0];
-                }
-            }
-
-            // Bail on parse error which occurs when the regex isn't able to consume the entire $newAttrs string.
-            if (strlen($oldAttrs) !== $offset) {
-                return $tagMatches[0];
-            }
-
-            return '<' . $tagMatches['name'] . $newAttrs . '>';
-        };
-
-        $converted = preg_replace_callback(
-            self::AMP_BIND_SQUARE_START_PATTERN,
-            $replaceCallback,
-            $html
-        );
-
-        /*
-         * If the regex engine incurred an error during processing, for example exceeding the backtrack
-         * limit, $converted will be null. In this case we return the originally passed document to allow
-         * DOMDocument to attempt to load it.  If the AMP HTML doesn't make use of amp-bind or similar
-         * attributes, then everything should still work.
-         *
-         * See https://github.com/ampproject/amp-wp/issues/993 for additional context on this issue.
-         * See http://php.net/manual/en/pcre.constants.php for additional info on PCRE errors.
-         */
-        return (null !== $converted) ? $converted : $html;
-    }
-
-    /**
-     * Convert AMP bind-attributes back to their original syntax.
-     *
-     * This is not guaranteed to produce the exact same result as the initial markup, as it is more of a best guess.
-     * It can end up replacing the wrong attributes if the initial markup had inconsistent styling, mixing both syntaxes
-     * for the same attribute. In either case, it will always produce working markup, so this is not that big of a deal.
-     *
-     * @see convertAmpBindAttributes() Reciprocal function.
-     * @link https://www.ampproject.org/docs/reference/components/amp-bind
-     *
-     * @param string $html HTML with amp-bind attributes converted.
-     * @return string HTML with amp-bind attributes restored.
-     */
-    public function restoreAmpBindAttributes($html)
-    {
-        if ($this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_DATA_ATTRIBUTE) {
-            // All amp-bind attributes should remain in their converted data attribute form.
-            return $html;
-        }
-
-        if (
-            $this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_AUTO
-            &&
-            empty($this->convertedAmpBindAttributes)
-        ) {
-            // Only previously converted amp-bind attributes should be restored, but none were converted.
-            return $html;
-        }
-
-        /**
-         * Replace callback.
-         *
-         * @param array $tagMatches Tag matches.
-         * @return string Replacement.
-         */
-        $replaceCallback = function ($tagMatches) {
-
-            // Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
-            $oldAttrs = rtrim(preg_replace('#(?<!=)/$#', '', $tagMatches['attrs']));
-
-            $newAttrs = '';
-            $offset   = 0;
-            while (preg_match(self::AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
-                $offset += strlen($attrMatches[0]);
-
-                $attrName = substr($attrMatches['name'], strlen(self::AMP_BIND_DATA_ATTR_PREFIX));
-                if (
-                    $this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS
-                    ||
-                    in_array($attrName, $this->convertedAmpBindAttributes, true)
-                ) {
-                    $attrValue = isset($attrMatches['value']) ? $attrMatches['value'] : '=""';
-                    $newAttrs .= " [{$attrName}]{$attrValue}";
-                } else {
-                    $newAttrs .= $attrMatches[0];
-                }
-            }
-
-            // Bail on parse error which occurs when the regex isn't able to consume the entire $newAttrs string.
-            if (strlen($oldAttrs) !== $offset) {
-                return $tagMatches[0];
-            }
-
-            return '<' . $tagMatches['name'] . $newAttrs . '>';
-        };
-
-        $converted = preg_replace_callback(
-            self::AMP_BIND_DATA_START_PATTERN,
-            $replaceCallback,
-            $html
-        );
-
-        /*
-         * If the regex engine incurred an error during processing, for example exceeding the backtrack
-         * limit, $converted will be null. In this case we return the originally passed document to allow
-         * DOMDocument to attempt to load it.  If the AMP HTML doesn't make use of amp-bind or similar
-         * attributes, then everything should still work.
-         *
-         * See https://github.com/ampproject/amp-wp/issues/993 for additional context on this issue.
-         * See http://php.net/manual/en/pcre.constants.php for additional info on PCRE errors.
-         */
-        return (null !== $converted) ? $converted : $html;
-    }
-
-    /**
-     * Adapt the encoding of the content.
-     *
-     * @param string $source Source content to adapt the encoding of.
-     * @return string Adapted content.
-     */
-    private function adaptEncoding($source)
-    {
-        // No encoding was provided, so we need to guess.
-        if (Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
-            $this->originalEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
-        }
-
-        // Guessing the encoding seems to have failed, so we assume UTF-8 instead.
-        // In my testing, this was not possible as long as one ISO-8859-x is in the detection order.
-        if (empty($this->originalEncoding)) {
-            $this->originalEncoding = Encoding::AMP; // @codeCoverageIgnore
-        }
-
-        $this->originalEncoding = $this->sanitizeEncoding($this->originalEncoding);
-
-        // Sanitization failed, so we do a last effort to auto-detect.
-        if (Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
-            $detectedEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
-            if ($detectedEncoding !== false) {
-                $this->originalEncoding = $detectedEncoding;
-            }
-        }
-
-        $target = false;
-        if (Encoding::AMP !== strtolower($this->originalEncoding)) {
-            $target = function_exists('mb_convert_encoding')
-                ? mb_convert_encoding($source, Encoding::AMP, $this->originalEncoding)
-                : false;
-        }
-
-        return false !== $target ? $target : $source;
-    }
-
-    /**
-     * Detect the encoding of the document.
-     *
-     * @param string $content  Content of which to detect the encoding.
-     * @return array {
-     *                              Detected encoding of the document, or false if none.
-     *
-     * @type string       $content  Potentially modified content.
-     * @type string|false $encoding Encoding of the content, or false if not detected.
-     * }
-     */
-    private function detectAndStripEncoding($content)
-    {
-        $encoding = $this->originalEncoding;
-
-        // Check for HTML 4 http-equiv meta tags.
-        foreach ($this->findTags($content, Tag::META, Attribute::HTTP_EQUIV) as $potentialHttpEquivTag) {
-            $encoding = $this->extractValue($potentialHttpEquivTag, Attribute::CHARSET);
-            if (false !== $encoding) {
-                $httpEquivTag = $potentialHttpEquivTag;
-            }
-        }
-
-        // Strip all charset tags.
-        if (isset($httpEquivTag)) {
-            $content = str_replace($httpEquivTag, '', $content);
-        }
-
-        // Check for HTML 5 charset meta tag. This overrides the HTML 4 charset.
-        $charsetTag = $this->findTag($content, Tag::META, Attribute::CHARSET);
-        if ($charsetTag) {
-            $encoding = $this->extractValue($charsetTag, Attribute::CHARSET);
-
-            // Strip the encoding if it is not the required one.
-            if (strtolower($encoding) !== Encoding::AMP) {
-                $content = str_replace($charsetTag, '', $content);
-            }
-        }
-
-        return [$content, $encoding];
-    }
-
-    /**
-     * Find a given tag with a given attribute.
-     *
-     * If multiple tags match, this method will only return the first one.
-     *
-     * @param string $content   Content in which to find the tag.
-     * @param string $element   Element of the tag.
-     * @param string $attribute Attribute that the tag contains.
-     * @return string[] The requested tags. Returns an empty array if none found.
-     */
-    private function findTags($content, $element, $attribute = null)
-    {
-        $matches = [];
-        $pattern = empty($attribute)
-            ? sprintf(
-                self::HTML_FIND_TAG_WITHOUT_ATTRIBUTE_PATTERN,
-                preg_quote($element, self::HTML_FIND_TAG_DELIMITER)
-            )
-            : sprintf(
-                self::HTML_FIND_TAG_WITH_ATTRIBUTE_PATTERN,
-                preg_quote($element, self::HTML_FIND_TAG_DELIMITER),
-                preg_quote($attribute, self::HTML_FIND_TAG_DELIMITER)
-            );
-
-        if (preg_match($pattern, $content, $matches)) {
-            return $matches;
-        }
-
-        return [];
-    }
-
-    /**
-     * Find a given tag with a given attribute.
-     *
-     * If multiple tags match, this method will only return the first one.
-     *
-     * @param string $content   Content in which to find the tag.
-     * @param string $element   Element of the tag.
-     * @param string $attribute Attribute that the tag contains.
-     * @return string|false The requested tag, or false if not found.
-     */
-    private function findTag($content, $element, $attribute = null)
-    {
-        $matches = $this->findTags($content, $element, $attribute);
-
-        if (empty($matches)) {
-            return false;
-        }
-
-        return $matches[0];
-    }
-
-    /**
-     * Extract an attribute value from an HTML tag.
-     *
-     * @param string $tag       Tag from which to extract the attribute.
-     * @param string $attribute Attribute of which to extract the value.
-     * @return string|false Extracted attribute value, false if not found.
-     */
-    private function extractValue($tag, $attribute)
-    {
-        $matches = [];
-        $pattern = sprintf(
-            self::HTML_EXTRACT_ATTRIBUTE_VALUE_PATTERN,
-            preg_quote($attribute, self::HTML_FIND_TAG_DELIMITER)
-        );
-
-        if (preg_match($pattern, $tag, $matches)) {
-            return empty($matches['full']) ? $matches['partial'] : $matches['full'];
-        }
-
-        return false;
-    }
-
-    /**
-     * Sanitize the encoding that was detected.
-     *
-     * If sanitization fails, it will return 'auto', letting the conversion
-     * logic try to figure it out itself.
-     *
-     * @param string $encoding Encoding to sanitize.
-     * @return string Sanitized encoding. Falls back to 'auto' on failure.
-     */
-    private function sanitizeEncoding($encoding)
-    {
-        $encoding = strtolower($encoding);
-
-        if ($encoding === Encoding::AMP) {
-            return $encoding;
-        }
-
-        if (! function_exists('mb_list_encodings')) {
-            return $encoding;
-        }
-
-        static $knownEncodings = null;
-
-        if (null === $knownEncodings) {
-            $knownEncodings = array_map('strtolower', mb_list_encodings());
-        }
-
-        if (array_key_exists($encoding, Encoding::MAPPINGS)) {
-            $encoding = Encoding::MAPPINGS[$encoding];
-        }
-
-        if (! in_array($encoding, $knownEncodings, true)) {
-            return Encoding::UNKNOWN;
-        }
-
-        return $encoding;
-    }
-
-    /**
-     * Replace Mustache template tokens to safeguard them from turning into HTML entities.
-     *
-     * Prevents amp-mustache syntax from getting URL-encoded in attributes when saveHTML is done.
-     * While this is applying to the entire document, it only really matters inside of <template>
-     * elements, since URL-encoding of curly braces in href attributes would not normally matter.
-     * But when this is done inside of a <template> then it breaks Mustache. Since Mustache
-     * is logic-less and curly braces are not unsafe for HTML, we can do a global replacement.
-     * The replacement is done on the entire HTML document instead of just inside of the <template>
-     * elements since it is faster and wouldn't change the outcome.
-     *
-     * @see restoreMustacheTemplateTokens() Reciprocal function.
-     */
-    private function replaceMustacheTemplateTokens()
-    {
-        $templates = $this->xpath->query(self::XPATH_MUSTACHE_TEMPLATE_ELEMENTS_QUERY, $this->body);
-        if (0 === $templates->length) {
-            return;
-        }
-
-        $mustacheTagPlaceholders = $this->getMustacheTagPlaceholders();
-
-        foreach ($templates as $template) {
-            foreach ($this->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
-                $value = preg_replace_callback(
-                    $this->getMustacheTagPattern(),
-                    static function ($matches) use ($mustacheTagPlaceholders) {
-                        return $mustacheTagPlaceholders[trim($matches[0])];
-                    },
-                    $attribute->nodeValue,
-                    -1,
-                    $count
-                );
-
-                if ($count) {
-                    // Note we cannot do `$attribute->nodeValue = $value` because the PHP DOM will try to parse any
-                    // entities. In the case of a URL value like '/foo/?bar=1&baz=2' the result is a warning for an
-                    // unterminated entity reference "baz". When the attribute value is updated via setAttribute() this
-                    // same problem does not occur, so that is why the following is used.
-                    $attribute->parentNode->setAttribute($attribute->nodeName, $value);
-
-                    $this->mustacheTagsReplaced = true;
-                }
-            }
-        }
-    }
-
-    /**
-     * Restore Mustache template tokens that were previously replaced.
-     *
-     * @param string $html HTML string to adapt.
-     * @return string Adapted HTML string.
-     * @see replaceMustacheTemplateTokens() Reciprocal function.
-     */
-    private function restoreMustacheTemplateTokens($html)
-    {
-        if (! $this->mustacheTagsReplaced) {
-            return $html;
-        }
-
-        $mustacheTagPlaceholders = $this->getMustacheTagPlaceholders();
-
-        return str_replace(
-            $mustacheTagPlaceholders,
-            array_keys($mustacheTagPlaceholders),
-            $html
-        );
-    }
-
-    /**
-     * Get amp-mustache tag/placeholder mappings.
-     *
-     * @return string[] Mapping of mustache tag token to its placeholder.
-     * @see \wpdb::placeholder_escape()
-     */
-    private function getMustacheTagPlaceholders()
-    {
-        static $placeholders = null;
-
-        if (null === $placeholders) {
-            $placeholders = [];
-
-            // Note: The order of these tokens is important, as it determines the order of the replacements.
-            $tokens = [
-                '{{{',
-                '}}}',
-                '{{#',
-                '{{^',
-                '{{/',
-                '{{',
-                '}}',
-            ];
-
-            foreach ($tokens as $token) {
-                $placeholders[$token] = '_amp_mustache_' . md5(uniqid($token));
-            }
-        }
-
-        return $placeholders;
-    }
-
-    /**
-     * Get a regular expression that matches all amp-mustache tags while consuming whitespace.
-     *
-     * Removing whitespace is needed to avoid DOMDocument turning whitespace into entities, like %20 for spaces.
-     *
-     * @return string Regex pattern to match amp-mustache tags with whitespace.
-     */
-    private function getMustacheTagPattern()
-    {
-        static $tagPattern = null;
-
-        if (null === $tagPattern) {
-            $delimiter  = ':';
-            $tags       = [];
-
-            foreach (array_keys($this->getMustacheTagPlaceholders()) as $token) {
-                if ('{' === $token[0]) {
-                    $tags[] = preg_quote($token, $delimiter) . '\s*';
-                } else {
-                    $tags[] = '\s*' . preg_quote($token, $delimiter);
-                }
-            }
-
-            $tagPattern = $delimiter . implode('|', $tags) . $delimiter;
-        }
-
-        return $tagPattern;
-    }
-
-    /**
-     * Covert the emoji AMP symbol (⚡) into pure text.
-     *
-     * The emoji symbol gets stripped by DOMDocument::loadHTML().
-     *
-     * @param string $source Source HTML string to convert the emoji AMP symbol in.
-     * @return string Adapted source HTML string.
-     */
-    private function convertAmpEmojiAttribute($source)
-    {
-        $this->usedAmpEmoji = '';
-
-        return preg_replace_callback(
-            self::AMP_EMOJI_ATTRIBUTE_PATTERN,
-            function ($matches) {
-                // Split into individual attributes.
-                $attributes = array_map(
-                    'trim',
-                    array_filter(
-                        preg_split(
-                            '#(\s+[^"\'\s=]+(?:=(?:"[^"]+"|\'[^\']+\'|[^"\'\s]+))?)#',
-                            $matches[1],
-                            -1,
-                            PREG_SPLIT_DELIM_CAPTURE
-                        )
-                    )
-                );
-
-                foreach ($attributes as $index => $attribute) {
-                    $attributeMatches = [];
-                    if (
-                        preg_match(
-                            '/^(' . Attribute::AMP_EMOJI_ALT . '|' . Attribute::AMP_EMOJI . ')(4(?:ads|email))?$/i',
-                            $attribute,
-                            $attributeMatches
-                        )
-                    ) {
-                        $this->usedAmpEmoji = $attributeMatches[1];
-                        $variant            = ! empty($attributeMatches[2]) ? $attributeMatches[2] : '';
-                        $attributes[$index] = self::EMOJI_AMP_ATTRIBUTE_PLACEHOLDER . "=\"{$variant}\"";
-                        break;
-                    }
-                }
-
-                return '<html ' . implode(' ', $attributes) . '>';
-            },
-            $source,
-            1
-        );
-    }
-
-    /**
-     * Restore the emoji AMP symbol (⚡) from its pure text placeholder.
-     *
-     * @param string $html HTML string to restore the AMP emoji symbol in.
-     * @return string Adapted HTML string.
-     */
-    private function restoreAmpEmojiAttribute($html)
-    {
-        if (empty($this->usedAmpEmoji)) {
-            return $html;
-        }
-
-        return preg_replace(
-            '/(<html\s[^>]*?)' . preg_quote(self::EMOJI_AMP_ATTRIBUTE_PLACEHOLDER, '/') . '="([^"]*)"/i',
-            '\1' . $this->usedAmpEmoji . '\2',
-            $html,
-            1
-        );
-    }
-
-    /**
-     * Secure the original doctype node.
-     *
-     * We need to keep elements around that were prepended to the doctype, like comment node used for source-tracking.
-     * As DOM_Document prepends a new doctype node and removes the old one if the first element is not the doctype, we
-     * need to ensure the original one is not stripped (by changing its node type) and restore it later on.
-     *
-     * @param string $html HTML string to adapt.
-     * @return string Adapted HTML string.
-     * @see restoreDoctypeNode() Reciprocal function.
-     */
-    private function secureDoctypeNode($html)
-    {
-        return preg_replace(
-            self::HTML_SECURE_DOCTYPE_IF_NOT_FIRST_PATTERN,
-            '\1!--amp-\3\4-->',
-            $html,
-            1,
-            $this->securedDoctype
-        );
-    }
-
-    /**
-     * Restore the original doctype node.
-     *
-     * @param string $html HTML string to adapt.
-     * @return string Adapted HTML string.
-     * @see secureDoctypeNode() Reciprocal function.
-     */
-    private function restoreDoctypeNode($html)
-    {
-        if (! $this->securedDoctype) {
-            return $html;
-        }
-
-        return preg_replace(self::HTML_RESTORE_DOCTYPE_PATTERN, '\1!\3\4>', $html, 1);
-    }
-
-    /**
-     * Process the HTML output string and tweak it as needed.
-     *
-     * @param string $html HTML output string to tweak.
-     * @return string Tweaked HTML output string.
-     */
-    public function fixSvgSourceAttributeEncoding($html)
-    {
-        return preg_replace_callback(self::I_AMPHTML_SIZER_REGEX_PATTERN, [$this, 'adaptSizer'], $html);
-    }
-
-    /**
-     * Adapt the sizer element so that it validates against the AMP spec.
-     *
-     * @param array $matches Matches that the regular expression collected.
-     * @return string Adapted string to use as replacement.
-     */
-    private function adaptSizer($matches)
-    {
-        $src = $matches['src'];
-        $src = htmlspecialchars_decode($src, ENT_NOQUOTES);
-        $src = preg_replace_callback(self::SRC_SVG_REGEX_PATTERN, [$this, 'adaptSvg'], $src);
-        return $matches['before_src'] . $src . $matches['after_src'];
-    }
-
-    /**
-     * Adapt the SVG syntax within the sizer element so that it validates against the AMP spec.
-     *
-     * @param array $matches Matches that the regular expression collected.
-     * @return string Adapted string to use as replacement.
-     */
-    private function adaptSvg($matches)
-    {
-        return $matches['type'] . urldecode($matches['value']);
     }
 
     /**
@@ -1804,26 +934,6 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Get auto-incremented ID unique to this class's instantiation.
-     *
-     * @param string $prefix Prefix.
-     * @return string ID.
-     */
-    private function getUniqueId($prefix = '')
-    {
-        if (array_key_exists($prefix, $this->indexCounter)) {
-            ++$this->indexCounter[$prefix];
-        } else {
-            $this->indexCounter[$prefix] = 0;
-        }
-        $uniqueId = (string)$this->indexCounter[$prefix];
-        if ($prefix) {
-            $uniqueId = "{$prefix}-{$uniqueId}";
-        }
-        return $uniqueId;
-    }
-
-    /**
      * Get the ID for an element.
      *
      * If the element does not have an ID, create one first.
@@ -1838,9 +948,9 @@ final class Document extends DOMDocument
             return $element->getAttribute(Attribute::ID);
         }
 
-        $id = $this->getUniqueId($prefix);
+        $id = $this->uniqueId->getUniqueId($prefix);
         while ($this->getElementById($id) instanceof Element) {
-            $id = $this->getUniqueId($prefix);
+            $id = $this->uniqueId->getUniqueId($prefix);
         }
 
         $element->setAttribute(Attribute::ID, $id);
@@ -2131,48 +1241,6 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Add a http-equiv charset meta tag to the document's <head> node.
-     *
-     * This is needed to make the DOMDocument behave as it should in terms of encoding.
-     * See: http://php.net/manual/en/domdocument.loadhtml.php#78243.
-     *
-     * @param string $html HTML string to add the http-equiv charset to.
-     * @return string Adapted string of HTML.
-     */
-    private function addHttpEquivCharset($html)
-    {
-        $count = 0;
-
-        // We try first to detect an existing <head> node.
-        $html = preg_replace(
-            self::HTML_GET_HEAD_OPENING_TAG_PATTERN,
-            self::HTML_GET_HEAD_OPENING_TAG_REPLACEMENT,
-            $html,
-            1,
-            $count
-        );
-
-
-        // If no <head> was found, we look for the <html> tag instead.
-        if ($count < 1) {
-            $html = preg_replace(
-                self::HTML_GET_HTML_OPENING_TAG_PATTERN,
-                self::HTML_GET_HTML_OPENING_TAG_REPLACEMENT,
-                $html,
-                1,
-                $count
-            );
-        }
-
-        // Finally, we just prepend the head with the required http-equiv charset.
-        if ($count < 1) {
-            $html = '<head>' . self::HTTP_EQUIV_META_TAG . '</head>' . $html;
-        }
-
-        return $html;
-    }
-
-    /**
      * Check if the markup contains invalid byte sequences.
      *
      * If invalid byte sequences are passed to `DOMDocument`, it fails silently and produces Mojibake.
@@ -2189,5 +1257,27 @@ final class Document extends DOMDocument
         ) {
             throw InvalidByteSequence::forHtml();
         }
+    }
+
+    /**
+     * Register multiple new middleware classes.
+     *
+     * @param string[] $middlewareClasses Array of FQCN of the document middleware class.
+     */
+    public function registerMiddlewareClasses($middlewareClasses)
+    {
+        foreach($middlewareClasses as $middlewareClass) {
+            $this->registerMiddlewareClass($middlewareClass);
+        }
+    }
+
+    /**
+     * Register a new middleware class.
+     *
+     * @param string $middlewareClass   FQCN of the document middleware class.
+     */
+    public function registerMiddlewareClass($middlewareClass)
+    {
+        $this->documentMiddlewareClasses[] = $middlewareClass;
     }
 }
