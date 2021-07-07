@@ -11,7 +11,7 @@ use AmpProject\Dom\UniqueIdManager;
  * Middleware for the Dom\Document object.
  *
  * @property Options         $options          Associative array of configure options for DOM document.
- * @property UniqueIdManager $uniqueIdManager  Unique ID manager for the Document instance.
+ * @property UniqueIdManager $uniqueId         Unique ID manager for the Document instance.
  * @property string          $originalEncoding The original encoding of how the AmpProject\Dom\Document was created.
  *
  * @package ampproject/amp-toolbox
@@ -31,7 +31,7 @@ abstract class BaseDocumentMiddleware implements DocumentMiddleware
      *
      * @var UniqueIdManager
      */
-    protected $uniqueIdManager;
+    protected $uniqueId;
 
     /**
      * The original encoding of how the AmpProject\Dom\Document was created.
@@ -44,7 +44,7 @@ abstract class BaseDocumentMiddleware implements DocumentMiddleware
      * Creates a new AmpProject\Dom\DocumentMiddleware object
      *
      * @param Options         $options          Associative array of configure options for DOM document.
-     * @param UniqueIdManager $uniqueIdManager  Unique ID manager for the Document instance.
+     * @param UniqueIdManager $uniqueId         Unique ID manager for the Document instance.
      * @param string          $originalEncoding The original encoding of how the AmpProject\Dom\Document was created.
      */
     public function __construct(Options $options, UniqueIdManager $uniqueId, $originalEncoding)

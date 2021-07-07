@@ -29,7 +29,7 @@ class AmpEmojiAttribute extends BaseDocumentMiddleware
      *
      * The emoji symbol gets stripped by DOMDocument::loadHTML().
      *
-     * @param string $source Source HTML string to convert the emoji AMP symbol in.
+     * @param string $html Source HTML string to convert the emoji AMP symbol in.
      * @return string Adapted source HTML string.
      */
     public function beforeLoad($html)
@@ -73,8 +73,6 @@ class AmpEmojiAttribute extends BaseDocumentMiddleware
             $html,
             1
         );
-
-        return $html;
     }
 
     /**

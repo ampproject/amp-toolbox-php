@@ -47,7 +47,13 @@ class AmpBindAttributes extends BaseDocumentMiddleware
 
             $newAttrs = '';
             $offset   = 0;
-            while (preg_match(Document::AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
+            while (
+                preg_match(
+                    Document::AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN,
+                    substr($oldAttrs, $offset),
+                    $attrMatches
+                )
+            ) {
                 $offset += strlen($attrMatches[0]);
 
                 if ('[' === $attrMatches['name'][0]) {
@@ -130,7 +136,13 @@ class AmpBindAttributes extends BaseDocumentMiddleware
 
             $newAttrs = '';
             $offset   = 0;
-            while (preg_match(Document::AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN, substr($oldAttrs, $offset), $attrMatches)) {
+            while (
+                preg_match(
+                    Document::AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN,
+                    substr($oldAttrs, $offset),
+                    $attrMatches
+                )
+            ) {
                 $offset += strlen($attrMatches[0]);
 
                 $attrName = substr($attrMatches['name'], strlen(Document::AMP_BIND_DATA_ATTR_PREFIX));

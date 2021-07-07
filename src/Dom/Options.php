@@ -23,7 +23,8 @@ class Options implements ArrayAccess
      *
      * @param array $options Associative array of configuration options.
      */
-    public function __construct($options) {
+    public function __construct($options)
+    {
         $this->options = $options;
     }
 
@@ -33,12 +34,9 @@ class Options implements ArrayAccess
      * @param string $option The option name.
      * @param mixed  $value  Option value.
      */
-    public function offsetSet($option, $value) {
-        if (is_null($option)) {
-            $this->options[] = $value;
-        } else {
-            $this->options[$option] = $value;
-        }
+    public function offsetSet($option, $value)
+    {
+        $this->options[$option] = $value;
     }
 
     /**
@@ -47,7 +45,8 @@ class Options implements ArrayAccess
      * @param string $option Option name.
      * @return bool True if the option exists, false otherwise.
      */
-    public function offsetExists($option) {
+    public function offsetExists($option)
+    {
         return isset($this->options[$option]);
     }
 
@@ -56,7 +55,8 @@ class Options implements ArrayAccess
      *
      * @param string $option Option name.
      */
-    public function offsetUnset($option) {
+    public function offsetUnset($option)
+    {
         unset($this->options[$option]);
     }
 
@@ -66,7 +66,8 @@ class Options implements ArrayAccess
      * @param string $option Option name.
      * @return mixed If set, the value of the option, null otherwise.
      */
-    public function offsetGet($option) {
+    public function offsetGet($option)
+    {
         return isset($this->options[$option]) ? $this->options[$option] : null;
     }
 

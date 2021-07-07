@@ -490,7 +490,7 @@ final class Document extends DOMDocument
 
         $this->detectInvalidByteSequences($source);
 
-        foreach($this->documentMiddlewareClasses as $middlewareClass) {
+        foreach ($this->documentMiddlewareClasses as $middlewareClass) {
             $middlewareClassInstance = new $middlewareClass($this->options, $this->uniqueId, $this->originalEncoding);
             $source = $middlewareClassInstance->beforeLoad($source);
             $this->documentMiddlewareClassInstances[] = $middlewareClassInstance;
@@ -515,7 +515,7 @@ final class Document extends DOMDocument
         libxml_use_internal_errors($libxml_previous_state);
 
         if ($success) {
-            foreach($this->documentMiddlewareClassInstances as $middlewareClassInstance) {
+            foreach ($this->documentMiddlewareClassInstances as $middlewareClassInstance) {
                 $middlewareClassInstance->afterLoad($this);
             }
 
@@ -1266,7 +1266,7 @@ final class Document extends DOMDocument
      */
     public function registerMiddlewareClasses($middlewareClasses)
     {
-        foreach($middlewareClasses as $middlewareClass) {
+        foreach ($middlewareClasses as $middlewareClass) {
             $this->registerMiddlewareClass($middlewareClass);
         }
     }
