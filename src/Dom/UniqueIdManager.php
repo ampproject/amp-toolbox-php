@@ -2,6 +2,11 @@
 
 namespace AmpProject\Dom;
 
+/**
+ * Unique ID manager.
+ *
+ * @package ampproject/amp-toolbox
+ */
 class UniqueIdManager
 {
 

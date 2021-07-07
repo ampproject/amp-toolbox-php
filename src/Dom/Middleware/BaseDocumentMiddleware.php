@@ -7,13 +7,46 @@ use AmpProject\Dom\DocumentMiddleware;
 use AmpProject\Dom\Options;
 use AmpProject\Dom\UniqueIdManager;
 
+/**
+ * Middleware for the Dom\Document object.
+ *
+ * @property Options         $options          Associative array of configure options for DOM document.
+ * @property UniqueIdManager $uniqueIdManager  Unique ID manager for the Document instance.
+ * @property string          $originalEncoding The original encoding of how the AmpProject\Dom\Document was created.
+ *
+ * @package ampproject/amp-toolbox
+ */
 abstract class BaseDocumentMiddleware implements DocumentMiddleware
 {
 
+    /**
+     * Associative array of configure options for DOM document.
+     *
+     * @var Options
+     */
     protected $options;
+
+    /**
+     * Unique ID manager for the Document instance.
+     *
+     * @var UniqueIdManager
+     */
     protected $uniqueIdManager;
+
+    /**
+     * The original encoding of how the AmpProject\Dom\Document was created.
+     *
+     * @var string
+     */
     protected $originalEncoding;
 
+    /**
+     * Creates a new AmpProject\Dom\DocumentMiddleware object
+     *
+     * @param Options         $options          Associative array of configure options for DOM document.
+     * @param UniqueIdManager $uniqueIdManager  Unique ID manager for the Document instance.
+     * @param string          $originalEncoding The original encoding of how the AmpProject\Dom\Document was created.
+     */
     public function __construct(Options $options, UniqueIdManager $uniqueId, $originalEncoding)
     {
         $this->options = $options;
