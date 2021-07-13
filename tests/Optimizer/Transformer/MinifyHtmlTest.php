@@ -5,11 +5,13 @@ namespace AmpProject\Optimizer\Transformer;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
 use AmpProject\Optimizer\Error\InvalidJson;
+use AmpProject\Optimizer\Error\MissingPackage;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Tests\ErrorComparison;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
+use Peast\Peast;
 
 /**
  * Test the MinifyHtml transformer.
@@ -112,5 +114,47 @@ final class MinifyHtmlTest extends TestCase
 
         $this->assertSimilarMarkup($expectedHtml, $document->saveHTML());
         $this->assertSameErrors($expectedErrors, $errors);
+    }
+
+    /**
+     * Test optional amp-script minification.
+     *
+     * @covers \AmpProject\Optimizer\Transformer::minifyAmpScript()
+     */
+    public function testAmpScriptMinification()
+    {
+        $source = TestMarkup::DOCTYPE . '<html ⚡> <head> ' .
+            TestMarkup::META_CHARSET .
+            ' </head> <body>' .
+                "\n<script id=\"hello-world\" type=\"text/plain\" target=\"amp-script\">\n" .
+                "  const btn = document.querySelector('button');\n" .
+                "  btn.addEventListener('click', () => {\n" .
+                "    document.body.textContent = 'Hello World!';\n" .
+                "  });\n" .
+                "</script>\n" .
+            '</body> </html>';
+
+        $expectedHtml = TestMarkup::DOCTYPE . '<html ⚡><head>' .
+            TestMarkup::META_CHARSET .
+            '</head><body><script id="hello-world" type="text/plain" target="amp-script">' .
+            'const btn=document.querySelector(\'button\');btn.addEventListener' .
+            '(\'click\',()=>{document.body.textContent=\'Hello World!\';});' .
+            '</script></body></html>';
+
+        $document      = Document::fromHtml($source);
+        $configuration = new MinifyHtmlConfiguration([MinifyHtmlConfiguration::MINIFY_AMP_SCRIPT => true]);
+        $transformer   = new MinifyHtml($configuration);
+        $errors        = new ErrorCollection();
+
+        $transformer->transform($document, $errors);
+
+        if (! class_exists(Peast::class)) {
+            $expectedErrors = [
+                new MissingPackage('mck89/peast package is required to minify inline amp-script.'),
+            ];
+            $this->assertSameErrors($expectedErrors, $errors);
+        } else {
+            $this->assertSimilarMarkup($expectedHtml, $document->saveHTML());
+        }
     }
 }

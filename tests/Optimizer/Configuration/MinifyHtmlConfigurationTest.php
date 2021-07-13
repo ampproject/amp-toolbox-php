@@ -52,7 +52,7 @@ final class MinifyHtmlConfigurationTest extends TestCase
     {
         $configuration = new MinifyHtmlConfiguration([
             'minify'                => false,
-            'minifyAmpScript'       => false,
+            'minifyAmpScript'       => true,
             'minifyJSON'            => false,
             'collapseWhitespace'    => false,
             'removeComments'        => false,
@@ -61,8 +61,8 @@ final class MinifyHtmlConfigurationTest extends TestCase
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
         $this->assertEquals(false, $configuration->get('minify'));
         $this->assertEquals(false, $configuration->minify);
-        $this->assertEquals(false, $configuration->get('minifyAmpScript'));
-        $this->assertEquals(false, $configuration->minifyAmpScript);
+        $this->assertEquals(true, $configuration->get('minifyAmpScript'));
+        $this->assertEquals(true, $configuration->minifyAmpScript);
         $this->assertEquals(false, $configuration->get('minifyJSON'));
         $this->assertEquals(false, $configuration->minifyJSON);
         $this->assertEquals(false, $configuration->get('collapseWhitespace'));
@@ -74,7 +74,7 @@ final class MinifyHtmlConfigurationTest extends TestCase
         $this->assertEquals(
             [
                 'minify'                => false,
-                'minifyAmpScript'       => false,
+                'minifyAmpScript'       => true,
                 'minifyJSON'            => false,
                 'collapseWhitespace'    => false,
                 'removeComments'        => false,
@@ -142,12 +142,5 @@ final class MinifyHtmlConfigurationTest extends TestCase
         );
         $configuration = new MinifyHtmlConfiguration([]);
         $configuration->nonsense;
-    }
-
-    public function testThrowExceptionIfMinifyAmpScriptIsTrue()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Script minification feature is not implemented yet.');
-        new MinifyHtmlConfiguration(['minifyAmpScript' => true]);
     }
 }
