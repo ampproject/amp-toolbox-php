@@ -460,11 +460,6 @@ final class Document extends DOMDocument
             }
         }
 
-        // Whitespace just causes unit tests to fail... so whitespace begone.
-        if ('' === trim($html)) {
-            return '';
-        }
-
         return $html;
     }
 
