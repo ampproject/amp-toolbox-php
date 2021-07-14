@@ -96,8 +96,6 @@ final class Encoding
      *
      * If sanitization fails, it will return 'auto', letting the conversion
      * logic try to figure it out itself.
-     *
-     * @param string $encoding Encoding to sanitize.
      */
     public function sanitize()
     {
