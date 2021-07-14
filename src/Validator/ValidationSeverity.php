@@ -7,6 +7,10 @@ use AmpProject\FakeEnum;
 /**
  * Severity of a validation error.
  *
+ * @method static ValidationSeverity UNKNOWN_SEVERITY()
+ * @method static ValidationSeverity ERROR()
+ * @method static ValidationSeverity WARNING()
+ *
  * @package ampproject/amp-toolbox
  *
  * @method static ValidationSeverity UNKNOWN_SEVERITY()

@@ -2,7 +2,7 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\DevMode;
 use AmpProject\Dom\Document\AfterLoadFilter;
 use AmpProject\Dom\Document\AfterSaveFilter;
@@ -15,7 +15,7 @@ use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
 use AmpProject\Exception\InvalidDocumentFilter;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;
 use DOMComment;

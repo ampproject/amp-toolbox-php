@@ -3,7 +3,7 @@
 namespace AmpProject\Optimizer\Transformer;
 
 use AmpProject\Amp;
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Dom\NodeWalker;
@@ -17,8 +17,8 @@ use AmpProject\Optimizer\HeroImage;
 use AmpProject\Optimizer\ImageDimensions;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
-use AmpProject\RequestDestination;
-use AmpProject\Tag;
+use AmpProject\Html\RequestDestination;
+use AmpProject\Html\Tag;
 use AmpProject\Url;
 
 /**

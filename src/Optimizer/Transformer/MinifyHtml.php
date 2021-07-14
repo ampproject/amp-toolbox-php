@@ -2,7 +2,8 @@
 
 namespace AmpProject\Optimizer\Transformer;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
+use AmpProject\Html\Tag;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Extension;
@@ -12,7 +13,6 @@ use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\Protocol;
-use AmpProject\Tag;
 use DOMComment;
 use DOMNode;
 use DOMText;

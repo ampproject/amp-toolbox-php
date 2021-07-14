@@ -2,10 +2,10 @@
 
 namespace AmpProject\Optimizer;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Element;
 use AmpProject\Layout;
-use AmpProject\LengthUnit;
+use AmpProject\Html\LengthUnit;
 
 final class ImageDimensions
 {
