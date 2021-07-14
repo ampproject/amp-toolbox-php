@@ -283,16 +283,16 @@ final class Document extends DOMDocument
     private $links;
 
     /**
-     * List of document middleware class names.
+     * List of document filter class names.
      *
      * @var string[]
      */
     private $filterClasses = [];
 
     /**
-     * List of document middleware class instances.
+     * List of document filter class instances.
      *
-     * @var DocumentMiddleware[]
+     * @var Filter[]
      */
     private $filters = [];
 
