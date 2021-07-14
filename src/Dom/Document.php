@@ -200,6 +200,7 @@ final class Document extends DOMDocument
                 Filter\NormalizeHtmlAttributes::class,
                 Filter\DocumentEncoding::class,
                 Filter\HttpEquivCharset::class,
+                Filter\LibxmlCompatibility::class,
             ]
         );
     }
@@ -386,23 +387,7 @@ final class Document extends DOMDocument
             }
         }
 
-        $libxml_previous_state = libxml_use_internal_errors(true);
-
-        $this->options[Option::LIBXML_FLAGS] |= LIBXML_COMPACT;
-
-        /*
-         * LIBXML_HTML_NODEFDTD is only available for libxml 2.7.8+.
-         * This should be the case for PHP 5.4+, but some systems seem to compile against a custom libxml version that
-         * is lower than expected.
-         */
-        if (defined('LIBXML_HTML_NODEFDTD')) {
-            $this->options[Option::LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
-        }
-
         $success = parent::loadHTML($source, $this->options[Option::LIBXML_FLAGS]);
-
-        libxml_clear_errors();
-        libxml_use_internal_errors($libxml_previous_state);
 
         if ($success) {
             foreach ($this->filters as $filter) {
