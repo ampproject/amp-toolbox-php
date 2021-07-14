@@ -334,6 +334,10 @@ final class Document extends DOMDocument
         if ($success) {
             $this->insertMissingCharset();
 
+            // TODO @ediamin: Turn all of the methods below into separate Filter objects as well. They should just use
+            // regular afterLoad(), they can happen for both loadHTML() and loadHTMLFragment().
+            // Note: Not the insertMissingCharset() one, that should remain exclusive for loadHTML().
+
             // Do some further clean-up.
             $this->deduplicateTag(Tag::HEAD);
             $this->deduplicateTag(Tag::BODY);
