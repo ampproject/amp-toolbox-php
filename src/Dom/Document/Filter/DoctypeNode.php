@@ -10,7 +10,7 @@ use AmpProject\Dom\Document\BeforeLoadFilter;
  *
  * @package ampproject/amp-toolbox
  */
-class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
+final class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**

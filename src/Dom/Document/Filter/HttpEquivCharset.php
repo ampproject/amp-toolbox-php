@@ -17,7 +17,7 @@ use DOMComment;
  *
  * @package ampproject/amp-toolbox
  */
-class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter, BeforeSaveFilter, AfterSaveFilter
+final class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter, BeforeSaveFilter, AfterSaveFilter
 {
 
     /**

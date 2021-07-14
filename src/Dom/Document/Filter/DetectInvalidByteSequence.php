@@ -14,7 +14,7 @@ use AmpProject\Exception\InvalidByteSequence;
  *
  * @package ampproject/amp-toolbox
  */
-class DetectInvalidByteSequence implements BeforeLoadFilter
+final class DetectInvalidByteSequence implements BeforeLoadFilter
 {
 
     /**

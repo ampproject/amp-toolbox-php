@@ -13,7 +13,7 @@ use AmpProject\Dom\Options;
  *
  * @package ampproject/amp-toolbox
  */
-class LibxmlCompatibility implements BeforeLoadFilter, AfterLoadFilter
+final class LibxmlCompatibility implements BeforeLoadFilter, AfterLoadFilter
 {
 
     /**

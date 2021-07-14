@@ -14,7 +14,7 @@ use AmpProject\Tag;
  *
  * @package ampproject/amp-toolbox
  */
-class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter, BeforeSaveFilter, AfterSaveFilter
+final class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter, BeforeSaveFilter, AfterSaveFilter
 {
 
     /**

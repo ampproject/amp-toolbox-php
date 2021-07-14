@@ -11,7 +11,7 @@ use AmpProject\Tag;
  *
  * @package ampproject/amp-toolbox
  */
-class SelfClosingTags implements BeforeLoadFilter, AfterSaveFilter
+final class SelfClosingTags implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**

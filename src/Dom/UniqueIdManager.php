@@ -7,7 +7,7 @@ namespace AmpProject\Dom;
  *
  * @package ampproject/amp-toolbox
  */
-class UniqueIdManager
+final class UniqueIdManager
 {
 
     /**

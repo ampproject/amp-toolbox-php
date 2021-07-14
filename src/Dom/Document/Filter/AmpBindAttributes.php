@@ -13,7 +13,7 @@ use AmpProject\Dom\Options;
  *
  * @package ampproject/amp-toolbox
  */
-class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
+final class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**

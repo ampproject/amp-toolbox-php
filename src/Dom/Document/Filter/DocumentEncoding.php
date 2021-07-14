@@ -12,7 +12,7 @@ use AmpProject\Tag;
  *
  * @package ampproject/amp-toolbox
  */
-class DocumentEncoding implements BeforeLoadFilter
+final class DocumentEncoding implements BeforeLoadFilter
 {
 
     /**

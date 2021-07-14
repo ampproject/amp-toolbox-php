@@ -9,7 +9,7 @@ use ArrayAccess;
  *
  * @package ampproject/amp-toolbox
  */
-class Options implements ArrayAccess
+final class Options implements ArrayAccess
 {
     /**
      * Associative array of options to configure the behavior of the DOM document abstraction.

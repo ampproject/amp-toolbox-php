@@ -13,7 +13,7 @@ use AmpProject\Tag;
  *
  * @package ampproject/amp-toolbox
  */
-class NoscriptElements implements BeforeLoadFilter, AfterLoadFilter
+final class NoscriptElements implements BeforeLoadFilter, AfterLoadFilter
 {
 
     /**

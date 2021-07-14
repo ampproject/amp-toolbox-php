@@ -12,7 +12,7 @@ use AmpProject\Dom\Document\BeforeLoadFilter;
  *
  * @package ampproject/amp-toolbox
  */
-class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
+final class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**

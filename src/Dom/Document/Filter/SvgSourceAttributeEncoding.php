@@ -9,7 +9,7 @@ use AmpProject\Dom\Document\AfterSaveFilter;
  *
  * @package ampproject/amp-toolbox
  */
-class SvgSourceAttributeEncoding implements AfterSaveFilter
+final class SvgSourceAttributeEncoding implements AfterSaveFilter
 {
 
     /**

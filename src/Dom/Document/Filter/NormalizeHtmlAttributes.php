@@ -11,7 +11,7 @@ use DOMAttr;
  *
  * @package ampproject/amp-toolbox
  */
-class NormalizeHtmlAttributes implements AfterLoadFilter
+final class NormalizeHtmlAttributes implements AfterLoadFilter
 {
 
     /**
