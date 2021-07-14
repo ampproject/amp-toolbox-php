@@ -2,7 +2,6 @@
 
 namespace AmpProject\Dom\Document\Filter;
 
-use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 
@@ -13,6 +12,34 @@ use AmpProject\Dom\Document\BeforeLoadFilter;
  */
 class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
 {
+
+    /**
+     * Regex pattern used for securing the doctype node if it is not the first one.
+     *
+     * @var string
+     */
+    const HTML_SECURE_DOCTYPE_IF_NOT_FIRST_PATTERN = '/(^[^<]*(?>\s*<!--[^>]*>\s*)+<)(!)(doctype)(\s+[^>]+?)(>)/i';
+
+    /**
+     * Regex replacement template for securing the doctype node.
+     *
+     * @var string.
+     */
+    const HTML_SECURE_DOCTYPE_REPLACEMENT_TEMPLATE = '\1!--amp-\3\4-->';
+
+    /**
+     * Regex pattern used for restoring the doctype node.
+     *
+     * @var string
+     */
+    const HTML_RESTORE_DOCTYPE_PATTERN = '/(^[^<]*(?>\s*<!--[^>]*>\s*)*<)(!--amp-)(doctype)(\s+[^>]+?)(-->)/i';
+
+    /**
+     * Regex replacement template for restoring the doctype node.
+     *
+     * @var string
+     */
+    const HTML_RESTORE_DOCTYPE_REPLACEMENT_TEMPLATE = '\1!\3\4>';
 
     /**
      * Whether we had secured a doctype that needs restoring or not.
@@ -36,8 +63,8 @@ class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
     public function beforeLoad($html)
     {
         return preg_replace(
-            Document::HTML_SECURE_DOCTYPE_IF_NOT_FIRST_PATTERN,
-            '\1!--amp-\3\4-->',
+            self::HTML_SECURE_DOCTYPE_IF_NOT_FIRST_PATTERN,
+            self::HTML_SECURE_DOCTYPE_REPLACEMENT_TEMPLATE,
             $html,
             1,
             $this->securedDoctype
@@ -56,6 +83,11 @@ class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
             return $html;
         }
 
-        return preg_replace(Document::HTML_RESTORE_DOCTYPE_PATTERN, '\1!\3\4>', $html, 1);
+        return preg_replace(
+            self::HTML_RESTORE_DOCTYPE_PATTERN,
+            self::HTML_RESTORE_DOCTYPE_REPLACEMENT_TEMPLATE,
+            $html,
+            1
+        );
     }
 }

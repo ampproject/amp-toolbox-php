@@ -2,6 +2,7 @@
 
 namespace AmpProject\Dom;
 
+use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\InvalidByteSequence;
@@ -494,7 +495,7 @@ class DocumentTest extends TestCase
         $converted = $dom->saveHTML($dom->body->firstChild);
         $this->assertEquals($original, $converted);
         $this->assertStringContainsString('[src]="myAnimals[currentAnimal].imageUrl"', $converted);
-        $this->assertStringNotContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX, $converted);
+        $this->assertStringNotContainsString(Amp::BIND_DATA_ATTR_PREFIX, $converted);
         $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
 
         // Conversion is transparent and end result preserves data-amp-bind-* syntax.
@@ -502,7 +503,7 @@ class DocumentTest extends TestCase
         $dom       = Document::fromHtml($original);
         $converted = $dom->saveHTML($dom->body->firstChild);
         $this->assertEquals($original, $converted);
-        $this->assertStringContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX . 'src="myAnimals[currentAnimal].imageUrl"', $converted);
+        $this->assertStringContainsString(Amp::BIND_DATA_ATTR_PREFIX . 'src="myAnimals[currentAnimal].imageUrl"', $converted);
         $this->assertStringNotContainsString('[src]', $converted);
         $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
 
@@ -537,7 +538,7 @@ class DocumentTest extends TestCase
         ];
         foreach ($malformed_html as $html) {
             $converted = Document::fromHtml($html)->saveHTML();
-            $this->assertStringNotContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX, $converted, "Source: {$html}");
+            $this->assertStringNotContainsString(Amp::BIND_DATA_ATTR_PREFIX, $converted, "Source: {$html}");
         }
     }
 

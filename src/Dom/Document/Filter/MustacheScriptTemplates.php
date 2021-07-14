@@ -18,6 +18,22 @@ class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter, Befo
 {
 
     /**
+     * Xpath query to fetch the elements containing Mustache templates (both <template type=amp-mustache> and
+     * <script type=text/plain template=amp-mustache>).
+     *
+     * @var string
+     */
+    const XPATH_MUSTACHE_TEMPLATE_ELEMENTS_QUERY = './/self::template[ @type = "amp-mustache" ]'
+                                                   . '|//self::script[ @type = "text/plain" '
+                                                   . 'and @template = "amp-mustache" ]';
+    /**
+     * Xpath query to fetch the attributes that are being URL-encoded by saveHTML().
+     *
+     * @var string
+     */
+    const XPATH_URL_ENCODED_ATTRIBUTES_QUERY = './/*/@src|.//*/@href|.//*/@action';
+
+    /**
      * Store whether mustache template tags were replaced and need to be restored.
      *
      * @see replaceMustacheTemplateTokens()
@@ -82,7 +98,7 @@ class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter, Befo
      */
     public function beforeSave(Document $document)
     {
-        $templates = $document->xpath->query(Document::XPATH_MUSTACHE_TEMPLATE_ELEMENTS_QUERY, $document->body);
+        $templates = $document->xpath->query(self::XPATH_MUSTACHE_TEMPLATE_ELEMENTS_QUERY, $document->body);
         if (0 === $templates->length) {
             return;
         }
@@ -90,7 +106,7 @@ class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter, Befo
         $mustacheTagPlaceholders = $this->getMustacheTagPlaceholders();
 
         foreach ($templates as $template) {
-            foreach ($document->xpath->query(Document::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
+            foreach ($document->xpath->query(self::XPATH_URL_ENCODED_ATTRIBUTES_QUERY, $template) as $attribute) {
                 $value = preg_replace_callback(
                     $this->getMustacheTagPattern(),
                     static function ($matches) use ($mustacheTagPlaceholders) {

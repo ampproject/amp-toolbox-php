@@ -2,7 +2,7 @@
 
 namespace AmpProject\Dom\Document\Filter;
 
-use AmpProject\Dom\Document;
+use AmpProject\Amp;
 use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\Option;
@@ -15,6 +15,62 @@ use AmpProject\Dom\Options;
  */
 class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
 {
+
+    /**
+     * Pattern for HTML attribute accounting for binding attr name in data attribute syntax, boolean attribute,
+     * single/double-quoted attribute value, and unquoted attribute values.
+     *
+     * @var string
+     */
+    const AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN = '#^\s+(?P<name>(?:'
+                                                 . Amp::BIND_DATA_ATTR_PREFIX
+                                                 . ')?[a-zA-Z0-9_\-]+)'
+                                                 . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
+    /**
+     * Match all start tags that contain a binding attribute in data attribute syntax.
+     *
+     * @var string
+     */
+    const AMP_BIND_DATA_START_PATTERN = '#<'
+                                        . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
+                                        . '(?P<attrs>\s+'                           // Attributes.
+                                        . '(?>'                                 // Match at least one attribute.
+                                        . '(?>'                             // prefixed with "data-amp-bind-".
+                                        . '(?![a-zA-Z0-9_\-\s]*'
+                                        . Amp::BIND_DATA_ATTR_PREFIX
+                                        . '[a-zA-Z0-9_\-]+="[^"]*+"|\'[^\']*+\')'
+                                        . '[^>"\']+|"[^"]*+"|\'[^\']*+\''
+                                        . ')*+'
+                                        . '(?>[a-zA-Z0-9_\-\s]*'
+                                        . Amp::BIND_DATA_ATTR_PREFIX
+                                        . '[a-zA-Z0-9_\-]+'
+                                        . ')'
+                                        . ')+'
+                                        . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+' // Any attribute tokens, including
+                                        // binding ones.
+                                        . ')>#is';
+
+    /**
+     * Pattern for HTML attribute accounting for binding attr name in square brackets syntax, boolean attribute,
+     * single/double-quoted attribute value, and unquoted attribute values.
+     *
+     * @var string
+     */
+    const AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN = '#^\s+(?P<name>\[?[a-zA-Z0-9_\-]+\]?)'
+                                                  . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
+    /**
+     * Match all start tags that contain a binding attribute in square brackets syntax.
+     *
+     * @var string
+     */
+    const AMP_BIND_SQUARE_START_PATTERN = '#<'
+                                          . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
+                                          . '(?P<attrs>\s+'                           // Attributes.
+                                          . '(?>[^>"\'\[\]]+|"[^"]*+"|\'[^\']*+\')*+' // Non-binding attributes tokens.
+                                          . '\[[a-zA-Z0-9_\-]+\]'                     // One binding attribute key.
+                                          . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+'     // Any attribute tokens, including
+                                          // binding ones.
+                                          . ')>#s';
 
     /**
      * Options instance to use.
@@ -69,7 +125,7 @@ class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
             $offset   = 0;
             while (
                 preg_match(
-                    Document::AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN,
+                    self::AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN,
                     substr($oldAttrs, $offset),
                     $attrMatches
                 )
@@ -78,7 +134,7 @@ class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
 
                 if ('[' === $attrMatches['name'][0]) {
                     $attrName = trim($attrMatches['name'], '[]');
-                    $newAttrs .= ' ' . Document::AMP_BIND_DATA_ATTR_PREFIX . $attrName;
+                    $newAttrs .= ' ' . Amp::BIND_DATA_ATTR_PREFIX . $attrName;
                     if (isset($attrMatches['value'])) {
                         $newAttrs .= $attrMatches['value'];
                     }
@@ -97,7 +153,7 @@ class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
         };
 
         $converted = preg_replace_callback(
-            Document::AMP_BIND_SQUARE_START_PATTERN,
+            self::AMP_BIND_SQUARE_START_PATTERN,
             $replaceCallback,
             $html
         );
@@ -158,14 +214,14 @@ class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
             $offset   = 0;
             while (
                 preg_match(
-                    Document::AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN,
+                    self::AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN,
                     substr($oldAttrs, $offset),
                     $attrMatches
                 )
             ) {
                 $offset += strlen($attrMatches[0]);
 
-                $attrName = substr($attrMatches['name'], strlen(Document::AMP_BIND_DATA_ATTR_PREFIX));
+                $attrName = substr($attrMatches['name'], strlen(Amp::BIND_DATA_ATTR_PREFIX));
                 if (
                     $this->options[Option::AMP_BIND_SYNTAX] === Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS
                     ||
@@ -187,7 +243,7 @@ class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
         };
 
         $converted = preg_replace_callback(
-            Document::AMP_BIND_DATA_START_PATTERN,
+            self::AMP_BIND_DATA_START_PATTERN,
             $replaceCallback,
             $html
         );

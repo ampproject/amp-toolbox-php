@@ -16,6 +16,17 @@ class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**
+     * Pattern to match an AMP emoji together with its variant (amp4ads, amp4email, ...).
+     *
+     * @var string
+     */
+    const AMP_EMOJI_ATTRIBUTE_PATTERN = '/<html\s([^>]*?(?:'
+                                        . Attribute::AMP_EMOJI_ALT
+                                        . '|'
+                                        . Attribute::AMP_EMOJI
+                                        . ')(4(?:ads|email))?[^>]*?)>/i';
+
+    /**
      * Store the emoji that was used to represent the AMP attribute.
      *
      * There are a few variations, so we want to keep track of this.
@@ -39,7 +50,7 @@ class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
         $this->usedAmpEmoji = '';
 
         return preg_replace_callback(
-            Document::AMP_EMOJI_ATTRIBUTE_PATTERN,
+            self::AMP_EMOJI_ATTRIBUTE_PATTERN,
             function ($matches) {
                 // Split into individual attributes.
                 $attributes = array_map(

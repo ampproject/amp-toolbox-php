@@ -2,16 +2,31 @@
 
 namespace AmpProject\Dom\Document\Filter;
 
-use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterSaveFilter;
 
 /**
- * Filter to adapt SVG sizer markup to ensure validation.
+ * Filter for fixing the mangled encoding of src attributes with SVG data.
  *
  * @package ampproject/amp-toolbox
  */
 class SvgSourceAttributeEncoding implements AfterSaveFilter
 {
+
+    /**
+     * Regex pattern to match an SVG sizer element.
+     *
+     * @var string
+     */
+    const I_AMPHTML_SIZER_REGEX_PATTERN = '/(?<before_src><i-amphtml-sizer\s+[^>]*>\s*<img\s+[^>]*?\s+src=([\'"]))'
+                                          . '(?<src>.*?)'
+                                          . '(?<after_src>\2><\/i-amphtml-sizer>)/i';
+
+    /**
+     * Regex pattern for extracting fields to adapt out of a src attribute.
+     *
+     * @var string
+     */
+    const SRC_SVG_REGEX_PATTERN = '/^\s*(?<type>[^<]+)(?<value><svg[^>]+>)\s*$/i';
 
     /**
      * Process SVG sizers to ensure they match the required format to validate against AMP.
@@ -21,7 +36,7 @@ class SvgSourceAttributeEncoding implements AfterSaveFilter
      */
     public function afterSave($html)
     {
-        return preg_replace_callback(Document::I_AMPHTML_SIZER_REGEX_PATTERN, [$this, 'adaptSizer'], $html);
+        return preg_replace_callback(self::I_AMPHTML_SIZER_REGEX_PATTERN, [$this, 'adaptSizer'], $html);
     }
 
     /**
@@ -34,7 +49,7 @@ class SvgSourceAttributeEncoding implements AfterSaveFilter
     {
         $src = $matches['src'];
         $src = htmlspecialchars_decode($src, ENT_NOQUOTES);
-        $src = preg_replace_callback(Document::SRC_SVG_REGEX_PATTERN, [$this, 'adaptSvg'], $src);
+        $src = preg_replace_callback(self::SRC_SVG_REGEX_PATTERN, [$this, 'adaptSvg'], $src);
 
         return $matches['before_src'] . $src . $matches['after_src'];
     }

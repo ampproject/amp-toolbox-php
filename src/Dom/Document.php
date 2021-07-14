@@ -4,12 +4,12 @@ namespace AmpProject\Dom;
 
 use AmpProject\Attribute;
 use AmpProject\DevMode;
-use AmpProject\Dom\Document\Encoding;
-use AmpProject\Dom\Document\Filter;
 use AmpProject\Dom\Document\AfterLoadFilter;
 use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\BeforeSaveFilter;
+use AmpProject\Dom\Document\Encoding;
+use AmpProject\Dom\Document\Filter;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
 use AmpProject\Exception\InvalidByteSequence;
@@ -63,71 +63,6 @@ final class Document extends DOMDocument
      */
     const HTML_DOCTYPE_REGEX_PATTERN = '#<!doctype\s+html[^>]+?>#si';
 
-    /**
-     * Attribute prefix for AMP-bind data attributes.
-     *
-     * @var string
-     */
-    const AMP_BIND_DATA_ATTR_PREFIX = 'data-amp-bind-';
-
-    /**
-     * Pattern for HTML attribute accounting for binding attr name in square brackets syntax, boolean attribute,
-     * single/double-quoted attribute value, and unquoted attribute values.
-     *
-     * @var string
-     */
-    const AMP_BIND_SQUARE_BRACKETS_ATTR_PATTERN = '#^\s+(?P<name>\[?[a-zA-Z0-9_\-]+\]?)'
-                                                  . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
-
-    /**
-     * Pattern for HTML attribute accounting for binding attr name in data attribute syntax, boolean attribute,
-     * single/double-quoted attribute value, and unquoted attribute values.
-     *
-     * @var string
-     */
-    const AMP_BIND_DATA_ATTRIBUTE_ATTR_PATTERN = '#^\s+(?P<name>(?:'
-                                                 . self::AMP_BIND_DATA_ATTR_PREFIX
-                                                 . ')?[a-zA-Z0-9_\-]+)'
-                                                 . '(?P<value>=(?>"[^"]*+"|\'[^\']*+\'|[^\'"\s]+))?#';
-
-    /**
-     * Match all start tags that contain a binding attribute in square brackets syntax.
-     *
-     * @var string
-     */
-    const AMP_BIND_SQUARE_START_PATTERN = '#<'
-                                          . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
-                                          . '(?P<attrs>\s+'                           // Attributes.
-                                          . '(?>[^>"\'\[\]]+|"[^"]*+"|\'[^\']*+\')*+' // Non-binding attributes tokens.
-                                          . '\[[a-zA-Z0-9_\-]+\]'                     // One binding attribute key.
-                                          . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+'     // Any attribute tokens, including
-                                                                                      // binding ones.
-                                          . ')>#s';
-
-    /**
-     * Match all start tags that contain a binding attribute in data attribute syntax.
-     *
-     * @var string
-     */
-    const AMP_BIND_DATA_START_PATTERN = '#<'
-                                        . '(?P<name>[a-zA-Z0-9_\-]+)'               // Tag name.
-                                        . '(?P<attrs>\s+'                           // Attributes.
-                                            . '(?>'                                 // Match at least one attribute.
-                                                . '(?>'                             // prefixed with "data-amp-bind-".
-                                                    . '(?![a-zA-Z0-9_\-\s]*'
-                                                    . self::AMP_BIND_DATA_ATTR_PREFIX
-                                                    . '[a-zA-Z0-9_\-]+="[^"]*+"|\'[^\']*+\')'
-                                                    . '[^>"\']+|"[^"]*+"|\'[^\']*+\''
-                                                . ')*+'
-                                                . '(?>[a-zA-Z0-9_\-\s]*'
-                                                    . self::AMP_BIND_DATA_ATTR_PREFIX
-                                                    . '[a-zA-Z0-9_\-]+'
-                                                . ')'
-                                            . ')+'
-                                            . '(?>[^>"\']+|"[^"]*+"|\'[^\']*+\')*+' // Any attribute tokens, including
-                                                                                    // binding ones.
-                                        . ')>#is';
-
     /*
      * Regular expressions to fetch the individual structural tags.
      * These patterns were optimized to avoid extreme backtracking on large documents.
@@ -140,30 +75,8 @@ final class Document extends DOMDocument
     const HTML_STRUCTURE_BODY_END_TAG    = '/(?><\/body(?>\s+[^>]*)?>.*)$/is';
     const HTML_STRUCTURE_HEAD_TAG        = '/^(?>[^<]*(?><head(?>\s+[^>]*)?>).*?<\/head(?>\s+[^>]*)?>)/is';
 
-    // Regex patterns used for securing and restoring the doctype node.
-    const HTML_SECURE_DOCTYPE_IF_NOT_FIRST_PATTERN = '/(^[^<]*(?>\s*<!--[^>]*>\s*)+<)(!)(doctype)(\s+[^>]+?)(>)/i';
-    const HTML_RESTORE_DOCTYPE_PATTERN             = '/(^[^<]*(?>\s*<!--[^>]*>\s*)*<)'
-                                                     . '(!--amp-)(doctype)(\s+[^>]+?)(-->)/i';
-
     // Regex pattern used for removing Internet Explorer conditional comments.
     const HTML_IE_CONDITIONAL_COMMENTS_PATTERN = '/<!--(?>\[if\s|<!\[endif)(?>[^>]+(?<!--)>)*(?>[^>]+(?<=--)>)/i';
-
-    /**
-     * Xpath query to fetch the attributes that are being URL-encoded by saveHTML().
-     *
-     * @var string
-     */
-    const XPATH_URL_ENCODED_ATTRIBUTES_QUERY = './/*/@src|.//*/@href|.//*/@action';
-
-    /**
-     * Xpath query to fetch the elements containing Mustache templates (both <template type=amp-mustache> and
-     * <script type=text/plain template=amp-mustache>).
-     *
-     * @var string
-     */
-    const XPATH_MUSTACHE_TEMPLATE_ELEMENTS_QUERY = './/self::template[ @type = "amp-mustache" ]'
-                                                   . '|//self::script[ @type = "text/plain" '
-                                                   . 'and @template = "amp-mustache" ]';
 
     /**
      * Error message to use when the __get() is triggered for an unknown property.
@@ -172,53 +85,8 @@ final class Document extends DOMDocument
      */
     const PROPERTY_GETTER_ERROR_MESSAGE = 'Undefined property: AmpProject\\Dom\\Document::';
 
-    /**
-     * Charset compatibility tag for making DOMDocument behave.
-     *
-     * See: http://php.net/manual/en/domdocument.loadhtml.php#78243.
-     *
-     * @var string
-     */
-    const HTTP_EQUIV_META_TAG = '<meta http-equiv="content-type" content="text/html; charset=utf-8">';
-
-    // Regex patterns and values used for adding and removing http-equiv charsets for compatibility.
-    // The opening tag pattern contains a comment to make sure we don't match a <head> tag within a comment.
-
-    const HTML_GET_HEAD_OPENING_TAG_PATTERN     = '/(?><!--.*?-->\s*)*<head(?>\s+[^>]*)?>/is';
-    const HTML_GET_HEAD_OPENING_TAG_REPLACEMENT = '$0' . self::HTTP_EQUIV_META_TAG;
-    const HTML_GET_HTML_OPENING_TAG_PATTERN     = '/(?><!--.*?-->\s*)*<html(?>\s+[^>]*)?>/is';
-    const HTML_GET_HTML_OPENING_TAG_REPLACEMENT = '$0<head>' . self::HTTP_EQUIV_META_TAG . '</head>';
-    const HTML_GET_HTTP_EQUIV_TAG_PATTERN       = '#<meta http-equiv=([\'"])content-type\1 '
-                                                  . 'content=([\'"])text/html; '
-                                                  . 'charset=utf-8\2>#i';
-    const HTML_HTTP_EQUIV_VALUE                 = 'content-type';
-    const HTML_HTTP_EQUIV_CONTENT_VALUE         = 'text/html; charset=utf-8';
-
-    // Regex patterns used for finding tags or extracting attribute values in an HTML string.
-    const HTML_FIND_TAG_WITHOUT_ATTRIBUTE_PATTERN = '/<%1$s[^>]*?>[^<]*(?><\/%1$s>)?/i';
-    const HTML_FIND_TAG_WITH_ATTRIBUTE_PATTERN    = '/<%1$s [^>]*?\s*%2$s\s*=[^>]*?>[^<]*(?><\/%1$s>)?/i';
-    const HTML_EXTRACT_ATTRIBUTE_VALUE_PATTERN    = '/%s=(?>([\'"])(?<full>.*)?\1|(?<partial>[^ \'";]+))/';
-    const HTML_FIND_TAG_DELIMITER                 = '/';
-
-    /**
-     * Pattern to match an AMP emoji together with its variant (amp4ads, amp4email, ...).
-     *
-     * @var string
-     */
-    const AMP_EMOJI_ATTRIBUTE_PATTERN = '/<html\s([^>]*?(?:'
-                                        . Attribute::AMP_EMOJI_ALT
-                                        . '|'
-                                        . Attribute::AMP_EMOJI
-                                        . ')(4(?:ads|email))?[^>]*?)>/i';
-
     // Attribute to use as a placeholder to move the emoji AMP symbol (⚡) over to DOM.
     const EMOJI_AMP_ATTRIBUTE_PLACEHOLDER = 'emoji-amp';
-
-    // Patterns used for fixing the mangled encoding of src attributes with SVG data.
-    const I_AMPHTML_SIZER_REGEX_PATTERN = '/(?<before_src><i-amphtml-sizer\s+[^>]*>\s*<img\s+[^>]*?\s+src=([\'"]))'
-                                          . '(?<src>.*?)'
-                                          . '(?<after_src>\2><\/i-amphtml-sizer>)/i';
-    const SRC_SVG_REGEX_PATTERN         = '/^\s*(?<type>[^<]+)(?<value><svg[^>]+>)\s*$/i';
 
     /**
      * XPath query to retrieve all <amp-*> tags, relative to the <body> node.
@@ -575,23 +443,11 @@ final class Document extends DOMDocument
             }
         }
 
-        // Force-add http-equiv charset to make DOMDocument behave as it should.
-        // See: http://php.net/manual/en/domdocument.loadhtml.php#78243.
-        $charset = $this->createElement(Tag::META);
-        $charset->setAttribute(Attribute::HTTP_EQUIV, self::HTML_HTTP_EQUIV_VALUE);
-        $charset->setAttribute(Attribute::CONTENT, self::HTML_HTTP_EQUIV_CONTENT_VALUE);
-        $this->head->insertBefore($charset, $this->head->firstChild);
-
         if (null === $node || PHP_VERSION_ID >= 70300) {
             $html = parent::saveHTML($node);
         } else {
             $html = $this->extractNodeViaFragmentBoundaries($node);
         }
-
-        // Remove http-equiv charset again.
-        // It is also removed from the DOM again in case saveHTML() is used multiple times.
-        $this->head->removeChild($charset);
-        $html = preg_replace(self::HTML_GET_HTTP_EQUIV_TAG_PATTERN, '', $html, 1);
 
         foreach ($filtersInReverse as $filter) {
             if ($filter instanceof AfterSaveFilter) {

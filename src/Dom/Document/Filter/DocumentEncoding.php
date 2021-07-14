@@ -3,7 +3,6 @@
 namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Attribute;
-use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\Encoding;
 use AmpProject\Tag;
@@ -15,6 +14,34 @@ use AmpProject\Tag;
  */
 class DocumentEncoding implements BeforeLoadFilter
 {
+
+    /**
+     * Regex pattern to find a tag without an attribute.
+     *
+     * @var string
+     */
+    const HTML_FIND_TAG_WITHOUT_ATTRIBUTE_PATTERN = '/<%1$s[^>]*?>[^<]*(?><\/%1$s>)?/i';
+
+    /**
+     * Regex pattern to find a tag with an attribute.
+     *
+     * @var string
+     */
+    const HTML_FIND_TAG_WITH_ATTRIBUTE_PATTERN = '/<%1$s [^>]*?\s*%2$s\s*=[^>]*?>[^<]*(?><\/%1$s>)?/i';
+
+    /**
+     * Regex pattern to extract an attribute value out of an attribute string.
+     *
+     * @var string
+     */
+    const HTML_EXTRACT_ATTRIBUTE_VALUE_PATTERN = '/%s=(?>([\'"])(?<full>.*)?\1|(?<partial>[^ \'";]+))/';
+
+    /**
+     * Delimiter used in regular expressions.
+     *
+     * @var string
+     */
+    const HTML_FIND_TAG_DELIMITER = '/';
 
     /**
      * Original encoding that was used for the document.
@@ -130,13 +157,13 @@ class DocumentEncoding implements BeforeLoadFilter
         $matches = [];
         $pattern = empty($attribute)
             ? sprintf(
-                Document::HTML_FIND_TAG_WITHOUT_ATTRIBUTE_PATTERN,
-                preg_quote($element, Document::HTML_FIND_TAG_DELIMITER)
+                self::HTML_FIND_TAG_WITHOUT_ATTRIBUTE_PATTERN,
+                preg_quote($element, self::HTML_FIND_TAG_DELIMITER)
             )
             : sprintf(
-                Document::HTML_FIND_TAG_WITH_ATTRIBUTE_PATTERN,
-                preg_quote($element, Document::HTML_FIND_TAG_DELIMITER),
-                preg_quote($attribute, Document::HTML_FIND_TAG_DELIMITER)
+                self::HTML_FIND_TAG_WITH_ATTRIBUTE_PATTERN,
+                preg_quote($element, self::HTML_FIND_TAG_DELIMITER),
+                preg_quote($attribute, self::HTML_FIND_TAG_DELIMITER)
             );
 
         if (preg_match($pattern, $content, $matches)) {
@@ -178,8 +205,8 @@ class DocumentEncoding implements BeforeLoadFilter
     {
         $matches = [];
         $pattern = sprintf(
-            Document::HTML_EXTRACT_ATTRIBUTE_VALUE_PATTERN,
-            preg_quote($attribute, Document::HTML_FIND_TAG_DELIMITER)
+            self::HTML_EXTRACT_ATTRIBUTE_VALUE_PATTERN,
+            preg_quote($attribute, self::HTML_FIND_TAG_DELIMITER)
         );
 
         if (preg_match($pattern, $tag, $matches)) {
