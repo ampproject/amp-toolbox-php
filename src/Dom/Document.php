@@ -588,7 +588,7 @@ final class Document extends DOMDocument
 
         foreach ($filtersInReverse as $filter) {
             if ($filter instanceof AfterSaveFilter) {
-                $filter->afterSave($html);
+                $html = $filter->afterSave($html);
             }
         }
 
