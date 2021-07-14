@@ -5,7 +5,9 @@ namespace AmpProject\Dom\Document\Filter;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterLoadFilter;
+use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
+use AmpProject\Dom\Document\BeforeSaveFilter;
 use AmpProject\Dom\Element;
 use AmpProject\Tag;
 use DOMComment;
@@ -15,7 +17,7 @@ use DOMComment;
  *
  * @package ampproject/amp-toolbox
  */
-class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter, Document\BeforeSaveFilter ,Document\AfterSaveFilter
+class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter, BeforeSaveFilter, AfterSaveFilter
 {
 
     /**

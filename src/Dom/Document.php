@@ -13,6 +13,7 @@ use AmpProject\Dom\Document\Filter;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
 use AmpProject\Exception\InvalidByteSequence;
+use AmpProject\Exception\InvalidDocumentFilter;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
 use AmpProject\Tag;
@@ -376,6 +377,10 @@ final class Document extends DOMDocument
             } catch (ReflectionException $exception) {
                 // A filter cannot properly be instantiated. Let's just skip loading it for now.
                 continue;
+            }
+
+            if (! $filter instanceof Filter) {
+                throw InvalidDocumentFilter::forFilter($filter);
             }
 
             if ($filter instanceof BeforeLoadFilter) {
