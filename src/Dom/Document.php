@@ -500,8 +500,15 @@ final class Document extends DOMDocument
         $this->detectInvalidByteSequences($source);
 
         foreach ($this->filterClasses as $filterClass) {
-            $filter = $this->instantiateFilter($filterClass);
-            $this->filters[] = $filter;
+            $filter = null;
+
+            try {
+                $filter = $this->instantiateFilter($filterClass);
+                $this->filters[] = $filter;
+            } catch (ReflectionException $exception) {
+                // A filter cannot properly be instantiated. Let's just skip loading it for now.
+                continue;
+            }
 
             if ($filter instanceof BeforeLoadFilter) {
                 $source = $filter->beforeLoad($source);
