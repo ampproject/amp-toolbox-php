@@ -14,7 +14,7 @@ use AmpProject\Exception\InvalidTagId;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Internal;
-use AmpProject\Tag as Element;
+use AmpProject\Html\Tag as Element;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 use AmpProject\Validator\Spec\Tag;

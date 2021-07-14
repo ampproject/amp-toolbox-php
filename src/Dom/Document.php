@@ -2,7 +2,7 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\DevMode;
 use AmpProject\Dom\Document\Encoding;
 use AmpProject\Dom\Document\Option;
@@ -10,7 +10,7 @@ use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
 use AmpProject\Exception\InvalidByteSequence;
 use AmpProject\Exception\MaxCssByteCountExceeded;
 use AmpProject\Optimizer\CssRule;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;
 use DOMAttr;
@@ -134,7 +134,7 @@ final class Document extends DOMDocument
 
     // Regex patterns used for securing and restoring the doctype node.
     const HTML_SECURE_DOCTYPE_IF_NOT_FIRST_PATTERN = '/(^[^<]*(?>\s*<!--[^>]*>\s*)+<)(!)(doctype)(\s+[^>]+?)(>)/i';
-    const HTML_RESTORE_DOCTYPE_PATTERN             = '/(^[^<]*(?>\s*<!--[^>]*>\s*)+<)'
+    const HTML_RESTORE_DOCTYPE_PATTERN             = '/(^[^<]*(?>\s*<!--[^>]*>\s*)*<)'
                                                      . '(!--amp-)(doctype)(\s+[^>]+?)(-->)/i';
 
     // Regex pattern used for removing Internet Explorer conditional comments.

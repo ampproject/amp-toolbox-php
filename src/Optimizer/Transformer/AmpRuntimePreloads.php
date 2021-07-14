@@ -6,7 +6,7 @@ use AmpProject\Amp;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
-use AmpProject\RequestDestination;
+use AmpProject\Html\RequestDestination;
 
 /**
  * Transformer adding resource hints to preload the AMP runtime script and CSS.

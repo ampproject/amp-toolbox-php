@@ -2,10 +2,10 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Exception\FailedToCreateLink;
-use AmpProject\RequestDestination;
-use AmpProject\Tag;
+use AmpProject\Html\RequestDestination;
+use AmpProject\Html\Tag;
 use DOMNode;
 
 /**
