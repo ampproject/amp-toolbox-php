@@ -1,15 +1,17 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
+use AmpProject\Dom\Document\AfterSaveFilter;
+use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Tag;
 
 /**
- * Amp bind attributes middleware.
+ * Filter to secure and restore self-closing tags.
  *
  * @package ampproject/amp-toolbox
  */
-class SelfClosingTags extends BaseDocumentMiddleware
+class SelfClosingTags implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**

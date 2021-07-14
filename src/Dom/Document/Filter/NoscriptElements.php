@@ -1,8 +1,11 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\AfterLoadFilter;
+use AmpProject\Dom\Document\BeforeLoadFilter;
+use AmpProject\Dom\UniqueIdManager;
 use AmpProject\Tag;
 
 /**
@@ -10,8 +13,25 @@ use AmpProject\Tag;
  *
  * @package ampproject/amp-toolbox
  */
-class NoscriptElements extends BaseDocumentMiddleware
+class NoscriptElements implements BeforeLoadFilter, AfterLoadFilter
 {
+
+    /**
+     * UniqueIdManager instance to use.
+     *
+     * @var UniqueIdManager
+     */
+    private $uniqueIdManager;
+
+    /**
+     * NoscriptElements constructor.
+     *
+     * @param UniqueIdManager $uniqueIdManager UniqueIdManager instance to use.
+     */
+    public function __construct(UniqueIdManager $uniqueIdManager)
+    {
+        $this->uniqueIdManager = $uniqueIdManager;
+    }
 
     /**
      * Store the <noscript> markup that was extracted to preserve it during parsing.
@@ -45,7 +65,7 @@ class NoscriptElements extends BaseDocumentMiddleware
                     return preg_replace_callback(
                         '#<noscript[^>]*>.*?</noscript>#si',
                         function ($noscriptMatches) {
-                            $id = $this->uniqueId->getUniqueId('noscript');
+                            $id = $this->uniqueIdManager->getUniqueId('noscript');
                             $this->noscriptPlaceholderComments[$id] = $noscriptMatches[0];
                             return sprintf('<meta class="noscript-placeholder" id="%s">', $id);
                         },

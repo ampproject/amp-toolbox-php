@@ -1,16 +1,20 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\AfterLoadFilter;
+use AmpProject\Dom\Document\AfterSaveFilter;
+use AmpProject\Dom\Document\BeforeLoadFilter;
+use AmpProject\Dom\Document\BeforeSaveFilter;
 use AmpProject\Tag;
 
 /**
- * Middleware to handle the script[template="amp-mustache"].
+ * Filter to handle the script[template="amp-mustache"].
  *
  * @package ampproject/amp-toolbox
  */
-class MustacheScriptTemplates extends BaseDocumentMiddleware
+class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter, BeforeSaveFilter, AfterSaveFilter
 {
 
     /**

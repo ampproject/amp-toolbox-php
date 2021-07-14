@@ -1,15 +1,17 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\AfterSaveFilter;
+use AmpProject\Dom\Document\BeforeLoadFilter;
 
 /**
- * Middleware to secure and restore the doctype node.
+ * Filter to secure and restore the doctype node.
  *
  * @package ampproject/amp-toolbox
  */
-class DoctypeNode extends BaseDocumentMiddleware
+class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**

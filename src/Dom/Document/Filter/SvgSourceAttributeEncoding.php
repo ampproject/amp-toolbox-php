@@ -1,19 +1,20 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\AfterSaveFilter;
 
 /**
- * Process the HTML output string and tweak it as needed.
+ * Filter to adapt SVG sizer markup to ensure validation.
  *
  * @package ampproject/amp-toolbox
  */
-class SvgSourceAttributeEncoding extends BaseDocumentMiddleware
+class SvgSourceAttributeEncoding implements AfterSaveFilter
 {
 
     /**
-     * Process the HTML output string and tweak it as needed.
+     * Process SVG sizers to ensure they match the required format to validate against AMP.
      *
      * @param string $html HTML output string to tweak.
      * @return string Tweaked HTML output string.
@@ -34,6 +35,7 @@ class SvgSourceAttributeEncoding extends BaseDocumentMiddleware
         $src = $matches['src'];
         $src = htmlspecialchars_decode($src, ENT_NOQUOTES);
         $src = preg_replace_callback(Document::SRC_SVG_REGEX_PATTERN, [$this, 'adaptSvg'], $src);
+
         return $matches['before_src'] . $src . $matches['after_src'];
     }
 

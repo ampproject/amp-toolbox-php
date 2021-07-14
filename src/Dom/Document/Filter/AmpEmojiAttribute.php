@@ -1,16 +1,18 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\AfterSaveFilter;
+use AmpProject\Dom\Document\BeforeLoadFilter;
 
 /**
- * Middleware for the emoji AMP symbol (⚡).
+ * Filter for the emoji AMP symbol (⚡).
  *
  * @package ampproject/amp-toolbox
  */
-class AmpEmojiAttribute extends BaseDocumentMiddleware
+class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**

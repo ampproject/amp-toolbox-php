@@ -1,19 +1,21 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\AfterLoadFilter;
+use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Element;
 use AmpProject\Tag;
 use DOMComment;
 
 /**
- * Middleware for http-equiv charset.
+ * Filter for http-equiv charset.
  *
  * @package ampproject/amp-toolbox
  */
-class HttpEquivCharset extends BaseDocumentMiddleware
+class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter
 {
 
     /**

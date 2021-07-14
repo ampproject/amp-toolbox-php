@@ -5,6 +5,11 @@ namespace AmpProject\Dom;
 use AmpProject\Attribute;
 use AmpProject\DevMode;
 use AmpProject\Dom\Document\Encoding;
+use AmpProject\Dom\Document\Filter;
+use AmpProject\Dom\Document\AfterLoadFilter;
+use AmpProject\Dom\Document\AfterSaveFilter;
+use AmpProject\Dom\Document\BeforeLoadFilter;
+use AmpProject\Dom\Document\BeforeSaveFilter;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\FailedToRetrieveRequiredDomElement;
 use AmpProject\Exception\InvalidByteSequence;
@@ -21,6 +26,9 @@ use DOMNode;
 use DOMNodeList;
 use DOMText;
 use DOMXPath;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionNamedType;
 
 /**
  * Abstract away some of the difficulties of working with PHP's DOMDocument.
@@ -250,12 +258,11 @@ final class Document extends DOMDocument
     private $hasInitialAmpDevMode = false;
 
     /**
-     * The original encoding of how the AmpProject\Dom\Document was created.
+     * The original encoding of how the Dom\Document was created.
      *
-     * This is stored to do an automatic conversion to UTF-8, which is
-     * a requirement for AMP.
+     * This is stored to do an automatic conversion to UTF-8, which is a requirement for AMP.
      *
-     * @var string
+     * @var Encoding
      */
     private $originalEncoding;
 
@@ -280,21 +287,21 @@ final class Document extends DOMDocument
      *
      * @var string[]
      */
-    private $documentMiddlewareClasses = [];
+    private $filterClasses = [];
 
     /**
      * List of document middleware class instances.
      *
      * @var DocumentMiddleware[]
      */
-    private $documentMiddlewareClassInstances = [];
+    private $filters = [];
 
     /**
      * Unique ID manager for the Document instance.
      *
      * @var UniqueIdManager
      */
-    private $uniqueId;
+    private $uniqueIdManager;
 
     /**
      * Creates a new AmpProject\Dom\Document object
@@ -306,24 +313,26 @@ final class Document extends DOMDocument
      */
     public function __construct($version = '', $encoding = null)
     {
-        $this->originalEncoding = (string)$encoding ?: Encoding::UNKNOWN;
+        $this->originalEncoding = new Encoding($encoding);
         parent::__construct($version ?: '1.0', Encoding::AMP);
         $this->registerNodeClass(DOMElement::class, Element::class);
-        $this->options = new Options(Option::DEFAULTS);
-        $this->uniqueId = new UniqueIdManager();
+        $this->options         = new Options(Option::DEFAULTS);
+        $this->uniqueIdManager = new UniqueIdManager();
 
-        $this->registerMiddlewareClasses([
-            Middleware\SvgSourceAttributeEncoding::class,
-            Middleware\AmpEmojiAttribute::class,
-            Middleware\AmpBindAttributes::class,
-            Middleware\SelfClosingTags::class,
-            Middleware\NoscriptElements::class,
-            Middleware\MustacheScriptTemplates::class,
-            Middleware\DoctypeNode::class,
-            Middleware\NormalizeHtmlAttributes::class,
-            Middleware\DocumentEncoding::class,
-            Middleware\HttpEquivCharset::class,
-        ]);
+        $this->registerFilters(
+            [
+                Filter\SvgSourceAttributeEncoding::class,
+                Filter\AmpEmojiAttribute::class,
+                Filter\AmpBindAttributes::class,
+                Filter\SelfClosingTags::class,
+                Filter\NoscriptElements::class,
+                Filter\MustacheScriptTemplates::class,
+                Filter\DoctypeNode::class,
+                Filter\NormalizeHtmlAttributes::class,
+                Filter\DocumentEncoding::class,
+                Filter\HttpEquivCharset::class,
+            ]
+        );
     }
 
     /**
@@ -490,10 +499,13 @@ final class Document extends DOMDocument
 
         $this->detectInvalidByteSequences($source);
 
-        foreach ($this->documentMiddlewareClasses as $middlewareClass) {
-            $middlewareClassInstance = new $middlewareClass($this->options, $this->uniqueId, $this->originalEncoding);
-            $source = $middlewareClassInstance->beforeLoad($source);
-            $this->documentMiddlewareClassInstances[] = $middlewareClassInstance;
+        foreach ($this->filterClasses as $filterClass) {
+            $filter = $this->instantiateFilter($filterClass);
+            $this->filters[] = $filter;
+
+            if ($filter instanceof BeforeLoadFilter) {
+                $source = $filter->beforeLoad($source);
+            }
         }
 
         $libxml_previous_state = libxml_use_internal_errors(true);
@@ -515,8 +527,10 @@ final class Document extends DOMDocument
         libxml_use_internal_errors($libxml_previous_state);
 
         if ($success) {
-            foreach ($this->documentMiddlewareClassInstances as $middlewareClassInstance) {
-                $middlewareClassInstance->afterLoad($this);
+            foreach ($this->filters as $filter) {
+                if ($filter instanceof AfterLoadFilter) {
+                    $filter->afterLoad($this);
+                }
             }
 
             $this->hasInitialAmpDevMode = $this->documentElement->hasAttribute(DevMode::DEV_MODE_ATTRIBUTE);
@@ -546,9 +560,12 @@ final class Document extends DOMDocument
      */
     public function saveHTMLFragment(DOMNode $node = null)
     {
-        for ($i = count($this->documentMiddlewareClassInstances) - 1; $i >= 0; $i--) {
-            $middlewareClassInstance = $this->documentMiddlewareClassInstances[$i];
-            $middlewareClassInstance->beforeSave($this);
+        $filtersInReverse = array_reverse($this->filters);
+
+        foreach ($filtersInReverse as $filter) {
+            if ($filter instanceof BeforeSaveFilter) {
+                $filter->beforeSave($this);
+            }
         }
 
         // Force-add http-equiv charset to make DOMDocument behave as it should.
@@ -569,9 +586,10 @@ final class Document extends DOMDocument
         $this->head->removeChild($charset);
         $html = preg_replace(self::HTML_GET_HTTP_EQUIV_TAG_PATTERN, '', $html, 1);
 
-        for ($i = count($this->documentMiddlewareClassInstances) - 1; $i >= 0; $i--) {
-            $middlewareClassInstance = $this->documentMiddlewareClassInstances[$i];
-            $html = $middlewareClassInstance->afterSave($html);
+        foreach ($filtersInReverse as $filter) {
+            if ($filter instanceof AfterSaveFilter) {
+                $filter->afterSave($html);
+            }
         }
 
         // Whitespace just causes unit tests to fail... so whitespace begone.
@@ -621,7 +639,7 @@ final class Document extends DOMDocument
      */
     private function extractNodeViaFragmentBoundaries(DOMNode $node)
     {
-        $boundary      = $this->uniqueId->getUniqueId('fragment_boundary');
+        $boundary      = $this->uniqueIdManager->getUniqueId('fragment_boundary');
         $startBoundary = $boundary . ':start';
         $endBoundary   = $boundary . ':end';
         $commentStart  = $this->createComment($startBoundary);
@@ -948,9 +966,9 @@ final class Document extends DOMDocument
             return $element->getAttribute(Attribute::ID);
         }
 
-        $id = $this->uniqueId->getUniqueId($prefix);
+        $id = $this->uniqueIdManager->getUniqueId($prefix);
         while ($this->getElementById($id) instanceof Element) {
-            $id = $this->uniqueId->getUniqueId($prefix);
+            $id = $this->uniqueIdManager->getUniqueId($prefix);
         }
 
         $element->setAttribute(Attribute::ID, $id);
@@ -1260,24 +1278,70 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Register multiple new middleware classes.
+     * Register filters to pre- or post-process the document content.
      *
-     * @param string[] $middlewareClasses Array of FQCN of the document middleware class.
+     * @param string[] $filterClasses Array of FQCNs of document filter classes.
      */
-    public function registerMiddlewareClasses($middlewareClasses)
+    public function registerFilters($filterClasses)
     {
-        foreach ($middlewareClasses as $middlewareClass) {
-            $this->registerMiddlewareClass($middlewareClass);
+        foreach ($filterClasses as $filterClass) {
+            $this->filterClasses[] = $filterClass;
         }
     }
 
     /**
-     * Register a new middleware class.
+     * Instantiate a filter from its class while providing the needed dependencies.
      *
-     * @param string $middlewareClass   FQCN of the document middleware class.
+     * @param string $filterClass Class of the filter to instantiate.
+     * @return Filter Filter object instance.
+     * @throws ReflectionException If the constructor could not be reflected upon.
      */
-    public function registerMiddlewareClass($middlewareClass)
+    private function instantiateFilter($filterClass)
     {
-        $this->documentMiddlewareClasses[] = $middlewareClass;
+        $constructor  = (new ReflectionClass($filterClass))->getConstructor();
+        $parameters   = $constructor === null ? [] : $constructor->getParameters();
+        $dependencies = [];
+
+        foreach ($parameters as $parameter) {
+            $dependencyType = null;
+
+            // The use of `ReflectionParameter::getClass()` is deprecated in PHP 8, and is superseded
+            // by `ReflectionParameter::getType()`. See https://github.com/php/php-src/pull/5209.
+            if (PHP_VERSION_ID >= 70100) {
+                if ($parameter->getType()) {
+                    /** @var ReflectionNamedType $returnType */
+                    $returnType = $parameter->getType();
+                    $dependencyType = new ReflectionClass($returnType->getName());
+                }
+            } else {
+                $dependencyType = $parameter->getClass();
+            }
+
+            if ($dependencyType === null) {
+                // No type provided, so we pass `null` in the hopes that the argument is optional.
+                $dependencies[] = null;
+                continue;
+            }
+
+            if (is_a($dependencyType->name, Encoding::class, true)) {
+                $dependencies[] = $this->originalEncoding;
+                continue;
+            }
+
+            if (is_a($dependencyType->name, Options::class, true)) {
+                $dependencies[] = $this->options;
+                continue;
+            }
+
+            if (is_a($dependencyType->name, UniqueIdManager::class, true)) {
+                $dependencies[] = $this->uniqueIdManager;
+                continue;
+            }
+
+            // Unknown dependency type, so we pass `null` in the hopes that the argument is optional.
+            $dependencies[] = null;
+        }
+
+        return new $filterClass(...$dependencies);
     }
 }

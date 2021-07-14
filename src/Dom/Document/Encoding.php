@@ -7,15 +7,22 @@ namespace AmpProject\Dom\Document;
  *
  * @package ampproject/amp-toolbox
  */
-interface Encoding
+final class Encoding
 {
+
+    /**
+     * UTF-8 encoding, which is the fallback.
+     *
+     * @var string
+     */
+    const UTF8 = 'utf-8';
 
     /**
      * AMP requires the HTML markup to be encoded in UTF-8.
      *
      * @var string
      */
-    const AMP = 'utf-8';
+    const AMP = self::UTF8;
 
     /**
      * Encoding detection order in case we have to guess.
@@ -51,4 +58,81 @@ interface Encoding
      * @var string
      */
     const UNKNOWN = 'auto';
+
+    /**
+     * Current value of the encoding.
+     *
+     * @var string
+     */
+    private $encoding;
+
+    /**
+     * Encoding constructor.
+     *
+     * @param mixed $encoding Value of the encoding.
+     */
+    public function __construct($encoding)
+    {
+        if (! is_string($encoding)) {
+            $encoding = self::UNKNOWN;
+        }
+
+        $this->encoding = $encoding;
+    }
+
+    /**
+     * Check whether the encoding equals a provided encoding.
+     *
+     * @param Encoding|string $encoding Encoding to check against.
+     * @return bool Whether the encodings are the same.
+     */
+    public function equals($encoding)
+    {
+        return strtolower($this->encoding) === strtolower((string)$encoding);
+    }
+
+    /**
+     * Sanitize the encoding that was detected.
+     *
+     * If sanitization fails, it will return 'auto', letting the conversion
+     * logic try to figure it out itself.
+     *
+     * @param string $encoding Encoding to sanitize.
+     */
+    public function sanitize()
+    {
+        $this->encoding = strtolower($this->encoding);
+
+        if ($this->encoding === self::UTF8) {
+            return;
+        }
+
+        if (! function_exists('mb_list_encodings')) {
+            return;
+        }
+
+        static $knownEncodings = null;
+
+        if (null === $knownEncodings) {
+            $knownEncodings = array_map('strtolower', mb_list_encodings());
+        }
+
+        if (array_key_exists($this->encoding, self::MAPPINGS)) {
+            $this->encoding = self::MAPPINGS[$this->encoding];
+        }
+
+        if (! in_array($this->encoding, $knownEncodings, true)) {
+            $this->encoding = self::UNKNOWN;
+        }
+    }
+
+    /**
+     * Return the value of the encoding as a string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->encoding;
+    }
 }

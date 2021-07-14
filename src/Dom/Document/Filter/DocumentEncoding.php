@@ -1,32 +1,50 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\Encoding;
 use AmpProject\Tag;
 
 /**
- * Middleware for Document encoding.
+ * Filter for document encoding.
  *
  * @package ampproject/amp-toolbox
  */
-class DocumentEncoding extends BaseDocumentMiddleware
+class DocumentEncoding implements BeforeLoadFilter
 {
+
+    /**
+     * Original encoding that was used for the document.
+     *
+     * @var Encoding
+     */
+    private $originalEncoding;
+
+    /**
+     * DocumentEncoding constructor.
+     *
+     * @param Encoding $originalEncoding Original encoding that was used for the document.
+     */
+    public function __construct(Encoding $originalEncoding)
+    {
+        $this->originalEncoding = $originalEncoding;
+    }
 
     /**
      * Detect the encoding of the document.
      *
-     * @param string $content  Content of which to detect the encoding.
+     * @param string $html Content of which to detect the encoding.
      * @return string Preprocessed string of HTML markup.
      */
-    public function beforeLoad($content)
+    public function beforeLoad($html)
     {
-        $encoding = $this->originalEncoding;
+        $encoding = (string) $this->originalEncoding;
 
         // Check for HTML 4 http-equiv meta tags.
-        foreach ($this->findTags($content, Tag::META, Attribute::HTTP_EQUIV) as $potentialHttpEquivTag) {
+        foreach ($this->findTags($html, Tag::META, Attribute::HTTP_EQUIV) as $potentialHttpEquivTag) {
             $encoding = $this->extractValue($potentialHttpEquivTag, Attribute::CHARSET);
             if (false !== $encoding) {
                 $httpEquivTag = $potentialHttpEquivTag;
@@ -35,27 +53,27 @@ class DocumentEncoding extends BaseDocumentMiddleware
 
         // Strip all charset tags.
         if (isset($httpEquivTag)) {
-            $content = str_replace($httpEquivTag, '', $content);
+            $html = str_replace($httpEquivTag, '', $html);
         }
 
         // Check for HTML 5 charset meta tag. This overrides the HTML 4 charset.
-        $charsetTag = $this->findTag($content, Tag::META, Attribute::CHARSET);
+        $charsetTag = $this->findTag($html, Tag::META, Attribute::CHARSET);
         if ($charsetTag) {
             $encoding = $this->extractValue($charsetTag, Attribute::CHARSET);
 
             // Strip the encoding if it is not the required one.
             if (strtolower($encoding) !== Encoding::AMP) {
-                $content = str_replace($charsetTag, '', $content);
+                $html = str_replace($charsetTag, '', $html);
             }
         }
 
-        $this->originalEncoding = $encoding;
+        $this->originalEncoding = new Encoding($encoding);
 
-        if (Encoding::AMP !== strtolower($this->originalEncoding)) {
-            $content = $this->adaptEncoding($content);
+        if (! $this->originalEncoding->equals(Encoding::AMP)) {
+            $html = $this->adaptEncoding($html);
         }
 
-        return $content;
+        return $html;
     }
 
     /**
@@ -67,30 +85,30 @@ class DocumentEncoding extends BaseDocumentMiddleware
     private function adaptEncoding($source)
     {
         // No encoding was provided, so we need to guess.
-        if (Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
-            $this->originalEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
+        if (function_exists('mb_detect_encoding') && $this->originalEncoding->equals(Encoding::UNKNOWN)) {
+            $this->originalEncoding = new Encoding(mb_detect_encoding($source, Encoding::DETECTION_ORDER, true));
         }
 
         // Guessing the encoding seems to have failed, so we assume UTF-8 instead.
         // In my testing, this was not possible as long as one ISO-8859-x is in the detection order.
-        if (empty($this->originalEncoding)) {
-            $this->originalEncoding = Encoding::AMP; // @codeCoverageIgnore
+        if ($this->originalEncoding === null) {
+            $this->originalEncoding = new Encoding(Encoding::AMP); // @codeCoverageIgnore
         }
 
-        $this->originalEncoding = $this->sanitizeEncoding($this->originalEncoding);
+        $this->originalEncoding->sanitize();
 
         // Sanitization failed, so we do a last effort to auto-detect.
-        if (Encoding::UNKNOWN === $this->originalEncoding && function_exists('mb_detect_encoding')) {
+        if (function_exists('mb_detect_encoding') && $this->originalEncoding->equals(Encoding::UNKNOWN)) {
             $detectedEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
             if ($detectedEncoding !== false) {
-                $this->originalEncoding = $detectedEncoding;
+                $this->originalEncoding = new Encoding($detectedEncoding);
             }
         }
 
         $target = false;
-        if (Encoding::AMP !== strtolower($this->originalEncoding)) {
+        if (! $this->originalEncoding->equals(Encoding::AMP)) {
             $target = function_exists('mb_convert_encoding')
-                ? mb_convert_encoding($source, Encoding::AMP, $this->originalEncoding)
+                ? mb_convert_encoding($source, Encoding::AMP, (string) $this->originalEncoding)
                 : false;
         }
 
@@ -169,43 +187,5 @@ class DocumentEncoding extends BaseDocumentMiddleware
         }
 
         return false;
-    }
-
-    /**
-     * Sanitize the encoding that was detected.
-     *
-     * If sanitization fails, it will return 'auto', letting the conversion
-     * logic try to figure it out itself.
-     *
-     * @param string $encoding Encoding to sanitize.
-     * @return string Sanitized encoding. Falls back to 'auto' on failure.
-     */
-    private function sanitizeEncoding($encoding)
-    {
-        $encoding = strtolower($encoding);
-
-        if ($encoding === Encoding::AMP) {
-            return $encoding;
-        }
-
-        if (! function_exists('mb_list_encodings')) {
-            return $encoding;
-        }
-
-        static $knownEncodings = null;
-
-        if (null === $knownEncodings) {
-            $knownEncodings = array_map('strtolower', mb_list_encodings());
-        }
-
-        if (array_key_exists($encoding, Encoding::MAPPINGS)) {
-            $encoding = Encoding::MAPPINGS[$encoding];
-        }
-
-        if (! in_array($encoding, $knownEncodings, true)) {
-            return Encoding::UNKNOWN;
-        }
-
-        return $encoding;
     }
 }

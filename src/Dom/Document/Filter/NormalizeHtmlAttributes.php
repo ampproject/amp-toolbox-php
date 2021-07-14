@@ -1,8 +1,9 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\AfterLoadFilter;
 use DOMAttr;
 
 /**
@@ -10,7 +11,7 @@ use DOMAttr;
  *
  * @package ampproject/amp-toolbox
  */
-class NormalizeHtmlAttributes extends BaseDocumentMiddleware
+class NormalizeHtmlAttributes implements AfterLoadFilter
 {
 
     /**

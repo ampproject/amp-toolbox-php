@@ -1,17 +1,27 @@
 <?php
 
-namespace AmpProject\Dom\Middleware;
+namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Dom\Document;
+use AmpProject\Dom\Document\AfterSaveFilter;
+use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\Option;
+use AmpProject\Dom\Options;
 
 /**
- * Amp bind attributes middleware.
+ * Amp bind attributes filter.
  *
  * @package ampproject/amp-toolbox
  */
-class AmpBindAttributes extends BaseDocumentMiddleware
+class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
 {
+
+    /**
+     * Options instance to use.
+     *
+     * @var Options
+     */
+    private $options;
 
     /**
      * Store the names of the amp-bind attributes that were converted so that we can restore them later on.
@@ -19,6 +29,16 @@ class AmpBindAttributes extends BaseDocumentMiddleware
      * @var array<string>
      */
     private $convertedAmpBindAttributes = [];
+
+    /**
+     * AmpBindAttributes constructor.
+     *
+     * @param Options $options Options instance to use.
+     */
+    public function __construct(Options $options)
+    {
+        $this->options = $options;
+    }
 
     /**
      * Replace AMP binding attributes with something that libxml can parse (as HTML5 data-* attributes).
