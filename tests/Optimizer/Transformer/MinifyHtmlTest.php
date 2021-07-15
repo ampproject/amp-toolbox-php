@@ -96,7 +96,7 @@ final class MinifyHtmlTest extends TestCase
     /**
      * Test the transform() method.
      *
-     * @covers       \AmpProject\Optimizer\Transformer\AmpBoilerplate::transform()
+     * @covers       \AmpProject\Optimizer\Transformer\MinifyHtml::transform()
      * @dataProvider dataTransform()
      *
      * @param string                  $source         String of source HTML.
@@ -119,7 +119,7 @@ final class MinifyHtmlTest extends TestCase
     /**
      * Test optional amp-script minification.
      *
-     * @covers \AmpProject\Optimizer\Transformer::minifyAmpScript()
+     * @covers \AmpProject\Optimizer\Transformer\MinifyHtml::minifyAmpScript()
      */
     public function testAmpScriptMinification()
     {
