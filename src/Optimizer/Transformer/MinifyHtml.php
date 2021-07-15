@@ -277,7 +277,7 @@ final class MinifyHtml implements Transformer
      */
     private function minifyAmpScript(DOMText $node, ErrorCollection $errors)
     {
-        if (! class_exists(Peast::class)) {
+        if (! class_exists(Peast::class) || ! class_exists(Renderer::class) || ! class_exists(Compact::class)) {
             $errors->add(
                 MissingPackage::withMessage('mck89/peast package is required to minify inline amp-script.')
             );
