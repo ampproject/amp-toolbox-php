@@ -3,7 +3,6 @@
 namespace AmpProject\Optimizer\Configuration;
 
 use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
-use InvalidArgumentException;
 
 /**
  * Configuration for the MinifyHtml transformer.
@@ -95,6 +94,7 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
         switch ($key) {
             case self::MINIFY:
             case self::MINIFY_JSON:
+            case self::MINIFY_AMP_SCRIPT:
             case self::COLLAPSE_WHITESPACE:
             case self::REMOVE_COMMENTS:
                 if (! is_bool($value)) {
@@ -106,23 +106,6 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
                     );
                 }
                 break;
-
-            case self::MINIFY_AMP_SCRIPT:
-                if (! is_bool($value)) {
-                    throw InvalidConfigurationValue::forInvalidSubValueType(
-                        self::class,
-                        $key,
-                        'boolean',
-                        is_object($value) ? get_class($value) : gettype($value)
-                    );
-                }
-
-                if ($value) {
-                    $message = 'Script minification feature is not implemented yet.';
-                    throw new InvalidArgumentException($message);
-                }
-                break;
-
             case self::COMMENT_IGNORE_PATTERN:
                 if (! is_string($value)) {
                     throw InvalidConfigurationValue::forInvalidSubValueType(
