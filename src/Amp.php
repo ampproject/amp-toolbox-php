@@ -15,6 +15,13 @@ final class Amp
 {
 
     /**
+     * Attribute prefix for AMP-bind data attributes.
+     *
+     * @var string
+     */
+    const BIND_DATA_ATTR_PREFIX = 'data-amp-bind-';
+
+    /**
      * List of AMP attribute tags that can be appended to the <html> element.
      *
      * The *_ALT version represent a Unicode variation of the lightning emoji.
