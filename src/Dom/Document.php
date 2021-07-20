@@ -195,6 +195,8 @@ final class Document extends DOMDocument
                 Filter\AmpBindAttributes::class,
                 Filter\SelfClosingTags::class,
                 Filter\NoscriptElements::class,
+                Filter\DeduplicateTag::class,
+                Filter\ConvertHeadProfileToLink::class,
                 Filter\MustacheScriptTemplates::class,
                 Filter\DoctypeNode::class,
                 Filter\NormalizeHtmlAttributes::class,
@@ -334,16 +336,9 @@ final class Document extends DOMDocument
         if ($success) {
             $this->insertMissingCharset();
 
-            // TODO @ediamin: Turn all of the methods below into separate Filter objects as well. They should just use
-            // regular afterLoad(), they can happen for both loadHTML() and loadHTMLFragment().
-            // Note: Not the insertMissingCharset() one, that should remain exclusive for loadHTML().
-
             // Do some further clean-up.
-            $this->deduplicateTag(Tag::HEAD);
-            $this->deduplicateTag(Tag::BODY);
             $this->moveInvalidHeadNodesToBody();
             $this->movePostBodyNodesToBody();
-            $this->convertHeadProfileToLink();
         }
 
         return $success;
@@ -671,29 +666,6 @@ final class Document extends DOMDocument
     }
 
     /**
-     * Converts a possible head[profile] attribute to link[rel=profile].
-     *
-     * The head[profile] attribute is only valid in HTML4, not HTML5.
-     * So if it exists and isn't empty, add it to the <head> as a link[rel=profile] and strip the attribute.
-     */
-    private function convertHeadProfileToLink()
-    {
-        if (! $this->head->hasAttribute(Attribute::PROFILE)) {
-            return;
-        }
-
-        $profile = $this->head->getAttribute(Attribute::PROFILE);
-        if ($profile) {
-            $link = $this->createElement(Tag::LINK);
-            $link->setAttribute(Attribute::REL, Attribute::PROFILE);
-            $link->setAttribute(Attribute::HREF, $profile);
-            $this->head->appendChild($link);
-        }
-
-        $this->head->removeAttribute(Attribute::PROFILE);
-    }
-
-    /**
      * Move any nodes appearing after </body> or </html> to be appended to the <body>.
      *
      * This accounts for markup that is output at shutdown, such markup from Query Monitor. Not only is elements after
@@ -720,64 +692,6 @@ final class Document extends DOMDocument
             } else {
                 $this->body->appendChild($this->documentElement->nextSibling);
             }
-        }
-    }
-
-    /**
-     * Deduplicate a given tag.
-     *
-     * This keeps the first tag as the main tag and moves over all child nodes and attribute nodes from any subsequent
-     * same tags over to remove them.
-     *
-     * @param string $tagName Name of the tag to deduplicate.
-     */
-    public function deduplicateTag($tagName)
-    {
-        $tags = $this->getElementsByTagName($tagName);
-
-        /**
-         * Main tag to keep.
-         *
-         * @var Element|null $mainTag
-         */
-        $mainTag = $tags->item(0);
-
-        if (null === $mainTag) {
-            return;
-        }
-
-        while ($tags->length > 1) {
-            /**
-             * Tag to remove.
-             *
-             * @var Element $tagToRemove
-             */
-            $tagToRemove = $tags->item(1);
-
-            foreach ($tagToRemove->childNodes as $childNode) {
-                $mainTag->appendChild($childNode->parentNode->removeChild($childNode));
-            }
-
-            while ($tagToRemove->hasAttributes()) {
-                /**
-                 * Attribute node to move over to the main tag.
-                 *
-                 * @var DOMAttr $attribute
-                 */
-                $attribute = $tagToRemove->attributes->item(0);
-                $tagToRemove->removeAttributeNode($attribute);
-
-                // @TODO This doesn't deal properly with attributes present on both tags. Maybe overkill to add?
-                // We could move over the copy_attributes from AMP_DOM_Utils to do this.
-                $mainTag->setAttributeNode($attribute);
-            }
-
-            $tagToRemove->parentNode->removeChild($tagToRemove);
-        }
-
-        // Avoid doing the above query again if possible.
-        if (in_array($tagName, [Tag::HEAD, Tag::BODY], true)) {
-            $this->$tagName = $mainTag;
         }
     }
 
