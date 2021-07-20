@@ -22,7 +22,7 @@ class ExtensionSpecTest extends TestCase
     ];
 
     /**
-     * @covers \AmpProject\Validator\SpecExtensionSpec::getExtensionName()
+     * @covers \AmpProject\Validator\Spec\ExtensionSpec::getExtensionName()
      */
     public function testGetExtensionName()
     {
@@ -30,7 +30,7 @@ class ExtensionSpecTest extends TestCase
     }
 
     /**
-     * @covers \AmpProject\Validator\SpecExtensionSpec::getLatestVersion()
+     * @covers \AmpProject\Validator\Spec\ExtensionSpec::getLatestVersion()
      */
     public function testGetLatestVersion()
     {
@@ -38,7 +38,7 @@ class ExtensionSpecTest extends TestCase
     }
 
     /**
-     * @covers \AmpProject\Validator\SpecExtensionSpec::getExtensionType()
+     * @covers \AmpProject\Validator\Spec\ExtensionSpec::getExtensionType()
      */
     public function testGetExtensionType()
     {

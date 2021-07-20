@@ -483,9 +483,10 @@ class DocumentTest extends TestCase
     }
 
     /**
-     * Test convertAmpBindAttributes.
+     * Test data-amp-bind attributes.
      *
-     * @covers \AmpProject\Dom\Document::convertAmpBindAttributes()
+     * @covers \AmpProject\Dom\Document\Filter\AmpBindAttributes::beforeLoad()
+     * @covers \AmpProject\Dom\Document\Filter\AmpBindAttributes::afterSave()
      */
     public function testAmpBindConversion()
     {
@@ -545,8 +546,8 @@ class DocumentTest extends TestCase
     /**
      * Test handling noscript elements in the head.
      *
-     * @covers \AmpProject\Dom\Document::maybeReplaceNoscriptElements()
-     * @covers \AmpProject\Dom\Document::maybeRestoreNoscriptElements()
+     * @covers \AmpProject\Dom\Document\Filter\NoscriptElements::beforeLoad()
+     * @covers \AmpProject\Dom\Document\Filter\NoscriptElements::afterLoad()
      */
     public function testHeadNoscriptElementHandling()
     {
@@ -1293,7 +1294,7 @@ class DocumentTest extends TestCase
     /**
      * Test asserting none malformed byte sequences
      *
-     * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
+     * @covers \AmpProject\Dom\Document\Filter\DetectInvalidByteSequence::beforeLoad()
      * @covers \AmpProject\Exception\InvalidByteSequence::forHtml()
      */
     public function testDetectMalformedByteSequences()
@@ -1309,7 +1310,7 @@ class DocumentTest extends TestCase
     /**
      * Test asserting none bad byte sequences
      *
-     * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
+     * @covers \AmpProject\Dom\Document\Filter\DetectInvalidByteSequence::beforeLoad()
      * @covers \AmpProject\Exception\InvalidByteSequence::forHtml()
      */
     public function testDetectBadByteSequences()
