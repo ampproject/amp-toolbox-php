@@ -32,7 +32,7 @@ final class DeduplicateTag implements AfterLoadFilter
             /**
              * Main tag to keep.
              *
-             * @var Element|null $mainTag
+             * @var \AmpProject\Dom\Element|null $mainTag
              */
             $mainTag = $tags->item(0);
 
@@ -44,7 +44,7 @@ final class DeduplicateTag implements AfterLoadFilter
                 /**
                  * Tag to remove.
                  *
-                 * @var Element $tagToRemove
+                 * @var \AmpProject\Dom\Element $tagToRemove
                  */
                 $tagToRemove = $tags->item(1);
 
@@ -56,7 +56,7 @@ final class DeduplicateTag implements AfterLoadFilter
                     /**
                      * Attribute node to move over to the main tag.
                      *
-                     * @var DOMAttr $attribute
+                     * @var \DOMAttr $attribute
                      */
                     $attribute = $tagToRemove->attributes->item(0);
                     $tagToRemove->removeAttributeNode($attribute);
