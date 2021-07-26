@@ -475,6 +475,11 @@ class DocumentTest extends TestCase
      * @dataProvider dataDomDocument
      * @covers       \AmpProject\Dom\Document::loadHTML()
      * @covers       \AmpProject\Dom\Document::saveHTML()
+     * @covers       \AmpProject\Dom\Document\Filter\DeduplicateTag
+     * @covers       \AmpProject\Dom\Document\Filter\DocumentEncoding
+     * @covers       \AmpProject\Dom\Document\Filter\MustacheScriptTemplates
+     * @covers       \AmpProject\Dom\Document\Filter\NormalizeHtmlAttributes
+     * @covers       \AmpProject\Dom\Document\Filter\ConvertHeadProfileToLink
      */
     public function testDomDocument($charset, $source, $expected)
     {
@@ -995,6 +1000,8 @@ class DocumentTest extends TestCase
      * @param string $html              HTML to test against.
      * @param int    $expectedAmpCustom Expected number of bytes of the <style amp-custom> tag.
      * @param int    $expectedInline    Expected number of bytes of inline styles.
+     *
+     * @covers       \AmpProject\Dom\Document\Filter\DeduplicateTag::afterLoad()
      */
     public function testByteCounts($html, $expectedAmpCustom, $expectedInline)
     {
@@ -1320,6 +1327,36 @@ class DocumentTest extends TestCase
         $document::fromHtmlFragment(
             '<p>There is ' . substr('アプリ', 0, strlen('アプリ') - 1) . ' some other text</p>',
             [Option::CHECK_ENCODING => true]
+        );
+    }
+
+    /**
+     * Test loading the Document from a node.
+     *
+     * @covers \AmpProject\Dom\Document::fromNode()
+     */
+    public function testDocumentFromNode()
+    {
+        $document = new Document();
+        $textNode = $document->createTextNode('Some Text');
+
+        $this->assertInstanceOf(Document::class, Document::fromNode($textNode));
+    }
+
+    /**
+     * Test normalizeDomStructure method for html fragment.
+     *
+     * @covers \AmpProject\Dom\Document::normalizeDomStructure()
+     */
+    public function testNormalizeDomStructure()
+    {
+        $document = new Document();
+        $document->appendChild($document->createElement(Tag::P, 'Some text'));
+        $document->normalizeDomStructure();
+
+        $this->assertEqualMarkup(
+            '<html><head></head><body><p>Some text</p></body></html>',
+            $document->saveHTMLFragment()
         );
     }
 }
