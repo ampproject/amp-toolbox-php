@@ -2,6 +2,8 @@
 
 namespace AmpProject\Html\Parser;
 
+use AmpProject\Html\UpperCaseTag as Tag;
+
 /**
  * An Html parser.
  *
@@ -18,7 +20,7 @@ final class HtmlParser
      * @var string
      */
     const INSIDE_TAG_TOKEN =
-        // Don't capture space. In this case, we don't use \s because it includes a nonbreaking space which gets
+        // Don't capture space. In this case, we don't use \s because it includes a non-breaking space which gets
         // included as an attribute in our validation.
         '/^[ \\t\\n\\f\\r\\v]*(?:' .
             // Capture an attribute name in group 1, and value in group 3. We capture the fact that there was an
@@ -77,6 +79,178 @@ final class HtmlParser
         '/i';
 
     /**
+     * Regular expression that matches null characters.
+     *
+     * @var string
+     */
+    const NULL_REGEX = '/\0/g';
+
+    /**
+     * Regular expression that matches entities.
+     *
+     * @var string
+     */
+    const ENTITY_REGEX = '/&(#\d+|#x[0-9A-Fa-f]+|\w+);/g';
+
+    /**
+     * Regular expression that matches loose &s.
+     *
+     * @var string
+     */
+    const LOOSE_AMP_REGEX = '/&([^a-z#]|#(?:[^0-9x]|x(?:[^0-9a-f]|$)|$)|$)/gi';
+
+    /**
+     * Regular expression that matches <.
+     *
+     * @var string
+     */
+    const LT_REGEX = '/</g';
+
+    /**
+     * Regular expression that matches >.
+     *
+     * @var string
+     */
+    const GT_REGEX = '/>/g';
+
+    /**
+     * Regular expression that matches decimal numbers.
+     *
+     * @var string
+     */
+    const DECIMAL_ESCAPE_REGEX = '/^#(\d+)$/';
+
+    /**
+     * Regular expression that matches hexadecimal numbers.
+     *
+     * @var string
+     */
+    const HEX_ESCAPE_REGEX = '/^#x([0-9A-Fa-f]+)$/';
+
+    /**
+     * HTML entities that are encoded/decoded.
+     *
+     * @type array<string>
+     */
+    const ENTITIES = [
+        'colon' => ':',
+        'lt'    => '<',
+        'gt'    => '>',
+        'amp'   => '&',
+        'nbsp'  => '\u00a0',
+        'quot'  => '"',
+        'apos'  => '\'',
+    ];
+
+    /**
+     * A map of element to a bitmap of flags it has, used internally on the parser.
+     *
+     * @var array<int>
+     */
+    const ELEMENTS = [
+        Tag::A          => 0,
+        Tag::ABBR       => 0,
+        Tag::ACRONYM    => 0,
+        Tag::ADDRESS    => 0,
+        Tag::APPLET     => EFlags::UNSAFE,
+        Tag::AREA       => EFlags::EMPTY_,
+        Tag::B          => 0,
+        Tag::BASE       => EFlags::EMPTY_ | EFlags::UNSAFE,
+        Tag::BASEFONT   => EFlags::EMPTY_ | EFlags::UNSAFE,
+        Tag::BDO        => 0,
+        Tag::BIG        => 0,
+        Tag::BLOCKQUOTE => 0,
+        Tag::BODY       => EFlags::OPTIONAL_ENDTAG | EFlags::UNSAFE | EFlags::FOLDABLE,
+        Tag::BR         => EFlags::EMPTY_,
+        Tag::BUTTON     => 0,
+        Tag::CANVAS     => 0,
+        Tag::CAPTION    => 0,
+        Tag::CENTER     => 0,
+        Tag::CITE       => 0,
+        Tag::CODE       => 0,
+        Tag::COL        => EFlags::EMPTY_,
+        Tag::COLGROUP   => EFlags::OPTIONAL_ENDTAG,
+        Tag::DD         => EFlags::OPTIONAL_ENDTAG,
+        Tag::DEL        => 0,
+        Tag::DFN        => 0,
+        Tag::DIR        => 0,
+        Tag::DIV        => 0,
+        Tag::DL         => 0,
+        Tag::DT         => EFlags::OPTIONAL_ENDTAG,
+        Tag::EM         => 0,
+        Tag::FIELDSET   => 0,
+        Tag::FONT       => 0,
+        Tag::FORM       => 0,
+        Tag::FRAME      => EFlags::EMPTY_ | EFlags::UNSAFE,
+        Tag::FRAMESET   => EFlags::UNSAFE,
+        Tag::H1         => 0,
+        Tag::H2         => 0,
+        Tag::H3         => 0,
+        Tag::H4         => 0,
+        Tag::H5         => 0,
+        Tag::H6         => 0,
+        Tag::HEAD       => EFlags::OPTIONAL_ENDTAG | EFlags::UNSAFE | EFlags::FOLDABLE,
+        Tag::HR         => EFlags::EMPTY_,
+        Tag::HTML       => EFlags::OPTIONAL_ENDTAG | EFlags::UNSAFE | EFlags::FOLDABLE,
+        Tag::I          => 0,
+        Tag::IFRAME     => EFlags::UNSAFE | EFlags::CDATA,
+        Tag::IMG        => EFlags::EMPTY_,
+        Tag::INPUT      => EFlags::EMPTY_,
+        Tag::INS        => 0,
+        Tag::ISINDEX    => EFlags::EMPTY_ | EFlags::UNSAFE,
+        Tag::KBD        => 0,
+        Tag::LABEL      => 0,
+        Tag::LEGEND     => 0,
+        Tag::LI         => EFlags::OPTIONAL_ENDTAG,
+        Tag::LINK       => EFlags::EMPTY_ | EFlags::UNSAFE,
+        Tag::MAP        => 0,
+        Tag::MENU       => 0,
+        Tag::META       => EFlags::EMPTY_ | EFlags::UNSAFE,
+        Tag::NOFRAMES   => EFlags::UNSAFE | EFlags::CDATA,
+        // TODO: This used to read:
+        // Tag::NOSCRIPT => EFlags::UNSAFE | EFlags::CDATA,
+        // It appears that the effect of that is that anything inside is then considered cdata, so
+        // <noscript><style>foo</noscript></noscript> never sees a style start tag / end tag event. But we must
+        // recognize such style tags and they're also allowed by HTML, e.g. see:
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript
+        // On a broader note this also means we may be missing other start/end tag events inside elements marked as
+        // CDATA which our parser should better reject. Yikes.
+        Tag::NOSCRIPT   => EFlags::UNSAFE,
+        Tag::OBJECT     => EFlags::UNSAFE,
+        Tag::OL         => 0,
+        Tag::OPTGROUP   => 0,
+        Tag::OPTION     => EFlags::OPTIONAL_ENDTAG,
+        Tag::P          => EFlags::OPTIONAL_ENDTAG,
+        Tag::PARAM      => EFlags::EMPTY_ | EFlags::UNSAFE,
+        Tag::PRE        => 0,
+        Tag::Q          => 0,
+        Tag::S          => 0,
+        Tag::SAMP       => 0,
+        Tag::SCRIPT     => EFlags::UNSAFE | EFlags::CDATA,
+        Tag::SELECT     => 0,
+        Tag::SMALL      => 0,
+        Tag::SPAN       => 0,
+        Tag::STRIKE     => 0,
+        Tag::STRONG     => 0,
+        Tag::STYLE      => EFlags::UNSAFE | EFlags::CDATA,
+        Tag::SUB        => 0,
+        Tag::SUP        => 0,
+        Tag::TABLE      => 0,
+        Tag::TBODY      => EFlags::OPTIONAL_ENDTAG,
+        Tag::TD         => EFlags::OPTIONAL_ENDTAG,
+        Tag::TEXTAREA   => EFlags::RCDATA,
+        Tag::TFOOT      => EFlags::OPTIONAL_ENDTAG,
+        Tag::TH         => EFlags::OPTIONAL_ENDTAG,
+        Tag::THEAD      => EFlags::OPTIONAL_ENDTAG,
+        Tag::TITLE      => EFlags::RCDATA | EFlags::UNSAFE,
+        Tag::TR         => EFlags::OPTIONAL_ENDTAG,
+        Tag::TT         => 0,
+        Tag::U          => 0,
+        Tag::UL         => 0,
+        Tag::VAR_       => 0,
+    ];
+
+    /**
      * Given a SAX-like HtmlSaxHandler, this parses a $htmlText and lets the $handler know the structure while visiting
      * the nodes. If the provided handler is an implementation of HtmlSaxHandlerWithLocation, then its setDocLocator()
      * method will get called prior to startDoc(), and the getLine() / getColumn() methods will reflect the current
@@ -91,7 +265,7 @@ final class HtmlParser
         $inTag      = false; // True iff we're currently processing a tag.
         $attributes = [];    // Accumulates attribute names and values.
         $tagName    = null;  // The name of the tag currently being processed.
-        $eflags     = null;     // The element flags for the current tag.
+        $eflags     = null;  // The element flags for the current tag.
         $openTag    = false; // True if the current tag is an open tag.
         $tagStack   = new TagNameStack($handler);
 
@@ -105,37 +279,34 @@ final class HtmlParser
         // Lets the handler know that we are starting to parse the document.
         $handler->startDoc();
 
-        // Consumes tokens from the htmlText and stops once all tokens are
-        // processed.
+        // Consumes tokens from the htmlText and stops once all tokens are processed.
         while ($htmlText) {
             $regex = $inTag ? self::INSIDE_TAG_TOKEN : self::OUTSIDE_TAG_TOKEN;
-            // Gets the next token
+            // Gets the next token.
             $matches = null;
             preg_match($regex, $htmlText, $matches);
             if ($locator) {
                 $locator->advancePos($matches[0]);
             }
-            // And removes it from the string
-            $htmlText = $htmlText->substring(strlen($matches[0]));
+            // And removes it from the string.
+            $htmlText = substr($htmlText, strlen($matches[0]));
 
             if ($inTag) {
                 if ($matches[1]) {  // Attribute.
                     // SetAttribute with uppercase names doesn't work on IE6.
                     $attribName = strtolower($matches[1]);
                     // Use empty string as value for valueless attribs, so <input type=checkbox checked> gets attributes
-                    // ['type', 'checkbox', 'checked', '']
+                    // ['type', 'checkbox', 'checked', ''].
                    $decodedValue = '';
           if ($matches[2]) {
               $encodedValue = $matches[3];
             switch ($encodedValue->charCodeAt(0)) {  // Strip quotes.
-                case 34:                             // double quote "
-                case 39:                             // single quote '
-                    $encodedValue =
-                        $encodedValue->substring(1, $encodedValue->length - 1);
+                case 34:                             // Double quote (").
+                case 39:                             // Single quote (').
+                    $encodedValue = $encodedValue->substring(1, $encodedValue->length - 1);
                     break;
             }
-            $decodedValue =
-                $this->unescapeEntities_($this->stripNULs_($encodedValue));
+            $decodedValue = $this->unescapeEntities($this->stripNULs($encodedValue));
           }
           $attributes[$attribName] = $decodedValue;
         } else if ($matches[4]) {
@@ -151,25 +322,21 @@ final class HtmlParser
               if ($htmlUpper === null) {
                   $htmlUpper = strtoupper($htmlText);
               } else {
-                  $htmlUpper =
-                      $htmlUpper->substring($htmlUpper->length - $htmlText->length);
+                  $htmlUpper = substr($htmlUpper, strlen($htmlUpper) - strlen($htmlText));
               }
-              $dataEnd = $htmlUpper->indexOf('</' + $tagName);
+              $dataEnd = strpos($htmlUpper, "</{$tagName}");
             if ($dataEnd < 0) {
-                $dataEnd = $htmlText->length;
+                $dataEnd = strlen($htmlText);
             }
             if ($eflags & EFlags::CDATA) {
-                if ($handler->cdata) {
-                    $handler->cdata($htmlText->substring(0, $dataEnd));
-                }
-            } else if ($handler->rcdata) {
-                $handler->rcdata(
-                    $this->normalizeRCData_($htmlText->substring(0, $dataEnd)));
+                $handler->cdata(substr($htmlText, 0, $dataEnd));
+            } else {
+                $handler->rcdata($this->normalizeRCData(substr($htmlText, 0, $dataEnd)));
             }
             if ($locator) {
-                $locator->advancePos($htmlText->substring(0, $dataEnd));
+                $locator->advancePos(substr($htmlText, 0, $dataEnd));
             }
-            $htmlText = $htmlText->substring($dataEnd);
+            $htmlText = substr($htmlText, $dataEnd);
           }
 
           $tagName    = null;
@@ -182,23 +349,24 @@ final class HtmlParser
           $inTag = false;
         }
             } else {
-                if ($matches[1]) {  // Entity.
+                if ($matches[1]) { // Entity.
                     $tagStack->pcdata($matches[0]);
-                } else if ($matches[3]) {  // Tag.
-                    $openTag = !$matches[2];
+                } else if ($matches[3]) { // Tag.
+                    $openTag = ! $matches[2];
                     if ($locator) {
                         $locator->snapshotPos();
                     }
                     $inTag = true;
                     $tagName = strtoupper($matches[3]);
-                    $eflags = Elements.hasOwnProperty($tagName) ? Elements[$tagName] :
-                        EFlags::UNKNOWN_OR_CUSTOM;
-                } else if ($matches[4]) {  // Text.
+                    $eflags = array_key_exists($tagName, self::ELEMENTS)
+                        ? self::ELEMENTS[$tagName]
+                        : EFlags::UNKNOWN_OR_CUSTOM;
+                } else if ($matches[4]) { // Text.
                     if ($locator) {
                         $locator->snapshotPos();
                     }
                     $tagStack->pcdata($matches[4]);
-                } else if ($matches[5]) {  // Cruft.
+                } else if ($matches[5]) { // Cruft.
                     switch ($matches[5]) {
                         case '<':
                             $tagStack->pcdata('&lt;');
@@ -232,21 +400,19 @@ final class HtmlParser
      */
     public function lookupEntity($entity)
     {
-        // TODO(goto): use {amp.htmlparserDecode} instead ?
-        // TODO(goto): &pi; is different from &Pi;
-        const name =
-            parserInterface.toLowerCase(entity.substring(1, entity.length - 1));
-        if (Entities.hasOwnProperty(name)) {
-            return Entities[name];
+        $name = strtolower(substr($entity, strlen($entity) - 1));
+        if (array_key_exists($name, self::ENTITIES)) {
+            return self::ENTITIES[$name];
         }
-        let m = name.match(DECIMAL_ESCAPE_RE_);
-        if (m) {
-            return String.fromCharCode(parseInt(m[1], 10));
-        } else if (!!(m = name.match(HEX_ESCAPE_RE_))) {
-            return String.fromCharCode(parseInt(m[1], 16));
+        $matches = [];
+        if (preg_match(self::DECIMAL_ESCAPE_REGEX, $name, $matches)) {
+            return chr((int)$matches[1]);
+        }
+        if (preg_match(self::HEX_ESCAPE_REGEX, $name, $matches)) {
+            return chr(hexdec($matches[1]));
         }
         // If unable to decode, return the name.
-        return name;
+        return $name;
     }
 
     /**

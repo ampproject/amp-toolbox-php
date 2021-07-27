@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject\Html;
+namespace AmpProject\Html\Parser;
 
 use AmpProject\FakeEnum;
 
