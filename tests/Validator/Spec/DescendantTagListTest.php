@@ -10,7 +10,6 @@ class DescendantTagListTest extends TestCase
 
     /**
      * @covers \AmpProject\Validator\Spec\DescendantTagList::getId()
-     * @covers \AmpProject\Validator\Spec\DescendantTagList::get()
      * @covers \AmpProject\Validator\Spec\DescendantTagList::has()
      * @covers \AmpProject\Validator\Spec\DescendantTagList::__get()
      */

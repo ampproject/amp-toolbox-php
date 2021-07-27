@@ -2,6 +2,7 @@
 
 namespace AmpProject\Dom;
 
+use AmpProject\Amp;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\InvalidByteSequence;
@@ -474,6 +475,11 @@ class DocumentTest extends TestCase
      * @dataProvider dataDomDocument
      * @covers       \AmpProject\Dom\Document::loadHTML()
      * @covers       \AmpProject\Dom\Document::saveHTML()
+     * @covers       \AmpProject\Dom\Document\Filter\DeduplicateTag
+     * @covers       \AmpProject\Dom\Document\Filter\DocumentEncoding
+     * @covers       \AmpProject\Dom\Document\Filter\MustacheScriptTemplates
+     * @covers       \AmpProject\Dom\Document\Filter\NormalizeHtmlAttributes
+     * @covers       \AmpProject\Dom\Document\Filter\ConvertHeadProfileToLink
      */
     public function testDomDocument($charset, $source, $expected)
     {
@@ -482,9 +488,10 @@ class DocumentTest extends TestCase
     }
 
     /**
-     * Test convertAmpBindAttributes.
+     * Test data-amp-bind attributes.
      *
-     * @covers \AmpProject\Dom\Document::convertAmpBindAttributes()
+     * @covers \AmpProject\Dom\Document\Filter\AmpBindAttributes::beforeLoad()
+     * @covers \AmpProject\Dom\Document\Filter\AmpBindAttributes::afterSave()
      */
     public function testAmpBindConversion()
     {
@@ -494,7 +501,7 @@ class DocumentTest extends TestCase
         $converted = $dom->saveHTML($dom->body->firstChild);
         $this->assertEquals($original, $converted);
         $this->assertStringContainsString('[src]="myAnimals[currentAnimal].imageUrl"', $converted);
-        $this->assertStringNotContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX, $converted);
+        $this->assertStringNotContainsString(Amp::BIND_DATA_ATTR_PREFIX, $converted);
         $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
 
         // Conversion is transparent and end result preserves data-amp-bind-* syntax.
@@ -502,7 +509,7 @@ class DocumentTest extends TestCase
         $dom       = Document::fromHtml($original);
         $converted = $dom->saveHTML($dom->body->firstChild);
         $this->assertEquals($original, $converted);
-        $this->assertStringContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX . 'src="myAnimals[currentAnimal].imageUrl"', $converted);
+        $this->assertStringContainsString(Amp::BIND_DATA_ATTR_PREFIX . 'src="myAnimals[currentAnimal].imageUrl"', $converted);
         $this->assertStringNotContainsString('[src]', $converted);
         $this->assertStringContainsString('width="300" height="200" data-foo="bar" selected', $converted);
 
@@ -537,15 +544,15 @@ class DocumentTest extends TestCase
         ];
         foreach ($malformed_html as $html) {
             $converted = Document::fromHtml($html)->saveHTML();
-            $this->assertStringNotContainsString(Document::AMP_BIND_DATA_ATTR_PREFIX, $converted, "Source: {$html}");
+            $this->assertStringNotContainsString(Amp::BIND_DATA_ATTR_PREFIX, $converted, "Source: {$html}");
         }
     }
 
     /**
      * Test handling noscript elements in the head.
      *
-     * @covers \AmpProject\Dom\Document::maybeReplaceNoscriptElements()
-     * @covers \AmpProject\Dom\Document::maybeRestoreNoscriptElements()
+     * @covers \AmpProject\Dom\Document\Filter\NoscriptElements::beforeLoad()
+     * @covers \AmpProject\Dom\Document\Filter\NoscriptElements::afterLoad()
      */
     public function testHeadNoscriptElementHandling()
     {
@@ -993,6 +1000,8 @@ class DocumentTest extends TestCase
      * @param string $html              HTML to test against.
      * @param int    $expectedAmpCustom Expected number of bytes of the <style amp-custom> tag.
      * @param int    $expectedInline    Expected number of bytes of inline styles.
+     *
+     * @covers       \AmpProject\Dom\Document\Filter\DeduplicateTag::afterLoad()
      */
     public function testByteCounts($html, $expectedAmpCustom, $expectedInline)
     {
@@ -1102,10 +1111,10 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::ENCODING => 'something']);
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::ENCODING => 'something']);
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1125,10 +1134,10 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1148,10 +1157,10 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1171,10 +1180,10 @@ class DocumentTest extends TestCase
         );
 
         $document = Document::fromHtml('<html><div></div></html>', 'something');
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = Document::fromHtmlFragment('<div></div>', 'something');
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1193,11 +1202,11 @@ class DocumentTest extends TestCase
 
         $document = new Document();
         $document->loadHTML('<html><div></div></html>', 524288);
-        $this->assertEquals($expectedOptions, $document->getOptions());
+        $this->assertEquals($expectedOptions, $document->getOptions()->toArray());
 
         $documentFragment = new Document();
         $documentFragment->loadHTMLFragment('<div></div>', '524288');
-        $this->assertEquals($expectedOptions, $documentFragment->getOptions());
+        $this->assertEquals($expectedOptions, $documentFragment->getOptions()->toArray());
     }
 
     /**
@@ -1292,7 +1301,7 @@ class DocumentTest extends TestCase
     /**
      * Test asserting none malformed byte sequences
      *
-     * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
+     * @covers \AmpProject\Dom\Document\Filter\DetectInvalidByteSequence::beforeLoad()
      * @covers \AmpProject\Exception\InvalidByteSequence::forHtml()
      */
     public function testDetectMalformedByteSequences()
@@ -1308,7 +1317,7 @@ class DocumentTest extends TestCase
     /**
      * Test asserting none bad byte sequences
      *
-     * @covers \AmpProject\Dom\Document::detectInvalidByteSequences()
+     * @covers \AmpProject\Dom\Document\Filter\DetectInvalidByteSequence::beforeLoad()
      * @covers \AmpProject\Exception\InvalidByteSequence::forHtml()
      */
     public function testDetectBadByteSequences()
@@ -1318,6 +1327,36 @@ class DocumentTest extends TestCase
         $document::fromHtmlFragment(
             '<p>There is ' . substr('アプリ', 0, strlen('アプリ') - 1) . ' some other text</p>',
             [Option::CHECK_ENCODING => true]
+        );
+    }
+
+    /**
+     * Test loading the Document from a node.
+     *
+     * @covers \AmpProject\Dom\Document::fromNode()
+     */
+    public function testDocumentFromNode()
+    {
+        $document = new Document();
+        $textNode = $document->createTextNode('Some Text');
+
+        $this->assertInstanceOf(Document::class, Document::fromNode($textNode));
+    }
+
+    /**
+     * Test normalizeDomStructure method for html fragment.
+     *
+     * @covers \AmpProject\Dom\Document::normalizeDomStructure()
+     */
+    public function testNormalizeDomStructure()
+    {
+        $document = new Document();
+        $document->appendChild($document->createElement(Tag::P, 'Some text'));
+        $document->normalizeDomStructure();
+
+        $this->assertEqualMarkup(
+            '<html><head></head><body><p>Some text</p></body></html>',
+            $document->saveHTMLFragment()
         );
     }
 }
