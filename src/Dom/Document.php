@@ -18,7 +18,6 @@ use AmpProject\Optimizer\CssRule;
 use AmpProject\Tag;
 use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;
-use DOMAttr;
 use DOMComment;
 use DOMDocument;
 use DOMElement;

@@ -4,7 +4,9 @@ namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterLoadFilter;
+use AmpProject\Dom\Element;
 use AmpProject\Tag;
+use DOMAttr;
 
 /**
  * Filter for deduplicating head and body tags.
@@ -32,7 +34,7 @@ final class DeduplicateTag implements AfterLoadFilter
             /**
              * Main tag to keep.
              *
-             * @var \AmpProject\Dom\Element|null $mainTag
+             * @var Element|null $mainTag
              */
             $mainTag = $tags->item(0);
 
@@ -44,7 +46,7 @@ final class DeduplicateTag implements AfterLoadFilter
                 /**
                  * Tag to remove.
                  *
-                 * @var \AmpProject\Dom\Element $tagToRemove
+                 * @var Element $tagToRemove
                  */
                 $tagToRemove = $tags->item(1);
 
@@ -56,7 +58,7 @@ final class DeduplicateTag implements AfterLoadFilter
                     /**
                      * Attribute node to move over to the main tag.
                      *
-                     * @var \DOMAttr $attribute
+                     * @var DOMAttr $attribute
                      */
                     $attribute = $tagToRemove->attributes->item(0);
                     $tagToRemove->removeAttributeNode($attribute);
