@@ -16,7 +16,7 @@ $specGenerator      = new SpecGenerator();
 $destination        = !empty($argv[1]) ? $argv[1] : dirname(__DIR__) . '/src/Validator';
 $spec_url           = 'https://cdn.ampproject.org/v0/validator.json';
 $latest_release_url = 'https://api.github.com/repos/ampproject/amphtml/releases/latest';
-$bundle_config_url  = 'https://raw.githubusercontent.com/ampproject/amphtml/%s/build-system/compile/bundles.config.extensions.json';
+$bundle_config_url  = 'https://raw.githubusercontent.com/ampproject/amphtml/%s/build-system/compile/bundles.config.extensions.json'; // phpcs:ignore Generic.Files.LineLength.TooLong
 
 function recursivelyRemoveDirectory($directory)
 {
@@ -42,22 +42,23 @@ function recursivelyRemoveDirectory($directory)
 /**
  * Fetch JSON data from URL.
  *
- * @param string $url
- * @param bool $cache
+ * @param string $url   JSON URL.
+ * @param bool   $cache Whether to cache response in temp directory.
  *
- * @return array|mixed
+ * @return array Data.
  * @throws Exception When there is a fetch failure, the JSON is invalid, or the JSON is not an array.
  */
-function fetch_json($url, $cache = false) {
-    $stream_context = stream_context_create( [
+function fetch_json($url, $cache = false)
+{
+    $stream_context = stream_context_create([
         'http' => [
             'user_agent' => 'amp-toolbox-php-generate-validator-spec/0.1',
         ],
-    ] );
+    ]);
 
     $json       = null;
     $cache_file = sys_get_temp_dir() . '/amp-toolbox-php' . md5($url);
-    if ( $cache ) {
+    if ($cache) {
         if (file_exists($cache_file)) {
             $json = file_get_contents($cache_file);
         }

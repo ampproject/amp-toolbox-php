@@ -25,7 +25,8 @@ final class Tags implements Section
      *
      * @param array $extensionsMeta Extensions meta.
      */
-    public function __construct($extensionsMeta) {
+    public function __construct($extensionsMeta)
+    {
         $this->extensionsMeta = $extensionsMeta;
     }
 
@@ -298,7 +299,8 @@ final class Tags implements Section
                 $versionsMeta = [];
                 foreach ($extensionSpec['version'] as $validVersion) {
                     if (isset($this->extensionsMeta[$extensionSpec['name']]['versions'][$validVersion])) {
-                        $versionsMeta[$validVersion] = $this->extensionsMeta[$extensionSpec['name']]['versions'][$validVersion];
+                        $versionsMeta[$validVersion] =
+                            $this->extensionsMeta[$extensionSpec['name']]['versions'][$validVersion];
                     }
                 }
 

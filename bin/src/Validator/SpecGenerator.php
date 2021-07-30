@@ -91,7 +91,12 @@ final class SpecGenerator
                           ->addComment("@return string");
                     break;
                 default:
-                    $sectionClassName = $this->generateSectionClass($section, $sectionSpec, $fileManager, $extensionsMeta);
+                    $sectionClassName = $this->generateSectionClass(
+                        $section,
+                        $sectionSpec,
+                        $fileManager,
+                        $extensionsMeta
+                    );
 
                     $class->addProperty($section)
                           ->setPrivate()
@@ -169,9 +174,8 @@ final class SpecGenerator
         $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$className}";
 
         if (class_exists($sectionProcessorClass)) {
-
-            if ( Section\Tags::class === $sectionProcessorClass ) {
-                $sectionProcessor = new Section\Tags( $extensionsMeta );
+            if (Section\Tags::class === $sectionProcessorClass) {
+                $sectionProcessor = new Section\Tags($extensionsMeta);
             } else {
                 /** @var Section $sectionProcessor */
                 $sectionProcessor = new $sectionProcessorClass();
@@ -272,7 +276,8 @@ final class SpecGenerator
      * @param array $bundlesConfig Bundles config.
      * @return array Extensions meta.
      */
-    private function gatherExtensionsMeta($bundlesConfig) {
+    private function gatherExtensionsMeta($bundlesConfig)
+    {
         $extensions = [];
         foreach ($bundlesConfig as $bundleConfig) {
             if (! isset($bundleConfig['name']) || ! is_string($bundleConfig['name'])) {
@@ -281,7 +286,11 @@ final class SpecGenerator
             if (! isset($bundleConfig['latestVersion']) || ! is_string($bundleConfig['latestVersion'])) {
                 throw new Exception('Missing string latestVersion in bundles.config.extensions.json');
             }
-            if (! isset($bundleConfig['version']) || ! (is_string($bundleConfig['version']) || is_array($bundleConfig['version']) ) ) {
+            if (
+                ! isset($bundleConfig['version'])
+                ||
+                ! (is_string($bundleConfig['version']) || is_array($bundleConfig['version']) )
+            ) {
                 throw new Exception('Missing string/array version in bundles.config.extensions.json');
             }
 
@@ -299,10 +308,18 @@ final class SpecGenerator
                 }
                 $extensions[$bundleConfig['name']]['versions'][$version] = [
                     'hasCss'   => ! empty($bundleConfig['options']['hasCss']),
-                    'hasBento' => isset($bundleConfig['options']['wrapper']) && 'bento' === $bundleConfig['options']['wrapper'],
+                    'hasBento' => (
+                        isset($bundleConfig['options']['wrapper']) && 'bento' === $bundleConfig['options']['wrapper']
+                    ),
                 ];
 
-                if (version_compare($bundleConfig['latestVersion'], $extensions[$bundleConfig['name']]['latestVersion'], '>' )) {
+                if (
+                    version_compare(
+                        $bundleConfig['latestVersion'],
+                        $extensions[$bundleConfig['name']]['latestVersion'],
+                        '>'
+                    )
+                ) {
                     $extensions[$bundleConfig['name']]['latestVersion'] = $bundleConfig['latestVersion'];
                 }
             }
