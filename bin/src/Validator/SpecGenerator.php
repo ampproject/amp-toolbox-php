@@ -24,10 +24,11 @@ final class SpecGenerator
      * Generate the PHP spec from a JSON definition.
      *
      * @param array  $jsonSpec      Validator spec as defined by the downloaded JSON file.
+     * @param array  $bundlesConfig Bundles configuration.
      * @param string $rootNamespace Root namespace to generate the PHP validator spec under.
      * @param string $destination   Destination folder to store the PHP validator spec under.
      */
-    public function generate($jsonSpec, $rootNamespace, $destination)
+    public function generate($jsonSpec, $bundlesConfig, $rootNamespace, $destination)
     {
         $printer = new SpecPrinter();
         $printer->setTypeResolving(false);
