@@ -6,6 +6,7 @@ use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
+use AmpProject\Optimizer\Error\CannotMinifyAmpScript;
 use AmpProject\Optimizer\Error\InvalidJson;
 use AmpProject\Optimizer\Error\MissingPackage;
 use AmpProject\Optimizer\ErrorCollection;
@@ -16,6 +17,7 @@ use AmpProject\Tag;
 use DOMComment;
 use DOMNode;
 use DOMText;
+use Exception;
 use Peast\Formatter\Compact;
 use Peast\Peast;
 use Peast\Renderer;
@@ -284,9 +286,15 @@ final class MinifyHtml implements Transformer
             return;
         }
 
-        $parser = Peast::latest($node->data, [])->parse();
-        $renderer = new Renderer();
-        $renderer->setFormatter(new Compact());
-        $node->data = $renderer->render($parser);
+        try {
+            $parser = Peast::latest($node->data, [])->parse();
+            $renderer = new Renderer();
+            $renderer->setFormatter(new Compact());
+            $node->data = $renderer->render($parser);
+        } catch (Exception $error) {
+            $errors->add(
+                CannotMinifyAmpScript::withMessage($node->data, $error->getMessage())
+            );
+        }
     }
 }
