@@ -294,6 +294,18 @@ final class Tags implements Section
             $class->addConstant('LATEST_VERSION', $latestVersion)
                   ->addComment("Latest version of the extension.\n\n@var string");
 
+            if (isset($extensionSpec['version']) && isset($this->extensionsMeta[$extensionSpec['name']])) {
+                $versionsMeta = [];
+                foreach ($extensionSpec['version'] as $validVersion) {
+                    if (isset($this->extensionsMeta[$extensionSpec['name']]['versions'][$validVersion])) {
+                        $versionsMeta[$validVersion] = $this->extensionsMeta[$extensionSpec['name']]['versions'][$validVersion];
+                    }
+                }
+
+                $class->addConstant('VERSIONS_META', $versionsMeta)
+                      ->addComment("Meta data about the specific versions.\n\n@var array");
+            }
+
             $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
             $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
             $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\ExtensionSpec");

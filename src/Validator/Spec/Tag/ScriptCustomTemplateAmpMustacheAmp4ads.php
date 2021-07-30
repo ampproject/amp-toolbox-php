@@ -64,6 +64,22 @@ final class ScriptCustomTemplateAmpMustacheAmp4ads extends Tag implements Identi
     const LATEST_VERSION = '0.2';
 
     /**
+     * Meta data about the specific versions.
+     *
+     * @var array
+     */
+    const VERSIONS_META = [
+        '0.1' => [
+            'hasCss' => false,
+            'hasBento' => false,
+        ],
+        '0.2' => [
+            'hasCss' => false,
+            'hasBento' => false,
+        ],
+    ];
+
+    /**
      * Array of spec rules.
      *
      * @var array

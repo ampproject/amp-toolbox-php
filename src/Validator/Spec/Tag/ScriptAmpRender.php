@@ -58,6 +58,18 @@ final class ScriptAmpRender extends Tag implements Identifiable, TagWithExtensio
     const LATEST_VERSION = '1.0';
 
     /**
+     * Meta data about the specific versions.
+     *
+     * @var array
+     */
+    const VERSIONS_META = [
+        '1.0' => [
+            'hasCss' => false,
+            'hasBento' => true,
+        ],
+    ];
+
+    /**
      * Array of spec rules.
      *
      * @var array

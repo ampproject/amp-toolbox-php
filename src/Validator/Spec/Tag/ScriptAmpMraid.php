@@ -62,6 +62,18 @@ final class ScriptAmpMraid extends Tag implements Identifiable, TagWithExtension
     const LATEST_VERSION = '0.1';
 
     /**
+     * Meta data about the specific versions.
+     *
+     * @var array
+     */
+    const VERSIONS_META = [
+        '0.1' => [
+            'hasCss' => false,
+            'hasBento' => false,
+        ],
+    ];
+
+    /**
      * Array of spec rules.
      *
      * @var array
