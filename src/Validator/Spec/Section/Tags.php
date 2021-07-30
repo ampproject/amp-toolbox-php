@@ -1225,7 +1225,7 @@ final class Tags implements IterableSection
             Tag\AmpVideo::ID,
         ],
         Extension::STREAM_GALLERY => Tag\AmpStreamGallery::ID,
-        'AMP-TIKTOK' => [
+        Extension::TIKTOK => [
             Tag\AmpTiktok::ID,
             Tag\AmpTiktokBlockquote::ID,
         ],
@@ -1244,7 +1244,7 @@ final class Tags implements IterableSection
         Extension::WEB_PUSH => Tag\AmpWebPush::ID,
         Extension::WEB_PUSH_WIDGET => Tag\AmpWebPushWidget::ID,
         Extension::WISTIA_PLAYER => Tag\AmpWistiaPlayer::ID,
-        'AMP-WORDPRESS-EMBED' => Tag\AmpWordpressEmbed::ID,
+        Extension::WORDPRESS_EMBED => Tag\AmpWordpressEmbed::ID,
         Extension::YOTPO => Tag\AmpYotpo::ID,
         Extension::YOUTUBE => Tag\AmpYoutube::ID,
         Element::ARTICLE => Tag\Article::ID,
@@ -2966,7 +2966,7 @@ final class Tags implements IterableSection
         Extension::STREAM_GALLERY => Tag\ScriptAmpStreamGallery::ID,
         Extension::SUBSCRIPTIONS_GOOGLE => Tag\ScriptAmpSubscriptionsGoogle::ID,
         Extension::SUBSCRIPTIONS => Tag\ScriptAmpSubscriptions::ID,
-        'amp-tiktok' => Tag\ScriptAmpTiktok::ID,
+        Extension::TIKTOK => Tag\ScriptAmpTiktok::ID,
         Extension::TIMEAGO => Tag\ScriptCustomElementAmpTimeagoAmp4email::ID,
         Extension::TRUNCATE_TEXT => Tag\ScriptAmpTruncateText::ID,
         Extension::TWITTER => Tag\ScriptAmpTwitter2::ID,
@@ -2980,7 +2980,7 @@ final class Tags implements IterableSection
         Extension::VK => Tag\ScriptAmpVk::ID,
         Extension::WEB_PUSH => Tag\ScriptAmpWebPush::ID,
         Extension::WISTIA_PLAYER => Tag\ScriptAmpWistiaPlayer::ID,
-        'amp-wordpress-embed' => Tag\ScriptAmpWordpressEmbed::ID,
+        Extension::WORDPRESS_EMBED => Tag\ScriptAmpWordpressEmbed::ID,
         Extension::YOTPO => Tag\ScriptAmpYotpo::ID,
         Extension::YOUTUBE => Tag\ScriptAmpYoutube2::ID,
     ];
