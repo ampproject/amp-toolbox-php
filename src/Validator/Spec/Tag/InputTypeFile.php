@@ -46,6 +46,14 @@ final class InputTypeFile extends Tag implements Identifiable
         SpecRule::TAG_NAME => Element::INPUT,
         SpecRule::SPEC_NAME => 'INPUT [type=file]',
         SpecRule::ATTRS => [
+            Attribute::CAPTURE => [
+                SpecRule::VALUE => [
+                    '',
+                ],
+                SpecRule::DISABLED_BY => [
+                    Attribute::AMP4EMAIL,
+                ],
+            ],
             Attribute::NO_VERIFY => [
                 SpecRule::VALUE => [
                     '',

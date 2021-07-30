@@ -34,6 +34,6 @@ final class CssSyntaxDisallowedDomain extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid domain \'%2\'.',
-        SpecRule::SPECIFICITY => 70,
+        SpecRule::SPECIFICITY => 72,
     ];
 }

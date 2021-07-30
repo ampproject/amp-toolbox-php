@@ -34,6 +34,6 @@ final class MandatoryPropertyMissingFromAttrValue extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The property \'%1\' is missing from attribute \'%2\' in tag \'%3\'.',
-        SpecRule::SPECIFICITY => 38,
+        SpecRule::SPECIFICITY => 40,
     ];
 }

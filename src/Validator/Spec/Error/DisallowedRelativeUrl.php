@@ -34,6 +34,6 @@ final class DisallowedRelativeUrl extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The relative URL \'%3\' for attribute \'%1\' in tag \'%2\' is disallowed.',
-        SpecRule::SPECIFICITY => 52,
+        SpecRule::SPECIFICITY => 54,
     ];
 }

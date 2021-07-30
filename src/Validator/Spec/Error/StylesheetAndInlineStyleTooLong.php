@@ -34,6 +34,6 @@ final class StylesheetAndInlineStyleTooLong extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The author stylesheet specified in tag \'style amp-custom\' and the combined inline styles is too large - document contains %1 bytes whereas the limit is %2 bytes.',
-        SpecRule::SPECIFICITY => 34,
+        SpecRule::SPECIFICITY => 36,
     ];
 }

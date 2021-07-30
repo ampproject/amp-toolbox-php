@@ -34,6 +34,6 @@ final class CssSyntaxDisallowedRelativeUrl extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - disallowed relative url \'%2\'.',
-        SpecRule::SPECIFICITY => 73,
+        SpecRule::SPECIFICITY => 75,
     ];
 }

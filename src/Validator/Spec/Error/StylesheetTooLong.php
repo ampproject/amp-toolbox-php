@@ -34,6 +34,6 @@ final class StylesheetTooLong extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The author stylesheet specified in tag \'%1\' is too long - document contains %2 bytes whereas the limit is %3 bytes.',
-        SpecRule::SPECIFICITY => 33,
+        SpecRule::SPECIFICITY => 35,
     ];
 }

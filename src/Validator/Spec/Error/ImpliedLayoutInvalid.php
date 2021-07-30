@@ -34,6 +34,6 @@ final class ImpliedLayoutInvalid extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The implied layout \'%1\' is not supported by tag \'%2\'.',
-        SpecRule::SPECIFICITY => 47,
+        SpecRule::SPECIFICITY => 49,
     ];
 }

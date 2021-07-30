@@ -34,6 +34,6 @@ final class CssSyntaxIncompleteDeclaration extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - incomplete declaration.',
-        SpecRule::SPECIFICITY => 64,
+        SpecRule::SPECIFICITY => 66,
     ];
 }

@@ -34,6 +34,6 @@ final class MandatoryReferencePointMissing extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The mandatory reference point \'%1\' for \'%2\' is missing.',
-        SpecRule::SPECIFICITY => 79,
+        SpecRule::SPECIFICITY => 81,
     ];
 }

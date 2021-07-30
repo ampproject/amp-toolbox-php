@@ -34,6 +34,6 @@ final class IncorrectScriptReleaseVersion extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The script version for \'%1\' is a %2 version which mismatches with the first script on the page using the %3 version.',
-        SpecRule::SPECIFICITY => 20,
+        SpecRule::SPECIFICITY => 22,
     ];
 }

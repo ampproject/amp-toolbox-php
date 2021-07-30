@@ -17,7 +17,7 @@ use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 /**
- * Tag class ScriptAmpEmbedlyCard.
+ * Tag class ScriptAmpWordpressEmbed.
  *
  * @package ampproject/amp-toolbox.
  *
@@ -26,7 +26,7 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read array<string> $htmlFormat
  * @property-read string $extensionSpec
  */
-final class ScriptAmpEmbedlyCard extends Tag implements Identifiable, TagWithExtensionSpec
+final class ScriptAmpWordpressEmbed extends Tag implements Identifiable, TagWithExtensionSpec
 {
     use ExtensionSpec;
 
@@ -35,7 +35,7 @@ final class ScriptAmpEmbedlyCard extends Tag implements Identifiable, TagWithExt
      *
      * @var string
      */
-    const ID = 'SCRIPT [amp-embedly-card]';
+    const ID = 'SCRIPT [amp-wordpress-embed]';
 
     /**
      * Array of extension spec rules.
@@ -43,9 +43,8 @@ final class ScriptAmpEmbedlyCard extends Tag implements Identifiable, TagWithExt
      * @var array
      */
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-embedly-card',
+        SpecRule::NAME => 'amp-wordpress-embed',
         SpecRule::VERSION => [
-            '0.1',
             '1.0',
             'latest',
         ],

@@ -154,6 +154,7 @@ interface Extension
     const STREAM_GALLERY                         = 'amp-stream-gallery';
     const SUBSCRIPTIONS                          = 'amp-subscriptions';
     const SUBSCRIPTIONS_GOOGLE                   = 'amp-subscriptions-google';
+    const TIKTOK                                 = 'amp-tiktok';
     const TIMEAGO                                = 'amp-timeago';
     const TRUNCATE_TEXT                          = 'amp-truncate-text';
     const TWITTER                                = 'amp-twitter';
@@ -168,6 +169,7 @@ interface Extension
     const WEB_PUSH                               = 'amp-web-push';
     const WEB_PUSH_WIDGET                        = 'amp-web-push-widget';
     const WISTIA_PLAYER                          = 'amp-wistia-player';
+    const WORDPRESS_EMBED                        = 'amp-wordpress-embed';
     const YOTPO                                  = 'amp-yotpo';
     const YOUTUBE                                = 'amp-youtube';
     const _3D_GLTF                               = 'amp-3d-gltf';

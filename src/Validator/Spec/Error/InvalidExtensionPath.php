@@ -11,21 +11,21 @@ use AmpProject\Validator\Spec\Error;
 use AmpProject\Validator\Spec\SpecRule;
 
 /**
- * Error class DisallowedPropertyInAttrValue.
+ * Error class InvalidExtensionPath.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $format
  * @property-read int $specificity
  */
-final class DisallowedPropertyInAttrValue extends Error
+final class InvalidExtensionPath extends Error
 {
     /**
      * Code of the error.
      *
      * @var string
      */
-    const CODE = 'DISALLOWED_PROPERTY_IN_ATTR_VALUE';
+    const CODE = 'INVALID_EXTENSION_PATH';
 
     /**
      * Array of spec data.
@@ -33,7 +33,7 @@ final class DisallowedPropertyInAttrValue extends Error
      * @var array<array>
      */
     const SPEC = [
-        SpecRule::FORMAT => 'The property \'%1\' in attribute \'%2\' in tag \'%3\' is disallowed.',
-        SpecRule::SPECIFICITY => 42,
+        SpecRule::FORMAT => 'The extension \'%1\' has a path \'%2\' which is invalid. Please use a valid path for this extension.',
+        SpecRule::SPECIFICITY => 19,
     ];
 }

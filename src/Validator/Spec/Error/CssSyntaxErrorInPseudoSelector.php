@@ -34,6 +34,6 @@ final class CssSyntaxErrorInPseudoSelector extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - invalid pseudo selector.',
-        SpecRule::SPECIFICITY => 65,
+        SpecRule::SPECIFICITY => 67,
     ];
 }

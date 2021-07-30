@@ -7,49 +7,34 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
-use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 /**
- * Tag class ScriptAmpEmbedlyCard.
+ * Tag class BlockquoteWithTiktok.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
+ * @property-read string $specName
+ * @property-read array<array> $attrs
  * @property-read array<string> $attrLists
+ * @property-read string $mandatoryAncestor
  * @property-read array<string> $htmlFormat
- * @property-read string $extensionSpec
  */
-final class ScriptAmpEmbedlyCard extends Tag implements Identifiable, TagWithExtensionSpec
+final class BlockquoteWithTiktok extends Tag implements Identifiable
 {
-    use ExtensionSpec;
-
     /**
      * ID of the tag.
      *
      * @var string
      */
-    const ID = 'SCRIPT [amp-embedly-card]';
-
-    /**
-     * Array of extension spec rules.
-     *
-     * @var array
-     */
-    const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-embedly-card',
-        SpecRule::VERSION => [
-            '0.1',
-            '1.0',
-            'latest',
-        ],
-    ];
+    const ID = 'BLOCKQUOTE with TikTok';
 
     /**
      * Array of spec rules.
@@ -57,13 +42,17 @@ final class ScriptAmpEmbedlyCard extends Tag implements Identifiable, TagWithExt
      * @var array
      */
     const SPEC = [
-        SpecRule::TAG_NAME => Element::SCRIPT,
-        SpecRule::ATTR_LISTS => [
-            AttributeList\CommonExtensionAttrs::ID,
+        SpecRule::TAG_NAME => Element::BLOCKQUOTE,
+        SpecRule::SPEC_NAME => 'BLOCKQUOTE with TikTok',
+        SpecRule::ATTRS => [
+            Attribute::ALIGN => [],
         ],
+        SpecRule::ATTR_LISTS => [
+            AttributeList\CiteAttr::ID,
+        ],
+        SpecRule::MANDATORY_ANCESTOR => 'AMP-TIKTOK blockquote',
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
     ];
 }

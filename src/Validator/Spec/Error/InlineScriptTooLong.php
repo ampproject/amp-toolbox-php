@@ -34,6 +34,6 @@ final class InlineScriptTooLong extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The inline script is %1 bytes, which exceeds the limit of %2 bytes.',
-        SpecRule::SPECIFICITY => 36,
+        SpecRule::SPECIFICITY => 38,
     ];
 }
