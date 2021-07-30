@@ -16,7 +16,7 @@ final class CannotMinifyAmpScript implements Error
     /**
      * Instantiate an CannotMinifyAmpScript object with an error message.
      *
-     * @param string $dat      The script to be minified.
+     * @param string $data     The script to be minified.
      * @param string $errorMsg The error message.
      * @return self
      */

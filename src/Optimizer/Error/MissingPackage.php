@@ -14,7 +14,7 @@ final class MissingPackage implements Error
     use ErrorProperties;
 
     /**
-     * Instantiate an MissingPackage object for a missing PHP package.
+     * Instantiate a MissingPackage object for a missing PHP package.
      *
      * @param string $errorMsg The error message.
      * @return self

@@ -6,9 +6,7 @@ use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
-use AmpProject\Optimizer\Error\CannotMinifyAmpScript;
-use AmpProject\Optimizer\Error\InvalidJson;
-use AmpProject\Optimizer\Error\MissingPackage;
+use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
@@ -242,14 +240,14 @@ final class MinifyHtml implements Transformer
         $decodedData = json_decode($node->data);
 
         if (JSON_ERROR_NONE !== json_last_error()) {
-            $errors->add(InvalidJson::fromLastErrorMsgAfterDecoding());
+            $errors->add(Error\InvalidJson::fromLastErrorMsgAfterDecoding());
         }
 
         if (! empty($decodedData)) {
             $data = json_encode($decodedData, JSON_HEX_AMP | JSON_HEX_TAG | JSON_UNESCAPED_SLASHES);
 
             if (JSON_ERROR_NONE !== json_last_error()) {
-                $errors->add(InvalidJson::fromLastErrorMsgAfterEncoding());
+                $errors->add(Error\InvalidJson::fromLastErrorMsgAfterEncoding());
             }
 
             // PHP uses uppercase letters for angle bracket codes, so convert them into lowercase.
@@ -260,7 +258,7 @@ final class MinifyHtml implements Transformer
     /**
      * Checks if a node is meant to be an inline amp-script.
      *
-     * @param Element $node The element node need to be checked.
+     * @param Element $node The element node to be checked.
      * @return bool
      */
     private function isInlineAmpScript(Element $node)
@@ -280,9 +278,9 @@ final class MinifyHtml implements Transformer
     private function minifyAmpScript(DOMText $node, ErrorCollection $errors)
     {
         if (! class_exists(Peast::class) || ! class_exists(Renderer::class) || ! class_exists(Compact::class)) {
-            $errors->add(
-                MissingPackage::withMessage('mck89/peast package is required to minify inline amp-script.')
-            );
+            $errors->add(Error\MissingPackage::withMessage(
+                'The optional package mck89/peast package is required to minify inline amp-script.'
+            ));
             return;
         }
 
@@ -293,7 +291,7 @@ final class MinifyHtml implements Transformer
             $node->data = $renderer->render($parser);
         } catch (Exception $error) {
             $errors->add(
-                CannotMinifyAmpScript::withMessage($node->data, $error->getMessage())
+                Error\CannotMinifyAmpScript::withMessage($node->data, $error->getMessage())
             );
         }
     }

@@ -28,7 +28,7 @@
     "ext-json": "Provides native implementation of json_encode()/json_decode().",
     "ext-mbstring": "Used by Dom\\Document to convert encoding to UTF-8 if needed.",
     "nette/php-generator": "Needed to generate the validator spec PHP classes and interfaces.",
-    "mck89/peast": "Needed to minifiy the AMP script."
+    "mck89/peast": "Needed to minify the AMP script."
   },
   "config": {
     "sort-packages": true
