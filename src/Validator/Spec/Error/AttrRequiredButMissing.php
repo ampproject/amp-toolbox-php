@@ -34,6 +34,6 @@ final class AttrRequiredButMissing extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The attribute \'%1\' in tag \'%2\' is missing or incorrect, but required by attribute \'%3\'.',
-        SpecRule::SPECIFICITY => 30,
+        SpecRule::SPECIFICITY => 32,
     ];
 }

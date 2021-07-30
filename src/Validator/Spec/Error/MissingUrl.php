@@ -34,6 +34,6 @@ final class MissingUrl extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Missing URL for attribute \'%1\' in tag \'%2\'.',
-        SpecRule::SPECIFICITY => 53,
+        SpecRule::SPECIFICITY => 55,
     ];
 }

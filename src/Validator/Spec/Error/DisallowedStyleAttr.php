@@ -34,6 +34,6 @@ final class DisallowedStyleAttr extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The inline \'style\' attribute is not allowed in AMP documents. Use \'style amp-custom\' tag instead.',
-        SpecRule::SPECIFICITY => 57,
+        SpecRule::SPECIFICITY => 59,
     ];
 }

@@ -34,6 +34,6 @@ final class InvalidUrlProtocol extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Invalid URL protocol \'%3:\' for attribute \'%1\' in tag \'%2\'.',
-        SpecRule::SPECIFICITY => 55,
+        SpecRule::SPECIFICITY => 57,
     ];
 }

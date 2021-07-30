@@ -34,6 +34,6 @@ final class DisallowedChildTagName extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Tag \'%1\' is disallowed as child of tag \'%2\'. Child tag must be one of %3.',
-        SpecRule::SPECIFICITY => 75,
+        SpecRule::SPECIFICITY => 77,
     ];
 }

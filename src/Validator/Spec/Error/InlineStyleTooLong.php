@@ -34,6 +34,6 @@ final class InlineStyleTooLong extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The inline style specified in tag \'%1\' is too long - it contains %2 bytes whereas the limit is %3 bytes.',
-        SpecRule::SPECIFICITY => 35,
+        SpecRule::SPECIFICITY => 37,
     ];
 }

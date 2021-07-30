@@ -34,6 +34,6 @@ final class ChildTagDoesNotSatisfyReferencePoint extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\', a child tag of \'%2\', does not satisfy one of the acceptable reference points: %3.',
-        SpecRule::SPECIFICITY => 78,
+        SpecRule::SPECIFICITY => 80,
     ];
 }
