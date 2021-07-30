@@ -53,6 +53,13 @@ final class ScriptCustomElementAmpLightboxAmp4ads extends Tag implements Identif
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
      * Array of spec rules.
      *
      * @var array

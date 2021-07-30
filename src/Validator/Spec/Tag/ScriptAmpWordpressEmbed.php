@@ -51,6 +51,13 @@ final class ScriptAmpWordpressEmbed extends Tag implements Identifiable, TagWith
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '1.0';
+
+    /**
      * Array of spec rules.
      *
      * @var array

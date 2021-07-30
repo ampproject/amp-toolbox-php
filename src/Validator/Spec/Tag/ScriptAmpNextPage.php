@@ -52,6 +52,13 @@ final class ScriptAmpNextPage extends Tag implements Identifiable, TagWithExtens
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '1.0';
+
+    /**
      * Array of spec rules.
      *
      * @var array

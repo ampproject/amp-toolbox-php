@@ -51,6 +51,13 @@ final class ScriptAmpGeo extends Tag implements Identifiable, TagWithExtensionSp
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
      * Array of spec rules.
      *
      * @var array

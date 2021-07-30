@@ -54,6 +54,13 @@ final class ScriptAmpCarousel extends Tag implements Identifiable, TagWithExtens
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
      * Array of spec rules.
      *
      * @var array

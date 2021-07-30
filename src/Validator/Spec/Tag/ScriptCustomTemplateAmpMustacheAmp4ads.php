@@ -57,6 +57,13 @@ final class ScriptCustomTemplateAmpMustacheAmp4ads extends Tag implements Identi
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.2';
+
+    /**
      * Array of spec rules.
      *
      * @var array

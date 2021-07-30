@@ -30,40 +30,11 @@ trait ExtensionSpec
      * Get the latest available version of the extension.
      *
      * phpcs:disable Generic.Files.LineLength.TooLong
-     * @todo This will need to be adapted to be informed by <https://github.com/ampproject/amphtml/blob/main/build-system/compile/bundles.config.extensions.json>, where the latestVersion is stored with the spec (and the highest version is not always the same as latest), as well as any additional Bento metadata.
      * @return string Latest available version.
      */
     public function getLatestVersion()
     {
-        // @todo There is one case where an extension lacks a 'latest' version, but maybe not for long. See <https://github.com/ampproject/amphtml/pull/34636>.
-        if (! array_key_exists(SpecRule::VERSION, self::EXTENSION_SPEC)) {
-            return 'latest';
-        }
-
-        $versions = self::EXTENSION_SPEC[SpecRule::VERSION];
-
-        // @todo Why isn't this sorting done at ingestion time? Then getLatestVersion could just be doing something like `return self::LATEST_VERSION`.
-        // Sort versions in descending order so that the latest version ends up to be the first element in the array.
-        usort(
-            $versions,
-            static function ($a, $b) {
-                if ($a === $b) {
-                    return 0;
-                }
-
-                if ($a === 'latest') {
-                    return 1;
-                }
-
-                if ($b === 'latest') {
-                    return -1;
-                }
-
-                return version_compare($a, $b, '<');
-            }
-        );
-
-        return $versions[0];
+        return self::LATEST_VERSION;
     }
 
     /**

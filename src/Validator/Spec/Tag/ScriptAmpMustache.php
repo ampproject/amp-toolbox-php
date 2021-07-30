@@ -58,6 +58,13 @@ final class ScriptAmpMustache extends Tag implements Identifiable, TagWithExtens
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.2';
+
+    /**
      * Array of spec rules.
      *
      * @var array

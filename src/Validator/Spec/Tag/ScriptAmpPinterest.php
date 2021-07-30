@@ -53,6 +53,13 @@ final class ScriptAmpPinterest extends Tag implements Identifiable, TagWithExten
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
      * Array of spec rules.
      *
      * @var array

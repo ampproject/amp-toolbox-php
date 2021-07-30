@@ -17,6 +17,18 @@ final class Tags implements Section
     use ConstantNames;
     use MagicPropertyAnnotations;
 
+    /** @var array */
+    private $extensionsMeta;
+
+    /**
+     * Tags constructor.
+     *
+     * @param array $extensionsMeta Extensions meta.
+     */
+    public function __construct($extensionsMeta) {
+        $this->extensionsMeta = $extensionsMeta;
+    }
+
     /**
      * Process a section.
      *
@@ -273,6 +285,14 @@ final class Tags implements Section
 
             $class->addConstant('EXTENSION_SPEC', $extensionSpec)
                   ->addComment("Array of extension spec rules.\n\n@var array");
+
+            $latestVersion = null;
+            if (isset($this->extensionsMeta[$extensionSpec['name']]['latestVersion'])) {
+                $latestVersion = $this->extensionsMeta[$extensionSpec['name']]['latestVersion'];
+            }
+
+            $class->addConstant('LATEST_VERSION', $latestVersion)
+                  ->addComment("Latest version of the extension.\n\n@var string");
 
             $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
             $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");

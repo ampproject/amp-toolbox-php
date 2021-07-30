@@ -51,6 +51,13 @@ final class AmpAnimExtensionScriptAmp4email extends Tag implements Identifiable,
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
      * Array of spec rules.
      *
      * @var array

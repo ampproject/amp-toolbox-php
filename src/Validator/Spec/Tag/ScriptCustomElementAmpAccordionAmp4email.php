@@ -53,6 +53,13 @@ final class ScriptCustomElementAmpAccordionAmp4email extends Tag implements Iden
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
      * Array of spec rules.
      *
      * @var array
