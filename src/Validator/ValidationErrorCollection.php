@@ -35,7 +35,7 @@ final class ValidationErrorCollection implements Countable, IteratorAggregate
     /**
      * Check whether the error collection contains an error for the given code.
      *
-     * @param string $code Code of the error.
+     * @param int $code Code of the error.
      * @return bool Whether the error collection contains an error with the given code.
      */
     public function has($code)

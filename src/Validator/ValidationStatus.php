@@ -8,6 +8,10 @@ use AmpProject\FakeEnum;
  * Status of the validation run.
  *
  * @package ampproject/amp-toolbox
+ *
+ * @method static ValidationStatus UNKNOWN()
+ * @method static ValidationStatus PASS()
+ * @method static ValidationStatus FAIL()
  */
 final class ValidationStatus extends FakeEnum
 {

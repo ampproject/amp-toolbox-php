@@ -73,7 +73,7 @@ abstract class FakeEnum implements JsonSerializable
      * @param mixed $value
      *
      * @psalm-param T $value
-     * @throws UnexpectedValueException if incompatible type is given.
+     * @throws UnexpectedValueException If incompatible type is given.
      */
     public function __construct($value)
     {
@@ -85,7 +85,7 @@ abstract class FakeEnum implements JsonSerializable
         /** @psalm-suppress ImplicitToStringCast assertValidValueReturningKey returns always a string but psalm has currently an issue here */
         $this->key = static::assertValidValueReturningKey($value);
 
-        /** @psalm-var T */
+        /** @psalm-var T $value */
         $this->value = $value;
     }
 
@@ -109,6 +109,7 @@ abstract class FakeEnum implements JsonSerializable
      * @param mixed $value
      * @return static
      * @psalm-return static<T>
+     * @throws UnexpectedValueException If the value is not part of the enum.
      */
     public static function from($value)
     {
@@ -186,7 +187,7 @@ abstract class FakeEnum implements JsonSerializable
      */
     public static function values()
     {
-        $values = array();
+        $values = [];
 
         /** @psalm-var T $value */
         foreach (static::toArray() as $key => $value) {
@@ -222,7 +223,7 @@ abstract class FakeEnum implements JsonSerializable
     /**
      * Check if is valid enum value.
      *
-     * @param $value
+     * @param mixed $value
      * @psalm-param mixed $value
      * @psalm-pure
      * @psalm-assert-if-true T $value
@@ -239,6 +240,7 @@ abstract class FakeEnum implements JsonSerializable
      * @psalm-pure
      * @psalm-assert T $value
      * @param mixed $value
+     * @throws UnexpectedValueException If the value is not part of the enum.
      */
     public static function assertValidValue($value)
     {
@@ -252,6 +254,7 @@ abstract class FakeEnum implements JsonSerializable
      * @psalm-assert T $value
      * @param mixed $value
      * @return string
+     * @throws UnexpectedValueException If the value is not part of the enum.
      */
     private static function assertValidValueReturningKey($value)
     {
@@ -265,7 +268,7 @@ abstract class FakeEnum implements JsonSerializable
     /**
      * Check if is valid enum key.
      *
-     * @param $key
+     * @param string $key
      * @psalm-param string $key
      * @psalm-pure
      * @return bool
