@@ -2,6 +2,7 @@
 
 namespace AmpProject\Dom;
 
+use AmpProject\Str;
 use DOMAttr;
 
 /**
@@ -84,17 +85,8 @@ final class ElementDump
             return $text;
         }
 
-        // Not checking for both mb_* functions, as we assume that if one mb_* function exists, the extension is
-        // available and all mb_* functions will exist.
-        if (function_exists('mb_strlen')) {
-            if (mb_strlen($text) > $this->truncate) {
-                return mb_substr($text, 0, $this->truncate - 1) . '…';
-            }
-        } elseif (strlen($text) > $this->truncate) {
-            // Fall back to regular string functions, knowing that this might potentially miscalculate and/or split
-            // multi-byte chars. We do so as we assume a site with special character encoding needs will have the
-            // multi-byte extension loaded anyway.
-            return substr($text, 0, $this->truncate - 1) . '…';
+        if (Str::length($text) > $this->truncate) {
+            return Str::substring($text, 0, $this->truncate - 1) . '…';
         }
 
         return $text;

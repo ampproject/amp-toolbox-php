@@ -3,6 +3,7 @@
 namespace AmpProject\Html\Parser;
 
 use AmpProject\ScriptReleaseVersion;
+use AmpProject\Str;
 
 /**
  * The Html parser makes method calls with ParsedTags as arguments.
@@ -60,12 +61,12 @@ final class ParsedTag
             $alternatingAttributes = [];
         }
 
-        $this->tagName = strtoupper($tagName);
+        $this->tagName = Str::toUpperCase($tagName);
 
         // Convert attribute names to lower case, not values, which are case-sensitive.
         $count = count($alternatingAttributes);
         for ($index = 0; $index < $count; $alternatingAttributes += 2) {
-            $name = strtolower($alternatingAttributes[$index]);
+            $name = Str::toLowerCase($alternatingAttributes[$index]);
             $value = $alternatingAttributes[$index + 1];
             // Our html parser repeats the key as the value if there is no value. We
             // replace the value with an empty string instead in this case.
@@ -88,7 +89,7 @@ final class ParsedTag
      */
     public function lowerName()
     {
-        return strtolower($this->tagName);
+        return Str::toLowerCase($this->tagName);
     }
 
     /**

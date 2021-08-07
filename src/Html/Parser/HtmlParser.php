@@ -2,7 +2,9 @@
 
 namespace AmpProject\Html\Parser;
 
+use AmpProject\Encoding;
 use AmpProject\Html\UpperCaseTag as Tag;
+use AmpProject\Str;
 
 /**
  * An Html parser.
@@ -269,10 +271,12 @@ final class HtmlParser
         $openTag    = false; // True if the current tag is an open tag.
         $tagStack   = new TagNameStack($handler);
 
+        Str::setEncoding(Encoding::AMP);
+
         // Only provide location information if the handler implements the setDocLocator method.
         $locator = null;
         if ($handler instanceof HtmlSaxHandlerWithLocation) {
-            $locator = new DocLocatorImpl($htmlText);
+            $locator = new DocLocator($htmlText);
             $handler->setDocLocator($locator);
         }
 
@@ -284,26 +288,26 @@ final class HtmlParser
             $regex = $inTag ? self::INSIDE_TAG_TOKEN : self::OUTSIDE_TAG_TOKEN;
             // Gets the next token.
             $matches = null;
-            preg_match($regex, $htmlText, $matches);
+            Str::regexMatch($regex, $htmlText, $matches);
             if ($locator) {
-                $locator->advancePos($matches[0]);
+                $locator->advancePosition($matches[0]);
             }
             // And removes it from the string.
-            $htmlText = substr($htmlText, strlen($matches[0]));
+            $htmlText = Str::substring($htmlText, Str::length($matches[0]));
 
             if ($inTag) {
                 if ($matches[1]) {  // Attribute.
                     // SetAttribute with uppercase names doesn't work on IE6.
-                    $attribName = strtolower($matches[1]);
+                    $attribName = Str::toLowerCase($matches[1]);
                     // Use empty string as value for valueless attribs, so <input type=checkbox checked> gets attributes
                     // ['type', 'checkbox', 'checked', ''].
                    $decodedValue = '';
           if ($matches[2]) {
               $encodedValue = $matches[3];
-            switch ($encodedValue->charCodeAt(0)) {  // Strip quotes.
+            switch (Str::substring($encodedValue, 0, 1)) {  // Strip quotes.
                 case 34:                             // Double quote (").
                 case 39:                             // Single quote (').
-                    $encodedValue = $encodedValue->substring(1, $encodedValue->length - 1);
+                    $encodedValue = Str::substring($encodedValue, 1, $encodedValue->length - 1);
                     break;
             }
             $decodedValue = $this->unescapeEntities($this->stripNULs($encodedValue));
@@ -320,23 +324,23 @@ final class HtmlParser
 
           if ($openTag && ($eflags & (EFlags::CDATA | EFlags::RCDATA))) {
               if ($htmlUpper === null) {
-                  $htmlUpper = strtoupper($htmlText);
+                  $htmlUpper = Str::toUpperCase($htmlText);
               } else {
-                  $htmlUpper = substr($htmlUpper, strlen($htmlUpper) - strlen($htmlText));
+                  $htmlUpper = Str::substring($htmlUpper, Str::length($htmlUpper) - Str::length($htmlText));
               }
-              $dataEnd = strpos($htmlUpper, "</{$tagName}");
+              $dataEnd = Str::position($htmlUpper, "</{$tagName}");
             if ($dataEnd < 0) {
-                $dataEnd = strlen($htmlText);
+                $dataEnd = Str::length($htmlText);
             }
             if ($eflags & EFlags::CDATA) {
-                $handler->cdata(substr($htmlText, 0, $dataEnd));
+                $handler->cdata(Str::substring($htmlText, 0, $dataEnd));
             } else {
-                $handler->rcdata($this->normalizeRCData(substr($htmlText, 0, $dataEnd)));
+                $handler->rcdata($this->normalizeRCData(Str::substring($htmlText, 0, $dataEnd)));
             }
             if ($locator) {
-                $locator->advancePos(substr($htmlText, 0, $dataEnd));
+                $locator->advancePosition(Str::substring($htmlText, 0, $dataEnd));
             }
-            $htmlText = substr($htmlText, $dataEnd);
+            $htmlText = Str::substring($htmlText, $dataEnd);
           }
 
           $tagName    = null;
@@ -344,7 +348,7 @@ final class HtmlParser
           $openTag    = false;
           $attributes = [];
           if ($locator) {
-              $locator->snapshotPos();
+              $locator->snapshotPosition();
           }
           $inTag = false;
         }
@@ -354,16 +358,16 @@ final class HtmlParser
                 } else if ($matches[3]) { // Tag.
                     $openTag = ! $matches[2];
                     if ($locator) {
-                        $locator->snapshotPos();
+                        $locator->snapshotPosition();
                     }
                     $inTag = true;
-                    $tagName = strtoupper($matches[3]);
+                    $tagName = Str::toUpperCase($matches[3]);
                     $eflags = array_key_exists($tagName, self::ELEMENTS)
                         ? self::ELEMENTS[$tagName]
                         : EFlags::UNKNOWN_OR_CUSTOM;
                 } else if ($matches[4]) { // Text.
                     if ($locator) {
-                        $locator->snapshotPos();
+                        $locator->snapshotPosition();
                     }
                     $tagStack->pcdata($matches[4]);
                 } else if ($matches[5]) { // Cruft.
@@ -383,11 +387,11 @@ final class HtmlParser
         }
 
         if (!$inTag && $locator) {
-            $locator->snapshotPos();
+            $locator->snapshotPosition();
         }
         // Lets the handler know that we are done parsing the document.
         $tagStack->exitRemainingTags();
-        $handler->effectiveBodyTag($tagStack->effectiveBodyAttribs());
+        $handler->effectiveBodyTag($tagStack->effectiveBodyAttributes());
         $handler->endDoc();
     }
 
@@ -400,15 +404,15 @@ final class HtmlParser
      */
     public function lookupEntity($entity)
     {
-        $name = strtolower(substr($entity, strlen($entity) - 1));
+        $name = Str::toLowerCase(Str::substring($entity, Str::length($entity) - 1));
         if (array_key_exists($name, self::ENTITIES)) {
             return self::ENTITIES[$name];
         }
         $matches = [];
-        if (preg_match(self::DECIMAL_ESCAPE_REGEX, $name, $matches)) {
+        if (Str::regexMatch(self::DECIMAL_ESCAPE_REGEX, $name, $matches)) {
             return chr((int)$matches[1]);
         }
-        if (preg_match(self::HEX_ESCAPE_REGEX, $name, $matches)) {
+        if (Str::regexMatch(self::HEX_ESCAPE_REGEX, $name, $matches)) {
             return chr(hexdec($matches[1]));
         }
         // If unable to decode, return the name.
@@ -424,7 +428,7 @@ final class HtmlParser
      */
     public function stripNULs($text)
     {
-        return preg_replace(self::NULL_REGEX, '', $text);
+        return Str::regexReplace(self::NULL_REGEX, '', $text);
     }
 
     /**
@@ -434,7 +438,7 @@ final class HtmlParser
      * @return string The unescaped entities.
      */
     public function unescapeEntities($text) {
-        return preg_replace_callback(self::ENTITY_REGEX, [$this, 'lookupEntity'], $text);
+        return Str::regexReplaceCallback(self::ENTITY_REGEX, [$this, 'lookupEntity'], $text);
     }
 
     /**
@@ -444,10 +448,10 @@ final class HtmlParser
      * @return string A normalized version of RCDATA.
      */
     public function normalizeRCData($rcdata) {
-        return preg_replace(
-            [self::LOOSE_AMP_REGEX, self::LT_REGEX, self::GT_REGEX],
-            ['&amp;$1', '&lt;', '&gt;'],
-            $rcdata
-        );
+        $rcData = Str::regexReplace(self::LOOSE_AMP_REGEX, '&amp;$1', $rcdata);
+        $rcData = Str::regexReplace(self::LT_REGEX, '&lt;', $rcdata);
+        $rcData = Str::regexReplace(self::GT_REGEX, '&gt;', $rcdata);
+
+        return $rcData;
     }
 }

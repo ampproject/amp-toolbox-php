@@ -6,6 +6,7 @@ use AmpProject\Amp;
 use AmpProject\Html\Attribute;
 use AmpProject\Html\Tag;
 use AmpProject\ScriptReleaseVersion;
+use AmpProject\Str;
 
 /**
  * Represents the state of a script tag.
@@ -211,9 +212,9 @@ final class ScriptTag
         }
 
         // Determine if this has a valid AMP domain and separate the path from the attribute 'src'.
-        if (strpos($properties['src'], Amp::CACHE_ROOT_URL) === 0) {
+        if (Str::position($properties['src'], Amp::CACHE_ROOT_URL) === 0) {
             $properties['isAmpDomain'] = true;
-            $properties['path']        = substr($properties['src'], strlen(Amp::CACHE_ROOT_URL));
+            $properties['path']        = Str::substring($properties['src'], Str::length(Amp::CACHE_ROOT_URL));
 
             // Only look at script tags that have attribute 'async'.
             if ($properties['isAsync']) {
@@ -221,7 +222,7 @@ final class ScriptTag
                 if (
                     ! $properties['isExtension']
                     &&
-                    preg_match(self::RUNTIME_SCRIPT_PATH_REGEX, $properties['path'])
+                    Str::regexMatch(self::RUNTIME_SCRIPT_PATH_REGEX, $properties['path'])
                 ) {
                     $properties['isRuntime'] = true;
                 }
@@ -231,11 +232,11 @@ final class ScriptTag
                     (
                         $properties['isModule']
                         &&
-                        preg_match(self::MODULE_LTS_SCRIPT_PATH_REGEX, $properties['path'])
+                        Str::regexMatch(self::MODULE_LTS_SCRIPT_PATH_REGEX, $properties['path'])
                     ) || (
                         $properties['isNomodule']
                         &&
-                        preg_match(self::LTS_SCRIPT_PATH_REGEX, $properties['path'])
+                        Str::regexMatch(self::LTS_SCRIPT_PATH_REGEX, $properties['path'])
                     )
                 ) {
                     $properties['releaseVersion'] = ScriptReleaseVersion::MODULE_NOMODULE_LTS();
@@ -243,17 +244,17 @@ final class ScriptTag
                     (
                         $properties['isModule']
                         &&
-                        preg_match(self::MODULE_SCRIPT_PATH_REGEX, $properties['path'])
+                        Str::regexMatch(self::MODULE_SCRIPT_PATH_REGEX, $properties['path'])
                     ) || (
                         $properties['isNomodule']
                         &&
-                        preg_match(self::STANDARD_SCRIPT_PATH_REGEX, $properties['path'])
+                        Str::regexMatch(self::STANDARD_SCRIPT_PATH_REGEX, $properties['path'])
                     )
                 ) {
                     $properties['releaseVersion'] = ScriptReleaseVersion::MODULE_NOMODULE();
-                } else if (preg_match(self::LTS_SCRIPT_PATH_REGEX, $properties['path'])) {
+                } else if (Str::regexMatch(self::LTS_SCRIPT_PATH_REGEX, $properties['path'])) {
                     $properties['releaseVersion'] = ScriptReleaseVersion::LTS();
-                } else if (preg_match(self::STANDARD_SCRIPT_PATH_REGEX, $properties['path'])) {
+                } else if (Str::regexMatch(self::STANDARD_SCRIPT_PATH_REGEX, $properties['path'])) {
                     $properties['releaseVersion'] = ScriptReleaseVersion::STANDARD();
                 } else {
                     $properties['releaseVersion'] = ScriptReleaseVersion::UNKNOWN();

@@ -2,6 +2,8 @@
 
 namespace AmpProject\Html\Parser;
 
+use AmpProject\Str;
+
 /**
  * Helper for determining the line/column information for SAX events that are being received by a HtmlSaxHandler.
  *
@@ -10,10 +12,8 @@ namespace AmpProject\Html\Parser;
 final class DocLocator
 {
     private $lineByPosition = [];
-    private $colByPosition = [];
-    private $currentLine = 1;
-    private $currentColumn = 0;
-    private $documentByteSize = 0;
+    private $columnByPosition = [];
+    private $documentByteSize;
 
     /**
      * The current position in the htmlText.
@@ -61,11 +61,11 @@ final class DocLocator
 
         $currentLine   = 1;
         $currentColumn = 0;
-        $length        = mb_strlen($htmlText);
+        $length        = Str::length($htmlText);
         for ($index = 0; $index < $length; ++$index) {
-            $this->lineByPosition[$index] = $currentLine;
-            $this->colByPosition[$index]  = $currentColumn;
-            $character                    = Str::($htmlText, $index, 1);
+            $this->lineByPosition[$index]   = $currentLine;
+            $this->columnByPosition[$index] = $currentColumn;
+            $character                      = Str::substring($htmlText, $index, 1);
             if ($character === "\n") {
                 ++$currentLine;
                 $currentColumn = 0;
@@ -74,19 +74,36 @@ final class DocLocator
             }
         }
 
-        $this->documentByteSize = strlen($htmlText);
+        $this->documentByteSize = Str::length($htmlText);
     }
 
     /**
-     * Advances the internal position by the characters in {code tokenText}.
+     * Advances the internal position by the characters in $tokenText.
+     *
      * This method is to be called only from within the parser.
-     * @param {string} tokenText The token text which we examine to advance the
-     *   line / column location within the doc.
+     *
+     * @param string $tokenText The token text which we examine to advance the line / column location within the doc.
      */
-    public function advancePos($tokenText) {
-        $this->previousPos_ = $this->pos_;
-        $this->pos_ += mb_strlen($tokenText);
+    public function advancePosition($tokenText) {
+        $this->previousPosition = $this->position;
+        $this->position += Str::length($tokenText);
     }
+
+    /**
+     * Snapshots the previous internal position so that getLine / getCol will return it.
+     *
+     * These snapshots happen as the parser enter / exits a tag.
+     *
+     * This method is to be called only from within the parser.
+     */
+    public function snapshotPosition()
+    {
+        if ($this->previousPosition < count($this->lineByPosition)) {
+            $this->line   = $this->lineByPosition[$this->previousPosition];
+            $this->column = $this->columnByPosition[$this->previousPosition];
+        }
+    }
+
     /**
      * Get the current line in the HTML source from which the most recent SAX event was generated. This value is only
      * sensible once an event has been generated, that is, in practice from within the context of the HtmlSaxHandler
@@ -96,7 +113,7 @@ final class DocLocator
      */
     public function getLine()
     {
-
+        return $this->line;
     }
 
     /**
@@ -108,7 +125,7 @@ final class DocLocator
      */
     public function getColumn()
     {
-
+        return $this->column;
     }
 
     /**
@@ -116,8 +133,8 @@ final class DocLocator
      *
      * @return int The size of the document in bytes.
      */
-    public function getDocByteSize()
+    public function getDocumentByteSize()
     {
-
+        return $this->documentByteSize;
     }
 }

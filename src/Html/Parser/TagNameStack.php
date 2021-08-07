@@ -3,6 +3,7 @@
 namespace AmpProject\Html\Parser;
 
 use AmpProject\Html\UpperCaseTag as Tag;
+use AmpProject\Str;
 
 /**
  * Abstraction to keep track of which tags have been opened / closed as we traverse the tags in the document.
@@ -20,7 +21,7 @@ final class TagNameStack
 {
 
     /**
-     * Regular expression that matches strings composed of all space characters, asdefined in
+     * Regular expression that matches strings composed of all space characters, as defined in
      * https://infra.spec.whatwg.org/#ascii-whitespace, and in the various HTML parsing rules at
      * https://html.spec.whatwg.org/multipage/parsing.html#parsing-main-inhtml.
      *
@@ -88,8 +89,8 @@ final class TagNameStack
     }
 
     /**
-     * Enter a tag, opening a scope for child tags. Entering a tag can close the previous tag or enter other tags (such as
-     * opening a <body> tag when encountering a tag not allowed outside the body.
+     * Enter a tag, opening a scope for child tags. Entering a tag can close the previous tag or enter other tags (such
+     * as opening a <body> tag when encountering a tag not allowed outside the body.
      *
      * @param ParsedTag tag
      */
@@ -101,8 +102,8 @@ final class TagNameStack
             $this->effectiveBodyAttributes = array_merge($this->effectiveBodyAttributes, $tag->attributes());
         }
 
-        // This section deals with manufacturing <head>, </head>, and <body> tags
-        // if the document has left them out or placed them in the wrong location.
+        // This section deals with manufacturing <head>, </head>, and <body> tags if the document has left them out or
+        // placed them in the wrong location.
         switch ($this->region) {
             case TagRegion::PRE_DOCTYPE:
                 if ($tag->upperName() === Tag::_DOCTYPE) {
@@ -195,7 +196,8 @@ final class TagNameStack
                     return;
                 }
                 if ($tag->upperName() === Tag::BODY) {
-                    // We only report the first body for each document - either a manufactured one, or the first one encountered.
+                    // We only report the first body for each document - either a manufactured one, or the first one
+                    // encountered.
                     return;
                 }
                 if ($tag->upperName() === Tag::SVG) {
@@ -206,15 +208,15 @@ final class TagNameStack
                 if (count($this->stack) > 0) {
                     $parentTagName = $this->stack[count($this->stack) - 1];
                     // <p> tags can be implicitly closed by certain other start tags.
-                    // See https://www.w3.org/TR/html-markup/p.html
+                    // See https://www.w3.org/TR/html-markup/p.html.
                     if (
                         $parentTagName === Tag::P
                         &&
                         array_key_exists($tag->upperName(), Tag::P_CLOSING_TAGS)
                     ) {
                         $this->endTag(new ParsedTag(Tag::P));
-                        // <dd> and <dt> tags can be implicitly closed by other <dd> and
-                        // <dt> tags. See https://www.w3.org/TR/html-markup/dd.html
+                        // <dd> and <dt> tags can be implicitly closed by other <dd> and <dt> tags.
+                        // See https://www.w3.org/TR/html-markup/dd.html.
                     } elseif (
                         ($tag->upperName() === Tag::DD || $tag->upperName() === Tag::DT)
                         &&
@@ -222,7 +224,7 @@ final class TagNameStack
                     ) {
                         $this->endTag(new ParsedTag($parentTagName));
                         // <li> tags can be implicitly closed by other <li> tags.
-                        // See https://www.w3.org/TR/html-markup/li.html
+                        // See https://www.w3.org/TR/html-markup/li.html.
                     } elseif (
                         $tag->upperName() === Tag::LI
                         &&
@@ -260,14 +262,12 @@ final class TagNameStack
      */
     public function pcdata($text)
     {
-        if (preg_match(self::SPACE_REGEX, $text)) {
+        if (Str::regexMatch(self::SPACE_REGEX, $text)) {
             // Only ASCII whitespace; this can be ignored for validator's purposes.
-        } elseif (preg_match(self::CPP_SPACE_REGEX, $text)) {
-            // Non-ASCII whitespace; if this occurs outside <body>, output a
-            // manufactured-body error. Do not create implicit tags, in order to match
-            // the behavior of the buggy C++ parser. (It just so happens this is also
-            // good UX, since the subsequent validation errors caused by the implicit
-            // tags are unhelpful.)
+        } elseif (Str::regexMatch(self::CPP_SPACE_REGEX, $text)) {
+            // Non-ASCII whitespace; if this occurs outside <body>, output a manufactured-body error. Do not create
+            // implicit tags, in order to match the behavior of the buggy C++ parser. (It just so happens this is also
+            // good UX, since the subsequent validation errors caused by the implicit tags are unhelpful.)
             switch ($this->region) {
                 // Fallthroughs intentional.
                 case TagRegion::PRE_DOCTYPE:
@@ -278,8 +278,8 @@ final class TagNameStack
                     $this->handler->markManufacturedBody();
             }
         } else {
-            // Non-whitespace text; if this occurs outside <body>, output a
-            // manufactured-body error and create the necessary implicit tags.
+            // Non-whitespace text; if this occurs outside <body>, output a manufactured-body error and create the
+            // necessary implicit tags.
             switch ($this->region) {
                 // Fallthroughs intentional.
                 case TagRegion::PRE_DOCTYPE:  // Doctype is not manufactured.

@@ -4,7 +4,7 @@ namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Attribute;
 use AmpProject\Dom\Document\BeforeLoadFilter;
-use AmpProject\Dom\Document\Encoding;
+use AmpProject\Encoding;
 use AmpProject\Tag;
 
 /**

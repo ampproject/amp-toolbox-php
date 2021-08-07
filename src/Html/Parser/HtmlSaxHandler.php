@@ -77,7 +77,8 @@ interface HtmlSaxHandler
      * into the first one. Therefore, just before the parser sends the endDoc event, it will also send this event which
      * will provide the attributes from the effective body tag to the client (the handler).
      *
+     * @param array<ParsedAttribute> $attributes Array of parsed attributes.
      * @return void
      */
-    public function effectiveBodyTag();
+    public function effectiveBodyTag($attributes);
 }
