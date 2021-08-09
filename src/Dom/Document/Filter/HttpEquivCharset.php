@@ -2,14 +2,14 @@
 
 namespace AmpProject\Dom\Document\Filter;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterLoadFilter;
 use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\BeforeSaveFilter;
 use AmpProject\Dom\Element;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use DOMComment;
 
 /**

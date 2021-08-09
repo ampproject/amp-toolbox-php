@@ -2,7 +2,7 @@
 
 namespace AmpProject\Tests\ValidatorFixtures;
 
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use AmpProject\Validator\Spec\DescendantTagList;
 
 class DummyDescendantTagList extends DescendantTagList

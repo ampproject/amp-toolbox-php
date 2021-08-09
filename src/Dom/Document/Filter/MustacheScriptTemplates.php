@@ -7,7 +7,7 @@ use AmpProject\Dom\Document\AfterLoadFilter;
 use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\BeforeSaveFilter;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 
 /**
  * Filter to handle the script[template="amp-mustache"].

@@ -70,7 +70,7 @@ final class TagNameStack
     /**
      * TagNameStack constructor.
      *
-     * @param HtmlSaxHandler $handler
+     * @param HtmlSaxHandler $handler Handler to handle the HTML SAX parser events.
      */
     public function __construct(HtmlSaxHandler $handler)
     {
@@ -92,7 +92,7 @@ final class TagNameStack
      * Enter a tag, opening a scope for child tags. Entering a tag can close the previous tag or enter other tags (such
      * as opening a <body> tag when encountering a tag not allowed outside the body.
      *
-     * @param ParsedTag tag
+     * @param ParsedTag $tag Tag that is being started.
      */
     public function startTag(ParsedTag $tag)
     {
@@ -163,8 +163,10 @@ final class TagNameStack
                 break;
             case TagRegion::IN_HEAD:
                 // Stray DOCTYPE/HTML/HEAD tags are ignored, not emitted twice.
-                if ($tag->upperName() === Tag::_DOCTYPE || $tag->upperName() === Tag::HTML ||
-                    $tag->upperName() === Tag::HEAD) {
+                if (
+                    $tag->upperName() === Tag::_DOCTYPE || $tag->upperName() === Tag::HTML ||
+                    $tag->upperName() === Tag::HEAD
+                ) {
                     return;
                 }
                 if (! array_key_exists($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD)) {
@@ -179,8 +181,13 @@ final class TagNameStack
                 break;
             case TagRegion::PRE_BODY:
                 // Stray DOCTYPE/HTML/HEAD tags are ignored, not emitted twice.
-                if ($tag->upperName() === Tag::_DOCTYPE || $tag->upperName() === Tag::HTML ||
-                    $tag->upperName() === Tag::HEAD) {
+                if (
+                    $tag->upperName() === Tag::_DOCTYPE
+                    ||
+                    $tag->upperName() === Tag::HTML
+                    ||
+                    $tag->upperName() === Tag::HEAD
+                ) {
                     return;
                 }
                 if ($tag->upperName() !== Tag::BODY) {
@@ -192,7 +199,13 @@ final class TagNameStack
                 break;
             case TagRegion::IN_BODY:
                 // Stray DOCTYPE/HTML/HEAD tags are ignored, not emitted twice.
-                if ($tag->upperName() === Tag::_DOCTYPE || $tag->upperName() === Tag::HTML || $tag->upperName() === Tag::HEAD) {
+                if (
+                    $tag->upperName() === Tag::_DOCTYPE
+                    ||
+                    $tag->upperName() === Tag::HTML
+                    ||
+                    $tag->upperName() === Tag::HEAD
+                ) {
                     return;
                 }
                 if ($tag->upperName() === Tag::BODY) {
@@ -266,8 +279,8 @@ final class TagNameStack
             // Only ASCII whitespace; this can be ignored for validator's purposes.
         } elseif (Str::regexMatch(self::CPP_SPACE_REGEX, $text)) {
             // Non-ASCII whitespace; if this occurs outside <body>, output a manufactured-body error. Do not create
-            // implicit tags, in order to match the behavior of the buggy C++ parser. (It just so happens this is also
-            // good UX, since the subsequent validation errors caused by the implicit tags are unhelpful.)
+            // implicit tags, in order to match the behavior of the buggy C++ parser. It just so happens this is also
+            // good UX, since the subsequent validation errors caused by the implicit tags are unhelpful.
             switch ($this->region) {
                 // Fallthroughs intentional.
                 case TagRegion::PRE_DOCTYPE:
@@ -281,14 +294,16 @@ final class TagNameStack
             // Non-whitespace text; if this occurs outside <body>, output a manufactured-body error and create the
             // necessary implicit tags.
             switch ($this->region) {
-                // Fallthroughs intentional.
-                case TagRegion::PRE_DOCTYPE:  // Doctype is not manufactured.
+                case TagRegion::PRE_DOCTYPE: // Doctype is not manufactured, fallthrough intentional.
                 case TagRegion::PRE_HTML:
                     $this->startTag(new ParsedTag(Tag::HTML));
+                    // Fallthrough intentional.
                 case TagRegion::PRE_HEAD:
                     $this->startTag(new ParsedTag(Tag::HEAD));
+                    // Fallthrough intentional.
                 case TagRegion::IN_HEAD:
                     $this->endTag(new ParsedTag(Tag::HEAD));
+                    // Fallthrough intentional.
                 case TagRegion::PRE_BODY:
                     $this->handler->markManufacturedBody();
                     $this->startTag(new ParsedTag(Tag::BODY));

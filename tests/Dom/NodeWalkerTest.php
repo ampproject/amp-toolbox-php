@@ -2,7 +2,7 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Tests\TestCase;
 
 /**

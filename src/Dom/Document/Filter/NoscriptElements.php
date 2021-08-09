@@ -6,7 +6,7 @@ use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterLoadFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\UniqueIdManager;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 
 /**
  * Handle the noscript elements with placeholders.

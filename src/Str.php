@@ -53,7 +53,7 @@ final class Str
     public static function substring($text, $offset, $length = null)
     {
         if (function_exists('mb_substr')) {
-            mb_substr($text, $offset, self::length($text));
+            return mb_substr($text, $offset, self::length($text));
         }
 
         return substr($text, $offset, $length);
@@ -122,17 +122,17 @@ final class Str
      *
      * @param string $pattern  Regular expression pattern to target elements to replace.
      * @param string $text     Text to look for a match in.
-     * @param array  &$matches Optional. If $matches is provided, then it is filled with the results of search.
-     * @return int|false Whether the text matches the regular expression pattern.
+     * @param array  $matches Optional. If $matches is provided, then it is filled with the results of search.
+     * @return int|bool Whether the text matches the regular expression pattern.
      */
     public static function regexMatch($pattern, $text, &$matches = null)
     {
         if (function_exists('mb_ereg')) {
             list($pattern, $modifiers) = self::extractPatternAndModifiers($pattern);
 
-            return false !== self::position($modifiers, 'i')
-                ? mb_eregi($pattern, $text, $matches)
-                : mb_ereg($pattern, $text, $matches);
+            return self::position($modifiers, 'i') === false
+                ? mb_ereg($pattern, $text, $matches)
+                : mb_eregi($pattern, $text, $matches);
         }
 
         return preg_match($pattern, $text, $matches);

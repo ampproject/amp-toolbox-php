@@ -5,7 +5,7 @@ namespace AmpProject\Dom\Document\Filter;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterLoadFilter;
 use AmpProject\Dom\Element;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use DOMAttr;
 
 /**

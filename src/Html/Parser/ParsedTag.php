@@ -77,7 +77,9 @@ final class ParsedTag
         }
 
         // Sort the attribute array by (lower case) name.
-        usort($this->attributes, static function ($a, $b) {return strcmp($a->name(), $b->name());});
+        usort($this->attributes, static function ($a, $b) {
+            return strcmp($a->name(), $b->name());
+        });
 
         $this->scriptTag = new ScriptTag($this->tagName, $this->attributes);
     }

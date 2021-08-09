@@ -2,10 +2,10 @@
 
 namespace AmpProject\Dom\Document\Filter;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterLoadFilter;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 
 /**
  * Filter to convert a possible head[profile] attribute to link[rel=profile].

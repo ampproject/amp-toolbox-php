@@ -3,7 +3,7 @@
 namespace AmpProject\Optimizer\Transformer;
 
 use AmpProject\Amp;
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Tests\MarkupComparison;

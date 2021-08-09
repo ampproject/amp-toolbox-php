@@ -40,8 +40,9 @@ final class ScriptTag
     /**
      * Standard and Nomodule JavaScript.
      *
-     * v0.js
-     * v0/amp-ad-0.1.js
+     * Examples:
+     * - v0.js
+     * - v0/amp-ad-0.1.js
      *
      * @var string
      */
@@ -50,8 +51,9 @@ final class ScriptTag
     /**
      * LTS and Nomodule LTS JavaScript.
      *
-     * lts/v0.js
-     * lts/v0/amp-ad-0.1.js
+     * Examples:
+     * - lts/v0.js
+     * - lts/v0/amp-ad-0.1.js
      *
      * @var string
      */
@@ -60,8 +62,9 @@ final class ScriptTag
     /**
      * Module JavaScript.
      *
-     * v0.mjs
-     * amp-ad-0.1.mjs
+     * Examples:
+     * - v0.mjs
+     * - amp-ad-0.1.mjs
      *
      * @var string
      */
@@ -70,8 +73,9 @@ final class ScriptTag
     /**
      * Module LTS JavaScript.
      *
-     * lts/v0.mjs
-     * lts/v0/amp-ad-0.1.mjs
+     * Examples:
+     * - lts/v0.mjs
+     * - lts/v0/amp-ad-0.1.mjs
      *
      * @var string
      */
@@ -80,12 +84,13 @@ final class ScriptTag
     /**
      * Runtime JavaScript.
      *
-     * v0.js
-     * v0.mjs
-     * v0.mjs?f=sxg
-     * lts/v0.js
-     * lts/v0.js?f=sxg
-     * lts/v0.mjs
+     * Examples:
+     * - v0.js
+     * - v0.mjs
+     * - v0.mjs?f=sxg
+     * - lts/v0.js
+     * - lts/v0.js?f=sxg
+     * -lts/v0.mjs
      *
      * @var string
      */
@@ -190,7 +195,7 @@ final class ScriptTag
         foreach ($this->attributes as $attribute) {
             if ($attribute->name() === Attribute::ASYNC) {
                 $properties['isAsync'] = true;
-            } else if (
+            } elseif (
                 $attribute->name() === Attribute::CUSTOM_ELEMENT
                 ||
                 $attribute->name() === Attribute::CUSTOM_TEMPLATE
@@ -198,11 +203,11 @@ final class ScriptTag
                 $attribute->name() === Attribute::HOST_SERVICE
             ) {
                 $properties['isExtension'] = true;
-            } else if ($attribute->name() === Attribute::NOMODULE) {
+            } elseif ($attribute->name() === Attribute::NOMODULE) {
                 $properties['isNomodule'] = true;
-            } else if ($attribute->name() === Attribute::SRC) {
+            } elseif ($attribute->name() === Attribute::SRC) {
                 $properties['src'] = $attribute->value();
-            } else if (
+            } elseif (
                 $attribute->name() === Attribute::TYPE
                 &&
                 $attribute->value() === Attribute::TYPE_MODULE
@@ -240,7 +245,7 @@ final class ScriptTag
                     )
                 ) {
                     $properties['releaseVersion'] = ScriptReleaseVersion::MODULE_NOMODULE_LTS();
-                } else if (
+                } elseif (
                     (
                         $properties['isModule']
                         &&
@@ -252,9 +257,9 @@ final class ScriptTag
                     )
                 ) {
                     $properties['releaseVersion'] = ScriptReleaseVersion::MODULE_NOMODULE();
-                } else if (Str::regexMatch(self::LTS_SCRIPT_PATH_REGEX, $properties['path'])) {
+                } elseif (Str::regexMatch(self::LTS_SCRIPT_PATH_REGEX, $properties['path'])) {
                     $properties['releaseVersion'] = ScriptReleaseVersion::LTS();
-                } else if (Str::regexMatch(self::STANDARD_SCRIPT_PATH_REGEX, $properties['path'])) {
+                } elseif (Str::regexMatch(self::STANDARD_SCRIPT_PATH_REGEX, $properties['path'])) {
                     $properties['releaseVersion'] = ScriptReleaseVersion::STANDARD();
                 } else {
                     $properties['releaseVersion'] = ScriptReleaseVersion::UNKNOWN();

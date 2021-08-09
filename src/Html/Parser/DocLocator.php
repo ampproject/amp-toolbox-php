@@ -11,8 +11,26 @@ use AmpProject\Str;
  */
 final class DocLocator
 {
+
+    /**
+     * Line mapped to a given position.
+     *
+     * @var array
+     */
     private $lineByPosition = [];
+
+    /**
+     * Column mapped to a given position.
+     *
+     * @var array
+     */
     private $columnByPosition = [];
+
+    /**
+     * Size of the document in bytes.
+     *
+     * @var int
+     */
     private $documentByteSize;
 
     /**
@@ -84,7 +102,8 @@ final class DocLocator
      *
      * @param string $tokenText The token text which we examine to advance the line / column location within the doc.
      */
-    public function advancePosition($tokenText) {
+    public function advancePosition($tokenText)
+    {
         $this->previousPosition = $this->position;
         $this->position += Str::length($tokenText);
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file was copied from the myclabs/php-enum package, and only adapted for matching this package's namespace, code
  * style and minimum PHP requirement.
@@ -70,7 +71,7 @@ abstract class FakeEnum implements JsonSerializable
      * Creates a new value of some type.
      *
      * @psalm-pure
-     * @param mixed $value
+     * @param mixed $value Value to create the new enum instance for.
      *
      * @psalm-param T $value
      * @throws UnexpectedValueException If incompatible type is given.
@@ -106,7 +107,9 @@ abstract class FakeEnum implements JsonSerializable
     }
 
     /**
-     * @param mixed $value
+     * Create a new enum instance from a value.
+     *
+     * @param mixed $value Value to create the new enum instance for.
      * @return static
      * @psalm-return static<T>
      * @throws UnexpectedValueException If the value is not part of the enum.
@@ -157,6 +160,7 @@ abstract class FakeEnum implements JsonSerializable
      *
      * @psalm-pure
      * @psalm-param mixed $variable
+     * @param mixed $variable Variable to compare the enum to.
      * @return bool
      */
     final public function equals($variable = null)
@@ -223,7 +227,7 @@ abstract class FakeEnum implements JsonSerializable
     /**
      * Check if is valid enum value.
      *
-     * @param mixed $value
+     * @param mixed $value Value to check for validity.
      * @psalm-param mixed $value
      * @psalm-pure
      * @psalm-assert-if-true T $value
@@ -239,7 +243,7 @@ abstract class FakeEnum implements JsonSerializable
      *
      * @psalm-pure
      * @psalm-assert T $value
-     * @param mixed $value
+     * @param mixed $value Value to assert for validity.
      * @throws UnexpectedValueException If the value is not part of the enum.
      */
     public static function assertValidValue($value)
@@ -252,7 +256,7 @@ abstract class FakeEnum implements JsonSerializable
      *
      * @psalm-pure
      * @psalm-assert T $value
-     * @param mixed $value
+     * @param mixed $value Value to assert for validity.
      * @return string
      * @throws UnexpectedValueException If the value is not part of the enum.
      */
@@ -268,7 +272,7 @@ abstract class FakeEnum implements JsonSerializable
     /**
      * Check if is valid enum key.
      *
-     * @param string $key
+     * @param string $key Key to check for validity.
      * @psalm-param string $key
      * @psalm-pure
      * @return bool
@@ -283,7 +287,7 @@ abstract class FakeEnum implements JsonSerializable
     /**
      * Return key for value.
      *
-     * @param mixed $value
+     * @param mixed $value Value to search for.
      *
      * @psalm-param mixed $value
      * @psalm-pure
@@ -297,11 +301,11 @@ abstract class FakeEnum implements JsonSerializable
     /**
      * Returns a value when called statically like so: MyEnum::SOME_VALUE() given SOME_VALUE is a class constant.
      *
-     * @param string $name
-     * @param array  $arguments
+     * @param string $name      Name of the method that was called.
+     * @param array  $arguments Arguments provided to the method.
      *
      * @return static
-     * @throws BadMethodCallException
+     * @throws BadMethodCallException If the the method was not a known constant.
      *
      * @psalm-pure
      */

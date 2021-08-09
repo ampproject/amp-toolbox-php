@@ -2,11 +2,11 @@
 
 namespace AmpProject\Optimizer\Transformer;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
 use AmpProject\Optimizer\ErrorCollection;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use AmpProject\Tests\TestCase;
 
 /**

@@ -30,10 +30,10 @@ final class HtmlParser
             // null, undefined, or the empty string.
             '(?:' .
                 // Allow attribute names to start with /, avoiding assigning the / in close-tag syntax */>.
-                '([^\\t\\r\\n /=>][^\\t\\r\\n =>]*|' .  // e.g. "href"
-                '[^\\t\\r\\n =>]+[^ >]|' .              // e.g. "/asdfs/asd"
-                '\/+(?!>))' .                           // e.g. "/"
-                // Optionally followed by:
+                '([^\\t\\r\\n /=>][^\\t\\r\\n =>]*|' .  // e.g. "href".
+                '[^\\t\\r\\n =>]+[^ >]|' .              // e.g. "/asdfs/asd".
+                '\/+(?!>))' .                           // e.g. "/".
+                // Optionally followed by...
                 '(' .
                     '\\s*=\\s*' .
                     '(' .
@@ -54,7 +54,7 @@ final class HtmlParser
                 ')' .
             // End of tag captured in group 3.
             '|(/?>)' .
-            // Don't capture cruft
+            // Don't capture cruft.
             '|[^a-z\\s>]+)' .
         '/i';
 
@@ -301,19 +301,19 @@ final class HtmlParser
                     $attribName = Str::toLowerCase($matches[1]);
                     // Use empty string as value for valueless attribs, so <input type=checkbox checked> gets attributes
                     // ['type', 'checkbox', 'checked', ''].
-                   $decodedValue = '';
-          if ($matches[2]) {
-              $encodedValue = $matches[3];
-            switch (Str::substring($encodedValue, 0, 1)) {  // Strip quotes.
-                case 34:                             // Double quote (").
-                case 39:                             // Single quote (').
-                    $encodedValue = Str::substring($encodedValue, 1, $encodedValue->length - 1);
-                    break;
-            }
-            $decodedValue = $this->unescapeEntities($this->stripNULs($encodedValue));
-          }
-          $attributes[$attribName] = $decodedValue;
-        } else if ($matches[4]) {
+                    $decodedValue = '';
+                    if ($matches[2]) {
+                        $encodedValue = $matches[3];
+                        switch (Str::substring($encodedValue, 0, 1)) {  // Strip quotes.
+                            case 34:                             // Double quote (").
+                            case 39:                             // Single quote (').
+                                      $encodedValue = Str::substring($encodedValue, 1, $encodedValue->length - 1);
+                                break;
+                        }
+                        $decodedValue = $this->unescapeEntities($this->stripNULs($encodedValue));
+                    }
+                    $attributes[$attribName] = $decodedValue;
+                } elseif ($matches[4]) {
                     if ($eflags !== null) {  // False if not in allowlist.
                         if ($openTag) {
                             $tagStack->startTag(new ParsedTag($tagName, $attributes));
@@ -322,40 +322,40 @@ final class HtmlParser
                         }
                     }
 
-          if ($openTag && ($eflags & (EFlags::CDATA | EFlags::RCDATA))) {
-              if ($htmlUpper === null) {
-                  $htmlUpper = Str::toUpperCase($htmlText);
-              } else {
-                  $htmlUpper = Str::substring($htmlUpper, Str::length($htmlUpper) - Str::length($htmlText));
-              }
-              $dataEnd = Str::position($htmlUpper, "</{$tagName}");
-            if ($dataEnd < 0) {
-                $dataEnd = Str::length($htmlText);
-            }
-            if ($eflags & EFlags::CDATA) {
-                $handler->cdata(Str::substring($htmlText, 0, $dataEnd));
-            } else {
-                $handler->rcdata($this->normalizeRCData(Str::substring($htmlText, 0, $dataEnd)));
-            }
-            if ($locator) {
-                $locator->advancePosition(Str::substring($htmlText, 0, $dataEnd));
-            }
-            $htmlText = Str::substring($htmlText, $dataEnd);
-          }
+                    if ($openTag && ($eflags & (EFlags::CDATA | EFlags::RCDATA))) {
+                        if ($htmlUpper === null) {
+                                $htmlUpper = Str::toUpperCase($htmlText);
+                        } else {
+                            $htmlUpper = Str::substring($htmlUpper, Str::length($htmlUpper) - Str::length($htmlText));
+                        }
+                        $dataEnd = Str::position($htmlUpper, "</{$tagName}");
+                        if ($dataEnd < 0) {
+                                  $dataEnd = Str::length($htmlText);
+                        }
+                        if ($eflags & EFlags::CDATA) {
+                              $handler->cdata(Str::substring($htmlText, 0, $dataEnd));
+                        } else {
+                            $handler->rcdata($this->normalizeRCData(Str::substring($htmlText, 0, $dataEnd)));
+                        }
+                        if ($locator) {
+                            $locator->advancePosition(Str::substring($htmlText, 0, $dataEnd));
+                        }
+                        $htmlText = Str::substring($htmlText, $dataEnd);
+                    }
 
-          $tagName    = null;
-          $eflags     = null;
-          $openTag    = false;
-          $attributes = [];
-          if ($locator) {
-              $locator->snapshotPosition();
-          }
-          $inTag = false;
-        }
+                    $tagName    = null;
+                    $eflags     = null;
+                    $openTag    = false;
+                    $attributes = [];
+                    if ($locator) {
+                        $locator->snapshotPosition();
+                    }
+                    $inTag = false;
+                }
             } else {
                 if ($matches[1]) { // Entity.
                     $tagStack->pcdata($matches[0]);
-                } else if ($matches[3]) { // Tag.
+                } elseif ($matches[3]) { // Tag.
                     $openTag = ! $matches[2];
                     if ($locator) {
                         $locator->snapshotPosition();
@@ -365,12 +365,12 @@ final class HtmlParser
                     $eflags = array_key_exists($tagName, self::ELEMENTS)
                         ? self::ELEMENTS[$tagName]
                         : EFlags::UNKNOWN_OR_CUSTOM;
-                } else if ($matches[4]) { // Text.
+                } elseif ($matches[4]) { // Text.
                     if ($locator) {
                         $locator->snapshotPosition();
                     }
                     $tagStack->pcdata($matches[4]);
-                } else if ($matches[5]) { // Cruft.
+                } elseif ($matches[5]) { // Cruft.
                     switch ($matches[5]) {
                         case '<':
                             $tagStack->pcdata('&lt;');
@@ -437,7 +437,8 @@ final class HtmlParser
      * @param string $text A chunk of HTML CDATA. It must not start or end inside an HTML entity.
      * @return string The unescaped entities.
      */
-    public function unescapeEntities($text) {
+    public function unescapeEntities($text)
+    {
         return Str::regexReplaceCallback(self::ENTITY_REGEX, [$this, 'lookupEntity'], $text);
     }
 
@@ -447,7 +448,8 @@ final class HtmlParser
      * @param string $rcdata The RCDATA string we want to normalize.
      * @return string A normalized version of RCDATA.
      */
-    public function normalizeRCData($rcdata) {
+    public function normalizeRCData($rcdata)
+    {
         $rcData = Str::regexReplace(self::LOOSE_AMP_REGEX, '&amp;$1', $rcdata);
         $rcData = Str::regexReplace(self::LT_REGEX, '&lt;', $rcdata);
         $rcData = Str::regexReplace(self::GT_REGEX, '&gt;', $rcdata);

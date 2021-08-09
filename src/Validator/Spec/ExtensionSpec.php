@@ -8,6 +8,7 @@
 namespace AmpProject\Validator\Spec;
 
 use AmpProject\Html\Attribute;
+use AmpProject\Validator\Spec\SpecRule;
 
 /**
  * Convenience trait to help implement the TagWithExtensionSpec interface.
