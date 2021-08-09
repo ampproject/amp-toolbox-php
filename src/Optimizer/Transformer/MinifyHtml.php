@@ -32,7 +32,7 @@ final class MinifyHtml implements Transformer
     private $configuration;
 
     /**
-     * Whether the nodes being minified are inside a mustache template.
+     * Whether the node(s) being minified are inside a mustache template.
      *
      * @var bool
      */
@@ -267,10 +267,10 @@ final class MinifyHtml implements Transformer
     }
 
     /**
-     * Checks if a node is amp-mustache template.
+     * Checks if a node is an amp-mustache template element.
      *
-     * @param DOMNode $node The dom node need to be checked.
-     * @return bool Whether the checked element is an amp-mustache template.
+     * @param DOMNode $node The dom node to be checked.
+     * @return bool Whether the checked node is an amp-mustache template element.
      */
     private function isMustacheTemplate(DOMNode $node)
     {
