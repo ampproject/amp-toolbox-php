@@ -8,7 +8,9 @@
 
 # Exclude build & test files from dist archives.
 /.github           export-ignore
-/bin               export-ignore
+/bin/src           export-ignore
+/bin/*.bash        export-ignore
+/bin/*.php         export-ignore
 /tests             export-ignore
 /.editorconfig     export-ignore
 /.gitattributes    export-ignore
