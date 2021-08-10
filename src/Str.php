@@ -11,6 +11,31 @@ final class Str
 {
 
     /**
+     * Whether to try to use multibyte functions.
+     *
+     * This can be used to forcefully disable multibyte functions even if they are available.
+     *
+     * @var bool
+     */
+    private static $useMultibyte = true;
+
+    /**
+     * Enable support for multibyte functions if they are available.
+     */
+    public static function enableMultibyte()
+    {
+        self::$useMultibyte = true;
+    }
+
+    /**
+     * Disable support for multibyte functions, even if they are available.
+     */
+    public static function disableMultibyte()
+    {
+        self::$useMultibyte = false;
+    }
+
+    /**
      * Set the encoding that the string helper methods should use.
      *
      * This is simply being ignored if multi-byte support is not available.
@@ -19,9 +44,14 @@ final class Str
      */
     public static function setEncoding($encoding)
     {
+        if (! self::$useMultibyte) {
+            return;
+        }
+
         if (function_exists('mb_internal_encoding')) {
             mb_internal_encoding($encoding);
         }
+
         if (function_exists('mb_regex_encoding')) {
             mb_regex_encoding($encoding);
         }
@@ -36,7 +66,7 @@ final class Str
      */
     public static function length($text)
     {
-        return function_exists('mb_strlen')
+        return (self::$useMultibyte && function_exists('mb_strlen'))
             ? mb_strlen($text)
             : strlen($text);
     }
@@ -52,8 +82,8 @@ final class Str
      */
     public static function substring($text, $offset, $length = null)
     {
-        if (function_exists('mb_substr')) {
-            return mb_substr($text, $offset, self::length($text));
+        if (self::$useMultibyte && function_exists('mb_substr')) {
+            return mb_substr($text, $offset, $length);
         }
 
         return substr($text, $offset, $length);
@@ -69,7 +99,7 @@ final class Str
      */
     public static function position($text, $substring, $offset = 0)
     {
-        return function_exists('mb_strpos')
+        return (self::$useMultibyte && function_exists('mb_strpos'))
             ? mb_strpos($text, $substring, $offset)
             : strpos($text, $substring, $offset);
     }
@@ -84,7 +114,7 @@ final class Str
      */
     public static function lastPosition($text, $substring, $offset = 0)
     {
-        return function_exists('mb_strrpos')
+        return (self::$useMultibyte && function_exists('mb_strrpos'))
             ? mb_strrpos($text, $substring, $offset)
             : strrpos($text, $substring, $offset);
     }
@@ -98,7 +128,7 @@ final class Str
      */
     public static function toLowerCase($text)
     {
-        return function_exists('mb_strtolower')
+        return (self::$useMultibyte && function_exists('mb_strtolower'))
             ? mb_strtolower($text)
             : strtolower($text);
     }
@@ -112,13 +142,15 @@ final class Str
      */
     public static function toUpperCase($text)
     {
-        return function_exists('mb_strtoupper')
+        return (self::$useMultibyte && function_exists('mb_strtoupper'))
             ? mb_strtoupper($text)
             : strtoupper($text);
     }
 
     /**
      * Perform a regular expression search and replace.
+     *
+     * Note: This does not fully support named capture groups, due to a limitation in the mbstring extension.
      *
      * @param string $pattern  Regular expression pattern to target elements to replace.
      * @param string $text     Text to look for a match in.
@@ -127,7 +159,7 @@ final class Str
      */
     public static function regexMatch($pattern, $text, &$matches = null)
     {
-        if (function_exists('mb_ereg')) {
+        if (self::$useMultibyte && function_exists('mb_ereg')) {
             list($pattern, $modifiers) = self::extractPatternAndModifiers($pattern);
 
             return self::position($modifiers, 'i') === false
@@ -141,6 +173,8 @@ final class Str
     /**
      * Perform a regular expression search and replace.
      *
+     * Note: This does not fully support named capture groups, due to a limitation in the mbstring extension.
+     *
      * @param string $pattern     Regular expression pattern to target elements to replace.
      * @param string $replacement Replacement string.
      * @param string $subject     Subject to do the replacements with.
@@ -148,7 +182,7 @@ final class Str
      */
     public static function regexReplace($pattern, $replacement, $subject)
     {
-        if (function_exists('mb_ereg_replace')) {
+        if (self::$useMultibyte && function_exists('mb_ereg_replace')) {
             list($pattern, $modifiers) = self::extractPatternAndModifiers($pattern);
 
             return mb_ereg_replace($pattern, $replacement, $subject, $modifiers);
@@ -168,7 +202,7 @@ final class Str
      */
     public static function regexReplaceCallback($pattern, $callback, $subject)
     {
-        if (function_exists('mb_ereg_replace_callback')) {
+        if (self::$useMultibyte && function_exists('mb_ereg_replace_callback')) {
             list($pattern, $modifiers) = self::extractPatternAndModifiers($pattern);
 
             return mb_ereg_replace_callback($pattern, $callback, $subject, $modifiers);
@@ -188,9 +222,9 @@ final class Str
     private static function extractPatternAndModifiers($pattern)
     {
         $separator            = self::substring($pattern, 0, 1);
-        $secondSeparatorIndex = self::lastPosition($separator, $pattern, 1);
+        $secondSeparatorIndex = self::lastPosition($pattern, $separator, 1);
         $modifiers            = self::substring($pattern, $secondSeparatorIndex + 1);
-        $pattern              = self::substring($pattern, 1, $secondSeparatorIndex);
+        $pattern              = self::substring($pattern, 1, $secondSeparatorIndex - 1);
 
         // mb_ereg_* functions don't parse the \uFFFF syntax correctly, so we replace them with \x{FFFF} instead.
         if (self::position($pattern, '\u') !== false) {
