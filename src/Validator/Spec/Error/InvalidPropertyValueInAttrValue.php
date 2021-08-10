@@ -34,6 +34,6 @@ final class InvalidPropertyValueInAttrValue extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The property \'%1\' in attribute \'%2\' in tag \'%3\' is set to \'%4\', which is invalid.',
-        SpecRule::SPECIFICITY => 39,
+        SpecRule::SPECIFICITY => 41,
     ];
 }

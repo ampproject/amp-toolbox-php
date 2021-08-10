@@ -34,6 +34,6 @@ final class CssSyntaxMissingUrl extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - missing url.',
-        SpecRule::SPECIFICITY => 69,
+        SpecRule::SPECIFICITY => 71,
     ];
 }

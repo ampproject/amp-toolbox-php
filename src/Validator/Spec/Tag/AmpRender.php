@@ -79,6 +79,9 @@ final class AmpRender extends Tag implements Identifiable
                     Attribute::DATA_AMP_BIND_SRC,
                 ],
             ],
+            Attribute::TEMPLATE => [
+                SpecRule::VALUE_ONEOF_SET => 'TEMPLATE_IDS',
+            ],
             Attribute::XSSI_PREFIX => [],
             '[src]' => [
                 SpecRule::MANDATORY_ANYOF => [
@@ -94,6 +97,7 @@ final class AmpRender extends Tag implements Identifiable
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-render/',
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [
+                Layout::CONTAINER,
                 Layout::FILL,
                 Layout::FIXED,
                 Layout::FIXED_HEIGHT,

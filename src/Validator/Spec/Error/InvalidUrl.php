@@ -34,6 +34,6 @@ final class InvalidUrl extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'Malformed URL \'%3\' for attribute \'%1\' in tag \'%2\'.',
-        SpecRule::SPECIFICITY => 56,
+        SpecRule::SPECIFICITY => 58,
     ];
 }

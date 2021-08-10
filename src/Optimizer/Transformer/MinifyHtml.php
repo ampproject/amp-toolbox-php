@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer\Transformer;
 use AmpProject\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
+use AmpProject\Extension;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
@@ -34,6 +35,13 @@ final class MinifyHtml implements Transformer
      * @var TransformerConfiguration
      */
     private $configuration;
+
+    /**
+     * Holds the current mustache template depth value.
+     *
+     * @var int
+     */
+    private $mustacheTemplateDepth = 0;
 
     /**
      * Instantiate a MinifyHtml object.
@@ -103,11 +111,21 @@ final class MinifyHtml implements Transformer
         }
 
         if ($node->hasChildNodes()) {
+            $isNodeMustacheTemplate = $this->isMustacheTemplate($node);
+
+            if ($isNodeMustacheTemplate) {
+                $this->mustacheTemplateDepth++;
+            }
+
             foreach ($node->childNodes as $childNode) {
                 $nodesToRemove = array_merge(
                     $nodesToRemove,
                     $this->minifyNode($childNode, $errors, $canCollapseWhitespace, $inBody)
                 );
+            }
+
+            if ($isNodeMustacheTemplate) {
+                $this->mustacheTemplateDepth--;
             }
         }
 
@@ -163,6 +181,10 @@ final class MinifyHtml implements Transformer
 
         // In case the main $document has `securedDoctype`.
         if (preg_match('/^amp-doctype html/i', $node->data)) {
+            return [];
+        }
+
+        if ($this->mustacheTemplateDepth > 0 && preg_match($this->getMustacheTagPattern(), $node->data)) {
             return [];
         }
 
@@ -294,5 +316,60 @@ final class MinifyHtml implements Transformer
                 Error\CannotMinifyAmpScript::withMessage($node->data, $error->getMessage())
             );
         }
+    }
+
+    /*
+     * Checks if a node is an amp-mustache template element.
+     *
+     * @param DOMNode $node The dom node to be checked.
+     * @return bool Whether the checked node is an amp-mustache template element.
+     */
+    private function isMustacheTemplate(DOMNode $node)
+    {
+        if (
+            $node instanceof Element &&
+            $node->tagName === Tag::TEMPLATE &&
+            $node->getAttribute(Attribute::TYPE) === Extension::MUSTACHE
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get a regular expression that matches all amp-mustache tags while consuming whitespace.
+     *
+     * @return string Regex pattern to match amp-mustache tags with whitespace.
+     */
+    private function getMustacheTagPattern()
+    {
+        static $tagPattern = null;
+
+        if (null === $tagPattern) {
+            $delimiter = ':';
+            $tags      = [];
+            $tokens    = [
+                '{{{',
+                '}}}',
+                '{{#',
+                '{{^',
+                '{{/',
+                '{{',
+                '}}',
+            ];
+
+            foreach ($tokens as $token) {
+                if ('{' === $token[0]) {
+                    $tags[] = preg_quote($token, $delimiter) . '\s*';
+                } else {
+                    $tags[] = '\s*' . preg_quote($token, $delimiter);
+                }
+            }
+
+            $tagPattern = $delimiter . implode('|', $tags) . $delimiter;
+        }
+
+        return $tagPattern;
     }
 }

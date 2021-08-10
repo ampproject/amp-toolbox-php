@@ -17,16 +17,18 @@ use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 /**
- * Tag class ScriptAmpGoogleAssistantAssistjs.
+ * Tag class ScriptAmpSoundcloud2.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
-final class ScriptAmpGoogleAssistantAssistjs extends Tag implements Identifiable, TagWithExtensionSpec
+final class ScriptAmpSoundcloud2 extends Tag implements Identifiable, TagWithExtensionSpec
 {
     use ExtensionSpec;
 
@@ -35,7 +37,7 @@ final class ScriptAmpGoogleAssistantAssistjs extends Tag implements Identifiable
      *
      * @var string
      */
-    const ID = 'SCRIPT [amp-google-assistant-assistjs]';
+    const ID = 'SCRIPT [amp-soundcloud] (2)';
 
     /**
      * Array of extension spec rules.
@@ -43,11 +45,14 @@ final class ScriptAmpGoogleAssistantAssistjs extends Tag implements Identifiable
      * @var array
      */
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-google-assistant-assistjs',
+        SpecRule::NAME => 'amp-soundcloud',
         SpecRule::VERSION => [
             '0.1',
             'latest',
         ],
+        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     /**
@@ -63,6 +68,12 @@ final class ScriptAmpGoogleAssistantAssistjs extends Tag implements Identifiable
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-soundcloud 0.1',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-soundcloud 1.0',
+        ],
     ];
 }

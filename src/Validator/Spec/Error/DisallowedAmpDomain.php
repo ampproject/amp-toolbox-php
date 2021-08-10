@@ -34,6 +34,6 @@ final class DisallowedAmpDomain extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The script tag includes an invalid AMP domain in the src attribute.',
-        SpecRule::SPECIFICITY => 21,
+        SpecRule::SPECIFICITY => 23,
     ];
 }

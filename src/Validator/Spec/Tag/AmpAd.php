@@ -68,6 +68,8 @@ final class AmpAd extends Tag implements Identifiable
             Attribute::STICKY => [
                 SpecRule::VALUE => [
                     '',
+                    'top',
+                    'bottom',
                 ],
             ],
             Attribute::ALWAYS_SERVE_NPA => [],

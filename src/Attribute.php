@@ -214,6 +214,7 @@ interface Attribute
     const BREAK_INSIDE                    = 'break-inside';
     const CACHE                           = 'cache';
     const CAPTION_SIDE                    = 'caption-side';
+    const CAPTURE                         = 'capture';
     const CARET_COLOR                     = 'caret-color';
     const CELLPADDING                     = 'cellpadding';
     const CELLSPACING                     = 'cellspacing';

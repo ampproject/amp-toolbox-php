@@ -34,6 +34,6 @@ final class DisallowedPropertyInAttrValue extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'The property \'%1\' in attribute \'%2\' in tag \'%3\' is disallowed.',
-        SpecRule::SPECIFICITY => 40,
+        SpecRule::SPECIFICITY => 42,
     ];
 }

@@ -34,6 +34,6 @@ final class NonLtsScriptAfterLts extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => '\'%1\' must use the LTS version to correspond with the first script in the page, which uses LTS.',
-        SpecRule::SPECIFICITY => 18,
+        SpecRule::SPECIFICITY => 20,
     ];
 }

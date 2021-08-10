@@ -46,6 +46,7 @@ final class ScriptAmpEmbedlyCard extends Tag implements Identifiable, TagWithExt
         SpecRule::NAME => 'amp-embedly-card',
         SpecRule::VERSION => [
             '0.1',
+            '1.0',
             'latest',
         ],
     ];

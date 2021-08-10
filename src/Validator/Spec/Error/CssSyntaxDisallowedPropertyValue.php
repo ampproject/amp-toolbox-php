@@ -34,6 +34,6 @@ final class CssSyntaxDisallowedPropertyValue extends Error
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - the property \'%2\' is set to the disallowed value \'%3\'.',
-        SpecRule::SPECIFICITY => 83,
+        SpecRule::SPECIFICITY => 85,
     ];
 }

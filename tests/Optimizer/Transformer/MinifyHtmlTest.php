@@ -89,7 +89,39 @@ final class MinifyHtmlTest extends TestCase
                 [
                     new InvalidJson('Error decoding JSON: Syntax error'),
                 ]
-            ]
+            ],
+            'mustache template with commented template tags' => [
+                TestMarkup::DOCTYPE . '<html ⚡> <head> ' .
+                TestMarkup::META_CHARSET .
+                ' </head> <body>' .
+                '    <!-- Comment before template. -->' .
+                '    <amp-list src="cart.json" layout="fixed-height" height="80" binding="no">' .
+                '        <template type="amp-mustache">' .
+                '            <div id="cart">' .
+                '                <!-- Comment inside template but not a template tag. -->' .
+                '                <table>' .
+                '                    <tr>' .
+                '                        <!-- {{#cart_items}} -->' .
+                '                        <td>{{name}}</td>' .
+                '                        <!-- {{/cart_items}} -->' .
+                '                    </tr>' .
+                '                </table>' .
+                '            </div>' .
+                '        </template>' .
+                '    </amp-list>' .
+                '    <p>Hello <strong>World</strong></p>' .
+                '    <!-- Comment before closing body tag. -->' .
+                '</body> </html>',
+                TestMarkup::DOCTYPE . '<html ⚡><head>' .
+                TestMarkup::META_CHARSET .
+                '</head><body>' .
+                '<amp-list src="cart.json" layout="fixed-height" height="80" binding="no"> ' .
+                '<template type="amp-mustache"> <div id="cart">  ' .
+                '<table> <tr> <!-- {{#cart_items}} --> <td>{{name}}</td> <!-- {{/cart_items}} --> </tr> </table> ' .
+                '</div> </template> ' .
+                '</amp-list> <p>Hello <strong>World</strong></p>' .
+                '</body></html>',
+            ],
         ];
     }
 
