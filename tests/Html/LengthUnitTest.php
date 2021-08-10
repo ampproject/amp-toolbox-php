@@ -1,13 +1,13 @@
 <?php
 
-namespace AmpProject;
+namespace AmpProject\Html;
 
 use AmpProject\Tests\TestCase;
 
 /**
- * Tests for AmpProject\LengthUnit.
+ * Tests for AmpProject\Html\LengthUnit.
  *
- * @covers \AmpProject\LengthUnit
+ * @covers \AmpProject\Html\LengthUnit
  * @package ampproject/amp-toolbox
  */
 class LengthUnitTest extends TestCase
@@ -45,7 +45,7 @@ class LengthUnitTest extends TestCase
      * YTest the convertIntoPixels method.
      *
      * @dataProvider dataConvertIntoPixels
-     * @covers \AmpProject\LengthUnit::convertIntoPixels()
+     * @covers \AmpProject\Html\LengthUnit::convertIntoPixels()
      *
      * @param int|float       $value    Initial value.
      * @param string          $unit     Source unit.
