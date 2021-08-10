@@ -32,11 +32,11 @@ final class MinifyHtml implements Transformer
     private $configuration;
 
     /**
-     * Whether the node(s) being minified are inside a mustache template.
+     * Holds the current mustache template depth value.
      *
-     * @var bool
+     * @var int
      */
-    private $isInsideMustacheTemplate = false;
+    private $mustacheTemplateDepth = 0;
 
     /**
      * Instantiate a MinifyHtml object.
@@ -106,8 +106,10 @@ final class MinifyHtml implements Transformer
         }
 
         if ($node->hasChildNodes()) {
-            if ($this->isMustacheTemplate($node)) {
-                $this->isInsideMustacheTemplate = true;
+            $isNodeMustacheTemplate = $this->isMustacheTemplate($node);
+
+            if ($isNodeMustacheTemplate) {
+                $this->mustacheTemplateDepth++;
             }
 
             foreach ($node->childNodes as $childNode) {
@@ -117,8 +119,8 @@ final class MinifyHtml implements Transformer
                 );
             }
 
-            if ($this->isMustacheTemplate($node)) {
-                $this->isInsideMustacheTemplate = false;
+            if ($isNodeMustacheTemplate) {
+                $this->mustacheTemplateDepth--;
             }
         }
 
@@ -177,7 +179,7 @@ final class MinifyHtml implements Transformer
             return [];
         }
 
-        if ($this->isInsideMustacheTemplate && preg_match($this->getMustacheTagPattern(), $node->data)) {
+        if ($this->mustacheTemplateDepth > 0 && preg_match($this->getMustacheTagPattern(), $node->data)) {
             return [];
         }
 
