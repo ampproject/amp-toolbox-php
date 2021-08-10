@@ -306,6 +306,7 @@ final class MinifyHtml implements Transformer
             return;
         }
 
+        // @codeCoverageIgnoreStart
         try {
             $parser = Peast::latest($node->data, [])->parse();
             $renderer = new Renderer();
@@ -316,6 +317,7 @@ final class MinifyHtml implements Transformer
                 Error\CannotMinifyAmpScript::withMessage($node->data, $error->getMessage())
             );
         }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
