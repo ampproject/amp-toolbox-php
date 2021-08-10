@@ -318,7 +318,7 @@ final class MinifyHtml implements Transformer
         }
     }
 
-    /*
+    /**
      * Checks if a node is an amp-mustache template element.
      *
      * @param DOMNode $node The dom node to be checked.
