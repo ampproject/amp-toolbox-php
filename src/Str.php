@@ -83,10 +83,20 @@ final class Str
     public static function substring($text, $offset, $length = null)
     {
         if (self::$useMultibyte && function_exists('mb_substr')) {
-            return mb_substr($text, $offset, $length);
+            // Up until PHP 8, passing $length=null is not the same as not passing the $length argument.
+            if ($length !== null) {
+                return mb_substr($text, $offset, $length);
+            }
+
+            return mb_substr($text, $offset);
         }
 
-        return substr($text, $offset, $length);
+        // Up until PHP 8, passing $length=null is not the same as not passing the $length argument.
+        if ($length !== null) {
+            return substr($text, $offset, $length);
+        }
+
+        return substr($text, $offset);
     }
 
     /**
