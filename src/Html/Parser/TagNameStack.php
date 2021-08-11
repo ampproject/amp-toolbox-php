@@ -37,7 +37,7 @@ final class TagNameStack
      *
      * @var string
      */
-    const CPP_SPACE_REGEX = '/^[ \f\n\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000]*$/';
+    const CPP_SPACE_REGEX = '/^[ \f\n\r\t\v\x{00a0}\x{1680}\x{2000}-\x{200a}\x{2028}\x{2029}\x{202f}\x{205f}\x{3000}]*$/u';
 
     /**
      * The handler to manage the stack for.
@@ -104,7 +104,7 @@ final class TagNameStack
 
         // This section deals with manufacturing <head>, </head>, and <body> tags if the document has left them out or
         // placed them in the wrong location.
-        switch ($this->region) {
+        switch ($this->region->getValue()) {
             case TagRegion::PRE_DOCTYPE:
                 if ($tag->upperName() === Tag::_DOCTYPE) {
                     $this->region = TagRegion::PRE_HTML();
@@ -114,8 +114,8 @@ final class TagNameStack
                     $this->region = TagRegion::IN_HEAD();
                 } elseif ($tag->upperName() === Tag::BODY) {
                     $this->region = TagRegion::IN_BODY();
-                } elseif (! array_key_exists($tag->upperName(), Tag::STRUCTURE_TAGS)) {
-                    if (array_key_exists($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD)) {
+                } elseif (! in_array($tag->upperName(), Tag::STRUCTURE_TAGS, true)) {
+                    if (in_array($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD, true)) {
                         $this->startTag(new ParsedTag(Tag::HEAD));
                     } else {
                         $this->handler->markManufacturedBody();
@@ -134,8 +134,8 @@ final class TagNameStack
                     $this->region = TagRegion::IN_HEAD();
                 } elseif ($tag->upperName() === Tag::BODY) {
                     $this->region = TagRegion::IN_BODY();
-                } elseif (! array_key_exists($tag->upperName(), Tag::STRUCTURE_TAGS)) {
-                    if (array_key_exists($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD)) {
+                } elseif (! in_array($tag->upperName(), Tag::STRUCTURE_TAGS, true)) {
+                    if (in_array($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD, true)) {
                         $this->startTag(new ParsedTag(Tag::HEAD));
                     } else {
                         $this->handler->markManufacturedBody();
@@ -152,8 +152,8 @@ final class TagNameStack
                     $this->region = TagRegion::IN_HEAD();
                 } elseif ($tag->upperName() === Tag::BODY) {
                     $this->region = TagRegion::IN_BODY();
-                } elseif (! array_key_exists($tag->upperName(), Tag::STRUCTURE_TAGS)) {
-                    if (array_key_exists($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD)) {
+                } elseif (! in_array($tag->upperName(), Tag::STRUCTURE_TAGS, true)) {
+                    if (in_array($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD, true)) {
                         $this->startTag(new ParsedTag(Tag::HEAD));
                     } else {
                         $this->handler->markManufacturedBody();
@@ -169,7 +169,7 @@ final class TagNameStack
                 ) {
                     return;
                 }
-                if (! array_key_exists($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD)) {
+                if (! in_array($tag->upperName(), Tag::ELEMENTS_ALLOWED_IN_HEAD, true)) {
                     $this->endTag(new ParsedTag(Tag::HEAD));
                     if ($tag->upperName() !== Tag::BODY) {
                         $this->handler->markManufacturedBody();
@@ -225,23 +225,23 @@ final class TagNameStack
                     if (
                         $parentTagName === Tag::P
                         &&
-                        array_key_exists($tag->upperName(), Tag::P_CLOSING_TAGS)
+                        in_array($tag->upperName(), Tag::P_CLOSING_TAGS, true)
                     ) {
                         $this->endTag(new ParsedTag(Tag::P));
                         // <dd> and <dt> tags can be implicitly closed by other <dd> and <dt> tags.
                         // See https://www.w3.org/TR/html-markup/dd.html.
                     } elseif (
-                        ($tag->upperName() === Tag::DD || $tag->upperName() === Tag::DT)
-                        &&
                         ($parentTagName === Tag::DD || $parentTagName === Tag::DT)
+                        &&
+                        ($tag->upperName() === Tag::DD || $tag->upperName() === Tag::DT)
                     ) {
                         $this->endTag(new ParsedTag($parentTagName));
                         // <li> tags can be implicitly closed by other <li> tags.
                         // See https://www.w3.org/TR/html-markup/li.html.
                     } elseif (
-                        $tag->upperName() === Tag::LI
-                        &&
                         $parentTagName === Tag::LI
+                        &&
+                        $tag->upperName() === Tag::LI
                     ) {
                         $this->endTag(new ParsedTag(Tag::LI));
                     }
@@ -258,7 +258,7 @@ final class TagNameStack
 
         $this->handler->startTag($tag);
 
-        if (array_key_exists($tag->upperName(), Tag::SELF_CLOSING_TAGS)) {
+        if (in_array($tag->upperName(), Tag::SELF_CLOSING_TAGS, true)) {
             // Ignore attributes in end tags.
             $this->handler->endTag(new ParsedTag($tag->upperName()));
         } else {
@@ -281,7 +281,7 @@ final class TagNameStack
             // Non-ASCII whitespace; if this occurs outside <body>, output a manufactured-body error. Do not create
             // implicit tags, in order to match the behavior of the buggy C++ parser. It just so happens this is also
             // good UX, since the subsequent validation errors caused by the implicit tags are unhelpful.
-            switch ($this->region) {
+            switch ($this->region->getValue()) {
                 // Fallthroughs intentional.
                 case TagRegion::PRE_DOCTYPE:
                 case TagRegion::PRE_HTML:
@@ -293,7 +293,7 @@ final class TagNameStack
         } else {
             // Non-whitespace text; if this occurs outside <body>, output a manufactured-body error and create the
             // necessary implicit tags.
-            switch ($this->region) {
+            switch ($this->region->getValue()) {
                 case TagRegion::PRE_DOCTYPE: // Doctype is not manufactured, fallthrough intentional.
                 case TagRegion::PRE_HTML:
                     $this->startTag(new ParsedTag(Tag::HTML));

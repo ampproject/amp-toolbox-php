@@ -24,18 +24,18 @@ final class HtmlParser
     const INSIDE_TAG_TOKEN =
         // Don't capture space. In this case, we don't use \s because it includes a non-breaking space which gets
         // included as an attribute in our validation.
-        '/^[ \\t\\n\\f\\r\\v]*(?:' .
+        '/^[ \t\n\f\r\v]*(?:' .
             // Capture an attribute name in group 1, and value in group 3. We capture the fact that there was an
             // attribute in group 2, since interpreters are inconsistent in whether a group that matches nothing is
             // null, undefined, or the empty string.
             '(?:' .
                 // Allow attribute names to start with /, avoiding assigning the / in close-tag syntax */>.
-                '([^\\t\\r\\n /=>][^\\t\\r\\n =>]*|' .  // e.g. "href".
-                '[^\\t\\r\\n =>]+[^ >]|' .              // e.g. "/asdfs/asd".
+                '([^\t\r\n /=>][^\t\r\n =>]*|' .  // e.g. "href".
+                '[^\t\r\n =>]+[^ >]|' .              // e.g. "/asdfs/asd".
                 '\/+(?!>))' .                           // e.g. "/".
                 // Optionally followed by...
                 '(' .
-                    '\\s*=\\s*' .
+                    '\s*=\s*' .
                     '(' .
                         // A double quoted string.
                         '\"[^\"]*\"' .
@@ -44,10 +44,10 @@ final class HtmlParser
                         // The positive lookahead is used to make sure that in <foo bar= baz=boo>, the value for bar is
                         // blank, not "baz=boo". Note that <foo bar=baz=boo zik=zak>, the value for bar is "baz=boo" and
                         // the value for zip is "zak".
-                        '|(?=[a-z][a-z-]*\\s+=)' .
+                        '|(?=[a-z][a-z-]*\s+=)' .
                         // An unquoted value that is not an attribute name. We know it is not an attribute name because
                         // the previous zero-width match would've eliminated that possibility.
-                        '|[^>\\s]*' .
+                        '|[^>\s]*' .
                         ')' .
                     ')' .
                 '?' .
@@ -55,7 +55,7 @@ final class HtmlParser
             // End of tag captured in group 3.
             '|(/?>)' .
             // Don't capture cruft.
-            '|[^a-z\\s>]+)' .
+            '|[^a-z\s>]+)' .
         '/i';
 
 
@@ -67,13 +67,13 @@ final class HtmlParser
     const OUTSIDE_TAG_TOKEN =
         '/^(?:' .
             // Entity captured in group 1.
-            '&(\\#[0-9]+|\\#[x][0-9a-f]+|\\w+);' .
+            '&(\#[0-9]+|\#[x][0-9a-f]+|\w+);' .
             // Comments not captured.
-            '|<[!]--[\\s\\S]*?(?:--[!]?>|$)' .
+            '|<[!]--[\s\S]*?(?:--[!]?>|$)' .
             // '/' captured in group 2 for close tags, and name captured in group 3. The first character of a tag (after
             // possibly '/') can be A-Z, a-z, '!' or '?'. The remaining characters are more easily expressed as a
             // negative set of: '\0', ' ', '\n', '\r', '\t', '\f', '\v', '>', or '/'.
-            '|<(/)?([a-z!\\?][^\\0 \\n\\r\\t\\f\\v>/]*)' .
+            '|<(/)?([a-z!\?][^\0 \n\r\t\f\v>/]*)' .
             // Text captured in group 4.
             '|([^<&>]+)' .
             // Cruft captured in group 5.
@@ -85,7 +85,7 @@ final class HtmlParser
      *
      * @var string
      */
-    const NULL_REGEX = '/\0/g';
+    const NULL_REGEX = "/\0/g";
 
     /**
      * Regular expression that matches entities.
@@ -298,21 +298,22 @@ final class HtmlParser
             if ($inTag) {
                 if ($matches[1]) {  // Attribute.
                     // SetAttribute with uppercase names doesn't work on IE6.
-                    $attribName = Str::toLowerCase($matches[1]);
+                    $attributeName = Str::toLowerCase($matches[1]);
                     // Use empty string as value for valueless attribs, so <input type=checkbox checked> gets attributes
                     // ['type', 'checkbox', 'checked', ''].
                     $decodedValue = '';
                     if ($matches[2]) {
                         $encodedValue = $matches[3];
                         switch (Str::substring($encodedValue, 0, 1)) {  // Strip quotes.
-                            case 34:                             // Double quote (").
-                            case 39:                             // Single quote (').
-                                      $encodedValue = Str::substring($encodedValue, 1, $encodedValue->length - 1);
+                            case '"':
+                            case "'":
+                                $encodedValue = Str::substring($encodedValue, 1, Str::length($encodedValue) - 2);
                                 break;
                         }
                         $decodedValue = $this->unescapeEntities($this->stripNULs($encodedValue));
                     }
-                    $attributes[$attribName] = $decodedValue;
+                    $attributes[] = $attributeName;
+                    $attributes[] = $decodedValue;
                 } elseif ($matches[4]) {
                     if ($eflags !== null) {  // False if not in allowlist.
                         if ($openTag) {
@@ -324,7 +325,7 @@ final class HtmlParser
 
                     if ($openTag && ($eflags & (EFlags::CDATA | EFlags::RCDATA))) {
                         if ($htmlUpper === null) {
-                                $htmlUpper = Str::toUpperCase($htmlText);
+                            $htmlUpper = Str::toUpperCase($htmlText);
                         } else {
                             $htmlUpper = Str::substring($htmlUpper, Str::length($htmlUpper) - Str::length($htmlText));
                         }
@@ -333,7 +334,7 @@ final class HtmlParser
                                   $dataEnd = Str::length($htmlText);
                         }
                         if ($eflags & EFlags::CDATA) {
-                              $handler->cdata(Str::substring($htmlText, 0, $dataEnd));
+                            $handler->cdata(Str::substring($htmlText, 0, $dataEnd));
                         } else {
                             $handler->rcdata($this->normalizeRCData(Str::substring($htmlText, 0, $dataEnd)));
                         }
@@ -399,6 +400,8 @@ final class HtmlParser
     /**
      * Decode an HTML entity.
      *
+     * This method is public as it needs to be passed into Str::regexReplaceCallback().
+     *
      * @param string $entity The full entity (including the & and the ;).
      * @return string A single unicode code-point as a string.
      */
@@ -426,7 +429,7 @@ final class HtmlParser
      * @return string A string without null characters.
      * @private
      */
-    public function stripNULs($text)
+    private function stripNULs($text)
     {
         return Str::regexReplace(self::NULL_REGEX, '', $text);
     }
@@ -437,7 +440,7 @@ final class HtmlParser
      * @param string $text A chunk of HTML CDATA. It must not start or end inside an HTML entity.
      * @return string The unescaped entities.
      */
-    public function unescapeEntities($text)
+    private function unescapeEntities($text)
     {
         return Str::regexReplaceCallback(self::ENTITY_REGEX, [$this, 'lookupEntity'], $text);
     }
@@ -448,12 +451,12 @@ final class HtmlParser
      * @param string $rcdata The RCDATA string we want to normalize.
      * @return string A normalized version of RCDATA.
      */
-    public function normalizeRCData($rcdata)
+    private function normalizeRCData($rcdata)
     {
-        $rcData = Str::regexReplace(self::LOOSE_AMP_REGEX, '&amp;$1', $rcdata);
-        $rcData = Str::regexReplace(self::LT_REGEX, '&lt;', $rcdata);
-        $rcData = Str::regexReplace(self::GT_REGEX, '&gt;', $rcdata);
+        $rcdata = Str::regexReplace(self::LOOSE_AMP_REGEX, '&amp;$1', $rcdata);
+        $rcdata = Str::regexReplace(self::LT_REGEX, '&lt;', $rcdata);
+        $rcdata = Str::regexReplace(self::GT_REGEX, '&gt;', $rcdata);
 
-        return $rcData;
+        return $rcdata;
     }
 }

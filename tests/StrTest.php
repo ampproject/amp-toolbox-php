@@ -207,6 +207,7 @@ class StrTest extends TestCase
             ['/NÂTIÔNÀL/i', '{\0}', 'Iñtërnâtiônàlizætiøn', 'Iñtërnâtiônàlizætiøn', 'Iñtër{nâtiônàl}izætiøn', 'Iñtërnâtiônàlizætiøn', 'Iñtër_nâtiônàl_izætiøn'],
             ['/N.*L/iu', '{\0}', 'Iñtërnâtiônàlizætiøn', 'Iñtër{nâtiônàl}izætiøn', 'Iñtër{nâtiônàl}izætiøn', 'Iñtër_nâtiônàl_izætiøn', 'Iñtër_nâtiônàl_izætiøn'],
             ['/NÂTIÔNÀL/iu', '{\0}', 'Iñtërnâtiônàlizætiøn', 'Iñtër{nâtiônàl}izætiøn', 'Iñtër{nâtiônàl}izætiøn', 'Iñtër_nâtiônàl_izætiøn', 'Iñtër_nâtiônàl_izætiøn'],
+            ['/\x{006e}\x{00e2}\x{0074}\x{0069}\x{00f4}\x{006e}\x{00e0}\x{006c}/u', '{\0}', 'Iñtërnâtiônàlizætiøn', 'Iñtër{nâtiônàl}izætiøn', 'Iñtër{nâtiônàl}izætiøn', 'Iñtër_nâtiônàl_izætiøn', 'Iñtër_nâtiônàl_izætiøn'],
         ];
     }
 

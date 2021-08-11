@@ -226,10 +226,8 @@ final class Str
         $modifiers            = self::substring($pattern, $secondSeparatorIndex + 1);
         $pattern              = self::substring($pattern, 1, $secondSeparatorIndex - 1);
 
-        // mb_ereg_* functions don't parse the \uFFFF syntax correctly, so we replace them with \x{FFFF} instead.
-        if (self::position($pattern, '\u') !== false) {
-            $pattern = self::regexReplace('\\u([a-fA-F0-9]{4})', '\\x{$1}', $pattern);
-        }
+        // UTF-8 flag 'u' from preg_* means "GNU regex" for mb_ereg_* functions, so we better strip it.
+        $modifiers = str_replace('u', '', $modifiers);
 
         return [$pattern, $modifiers];
     }

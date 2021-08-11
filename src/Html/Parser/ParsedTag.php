@@ -65,7 +65,7 @@ final class ParsedTag
 
         // Convert attribute names to lower case, not values, which are case-sensitive.
         $count = count($alternatingAttributes);
-        for ($index = 0; $index < $count; $alternatingAttributes += 2) {
+        for ($index = 0; $index < $count; $index += 2) {
             $name = Str::toLowerCase($alternatingAttributes[$index]);
             $value = $alternatingAttributes[$index + 1];
             // Our html parser repeats the key as the value if there is no value. We
