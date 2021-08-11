@@ -37,7 +37,8 @@ final class TagNameStack
      *
      * @var string
      */
-    const CPP_SPACE_REGEX = '/^[ \f\n\r\t\v\x{00a0}\x{1680}\x{2000}-\x{200a}\x{2028}\x{2029}\x{202f}\x{205f}\x{3000}]*$/u';
+    const CPP_SPACE_REGEX = '/^[ \f\n\r\t\v'
+                            . '\x{00a0}\x{1680}\x{2000}-\x{200a}\x{2028}\x{2029}\x{202f}\x{205f}\x{3000}]*$/u';
 
     /**
      * The handler to manage the stack for.

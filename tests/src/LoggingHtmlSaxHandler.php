@@ -11,7 +11,8 @@ use AmpProject\Html\Parser\ParsedTag;
  *
  * @package ampproject/amp-toolbox
  */
-final class LoggingHtmlSaxHandler implements HtmlSaxHandler {
+final class LoggingHtmlSaxHandler implements HtmlSaxHandler
+{
 
     /**
      * Log storage.

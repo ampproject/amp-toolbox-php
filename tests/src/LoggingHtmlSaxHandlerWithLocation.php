@@ -12,7 +12,8 @@ use AmpProject\Html\Parser\ParsedTag;
  *
  * @package ampproject/amp-toolbox
  */
-final class LoggingHtmlSaxHandlerWithLocation implements HtmlSaxHandlerWithLocation {
+final class LoggingHtmlSaxHandlerWithLocation implements HtmlSaxHandlerWithLocation
+{
 
     /**
      * DocLocator instance to use.
