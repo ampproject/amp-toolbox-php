@@ -7,7 +7,7 @@ use AmpProject\Optimizer\Error\CannotMinifyAmpScript;
 use AmpProject\Tests\TestCase;
 
 /**
- * Test the CannotMinifyAmpScriptTest error class.
+ * Test the CannotMinifyAmpScript error class.
  *
  * @package ampproject/amp-toolbox
  */

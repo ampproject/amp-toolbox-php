@@ -181,10 +181,7 @@ final class MinifyHtmlTest extends TestCase
         $transformer->transform($document, $errors);
 
         if (! class_exists(Peast::class)) {
-            $expectedErrors = [
-                new MissingPackage('The optional package mck89/peast package is required to minify inline amp-script.'),
-            ];
-            $this->assertSameErrors($expectedErrors, $errors);
+            $this->markTestSkipped('The optional package mck89/peast is needed to test inline amp-script minification.');
         } else {
             $this->assertSimilarMarkup($expectedHtml, $document->saveHTML());
         }

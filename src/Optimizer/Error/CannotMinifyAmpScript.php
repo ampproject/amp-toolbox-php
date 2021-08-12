@@ -5,7 +5,7 @@ namespace AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\Error;
 
 /**
- * Optimizer error object when unable to minify the amp script.
+ * Optimizer error object when unable to minify an amp-script element.
  *
  * @package ampproject/amp-toolbox
  */
@@ -14,7 +14,7 @@ final class CannotMinifyAmpScript implements Error
     use ErrorProperties;
 
     /**
-     * Instantiate an CannotMinifyAmpScript object with an error message.
+     * Instantiate a CannotMinifyAmpScript object with an error message.
      *
      * @param string $data     The script to be minified.
      * @param string $errorMsg The error message.
