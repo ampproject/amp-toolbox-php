@@ -625,6 +625,7 @@ final class ServerSideRendering implements Transformer
         $style = empty($style) ? 'display:block' : "display:block;{$style}";
 
         $sizer = $document->createElement(Amp::SIZER_ELEMENT);
+        $sizer->setAttribute(Attribute::SLOT, "i-amphtml-svc");
         $sizer->addInlineStyle(sprintf($style, $paddingString));
 
         return $sizer;
@@ -644,6 +645,7 @@ final class ServerSideRendering implements Transformer
     private function createIntrinsicSizer(Document $document, CssLength $width, CssLength $height)
     {
         $sizer = $document->createElement(Amp::SIZER_ELEMENT);
+        $sizer->setAttribute(Attribute::SLOT, "i-amphtml-svc");
         $sizer->setAttribute(Attribute::CLASS_, Amp::SIZER_ELEMENT);
 
         $sizer_img = $document->createElement(Tag::IMG);
