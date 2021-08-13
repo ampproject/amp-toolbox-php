@@ -301,7 +301,7 @@ final class MinifyHtml implements Transformer
     {
         if (! class_exists(Peast::class) || ! class_exists(Renderer::class) || ! class_exists(Compact::class)) {
             $errors->add(Error\MissingPackage::withMessage(
-                'The optional package mck89/peast package is required to minify inline amp-script.'
+                'The optional package mck89/peast is required to minify inline amp-script.'
             ));
             return;
         }
