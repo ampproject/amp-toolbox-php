@@ -3,6 +3,8 @@
 namespace AmpProject\Validator;
 
 use AmpProject\Dom\Document;
+use AmpProject\Html\Parser\HtmlParser;
+use AmpProject\Tests\LoggingHtmlSaxHandlerWithLocation;
 
 /**
  * Validator engine that checks adherence to spec rules against provided markup.
@@ -20,9 +22,7 @@ final class ValidationEngine
      */
     public function validateDom(Document $document)
     {
-        $status = ValidationStatus::UNKNOWN();
-        $errors = new ValidationErrorCollection();
-        return new ValidationResult($status, $errors);
+        return $this->validateHtml($document->saveHTML());
     }
 
     /**
@@ -33,7 +33,14 @@ final class ValidationEngine
      */
     public function validateHtml($html)
     {
-        $document = Document::fromHtml($html);
-        return $this->validateDom($document);
+        $status = ValidationStatus::UNKNOWN();
+        $errors = new ValidationErrorCollection();
+
+        $parser  = new HtmlParser();
+        $handler = new LoggingHtmlSaxHandlerWithLocation();
+
+        $parser->parse($handler, $html);
+
+        return new ValidationResult($status, $errors);
     }
 }
