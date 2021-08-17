@@ -7,6 +7,8 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
 use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\Tests\TestCase;
+use AmpProject\Validator\Spec\CssRuleset\AmpTransformed;
+use AmpProject\Validator\Spec\SpecRule;
 use stdClass;
 
 /**
@@ -25,20 +27,31 @@ final class TransformedIdentifierConfigurationTest extends TestCase
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
         $this->assertEquals(1, $configuration->get('version'));
         $this->assertEquals(1, $configuration->version);
-        $this->assertEquals(['version' => 1], $configuration->toArray());
+        $this->assertEquals(AmpTransformed::SPEC[SpecRule::MAX_BYTES], $configuration->get('enforcedCssMaxByteCount'));
+        $this->assertEquals(AmpTransformed::SPEC[SpecRule::MAX_BYTES], $configuration->enforcedCssMaxByteCount);
+        $this->assertEquals(
+            ['version' => 1, 'enforcedCssMaxByteCount' => AmpTransformed::SPEC[SpecRule::MAX_BYTES]],
+            $configuration->toArray()
+        );
     }
 
     public function testInitialization()
     {
         $configuration = new TransformedIdentifierConfiguration(
             [
-                'version' => 5,
+                'version'                 => 5,
+                'enforcedCssMaxByteCount' => false,
             ]
         );
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
         $this->assertEquals(5, $configuration->get('version'));
         $this->assertEquals(5, $configuration->version);
-        $this->assertEquals(['version' => 5], $configuration->toArray());
+        $this->assertEquals(false, $configuration->get('enforcedCssMaxByteCount'));
+        $this->assertEquals(false, $configuration->enforcedCssMaxByteCount);
+        $this->assertEquals(
+            ['version' => 5, 'enforcedCssMaxByteCount' => false],
+            $configuration->toArray()
+        );
     }
 
     public function testThrowsOnInvalidKey()
