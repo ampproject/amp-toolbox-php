@@ -31,6 +31,9 @@ final class TestMarkup
     // Doctype is the doctype expected for AMP documents.
     const DOCTYPE = '<!DOCTYPE html>';
 
+    // Doctype is the doctype expected for AMP documents.
+    const AMP_HTML = '<html amp>';
+
     // LinkCanonical is a link to the canonical document.
     const LINK_CANONICAL = '<link href="self.html" rel="canonical">';
 

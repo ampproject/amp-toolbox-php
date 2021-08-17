@@ -12,10 +12,6 @@ use AmpProject\FakeEnum;
  * @method static ValidationStatus FAIL()
  *
  * @package ampproject/amp-toolbox
- *
- * @method static ValidationStatus UNKNOWN()
- * @method static ValidationStatus PASS()
- * @method static ValidationStatus FAIL()
  */
 final class ValidationStatus extends FakeEnum
 {

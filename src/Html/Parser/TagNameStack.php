@@ -322,7 +322,7 @@ final class TagNameStack
      */
     public function endTag($tag)
     {
-        if ($this->region->equals(TagRegion::IN_HEAD) && $tag->upperName() === Tag::HEAD) {
+        if ($this->region->equals(TagRegion::IN_HEAD()) && $tag->upperName() === Tag::HEAD) {
             $this->region = TagRegion::PRE_BODY();
         }
 

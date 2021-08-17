@@ -35,7 +35,7 @@ final class ValidationErrorCollection implements Countable, IteratorAggregate
     /**
      * Check whether the error collection contains an error for the given code.
      *
-     * @param int $code Code of the error.
+     * @param string $code Code of the error.
      * @return bool Whether the error collection contains an error with the given code.
      */
     public function has($code)
@@ -67,5 +67,29 @@ final class ValidationErrorCollection implements Countable, IteratorAggregate
     public function count()
     {
         return count($this->errors);
+    }
+
+    /**
+     * Sort errors by their position in the file.
+     */
+    public function sortByPosition()
+    {
+        usort(
+            $this->errors,
+            function (ValidationError $a, ValidationError $b) {
+                if ($a->getLine() === $b->getLine()) {
+                    if (PHP_MAJOR_VERSION < 7 && $a->getColumn() === $b->getColumn()) {
+                        // Hack required for PHP 5.6, as it does not maintain stable order for equal items.
+                        // See https://bugs.php.net/bug.php?id=69158.
+                        // To get around this, we compare the index within $this->errors instead to maintain existing order.
+                        return strcmp(array_search($a, $this->errors, true), array_search($b, $this->errors, true));
+                    }
+
+                    return $a->getColumn() - $b->getColumn();
+                }
+
+                return $a->getLine() - $b->getLine();
+            }
+        );
     }
 }

@@ -72,8 +72,8 @@ final class ValidationResult
     /**
      * ValidationResult constructor.
      *
-     * @param ValidationStatus          $status               Validation result status.
-     * @param ValidationErrorCollection $errors               Collection of validation errors that were found.
+     * @param ValidationStatus          $status               Optional. Validation result status.
+     * @param ValidationErrorCollection $errors               Optional. Collection of validation errors that were found.
      * @param int                       $specRevision         Optional. Spec rules revision. Defaults to -1.
      * @param int                       $transformerVersion   Optional. Version of the transformer used. Defaults to 0.
      * @param string[]                  $typeIdentifiers      Optional. The type identifier(s) used on the document.
@@ -86,16 +86,18 @@ final class ValidationResult
      *                                                        array.
      */
     public function __construct(
-        ValidationStatus $status,
-        ValidationErrorCollection $errors,
+        ValidationStatus $status = null,
+        ValidationErrorCollection $errors = null,
         $specRevision = -1,
         $transformerVersion = 0,
         $typeIdentifiers = [],
         $valueSetProvisions = [],
         $valueSetRequirements = []
     ) {
-        $this->status               = $status;
-        $this->errors               = $errors;
+        $this->status               = $status instanceof ValidationStatus ? $status : ValidationStatus::UNKNOWN();
+        $this->errors               = $errors instanceof ValidationErrorCollection
+            ? $errors
+            : new ValidationErrorCollection();
         $this->specRevision         = $specRevision;
         $this->transformerVersion   = $transformerVersion;
         $this->typeIdentifiers      = $typeIdentifiers;
@@ -106,11 +108,21 @@ final class ValidationResult
     /**
      * Get the validation status.
      *
-     * @return ValidationStatus
+     * @return ValidationStatus Current validation status of the validation result.
      */
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set the validation status.
+     *
+     * @param ValidationStatus $status New validation status to set the validation result to.
+     */
+    public function setStatus(ValidationStatus $status)
+    {
+        $this->status = $status;
     }
 
     /**
@@ -144,6 +156,16 @@ final class ValidationResult
     }
 
     /**
+     * Set the transformer version.
+     *
+     * @return int
+     */
+    public function setTransformerVersion($transformerVersion)
+    {
+        $this->transformerVersion = $transformerVersion;
+    }
+
+    /**
      * Get the type identifiers.
      *
      * @return string[]
@@ -151,6 +173,16 @@ final class ValidationResult
     public function getTypeIdentifiers()
     {
         return $this->typeIdentifiers;
+    }
+
+    /**
+     * Add a type identifier.
+     *
+     * @param string $typeIdentifier Type identifier to add.
+     */
+    public function addTypeIdentifier($typeIdentifier)
+    {
+        $this->typeIdentifiers[] = $typeIdentifier;
     }
 
     /**
