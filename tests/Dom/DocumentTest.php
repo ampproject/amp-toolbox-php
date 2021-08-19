@@ -462,6 +462,11 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html amp [class]="mystate.class" class="blue">' . $head . '<body></body></html>',
                 '<!DOCTYPE html><html amp [class]="mystate.class" class="blue">' . $head . '<body></body></html>',
             ],
+            'preserve closing tags in inline js variables' => [
+                'utf-8',
+                '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body><script>let foo = { bar: "<div>amp</div>" }</script></body></html>',
+                '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body><script>let foo = { bar: "<div>amp</div>" }</script></body></html>',
+            ],
         ];
     }
 
@@ -1107,7 +1112,7 @@ class DocumentTest extends TestCase
     {
         $expectedOptions = array_merge(
             Option::DEFAULTS,
-            [Option::ENCODING => 'something', Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+            [Option::ENCODING => 'something', Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_SCHEMA_CREATE]
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::ENCODING => 'something']);
@@ -1130,7 +1135,7 @@ class DocumentTest extends TestCase
     {
         $expectedOptions = array_merge(
             Option::DEFAULTS,
-            [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS, Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+            [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS, Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_SCHEMA_CREATE]
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::AMP_BIND_SYNTAX => Option::AMP_BIND_SYNTAX_SQUARE_BRACKETS]);
@@ -1153,7 +1158,7 @@ class DocumentTest extends TestCase
     {
         $expectedOptions = array_merge(
             Option::DEFAULTS,
-            [Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_PARSEHUGE]
+            [Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_SCHEMA_CREATE | LIBXML_PARSEHUGE]
         );
 
         $document = Document::fromHtml('<html><div></div></html>', [Option::LIBXML_FLAGS => LIBXML_PARSEHUGE]);
@@ -1176,7 +1181,7 @@ class DocumentTest extends TestCase
     {
         $expectedOptions = array_merge(
             Option::DEFAULTS,
-            [Option::ENCODING => 'something', Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD]
+            [Option::ENCODING => 'something', Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_SCHEMA_CREATE]
         );
 
         $document = Document::fromHtml('<html><div></div></html>', 'something');
@@ -1197,7 +1202,7 @@ class DocumentTest extends TestCase
     {
         $expectedOptions = array_merge(
             Option::DEFAULTS,
-            [Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_PARSEHUGE]
+            [Option::LIBXML_FLAGS => LIBXML_COMPACT | LIBXML_HTML_NODEFDTD | LIBXML_SCHEMA_CREATE | LIBXML_PARSEHUGE]
         );
 
         $document = new Document();

@@ -61,9 +61,16 @@ final class LibxmlCompatibility implements BeforeLoadFilter, AfterLoadFilter
             $this->options[Option::LIBXML_FLAGS] |= constant('LIBXML_HTML_NODEFDTD');
         }
 
+        /**
+         * This flag prevents removing the closing tags used in inline
+         * JavaScript variables.
+         */
+        if (defined('LIBXML_SCHEMA_CREATE')) {
+            $this->options[Option::LIBXML_FLAGS] |= constant('LIBXML_SCHEMA_CREATE');
+        }
+
         return $html;
     }
-
 
     /**
      * Process the Document after the html loaded into the Dom\Document.
