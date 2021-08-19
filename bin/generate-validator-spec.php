@@ -52,7 +52,8 @@ function recursivelyRemoveDirectory($directory)
  * @param bool   $cache Whether to cache response in temp directory.
  *
  * @return array Data.
- * @throws RuntimeException         When the JSON data cannot be parsed.RuntimeException
+ * @throws RuntimeException         When the JSON file cannot be fetched.
+ * @throws RuntimeException         When the JSON data cannot be parsed.
  * @throws UnexpectedValueException When the JSON data is not an array.
  */
 function fetch_json($url, $cache = false)
