@@ -64,6 +64,7 @@ final class AmpStoryCtaLayerAllowedDescendants extends DescendantTagList impleme
         Element::EM,
         Element::FECOLORMATRIX,
         Element::FECOMPOSITE,
+        Element::FEBLEND,
         Element::FEFLOOD,
         Element::FEGAUSSIANBLUR,
         Element::FEMERGE,

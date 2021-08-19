@@ -16,25 +16,26 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
 /**
- * Tag class AmpFacebookLike.
+ * Tag class AmpFacebookComments10.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
+ * @property-read string $specName
  * @property-read array<string> $attrLists
  * @property-read array<array<string>> $ampLayout
  * @property-read array<string> $htmlFormat
  * @property-read array<string> $requires
  * @property-read array<string> $requiresExtension
  */
-final class AmpFacebookLike extends Tag implements Identifiable
+final class AmpFacebookComments10 extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
      *
      * @var string
      */
-    const ID = 'AMP-FACEBOOK-LIKE';
+    const ID = 'amp-facebook-comments 1.0';
 
     /**
      * Array of spec rules.
@@ -42,9 +43,10 @@ final class AmpFacebookLike extends Tag implements Identifiable
      * @var array
      */
     const SPEC = [
-        SpecRule::TAG_NAME => Extension::FACEBOOK_LIKE,
+        SpecRule::TAG_NAME => Extension::FACEBOOK_COMMENTS,
+        SpecRule::SPEC_NAME => 'amp-facebook-comments 1.0',
         SpecRule::ATTR_LISTS => [
-            AttributeList\AmpFacebookStrict::ID,
+            AttributeList\AmpFacebook::ID,
             AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::AMP_LAYOUT => [
@@ -61,10 +63,10 @@ final class AmpFacebookLike extends Tag implements Identifiable
             Format::AMP,
         ],
         SpecRule::REQUIRES => [
-            'amp-facebook-like 0.1',
+            'amp-facebook 1.0',
         ],
         SpecRule::REQUIRES_EXTENSION => [
-            Extension::FACEBOOK_LIKE,
+            Extension::FACEBOOK,
         ],
     ];
 }

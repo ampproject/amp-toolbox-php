@@ -50,7 +50,7 @@ final class AmpTiktok extends Tag implements Identifiable
         SpecRule::ATTRS => [
             Attribute::DATA_SRC => [
                 SpecRule::MANDATORY => true,
-                SpecRule::VALUE_REGEX => '\d',
+                SpecRule::VALUE_REGEX => '(https://www\.tiktok\.com/.*)?\d+.*',
             ],
         ],
         SpecRule::ATTR_LISTS => [

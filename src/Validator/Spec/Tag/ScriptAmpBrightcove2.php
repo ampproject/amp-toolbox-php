@@ -17,16 +17,18 @@ use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 /**
- * Tag class ScriptAmpLightboxGallery.
+ * Tag class ScriptAmpBrightcove2.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
-final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWithExtensionSpec
+final class ScriptAmpBrightcove2 extends Tag implements Identifiable, TagWithExtensionSpec
 {
     use ExtensionSpec;
 
@@ -35,7 +37,7 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
      *
      * @var string
      */
-    const ID = 'SCRIPT [amp-lightbox-gallery]';
+    const ID = 'SCRIPT [amp-brightcove] (2)';
 
     /**
      * Array of extension spec rules.
@@ -43,13 +45,14 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
      * @var array
      */
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-lightbox-gallery',
+        SpecRule::NAME => 'amp-brightcove',
         SpecRule::VERSION => [
             '0.1',
-            '1.0',
             'latest',
         ],
-        SpecRule::REQUIRES_USAGE => 'NONE',
+        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     /**
@@ -66,12 +69,8 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
      */
     const VERSIONS_META = [
         '0.1' => [
-            'hasCss' => true,
+            'hasCss' => false,
             'hasBento' => false,
-        ],
-        '1.0' => [
-            'hasCss' => true,
-            'hasBento' => true,
         ],
     ];
 
@@ -88,6 +87,12 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-brightcove 0.1',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-brightcove 1.0',
+        ],
     ];
 }

@@ -24,7 +24,9 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
 final class ScriptAmpFacebookPage extends Tag implements Identifiable, TagWithExtensionSpec
 {
@@ -82,6 +84,12 @@ final class ScriptAmpFacebookPage extends Tag implements Identifiable, TagWithEx
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-facebook-page 0.1',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-facebook 1.0',
+        ],
     ];
 }

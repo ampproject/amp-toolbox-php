@@ -17,16 +17,19 @@ use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 /**
- * Tag class ScriptAmpLightboxGallery.
+ * Tag class AmpFacebook10.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
+ * @property-read string $specName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
-final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWithExtensionSpec
+final class AmpFacebook10 extends Tag implements Identifiable, TagWithExtensionSpec
 {
     use ExtensionSpec;
 
@@ -35,7 +38,7 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
      *
      * @var string
      */
-    const ID = 'SCRIPT [amp-lightbox-gallery]';
+    const ID = 'amp-facebook 1.0';
 
     /**
      * Array of extension spec rules.
@@ -43,13 +46,11 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
      * @var array
      */
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-lightbox-gallery',
+        SpecRule::NAME => 'amp-facebook',
         SpecRule::VERSION => [
-            '0.1',
             '1.0',
-            'latest',
         ],
-        SpecRule::REQUIRES_USAGE => 'NONE',
+        SpecRule::VERSION_NAME => 'v1.0',
     ];
 
     /**
@@ -65,10 +66,6 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
      * @var array
      */
     const VERSIONS_META = [
-        '0.1' => [
-            'hasCss' => true,
-            'hasBento' => false,
-        ],
         '1.0' => [
             'hasCss' => true,
             'hasBento' => true,
@@ -82,12 +79,22 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
      */
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'amp-facebook 1.0',
         SpecRule::ATTR_LISTS => [
             AttributeList\CommonExtensionAttrs::ID,
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-facebook 1.0',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-facebook 0.1',
+            'amp-facebook-comments 0.1',
+            'amp-facebook-like 0.1',
+            'amp-facebook-page 0.1',
+        ],
     ];
 }

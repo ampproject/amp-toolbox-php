@@ -24,7 +24,9 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
 final class ScriptAmpBrightcove extends Tag implements Identifiable, TagWithExtensionSpec
 {
@@ -45,11 +47,9 @@ final class ScriptAmpBrightcove extends Tag implements Identifiable, TagWithExte
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-brightcove',
         SpecRule::VERSION => [
-            '0.1',
-            'latest',
+            '1.0',
         ],
-        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
-        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v1.0',
     ];
 
     /**
@@ -65,9 +65,9 @@ final class ScriptAmpBrightcove extends Tag implements Identifiable, TagWithExte
      * @var array
      */
     const VERSIONS_META = [
-        '0.1' => [
-            'hasCss' => false,
-            'hasBento' => false,
+        '1.0' => [
+            'hasCss' => true,
+            'hasBento' => true,
         ],
     ];
 
@@ -84,6 +84,12 @@ final class ScriptAmpBrightcove extends Tag implements Identifiable, TagWithExte
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-brightcove 1.0',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-brightcove 0.1',
+        ],
     ];
 }
