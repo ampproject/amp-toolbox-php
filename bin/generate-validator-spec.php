@@ -66,10 +66,9 @@ function fetch_json($url, $cache = false)
 
     $json       = null;
     $cache_file = sys_get_temp_dir() . '/amp-toolbox-php-' . md5($url);
-    if ($cache) {
-        if (file_exists($cache_file)) {
-            $json = file_get_contents($cache_file);
-        }
+
+    if ($cache && file_exists($cache_file)) {
+        $json = file_get_contents($cache_file);
     }
 
     if ($json === null || $json === false) {
@@ -81,9 +80,11 @@ function fetch_json($url, $cache = false)
     }
 
     $data = json_decode($json, true);
+
     if (json_last_error()) {
         throw new RuntimeException('JSON parse error: ' . json_last_error_msg());
     }
+
     if (!is_array($data)) {
         throw new UnexpectedValueException('Expected an associative array.');
     }
