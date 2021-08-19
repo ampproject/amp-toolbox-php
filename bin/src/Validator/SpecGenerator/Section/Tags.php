@@ -50,6 +50,8 @@ final class Tags implements Section
         $namespace->addUse("LogicException");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\AggregateTag");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\AggregateTagWithExtensionSpec");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
 
@@ -140,9 +142,18 @@ final class Tags implements Section
             }
 
             if (array_key_exists('extensionSpec', $tags[$tagId])) {
-                $extensionSpec                   = $tags[$tagId]['extensionSpec'];
-                $extensionName                   = $this->getKeyString($extensionSpec['name']);
-                $byExtensionSpec[$extensionName] = $tagIdString;
+                $extensionSpec = $tags[$tagId]['extensionSpec'];
+                $extensionSpec = $this->getKeyString($extensionSpec['name']);
+                if (array_key_exists($extensionSpec, $byExtensionSpec)) {
+                    if (!is_array($byExtensionSpec[$extensionSpec])) {
+                        $previousTagId                     = $byExtensionSpec[$extensionSpec];
+                        $byExtensionSpec[$extensionSpec]   = [];
+                        $byExtensionSpec[$extensionSpec][] = $previousTagId;
+                    }
+                    $byExtensionSpec[$extensionSpec][] = $tagIdString;
+                } else {
+                    $byExtensionSpec[$extensionSpec] = $tagIdString;
+                }
             }
         }
 
@@ -169,9 +180,9 @@ final class Tags implements Section
 
         $class->addConstant('BY_EXTENSION_SPEC', $byExtensionSpec)
             ->addComment(
-                "Mapping of extension name to tag ID.\n\n"
+                "Mapping of extension name to tag ID or array of tag IDs.\n\n"
                 . "This is used to optimize querying by extension spec.\n\n"
-                . "@var array<string>"
+                . "@var array<string|array<string>>"
             );
     }
 

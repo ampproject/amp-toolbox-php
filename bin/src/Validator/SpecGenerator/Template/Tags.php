@@ -6,6 +6,10 @@ use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Exception\InvalidTagId;
+use AmpProject\Exception\InvalidTagName;
+use AmpProject\Validator\Spec\AggregateTag;
+use AmpProject\Validator\Spec\AggregateTagWithExtensionSpec;
+use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 use LogicException;
 
@@ -61,6 +65,43 @@ final class Tags
     }
 
     /**
+     * Get a tag by aggregating all tag specs that match a tag name.
+     *
+     * This returns a singular Tag instance if only one tag entry matches.
+     *
+     * If more tag entries match, it provides an AggregateTag instance that transparently represents all of them.
+     *
+     * @param string $tagName Tag name to get the aggregated tag for.
+     * @return Tag Tag object that matches the tag name.
+     */
+    public function byAggregateTagName($tagName)
+    {
+        $tags = $this->byTagName($tagName);
+
+        switch (count($tags)) {
+            case 0:
+                throw InvalidTagName::forTagName($tagName);
+            case 1:
+                return $tags[0];
+            default:
+                $withExtensionSpec = true;
+
+                foreach ($tags as $tag) {
+                    if (! $tag instanceof TagWithExtensionSpec) {
+                        $withExtensionSpec = false;
+                    }
+                }
+
+                if ($withExtensionSpec) {
+                    /** @var TagWithExtensionSpec[] $tags */
+                    return new AggregateTagWithExtensionSpec($tags);
+                }
+
+                return new AggregateTag($tags);
+        }
+    }
+
+    /**
      * Get the tag for a given spec name.
      *
      * @param string $specName Spec name to get the tag for.
@@ -103,26 +144,67 @@ final class Tags
     }
 
     /**
-     * Get the tag for a given extension spec name.
+     * Get the collection of tags for a given extension spec name.
      *
      * @param string $extension Extension name to get the extension spec for.
-     * @return TagWithExtensionSpec Tag with the given extension spec name.
-     * @throws InvalidExtension If an invalid extension name is requested.
+     * @return TagWithExtensionSpec[] Tags with the given extension spec name.
      * @throws LogicException If tag is not an instance of TagWithExtensionSpec.
      */
     public function byExtensionSpec($extension)
     {
+        $extension = strtolower($extension);
+
         if (!array_key_exists($extension, self::BY_EXTENSION_SPEC)) {
-            throw InvalidExtension::forExtension($extension);
+            return [];
         }
 
-        $tag = $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
-
-        if (!$tag instanceof TagWithExtensionSpec) {
-            throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
+        $tagIds = self::BY_EXTENSION_SPEC[$extension];
+        if (!is_array($tagIds)) {
+            $tagIds = [$tagIds];
         }
 
-        return $tag;
+        $tags = [];
+        foreach ($tagIds as $tagId) {
+            $tag = $this->byTagId($tagId);
+
+            if (!$tag instanceof TagWithExtensionSpec) {
+                throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
+            }
+
+            $tags[] = $tag;
+        }
+
+        return $tags;
+    }
+
+    /**
+     * Get a tag by aggregating all tag specs that match an extension spec.
+     *
+     * This returns a singular Tag instance if only one tag entry matches.
+     *
+     * If more tag entries match, it provides an AggregateTag instance that transparently represents all of them.
+     *
+     * @param string $extension Extension spec to get the aggregated tag for.
+     * @return TagWithExtensionSpec Tag object that matches the extension spec.
+     */
+    public function byAggregateExtensionSpec($extension)
+    {
+        $tags = $this->byExtensionSpec($extension);
+
+        switch (count($tags)) {
+            case 0:
+                throw InvalidExtension::forExtension($extension);
+            case 1:
+                return $tags[0];
+            default:
+                foreach ($tags as $tag) {
+                    if (! $tag instanceof TagWithExtensionSpec) {
+                        throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
+                    }
+                }
+
+                return new AggregateTagWithExtensionSpec($tags);
+        }
     }
 
     /**

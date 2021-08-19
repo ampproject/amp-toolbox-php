@@ -19,22 +19,21 @@ trait ExtensionSpec
      */
     public function getExtensionName()
     {
-        if (! array_key_exists(SpecRule::NAME, self::EXTENSION_SPEC)) {
+        if (! array_key_exists(SpecRule::NAME, static::EXTENSION_SPEC)) {
             return 'unknown';
         }
 
-        return self::EXTENSION_SPEC[SpecRule::NAME];
+        return static::EXTENSION_SPEC[SpecRule::NAME];
     }
 
     /**
      * Get the latest available version of the extension.
      *
-     * phpcs:disable Generic.Files.LineLength.TooLong
      * @return string Latest available version.
      */
     public function getLatestVersion()
     {
-        return self::LATEST_VERSION;
+        return static::LATEST_VERSION;
     }
 
     /**
@@ -44,10 +43,20 @@ trait ExtensionSpec
      */
     public function getExtensionType()
     {
-        if (! array_key_exists(SpecRule::EXTENSION_TYPE, self::EXTENSION_SPEC)) {
+        if (! array_key_exists(SpecRule::EXTENSION_TYPE, static::EXTENSION_SPEC)) {
             return Attribute::CUSTOM_ELEMENT;
         }
 
-        return str_replace('_', '-', strtolower(self::EXTENSION_SPEC[SpecRule::EXTENSION_TYPE]));
+        return str_replace('_', '-', strtolower(static::EXTENSION_SPEC[SpecRule::EXTENSION_TYPE]));
+    }
+
+    /**
+     * Get the associative array of versions meta data.
+     *
+     * @return array
+     */
+    public function getVersionsMeta()
+    {
+        return static::VERSIONS_META;
     }
 }

@@ -94,24 +94,9 @@ class Tag
      * Get a specific spec rule.
      *
      * @param string $specRuleName Name of the spec rule to get.
-     * @return array Spec rule data that was requested.
+     * @return mixed Spec rule data that was requested.
      */
     public function get($specRuleName)
-    {
-        if (!$this->has($specRuleName)) {
-            throw InvalidSpecRuleName::forSpecRuleName($specRuleName);
-        }
-
-        return static::SPEC[$specRuleName];
-    }
-
-    /**
-     * Magic getter to return the spec rules.
-     *
-     * @param string $specRuleName Name of the spec rule to return.
-     * @return mixed Value of the spec rule.
-     */
-    public function __get($specRuleName)
     {
         switch ($specRuleName) {
             case 'id':
@@ -135,11 +120,22 @@ class Tag
             case SpecRule::SATISFIES:
                 return array_key_exists($specRuleName, static::SPEC) ? static::SPEC[$specRuleName] : [];
             default:
-                if (!array_key_exists($specRuleName, static::SPEC)) {
+                if (!$this->has($specRuleName)) {
                     throw InvalidSpecRuleName::forSpecRuleName($specRuleName);
                 }
 
                 return static::SPEC[$specRuleName];
         }
+    }
+
+    /**
+     * Magic getter to return the spec rules.
+     *
+     * @param string $specRuleName Name of the spec rule to return.
+     * @return mixed Value of the spec rule.
+     */
+    public function __get($specRuleName)
+    {
+        return $this->get($specRuleName);
     }
 }
