@@ -16,8 +16,14 @@ $specGenerator      = new SpecGenerator();
 $destination        = !empty($argv[1]) ? $argv[1] : dirname(__DIR__) . '/src/Validator';
 $spec_url           = 'https://cdn.ampproject.org/v0/validator.json';
 $latest_release_url = 'https://api.github.com/repos/ampproject/amphtml/releases/latest';
-$bundle_config_url  = 'https://raw.githubusercontent.com/ampproject/amphtml/%s/build-system/compile/bundles.config.extensions.json'; // phpcs:ignore Generic.Files.LineLength.TooLong
+$bundle_config_url  = 'https://raw.githubusercontent.com/ampproject/amphtml/%s'
+                      . '/build-system/compile/bundles.config.extensions.json';
 
+/**
+ * Recursively remove an entire directory and all of its files/subdirectories.
+ *
+ * @param string $directory Directory to remove.
+ */
 function recursivelyRemoveDirectory($directory)
 {
     if (is_dir($directory)) {
@@ -46,7 +52,8 @@ function recursivelyRemoveDirectory($directory)
  * @param bool   $cache Whether to cache response in temp directory.
  *
  * @return array Data.
- * @throws Exception When there is a fetch failure, the JSON is invalid, or the JSON is not an array.
+ * @throws RuntimeException         When the JSON data cannot be parsed.RuntimeException
+ * @throws UnexpectedValueException When the JSON data is not an array.
  */
 function fetch_json($url, $cache = false)
 {
@@ -57,23 +64,27 @@ function fetch_json($url, $cache = false)
     ]);
 
     $json       = null;
-    $cache_file = sys_get_temp_dir() . '/amp-toolbox-php' . md5($url);
+    $cache_file = sys_get_temp_dir() . '/amp-toolbox-php-' . md5($url);
     if ($cache) {
         if (file_exists($cache_file)) {
             $json = file_get_contents($cache_file);
         }
     }
 
-    if (null === $json) {
+    if ($json === null || $json === false) {
         $json = file_get_contents($url, false, $stream_context);
+    }
+
+    if ($json === false) {
+        throw new RuntimeException('Failed to retrieve the JSON file at: ' . $url);
     }
 
     $data = json_decode($json, true);
     if (json_last_error()) {
-        throw new Exception('JSON parse error: ' . json_last_error_msg());
+        throw new RuntimeException('JSON parse error: ' . json_last_error_msg());
     }
     if (!is_array($data)) {
-        throw new Exception('Expected an associative array.');
+        throw new UnexpectedValueException('Expected an associative array.');
     }
 
     if ($cache) {
@@ -90,11 +101,11 @@ try {
     recursivelyRemoveDirectory($destination);
     echo "\n";
 
-    echo "Fetching $spec_url...";
+    echo "Fetching {$spec_url}...";
     $spec_data = fetch_json($spec_url, $cache);
     echo "\n";
 
-    echo "Fetching $latest_release_url...";
+    echo "Fetching {$latest_release_url}...";
     $latest_release = fetch_json($latest_release_url, $cache);
     if (!isset($latest_release['name'])) {
         echo " Missing release name\n";
@@ -103,7 +114,7 @@ try {
     echo "\n";
 
     $latest_bundle_config_url = sprintf($bundle_config_url, $latest_release['name']);
-    echo "Fetching $latest_bundle_config_url...";
+    echo "Fetching {$latest_bundle_config_url}...";
     $bundle_config = fetch_json($latest_bundle_config_url, $cache);
     echo "\n";
 
