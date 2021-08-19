@@ -91,6 +91,12 @@ final class A extends Tag implements Identifiable
             Attribute::ROLE => [
                 SpecRule::IMPLICIT => true,
             ],
+            Attribute::SHOW_TOOLTIP => [
+                SpecRule::VALUE => [
+                    'auto',
+                    'true',
+                ],
+            ],
             Attribute::TABINDEX => [
                 SpecRule::IMPLICIT => true,
             ],
@@ -107,16 +113,12 @@ final class A extends Tag implements Identifiable
                     'application/rss+xml',
                 ],
             ],
-            Attribute::SHOW_TOOLTIP => [
-                SpecRule::VALUE => [
-                    'auto',
-                    'true',
-                ],
-            ],
             '[href]' => [],
         ],
         SpecRule::ATTR_LISTS => [
+            AttributeList\ClickAttributions::ID,
             AttributeList\NameAttr::ID,
+            AttributeList\PrivateClickMeasurementAttributes::ID,
         ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#links',
         SpecRule::HTML_FORMAT => [

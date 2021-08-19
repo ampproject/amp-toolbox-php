@@ -11,10 +11,13 @@ use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Exception\InvalidTagId;
+use AmpProject\Exception\InvalidTagName;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Internal;
 use AmpProject\Tag as Element;
+use AmpProject\Validator\Spec\AggregateTag;
+use AmpProject\Validator\Spec\AggregateTagWithExtensionSpec;
 use AmpProject\Validator\Spec\IterableSection;
 use AmpProject\Validator\Spec\Iteration;
 use AmpProject\Validator\Spec\Tag;
@@ -399,6 +402,7 @@ final class Tags implements IterableSection
         Tag\ScriptAmpBridPlayer::ID => Tag\ScriptAmpBridPlayer::class,
         Tag\AmpBridPlayer::ID => Tag\AmpBridPlayer::class,
         Tag\ScriptAmpBrightcove::ID => Tag\ScriptAmpBrightcove::class,
+        Tag\ScriptAmpBrightcove2::ID => Tag\ScriptAmpBrightcove2::class,
         Tag\AmpBrightcove::ID => Tag\AmpBrightcove::class,
         Tag\ScriptAmpBysideContent::ID => Tag\ScriptAmpBysideContent::class,
         Tag\AmpBysideContent::ID => Tag\AmpBysideContent::class,
@@ -445,8 +449,12 @@ final class Tags implements IterableSection
         Tag\AmpFacebookLike::ID => Tag\AmpFacebookLike::class,
         Tag\ScriptAmpFacebookPage::ID => Tag\ScriptAmpFacebookPage::class,
         Tag\AmpFacebookPage::ID => Tag\AmpFacebookPage::class,
+        Tag\AmpFacebook10::ID => Tag\AmpFacebook10::class,
         Tag\ScriptAmpFacebook::ID => Tag\ScriptAmpFacebook::class,
         Tag\AmpFacebook::ID => Tag\AmpFacebook::class,
+        Tag\AmpFacebookComments10::ID => Tag\AmpFacebookComments10::class,
+        Tag\AmpFacebookLike10::ID => Tag\AmpFacebookLike10::class,
+        Tag\AmpFacebookPage10::ID => Tag\AmpFacebookPage10::class,
         Tag\ScriptAmpFitText::ID => Tag\ScriptAmpFitText::class,
         Tag\ScriptAmpFitText2::ID => Tag\ScriptAmpFitText2::class,
         Tag\ScriptCustomElementAmpFitTextAmp4email::ID => Tag\ScriptCustomElementAmpFitTextAmp4email::class,
@@ -653,6 +661,8 @@ final class Tags implements IterableSection
         Tag\AmpStoryInteractivePoll::ID => Tag\AmpStoryInteractivePoll::class,
         Tag\AmpStoryInteractiveBinaryPoll::ID => Tag\AmpStoryInteractiveBinaryPoll::class,
         Tag\AmpStoryInteractiveResults::ID => Tag\AmpStoryInteractiveResults::class,
+        Tag\AmpStoryInteractiveImgQuiz::ID => Tag\AmpStoryInteractiveImgQuiz::class,
+        Tag\AmpStoryInteractiveImgPoll::ID => Tag\AmpStoryInteractiveImgPoll::class,
         Tag\ScriptAmpStoryPanningMedia::ID => Tag\ScriptAmpStoryPanningMedia::class,
         Tag\AmpStoryPanningMedia::ID => Tag\AmpStoryPanningMedia::class,
         Tag\ScriptAmpStoryPlayer::ID => Tag\ScriptAmpStoryPlayer::class,
@@ -766,6 +776,7 @@ final class Tags implements IterableSection
             Tag\AmpConsentExtensionJsonScript::ID,
             Tag\AmpExperimentExtensionJsonScript::ID,
             Tag\AmpExperimentStoryExtensionJsonScript::ID,
+            Tag\AmpFacebook10::ID,
             Tag\AmpGeoExtensionJsonScript::ID,
             Tag\AmpImaVideoScriptTypeApplicationJson::ID,
             Tag\AmpLinkRewriterExtensionJsonScript::ID,
@@ -818,6 +829,7 @@ final class Tags implements IterableSection
             Tag\ScriptAmpBodymovinAnimation::ID,
             Tag\ScriptAmpBridPlayer::ID,
             Tag\ScriptAmpBrightcove::ID,
+            Tag\ScriptAmpBrightcove2::ID,
             Tag\ScriptAmpBysideContent::ID,
             Tag\ScriptAmpCacheUrl::ID,
             Tag\ScriptAmpCallTracking::ID,
@@ -1073,9 +1085,18 @@ final class Tags implements IterableSection
         Extension::EMBEDLY_KEY => Tag\AmpEmbedlyKey::ID,
         Extension::EXPERIMENT => Tag\AmpExperiment::ID,
         Extension::FACEBOOK => Tag\AmpFacebook::ID,
-        Extension::FACEBOOK_COMMENTS => Tag\AmpFacebookComments::ID,
-        Extension::FACEBOOK_LIKE => Tag\AmpFacebookLike::ID,
-        Extension::FACEBOOK_PAGE => Tag\AmpFacebookPage::ID,
+        Extension::FACEBOOK_COMMENTS => [
+            Tag\AmpFacebookComments::ID,
+            Tag\AmpFacebookComments10::ID,
+        ],
+        Extension::FACEBOOK_LIKE => [
+            Tag\AmpFacebookLike::ID,
+            Tag\AmpFacebookLike10::ID,
+        ],
+        Extension::FACEBOOK_PAGE => [
+            Tag\AmpFacebookPage::ID,
+            Tag\AmpFacebookPage10::ID,
+        ],
         Extension::FIT_TEXT => Tag\AmpFitText::ID,
         Extension::FONT => Tag\AmpFont::ID,
         Extension::FX_FLYING_CARPET => Tag\AmpFxFlyingCarpet::ID,
@@ -1207,6 +1228,8 @@ final class Tags implements IterableSection
         Extension::STORY_CTA_LAYER => Tag\AmpStoryCtaLayer::ID,
         Extension::STORY_GRID_LAYER => Tag\AmpStoryGridLayer::ID,
         Extension::STORY_INTERACTIVE_BINARY_POLL => Tag\AmpStoryInteractiveBinaryPoll::ID,
+        Extension::STORY_INTERACTIVE_IMG_POLL => Tag\AmpStoryInteractiveImgPoll::ID,
+        Extension::STORY_INTERACTIVE_IMG_QUIZ => Tag\AmpStoryInteractiveImgQuiz::ID,
         Extension::STORY_INTERACTIVE_POLL => Tag\AmpStoryInteractivePoll::ID,
         Extension::STORY_INTERACTIVE_QUIZ => Tag\AmpStoryInteractiveQuiz::ID,
         Extension::STORY_INTERACTIVE_RESULTS => Tag\AmpStoryInteractiveResults::ID,
@@ -1567,6 +1590,10 @@ final class Tags implements IterableSection
         Tag\AmpEmbedWithDataMultiSizeAttribute::ID => Tag\AmpEmbedWithDataMultiSizeAttribute::ID,
         Tag\AmpExperimentExtensionJsonScript::ID => Tag\AmpExperimentExtensionJsonScript::ID,
         Tag\AmpExperimentStoryExtensionJsonScript::ID => Tag\AmpExperimentStoryExtensionJsonScript::ID,
+        Tag\AmpFacebookComments10::ID => Tag\AmpFacebookComments10::ID,
+        Tag\AmpFacebookLike10::ID => Tag\AmpFacebookLike10::ID,
+        Tag\AmpFacebookPage10::ID => Tag\AmpFacebookPage10::ID,
+        Tag\AmpFacebook10::ID => Tag\AmpFacebook10::ID,
         Tag\AmpGeoExtensionJsonScript::ID => Tag\AmpGeoExtensionJsonScript::ID,
         Tag\AmpImaVideoScriptTypeApplicationJson::ID => Tag\AmpImaVideoScriptTypeApplicationJson::ID,
         Tag\AmpImaVideoSource::ID => Tag\AmpImaVideoSource::ID,
@@ -1862,8 +1889,12 @@ final class Tags implements IterableSection
             Tag\AmpExperimentStoryExtensionJsonScript::ID,
             Tag\AmpFacebook::ID,
             Tag\AmpFacebookComments::ID,
+            Tag\AmpFacebookComments10::ID,
             Tag\AmpFacebookLike::ID,
+            Tag\AmpFacebookLike10::ID,
             Tag\AmpFacebookPage::ID,
+            Tag\AmpFacebookPage10::ID,
+            Tag\AmpFacebook10::ID,
             Tag\AmpFitText::ID,
             Tag\AmpFont::ID,
             Tag\AmpFxFlyingCarpet::ID,
@@ -1982,6 +2013,8 @@ final class Tags implements IterableSection
             Tag\AmpStoryGridLayerAnimateIn::ID,
             Tag\AmpStoryGridLayerDefault::ID,
             Tag\AmpStoryInteractiveBinaryPoll::ID,
+            Tag\AmpStoryInteractiveImgPoll::ID,
+            Tag\AmpStoryInteractiveImgQuiz::ID,
             Tag\AmpStoryInteractivePoll::ID,
             Tag\AmpStoryInteractiveQuiz::ID,
             Tag\AmpStoryInteractiveResults::ID,
@@ -2266,6 +2299,7 @@ final class Tags implements IterableSection
             Tag\ScriptAmpBodymovinAnimation::ID,
             Tag\ScriptAmpBridPlayer::ID,
             Tag\ScriptAmpBrightcove::ID,
+            Tag\ScriptAmpBrightcove2::ID,
             Tag\ScriptAmpBysideContent::ID,
             Tag\ScriptAmpCacheUrl::ID,
             Tag\ScriptAmpCallTracking::ID,
@@ -2841,22 +2875,33 @@ final class Tags implements IterableSection
     ];
 
     /**
-     * Mapping of extension name to tag ID.
+     * Mapping of extension name to tag ID or array of tag IDs.
      *
      * This is used to optimize querying by extension spec.
      *
-     * @var array<string>
+     * @var array<string|array<string>>
      */
     const BY_EXTENSION_SPEC = [
         Extension::AD => Tag\AmpAdExtensionScript::ID,
-        Extension::ANIM => Tag\ScriptAmpAnim::ID,
+        Extension::ANIM => [
+            Tag\AmpAnimExtensionScriptAmp4email::ID,
+            Tag\ScriptAmpAnim::ID,
+        ],
+        Extension::FACEBOOK => [
+            Tag\AmpFacebook10::ID,
+            Tag\ScriptAmpFacebook::ID,
+        ],
         Extension::_3D_GLTF => Tag\ScriptAmp3dGltf::ID,
         Extension::_3Q_PLAYER => Tag\ScriptAmp3qPlayer::ID,
         Extension::ACCESS_LATERPAY => Tag\ScriptAmpAccessLaterpay::ID,
         Extension::ACCESS_POOOL => Tag\ScriptAmpAccessPoool::ID,
         Extension::ACCESS_SCROLL => Tag\ScriptAmpAccessScroll::ID,
         Extension::ACCESS => Tag\ScriptAmpAccess::ID,
-        Extension::ACCORDION => Tag\ScriptCustomElementAmpAccordionAmp4email::ID,
+        Extension::ACCORDION => [
+            Tag\ScriptAmpAccordion::ID,
+            Tag\ScriptAmpAccordion2::ID,
+            Tag\ScriptCustomElementAmpAccordionAmp4email::ID,
+        ],
         Extension::ACTION_MACRO => Tag\ScriptAmpActionMacro::ID,
         Extension::AD_CUSTOM => Tag\ScriptAmpAdCustom::ID,
         Extension::AD_EXIT => Tag\ScriptAmpAdExit::ID,
@@ -2867,17 +2912,29 @@ final class Tags implements IterableSection
         Extension::APP_BANNER => Tag\ScriptAmpAppBanner::ID,
         Extension::AUDIO => Tag\ScriptAmpAudio::ID,
         Extension::AUTO_ADS => Tag\ScriptAmpAutoAds::ID,
-        Extension::AUTOCOMPLETE => Tag\ScriptCustomElementAmpAutocompleteAmp4email::ID,
+        Extension::AUTOCOMPLETE => [
+            Tag\ScriptAmpAutocomplete::ID,
+            Tag\ScriptCustomElementAmpAutocompleteAmp4email::ID,
+        ],
         Extension::BASE_CAROUSEL => Tag\ScriptAmpBaseCarousel::ID,
         Extension::BEOPINION => Tag\ScriptAmpBeopinion::ID,
-        Extension::BIND => Tag\ScriptCustomElementAmpBindAmp4email::ID,
+        Extension::BIND => [
+            Tag\ScriptAmpBind::ID,
+            Tag\ScriptCustomElementAmpBindAmp4email::ID,
+        ],
         Extension::BODYMOVIN_ANIMATION => Tag\ScriptAmpBodymovinAnimation::ID,
         Extension::BRID_PLAYER => Tag\ScriptAmpBridPlayer::ID,
-        Extension::BRIGHTCOVE => Tag\ScriptAmpBrightcove::ID,
+        Extension::BRIGHTCOVE => [
+            Tag\ScriptAmpBrightcove::ID,
+            Tag\ScriptAmpBrightcove2::ID,
+        ],
         Extension::BYSIDE_CONTENT => Tag\ScriptAmpBysideContent::ID,
         Extension::CACHE_URL => Tag\ScriptAmpCacheUrl::ID,
         Extension::CALL_TRACKING => Tag\ScriptAmpCallTracking::ID,
-        Extension::CAROUSEL => Tag\ScriptCustomElementAmpCarouselAmp4email::ID,
+        Extension::CAROUSEL => [
+            Tag\ScriptAmpCarousel::ID,
+            Tag\ScriptCustomElementAmpCarouselAmp4email::ID,
+        ],
         Extension::CONNATIX_PLAYER => Tag\ScriptAmpConnatixPlayer::ID,
         Extension::CONSENT => Tag\ScriptAmpConsent::ID,
         Extension::DAILYMOTION => Tag\ScriptAmpDailymotion::ID,
@@ -2891,10 +2948,16 @@ final class Tags implements IterableSection
         Extension::FACEBOOK_COMMENTS => Tag\ScriptAmpFacebookComments::ID,
         Extension::FACEBOOK_LIKE => Tag\ScriptAmpFacebookLike::ID,
         Extension::FACEBOOK_PAGE => Tag\ScriptAmpFacebookPage::ID,
-        Extension::FACEBOOK => Tag\ScriptAmpFacebook::ID,
-        Extension::FIT_TEXT => Tag\ScriptCustomElementAmpFitTextAmp4email::ID,
+        Extension::FIT_TEXT => [
+            Tag\ScriptAmpFitText::ID,
+            Tag\ScriptAmpFitText2::ID,
+            Tag\ScriptCustomElementAmpFitTextAmp4email::ID,
+        ],
         Extension::FONT => Tag\ScriptAmpFont::ID,
-        Extension::FORM => Tag\ScriptCustomElementAmpFormAmp4email::ID,
+        Extension::FORM => [
+            Tag\ScriptAmpForm::ID,
+            Tag\ScriptCustomElementAmpFormAmp4email::ID,
+        ],
         Extension::FX_COLLECTION => Tag\ScriptAmpFxCollection::ID,
         Extension::FX_FLYING_CARPET => Tag\ScriptAmpFxFlyingCarpet::ID,
         Extension::GEO => Tag\ScriptAmpGeo::ID,
@@ -2906,20 +2969,34 @@ final class Tags implements IterableSection
         Extension::IFRAMELY => Tag\ScriptAmpIframely::ID,
         Extension::IFRAME => Tag\ScriptAmpIframe::ID,
         Extension::IMA_VIDEO => Tag\ScriptAmpImaVideo::ID,
-        Extension::IMAGE_LIGHTBOX => Tag\ScriptCustomElementAmpImageLightboxAmp4email::ID,
+        Extension::IMAGE_LIGHTBOX => [
+            Tag\ScriptAmpImageLightbox::ID,
+            Tag\ScriptCustomElementAmpImageLightboxAmp4email::ID,
+        ],
         Extension::IMAGE_SLIDER => Tag\ScriptAmpImageSlider::ID,
         Extension::IMGUR => Tag\ScriptAmpImgur::ID,
         Extension::INLINE_GALLERY => Tag\ScriptAmpInlineGallery::ID,
         Extension::INPUTMASK => Tag\ScriptAmpInputmask::ID,
-        Extension::INSTAGRAM => Tag\ScriptAmpInstagram2::ID,
+        Extension::INSTAGRAM => [
+            Tag\ScriptAmpInstagram::ID,
+            Tag\ScriptAmpInstagram2::ID,
+        ],
         Extension::INSTALL_SERVICEWORKER => Tag\ScriptAmpInstallServiceworker::ID,
         Extension::IZLESENE => Tag\ScriptAmpIzlesene::ID,
         Extension::JWPLAYER => Tag\ScriptAmpJwplayer::ID,
         Extension::KALTURA_PLAYER => Tag\ScriptAmpKalturaPlayer::ID,
         Extension::LIGHTBOX_GALLERY => Tag\ScriptAmpLightboxGallery::ID,
-        Extension::LIGHTBOX => Tag\ScriptCustomElementAmpLightboxAmp4email::ID,
+        Extension::LIGHTBOX => [
+            Tag\ScriptAmpLightbox::ID,
+            Tag\ScriptAmpLightbox2::ID,
+            Tag\ScriptCustomElementAmpLightboxAmp4ads::ID,
+            Tag\ScriptCustomElementAmpLightboxAmp4email::ID,
+        ],
         Extension::LINK_REWRITER => Tag\ScriptAmpLinkRewriter::ID,
-        Extension::LIST_ => Tag\ScriptCustomElementAmpListAmp4email::ID,
+        Extension::LIST_ => [
+            Tag\ScriptAmpList::ID,
+            Tag\ScriptCustomElementAmpListAmp4email::ID,
+        ],
         Extension::LIVE_LIST => Tag\ScriptAmpLiveList::ID,
         Extension::MATHML => Tag\ScriptAmpMathml::ID,
         Extension::MEGA_MENU => Tag\ScriptAmpMegaMenu::ID,
@@ -2927,7 +3004,11 @@ final class Tags implements IterableSection
         Extension::MINUTE_MEDIA_PLAYER => Tag\ScriptAmpMinuteMediaPlayer::ID,
         Extension::MOWPLAYER => Tag\ScriptAmpMowplayer::ID,
         Extension::MRAID => Tag\ScriptAmpMraid::ID,
-        Extension::MUSTACHE => Tag\ScriptCustomTemplateAmpMustacheAmp4email::ID,
+        Extension::MUSTACHE => [
+            Tag\ScriptAmpMustache::ID,
+            Tag\ScriptCustomTemplateAmpMustacheAmp4ads::ID,
+            Tag\ScriptCustomTemplateAmpMustacheAmp4email::ID,
+        ],
         Extension::NESTED_MENU => Tag\ScriptAmpNestedMenu::ID,
         Extension::NEXT_PAGE => Tag\ScriptAmpNextPage::ID,
         Extension::NEXXTV_PLAYER => Tag\ScriptAmpNexxtvPlayer::ID,
@@ -2947,13 +3028,26 @@ final class Tags implements IterableSection
         Extension::RENDER => Tag\ScriptAmpRender::ID,
         Extension::RIDDLE_QUIZ => Tag\ScriptAmpRiddleQuiz::ID,
         Extension::SCRIPT => Tag\ScriptAmpScript::ID,
-        Extension::SELECTOR => Tag\ScriptCustomElementAmpSelectorAmp4email::ID,
-        Extension::SIDEBAR => Tag\ScriptCustomElementAmpSidebarAmp4email::ID,
+        Extension::SELECTOR => [
+            Tag\ScriptAmpSelector::ID,
+            Tag\ScriptAmpSelector2::ID,
+            Tag\ScriptCustomElementAmpSelectorAmp4email::ID,
+        ],
+        Extension::SIDEBAR => [
+            Tag\ScriptAmpSidebar::ID,
+            Tag\ScriptCustomElementAmpSidebarAmp4email::ID,
+        ],
         Extension::SKIMLINKS => Tag\ScriptAmpSkimlinks::ID,
         Extension::SLIDES => Tag\ScriptAmpSlides::ID,
         Extension::SMARTLINKS => Tag\ScriptAmpSmartlinks::ID,
-        Extension::SOCIAL_SHARE => Tag\ScriptAmpSocialShare2::ID,
-        Extension::SOUNDCLOUD => Tag\ScriptAmpSoundcloud2::ID,
+        Extension::SOCIAL_SHARE => [
+            Tag\ScriptAmpSocialShare::ID,
+            Tag\ScriptAmpSocialShare2::ID,
+        ],
+        Extension::SOUNDCLOUD => [
+            Tag\ScriptAmpSoundcloud::ID,
+            Tag\ScriptAmpSoundcloud2::ID,
+        ],
         Extension::SPRINGBOARD_PLAYER => Tag\ScriptAmpSpringboardPlayer::ID,
         Extension::STICKY_AD => Tag\ScriptAmpStickyAd::ID,
         Extension::STORY_360 => Tag\ScriptAmpStory360::ID,
@@ -2967,14 +3061,29 @@ final class Tags implements IterableSection
         Extension::SUBSCRIPTIONS_GOOGLE => Tag\ScriptAmpSubscriptionsGoogle::ID,
         Extension::SUBSCRIPTIONS => Tag\ScriptAmpSubscriptions::ID,
         Extension::TIKTOK => Tag\ScriptAmpTiktok::ID,
-        Extension::TIMEAGO => Tag\ScriptCustomElementAmpTimeagoAmp4email::ID,
+        Extension::TIMEAGO => [
+            Tag\ScriptAmpTimeago::ID,
+            Tag\ScriptCustomElementAmpTimeagoAmp4email::ID,
+        ],
         Extension::TRUNCATE_TEXT => Tag\ScriptAmpTruncateText::ID,
-        Extension::TWITTER => Tag\ScriptAmpTwitter2::ID,
+        Extension::TWITTER => [
+            Tag\ScriptAmpTwitter::ID,
+            Tag\ScriptAmpTwitter2::ID,
+        ],
         Extension::USER_NOTIFICATION => Tag\ScriptAmpUserNotification::ID,
         Extension::VIDEO_DOCKING => Tag\ScriptAmpVideoDocking::ID,
-        Extension::VIDEO_IFRAME => Tag\ScriptAmpVideoIframe2::ID,
-        Extension::VIDEO => Tag\ScriptAmpVideo2::ID,
-        Extension::VIMEO => Tag\ScriptAmpVimeo2::ID,
+        Extension::VIDEO_IFRAME => [
+            Tag\ScriptAmpVideoIframe::ID,
+            Tag\ScriptAmpVideoIframe2::ID,
+        ],
+        Extension::VIDEO => [
+            Tag\ScriptAmpVideo::ID,
+            Tag\ScriptAmpVideo2::ID,
+        ],
+        Extension::VIMEO => [
+            Tag\ScriptAmpVimeo::ID,
+            Tag\ScriptAmpVimeo2::ID,
+        ],
         Extension::VINE => Tag\ScriptAmpVine::ID,
         Extension::VIQEO_PLAYER => Tag\ScriptAmpViqeoPlayer::ID,
         Extension::VK => Tag\ScriptAmpVk::ID,
@@ -2982,7 +3091,10 @@ final class Tags implements IterableSection
         Extension::WISTIA_PLAYER => Tag\ScriptAmpWistiaPlayer::ID,
         Extension::WORDPRESS_EMBED => Tag\ScriptAmpWordpressEmbed::ID,
         Extension::YOTPO => Tag\ScriptAmpYotpo::ID,
-        Extension::YOUTUBE => Tag\ScriptAmpYoutube2::ID,
+        Extension::YOUTUBE => [
+            Tag\ScriptAmpYoutube::ID,
+            Tag\ScriptAmpYoutube2::ID,
+        ],
     ];
 
     /**
@@ -3024,6 +3136,43 @@ final class Tags implements IterableSection
         }
 
         return $tags;
+    }
+
+    /**
+     * Get a tag by aggregating all tag specs that match a tag name.
+     *
+     * This returns a singular Tag instance if only one tag entry matches.
+     *
+     * If more tag entries match, it provides an AggregateTag instance that transparently represents all of them.
+     *
+     * @param string $tagName Tag name to get the aggregated tag for.
+     * @return Tag Tag object that matches the tag name.
+     */
+    public function byAggregateTagName($tagName)
+    {
+        $tags = $this->byTagName($tagName);
+
+        switch (count($tags)) {
+            case 0:
+                throw InvalidTagName::forTagName($tagName);
+            case 1:
+                return $tags[0];
+            default:
+                $withExtensionSpec = true;
+
+                foreach ($tags as $tag) {
+                    if (! $tag instanceof TagWithExtensionSpec) {
+                        $withExtensionSpec = false;
+                    }
+                }
+
+                if ($withExtensionSpec) {
+                    /** @var TagWithExtensionSpec[] $tags */
+                    return new AggregateTagWithExtensionSpec($tags);
+                }
+
+                return new AggregateTag($tags);
+        }
     }
 
     /**
@@ -3069,26 +3218,67 @@ final class Tags implements IterableSection
     }
 
     /**
-     * Get the tag for a given extension spec name.
+     * Get the collection of tags for a given extension spec name.
      *
      * @param string $extension Extension name to get the extension spec for.
-     * @return TagWithExtensionSpec Tag with the given extension spec name.
-     * @throws InvalidExtension If an invalid extension name is requested.
+     * @return TagWithExtensionSpec[] Tags with the given extension spec name.
      * @throws LogicException If tag is not an instance of TagWithExtensionSpec.
      */
     public function byExtensionSpec($extension)
     {
+        $extension = strtolower($extension);
+
         if (!array_key_exists($extension, self::BY_EXTENSION_SPEC)) {
-            throw InvalidExtension::forExtension($extension);
+            return [];
         }
 
-        $tag = $this->byTagId(self::BY_EXTENSION_SPEC[$extension]);
-
-        if (!$tag instanceof TagWithExtensionSpec) {
-            throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
+        $tagIds = self::BY_EXTENSION_SPEC[$extension];
+        if (!is_array($tagIds)) {
+            $tagIds = [$tagIds];
         }
 
-        return $tag;
+        $tags = [];
+        foreach ($tagIds as $tagId) {
+            $tag = $this->byTagId($tagId);
+
+            if (!$tag instanceof TagWithExtensionSpec) {
+                throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
+            }
+
+            $tags[] = $tag;
+        }
+
+        return $tags;
+    }
+
+    /**
+     * Get a tag by aggregating all tag specs that match an extension spec.
+     *
+     * This returns a singular Tag instance if only one tag entry matches.
+     *
+     * If more tag entries match, it provides an AggregateTag instance that transparently represents all of them.
+     *
+     * @param string $extension Extension spec to get the aggregated tag for.
+     * @return TagWithExtensionSpec Tag object that matches the extension spec.
+     */
+    public function byAggregateExtensionSpec($extension)
+    {
+        $tags = $this->byExtensionSpec($extension);
+
+        switch (count($tags)) {
+            case 0:
+                throw InvalidExtension::forExtension($extension);
+            case 1:
+                return $tags[0];
+            default:
+                foreach ($tags as $tag) {
+                    if (! $tag instanceof TagWithExtensionSpec) {
+                        throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
+                    }
+                }
+
+                return new AggregateTagWithExtensionSpec($tags);
+        }
     }
 
     /**

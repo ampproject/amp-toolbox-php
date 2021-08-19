@@ -56,6 +56,25 @@ final class ScriptAmpStickyAd extends Tag implements Identifiable, TagWithExtens
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '1.0';
+
+    /**
+     * Meta data about the specific versions.
+     *
+     * @var array
+     */
+    const VERSIONS_META = [
+        '1.0' => [
+            'hasCss' => true,
+            'hasBento' => false,
+        ],
+    ];
+
+    /**
      * Array of spec rules.
      *
      * @var array

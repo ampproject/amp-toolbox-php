@@ -24,7 +24,9 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
 final class ScriptAmpFacebookComments extends Tag implements Identifiable, TagWithExtensionSpec
 {
@@ -51,6 +53,25 @@ final class ScriptAmpFacebookComments extends Tag implements Identifiable, TagWi
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
+     * Meta data about the specific versions.
+     *
+     * @var array
+     */
+    const VERSIONS_META = [
+        '0.1' => [
+            'hasCss' => false,
+            'hasBento' => false,
+        ],
+    ];
+
+    /**
      * Array of spec rules.
      *
      * @var array
@@ -63,6 +84,12 @@ final class ScriptAmpFacebookComments extends Tag implements Identifiable, TagWi
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-facebook-comments 0.1',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-facebook 1.0',
+        ],
     ];
 }

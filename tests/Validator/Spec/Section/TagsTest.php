@@ -113,23 +113,15 @@ class TagsTest extends TestCase
      */
     public function testByExtensionSpec()
     {
-        $tag = $this->tags->byExtensionSpec(Extension::LIGHTBOX_GALLERY);
+        $tags = $this->tags->byExtensionSpec(Extension::LIGHTBOX_GALLERY);
+        $this->assertIsArray($tags);
 
-        $this->assertInstanceOf(Spec\Tag::class, $tag);
-        $this->assertInstanceOf(Spec\TagWithExtensionSpec::class, $tag);
-        $this->assertArrayHasKey(Spec\SpecRule::NAME, $tag->extensionSpec);
-        $this->assertEquals(Extension::LIGHTBOX_GALLERY, $tag->extensionSpec[Spec\SpecRule::NAME]);
-    }
-
-    /**
-     * @covers \AmpProject\Validator\Spec\Section\Tags::byExtensionSpec()
-     * @covers \AmpProject\Exception\InvalidExtension::forExtension()
-     */
-    public function testByExtensionSpecThrowsExceptionForUnknownExtension()
-    {
-        $this->expectException(InvalidExtension::class);
-        $this->expectExceptionMessage("Invalid extension 'utter nonsense' was requested from the validator spec.");
-        $this->tags->byExtensionSpec('utter nonsense');
+        foreach ($tags as $tag) {
+            $this->assertInstanceOf(Spec\Tag::class, $tag);
+            $this->assertInstanceOf(Spec\TagWithExtensionSpec::class, $tag);
+            $this->assertArrayHasKey(Spec\SpecRule::NAME, $tag->extensionSpec);
+            $this->assertEquals(Extension::LIGHTBOX_GALLERY, $tag->extensionSpec[Spec\SpecRule::NAME]);
+        }
     }
 
     public function testIteration()
@@ -143,5 +135,61 @@ class TagsTest extends TestCase
                 $this->assertNotEmpty($tag::EXTENSION_SPEC);
             }
         }
+    }
+
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byTagName()
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byAggregateTagName()
+     * @covers \AmpProject\Validator\Spec\AggregateTag::__construct()
+     * @covers \AmpProject\Validator\Spec\AggregateTag::getId()
+     * @covers \AmpProject\Validator\Spec\AggregateTag::get()
+     */
+    public function testAggregateTag()
+    {
+        $tags = $this->tags->byTagName('a');
+        $this->assertIsArray($tags);
+
+        $tag = $this->tags->byAggregateTagName('a');
+
+        $this->assertInstanceOf(Spec\Tag::class, $tag);
+        $this->assertNotInstanceOf(Spec\TagWithExtensionSpec::class, $tag);
+
+        $this->assertInstanceOf(Spec\AggregateTag::class, $tag);
+        $this->assertNotInstanceOf(Spec\AggregateTagWithExtensionSpec::class, $tag);
+
+        $this->assertEquals('AggregateTag for a', $tag->getId());
+        $this->assertEquals('a', $tag->tagName);
+        $this->assertEquals('a', $tag->get('tagName'));
+    }
+
+    /**
+     * @covers \AmpProject\Validator\Spec\Section\Tags::byAggregateTagName()
+     * @covers \AmpProject\Validator\Spec\AggregateTag::__construct()
+     * @covers \AmpProject\Validator\Spec\AggregateTagWithExtensionSpec::getExtensionName()
+     * @covers \AmpProject\Validator\Spec\AggregateTagWithExtensionSpec::getExtensionType()
+     * @covers \AmpProject\Validator\Spec\AggregateTagWithExtensionSpec::getVersionsMeta()
+     * @covers \AmpProject\Validator\Spec\AggregateTagWithExtensionSpec::getLatestVersion()
+     */
+    public function testAggregateTagWithExtensionSpec()
+    {
+        $tags = $this->tags->byExtensionSpec(Extension::TWITTER);
+        $this->assertIsArray($tags);
+
+        $tag = $this->tags->byAggregateExtensionSpec(Extension::TWITTER);
+
+        $this->assertInstanceOf(Spec\Tag::class, $tag);
+        $this->assertInstanceOf(Spec\TagWithExtensionSpec::class, $tag);
+
+        $this->assertInstanceOf(Spec\AggregateTag::class, $tag);
+        $this->assertInstanceOf(Spec\AggregateTagWithExtensionSpec::class, $tag);
+
+        $this->assertEquals('amp-twitter', $tag->getExtensionName());
+        $this->assertEquals('custom-element', $tag->getExtensionType());
+        $this->assertEquals('0.1', $tag->getLatestVersion());
+
+        $versionsMeta = $tag->getVersionsMeta();
+
+        $this->assertArrayHasKey('0.1', $versionsMeta);
+        $this->assertArrayHasKey('1.0', $versionsMeta);
     }
 }

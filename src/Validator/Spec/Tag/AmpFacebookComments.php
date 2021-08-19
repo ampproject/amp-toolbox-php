@@ -7,7 +7,6 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -22,10 +21,10 @@ use AmpProject\Validator\Spec\Tag;
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
- * @property-read array<array<bool>> $attrs
  * @property-read array<string> $attrLists
  * @property-read array<array<string>> $ampLayout
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requires
  * @property-read array<string> $requiresExtension
  */
 final class AmpFacebookComments extends Tag implements Identifiable
@@ -44,12 +43,8 @@ final class AmpFacebookComments extends Tag implements Identifiable
      */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FACEBOOK_COMMENTS,
-        SpecRule::ATTRS => [
-            Attribute::DATA_HREF => [
-                SpecRule::MANDATORY => true,
-            ],
-        ],
         SpecRule::ATTR_LISTS => [
+            AttributeList\AmpFacebook::ID,
             AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::AMP_LAYOUT => [
@@ -64,6 +59,9 @@ final class AmpFacebookComments extends Tag implements Identifiable
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
+        ],
+        SpecRule::REQUIRES => [
+            'amp-facebook-comments 0.1',
         ],
         SpecRule::REQUIRES_EXTENSION => [
             Extension::FACEBOOK_COMMENTS,

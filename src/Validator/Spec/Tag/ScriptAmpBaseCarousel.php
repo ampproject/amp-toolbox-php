@@ -52,6 +52,29 @@ final class ScriptAmpBaseCarousel extends Tag implements Identifiable, TagWithEx
     ];
 
     /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
+     * Meta data about the specific versions.
+     *
+     * @var array
+     */
+    const VERSIONS_META = [
+        '0.1' => [
+            'hasCss' => true,
+            'hasBento' => false,
+        ],
+        '1.0' => [
+            'hasCss' => true,
+            'hasBento' => true,
+        ],
+    ];
+
+    /**
      * Array of spec rules.
      *
      * @var array

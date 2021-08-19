@@ -17,6 +17,19 @@ final class Tags implements Section
     use ConstantNames;
     use MagicPropertyAnnotations;
 
+    /** @var array */
+    private $extensionsMeta;
+
+    /**
+     * Tags constructor.
+     *
+     * @param array $extensionsMeta Extensions meta.
+     */
+    public function __construct($extensionsMeta)
+    {
+        $this->extensionsMeta = $extensionsMeta;
+    }
+
     /**
      * Process a section.
      *
@@ -37,6 +50,8 @@ final class Tags implements Section
         $namespace->addUse("LogicException");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\IterableSection");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Iteration");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\AggregateTag");
+        $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\AggregateTagWithExtensionSpec");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
 
@@ -127,9 +142,18 @@ final class Tags implements Section
             }
 
             if (array_key_exists('extensionSpec', $tags[$tagId])) {
-                $extensionSpec                   = $tags[$tagId]['extensionSpec'];
-                $extensionName                   = $this->getKeyString($extensionSpec['name']);
-                $byExtensionSpec[$extensionName] = $tagIdString;
+                $extensionSpec = $tags[$tagId]['extensionSpec'];
+                $extensionSpec = $this->getKeyString($extensionSpec['name']);
+                if (array_key_exists($extensionSpec, $byExtensionSpec)) {
+                    if (!is_array($byExtensionSpec[$extensionSpec])) {
+                        $previousTagId                     = $byExtensionSpec[$extensionSpec];
+                        $byExtensionSpec[$extensionSpec]   = [];
+                        $byExtensionSpec[$extensionSpec][] = $previousTagId;
+                    }
+                    $byExtensionSpec[$extensionSpec][] = $tagIdString;
+                } else {
+                    $byExtensionSpec[$extensionSpec] = $tagIdString;
+                }
             }
         }
 
@@ -156,9 +180,9 @@ final class Tags implements Section
 
         $class->addConstant('BY_EXTENSION_SPEC', $byExtensionSpec)
             ->addComment(
-                "Mapping of extension name to tag ID.\n\n"
+                "Mapping of extension name to tag ID or array of tag IDs.\n\n"
                 . "This is used to optimize querying by extension spec.\n\n"
-                . "@var array<string>"
+                . "@var array<string|array<string>>"
             );
     }
 
@@ -273,6 +297,27 @@ final class Tags implements Section
 
             $class->addConstant('EXTENSION_SPEC', $extensionSpec)
                   ->addComment("Array of extension spec rules.\n\n@var array");
+
+            $latestVersion = null;
+            if (isset($this->extensionsMeta[$extensionSpec['name']]['latestVersion'])) {
+                $latestVersion = $this->extensionsMeta[$extensionSpec['name']]['latestVersion'];
+            }
+
+            $class->addConstant('LATEST_VERSION', $latestVersion)
+                  ->addComment("Latest version of the extension.\n\n@var string");
+
+            if (isset($extensionSpec['version']) && isset($this->extensionsMeta[$extensionSpec['name']])) {
+                $versionsMeta = [];
+                foreach ($extensionSpec['version'] as $validVersion) {
+                    if (isset($this->extensionsMeta[$extensionSpec['name']]['versions'][$validVersion])) {
+                        $versionsMeta[$validVersion] =
+                            $this->extensionsMeta[$extensionSpec['name']]['versions'][$validVersion];
+                    }
+                }
+
+                $class->addConstant('VERSIONS_META', $versionsMeta)
+                      ->addComment("Meta data about the specific versions.\n\n@var array");
+            }
 
             $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
             $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
