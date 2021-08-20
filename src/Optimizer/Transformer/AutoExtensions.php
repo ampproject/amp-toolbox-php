@@ -220,15 +220,21 @@ final class AutoExtensions implements Transformer
      */
     private function addExtensionForCustomTemplates(Document $document, Element $node, $extensionScripts)
     {
+        $requiredExtension = '';
+
         if ($node->tagName === Tag::TEMPLATE && $node->hasAttribute(Attribute::TYPE)) {
-            $extensionScripts = $this->maybeAddExtension(
-                $document,
-                $extensionScripts,
-                $node->getAttribute(Attribute::TYPE)
-            );
+            $requiredExtension = $node->getAttribute(Attribute::TYPE);
+        } elseif ($node->tagName === Tag::SCRIPT && $node->hasAttribute(Attribute::TEMPLATE)) {
+            $requiredExtension = $node->getAttribute(Attribute::TEMPLATE);
+        } elseif ($node->tagName === Tag::INPUT && $node->hasAttribute(Attribute::MASK)) {
+            $requiredExtension = Extension::INPUTMASK;
         }
 
-        return $extensionScripts;
+        return ! $requiredExtension ? $extensionScripts : $this->maybeAddExtension(
+            $document,
+            $extensionScripts,
+            $requiredExtension
+        );
     }
 
     /**
