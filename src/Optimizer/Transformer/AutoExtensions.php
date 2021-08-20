@@ -280,13 +280,16 @@ final class AutoExtensions implements Transformer
     private function maybeAddExtension(Document $document, $extensionScripts, $requiredExtension)
     {
         if (!array_key_exists($requiredExtension, $extensionScripts)) {
-            $tagSpec = $this->spec->tags()->byExtensionSpec($requiredExtension);
+            $tagSpecs = $this->spec->tags()->byExtensionSpec($requiredExtension);
 
-            $requiredScript = $document->createElement(Tag::SCRIPT);
-            $requiredScript->appendChild($document->createAttribute(Attribute::ASYNC));
-            $requiredScript->setAttribute($tagSpec->getExtensionType(), $requiredExtension);
-            $requiredScript->setAttribute(Attribute::SRC, $this->getScriptSrcForExtension($tagSpec));
-            $extensionScripts[$requiredExtension] = $requiredScript;
+            foreach( $tagSpecs as $tagSpec ) {
+                $requiredScript = $document->createElement(Tag::SCRIPT);
+                $requiredScript->appendChild($document->createAttribute(Attribute::ASYNC));
+                $requiredScript->setAttribute($tagSpec->getExtensionType(), $requiredExtension);
+                $requiredScript->setAttribute(Attribute::SRC, $this->getScriptSrcForExtension($tagSpec));
+                $extensionScripts[$requiredExtension] = $requiredScript;
+            }
+
         }
 
         return $extensionScripts;
