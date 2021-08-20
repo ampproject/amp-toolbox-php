@@ -8,6 +8,8 @@ use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
+use AmpProject\Validator\Spec\CssRuleset\AmpTransformed;
+use AmpProject\Validator\Spec\SpecRule;
 
 /**
  * Test the TransformedIdentifier transformer.
@@ -49,13 +51,33 @@ final class TransformedIdentifierTest extends TestCase
             'adds identifier with custom version to html tag' => [
                 $input('<html ⚡>'),
                 $expected('<html ⚡ transformed="self;v=5">'),
-                5,
+                [ 'version' => 5 ],
             ],
 
             'adds identifier without version to html tag' => [
                 $input('<html ⚡>'),
                 $expected('<html ⚡ transformed="self">'),
-                0,
+                [ 'version' => 0 ],
+            ],
+
+            'enforces CSS max byte count by default' => [
+                $input('<html amp style="color:black">'),
+                $expected('<html amp style="color:black" transformed="self;v=1">'),
+                [],
+                function (Document $document) {
+                    $this->assertTrue($document->isCssMaxByteCountEnforced());
+                    $this->assertEquals(AmpTransformed::SPEC[SpecRule::MAX_BYTES] - strlen('color:black'), $document->getRemainingCustomCssSpace());
+                }
+            ],
+
+            'allows skipping enforcement of CSS max byte count' => [
+                $input('<html data-ampdevmode>'),
+                $expected('<html data-ampdevmode transformed="self;v=1">'),
+                [ 'enforcedCssMaxByteCount' => false ],
+                function (Document $document) {
+                    $this->assertFalse($document->isCssMaxByteCountEnforced());
+                    $this->assertEquals(PHP_INT_MAX, $document->getRemainingCustomCssSpace());
+                }
             ],
         ];
     }
@@ -68,20 +90,20 @@ final class TransformedIdentifierTest extends TestCase
      *
      * @param string   $source       String of source HTML.
      * @param string   $expectedHtml String of expected HTML output.
-     * @param int|null $version      Version to use. Null to not specify a specific one and fall back to default.
+     * @param array    $config       Configuration to use.
+     * @param callable $assert       Extra assertion to do.
      */
-    public function testTransform($source, $expectedHtml, $version = null)
+    public function testTransform($source, $expectedHtml, $config = [], $assert = null)
     {
-        $document = Document::fromHtml($source);
-        $config   = [];
-        if ($version !== null) {
-            $config = [TransformedIdentifierConfiguration::VERSION => $version];
-        }
+        $document    = Document::fromHtml($source);
         $transformer = new TransformedIdentifier(new TransformedIdentifierConfiguration($config));
         $errors      = new ErrorCollection();
 
         $transformer->transform($document, $errors);
 
         $this->assertEqualMarkup($expectedHtml, $document->saveHTML());
+        if ($assert) {
+            $assert($document);
+        }
     }
 }
