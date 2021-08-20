@@ -10,7 +10,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * Configuration for the TransformedIdentifier transformer.
  *
  * @property int $version Version number to use. Defaults to 1.
- * @property int|false $enforcedCssMaxByteCount The max bytes bytes to enforce on the document, or false to not enforce.
+ * @property int|false $enforcedCssMaxByteCount The max bytes count to enforce on the document, or false to not enforce.
  *                                              Defaults to max bytes for transformed spec.
  *
  * @package ampproject/amp-toolbox
