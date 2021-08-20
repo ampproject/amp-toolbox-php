@@ -35,6 +35,10 @@ final class AutoExtensions implements Transformer
      */
     private $spec;
 
+    const MANUAL_ATTRIBUTE_TO_EXTENSION_MAPPING = [
+        Attribute::LIGHTBOX => Extension::LIGHTBOX_GALLERY,
+    ];
+
     /**
      * Instantiate an AutoExtensions object.
      *
@@ -166,22 +170,52 @@ final class AutoExtensions implements Transformer
         $node = $document->body;
 
         while ($node !== null) {
-            if (! $node instanceof Element) {
-                $node = NodeWalker::nextNode($node);
-                continue;
-            }
-
-            $tagSpecs = $this->spec->tags()->byTagName($node->tagName);
-
-            foreach ($tagSpecs as $tagSpec) {
-                foreach ($tagSpec->requiresExtension as $requiredExtension) {
-                    $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiredExtension);
-                }
+            if ($node instanceof Element) {
+                $extensionScripts = $this->addRequiredExtensionByTag($document, $node, $extensionScripts);
+                $extensionScripts = $this->addRequiredExtensionByAttributes($document, $node, $extensionScripts);
             }
 
             $node = NodeWalker::nextNode($node);
         }
 
+        return $extensionScripts;
+    }
+
+    /**
+     * Add required extension by tag names.
+     *
+     * @param Document  $document         Document to scan for missing extensions.
+     * @param Element   $node             The node we are inspecting to see if it needs an extension.
+     * @param Element[] $extensionScripts Array of preexisting extension scripts.
+     * @return Element[] Adapted array of extension scripts that includes the previously missing ones.
+     */
+    private function addRequiredExtensionByTag(Document $document, Element $node, $extensionScripts)
+    {
+        $tagSpecs = $this->spec->tags()->byTagName($node->tagName);
+
+        foreach ($tagSpecs as $tagSpec) {
+            foreach ($tagSpec->requiresExtension as $requiredExtension) {
+                if (in_array($requiredExtension, self::MANUAL_ATTRIBUTE_TO_EXTENSION_MAPPING)) {
+                    continue;
+                }
+
+                $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiredExtension);
+            }
+        }
+
+        return $extensionScripts;
+    }
+
+    /**
+     * Add required extension by attributes.
+     *
+     * @param Document  $document         Document to scan for missing extensions.
+     * @param Element   $node             The node we are inspecting to see if it needs an extension.
+     * @param Element[] $extensionScripts Array of preexisting extension scripts.
+     * @return Element[] Adapted array of extension scripts that includes the previously missing ones.
+     */
+    private function addRequiredExtensionByAttributes(Document $document, Element $node, $extensionScripts)
+    {
         return $extensionScripts;
     }
 
@@ -282,14 +316,13 @@ final class AutoExtensions implements Transformer
         if (!array_key_exists($requiredExtension, $extensionScripts)) {
             $tagSpecs = $this->spec->tags()->byExtensionSpec($requiredExtension);
 
-            foreach( $tagSpecs as $tagSpec ) {
+            foreach ($tagSpecs as $tagSpec) {
                 $requiredScript = $document->createElement(Tag::SCRIPT);
                 $requiredScript->appendChild($document->createAttribute(Attribute::ASYNC));
                 $requiredScript->setAttribute($tagSpec->getExtensionType(), $requiredExtension);
                 $requiredScript->setAttribute(Attribute::SRC, $this->getScriptSrcForExtension($tagSpec));
                 $extensionScripts[$requiredExtension] = $requiredScript;
             }
-
         }
 
         return $extensionScripts;
