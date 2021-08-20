@@ -303,7 +303,8 @@ final class AutoExtensions implements Transformer
      */
     private function getScriptSrcForExtension($tagSpec)
     {
-        return Amp::CACHE_ROOT_URL . "v0/{$tagSpec->getExtensionName()}-{$tagSpec->getLatestVersion()}.js";
+        $version = $this->calculateExtensionVersion($tagSpec);
+        return Amp::CACHE_ROOT_URL . "v0/{$tagSpec->getExtensionName()}-{$version}.js";
     }
 
     /**
@@ -336,5 +337,22 @@ final class AutoExtensions implements Transformer
         }
 
         return [];
+    }
+
+    /**
+     * Calculate the extension version.
+     *
+     * @param Spec\TagWithExtensionSpec $tagSpec Spec of the extension tag.
+     * @return string Extension version.
+     */
+    private function calculateExtensionVersion($tagSpec)
+    {
+        $configuredVersions = $this->configuration->get(AutoExtensionsConfiguration::EXTENSION_VERSIONS);
+
+        if (! empty($configuredVersions[$tagSpec->getExtensionName()])) {
+            return $configuredVersions[$tagSpec->getExtensionName()];
+        }
+
+        return $tagSpec->getLatestVersion();
     }
 }
