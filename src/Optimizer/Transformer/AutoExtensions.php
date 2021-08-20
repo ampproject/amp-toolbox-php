@@ -191,6 +191,10 @@ final class AutoExtensions implements Transformer
      */
     private function addRequiredExtensionByTag(Document $document, Element $node, $extensionScripts)
     {
+        if (! Amp::isCustomElement($node)) {
+            return $this->addExtensionForCustomTemplates($document, $node, $extensionScripts);
+        }
+
         $tagSpecs = $this->spec->tags()->byTagName($node->tagName);
 
         foreach ($tagSpecs as $tagSpec) {
@@ -207,6 +211,27 @@ final class AutoExtensions implements Transformer
     }
 
     /**
+     * Add extensions custom templates (e.g. amp-mustache).
+     *
+     * @param Document  $document         Document to scan for missing extensions.
+     * @param Element   $node             The node we are inspecting to see if it needs an extension.
+     * @param Element[] $extensionScripts Array of preexisting extension scripts.
+     * @return Element[] Adapted array of extension scripts that includes the previously missing ones.
+     */
+    private function addExtensionForCustomTemplates(Document $document, Element $node, $extensionScripts)
+    {
+        if ($node->tagName === Tag::TEMPLATE && $node->hasAttribute(Attribute::TYPE)) {
+            $extensionScripts = $this->maybeAddExtension(
+                $document,
+                $extensionScripts,
+                $node->getAttribute(Attribute::TYPE)
+            );
+        }
+
+        return $extensionScripts;
+    }
+
+    /**
      * Add required extension by attributes.
      *
      * @param Document  $document         Document to scan for missing extensions.
@@ -216,6 +241,14 @@ final class AutoExtensions implements Transformer
      */
     private function addRequiredExtensionByAttributes(Document $document, Element $node, $extensionScripts)
     {
+        if (! $node->hasAttributes()) {
+            return $extensionScripts;
+        }
+
+        if ($node->tagName === Tag::FORM) {
+            $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::FORM);
+        }
+
         return $extensionScripts;
     }
 
