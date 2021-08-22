@@ -16,6 +16,7 @@ use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\Tag;
 use AmpProject\Validator\Spec;
 use AmpProject\Validator\Spec\AttributeList\GlobalAttrs;
+use AmpProject\Validator\Spec\SpecRule;
 use Exception;
 use InvalidArgumentException;
 
@@ -31,6 +32,11 @@ final class AutoExtensions implements Transformer
         Attribute::LIGHTBOX => Extension::LIGHTBOX_GALLERY,
     ];
 
+    /**
+     * Attribute prefix for attributes like bindtext, bindaria-labelledby.
+     *
+     * @var string
+     */
     const BIND_SHORT_FORM_PREFIX = 'bind';
 
     /**
@@ -270,10 +276,17 @@ final class AutoExtensions implements Transformer
         // Associative array of new attribute name with data-amp-bind- prefix and attribute value pair.
         $newAttributes = [];
 
-        $experimentBindAttribute = $this->configuration->get(AutoExtensionsConfiguration::EXPERIMENT_BIND_ATTRIBUTE);
-        $globalAttrs = $this->spec->attributeLists()->get(GlobalAttrs::ID);
+        // Populate all attributes for the current node tag name.
+        $nodeAttributeList = $this->getTagAttributeList($node->tagName);
 
         foreach ($node->attributes as $attribute) {
+            if (! empty($nodeAttributeList[$attribute->name][SpecRule::REQUIRES_EXTENSION])) {
+                $requiresExtensions = $nodeAttributeList[$attribute->name][SpecRule::REQUIRES_EXTENSION];
+                foreach ($requiresExtensions as $requiresExtension) {
+                    $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiresExtension);
+                }
+            }
+
             // Check for amp-bind attribute bindings.
             if (strpos($attribute->name, '[') === 0 || strpos($attribute->name, Amp::BIND_DATA_ATTR_PREFIX) === 0) {
                 $usesAmpBind = true;
@@ -283,7 +296,10 @@ final class AutoExtensions implements Transformer
              * EXPERIMENTAL FEATURE: Rewrite short-form `bindtext` to `data-amp-bind-text` to avoid false-positives we
              * check for each tag only the supported bindable attributes (e.g. for a div only bindtext, but not bindvalue).
              */
-            if ($experimentBindAttribute && strpos($attribute->name, self::BIND_SHORT_FORM_PREFIX) === 0) {
+            if (
+                $this->configuration->get(AutoExtensionsConfiguration::EXPERIMENT_BIND_ATTRIBUTE)
+                && strpos($attribute->name, self::BIND_SHORT_FORM_PREFIX) === 0
+            ) {
                 // Change name from bindaria-labelledby to aria-labelledby.
                 $attributeNameWithoutBindPrefix = substr($attribute->name, strlen(self::BIND_SHORT_FORM_PREFIX));
 
@@ -291,7 +307,7 @@ final class AutoExtensions implements Transformer
                 $bindableAttributeName = '[' . preg_replace('/\-/', '_', strtoupper($attributeNameWithoutBindPrefix)) . ']';
 
                 // Rename attribute from bindx to data-amp-bind-x
-                if ($globalAttrs->has($bindableAttributeName)) {
+                if ($this->spec->attributeLists()->get(GlobalAttrs::ID)->has($bindableAttributeName)) {
                     $newAttributeName = Amp::BIND_DATA_ATTR_PREFIX . $attributeNameWithoutBindPrefix;
                     $newAttributes[$newAttributeName] = $attribute->value;
 
@@ -312,6 +328,35 @@ final class AutoExtensions implements Transformer
         }
 
         return $extensionScripts;
+    }
+
+    /**
+     * Get all attributes for a tag.
+     *
+     * @param string $tagName Name of the node tag.
+     * @return array Attribute list for the tag name.
+     */
+    private function getTagAttributeList($tagName)
+    {
+        static $nodeAttributeList = [];
+
+        if (! isset($nodeAttributeList[$tagName])) {
+            $nodeAttributeList[$tagName] = [];
+
+            $tagSpecs = $this->spec->tags()->byTagName($tagName);
+
+            foreach ($tagSpecs as $tagSpec) {
+                $attrLists = $tagSpec->get(SpecRule::ATTR_LISTS);
+                if (is_array($attrLists)) {
+                    foreach ($attrLists as $attrList) {
+                        $list = $this->spec->attributeLists()->get($attrList);
+                        $nodeAttributeList[$tagName] = array_merge($nodeAttributeList[$tagName], $list::ATTRIBUTES);
+                    }
+                }
+            }
+        }
+
+        return $nodeAttributeList[$tagName];
     }
 
     /**
