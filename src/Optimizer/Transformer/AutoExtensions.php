@@ -264,21 +264,26 @@ final class AutoExtensions implements Transformer
             $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::FORM);
         }
 
-        /**
-         * EXPERIMENTAL FEATURE: Rewrite short-form `bindtext` to `data-amp-bind-text` to avoid false-positives we
-         * check for each tag only the supported bindable attributes (e.g. for a div only bindtext, but not bindvalue).
-         */
-        if ($this->configuration->get(AutoExtensionsConfiguration::EXPERIMENT_BIND_ATTRIBUTE)) {
-            // true if we need to import amp-bind.
-            $usesAmpBind = false;
-            // Associative array of new attribute name with data-amp-bind- prefix and attribute value pair.
-            $newAttributes = [];
+        // true if we need to import amp-bind.
+        $usesAmpBind = false;
 
-            foreach ($node->attributes as $attribute) {
-                if (! strpos($attribute->name, self::BIND_SHORT_FORM_PREFIX) === 0) {
-                    continue;
-                }
+        // Associative array of new attribute name with data-amp-bind- prefix and attribute value pair.
+        $newAttributes = [];
 
+        $experimentBindAttribute = $this->configuration->get(AutoExtensionsConfiguration::EXPERIMENT_BIND_ATTRIBUTE);
+        $globalAttrs = $this->spec->attributeLists()->get(GlobalAttrs::ID);
+
+        foreach ($node->attributes as $attribute) {
+            // Check for amp-bind attribute bindings.
+            if (strpos($attribute->name, '[') === 0 || strpos($attribute->name, Amp::BIND_DATA_ATTR_PREFIX) === 0) {
+                $usesAmpBind = true;
+            }
+
+            /**
+             * EXPERIMENTAL FEATURE: Rewrite short-form `bindtext` to `data-amp-bind-text` to avoid false-positives we
+             * check for each tag only the supported bindable attributes (e.g. for a div only bindtext, but not bindvalue).
+             */
+            if ($experimentBindAttribute && strpos($attribute->name, self::BIND_SHORT_FORM_PREFIX) === 0) {
                 // Change name from bindaria-labelledby to aria-labelledby.
                 $attributeNameWithoutBindPrefix = substr($attribute->name, strlen(self::BIND_SHORT_FORM_PREFIX));
 
@@ -286,7 +291,7 @@ final class AutoExtensions implements Transformer
                 $bindableAttributeName = '[' . preg_replace('/\-/', '_', strtoupper($attributeNameWithoutBindPrefix)) . ']';
 
                 // Rename attribute from bindx to data-amp-bind-x
-                if ($this->spec->attributeLists()->get(GlobalAttrs::ID)->has($bindableAttributeName)) {
+                if ($globalAttrs->has($bindableAttributeName)) {
                     $newAttributeName = Amp::BIND_DATA_ATTR_PREFIX . $attributeNameWithoutBindPrefix;
                     $newAttributes[$newAttributeName] = $attribute->value;
 
@@ -295,13 +300,15 @@ final class AutoExtensions implements Transformer
                     $usesAmpBind = true;
                 }
             }
+        }
 
-            // Add the renamed bindable attributes in the node.
+        // Add the renamed bindable attributes in the node.
+        if ($newAttributes) {
             $node->setAttributes($newAttributes);
+        }
 
-            if ($usesAmpBind) {
-                $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::BIND);
-            }
+        if ($usesAmpBind) {
+            $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::BIND);
         }
 
         return $extensionScripts;
