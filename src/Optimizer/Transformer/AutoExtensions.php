@@ -299,16 +299,14 @@ final class AutoExtensions implements Transformer
                 }
             }
 
-            /**
-             * Attribute that requires AMP components (e.g. amp-fx).
-             *
-             * Ignoring next line in phpstan because Attributes data type doesn't match.
-             * @phpstan-ignore-next-line
-             */
-            if (! empty($globalAttributes::ATTRIBUTES[$attribute->name][SpecRule::REQUIRES_EXTENSION])) {
-                $requiresExtensions = $globalAttributes::ATTRIBUTES[$attribute->name][SpecRule::REQUIRES_EXTENSION];
-                foreach ($requiresExtensions as $requiresExtension) {
-                    $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiresExtension);
+            // Attribute that requires AMP components (e.g. amp-fx).
+            if ($globalAttributes->has($attribute->name)) {
+                $attr = $globalAttributes->get($attribute->name);
+
+                if (isset($attr[SpecRule::REQUIRES_EXTENSION])) {
+                    foreach ($attr[SpecRule::REQUIRES_EXTENSION] as $requiresExtension) {
+                        $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiresExtension);
+                    }
                 }
             }
 
