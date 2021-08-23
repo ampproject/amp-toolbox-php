@@ -53,7 +53,7 @@ final class SpecTest extends TestCase
 
         'MinifyHtml - minifies_inline_amp-script'          => 'see https://github.com/ampproject/amp-toolbox-php/issues/260',
 
-        'AutoExtensions - ignore-mask-in-svgs'             => '',
+        'AutoExtensions - ignore-mask-in-svgs'             => 'see https://github.com/ampproject/amp-toolbox-php/issues/107',
     ];
 
     const CLASS_SKIP_TEST = '__SKIP__';
