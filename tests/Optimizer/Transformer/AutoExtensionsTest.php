@@ -3,6 +3,7 @@
 namespace AmpProject\Optimizer\Transformer;
 
 use AmpProject\Dom\Document;
+use AmpProject\Extension;
 use AmpProject\Optimizer\Configuration\AutoExtensionsConfiguration;
 use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
@@ -41,6 +42,24 @@ final class AutoExtensionsTest extends TestCase
                 TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
                 . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
                 . '</head><body><amp-anim></amp-anim></body></html>',
+            ],
+
+            'do not include extension if set in ignore list' => [
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET . '</head><body>'
+                . '    <form class="sample-form" method="GET" action="/documentation/examples/api/submit-form" target="_top">'
+                . '        <input type="search" placeholder="Search..." name="search">'
+                . '        <input type="submit" value="OK">'
+                . '    </form>'
+                . '</body></html>',
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '</head><body>'
+                . '<form class="sample-form" method="GET" action="/documentation/examples/api/submit-form" target="_top">'
+                . '<input type="search" placeholder="Search..." name="search"><input type="submit" value="OK"></form>'
+                . '</body></html>',
+                [],
+                [
+                    AutoExtensionsConfiguration::IGNORE => [Extension::FORM]
+                ]
             ],
         ];
     }
