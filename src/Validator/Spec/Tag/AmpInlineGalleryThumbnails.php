@@ -73,6 +73,7 @@ final class AmpInlineGalleryThumbnails extends Tag implements Identifiable
                 SpecRule::VALUE => [
                     'true',
                     'false',
+                    '',
                 ],
             ],
         ],

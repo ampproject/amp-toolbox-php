@@ -142,6 +142,8 @@ interface Extension
     const STORY_GRID_LAYER                       = 'amp-story-grid-layer';
     const STORY_INTERACTIVE                      = 'amp-story-interactive';
     const STORY_INTERACTIVE_BINARY_POLL          = 'amp-story-interactive-binary-poll';
+    const STORY_INTERACTIVE_IMG_POLL             = 'amp-story-interactive-img-poll';
+    const STORY_INTERACTIVE_IMG_QUIZ             = 'amp-story-interactive-img-quiz';
     const STORY_INTERACTIVE_POLL                 = 'amp-story-interactive-poll';
     const STORY_INTERACTIVE_QUIZ                 = 'amp-story-interactive-quiz';
     const STORY_INTERACTIVE_RESULTS              = 'amp-story-interactive-results';

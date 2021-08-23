@@ -6,6 +6,7 @@ use AmpProject\Tooling\Validator\SpecGenerator\ConstantNames;
 use AmpProject\Tooling\Validator\SpecGenerator\FileManager;
 use AmpProject\Tooling\Validator\SpecGenerator\Section;
 use AmpProject\Tooling\Validator\SpecGenerator\SpecPrinter;
+use Exception;
 use Nette\PhpGenerator\ClassType;
 use Nette\PhpGenerator\PhpNamespace;
 
@@ -24,11 +25,15 @@ final class SpecGenerator
      * Generate the PHP spec from a JSON definition.
      *
      * @param array  $jsonSpec      Validator spec as defined by the downloaded JSON file.
+     * @param array  $bundlesConfig Bundles configuration.
      * @param string $rootNamespace Root namespace to generate the PHP validator spec under.
      * @param string $destination   Destination folder to store the PHP validator spec under.
      */
-    public function generate($jsonSpec, $rootNamespace, $destination)
+    public function generate($jsonSpec, $bundlesConfig, $rootNamespace, $destination)
     {
+
+        $extensionsMeta = $this->gatherExtensionsMeta($bundlesConfig);
+
         $printer = new SpecPrinter();
         $printer->setTypeResolving(false);
 
@@ -55,6 +60,8 @@ final class SpecGenerator
         $this->generateEntityClass('Error', $fileManager);
         $this->generateEntityClass('Tag', $fileManager);
         $this->generateEntityClass('TagWithExtensionSpec', $fileManager, 'interface');
+        $this->generateEntityClass('AggregateTag', $fileManager);
+        $this->generateEntityClass('AggregateTagWithExtensionSpec', $fileManager);
         $this->generateEntityClass('ExtensionSpec', $fileManager, 'trait');
         $this->generateEntityClass('Identifiable', $fileManager, 'interface');
         $this->generateEntityClass('IterableSection', $fileManager, 'interface');
@@ -86,7 +93,12 @@ final class SpecGenerator
                           ->addComment("@return string");
                     break;
                 default:
-                    $sectionClassName = $this->generateSectionClass($section, $sectionSpec, $fileManager);
+                    $sectionClassName = $this->generateSectionClass(
+                        $section,
+                        $sectionSpec,
+                        $fileManager,
+                        $extensionsMeta
+                    );
 
                     $class->addProperty($section)
                           ->setPrivate()
@@ -151,9 +163,10 @@ final class SpecGenerator
      * @param string      $section     Key of the section to generate.
      * @param mixed       $sectionSpec Spec data of the section to be generated.
      * @param FileManager $fileManager FileManager instance to use.
+     * @param array       $extensionsMeta Extensions meta.
      * @return string Section class name.
      */
-    private function generateSectionClass($section, $sectionSpec, FileManager $fileManager)
+    private function generateSectionClass($section, $sectionSpec, FileManager $fileManager, $extensionsMeta)
     {
         list($file, $namespace) = $fileManager->createNewNamespacedFile('Spec\\Section');
         $className = $this->getClassName($section);
@@ -163,8 +176,13 @@ final class SpecGenerator
         $sectionProcessorClass = self::GENERATOR_NAMESPACE . "\\Section\\{$className}";
 
         if (class_exists($sectionProcessorClass)) {
-            /** @var Section $sectionProcessor */
-            $sectionProcessor = new $sectionProcessorClass();
+            if (Section\Tags::class === $sectionProcessorClass) {
+                $sectionProcessor = new Section\Tags($extensionsMeta);
+            } else {
+                /** @var Section $sectionProcessor */
+                $sectionProcessor = new $sectionProcessorClass();
+            }
+
             $sectionProcessor->process($fileManager, $sectionSpec, $namespace, $class);
         }
 
@@ -252,6 +270,63 @@ final class SpecGenerator
         unset($jsonSpec['errorFormats'], $jsonSpec['errorSpecificity']);
 
         return $jsonSpec;
+    }
+
+    /**
+     * Gather extensions meta.
+     *
+     * @param array $bundlesConfig Bundles config.
+     * @return array Extensions meta.
+     */
+    private function gatherExtensionsMeta($bundlesConfig)
+    {
+        $extensions = [];
+        foreach ($bundlesConfig as $bundleConfig) {
+            if (! isset($bundleConfig['name']) || ! is_string($bundleConfig['name'])) {
+                throw new Exception('Missing name in bundles.config.extensions.json');
+            }
+            if (! isset($bundleConfig['latestVersion']) || ! is_string($bundleConfig['latestVersion'])) {
+                throw new Exception('Missing string latestVersion in bundles.config.extensions.json');
+            }
+            if (
+                ! isset($bundleConfig['version'])
+                ||
+                ! (is_string($bundleConfig['version']) || is_array($bundleConfig['version']) )
+            ) {
+                throw new Exception('Missing string/array version in bundles.config.extensions.json');
+            }
+
+            if (!isset($extensions[$bundleConfig['name']])) {
+                $extensions[$bundleConfig['name']] = [
+                    'versions' => [],
+                    'latestVersion' => null,
+                ];
+            }
+
+            $versions = (array) $bundleConfig['version'];
+            foreach ($versions as $version) {
+                if (array_key_exists($version, $extensions[$bundleConfig['name']]['versions'])) {
+                    throw new Exception("Version {$version} already seen for extension {$bundleConfig['name']}.");
+                }
+                $extensions[$bundleConfig['name']]['versions'][$version] = [
+                    'hasCss'   => ! empty($bundleConfig['options']['hasCss']),
+                    'hasBento' => (
+                        isset($bundleConfig['options']['wrapper']) && 'bento' === $bundleConfig['options']['wrapper']
+                    ),
+                ];
+
+                if (
+                    version_compare(
+                        $bundleConfig['latestVersion'],
+                        $extensions[$bundleConfig['name']]['latestVersion'],
+                        '>'
+                    )
+                ) {
+                    $extensions[$bundleConfig['name']]['latestVersion'] = $bundleConfig['latestVersion'];
+                }
+            }
+        }
+        return $extensions;
     }
 
     /**

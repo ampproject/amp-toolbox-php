@@ -8,7 +8,7 @@
 namespace AmpProject\Validator\Spec;
 
 /**
- * An tag specification that provides the script for an AMP extension.
+ * A tag specification that provides the script for an AMP extension.
  *
  * @package ampproject/amp-toolbox
  */
@@ -34,4 +34,11 @@ interface TagWithExtensionSpec
      * @return string Extension type.
      */
     public function getExtensionType();
+
+    /**
+     * Get the associative array of versions meta data.
+     *
+     * @return array
+     */
+    public function getVersionsMeta();
 }

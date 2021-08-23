@@ -8,6 +8,8 @@ class ExtensionSpecTest extends TestCase
 {
     use ExtensionSpec;
 
+    const LATEST_VERSION = '1.0';
+
     const EXTENSION_SPEC = [
         SpecRule::NAME           => 'amp-dummy-extension',
         SpecRule::VERSION        => [
@@ -34,7 +36,7 @@ class ExtensionSpecTest extends TestCase
      */
     public function testGetLatestVersion()
     {
-        $this->assertEquals('2.0', $this->getLatestVersion());
+        $this->assertEquals('1.0', $this->getLatestVersion());
     }
 
     /**

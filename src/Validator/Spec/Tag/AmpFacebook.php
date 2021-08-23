@@ -7,7 +7,6 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -22,7 +21,6 @@ use AmpProject\Validator\Spec\Tag;
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
- * @property-read array<array<bool>> $attrs
  * @property-read array<string> $attrLists
  * @property-read array<array<string>> $ampLayout
  * @property-read array<string> $htmlFormat
@@ -44,12 +42,8 @@ final class AmpFacebook extends Tag implements Identifiable
      */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::FACEBOOK,
-        SpecRule::ATTRS => [
-            Attribute::DATA_HREF => [
-                SpecRule::MANDATORY => true,
-            ],
-        ],
         SpecRule::ATTR_LISTS => [
+            AttributeList\AmpFacebook::ID,
             AttributeList\ExtendedAmpGlobal::ID,
         ],
         SpecRule::AMP_LAYOUT => [

@@ -46,9 +46,33 @@ final class ScriptAmpLightboxGallery extends Tag implements Identifiable, TagWit
         SpecRule::NAME => 'amp-lightbox-gallery',
         SpecRule::VERSION => [
             '0.1',
+            '1.0',
             'latest',
         ],
         SpecRule::REQUIRES_USAGE => 'NONE',
+    ];
+
+    /**
+     * Latest version of the extension.
+     *
+     * @var string
+     */
+    const LATEST_VERSION = '0.1';
+
+    /**
+     * Meta data about the specific versions.
+     *
+     * @var array
+     */
+    const VERSIONS_META = [
+        '0.1' => [
+            'hasCss' => true,
+            'hasBento' => false,
+        ],
+        '1.0' => [
+            'hasCss' => true,
+            'hasBento' => true,
+        ],
     ];
 
     /**

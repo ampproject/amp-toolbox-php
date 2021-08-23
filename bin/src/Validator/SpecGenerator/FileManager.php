@@ -174,8 +174,8 @@ final class FileManager
                     $classes = array_merge($classes, $methodClasses);
                 }
 
-                $classes = array_merge($classes, $class->getExtends());
-                $classes = array_merge($classes, $class->getImplements());
+                $classes = array_merge($classes, (array) $class->getExtends());
+                $classes = array_merge($classes, (array) $class->getImplements());
             }
 
             foreach (array_unique($classes) as $class) {

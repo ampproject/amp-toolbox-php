@@ -65,6 +65,11 @@ final class IAmphtmlSizerResponsive extends Tag implements Identifiable
                     '',
                 ],
             ],
+            Attribute::SLOT => [
+                SpecRule::VALUE => [
+                    'i-amphtml-svc',
+                ],
+            ],
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,

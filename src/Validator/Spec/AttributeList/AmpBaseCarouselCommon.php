@@ -84,7 +84,7 @@ final class AmpBaseCarouselCommon extends AttributeList implements Identifiable
             SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
         ],
         Attribute::LOOP => [
-            SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',
+            SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false|^$)',
         ],
         Attribute::MIXED_LENGTH => [
             SpecRule::VALUE_REGEX => '([^,]+\s+(true|false),\s*)*(true|false)',

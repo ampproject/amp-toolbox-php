@@ -915,7 +915,10 @@ final class Document extends DOMDocument
             case 'inlineStyleByteCount':
                 if (!isset($this->inlineStyleByteCount)) {
                     $this->inlineStyleByteCount = 0;
-                    $attributes = $this->xpath->query(self::XPATH_INLINE_STYLE_ATTRIBUTES_QUERY, $this->body);
+                    $attributes = $this->xpath->query(
+                        self::XPATH_INLINE_STYLE_ATTRIBUTES_QUERY,
+                        $this->documentElement
+                    );
                     foreach ($attributes as $attribute) {
                         $this->inlineStyleByteCount += strlen($attribute->textContent);
                     }
