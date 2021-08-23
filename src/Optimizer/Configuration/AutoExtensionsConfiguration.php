@@ -3,8 +3,11 @@
 namespace AmpProject\Optimizer\Configuration;
 
 use AmpProject\Amp;
+use AmpProject\Exception\InvalidExtension;
+use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
+use ReflectionClass;
 
 /**
  * Configuration for the AutoExtensions transformer.
@@ -42,9 +45,16 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
     /**
      * Configuration key that allows individual configuration of extension versions.
      *
-     * @var string
+     * @var array
      */
     const EXTENSION_VERSIONS = 'extensionVersions';
+
+    /**
+     * An array of extension names that will not auto import.
+     *
+     * @var string[]
+     */
+    const IGNORE = 'ignore';
 
     /**
      * Get the associative array of allowed keys and their respective default values.
@@ -60,6 +70,7 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
             self::AUTO_EXTENSION_IMPORT     => true,
             self::EXPERIMENT_BIND_ATTRIBUTE => false,
             self::EXTENSION_VERSIONS        => [],
+            self::IGNORE                    => [],
         ];
     }
 
@@ -123,6 +134,27 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
                         'array',
                         gettype($value)
                     );
+                }
+                break;
+
+            case self::IGNORE:
+                if (! is_array($value)) {
+                    throw InvalidConfigurationValue::forInvalidSubValueType(
+                        self::class,
+                        self::IGNORE,
+                        'array',
+                        gettype($value)
+                    );
+                }
+
+                // Verify extension name in ignore list.
+                $reflection = new ReflectionClass(Extension::class);
+                $constants = $reflection->getConstants();
+
+                foreach ($value as $extension) {
+                    if (! in_array($extension, $constants)) {
+                        throw InvalidExtension::forExtension($extension);
+                    }
                 }
                 break;
         }
