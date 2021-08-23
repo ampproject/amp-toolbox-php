@@ -52,6 +52,8 @@ final class SpecTest extends TestCase
         'PreloadHeroImage - disable_via_param'             => 'see https://github.com/ampproject/amp-toolbox-php/issues/55',
 
         'MinifyHtml - minifies_inline_amp-script'          => 'see https://github.com/ampproject/amp-toolbox-php/issues/260',
+
+        'AutoExtensions - ignore-mask-in-svgs'             => '',
     ];
 
     const CLASS_SKIP_TEST = '__SKIP__';
