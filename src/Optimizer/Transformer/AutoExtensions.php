@@ -196,7 +196,7 @@ final class AutoExtensions implements Transformer
     }
 
     /**
-     * Add required extension by tag names.
+     * Add required extensions by tag names.
      *
      * @param Document  $document         Document to scan for missing extensions.
      * @param Element   $node             The node we are inspecting to see if it needs an extension.
@@ -279,9 +279,29 @@ final class AutoExtensions implements Transformer
         // Populate all attributes for the current node tag name.
         $nodeAttributeList = $this->getTagAttributeList($node->tagName);
 
+        $globalAttributes = $this->spec->attributeLists()->get(GlobalAttrs::ID);
+
         foreach ($node->attributes as $attribute) {
+            // Add attribute dependencies (e.g. amp-img => lightbox => amp-lightbox-gallery)
+            if (array_key_exists($attribute->name, self::MANUAL_ATTRIBUTE_TO_EXTENSION_MAPPING)) {
+                $extensionScripts = $this->maybeAddExtension(
+                    $document,
+                    $extensionScripts,
+                    self::MANUAL_ATTRIBUTE_TO_EXTENSION_MAPPING[$attribute->name]
+                );
+            }
+
+            // Element attributes that require amp extensions (e.g. amp-video[dock]).
             if (! empty($nodeAttributeList[$attribute->name][SpecRule::REQUIRES_EXTENSION])) {
                 $requiresExtensions = $nodeAttributeList[$attribute->name][SpecRule::REQUIRES_EXTENSION];
+                foreach ($requiresExtensions as $requiresExtension) {
+                    $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiresExtension);
+                }
+            }
+
+            // Attribute that requires AMP components (e.g. amp-fx).
+            if (! empty($globalAttributes::ATTRIBUTES[$attribute->name][SpecRule::REQUIRES_EXTENSION])) {
+                $requiresExtensions = $globalAttributes::ATTRIBUTES[$attribute->name][SpecRule::REQUIRES_EXTENSION];
                 foreach ($requiresExtensions as $requiresExtension) {
                     $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, $requiresExtension);
                 }
@@ -307,7 +327,7 @@ final class AutoExtensions implements Transformer
                 $bindableAttributeName = '[' . preg_replace('/\-/', '_', strtoupper($attributeNameWithoutBindPrefix)) . ']';
 
                 // Rename attribute from bindx to data-amp-bind-x
-                if ($this->spec->attributeLists()->get(GlobalAttrs::ID)->has($bindableAttributeName)) {
+                if ($globalAttributes->has($bindableAttributeName)) {
                     $newAttributeName = Amp::BIND_DATA_ATTR_PREFIX . $attributeNameWithoutBindPrefix;
                     $newAttributes[$newAttributeName] = $attribute->value;
 
@@ -481,6 +501,23 @@ final class AutoExtensions implements Transformer
     }
 
     /**
+     * Calculate the extension version.
+     *
+     * @param Spec\TagWithExtensionSpec $tagSpec Spec of the extension tag.
+     * @return string Extension version.
+     */
+    private function calculateExtensionVersion($tagSpec)
+    {
+        $configuredVersions = $this->configuration->get(AutoExtensionsConfiguration::EXTENSION_VERSIONS);
+
+        if (! empty($configuredVersions[$tagSpec->getExtensionName()])) {
+            return $configuredVersions[$tagSpec->getExtensionName()];
+        }
+
+        return $tagSpec->getLatestVersion();
+    }
+
+    /**
      * Get the JSON data from the script element.
      *
      * @param Element         $script Script element to get the JSON data from.
@@ -510,22 +547,5 @@ final class AutoExtensions implements Transformer
         }
 
         return [];
-    }
-
-    /**
-     * Calculate the extension version.
-     *
-     * @param Spec\TagWithExtensionSpec $tagSpec Spec of the extension tag.
-     * @return string Extension version.
-     */
-    private function calculateExtensionVersion($tagSpec)
-    {
-        $configuredVersions = $this->configuration->get(AutoExtensionsConfiguration::EXTENSION_VERSIONS);
-
-        if (! empty($configuredVersions[$tagSpec->getExtensionName()])) {
-            return $configuredVersions[$tagSpec->getExtensionName()];
-        }
-
-        return $tagSpec->getLatestVersion();
     }
 }
