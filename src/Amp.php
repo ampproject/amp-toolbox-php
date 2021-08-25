@@ -125,6 +125,13 @@ final class Amp
     const LAYOUT_AWAITING_SIZE_CLASS = 'i-amphtml-layout-awaiting-size';
 
     /**
+     * Slot used by AMP for all service elements, like "i-amphtml-sizer" elements and similar.
+     *
+     * @var string
+     */
+    const SERVICE_SLOT = 'i-amphtml-svc';
+
+    /**
      * Check if a given node is the AMP runtime script.
      *
      * The AMP runtime script node is of the form '<script async src="https://cdn.ampproject.org...v0.js"></script>'.
