@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   unit-test:
-    name: Unit test${{ matrix.coverage && ' (with coverage)' || '' }} / PHP ${{ matrix.php }}
+    name: Unit test${{ matrix.coverage && ' (with coverage)' || '' }}${{ matrix.random && ' (in random order)' || '' }} / PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     # We want to run on external PRs, but not on our own internal PRs as they'll be run
     # by the push to the branch. This avoids running the workflows twice in such a case.
