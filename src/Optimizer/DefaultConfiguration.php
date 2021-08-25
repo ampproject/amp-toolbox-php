@@ -2,23 +2,9 @@
 
 namespace AmpProject\Optimizer;
 
-use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
-use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
-use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
-use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;
-use AmpProject\Optimizer\Configuration\PreloadHeroImageConfiguration;
-use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
-use AmpProject\Optimizer\Configuration\TransformedIdentifierConfiguration;
 use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 use AmpProject\Optimizer\Exception\UnknownConfigurationClass;
 use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
-use AmpProject\Optimizer\Transformer\AmpRuntimeCss;
-use AmpProject\Optimizer\Transformer\MinifyHtml;
-use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
-use AmpProject\Optimizer\Transformer\OptimizeHeroImages;
-use AmpProject\Optimizer\Transformer\PreloadHeroImage;
-use AmpProject\Optimizer\Transformer\RewriteAmpUrls;
-use AmpProject\Optimizer\Transformer\TransformedIdentifier;
 
 /**
  * Configuration object that validates and stores configuration settings.
@@ -45,13 +31,13 @@ class DefaultConfiguration implements Configuration
      * @var array
      */
     protected $transformerConfigurationClasses = [
-        AmpRuntimeCss::class         => AmpRuntimeCssConfiguration::class,
-        OptimizeAmpBind::class       => OptimizeAmpBindConfiguration::class,
-        OptimizeHeroImages::class    => OptimizeHeroImagesConfiguration::class,
-        PreloadHeroImage::class      => PreloadHeroImageConfiguration::class,
-        RewriteAmpUrls::class        => RewriteAmpUrlsConfiguration::class,
-        TransformedIdentifier::class => TransformedIdentifierConfiguration::class,
-        MinifyHtml::class            => MinifyHtmlConfiguration::class,
+        Transformer\AmpRuntimeCss::class         => Configuration\AmpRuntimeCssConfiguration::class,
+        Transformer\OptimizeAmpBind::class       => Configuration\OptimizeAmpBindConfiguration::class,
+        Transformer\OptimizeHeroImages::class    => Configuration\OptimizeHeroImagesConfiguration::class,
+        Transformer\PreloadHeroImage::class      => Configuration\PreloadHeroImageConfiguration::class,
+        Transformer\RewriteAmpUrls::class        => Configuration\RewriteAmpUrlsConfiguration::class,
+        Transformer\TransformedIdentifier::class => Configuration\TransformedIdentifierConfiguration::class,
+        Transformer\MinifyHtml::class            => Configuration\MinifyHtmlConfiguration::class,
     ];
 
     /**
