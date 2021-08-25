@@ -2,7 +2,6 @@
 
 namespace AmpProject\Validator\Spec\Section;
 
-use AmpProject\Exception\InvalidExtension;
 use AmpProject\Exception\InvalidFormat;
 use AmpProject\Exception\InvalidSpecName;
 use AmpProject\Extension;
@@ -21,9 +20,16 @@ class TagsTest extends TestCase
     /** @var Tags */
     private $tags;
 
-    public function __construct()
+    /**
+     * Sets up the fixture, for example, open a network connection.
+     *
+     * This method is called before each test.
+     *
+     * @return void
+     */
+    protected function set_up()
     {
-        parent::__construct();
+        parent::set_up();
         $spec       = new Spec();
         $this->tags = $spec->tags();
     }

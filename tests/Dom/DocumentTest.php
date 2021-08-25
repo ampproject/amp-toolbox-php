@@ -874,59 +874,60 @@ class DocumentTest extends TestCase
      */
     public function getGetElementIdData()
     {
-        $elementFactory = static function ($dom, $id = null) {
-            $element = $dom->createElement('div');
-
-            if ($id) {
-                $element->setAttribute('id', $id);
-            }
-
-            $dom->body->appendChild($element);
-
-            return $element;
-        };
-
         return [
             'single check with existing ID'         => [
                 [
-                    [ $elementFactory, 'my-id', 'some-prefix', 'my-id' ],
+                    [ true, 'my-id', 'some-prefix', 'my-id' ],
                 ],
             ],
 
             'single check without existing ID'      => [
                 [
-                    [ $elementFactory, null, 'some-prefix', 'some-prefix-0' ],
+                    [ true, null, 'some-prefix', 'some-prefix-0' ],
                 ],
             ],
 
             'consecutive checks count upwards'      => [
                 [
-                    [ $elementFactory, null, 'some-prefix', 'some-prefix-0' ],
-                    [ $elementFactory, null, 'some-prefix', 'some-prefix-1' ],
+                    [ true, null, 'some-prefix', 'some-prefix-0' ],
+                    [ true, null, 'some-prefix', 'some-prefix-1' ],
                 ],
             ],
 
             'consecutive checks for same element return same ID' => [
                 [
-                    [ $elementFactory, null, 'some-prefix', 'some-prefix-0' ],
-                    [ null, null, 'some-prefix', 'some-prefix-0' ],
+                    [ true, null, 'some-prefix', 'some-prefix-0' ],
+                    [ false, null, 'some-prefix', 'some-prefix-0' ],
                 ],
             ],
 
             'mixing prefixes keeps counts separate' => [
                 [
-                    [ $elementFactory, 'my-id', 'some-prefix', 'my-id' ],
-                    [ $elementFactory, null, 'some-prefix', 'some-prefix-0' ],
-                    [ $elementFactory, null, 'some-prefix', 'some-prefix-1' ],
-                    [ $elementFactory, null, 'other-prefix', 'other-prefix-0' ],
-                    [ $elementFactory, null, 'other-prefix', 'other-prefix-1' ],
-                    [ $elementFactory, null, 'some-prefix', 'some-prefix-2' ],
-                    [ $elementFactory, 'another-id', 'some-prefix', 'another-id' ],
-                    [ $elementFactory, null, 'some-prefix', 'some-prefix-3' ],
-                    [ null, null, 'some-prefix', 'some-prefix-3' ],
+                    [ true, 'my-id', 'some-prefix', 'my-id' ],
+                    [ true, null, 'some-prefix', 'some-prefix-0' ],
+                    [ true, null, 'some-prefix', 'some-prefix-1' ],
+                    [ true, null, 'other-prefix', 'other-prefix-0' ],
+                    [ true, null, 'other-prefix', 'other-prefix-1' ],
+                    [ true, null, 'some-prefix', 'some-prefix-2' ],
+                    [ true, 'another-id', 'some-prefix', 'another-id' ],
+                    [ true, null, 'some-prefix', 'some-prefix-3' ],
+                    [ false, null, 'some-prefix', 'some-prefix-3' ],
                 ],
             ],
         ];
+    }
+
+    private function elementFactory($dom, $id = null)
+    {
+        $element = $dom->createElement('div');
+
+        if ($id) {
+            $element->setAttribute('id', $id);
+        }
+
+        $dom->body->appendChild($element);
+
+        return $element;
     }
 
     /**
@@ -935,15 +936,17 @@ class DocumentTest extends TestCase
      * @dataProvider getGetElementIdData
      * @covers \AmpProject\Dom\Document::getElementId()
      *
-     * @param array $checks Checks to perform. Each check is an array containing an element, a prefix and an expected ID.
+     * @param array $checks Checks to perform. Each check is an array containing a boolean whether create a new element,
+     *                      a prefix and an expected ID.
      */
     public function testGetElementId($checks)
     {
-        $dom = new Document();
-        foreach ($checks as list($elementFactory, $id, $prefix, $expected)) {
+        $dom     = new Document();
+        $element = null;
+        foreach ($checks as list($newElement, $id, $prefix, $expected)) {
             // If no element factory was passed, just reuse the previous element.
-            if ($elementFactory) {
-                $element = $elementFactory($dom, $id);
+            if ($newElement) {
+                $element = $this->elementFactory($dom, $id);
             }
 
             $actual = $dom->getElementId($element, $prefix);

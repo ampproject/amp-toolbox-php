@@ -19,9 +19,16 @@ class CssSpecRulesTest extends TestCase
     /** @var CssRulesets */
     private $cssRulesets;
 
-    public function __construct()
+    /**
+     * Sets up the fixture, for example, open a network connection.
+     *
+     * This method is called before each test.
+     *
+     * @return void
+     */
+    protected function set_up()
     {
-        parent::__construct();
+        parent::set_up();
         $spec              = new Spec();
         $this->cssRulesets = $spec->cssRulesets();
     }

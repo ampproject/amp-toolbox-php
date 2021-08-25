@@ -17,10 +17,17 @@ class DeclarationListsTest extends TestCase
     /** @var DeclarationLists */
     private $declarationLists;
 
-    public function __construct()
+    /**
+     * Sets up the fixture, for example, open a network connection.
+     *
+     * This method is called before each test.
+     *
+     * @return void
+     */
+    protected function set_up()
     {
-        parent::__construct();
-        $spec       = new Spec();
+        parent::set_up();
+        $spec                   = new Spec();
         $this->declarationLists = $spec->declarationLists();
     }
 
