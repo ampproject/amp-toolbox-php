@@ -7,14 +7,19 @@ use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
 use AmpProject\Extension;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
-use AmpProject\Optimizer\Error\InvalidJson;
+use AmpProject\Optimizer\Error;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
+use AmpProject\Protocol;
 use AmpProject\Tag;
 use DOMComment;
 use DOMNode;
 use DOMText;
+use Exception;
+use Peast\Formatter\Compact;
+use Peast\Peast;
+use Peast\Renderer;
 
 /**
  * Transformer that that minifies HTML.
@@ -194,15 +199,19 @@ final class MinifyHtml implements Transformer
      */
     private function minifyScriptNode(Element $node, ErrorCollection $errors)
     {
-        if (! $this->configuration->get(MinifyHtmlConfiguration::MINIFY_JSON) || ! $this->isJSON($node)) {
-            return;
-        }
+        $isJson = $this->isJSON($node);
+        $isAmpScript = ! $isJson && $this->isInlineAmpScript($node);
 
         foreach ($node->childNodes as $childNode) {
             if (! $childNode instanceof DOMText || empty($childNode->data)) {
                 continue;
             }
-            $this->minifyJson($childNode, $errors);
+
+            if ($isJson && $this->configuration->get(MinifyHtmlConfiguration::MINIFY_JSON)) {
+                $this->minifyJson($childNode, $errors);
+            } elseif ($isAmpScript && $this->configuration->get(MinifyHtmlConfiguration::MINIFY_AMP_SCRIPT)) {
+                $this->minifyAmpScript($childNode, $errors);
+            }
         }
     }
 
@@ -253,19 +262,62 @@ final class MinifyHtml implements Transformer
         $decodedData = json_decode($node->data);
 
         if (JSON_ERROR_NONE !== json_last_error()) {
-            $errors->add(InvalidJson::fromLastErrorMsgAfterDecoding());
+            $errors->add(Error\InvalidJson::fromLastErrorMsgAfterDecoding());
         }
 
         if (! empty($decodedData)) {
             $data = json_encode($decodedData, JSON_HEX_AMP | JSON_HEX_TAG | JSON_UNESCAPED_SLASHES);
 
             if (JSON_ERROR_NONE !== json_last_error()) {
-                $errors->add(InvalidJson::fromLastErrorMsgAfterEncoding());
+                $errors->add(Error\InvalidJson::fromLastErrorMsgAfterEncoding());
             }
 
             // PHP uses uppercase letters for angle bracket codes, so convert them into lowercase.
             $node->data = str_replace(['\u003E', '\u003C'], ['\u003e', '\u003c'], $data);
         }
+    }
+
+    /**
+     * Checks if a node is meant to be an inline amp-script.
+     *
+     * @param Element $node The element node to be checked.
+     * @return bool
+     */
+    private function isInlineAmpScript(Element $node)
+    {
+        $type = $node->getAttribute(Attribute::TYPE);
+        $target = $node->getAttribute(Attribute::TARGET);
+
+        return $type === Attribute::TYPE_TEXT_PLAIN || $target === Protocol::AMP_SCRIPT;
+    }
+
+    /**
+     * Minify inline AMP script.
+     *
+     * @param DOMText         $node   The node to be minified.
+     * @param ErrorCollection $errors Collection of errors that are collected during transformation.
+     */
+    private function minifyAmpScript(DOMText $node, ErrorCollection $errors)
+    {
+        if (! class_exists(Peast::class) || ! class_exists(Renderer::class) || ! class_exists(Compact::class)) {
+            $errors->add(Error\MissingPackage::withMessage(
+                'The optional package mck89/peast is required to minify inline amp-script.'
+            ));
+            return;
+        }
+
+        // @codeCoverageIgnoreStart
+        try {
+            $parser = Peast::latest($node->data, [])->parse();
+            $renderer = new Renderer();
+            $renderer->setFormatter(new Compact());
+            $node->data = $renderer->render($parser);
+        } catch (Exception $error) {
+            $errors->add(
+                Error\CannotMinifyAmpScript::withMessage($node->data, $error->getMessage())
+            );
+        }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
