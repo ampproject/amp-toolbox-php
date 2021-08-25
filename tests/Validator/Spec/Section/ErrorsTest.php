@@ -18,9 +18,16 @@ class ErrorsTest extends TestCase
     /** @var Errors */
     private $errors;
 
-    public function __construct()
+    /**
+     * Sets up the fixture, for example, open a network connection.
+     *
+     * This method is called before each test.
+     *
+     * @return void
+     */
+    protected function set_up()
     {
-        parent::__construct();
+        parent::set_up();
         $spec         = new Spec();
         $this->errors = $spec->errors();
     }

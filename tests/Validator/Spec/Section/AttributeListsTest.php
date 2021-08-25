@@ -18,10 +18,17 @@ class AttributeListsTest extends TestCase
     /** @var AttributeLists */
     private $attributeLists;
 
-    public function __construct()
+    /**
+     * Sets up the fixture, for example, open a network connection.
+     *
+     * This method is called before each test.
+     *
+     * @return void
+     */
+    protected function set_up()
     {
-        parent::__construct();
-        $spec       = new Spec();
+        parent::set_up();
+        $spec                 = new Spec();
         $this->attributeLists = $spec->attributeLists();
     }
 

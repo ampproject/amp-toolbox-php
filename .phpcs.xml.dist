@@ -40,6 +40,11 @@
         <exclude-pattern>src/Validator/Spec/Tag/*_.php</exclude-pattern>
     </rule>
 
+    <!-- Method names for overrides need to stick with their signature independently of the standard. -->
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>tests/Validator/Spec/Section/*.php</exclude-pattern>
+    </rule>
+
     <!-- WordPress Coding Standards for Inline Documentation and Comments -->
     <rule ref="WordPress-Docs">
         <!-- This does not allow for useful @see and @todo tags with surrounding remarks. -->
