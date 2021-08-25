@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   unit-test:
-    name: Unit test${{ matrix.coverage && ' (with coverage)' || '' }} / PHP ${{ matrix.php }}
+    name: Unit test${{ matrix.coverage && ' (with coverage)' || '' }}${{ matrix.random && ' (in random order)' || '' }} / PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
     # We want to run on external PRs, but not on our own internal PRs as they'll be run
     # by the push to the branch. This avoids running the workflows twice in such a case.
@@ -13,9 +13,12 @@ jobs:
       matrix:
         php: ['8.0', '7.4', '7.3', '7.2', '7.1', '7.0', '5.6']
         coverage: [false]
+        random: [false]
         include:
-          - php: '7.4'
+          - php: '8.0'
             coverage: true
+          - php: '8.0'
+            random: true
 
     steps:
       - name: Checkout
@@ -46,12 +49,16 @@ jobs:
         run: composer install
 
       - name: Run tests
-        if: ${{ matrix.coverage == false }}
+        if: ${{ matrix.random == false && matrix.coverage == false }}
         run: composer unit
 
       - name: Run tests with coverage
-        if: ${{ matrix.coverage == true }}
+        if: ${{ matrix.random == false && matrix.coverage == true }}
         run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+      - name: Run tests in random order
+        if: ${{ matrix.random == true }}
+        run: vendor/bin/phpunit --order-by random
 
       - name: Upload code coverage report
         if: ${{ matrix.coverage == true }}
