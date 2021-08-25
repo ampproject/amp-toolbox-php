@@ -169,8 +169,62 @@ class ElementTest extends TestCase
      */
     public function testAddAmpAction(Element $element, $event, $action, $expected)
     {
-        $element->addAmpAction($event, $action);
-        $this->assertEquals($expected, $element->getAttribute('on'));
+        $dom    = new Document();
+        $button = $dom->createElementWithAttributes('button', []);
+
+        // Add initial action.
+        $button->addAmpAction('tap', "some-id.toggleClass(class='some-class')");
+        $this->assertEquals(
+            "tap:some-id.toggleClass(class='some-class')",
+            $button->getAttribute('on')
+        );
+        // Add another toggle class on tap to a button
+        $button->addAmpAction('tap', "some-other-id.toggleClass(class='some-class')");
+        $this->assertEquals(
+            "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class')",
+            $button->getAttribute('on')
+        );
+        // Add a third toggle class on tap to a button
+        $button->addAmpAction('tap', "third-id.toggleClass(class='some-class')");
+        $this->assertEquals(
+            "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class')",
+            $button->getAttribute('on')
+        );
+        // Add some other event to a button
+        $button->addAmpAction('event', 'action');
+        $this->assertEquals(
+            "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class');event:action",
+            $button->getAttribute('on')
+        );
+        // Add another action to the second event to a button
+        $button->addAmpAction('event', 'other-action');
+        $this->assertEquals(
+            "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class');event:action,other-action",
+            $button->getAttribute('on')
+        );
+        // Add fourth action to the tap event to a button
+        $button->addAmpAction('tap', 'lightbox');
+        $this->assertEquals(
+            "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class'),lightbox;event:action,other-action",
+            $button->getAttribute('on')
+        );
+
+        $form = $dom->createElementWithAttributes('form', []);
+
+        // Add a submit success action to a form
+        $form->addAmpAction('submit-success', 'success-lightbox');
+        $this->assertEquals('submit-success:success-lightbox', $form->getAttribute('on'));
+        // Add a submit error action to a form
+        $form->addAmpAction('submit-error', 'error-lightbox');
+        $this->assertEquals('submit-success:success-lightbox;submit-error:error-lightbox', $form->getAttribute('on'));
+
+        // Make sure separators within methods won't break
+        $element = $dom->createElementWithAttributes('div', [ 'on' => "event:action(method='with problematic characters , : ;')" ]);
+        $element->addAmpAction('event', "second-action('with problematic characters , : ;')");
+        $this->assertEquals(
+            "event:action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')",
+            $element->getAttribute('on')
+        );
     }
 
     public function getMergeAmpActionsData()
@@ -421,7 +475,7 @@ class ElementTest extends TestCase
         $element->setAttributes($attributes);
 
         $this->assertTrue($element->hasAttributes());
-        $this->checkElementHasAttributes($element, $attributes);
+        $this->assertElementHasAttributes($element, $attributes);
     }
 
     /**
@@ -440,7 +494,7 @@ class ElementTest extends TestCase
         $element->setAttributes($attributes);
 
         $this->assertTrue($element->hasAttributes());
-        $this->checkElementHasAttributes($element, $attributes);
+        $this->assertElementHasAttributes($element, $attributes);
     }
 
     /**
@@ -449,7 +503,7 @@ class ElementTest extends TestCase
      * @param Element  $element    Element.
      * @param string[] $attributes Attributes.
      */
-    private function checkElementHasAttributes($element, $attributes)
+    private function assertElementHasAttributes($element, $attributes)
     {
         $this->assertEquals(count($attributes), $element->attributes->length);
         foreach ($element->attributes as $attr) {
