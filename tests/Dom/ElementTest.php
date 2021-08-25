@@ -128,46 +128,12 @@ class ElementTest extends TestCase
         $element->addInlineStyle('X');
     }
 
-    public function getAddAmpActionData()
-    {
-        $dom    = new Document();
-        $button = $dom->createElementWithAttributes('button', []);
-        $form   = $dom->createElementWithAttributes('form', []);
-
-        return [
-            // Add a toggle class on tap to a button
-            [ $button, 'tap', "some-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class')" ],
-            // Add another toggle class on tap to a button
-            [ $button, 'tap', "some-other-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class')" ],
-            // Add a third toggle class on tap to a button
-            [ $button, 'tap', "third-id.toggleClass(class='some-class')", "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class')" ],
-            // Add some other event to a button
-            [ $button, 'event', 'action', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class');event:action" ],
-            // Add another action to the second event to a button
-            [ $button, 'event', 'other-action', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class');event:action,other-action" ],
-            // Add fourth action to the tap event to a button
-            [ $button, 'tap', 'lightbox', "tap:some-id.toggleClass(class='some-class'),some-other-id.toggleClass(class='some-class'),third-id.toggleClass(class='some-class'),lightbox;event:action,other-action" ],
-            // Add a submit success action to a form
-            [ $form, 'submit-success', 'success-lightbox', 'submit-success:success-lightbox' ],
-            // Add a submit error action to a form
-            [ $form, 'submit-error', 'error-lightbox', 'submit-success:success-lightbox;submit-error:error-lightbox' ],
-            // Make sure separators within methods won't break
-            [ $dom->createElementWithAttributes('div', [ 'on' => "event:action(method='with problematic characters , : ;')" ]), 'event', "second-action('with problematic characters , : ;')", "event:action(method='with problematic characters , : ;'),second-action('with problematic characters , : ;')" ],
-        ];
-    }
-
     /**
      * Test addAmpAction().
      *
-     * @dataProvider getAddAmpActionData()
      * @covers \AmpProject\Dom\Element::addAmpAction()
-     *
-     * @param Element $element  Element.
-     * @param string     $event    Event.
-     * @param string     $action   Action.
-     * @param string     $expected Expected.
      */
-    public function testAddAmpAction(Element $element, $event, $action, $expected)
+    public function testAddAmpAction()
     {
         $dom    = new Document();
         $button = $dom->createElementWithAttributes('button', []);
