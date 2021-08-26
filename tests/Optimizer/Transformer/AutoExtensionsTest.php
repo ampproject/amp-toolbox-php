@@ -61,6 +61,70 @@ final class AutoExtensionsTest extends TestCase
                     AutoExtensionsConfiguration::IGNORE => [Extension::FORM]
                 ]
             ],
+
+            'add amp-access and amp-access-scroll scripts when amp-access is present' => [
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '    <script id="amp-access" type="application/json">'
+                . '        {'
+                . '            "vendor": "scroll",'
+                . '            "namespace": "scroll"'
+                . '        }'
+                . '    </script>'
+                . '</head><body>'
+                . '    <section amp-access="NOT scroll.scroll">'
+                . '        ad goes here'
+                . '    </section>'
+                . '</body></html>',
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '    <script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>'
+                . '    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>'
+                . '    <script async custom-element="amp-access-scroll" src="https://cdn.ampproject.org/v0/amp-access-scroll-0.1.js"></script>'
+                . '    <script id="amp-access" type="application/json">'
+                . '        {'
+                . '            "vendor": "scroll",'
+                . '            "namespace": "scroll"'
+                . '        }'
+                . '    </script>'
+                . '</head><body>'
+                . '    <section amp-access="NOT scroll.scroll">'
+                . '        ad goes here'
+                . '    </section>'
+                . '</body></html>',
+            ],
+
+            'add amp-access-scroll scripts when amp-access is present in an array of multiple access providers' => [
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '    <script id="amp-access" type="application/json">'
+                . '        ['
+                . '            {'
+                . '                "vendor": "scroll",'
+                . '                "namespace": "scroll"'
+                . '            }'
+                .          ']'
+                . '    </script>'
+                . '</head><body>'
+                . '    <section amp-access="NOT scroll.scroll">'
+                . '        ad goes here'
+                . '    </section>'
+                . '</body></html>',
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '    <script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>'
+                . '    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>'
+                . '    <script async custom-element="amp-access-scroll" src="https://cdn.ampproject.org/v0/amp-access-scroll-0.1.js"></script>'
+                . '    <script id="amp-access" type="application/json">'
+                . '        ['
+                . '            {'
+                . '                "vendor": "scroll",'
+                . '                "namespace": "scroll"'
+                . '            }'
+                .          ']'
+                . '    </script>'
+                . '</head><body>'
+                . '    <section amp-access="NOT scroll.scroll">'
+                . '        ad goes here'
+                . '    </section>'
+                . '</body></html>',
+            ]
         ];
     }
 

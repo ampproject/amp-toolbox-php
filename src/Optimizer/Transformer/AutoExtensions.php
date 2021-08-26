@@ -107,13 +107,36 @@ final class AutoExtensions implements Transformer
                 $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::ACCESS);
                 $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::ANALYTICS);
 
-                $jsonData = $this->getJsonData($script, $errors);
-                if (array_key_exists('vendor', $jsonData) && $jsonData['vendor'] === 'laterpay') {
-                    $extensionScripts = $this->maybeAddExtension(
-                        $document,
-                        $extensionScripts,
-                        Extension::ACCESS_LATERPAY
-                    );
+                $jsonData  = $this->getJsonData($script, $errors);
+                $providers = [];
+
+                // Access providers could be single or multiple.
+                if (isset($jsonData['vendor'])) {
+                    $providers = [$jsonData];
+                } elseif (isset($jsonData[0]) && is_array($jsonData[0])) {
+                    $providers = $jsonData;
+                }
+
+                foreach ($providers as $provider) {
+                    $requiredExtension = null;
+
+                    if ($provider['vendor'] === 'laterpay') {
+                        $requiredExtension = Extension::ACCESS_LATERPAY;
+                    } elseif (
+                        $provider['vendor'] === 'scroll'
+                        && isset($provider['namespace'])
+                        && $provider['namespace'] === 'scroll'
+                    ) {
+                        $requiredExtension = Extension::ACCESS_SCROLL;
+                    }
+
+                    if ($requiredExtension) {
+                        $extensionScripts = $this->maybeAddExtension(
+                            $document,
+                            $extensionScripts,
+                            $requiredExtension
+                        );
+                    }
                 }
             } elseif ($script->getAttribute(Attribute::ID) === Extension::SUBSCRIPTIONS) {
                 // Explicitly detect amp-subscriptions via the script tag in the header to be able to handle
