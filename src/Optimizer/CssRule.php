@@ -208,14 +208,20 @@ final class CssRule
      */
     public function canBeMerged(CssRule $that)
     {
+        // As merging rules changes the CSS ordering, it is not a safe operation to do.
+        // Therefore, we hard-code a single scenario here that we want to support (which is the most common case).
+        // This is the only merge that is being done in the Node.js amp-toolbox, so we keep this for consistency
+        // across implementations.
+
         if ($this->mediaQuery !== $that->mediaQuery) {
             return false;
         }
 
-        if (
-            count($this->properties) !== count($that->properties)
-            || array_diff($this->properties, $that->properties)
-        ) {
+        if (count($this->properties) !== 1 || count($that->properties) !== 1) {
+            return false;
+        }
+
+        if ($this->properties[0] !== 'display:none' || $that->properties[0] !== 'display:none') {
             return false;
         }
 

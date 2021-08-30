@@ -76,33 +76,40 @@ class CssRuleTest extends TestCase
     public function dataCssRuleMerging()
     {
         return [
+            // The only property that should be merged for now is display:none.
+            // Having generic merging in place leads to CSS breakage as the order of execution the CSS moves around.
+
+            'same display:none property' => [['.class1', 'display:none'], ['.class2', 'display:none'], true, ['', ['.class1', '.class2'], ['display:none']]],
+
+            // All of the following rules are testing generic merges, but are currently hard-coded to not be mergeable.
+
             'different single property' => [['.class1', 'color:red'], ['.class2', 'color:blue'], false],
-            'same single property'      => [['.class1', 'color:red'], ['.class2', 'color:red'], true, ['', ['.class1', '.class2'], ['color:red']]],
+            'same single property'      => [['.class1', 'color:red'], ['.class2', 'color:red'], false],
 
             'different multiple properties' => [['.class1', 'color:red;background-color:green'], ['.class2', 'color:red;background-color:blue'], false],
-            'same multiple properties'      => [['.class1', 'color:red;background-color:green'], ['.class2', 'color:red;background-color:green'], true, ['', ['.class1', '.class2'], ['background-color:green', 'color:red']]],
+            'same multiple properties'      => [['.class1', 'color:red;background-color:green'], ['.class2', 'color:red;background-color:green'], false],
 
             'multiple selectors with different single property' => [['.class1,.class2', 'color:red'], ['.class3,.class4', 'color:blue'], false],
-            'multiple selectors with same single property'      => [['.class1,.class2', 'color:red'], ['.class3,.class4', 'color:red'], true, ['', ['.class1', '.class2', '.class3', '.class4'], ['color:red']]],
+            'multiple selectors with same single property'      => [['.class1,.class2', 'color:red'], ['.class3,.class4', 'color:red'], false],
 
             'multiple selectors with different multiple properties' => [['.class1,.class2', 'color:red;background-color:green'], ['.class3,.class4', 'color:red;background-color:blue'], false],
-            'multiple selectors with same multiple properties'      => [['.class1,.class2', 'color:red;background-color:green'], ['.class3,.class4', 'color:red;background-color:green'], true, ['', ['.class1', '.class2', '.class3', '.class4'], ['background-color:green', 'color:red']]],
+            'multiple selectors with same multiple properties'      => [['.class1,.class2', 'color:red;background-color:green'], ['.class3,.class4', 'color:red;background-color:green'], false],
 
-            'overlap in selectors' => [['.class1,.class2', 'color:red'], ['.class2,.class3', 'color:red'], true, ['', ['.class1', '.class2', '.class3'], ['color:red']]],
+            'overlap in selectors' => [['.class1,.class2', 'color:red'], ['.class2,.class3', 'color:red'], false],
 
             'same media query - different single property' => [['@media not all and (min-width: 650px)', '.class1', 'color:red'], ['@media not all and (min-width: 650px)', '.class2', 'color:blue'], false],
-            'same media query - same single property'      => [['@media not all and (min-width: 650px)', '.class1', 'color:red'], ['@media not all and (min-width: 650px)', '.class2', 'color:red'], true, ['@media not all and (min-width: 650px)', ['.class1', '.class2'], ['color:red']]],
+            'same media query - same single property'      => [['@media not all and (min-width: 650px)', '.class1', 'color:red'], ['@media not all and (min-width: 650px)', '.class2', 'color:red'], false],
 
             'same media query - different multiple properties' => [['@media not all and (min-width: 650px)', '.class1', 'color:red;background-color:green'], ['@media not all and (min-width: 650px)', '.class2', 'color:red;background-color:blue'], false],
-            'same media query - same multiple properties'      => [['@media not all and (min-width: 650px)', '.class1', 'color:red;background-color:green'], ['@media not all and (min-width: 650px)', '.class2', 'color:red;background-color:green'], true, ['@media not all and (min-width: 650px)', ['.class1', '.class2'], ['background-color:green', 'color:red']]],
+            'same media query - same multiple properties'      => [['@media not all and (min-width: 650px)', '.class1', 'color:red;background-color:green'], ['@media not all and (min-width: 650px)', '.class2', 'color:red;background-color:green'], false],
 
             'same media query - multiple selectors with different single property' => [['@media not all and (min-width: 650px)', '.class1,.class2', 'color:red'], ['@media not all and (min-width: 650px)', '.class3,.class4', 'color:blue'], false],
-            'same media query - multiple selectors with same single property'      => [['@media not all and (min-width: 650px)', '.class1,.class2', 'color:red'], ['@media not all and (min-width: 650px)', '.class3,.class4', 'color:red'], true, ['@media not all and (min-width: 650px)', ['.class1', '.class2', '.class3', '.class4'], ['color:red']]],
+            'same media query - multiple selectors with same single property'      => [['@media not all and (min-width: 650px)', '.class1,.class2', 'color:red'], ['@media not all and (min-width: 650px)', '.class3,.class4', 'color:red'], false],
 
             'same media query - multiple selectors with different multiple properties' => [['@media not all and (min-width: 650px)', '.class1,.class2', 'color:red;background-color:green'], ['@media not all and (min-width: 650px)', '.class3,.class4', 'color:red;background-color:blue'], false],
-            'same media query - multiple selectors with same multiple properties'      => [['@media not all and (min-width: 650px)', '.class1,.class2', 'color:red;background-color:green'], ['@media not all and (min-width: 650px)', '.class3,.class4', 'color:red;background-color:green'], true, ['@media not all and (min-width: 650px)', ['.class1', '.class2', '.class3', '.class4'], ['background-color:green', 'color:red']]],
+            'same media query - multiple selectors with same multiple properties'      => [['@media not all and (min-width: 650px)', '.class1,.class2', 'color:red;background-color:green'], ['@media not all and (min-width: 650px)', '.class3,.class4', 'color:red;background-color:green'], false],
 
-            'same media query - overlap in selectors' => [['@media not all and (min-width: 650px)', '.class1,.class2', 'color:red'], ['@media not all and (min-width: 650px)', '.class2,.class3', 'color:red'], true, ['@media not all and (min-width: 650px)', ['.class1', '.class2', '.class3'], ['color:red']]],
+            'same media query - overlap in selectors' => [['@media not all and (min-width: 650px)', '.class1,.class2', 'color:red'], ['@media not all and (min-width: 650px)', '.class2,.class3', 'color:red'], false],
 
             'different media query - different single property' => [['@media not all and (min-width: 650px)', '.class1', 'color:red'], ['@media not all and (min-width: 950px)', '.class2', 'color:blue'], false],
             'different media query - same single property'      => [['@media not all and (min-width: 650px)', '.class1', 'color:red'], ['@media not all and (min-width: 950px)', '.class2', 'color:red'], false],

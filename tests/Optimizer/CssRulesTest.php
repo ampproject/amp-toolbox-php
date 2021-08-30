@@ -58,7 +58,7 @@ class CssRulesTest extends TestCase
             ->add(new CssRule('h3', 'color:red'))
             ->add(new CssRule('h4', 'color:green'))
             ->add(new CssRule('h5', 'color:red'));
-        $this->assertEquals('h1,h3,h5{color:red}h2,h4{color:green}', $cssRules->getCss());
+        $this->assertEquals('h1{color:red}h2{color:green}h3{color:red}h4{color:green}h5{color:red}', $cssRules->getCss());
     }
 
     /**
@@ -76,6 +76,6 @@ class CssRulesTest extends TestCase
                 new CssRule('h5', 'color:red'),
             ]
         );
-        $this->assertEquals('h1,h3,h5{color:red}h2,h4{color:green}', $cssRules->getCss());
+        $this->assertEquals('h1{color:red}h2{color:green}h3{color:red}h4{color:green}h5{color:red}', $cssRules->getCss());
     }
 }
