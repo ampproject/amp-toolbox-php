@@ -23,7 +23,7 @@ use InvalidArgumentException;
 final class AutoExtensions implements Transformer
 {
     /**
-     * Some AMP component don't bring their own tag, but enable new attributes on other elements. Most are included in
+     * Some AMP components don't bring their own tag, but enable new attributes on other elements. Most are included in
      * the AMP validation rules, but some are not. These need to be defined manually here.
      *
      * @var array
@@ -338,10 +338,11 @@ final class AutoExtensions implements Transformer
                 $usesAmpBind = true;
             }
 
-            /**
-             * EXPERIMENTAL FEATURE: Rewrite short-form `bindtext` to `data-amp-bind-text` to avoid false-positives we
-             * check for each tag only the supported bindable attributes (e.g. for a div only bindtext, but not
-             * bindvalue).
+            /*
+             * EXPERIMENTAL FEATURE: Rewrite short-form `bindtext` to `data-amp-bind-text`.
+             *
+             * To avoid false-positives, we only check the supported bindable attributes for each tag (e.g. for a div
+             * only bindtext, but not bindvalue).
              */
             if (
                 $this->configuration->get(AutoExtensionsConfiguration::EXPERIMENT_BIND_ATTRIBUTE)
@@ -382,6 +383,8 @@ final class AutoExtensions implements Transformer
     /**
      * Get all attributes for a tag.
      *
+	 * @TODO: Provide this functionality as part of the validator spec implementation.
+	 *
      * @param string $tagName Name of the node tag.
      * @return array Attribute list for the tag name.
      */

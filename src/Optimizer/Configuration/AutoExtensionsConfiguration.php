@@ -54,7 +54,7 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
      *
      * @var string[]
      */
-    const IGNORE = 'ignore';
+    const IGNORED_EXTENSIONS = 'ignoredExtensions';
 
     /**
      * Get the associative array of allowed keys and their respective default values.
