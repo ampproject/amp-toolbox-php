@@ -70,7 +70,7 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
             self::AUTO_EXTENSION_IMPORT     => true,
             self::EXPERIMENT_BIND_ATTRIBUTE => false,
             self::EXTENSION_VERSIONS        => [],
-            self::IGNORE                    => [],
+            self::IGNORED_EXTENSIONS        => [],
         ];
     }
 
@@ -137,11 +137,11 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
                 }
                 break;
 
-            case self::IGNORE:
+            case self::IGNORED_EXTENSIONS:
                 if (! is_array($value)) {
                     throw InvalidConfigurationValue::forInvalidSubValueType(
                         self::class,
-                        self::IGNORE,
+                        self::IGNORED_EXTENSIONS,
                         'array',
                         gettype($value)
                     );

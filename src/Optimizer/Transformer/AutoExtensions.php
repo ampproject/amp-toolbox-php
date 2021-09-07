@@ -505,7 +505,7 @@ final class AutoExtensions implements Transformer
      */
     private function maybeAddExtension(Document $document, $extensionScripts, $requiredExtension)
     {
-        if (in_array($requiredExtension, $this->configuration->get(AutoExtensionsConfiguration::IGNORE))) {
+        if (in_array($requiredExtension, $this->configuration->get(AutoExtensionsConfiguration::IGNORED_EXTENSIONS))) {
             return $extensionScripts;
         }
 

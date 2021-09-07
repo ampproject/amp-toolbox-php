@@ -58,7 +58,7 @@ final class AutoExtensionsTest extends TestCase
                 . '</body></html>',
                 [],
                 [
-                    AutoExtensionsConfiguration::IGNORE => [Extension::FORM]
+                    AutoExtensionsConfiguration::IGNORED_EXTENSIONS => [Extension::FORM]
                 ]
             ],
 
