@@ -147,7 +147,7 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
                     );
                 }
 
-                // Verify extension name in ignore list.
+                // Assert that the extension names in the ignore list are valid extensions.
                 $reflection = new ReflectionClass(Extension::class);
                 $constants = $reflection->getConstants();
 
