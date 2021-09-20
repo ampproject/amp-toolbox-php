@@ -53,15 +53,16 @@ final class FallbackRemoteGetRequest implements RemoteGetRequest
     /**
      * Do a GET request to retrieve the contents of a remote URL.
      *
-     * @param string $url URL to get.
+     * @param string $url     URL to get.
+     * @param array  $headers Optional. Associative array of headers to send with the request. Defaults to empty array.
      * @return Response Response for the executed request.
      * @throws FailedRemoteRequest If retrieving the contents from the URL failed.
      */
-    public function get($url)
+    public function get($url, $headers = [])
     {
         foreach ($this->pipeline as $remoteGetRequest) {
             try {
-                $response = $remoteGetRequest->get($url);
+                $response = $remoteGetRequest->get($url, $headers);
 
                 if (! $response instanceof RemoteGetRequestResponse) {
                     continue;
