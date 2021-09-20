@@ -22,7 +22,6 @@ use AmpProject\Validator\Spec\Tag;
  *
  * @property-read string $tagName
  * @property-read string $specName
- * @property-read string $mandatoryAlternatives
  * @property-read bool $unique
  * @property-read string $mandatoryParent
  * @property-read array<array> $attrs
@@ -52,7 +51,6 @@ final class AmphtmlModuleEngineScript extends Tag implements Identifiable
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amphtml module engine script',
-        SpecRule::MANDATORY_ALTERNATIVES => 'amphtml engine script',
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
@@ -76,6 +74,7 @@ final class AmphtmlModuleEngineScript extends Tag implements Identifiable
             Format::AMP,
         ],
         SpecRule::SATISFIES => [
+            'amphtml javascript runtime (v0.js)',
             'amphtml module engine script',
         ],
         SpecRule::REQUIRES => [

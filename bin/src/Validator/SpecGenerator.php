@@ -59,10 +59,9 @@ final class SpecGenerator
         $this->generateEntityClass('DocRuleset', $fileManager);
         $this->generateEntityClass('Error', $fileManager);
         $this->generateEntityClass('Tag', $fileManager);
-        $this->generateEntityClass('TagWithExtensionSpec', $fileManager, 'interface');
+        $this->generateEntityClass('TagWithExtensionSpec', $fileManager);
         $this->generateEntityClass('AggregateTag', $fileManager);
         $this->generateEntityClass('AggregateTagWithExtensionSpec', $fileManager);
-        $this->generateEntityClass('ExtensionSpec', $fileManager, 'trait');
         $this->generateEntityClass('Identifiable', $fileManager, 'interface');
         $this->generateEntityClass('IterableSection', $fileManager, 'interface');
         $this->generateEntityClass('Iteration', $fileManager, 'trait');

@@ -29,7 +29,7 @@ final class AmpEmailMissingStrictCssAttr extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Tag \'html\' marked with attribute \'amp4email\' is missing the corresponding attribute \'data-css-strict\' for enabling strict CSS validation. This may become an error in the future.',

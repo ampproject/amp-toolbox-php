@@ -30,7 +30,7 @@ final class AmpStoryPageAttachmentAllowedDescendants extends DescendantTagList i
     /**
      * Array of descendant tags.
      *
-     * @var array<array>
+     * @var array<string>
      */
     const DESCENDANT_TAGS = [
         Element::A,

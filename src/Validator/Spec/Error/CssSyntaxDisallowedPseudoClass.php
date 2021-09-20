@@ -30,7 +30,7 @@ final class CssSyntaxDisallowedPseudoClass extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS error in tag \'%1\' - disallowed pseudo class \'%2\'.',

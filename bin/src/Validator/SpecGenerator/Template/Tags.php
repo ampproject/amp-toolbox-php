@@ -167,7 +167,7 @@ final class Tags
         foreach ($tagIds as $tagId) {
             $tag = $this->byTagId($tagId);
 
-            if (!$tag instanceof TagWithExtensionSpec) {
+            if (! $tag instanceof TagWithExtensionSpec) {
                 throw new LogicException('Tags::byExtensionSpec returned tag without extension spec');
             }
 

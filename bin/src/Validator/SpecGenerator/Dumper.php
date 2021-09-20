@@ -27,6 +27,7 @@ final class Dumper
         'attrLists',
         'attributeName',
         'attrs',
+        'bentoSupportedVersion',
         'cdata',
         'cdataRegex',
         'childTagNameOneof',

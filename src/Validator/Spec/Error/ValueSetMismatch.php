@@ -30,7 +30,7 @@ final class ValueSetMismatch extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Attribute \'%1\' in tag \'%2\' contains a value that does not match any other tags on the page.',

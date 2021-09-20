@@ -70,6 +70,7 @@ interface Attribute
     const AMP_NESTED_SUBMENU              = 'amp-nested-submenu';
     const AMP_NESTED_SUBMENU_CLOSE        = 'amp-nested-submenu-close';
     const AMP_NESTED_SUBMENU_OPEN         = 'amp-nested-submenu-open';
+    const AMP_NOSCRIPT                    = 'amp-noscript';
     const AMP_ONERROR                     = 'amp-onerror';
     const AMP_RUNTIME                     = 'amp-runtime';
     const AMP_SCRIPT_SRC                  = 'amp-script-src';
@@ -219,6 +220,7 @@ interface Attribute
     const BREAK_INSIDE                    = 'break-inside';
     const CACHE                           = 'cache';
     const CAPTION_SIDE                    = 'caption-side';
+    const CAPTIONS_ID                     = 'captions-id';
     const CAPTURE                         = 'capture';
     const CARET_COLOR                     = 'caret-color';
     const CELLPADDING                     = 'cellpadding';

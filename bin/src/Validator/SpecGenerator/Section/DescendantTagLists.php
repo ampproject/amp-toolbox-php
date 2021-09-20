@@ -113,7 +113,7 @@ final class DescendantTagLists implements Section
         }
 
         $class->addConstant('DESCENDANT_TAGS', $descendantTags)
-              ->addComment("Array of descendant tags.\n\n@var array<array>");
+              ->addComment("Array of descendant tags.\n\n@var array<string>");
 
         $classComment = "Descendant tag list class {$className}.\n\n";
         $classComment .= "@package ampproject/amp-toolbox.\n\n";

@@ -74,6 +74,11 @@ final class AmpStoryAmpVideo extends Tag implements Identifiable
                     'google',
                 ],
             ],
+            Attribute::CAPTIONS_ID => [
+                SpecRule::REQUIRES_EXTENSION => [
+                    Extension::STORY_CAPTIONS,
+                ],
+            ],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

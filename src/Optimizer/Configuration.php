@@ -22,7 +22,7 @@ interface Configuration
     /**
      * Array of known configuration keys and their default values.
      *
-     * @var string[]
+     * @var array{transformers: string[]}
      */
     const DEFAULTS = [
         self::KEY_TRANSFORMERS => self::DEFAULT_TRANSFORMERS,

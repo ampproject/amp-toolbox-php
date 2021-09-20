@@ -13,7 +13,7 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  *
  * @package ampproject/amp-toolbox
  */
-class AggregateTagWithExtensionSpec extends AggregateTag implements TagWithExtensionSpec
+final class AggregateTagWithExtensionSpec extends TagWithExtensionSpec
 {
 
     /**

@@ -15,7 +15,7 @@ namespace AmpProject\Validator\Spec;
  *
  * @package ampproject/amp-toolbox
  */
-class AggregateTagWithExtensionSpec extends AggregateTag implements TagWithExtensionSpec
+final class AggregateTagWithExtensionSpec extends TagWithExtensionSpec
 {
     /**
      * Array of TagWithExtensionSpec instances that this AggregateTag aggregates.

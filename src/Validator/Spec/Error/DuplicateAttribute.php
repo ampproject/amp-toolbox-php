@@ -30,7 +30,7 @@ final class DuplicateAttribute extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' contains the attribute \'%2\' repeated multiple times.',

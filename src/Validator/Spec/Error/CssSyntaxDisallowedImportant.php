@@ -30,7 +30,7 @@ final class CssSyntaxDisallowedImportant extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Usage of the !important CSS qualifier is not allowed.',

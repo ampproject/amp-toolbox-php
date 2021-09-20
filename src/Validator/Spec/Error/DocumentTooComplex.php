@@ -30,7 +30,7 @@ final class DocumentTooComplex extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The document is too complex.',

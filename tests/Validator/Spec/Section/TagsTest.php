@@ -170,7 +170,6 @@ class TagsTest extends TestCase
 
     /**
      * @covers \AmpProject\Validator\Spec\Section\Tags::byAggregateTagName()
-     * @covers \AmpProject\Validator\Spec\AggregateTag::__construct()
      * @covers \AmpProject\Validator\Spec\AggregateTagWithExtensionSpec::getExtensionName()
      * @covers \AmpProject\Validator\Spec\AggregateTagWithExtensionSpec::getExtensionType()
      * @covers \AmpProject\Validator\Spec\AggregateTagWithExtensionSpec::getVersionsMeta()
@@ -186,7 +185,7 @@ class TagsTest extends TestCase
         $this->assertInstanceOf(Spec\Tag::class, $tag);
         $this->assertInstanceOf(Spec\TagWithExtensionSpec::class, $tag);
 
-        $this->assertInstanceOf(Spec\AggregateTag::class, $tag);
+        $this->assertNotInstanceOf(Spec\AggregateTag::class, $tag);
         $this->assertInstanceOf(Spec\AggregateTagWithExtensionSpec::class, $tag);
 
         $this->assertEquals('amp-twitter', $tag->getExtensionName());

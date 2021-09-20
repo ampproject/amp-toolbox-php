@@ -137,6 +137,7 @@ interface Extension
     const STORY_AUTO_ADS                         = 'amp-story-auto-ads';
     const STORY_AUTO_ANALYTICS                   = 'amp-story-auto-analytics';
     const STORY_BOOKEND                          = 'amp-story-bookend';
+    const STORY_CAPTIONS                         = 'amp-story-captions';
     const STORY_CONSENT                          = 'amp-story-consent';
     const STORY_CTA_LAYER                        = 'amp-story-cta-layer';
     const STORY_GRID_LAYER                       = 'amp-story-grid-layer';

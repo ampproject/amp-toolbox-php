@@ -29,7 +29,7 @@ final class AmpStoryPlayerAllowedDescendants extends DescendantTagList implement
     /**
      * Array of descendant tags.
      *
-     * @var array<array>
+     * @var array<string>
      */
     const DESCENDANT_TAGS = [
         Element::A,

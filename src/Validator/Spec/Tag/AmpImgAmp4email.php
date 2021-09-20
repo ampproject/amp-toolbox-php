@@ -28,6 +28,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array<array<string>> $ampLayout
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requires
  */
 final class AmpImgAmp4email extends Tag implements Identifiable
 {
@@ -71,6 +72,9 @@ final class AmpImgAmp4email extends Tag implements Identifiable
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP4EMAIL,
+        ],
+        SpecRule::REQUIRES => [
+            'amphtml javascript runtime (v0.js)',
         ],
     ];
 }

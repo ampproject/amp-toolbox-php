@@ -30,7 +30,7 @@ final class InvalidDoctypeHtml extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Invalid or missing doctype declaration. Should be \'!doctype html\'.',

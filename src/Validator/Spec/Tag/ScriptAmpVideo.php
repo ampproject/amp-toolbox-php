@@ -10,7 +10,6 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -28,10 +27,8 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $extensionSpec
  * @property-read array<string> $excludes
  */
-final class ScriptAmpVideo extends Tag implements Identifiable, TagWithExtensionSpec
+final class ScriptAmpVideo extends TagWithExtensionSpec implements Identifiable
 {
-    use ExtensionSpec;
-
     /**
      * ID of the tag.
      *
@@ -50,6 +47,9 @@ final class ScriptAmpVideo extends Tag implements Identifiable, TagWithExtension
             '1.0',
         ],
         SpecRule::VERSION_NAME => 'v1.0',
+        SpecRule::BENTO_SUPPORTED_VERSION => [
+            '1.0',
+        ],
     ];
 
     /**

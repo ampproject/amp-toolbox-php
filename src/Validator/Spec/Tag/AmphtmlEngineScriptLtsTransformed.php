@@ -16,7 +16,7 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
 /**
- * Tag class NoscriptStyleAmpBoilerplateTransformed.
+ * Tag class AmphtmlEngineScriptLtsTransformed.
  *
  * @package ampproject/amp-toolbox.
  *
@@ -27,20 +27,20 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read array<array> $attrs
  * @property-read array<string> $attrLists
  * @property-read string $specUrl
- * @property-read array $cdata
- * @property-read string $mandatoryAncestor
+ * @property-read array<array<array<string>>> $cdata
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read array<string> $enabledBy
  * @property-read string $descriptiveName
  */
-final class NoscriptStyleAmpBoilerplateTransformed extends Tag implements Identifiable
+final class AmphtmlEngineScriptLtsTransformed extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
      *
      * @var string
      */
-    const ID = 'noscript > style[amp-boilerplate] (transformed)';
+    const ID = 'amphtml engine script (LTS) (transformed)';
 
     /**
      * Array of spec rules.
@@ -48,34 +48,41 @@ final class NoscriptStyleAmpBoilerplateTransformed extends Tag implements Identi
      * @var array
      */
     const SPEC = [
-        SpecRule::TAG_NAME => Element::STYLE,
-        SpecRule::SPEC_NAME => 'noscript > style[amp-boilerplate] (transformed)',
+        SpecRule::TAG_NAME => Element::SCRIPT,
+        SpecRule::SPEC_NAME => 'amphtml engine script (LTS) (transformed)',
         SpecRule::UNIQUE => true,
-        SpecRule::MANDATORY_PARENT => Element::NOSCRIPT,
+        SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
-            Attribute::AMP_BOILERPLATE => [
+            Attribute::SRC => [
                 SpecRule::MANDATORY => true,
                 SpecRule::VALUE => [
-                    '',
+                    'https://cdn.ampproject.org/lts/v0.js',
                 ],
-                SpecRule::DISPATCH_KEY => 'NAME_VALUE_PARENT_DISPATCH',
+                SpecRule::DISPATCH_KEY => 'NAME_VALUE_DISPATCH',
             ],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\NonceAttr::ID,
+            AttributeList\AmphtmlEngineAttrs::ID,
         ],
-        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',
+        SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/#required-markup',
         SpecRule::CDATA => [
-            SpecRule::CDATA_REGEX => '\s*body\s*{\s*-webkit-animation:\s*none;\s*-moz-animation:\s*none;\s*-ms-animation:\s*none;\s*animation:\s*none;?\s*}\s*',
-            SpecRule::DOC_CSS_BYTES => false,
+            SpecRule::DISALLOWED_CDATA_REGEX => [
+                [
+                    SpecRule::REGEX => '.',
+                    SpecRule::ERROR_MESSAGE => 'contents',
+                ],
+            ],
         ],
-        SpecRule::MANDATORY_ANCESTOR => Element::HEAD,
         SpecRule::HTML_FORMAT => [
             Format::AMP,
+        ],
+        SpecRule::SATISFIES => [
+            'amphtml javascript runtime (v0.js)',
         ],
         SpecRule::ENABLED_BY => [
             Attribute::TRANSFORMED,
         ],
-        SpecRule::DESCRIPTIVE_NAME => 'noscript > style[amp-boilerplate]',
+        SpecRule::DESCRIPTIVE_NAME => 'amphtml engine script',
     ];
 }

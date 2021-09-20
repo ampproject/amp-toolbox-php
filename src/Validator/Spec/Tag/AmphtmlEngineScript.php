@@ -22,7 +22,6 @@ use AmpProject\Validator\Spec\Tag;
  *
  * @property-read string $tagName
  * @property-read string $specName
- * @property-read string $mandatoryAlternatives
  * @property-read bool $unique
  * @property-read string $mandatoryParent
  * @property-read array<array> $attrs
@@ -30,6 +29,9 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array<array<array<string>>> $cdata
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
+ * @property-read array<string> $requires
+ * @property-read array<string> $disabledBy
  * @property-read string $descriptiveName
  */
 final class AmphtmlEngineScript extends Tag implements Identifiable
@@ -49,7 +51,6 @@ final class AmphtmlEngineScript extends Tag implements Identifiable
     const SPEC = [
         SpecRule::TAG_NAME => Element::SCRIPT,
         SpecRule::SPEC_NAME => 'amphtml engine script',
-        SpecRule::MANDATORY_ALTERNATIVES => 'amphtml engine script',
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
@@ -76,6 +77,16 @@ final class AmphtmlEngineScript extends Tag implements Identifiable
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
+        ],
+        SpecRule::SATISFIES => [
+            'amphtml javascript runtime (v0.js)',
+        ],
+        SpecRule::REQUIRES => [
+            'style[amp-boilerplate]',
+            'noscript > style[amp-boilerplate]',
+        ],
+        SpecRule::DISABLED_BY => [
+            Attribute::TRANSFORMED,
         ],
         SpecRule::DESCRIPTIVE_NAME => 'amphtml engine script',
     ];

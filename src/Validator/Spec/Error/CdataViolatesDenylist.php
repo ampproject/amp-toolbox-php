@@ -30,7 +30,7 @@ final class CdataViolatesDenylist extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The text inside tag \'%1\' contains \'%2\', which is disallowed.',

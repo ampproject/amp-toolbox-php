@@ -30,7 +30,7 @@ final class MandatoryCdataMissingOrIncorrect extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The mandatory text inside tag \'%1\' is missing or incorrect.',

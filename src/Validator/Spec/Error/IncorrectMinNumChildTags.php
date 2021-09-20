@@ -30,7 +30,7 @@ final class IncorrectMinNumChildTags extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Tag \'%1\' must have a minimum of %2 child tags - saw %3 child tags.',

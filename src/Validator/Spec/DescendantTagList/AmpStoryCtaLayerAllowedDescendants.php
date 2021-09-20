@@ -30,7 +30,7 @@ final class AmpStoryCtaLayerAllowedDescendants extends DescendantTagList impleme
     /**
      * Array of descendant tags.
      *
-     * @var array<array>
+     * @var array<string>
      */
     const DESCENDANT_TAGS = [
         Element::A,

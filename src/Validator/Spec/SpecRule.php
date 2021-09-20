@@ -22,6 +22,7 @@ interface SpecRule
     const ATTR_LISTS = 'attrLists';
     const ATTRIBUTE_NAME = 'attributeName';
     const ATTRS = 'attrs';
+    const BENTO_SUPPORTED_VERSION = 'bentoSupportedVersion';
     const CDATA = 'cdata';
     const CDATA_REGEX = 'cdataRegex';
     const CHILD_TAG_NAME_ONEOF = 'childTagNameOneof';
@@ -62,7 +63,6 @@ interface SpecRule
     const IMPLICIT = 'implicit';
     const ISSUES_AS_ERROR = 'issuesAsError';
     const MANDATORY = 'mandatory';
-    const MANDATORY_ALTERNATIVES = 'mandatoryAlternatives';
     const MANDATORY_ANCESTOR = 'mandatoryAncestor';
     const MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE = 'mandatoryAncestorSuggestedAlternative';
     const MANDATORY_ANYOF = 'mandatoryAnyof';

@@ -87,7 +87,7 @@ final class Errors implements Section
               ->addComment("Code of the error.\n\n@var string");
 
         $class->addConstant('SPEC', $jsonSpec)
-              ->addComment("Array of spec data.\n\n@var array<array>");
+              ->addComment("Array of spec data.\n\n@var array{format: string, specificity?: int}");
 
         $classComment = "Error class {$className}.\n\n";
         $classComment .= "@package ampproject/amp-toolbox.\n\n";

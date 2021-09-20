@@ -22,7 +22,6 @@ use AmpProject\Validator\Spec\Tag;
  *
  * @property-read string $tagName
  * @property-read string $specName
- * @property-read bool $mandatory
  * @property-read bool $unique
  * @property-read string $mandatoryParent
  * @property-read array<array> $attrs
@@ -30,6 +29,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array $cdata
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $descriptiveName
  */
 final class HeadStyleAmp4adsBoilerplate extends Tag implements Identifiable
@@ -49,7 +49,6 @@ final class HeadStyleAmp4adsBoilerplate extends Tag implements Identifiable
     const SPEC = [
         SpecRule::TAG_NAME => Element::STYLE,
         SpecRule::SPEC_NAME => 'head > style[amp4ads-boilerplate]',
-        SpecRule::MANDATORY => true,
         SpecRule::UNIQUE => true,
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::ATTRS => [
@@ -71,6 +70,9 @@ final class HeadStyleAmp4adsBoilerplate extends Tag implements Identifiable
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP4ADS,
+        ],
+        SpecRule::SATISFIES => [
+            'style[amp-boilerplate]',
         ],
         SpecRule::DESCRIPTIVE_NAME => 'head > style[amp4ads-boilerplate]',
     ];

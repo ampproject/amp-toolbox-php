@@ -30,7 +30,7 @@ final class MandatoryAttrMissing extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The mandatory attribute \'%1\' is missing in tag \'%2\'.',
