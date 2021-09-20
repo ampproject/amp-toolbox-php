@@ -117,7 +117,7 @@ try {
 
     // There is currently a mismatch between data in the validator spec and data in the bundle config for the targeted
     // release. Therefore, we fall back to main branch for now.
-    // $latest_bundle_config_url = sprintf($bundle_config_url, $latest_release['name']);
+    // Original code: "$latest_bundle_config_url = sprintf($bundle_config_url, $latest_release['name']);".
     $latest_bundle_config_url = sprintf($bundle_config_url, 'main');
     echo "Fetching {$latest_bundle_config_url}...";
     $bundle_config = fetch_json($latest_bundle_config_url, $cache);
