@@ -30,7 +30,7 @@ final class GeneralDisallowedTag extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' is disallowed except in specific forms.',

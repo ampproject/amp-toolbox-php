@@ -16,7 +16,7 @@ use AmpProject\Exception\InvalidSpecRuleName;
  *
  * @package ampproject/amp-toolbox
  */
-class AggregateTag extends Tag
+final class AggregateTag extends Tag
 {
     /**
      * List of spec rules that can be aggregated.

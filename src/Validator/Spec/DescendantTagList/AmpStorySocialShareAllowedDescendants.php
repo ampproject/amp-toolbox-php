@@ -28,7 +28,7 @@ final class AmpStorySocialShareAllowedDescendants extends DescendantTagList impl
     /**
      * Array of descendant tags.
      *
-     * @var array<array>
+     * @var array<string>
      */
     const DESCENDANT_TAGS = [
         Element::SCRIPT,

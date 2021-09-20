@@ -30,7 +30,7 @@ final class DisallowedAttr extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The attribute \'%1\' may not appear in tag \'%2\'.',

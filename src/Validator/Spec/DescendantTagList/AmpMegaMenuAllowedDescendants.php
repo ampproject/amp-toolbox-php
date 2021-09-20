@@ -29,7 +29,7 @@ final class AmpMegaMenuAllowedDescendants extends DescendantTagList implements I
     /**
      * Array of descendant tags.
      *
-     * @var array<array>
+     * @var array<string>
      */
     const DESCENDANT_TAGS = [
         Element::A,

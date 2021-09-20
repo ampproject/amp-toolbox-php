@@ -10,7 +10,6 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -28,10 +27,8 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $extensionSpec
  * @property-read array<string> $excludes
  */
-final class ScriptAmpBrightcove2 extends Tag implements Identifiable, TagWithExtensionSpec
+final class ScriptAmpBrightcove2 extends TagWithExtensionSpec implements Identifiable
 {
-    use ExtensionSpec;
-
     /**
      * ID of the tag.
      *

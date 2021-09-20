@@ -282,10 +282,14 @@ final class Tags implements Section
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\SpecRule");
         $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\Tag");
 
+        $parentClass = array_key_exists('extensionSpec', $jsonSpec)
+            ? 'AmpProject\Validator\Spec\TagWithExtensionSpec'
+            : 'AmpProject\Validator\Spec\Tag';
+
         /** @var ClassType $class */
         $class = $namespace->addClass($className)
                            ->setFinal()
-                           ->addExtend('AmpProject\Validator\Spec\Tag')
+                           ->addExtend($parentClass)
                            ->addImplement('AmpProject\Validator\Spec\Identifiable');
 
         $class->addConstant('ID', $tagId)
@@ -318,11 +322,6 @@ final class Tags implements Section
                 $class->addConstant('VERSIONS_META', $versionsMeta)
                       ->addComment("Meta data about the specific versions.\n\n@var array");
             }
-
-            $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
-            $class->addImplement("{$fileManager->getRootNamespace()}\\Spec\\TagWithExtensionSpec");
-            $namespace->addUse("{$fileManager->getRootNamespace()}\\Spec\\ExtensionSpec");
-            $class->addTrait("{$fileManager->getRootNamespace()}\\Spec\\ExtensionSpec");
         }
 
         $class->addConstant('SPEC', $jsonSpec)

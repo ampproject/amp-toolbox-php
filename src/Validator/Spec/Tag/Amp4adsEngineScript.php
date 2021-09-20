@@ -30,6 +30,8 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array<array<array<string>>> $cdata
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
+ * @property-read array<string> $requires
  * @property-read string $descriptiveName
  */
 final class Amp4adsEngineScript extends Tag implements Identifiable
@@ -76,6 +78,12 @@ final class Amp4adsEngineScript extends Tag implements Identifiable
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP4ADS,
+        ],
+        SpecRule::SATISFIES => [
+            'amphtml javascript runtime (v0.js)',
+        ],
+        SpecRule::REQUIRES => [
+            'style[amp-boilerplate]',
         ],
         SpecRule::DESCRIPTIVE_NAME => 'amphtml engine script',
     ];

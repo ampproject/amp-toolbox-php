@@ -30,7 +30,7 @@ final class DisallowedAmpDomain extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The script tag includes an invalid AMP domain in the src attribute.',

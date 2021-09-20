@@ -27,6 +27,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array<array<string>> $ampLayout
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requires
  */
 final class AmpImg extends Tag implements Identifiable
 {
@@ -77,6 +78,9 @@ final class AmpImg extends Tag implements Identifiable
         SpecRule::HTML_FORMAT => [
             Format::AMP,
             Format::AMP4ADS,
+        ],
+        SpecRule::REQUIRES => [
+            'amphtml javascript runtime (v0.js)',
         ],
     ];
 }

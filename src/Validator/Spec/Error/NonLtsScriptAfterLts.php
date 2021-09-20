@@ -30,7 +30,7 @@ final class NonLtsScriptAfterLts extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => '\'%1\' must use the LTS version to correspond with the first script in the page, which uses LTS.',

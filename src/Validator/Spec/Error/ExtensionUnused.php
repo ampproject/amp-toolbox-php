@@ -30,7 +30,7 @@ final class ExtensionUnused extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The extension \'%1\' was found on this page, but is unused. Please remove this extension.',

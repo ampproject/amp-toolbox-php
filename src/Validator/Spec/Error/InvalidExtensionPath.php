@@ -30,7 +30,7 @@ final class InvalidExtensionPath extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The extension \'%1\' has a path \'%2\' which is invalid. Please use a valid path for this extension.',

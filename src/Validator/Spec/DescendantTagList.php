@@ -16,7 +16,7 @@ use AmpProject\Exception\InvalidSpecRuleName;
  *
  * @property-read string $id ID of the descendant tag list.
  */
-class DescendantTagList
+abstract class DescendantTagList
 {
     /**
      * ID of the descendant tag list.

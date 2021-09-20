@@ -30,7 +30,7 @@ final class WarningTagRequiredByMissing extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' is missing or incorrect, but required by \'%2\'. This will soon be an error.',

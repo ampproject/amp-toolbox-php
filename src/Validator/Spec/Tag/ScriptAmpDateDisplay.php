@@ -10,7 +10,6 @@ namespace AmpProject\Validator\Spec\Tag;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
-use AmpProject\Validator\Spec\ExtensionSpec;
 use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -26,10 +25,8 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read array<string> $htmlFormat
  * @property-read string $extensionSpec
  */
-final class ScriptAmpDateDisplay extends Tag implements Identifiable, TagWithExtensionSpec
+final class ScriptAmpDateDisplay extends TagWithExtensionSpec implements Identifiable
 {
-    use ExtensionSpec;
-
     /**
      * ID of the tag.
      *
@@ -48,6 +45,9 @@ final class ScriptAmpDateDisplay extends Tag implements Identifiable, TagWithExt
             '0.1',
             '1.0',
             'latest',
+        ],
+        SpecRule::BENTO_SUPPORTED_VERSION => [
+            '1.0',
         ],
     ];
 
@@ -69,7 +69,7 @@ final class ScriptAmpDateDisplay extends Tag implements Identifiable, TagWithExt
             'hasBento' => false,
         ],
         '1.0' => [
-            'hasCss' => false,
+            'hasCss' => true,
             'hasBento' => true,
         ],
     ];

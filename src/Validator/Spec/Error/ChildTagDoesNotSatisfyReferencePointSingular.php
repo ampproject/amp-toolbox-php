@@ -30,7 +30,7 @@ final class ChildTagDoesNotSatisfyReferencePointSingular extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\', a child tag of \'%2\', does not satisfy the reference point \'%3\'.',

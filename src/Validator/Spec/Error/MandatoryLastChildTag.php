@@ -30,7 +30,7 @@ final class MandatoryLastChildTag extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Tag \'%1\', if present, must be the last child of tag \'%2\'.',

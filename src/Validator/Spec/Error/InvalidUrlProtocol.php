@@ -30,7 +30,7 @@ final class InvalidUrlProtocol extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Invalid URL protocol \'%3:\' for attribute \'%1\' in tag \'%2\'.',

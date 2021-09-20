@@ -30,7 +30,7 @@ final class DocumentSizeLimitExceeded extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Document exceeded %1 bytes limit. Actual size %2 bytes.',

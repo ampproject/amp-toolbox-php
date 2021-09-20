@@ -28,7 +28,7 @@ final class AmpStoryBookendAllowedDescendants extends DescendantTagList implemen
     /**
      * Array of descendant tags.
      *
-     * @var array<array>
+     * @var array<string>
      */
     const DESCENDANT_TAGS = [
         Element::SCRIPT,

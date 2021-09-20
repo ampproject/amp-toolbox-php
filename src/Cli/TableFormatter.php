@@ -327,6 +327,14 @@ class TableFormatter
      */
     protected function wordwrap($string, $width = 75, $break = "\n", $cut = false)
     {
+        if (! is_int($width) || $width < 0) {
+            $width = 75;
+        }
+
+        if (! is_string($break) || empty($break)) {
+            $break = "\n";
+        }
+
         $lines = explode($break, $string);
         foreach ($lines as &$line) {
             $line = rtrim($line);

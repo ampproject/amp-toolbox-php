@@ -30,7 +30,7 @@ final class CssSyntaxStrayTrailingBackslash extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS syntax error in tag \'%1\' - stray trailing backslash.',

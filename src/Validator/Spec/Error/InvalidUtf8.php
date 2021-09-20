@@ -30,7 +30,7 @@ final class InvalidUtf8 extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The document contains invalid UTF8.',

@@ -30,7 +30,7 @@ final class DeprecatedTag extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' is deprecated - use \'%2\' instead.',

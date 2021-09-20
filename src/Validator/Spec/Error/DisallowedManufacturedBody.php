@@ -30,7 +30,7 @@ final class DisallowedManufacturedBody extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Tag or text which is only allowed inside the body section found outside of the body section.',

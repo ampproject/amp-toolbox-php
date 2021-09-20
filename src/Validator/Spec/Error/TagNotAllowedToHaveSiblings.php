@@ -30,7 +30,7 @@ final class TagNotAllowedToHaveSiblings extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'Tag \'%1\' is not allowed to have any sibling tags (\'%2\' should only have 1 child).',

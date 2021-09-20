@@ -30,7 +30,7 @@ final class CssExcessivelyNested extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'CSS excessively nested in tag \'%1\'.',

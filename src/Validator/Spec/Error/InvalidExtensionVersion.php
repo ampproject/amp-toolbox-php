@@ -30,7 +30,7 @@ final class InvalidExtensionVersion extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The extension \'%1\' is referenced at version \'%2\' which is an invalid version. Please use a valid version of this extension.',

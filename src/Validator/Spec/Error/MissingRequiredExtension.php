@@ -30,7 +30,7 @@ final class MissingRequiredExtension extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' requires including the \'%2\' extension JavaScript.',

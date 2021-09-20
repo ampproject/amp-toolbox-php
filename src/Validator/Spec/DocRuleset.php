@@ -17,7 +17,7 @@ use AmpProject\Exception\InvalidSpecRuleName;
  * @property-read string        $id         ID of the document ruleset.
  * @property-read array<string> $htmlFormat HTML format that this DocRuleset applies to.
  */
-class DocRuleset
+abstract class DocRuleset
 {
     /**
      * ID of the document ruleset.

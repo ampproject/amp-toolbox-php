@@ -47,7 +47,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read bool          $unique
  * @property-read bool          $uniqueWarning
  */
-class Tag
+abstract class Tag
 {
 
     /**

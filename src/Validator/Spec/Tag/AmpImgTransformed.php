@@ -28,6 +28,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array<array<string>> $ampLayout
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $requires
  * @property-read array<string> $enabledBy
  */
 final class AmpImgTransformed extends Tag implements Identifiable
@@ -82,6 +83,9 @@ final class AmpImgTransformed extends Tag implements Identifiable
         ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
+        ],
+        SpecRule::REQUIRES => [
+            'amphtml javascript runtime (v0.js)',
         ],
         SpecRule::ENABLED_BY => [
             Attribute::TRANSFORMED,

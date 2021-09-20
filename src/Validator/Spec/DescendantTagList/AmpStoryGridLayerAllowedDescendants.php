@@ -30,7 +30,7 @@ final class AmpStoryGridLayerAllowedDescendants extends DescendantTagList implem
     /**
      * Array of descendant tags.
      *
-     * @var array<array>
+     * @var array<string>
      */
     const DESCENDANT_TAGS = [
         Element::A,
@@ -53,6 +53,7 @@ final class AmpStoryGridLayerAllowedDescendants extends DescendantTagList implem
         Extension::STATE,
         Extension::STORY_360,
         Extension::STORY_AUTO_ANALYTICS,
+        Extension::STORY_CAPTIONS,
         Extension::STORY_INTERACTIVE_BINARY_POLL,
         Extension::STORY_INTERACTIVE_IMG_POLL,
         Extension::STORY_INTERACTIVE_IMG_QUIZ,

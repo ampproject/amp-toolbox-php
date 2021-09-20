@@ -24,35 +24,35 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
     /**
      * Whether minification is enabled.
      *
-     * @var bool
+     * @var string
      */
     const MINIFY = 'minify';
 
     /**
      * Whether amp-script minification is enabled.
      *
-     * @var bool
+     * @var string
      */
     const MINIFY_AMP_SCRIPT = 'minifyAmpScript';
 
     /**
      * Whether JSON data minification is enabled.
      *
-     * @var bool
+     * @var string
      */
     const MINIFY_JSON = 'minifyJSON';
 
     /**
      * Whether collapsing whitespace is enabled.
      *
-     * @var bool
+     * @var string
      */
     const COLLAPSE_WHITESPACE = 'collapseWhitespace';
 
     /**
      * Whether comments should be removed.
      *
-     * @var bool
+     * @var string
      */
     const REMOVE_COMMENTS = 'removeComments';
 

@@ -12,7 +12,7 @@ use AmpProject\Exception\InvalidSpecRuleName;
  * @property-read string $code   Code of the error.
  * @property-read string $format Formatting template for the error.
  */
-class Error
+abstract class Error
 {
 
     /**
@@ -27,9 +27,11 @@ class Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
-    const SPEC = [];
+    const SPEC = [
+        'format' => '',
+    ];
 
     /**
      * Get the code of the error.
@@ -56,7 +58,7 @@ class Error
      * Get a specific spec rule.
      *
      * @param string $specRuleName Name of the spec rule to get.
-     * @return array Spec rule data that was requested.
+     * @return mixed Spec rule data that was requested.
      */
     public function get($specRuleName)
     {

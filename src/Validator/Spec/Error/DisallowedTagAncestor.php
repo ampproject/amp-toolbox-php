@@ -30,7 +30,7 @@ final class DisallowedTagAncestor extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' may not appear as a descendant of tag \'%2\'.',

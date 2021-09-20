@@ -23,7 +23,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array<string> $htmlFormat
  * @property-read array<array>  $imageUrlSpec
  */
-class CssRuleset
+abstract class CssRuleset
 {
 
     /**

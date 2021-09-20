@@ -12,7 +12,7 @@ use AmpProject\Exception\InvalidSpecRuleName;
  *
  * @property-read string $id ID of the declaration list.
  */
-class DeclarationList
+abstract class DeclarationList
 {
 
     /**

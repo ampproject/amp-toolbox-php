@@ -30,7 +30,7 @@ final class DuplicateUniqueTag extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The tag \'%1\' appears more than once in the document.',

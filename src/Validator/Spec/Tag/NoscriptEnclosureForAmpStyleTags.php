@@ -7,7 +7,6 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-use AmpProject\Attribute;
 use AmpProject\Format;
 use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\Identifiable;
@@ -15,27 +14,25 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
 /**
- * Tag class NoscriptEnclosureForBoilerplateTransformed.
+ * Tag class NoscriptEnclosureForAmpStyleTags.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
  * @property-read string $specName
- * @property-read bool $unique
  * @property-read string $mandatoryParent
  * @property-read string $specUrl
+ * @property-read array $childTags
  * @property-read array<string> $htmlFormat
- * @property-read array<string> $enabledBy
- * @property-read string $descriptiveName
  */
-final class NoscriptEnclosureForBoilerplateTransformed extends Tag implements Identifiable
+final class NoscriptEnclosureForAmpStyleTags extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
      *
      * @var string
      */
-    const ID = 'noscript enclosure for boilerplate (transformed)';
+    const ID = 'noscript enclosure for amp style tags';
 
     /**
      * Array of spec rules.
@@ -44,16 +41,17 @@ final class NoscriptEnclosureForBoilerplateTransformed extends Tag implements Id
      */
     const SPEC = [
         SpecRule::TAG_NAME => Element::NOSCRIPT,
-        SpecRule::SPEC_NAME => 'noscript enclosure for boilerplate (transformed)',
-        SpecRule::UNIQUE => true,
+        SpecRule::SPEC_NAME => 'noscript enclosure for amp style tags',
         SpecRule::MANDATORY_PARENT => Element::HEAD,
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/guides-and-tutorials/learn/spec/amp-boilerplate/?format=websites',
+        SpecRule::CHILD_TAGS => [
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
+                'STYLE',
+            ],
+            SpecRule::MANDATORY_MIN_NUM_CHILD_TAGS => 1,
+        ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::ENABLED_BY => [
-            Attribute::TRANSFORMED,
-        ],
-        SpecRule::DESCRIPTIVE_NAME => 'noscript enclosure for boilerplate',
     ];
 }

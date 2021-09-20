@@ -30,7 +30,7 @@ final class MandatoryTagMissing extends Error
     /**
      * Array of spec data.
      *
-     * @var array<array>
+     * @var array{format: string, specificity?: int}
      */
     const SPEC = [
         SpecRule::FORMAT => 'The mandatory tag \'%1\' is missing or incorrect.',

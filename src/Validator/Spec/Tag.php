@@ -51,7 +51,7 @@ use AmpProject\Exception\InvalidSpecRuleName;
  * @property-read bool          $unique
  * @property-read bool          $uniqueWarning
  */
-class Tag
+abstract class Tag
 {
     /**
      * ID of the tag.

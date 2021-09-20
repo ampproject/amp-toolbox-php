@@ -49,7 +49,7 @@ final class SpecPrinter extends Printer
     {
         $class->validate();
         $resolver = $this->resolveTypes && $namespace
-            ? [$namespace, 'unresolveUnionType']
+            ? [$namespace, 'unresolveType']
             : function ($s) {
                 return $s;
             };
