@@ -355,21 +355,32 @@ class Options
      *
      * Can only be used after parseOptions() has been run.
      *
-     * @param mixed       $option  Optional. Option to get. Use null to get all options (default).
+     * @param string      $option  Option to get.
      * @param bool|string $default Optional. Default value to return if the option is not set. Defaults to false.
-     * @return bool|string|string[] Value of the option.
+     * @return bool|string Value of the option.
      */
-    public function getOption($option = null, $default = false)
+    public function getOption($option, $default = false)
     {
-        if ($option === null) {
-            return $this->options;
-        }
-
         if (isset($this->options[$option])) {
             return $this->options[$option];
         }
 
         return $default;
+    }
+
+    /**
+     * Get all options.
+     *
+     * Please note that all options are accessed by their long option names regardless of how they were
+     * specified on commandline.
+     *
+     * Can only be used after parseOptions() has been run.
+     *
+     * @return string[] Associative array of all options.
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 
     /**

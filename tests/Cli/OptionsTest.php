@@ -260,7 +260,7 @@ class OptionsTest extends TestCase
         $this->assertEquals('something', $options->getOption('fourth'));
         $this->assertEquals(true, $options->getOption('fifth'));
         $this->assertEquals(false, $options->getOption('sixth'));
-        $this->assertEquals(['fourth' => 'something', 'fifth' => true], $options->getOption());
+        $this->assertEquals(['fourth' => 'something', 'fifth' => true], $options->getOptions());
     }
 
     public function testCheckArgumentsThrowsOnArgumentNumberMismatch()
