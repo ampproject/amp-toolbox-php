@@ -383,8 +383,8 @@ final class AutoExtensions implements Transformer
     /**
      * Get all attributes for a tag.
      *
-	 * @TODO: Provide this functionality as part of the validator spec implementation.
-	 *
+     * @TODO: Provide this functionality as part of the validator spec implementation.
+     *
      * @param string $tagName Name of the node tag.
      * @return array Attribute list for the tag name.
      */

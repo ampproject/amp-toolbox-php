@@ -194,6 +194,7 @@ final class Document extends DOMDocument
                 Filter\AmpEmojiAttribute::class,
                 Filter\AmpBindAttributes::class,
                 Filter\SelfClosingTags::class,
+                Filter\SelfClosingSVGElements::class,
                 Filter\NoscriptElements::class,
                 Filter\DeduplicateTag::class,
                 Filter\ConvertHeadProfileToLink::class,
