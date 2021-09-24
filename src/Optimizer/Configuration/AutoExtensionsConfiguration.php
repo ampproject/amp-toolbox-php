@@ -31,14 +31,14 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
     /**
      * Configuration key that can disable the automatic importing of extension.
      *
-     * @var string.
+     * @var bool.
      */
     const AUTO_EXTENSION_IMPORT = 'autoExtensionImport';
 
     /**
      * Configuration key that enables experimental conversion of bind attributes.
      *
-     * @var string
+     * @var bool
      */
     const EXPERIMENT_BIND_ATTRIBUTE = 'experimentBindAttribute';
 
@@ -57,6 +57,13 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
     const IGNORED_EXTENSIONS = 'ignoredExtensions';
 
     /**
+     * An array of extension names that will not auto import.
+     *
+     * @var bool
+     */
+    const REMOVE_UNNEEDED_EXTENSIONS = 'removeUnneededExtensions';
+
+    /**
      * Get the associative array of allowed keys and their respective default values.
      *
      * The array index is the key and the array value is the key's default value.
@@ -66,11 +73,12 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
     protected function getAllowedKeys()
     {
         return [
-            self::FORMAT                    => Format::AMP,
-            self::AUTO_EXTENSION_IMPORT     => true,
-            self::EXPERIMENT_BIND_ATTRIBUTE => false,
-            self::EXTENSION_VERSIONS        => [],
-            self::IGNORED_EXTENSIONS        => [],
+            self::FORMAT                     => Format::AMP,
+            self::AUTO_EXTENSION_IMPORT      => true,
+            self::EXPERIMENT_BIND_ATTRIBUTE  => false,
+            self::EXTENSION_VERSIONS         => [],
+            self::IGNORED_EXTENSIONS         => [],
+            self::REMOVE_UNNEEDED_EXTENSIONS => false,
         ];
     }
 
@@ -155,6 +163,17 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
                     if (! in_array($extension, $constants)) {
                         throw InvalidExtension::forExtension($extension);
                     }
+                }
+                break;
+
+            case self::REMOVE_UNNEEDED_EXTENSIONS:
+                if (! is_bool($value)) {
+                    throw InvalidConfigurationValue::forInvalidSubValueType(
+                        self::class,
+                        self::REMOVE_UNNEEDED_EXTENSIONS,
+                        'boolean',
+                        gettype($value)
+                    );
                 }
                 break;
         }

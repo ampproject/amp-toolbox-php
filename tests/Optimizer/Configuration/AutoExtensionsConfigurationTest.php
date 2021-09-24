@@ -31,13 +31,16 @@ final class AutoExtensionsConfigurationTest extends TestCase
         $this->assertEquals([], $configuration->extensionVersions);
         $this->assertEquals([], $configuration->get('ignoredExtensions'));
         $this->assertEquals([], $configuration->ignoredExtensions);
+        $this->assertEquals(false, $configuration->get('removeUnneededExtensions'));
+        $this->assertEquals(false, $configuration->removeUnneededExtensions);
         $this->assertEquals(
             [
-                'format'                  => Format::AMP,
-                'autoExtensionImport'     => true,
-                'experimentBindAttribute' => false,
-                'extensionVersions'       => [],
-                'ignoredExtensions'       => [],
+                'format'                   => Format::AMP,
+                'autoExtensionImport'      => true,
+                'experimentBindAttribute'  => false,
+                'extensionVersions'        => [],
+                'ignoredExtensions'        => [],
+                'removeUnneededExtensions' => false,
             ],
             $configuration->toArray()
         );
@@ -46,11 +49,12 @@ final class AutoExtensionsConfigurationTest extends TestCase
     public function testInitialization()
     {
         $configuration = new AutoExtensionsConfiguration([
-            'format'                  => Format::AMP4EMAIL,
-            'autoExtensionImport'     => false,
-            'experimentBindAttribute' => true,
-            'extensionVersions'       => [ 'amp-sticky-ad' => '0.1' ],
-            'ignoredExtensions'       => [ 'amp-form' ],
+            'format'                   => Format::AMP4EMAIL,
+            'autoExtensionImport'      => false,
+            'experimentBindAttribute'  => true,
+            'extensionVersions'        => [ 'amp-sticky-ad' => '0.1' ],
+            'ignoredExtensions'        => [ 'amp-form' ],
+            'removeUnneededExtensions' => true,
         ]);
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
         $this->assertEquals(Format::AMP4EMAIL, $configuration->get('format'));
@@ -63,13 +67,16 @@ final class AutoExtensionsConfigurationTest extends TestCase
         $this->assertEquals([ 'amp-sticky-ad' => '0.1' ], $configuration->extensionVersions);
         $this->assertEquals([ 'amp-form' ], $configuration->get('ignoredExtensions'));
         $this->assertEquals([ 'amp-form' ], $configuration->ignoredExtensions);
+        $this->assertEquals(true, $configuration->get('removeUnneededExtensions'));
+        $this->assertEquals(true, $configuration->removeUnneededExtensions);
         $this->assertEquals(
             [
-                'format'                  => Format::AMP4EMAIL,
-                'autoExtensionImport'     => false,
-                'experimentBindAttribute' => true,
-                'extensionVersions'       => [ 'amp-sticky-ad' => '0.1' ],
-                'ignoredExtensions'       => [ 'amp-form' ],
+                'format'                   => Format::AMP4EMAIL,
+                'autoExtensionImport'      => false,
+                'experimentBindAttribute'  => true,
+                'extensionVersions'        => [ 'amp-sticky-ad' => '0.1' ],
+                'ignoredExtensions'        => [ 'amp-form' ],
+                'removeUnneededExtensions' => true,
             ],
             $configuration->toArray()
         );
@@ -92,6 +99,7 @@ final class AutoExtensionsConfigurationTest extends TestCase
             ['experimentBindAttribute', 'nonsense', 'boolean', 'string'],
             ['extensionVersions', 'nonsense', 'array', 'string'],
             ['ignoredExtensions', 'nonsense', 'array', 'string'],
+            ['removeUnneededExtensions', 'nonsense', 'boolean', 'string'],
         ];
     }
 
