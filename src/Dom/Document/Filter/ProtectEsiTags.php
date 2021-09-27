@@ -50,11 +50,11 @@ final class ProtectEsiTags implements BeforeLoadFilter, AfterSaveFilter
      */
     public function afterSave($html)
     {
-        $selfClosingregex = '#</(' . implode('|', self::SELF_CLOSING_TAGS) . ')>#i';
+        $selfClosingregex = '#></(' . implode('|', self::SELF_CLOSING_TAGS) . ')>#i';
 
         $html = preg_replace('/(<\/?)esi-/', '$1esi:', $html);
         $html = preg_replace('/(<esi:include.+?)(esi-src)=/', '$1src=', $html);
-        $html = preg_replace($selfClosingregex, '', $html);
+        $html = preg_replace($selfClosingregex, '/>', $html);
 
         return $html;
     }

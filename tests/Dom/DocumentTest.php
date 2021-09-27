@@ -482,10 +482,10 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html>' . $head . '<body>'
                 . '    <esi:choose>'
                 . '        <esi:when test="$(logindata{name}) == null">'
-                . '            <esi:include src="/login/$(logindata{name})">'
+                . '            <esi:include src="/login/$(logindata{name})"/>'
                 . '        </esi:when>'
                 . '        <esi:otherwise>'
-                . '            <esi:include src="/login/guest.html">'
+                . '            <esi:include src="/login/guest.html"/>'
                 . '        </esi:otherwise>'
                 . '    </esi:choose>'
                 . '</body></html>',
