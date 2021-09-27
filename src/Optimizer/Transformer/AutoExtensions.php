@@ -54,6 +54,22 @@ final class AutoExtensions implements Transformer
     private $spec;
 
     /**
+     * List of extensions added by the maybeAddExtension method.
+     *
+     * @var array
+     */
+    private $addedExtensions = [];
+
+    /**
+     * List of extensions that should not be removed even when there is no usage in the HTML.
+     *
+     * @var array
+     */
+    private $protectedExtensions = [
+        'amp-carousel',
+    ];
+
+    /**
      * Instantiate an AutoExtensions object.
      *
      * @param TransformerConfiguration $configuration Configuration store to use.
@@ -80,7 +96,7 @@ final class AutoExtensions implements Transformer
             $extensionScripts = $this->addMissingExtensions($document, $extensionScripts);
         }
 
-        $extensionScripts = $this->removeUnneededExtensions($document, $extensionScripts);
+        $extensionScripts = $this->removeUnneededExtensions($extensionScripts);
 
         $this->renderExtensionScripts($document, $extensionScripts);
     }
@@ -414,15 +430,19 @@ final class AutoExtensions implements Transformer
     /**
      * Remove unneeded extension scripts.
      *
-     * @param Document  $document         Document to scan for unneeded extensions.
      * @param Element[] $extensionScripts Array of extension scripts to check.
      * @return Element[] Adapted array of extension scripts.
      */
-    private function removeUnneededExtensions(Document $document, $extensionScripts)
+    private function removeUnneededExtensions($extensionScripts)
     {
-        // TODO: Add logic.
+        if (! $this->configuration->get(AutoExtensionsConfiguration::REMOVE_UNNEEDED_EXTENSIONS)) {
+            return $extensionScripts;
+        }
 
-        return $extensionScripts;
+        return array_filter($extensionScripts, function ($extension) {
+            return array_key_exists($extension, $this->addedExtensions)
+                || in_array($extension, $this->protectedExtensions);
+        }, ARRAY_FILTER_USE_KEY);
     }
 
     /**
@@ -520,6 +540,8 @@ final class AutoExtensions implements Transformer
                 $extensionScripts[$requiredExtension] = $requiredScript;
             }
         }
+
+        $this->addedExtensions[$requiredExtension] = true;
 
         return $extensionScripts;
     }

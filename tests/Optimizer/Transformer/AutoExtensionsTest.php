@@ -124,7 +124,47 @@ final class AutoExtensionsTest extends TestCase
                 . '        ad goes here'
                 . '    </section>'
                 . '</body></html>',
-            ]
+            ],
+
+            'keep unneeded amp-youtube extension when removeUnneededExtensions is false' => [
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>'
+                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
+                . '</head><body><amp-anim></amp-anim></body></html>',
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>'
+                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
+                . '</head><body><amp-anim></amp-anim></body></html>',
+            ],
+
+            'remove unneeded amp-youtube extension when removeUnneededExtensions is true' => [
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>'
+                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
+                . '</head><body><amp-anim></amp-anim></body></html>',
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
+                . '</head><body><amp-anim></amp-anim></body></html>',
+                [],
+                [
+                    AutoExtensionsConfiguration::REMOVE_UNNEEDED_EXTENSIONS => true,
+                ]
+            ],
+
+            'keep unneeded amp-carousel extension when removeUnneededExtensions is true' => [
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '<script async src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js" custom-element="amp-carousel"></script>'
+                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
+                . '</head><body><amp-anim></amp-anim></body></html>',
+                TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
+                . '<script async src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js" custom-element="amp-carousel"></script>'
+                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
+                . '</head><body><amp-anim></amp-anim></body></html>',
+                [],
+                [
+                    AutoExtensionsConfiguration::REMOVE_UNNEEDED_EXTENSIONS => true,
+                ]
+            ],
         ];
     }
 
