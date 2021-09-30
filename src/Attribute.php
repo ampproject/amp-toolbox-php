@@ -294,6 +294,7 @@ interface Attribute
     const DECODING                        = 'decoding';
     const DEEP_PARSING                    = 'deep-parsing';
     const DEFAULT_                        = 'default'; // Underscore needed because 'default' is a PHP keyword.
+    const DEFER                           = 'defer';
     const DELAY                           = 'delay';
     const DIFFABLE                        = 'diffable';
     const DIFFUSECONSTANT                 = 'diffuseconstant';
