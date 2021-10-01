@@ -127,7 +127,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, iconv, json, libxml, zip
-          tools: composer, cs2pr
+          tools: composer, cs2pr, phpstan
 
       - name: Get Composer Cache Directory
         id: composer-cache
@@ -146,5 +146,5 @@ jobs:
       - name: Static Analysis (PHPStan)
         if: ${{ matrix.php != '5.6' && matrix.php != '7.0' }}
         run: |
-          vendor/bin/phpstan --version
-          vendor/bin/phpstan analyse --error-format=checkstyle | cs2pr
+          phpstan --version
+          phpstan analyse --error-format=checkstyle | cs2pr
