@@ -8,6 +8,7 @@ use AmpProject\Html\Parser\HtmlSaxHandlerWithLocation;
 use AmpProject\Html\Parser\ParsedAttribute;
 use AmpProject\Html\Parser\ParsedTag;
 use AmpProject\Html\UpperCaseTag as Tag;
+use AmpProject\Str;
 use AmpProject\Validator\Spec\Error\DisallowedManufacturedBody;
 use AmpProject\Validator\Spec\Error\DuplicateAttribute;
 use AmpProject\Validator\Spec\Error\DuplicateUniqueTag;
@@ -303,6 +304,9 @@ final class ValidationHandler implements HtmlSaxHandlerWithLocation
         $this->context->setDocLocator($locator);
     }
 
+    /**
+     * While parsing the document HEAD, we may accumulate errors which depend on seeing later extension <script> tags.
+     */
     private function emitMissingExtensionErrors()
     {
         foreach ($this->context->getExtensionsContext()->getMissingExtensionErrors() as $missingExtensionError) {
@@ -354,5 +358,163 @@ final class ValidationHandler implements HtmlSaxHandlerWithLocation
                 $this->validationResult
             );
         }
+    }
+
+    /**
+     * Validates the provided `ParsedHtmlTag` with respect to the tag specifications in the validator's rules, returning
+     * a `ValidationResult` with errors for this tag and a PASS or FAIL status. At least one specification must
+     * validate, or the result will have status `FAIL`.
+     * Also passes back a reference to the tag spec which matched, if a match was found.
+     * Context is not mutated; instead, pending mutations are stored in the return value, and are merged only if the tag
+     * spec is applied (pending some reference point stuff).
+     *
+     * @param ParsedTag          $encounteredTag          Tag that was encountered.
+     * @param ParsedTagSpec|null $bestMatchReferencePoint Reference point for the best match.
+     * @param Context            $context                 Validation context.
+     * @return ValidateTagResult
+     */
+    private function validateTag($encounteredTag, $bestMatchReferencePoint, $context)
+    {
+        $tagSpecDispatch = $context->getRules()->dispatchForTagName($encounteredTag->upperName());
+        // Filter TagSpecDispatch.AllTagSpecs by type identifiers.
+        $filteredTagSpecs = [];
+        if ($tagSpecDispatch !== null) {
+            foreach ($tagSpecDispatch->allTagSpecs() as $tagSpecId) {
+                $parsedTagSpec = $context->getRules()->getByTagSpecId($tagSpecId);
+                // Keep TagSpecs that are used for these type identifiers.
+                if ($parsedTagSpec->isUsedForTypeIdentifiers($context->getTypeIdentifiers())) {
+                    $filteredTagSpecs[] = $parsedTagSpec;
+                }
+            }
+        }
+
+        // If there are no dispatch keys matching the tag name, ex: tag name is "foo", set a disallowed tag error.
+        if (
+            $tagSpecDispatch === null
+            ||
+            (! $tagSpecDispatch->hasDispatchKeys() && count($filteredTagSpecs) === 0)
+        ) {
+            $result  = new ValidationResult();
+            $specUrl = '';
+            // Special case the spec_url for font tags to be slightly more useful.
+            if ($encounteredTag->upperName() === Tag::FONT) {
+                $specUrl = $context->getRules()->getStylesSpecUrl();
+            }
+            $context->addError(
+                ErrorCode::DISALLOWED_TAG,
+                $context->getFilePosition(),
+                [$encounteredTag->lowerName()],
+                $specUrl,
+                $result
+            );
+
+            return new ValidateTagResult($result);
+        }
+
+        // At this point, we have dispatch keys, tag specs, or both.
+        // The strategy is to look for a matching dispatch key first. A matching dispatch key does not guarantee that
+        // the dispatched tag spec will also match. If we find a matching dispatch key, we immediately return the result
+        // for that tag spec, success or fail.
+        // If we don't find a matching dispatch key, we must try all the tag specs to see if any of them match. If there
+        // are no tag specs, we want to return a `GENERAL_DISALLOWED_TAG` error.
+        // Calling `hasDispatchKeys()` here is only an optimization to skip the loop over encountered attributes in the
+        // case where we have no dispatches.
+        if ($tagSpecDispatch->hasDispatchKeys()) {
+            foreach ($encounteredTag->attributes() as $attribute) {
+                $tagSpecIds  = $tagSpecDispatch->matchingDispatchKey(
+                    $attribute->name(),
+                    // Attribute values are case-sensitive by default, but we match dispatch keys in a case-insensitive
+                    // manner and then validate using whatever the tag spec requests.
+                    Str::toLowerCase($attribute->value()),
+                    $context->getTagStack()->parentTagName()
+                );
+                $bestAttempt = new ValidateTagResult(new ValidationResult());
+                $bestAttempt->getValidationResult()->setStatus(ValidationStatus::UNKNOWN());
+                foreach ($tagSpecIds as $tagSpecId) {
+                    $parsedTagSpec = $context->getRules()->getByTagSpecId($tagSpecId);
+                    // Skip tag specs that aren't used for these type identifiers.
+                    if (! $parsedTagSpec->isUsedForTypeIdentifiers($context->getTypeIdentifiers())) {
+                        continue;
+                    }
+                    $attempt = $this->validateTagAgainstSpec(
+                        $parsedTagSpec,
+                        $bestMatchReferencePoint,
+                        $context,
+                        $encounteredTag
+                    );
+                    if (
+                        $context->getRules()->betterValidationResultThan(
+                            $attempt->getValidationResult(),
+                            $bestAttempt->getValidationResult()
+                        )
+                    ) {
+                        $bestAttempt                   = $attempt;
+                        $bestAttempt->bestMatchTagSpec = $parsedTagSpec;
+                        // Exit early on success.
+                        if ($bestAttempt->getValidationResult()->getStatus()->equals(ValidationStatus::PASS())) {
+                            return $bestAttempt;
+                        }
+                    }
+                }
+                if (! $bestAttempt->getValidationResult()->getStatus()->equals(ValidationStatus::UNKNOWN())) {
+                    return $bestAttempt;
+                }
+            }
+        }
+
+        // None of the dispatch tag specs matched and passed. If there are no non-dispatch tag specs, consider this a
+        // 'generally' disallowed tag, which gives an error that reads "tag foo is disallowed except in specific forms".
+        if (count($filteredTagSpecs) === 0) {
+            $result = new ValidationResult();
+            if ($encounteredTag->upperName() === Tag::SCRIPT) {
+                // Special case for `<script>` tags to produce better error messages.
+                $context->addError(
+                    ErrorCode::DISALLOWED_SCRIPT_TAG,
+                    $context->getFilePosition(),
+                    [],
+                    $context->getRules()->getScriptSpecUrl(),
+                    $result
+                );
+            } else {
+                $context->addError(
+                    ErrorCode::GENERAL_DISALLOWED_TAG,
+                    $context->getFilePosition(),
+                    [$encounteredTag->lowerName()],
+                    '',
+                    $result
+                );
+            }
+
+            return new ValidateTagResult($result);
+        }
+
+        // Validate against all remaining tag specs. Each tag spec will produce a different set of errors. Even if none
+        // of them match, we only want to return errors from a single tag spec, not all of them. We keep around the
+        // 'best' attempt until we have found a matching tag spec or have tried them all.
+        $bestAttempt = new ValidateTagResult(new ValidationResult());
+        $bestAttempt->getValidationResult()->setStatus(ValidationStatus::UNKNOWN());
+        foreach ($filteredTagSpecs as $parsedTagSpec) {
+            $attempt = $this->validateTagAgainstSpec(
+                $parsedTagSpec,
+                $bestMatchReferencePoint,
+                $context,
+                $encounteredTag
+            );
+            if (
+                $context->getRules()->betterValidationResultThan(
+                    $attempt->getValidationResult(),
+                    $bestAttempt->getValidationResult()
+                )
+            ) {
+                $bestAttempt                   = $attempt;
+                $bestAttempt->bestMatchTagSpec = $parsedTagSpec;
+                // Exit early.
+                if ($bestAttempt->getValidationResult()->getStatus()->equals(ValidationStatus::PASS())) {
+                    return $bestAttempt;
+                }
+            }
+        }
+
+        return $bestAttempt;
     }
 }

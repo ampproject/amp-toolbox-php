@@ -2,16 +2,15 @@
 
 namespace AmpProject\Validator;
 
-use ArrayIterator;
 use Countable;
-use IteratorAggregate;
+use Iterator;
 
 /**
  * Collection of ValidationError objects.
  *
  * @package ampproject/amp-toolbox
  */
-final class ValidationErrorCollection implements Countable, IteratorAggregate
+final class ValidationErrorCollection implements Countable, Iterator
 {
 
     /**
@@ -50,16 +49,6 @@ final class ValidationErrorCollection implements Countable, IteratorAggregate
     }
 
     /**
-     * Get the iterator for iterating over the collection.
-     *
-     * @return ArrayIterator Iterator for the contained errors.
-     */
-    public function getIterator()
-    {
-        return new ArrayIterator($this->errors);
-    }
-
-    /**
      * Count how many errors are contained within the error collection.
      *
      * @return int Number of contained errors.
@@ -91,5 +80,55 @@ final class ValidationErrorCollection implements Countable, IteratorAggregate
                 return $a->getLine() - $b->getLine();
             }
         );
+    }
+
+    /**
+     * Return the current validation error.
+     *
+     * @return ValidationError Current validation error.
+     */
+    public function current()
+    {
+        return current($this->errors);
+    }
+
+    /**
+     * Move forward to next validation error.
+     *
+     * @return void Any returned value is ignored.
+     */
+    public function next()
+    {
+        next($this->errors);
+    }
+
+    /**
+     * Return the key of the current validation error.
+     *
+     * @return string|int|null Scalar on success, or null on failure.
+     */
+    public function key()
+    {
+        return key($this->errors);
+    }
+
+    /**
+     * Checks if current position is valid.
+     *
+     * @return bool Whether the current position is valid.
+     */
+    public function valid()
+    {
+        return $this->key() !== null;
+    }
+
+    /**
+     * Rewind the iterator to the first validation error.
+     *
+     * @return void Any returned value is ignored.
+     */
+    public function rewind()
+    {
+        reset($this->errors);
     }
 }

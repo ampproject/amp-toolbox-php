@@ -131,10 +131,10 @@ class AmpExecutableTest extends TestCase
         $options = $this->createMock(Options::class);
         $executable = new AmpExecutable(false, $options);
 
-        $options->expects($this->once())
+        $options->expects($this->exactly(2))
                 ->method('registerCommand')
-                ->with('optimize');
-        $options->expects($this->once())
+                ->withConsecutive(['optimize'], ['validate']);
+        $options->expects($this->exactly(2))
                 ->method('registerArgument')
                 ->withAnyParameters();
         $this->callPrivateMethod($executable, 'setup', [$options]);

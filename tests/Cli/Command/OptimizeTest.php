@@ -3,6 +3,7 @@
 namespace AmpProject\Cli\Command;
 
 use AmpProject\Cli\Command;
+use AmpProject\Cli\Executable;
 use AmpProject\Cli\Options;
 use AmpProject\Exception\Cli\InvalidArgument;
 use AmpProject\Tests\MarkupComparison;
@@ -21,28 +22,35 @@ class OptimizeTest extends TestCase
 
     public function testInstantiation()
     {
-        $command = new Optimize();
+        $executable = $this->createMock(Executable::class);
+
+        $command = new Optimize($executable);
+
         $this->assertInstanceOf(Command::class, $command);
         $this->assertEquals('optimize', $command->getName());
     }
 
     public function testRegistration()
     {
-        $options = $this->createMock(Options::class);
+        $executable = $this->createMock(Executable::class);
+        $options    = $this->createMock(Options::class);
         $options->expects($this->once())
                 ->method('registerCommand')
                 ->with($this->equalTo('optimize'));
         $options->expects($this->once())
                 ->method('registerArgument')
                 ->with($this->equalTo('file'));
-        $command = new Optimize();
+
+        $command = new Optimize($executable);
         $command->register($options);
     }
 
     public function testProcessing()
     {
-        $options = $this->createMock(Options::class);
-        $command = new Optimize();
+        $executable = $this->createMock(Executable::class);
+        $options    = $this->createMock(Options::class);
+
+        $command = new Optimize($executable);
         $command->register($options);
         $options->expects($this->once())
                 ->method('getArguments')
@@ -50,17 +58,21 @@ class OptimizeTest extends TestCase
         ob_start();
         $command->process($options);
         $output = ob_get_clean();
+
         $this->assertStringContainsString('transformed="self;v=1"', $output);
     }
 
     public function testProcessingThrowsOnInvalidFile()
     {
-        $options = $this->createMock(Options::class);
-        $command = new Optimize();
+        $executable = $this->createMock(Executable::class);
+        $options    = $this->createMock(Options::class);
+
+        $command = new Optimize($executable);
         $command->register($options);
         $options->expects($this->once())
                 ->method('getArguments')
                 ->willReturn(['nonsense']);
+
         $this->expectException(InvalidArgument::class);
         $command->process($options);
     }

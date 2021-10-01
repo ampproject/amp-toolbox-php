@@ -323,7 +323,13 @@ final class ValidatorRules
             case Format::AMP:
                 $this->validateTypeIdentifiers(
                     $htmlTag->attributes(),
-                    ['\u26a1', '\u26a1\ufe0f', 'amp', 'transformed', 'data-ampdevmode'],
+                    [
+                        Attribute::AMP_EMOJI,
+                        Attribute::AMP_EMOJI_ALT,
+                        Attribute::AMP,
+                        Attribute::TRANSFORMED,
+                        Attribute::DATA_AMPDEVMODE
+                    ],
                     $context,
                     $validationResult
                 );
@@ -331,7 +337,12 @@ final class ValidatorRules
             case Format::AMP4ADS:
                 $this->validateTypeIdentifiers(
                     $htmlTag->attributes(),
-                    ['\u26a14ads', '\u26a1\ufe0f4ads', 'amp4ads', 'data-ampdevmode'],
+                    [
+                        Attribute::AMP4ADS_EMOJI,
+                        Attribute::AMP4ADS_EMOJI_ALT,
+                        Attribute::AMP4ADS,
+                        Attribute::DATA_AMPDEVMODE
+                    ],
                     $context,
                     $validationResult
                 );
@@ -339,7 +350,13 @@ final class ValidatorRules
             case Format::AMP4EMAIL:
                 $this->validateTypeIdentifiers(
                     $htmlTag->attributes(),
-                    ['\u26a14email', '\u26a1\ufe0f4email', 'amp4email', 'data-ampdevmode', 'data-css-strict'],
+                    [
+                        Attribute::AMP4EMAIL_EMOJI,
+                        Attribute::AMP4EMAIL_EMOJI_ALT,
+                        Attribute::AMP4EMAIL,
+                        Attribute::DATA_AMPDEVMODE,
+                        Attribute::DATA_CSS_STRICT
+                    ],
                     $context,
                     $validationResult
                 );
@@ -367,7 +384,11 @@ final class ValidatorRules
                 if (in_array($attribute->name(), $formatIdentifiers, true)) {
                     // Only add the type identifier once per representation. That is, both "⚡" and "amp", which
                     // represent the same type identifier.
-                    $typeIdentifier = str_replace(['\u26a1\ufe0f', '\u26a1'], 'amp', $attribute->name());
+                    $typeIdentifier = str_replace(
+                        [Attribute::AMP_EMOJI_ALT, Attribute::AMP_EMOJI],
+                        Attribute::AMP,
+                        $attribute->name()
+                    );
                     if (! in_array($typeIdentifier, $validationResult->getTypeIdentifiers(), true)) {
                         $validationResult->addTypeIdentifier($typeIdentifier);
                         $context->recordTypeIdentifier($typeIdentifier);

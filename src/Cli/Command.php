@@ -20,6 +20,23 @@ abstract class Command
     const NAME = '<unknown>';
 
     /**
+     * Instance of the CLI executable that the command belongs to.
+     *
+     * @var Executable
+     */
+    protected $cli;
+
+    /**
+     * Instantiate the command.
+     *
+     * @param Executable $cli Instance of the CLI executable that the command belongs to.
+     */
+    public function __construct(Executable $cli)
+    {
+        $this->cli = $cli;
+    }
+
+    /**
      * Get the name of the command.
      *
      * @return string Name of the command.

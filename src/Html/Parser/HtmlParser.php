@@ -3,6 +3,7 @@
 namespace AmpProject\Html\Parser;
 
 use AmpProject\Encoding;
+use AmpProject\Exception\FailedToParseHtml;
 use AmpProject\Html\UpperCaseTag as Tag;
 use AmpProject\Str;
 
@@ -24,7 +25,7 @@ final class HtmlParser
     const INSIDE_TAG_TOKEN =
         // Don't capture space. In this case, we don't use \s because it includes a non-breaking space which gets
         // included as an attribute in our validation.
-        '/^[ \t\n\f\r\v]*(?:' .
+        '%^[ \t\n\f\r\v]*(?:' .
             // Capture an attribute name in group 1, and value in group 3. We capture the fact that there was an
             // attribute in group 2, since interpreters are inconsistent in whether a group that matches nothing is
             // null, undefined, or the empty string.
@@ -56,7 +57,7 @@ final class HtmlParser
             '|(/?>)' .
             // Don't capture cruft.
             '|[^a-z\s>]+)' .
-        '/i';
+        '%i';
 
 
     /**
@@ -65,7 +66,7 @@ final class HtmlParser
      * @var string
      */
     const OUTSIDE_TAG_TOKEN =
-        '/^(?:' .
+        '%^(?:' .
             // Entity captured in group 1.
             '&(\#[0-9]+|\#[x][0-9a-f]+|\w+);' .
             // Comments not captured.
@@ -78,7 +79,7 @@ final class HtmlParser
             '|([^<&>]+)' .
             // Cruft captured in group 5.
             '|([<&>]))' .
-        '/i';
+        '%i';
 
     /**
      * Regular expression that matches null characters.
@@ -289,6 +290,13 @@ final class HtmlParser
             // Gets the next token.
             $matches = null;
             Str::regexMatch($regex, $htmlText, $matches);
+
+            // Avoid infinite loop in case nothing could be matched.
+            // This can be caused by documents provided in the wrong encoding, which the regex engine fails to handle.
+            if (empty($matches[0])) {
+                throw FailedToParseHtml::forHtml($htmlText);
+            }
+
             if ($locator) {
                 $locator->advancePosition($matches[0]);
             }
@@ -296,13 +304,13 @@ final class HtmlParser
             $htmlText = Str::substring($htmlText, Str::length($matches[0]));
 
             if ($inTag) {
-                if ($matches[1]) {  // Attribute.
+                if (!empty($matches[1])) {  // Attribute.
                     // SetAttribute with uppercase names doesn't work on IE6.
                     $attributeName = Str::toLowerCase($matches[1]);
                     // Use empty string as value for valueless attribs, so <input type=checkbox checked> gets attributes
                     // ['type', 'checkbox', 'checked', ''].
                     $decodedValue = '';
-                    if ($matches[2]) {
+                    if (!empty($matches[2])) {
                         $encodedValue = $matches[3];
                         switch (Str::substring($encodedValue, 0, 1)) {  // Strip quotes.
                             case '"':
@@ -314,7 +322,7 @@ final class HtmlParser
                     }
                     $attributes[] = $attributeName;
                     $attributes[] = $decodedValue;
-                } elseif ($matches[4]) {
+                } elseif (!empty($matches[4])) {
                     if ($eflags !== null) {  // False if not in allowlist.
                         if ($openTag) {
                             $tagStack->startTag(new ParsedTag($tagName, $attributes));
@@ -354,9 +362,9 @@ final class HtmlParser
                     $inTag = false;
                 }
             } else {
-                if ($matches[1]) { // Entity.
+                if (!empty($matches[1])) { // Entity.
                     $tagStack->pcdata($matches[0]);
-                } elseif ($matches[3]) { // Tag.
+                } elseif (!empty($matches[3])) { // Tag.
                     $openTag = ! $matches[2];
                     if ($locator) {
                         $locator->snapshotPosition();
@@ -366,12 +374,12 @@ final class HtmlParser
                     $eflags = array_key_exists($tagName, self::ELEMENTS)
                         ? self::ELEMENTS[$tagName]
                         : EFlags::UNKNOWN_OR_CUSTOM;
-                } elseif ($matches[4]) { // Text.
+                } elseif (!empty($matches[4])) { // Text.
                     if ($locator) {
                         $locator->snapshotPosition();
                     }
                     $tagStack->pcdata($matches[4]);
-                } elseif ($matches[5]) { // Cruft.
+                } elseif (!empty($matches[5])) { // Cruft.
                     switch ($matches[5]) {
                         case '<':
                             $tagStack->pcdata('&lt;');
