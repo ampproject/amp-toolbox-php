@@ -467,6 +467,29 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body><script>let foo = { bar: "<div>amp</div>" }</script></body></html>',
                 '<!DOCTYPE html><html amp data-text="⚡">' . $head . '<body><script>let foo = { bar: "<div>amp</div>" }</script></body></html>',
             ],
+            'preserve Varnish esi tags' => [
+                'utf-8',
+                '<!DOCTYPE html><html><head></head><body>'
+                . '    <esi:choose>'
+                . '        <esi:when test="$(logindata{name}) == null">'
+                . '            <esi:include src="/login/$(logindata{name})"/>'
+                . '        </esi:when>'
+                . '        <esi:otherwise>'
+                . '            <esi:include src="/login/guest.html"/>'
+                . '        </esi:otherwise>'
+                . '    </esi:choose>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '    <esi:choose>'
+                . '        <esi:when test="$(logindata{name}) == null">'
+                . '            <esi:include src="/login/$(logindata{name})"/>'
+                . '        </esi:when>'
+                . '        <esi:otherwise>'
+                . '            <esi:include src="/login/guest.html"/>'
+                . '        </esi:otherwise>'
+                . '    </esi:choose>'
+                . '</body></html>',
+            ]
         ];
     }
 
