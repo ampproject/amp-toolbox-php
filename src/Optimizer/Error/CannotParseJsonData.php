@@ -7,6 +7,11 @@ use AmpProject\Dom\ElementDump;
 use AmpProject\Optimizer\Error;
 use Exception;
 
+/**
+ * Optimizer error object for invalid JSON data.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class CannotParseJsonData implements Error
 {
     use ErrorProperties;
