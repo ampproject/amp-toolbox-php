@@ -20,6 +20,11 @@ use AmpProject\Validator\Spec\SpecRule;
 use Exception;
 use InvalidArgumentException;
 
+/**
+ * Auto import all the missing AMP extensions.
+ *
+ * @package ampproject/amp-toolbox
+ */
 final class AutoExtensions implements Transformer
 {
     /**
