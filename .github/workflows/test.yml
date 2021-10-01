@@ -145,4 +145,6 @@ jobs:
 
       - name: Static Analysis (PHPStan)
         if: ${{ matrix.php != '5.6' && matrix.php != '7.0' }}
-        run: vendor/bin/phpstan analyse --error-format=checkstyle | cs2pr
+        run: |
+          vendor/bin/phpstan --version
+          vendor/bin/phpstan analyse --error-format=checkstyle | cs2pr
