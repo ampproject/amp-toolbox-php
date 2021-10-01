@@ -252,7 +252,7 @@ final class AutoExtensions implements Transformer
 
         foreach ($tagSpecs as $tagSpec) {
             foreach ($tagSpec->requiresExtension as $requiredExtension) {
-                if (in_array($requiredExtension, self::MANUAL_ATTRIBUTE_TO_EXTENSION_MAPPING)) {
+                if (in_array($requiredExtension, self::MANUAL_ATTRIBUTE_TO_EXTENSION_MAPPING, true)) {
                     continue;
                 }
 
@@ -304,15 +304,16 @@ final class AutoExtensions implements Transformer
             return $extensionScripts;
         }
 
-        // Look for forms.
+        // The amp-form extension extends the regular <form> tag, so we manually look for that tag.
+        // See https://amp.dev/documentation/components/amp-form/.
         if ($node->tagName === Tag::FORM) {
             $extensionScripts = $this->maybeAddExtension($document, $extensionScripts, Extension::FORM);
         }
 
-        // true if we need to import amp-bind.
+        // Will be set to true if we need to import amp-bind.
         $usesAmpBind = false;
 
-        // Associative array of new attribute name with data-amp-bind- prefix and attribute value pair.
+        // Associative array of new attribute names with data-amp-bind- prefix and attribute value pair.
         $newAttributes = [];
 
         // Populate all attributes for the current node tag name.
@@ -338,7 +339,7 @@ final class AutoExtensions implements Transformer
                 }
             }
 
-            // Attribute that requires AMP components (e.g. amp-fx).
+            // Attributes that require AMP components (e.g. amp-fx).
             if ($globalAttributes->has($attribute->name)) {
                 $attr = $globalAttributes->get($attribute->name);
 
@@ -369,7 +370,7 @@ final class AutoExtensions implements Transformer
 
                 // Change the name from aria-labelledby to [ARIA_LABELLEDBY].
                 $bindableAttributeName = '['
-                    . preg_replace('/\-/', '_', strtoupper($attributeNameWithoutBindPrefix))
+                    . str_replace('-', '_', strtoupper($attributeNameWithoutBindPrefix))
                     . ']';
 
                 // Rename attribute from bindx to data-amp-bind-x.
@@ -525,11 +526,11 @@ final class AutoExtensions implements Transformer
      */
     private function maybeAddExtension(Document $document, $extensionScripts, $requiredExtension)
     {
-        if (in_array($requiredExtension, $this->configuration->get(AutoExtensionsConfiguration::IGNORED_EXTENSIONS))) {
+        if (in_array($requiredExtension, $this->configuration->get(AutoExtensionsConfiguration::IGNORED_EXTENSIONS), true)) {
             return $extensionScripts;
         }
 
-        if (!array_key_exists($requiredExtension, $extensionScripts)) {
+        if (! array_key_exists($requiredExtension, $extensionScripts)) {
             $tagSpecs = $this->spec->tags()->byExtensionSpec($requiredExtension);
 
             foreach ($tagSpecs as $tagSpec) {

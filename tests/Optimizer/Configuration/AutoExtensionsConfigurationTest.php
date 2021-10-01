@@ -142,7 +142,7 @@ final class AutoExtensionsConfigurationTest extends TestCase
         $configuration->nonsense;
     }
 
-    public function testInvalidConfigurationValueForUnknownAMPFormat()
+    public function testInvalidConfigurationValueForUnknownAmpFormat()
     {
         $this->expectException(InvalidConfigurationValue::class);
         $this->expectExceptionMessage(

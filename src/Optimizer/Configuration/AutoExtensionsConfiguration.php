@@ -31,35 +31,35 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
     /**
      * Configuration key that can disable the automatic importing of extension.
      *
-     * @var bool.
+     * @var string
      */
     const AUTO_EXTENSION_IMPORT = 'autoExtensionImport';
 
     /**
      * Configuration key that enables experimental conversion of bind attributes.
      *
-     * @var bool
+     * @var string
      */
     const EXPERIMENT_BIND_ATTRIBUTE = 'experimentBindAttribute';
 
     /**
      * Configuration key that allows individual configuration of extension versions.
      *
-     * @var array
+     * @var string
      */
     const EXTENSION_VERSIONS = 'extensionVersions';
 
     /**
      * An array of extension names that will not auto import.
      *
-     * @var string[]
+     * @var string
      */
     const IGNORED_EXTENSIONS = 'ignoredExtensions';
 
     /**
      * An array of extension names that will not auto import.
      *
-     * @var bool
+     * @var string
      */
     const REMOVE_UNNEEDED_EXTENSIONS = 'removeUnneededExtensions';
 
@@ -160,7 +160,7 @@ final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
                 $constants = $reflection->getConstants();
 
                 foreach ($value as $extension) {
-                    if (! in_array($extension, $constants)) {
+                    if (! in_array($extension, $constants, true)) {
                         throw InvalidExtension::forExtension($extension);
                     }
                 }
