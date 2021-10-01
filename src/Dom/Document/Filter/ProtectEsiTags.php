@@ -14,7 +14,7 @@ final class ProtectEsiTags implements BeforeLoadFilter, AfterSaveFilter
 {
 
     /**
-     * List of self closing ESI tags.
+     * List of self-closing ESI tags.
      *
      * @link https://www.w3.org/TR/esi-lang/
      *
@@ -33,13 +33,19 @@ final class ProtectEsiTags implements BeforeLoadFilter, AfterSaveFilter
      */
     public function beforeLoad($html)
     {
-        $selfClosingregex = '#<(' . implode('|', self::SELF_CLOSING_TAGS) . ')([^>]*?)(?>\s*(?<!\\\\)/)?>(?!</\1>)#';
+        $patterns = [
+            '#<(' . implode('|', self::SELF_CLOSING_TAGS) . ')([^>]*?)(?>\s*(?<!\\\\)/)?>(?!</\1>)#',
+            '/(<esi:include.+?)(src)=/',
+            '/(<\/?)esi:/',
+        ];
 
-        $html = preg_replace($selfClosingregex, '<$1$2></$1>', $html);
-        $html = preg_replace('/(<esi:include.+?)(src)=/', '$1esi-src=', $html);
-        $html = preg_replace('/(<\/?)esi:/', '$1esi-', $html);
+        $replacements = [
+            '<$1$2></$1>',
+            '$1esi-src=',
+            '$1esi-',
+        ];
 
-        return $html;
+        return preg_replace($patterns, $replacements, $html);
     }
 
     /**
@@ -50,12 +56,18 @@ final class ProtectEsiTags implements BeforeLoadFilter, AfterSaveFilter
      */
     public function afterSave($html)
     {
-        $selfClosingregex = '#></(' . implode('|', self::SELF_CLOSING_TAGS) . ')>#i';
+        $patterns = [
+            '/(<\/?)esi-/',
+            '/(<esi:include.+?)(esi-src)=/',
+            '#></(' . implode('|', self::SELF_CLOSING_TAGS) . ')>#i',
+        ];
 
-        $html = preg_replace('/(<\/?)esi-/', '$1esi:', $html);
-        $html = preg_replace('/(<esi:include.+?)(esi-src)=/', '$1src=', $html);
-        $html = preg_replace($selfClosingregex, '/>', $html);
+        $replacements = [
+            '$1esi:',
+            '$1src=',
+            '/>',
+        ];
 
-        return $html;
+        return preg_replace($patterns, $replacements, $html);
     }
 }
