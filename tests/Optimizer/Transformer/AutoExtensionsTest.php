@@ -137,9 +137,10 @@ final class AutoExtensionsTest extends TestCase
                 . '</head><body><amp-anim></amp-anim></body></html>',
             ],
 
-            'remove unneeded amp-youtube extension when removeUnneededExtensions is true' => [
+            'remove unneeded amp-youtube and amp-carousel extensions when removeUnneededExtensions is true' => [
                 TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
                 . '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>'
+                . '<script async src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js" custom-element="amp-carousel"></script>'
                 . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
                 . '</head><body><amp-anim></amp-anim></body></html>',
                 TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
@@ -151,15 +152,22 @@ final class AutoExtensionsTest extends TestCase
                 ]
             ],
 
-            'keep unneeded amp-carousel extension when removeUnneededExtensions is true' => [
+            'keep unneeded amp-carousel extension when removeUnneededExtensions is true and amp-lightbox-gallery is present' => [
                 TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
                 . '<script async src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js" custom-element="amp-carousel"></script>'
-                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
-                . '</head><body><amp-anim></amp-anim></body></html>',
+                . '</head><body>'
+                . '<amp-img src="https://example.com/cat.jpg" width="100" height="100" lightbox></amp-img>'
+                . '<amp-img src="https://example.com/dog.jpg" width="100" height="100" lightbox></amp-img>'
+                . '<amp-img src="https://example.com/bird.jpg" width="100" height="100" lightbox></amp-img>'
+                . '</body></html>',
                 TestMarkup::DOCTYPE . '<html><head>' . TestMarkup::META_CHARSET
                 . '<script async src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js" custom-element="amp-carousel"></script>'
-                . '<script async custom-element="amp-anim" src="https://cdn.ampproject.org/v0/amp-anim-0.1.js"></script>'
-                . '</head><body><amp-anim></amp-anim></body></html>',
+                . '<script async custom-element="amp-lightbox-gallery" src="https://cdn.ampproject.org/v0/amp-lightbox-gallery-0.1.js"></script>'
+                . '</head><body>'
+                . '<amp-img src="https://example.com/cat.jpg" width="100" height="100" lightbox></amp-img>'
+                . '<amp-img src="https://example.com/dog.jpg" width="100" height="100" lightbox></amp-img>'
+                . '<amp-img src="https://example.com/bird.jpg" width="100" height="100" lightbox></amp-img>'
+                . '</body></html>',
                 [],
                 [
                     AutoExtensionsConfiguration::REMOVE_UNNEEDED_EXTENSIONS => true,
@@ -186,7 +194,6 @@ final class AutoExtensionsTest extends TestCase
         $errors      = new ErrorCollection();
 
         $transformer->transform($document, $errors);
-
         $this->assertEqualMarkup($expectedHtml, $document->saveHTML());
         $this->assertSameErrors($expectedErrors, $errors);
     }

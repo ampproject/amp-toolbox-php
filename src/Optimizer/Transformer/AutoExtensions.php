@@ -68,10 +68,14 @@ final class AutoExtensions implements Transformer
     /**
      * List of extensions that should not be removed even when there is no usage in the HTML.
      *
+     * The array key is the extension to protect, the array value is an array of extensions that
+     * make up the requirements for protecting the extension. An empty array means the extension
+     * is protected unconditionally.
+     *
      * @var array
      */
     private $protectedExtensions = [
-        'amp-carousel',
+        'amp-carousel' => ['amp-lightbox-gallery'],
     ];
 
     /**
@@ -447,8 +451,31 @@ final class AutoExtensions implements Transformer
 
         return array_filter($extensionScripts, function ($extension) {
             return array_key_exists($extension, $this->addedExtensions)
-                || in_array($extension, $this->protectedExtensions);
+                || $this->isProtectedExtension($extension);
         }, ARRAY_FILTER_USE_KEY);
+    }
+
+    /**
+     * Determines whether an extension should not be removed even when there is no usage in the HTML.
+     *
+     * @param string $extension Name of the extension to be checked.
+     * @return bool Whether the extension should be protected.
+     */
+    private function isProtectedExtension($extension)
+    {
+        if (array_key_exists($extension, $this->protectedExtensions)) {
+            if (empty($this->protectedExtensions[$extension])) {
+                return true;
+            }
+
+            foreach ($this->protectedExtensions[$extension] as $dependentExtension) {
+                if (array_key_exists($dependentExtension, $this->addedExtensions)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -531,7 +558,13 @@ final class AutoExtensions implements Transformer
      */
     private function maybeAddExtension(Document $document, $extensionScripts, $requiredExtension)
     {
-        if (in_array($requiredExtension, $this->configuration->get(AutoExtensionsConfiguration::IGNORED_EXTENSIONS), true)) {
+        if (
+            in_array(
+                $requiredExtension,
+                $this->configuration->get(AutoExtensionsConfiguration::IGNORED_EXTENSIONS),
+                true
+            )
+        ) {
             return $extensionScripts;
         }
 
