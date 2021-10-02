@@ -45,6 +45,7 @@ interface Configuration
         Transformer\RewriteAmpUrls::class,
         Transformer\ReorderHead::class,
         Transformer\OptimizeAmpBind::class,
+        Transformer\OptimizeViewport::class,
         Transformer\MinifyHtml::class,
     ];
 
