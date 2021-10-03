@@ -72,6 +72,9 @@ final class Element extends DOMElement
      */
     public function setAttribute($name, $value)
     {
+        // Make sure $value is always a string and not null.
+        $value = $value ? $value : '';
+
         if (
             $name === Attribute::STYLE
             && $this->ownerDocument->isCssMaxByteCountEnforced()

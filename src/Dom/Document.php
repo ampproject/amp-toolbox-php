@@ -411,6 +411,7 @@ final class Document extends DOMDocument
      * @param DOMNode|null $node Optional. Parameter to output a subset of the document.
      * @return string The HTML, or false if an error occurred.
      */
+    #[\ReturnTypeWillChange]
     public function saveHTML(DOMNode $node = null)
     {
         return $this->saveHTMLFragment($node);
@@ -977,7 +978,7 @@ final class Document extends DOMDocument
      *                      You can also set the value later with Element->nodeValue.
      * @return Element|false A new instance of class Element or false if an error occurred.
      */
-    public function createElement($name, $value = null)
+    public function createElement($name, $value = '')
     {
         $element = parent::createElement($name, $value);
 
