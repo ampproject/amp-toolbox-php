@@ -32,6 +32,13 @@ final class OptimizeViewport implements Transformer
     const AMP_VIEWPORT = 'width=device-width';
 
     /**
+     * The viewport content property that controls the zoom level when the page is first loaded.
+     *
+     * @var string
+     */
+    const INITIAL_SCALE = 'initial-scale';
+
+    /**
      * Xpath query to fetch the viewport meta tags.
      *
      * This transformer does not make use of the `Dom\Document::$viewport` helper, as it needs to
@@ -92,10 +99,10 @@ final class OptimizeViewport implements Transformer
             // Remove initial-scale=1 to leave just width=device-width in order to avoid a tap delay that hurts FID.
             if (
                 $this->configuration->get(OptimizeViewportConfiguration::REMOVE_INITIAL_SCALE_VIEWPORT_PROPERTY)
-                && isset($parsedRules[Attribute::INITIAL_SCALE])
-                && abs((float) $parsedRules[Attribute::INITIAL_SCALE] - 1.0) < 0.0001
+                && isset($parsedRules[self::INITIAL_SCALE])
+                && abs((float) $parsedRules[self::INITIAL_SCALE] - 1.0) < 0.0001
             ) {
-                unset($parsedRules[Attribute::INITIAL_SCALE]);
+                unset($parsedRules[self::INITIAL_SCALE]);
             }
 
             $viewport = implode(
