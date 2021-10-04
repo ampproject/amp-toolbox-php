@@ -18,7 +18,6 @@ use AmpProject\Tag;
  * * default to 'width=device-width' when the viewport is missing, which is the bare minimum that AMP requires;
  * * extract properties from multiple viewport tags and merge them into a single tag;
  * * remove the initial-scale=1 attribute if applicable to avoid unnecessary tap delay.
-
  *
  * @package ampproject/amp-toolbox
  */

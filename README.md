@@ -145,6 +145,7 @@ Note that this only lets you check whether an error "category" popped up. It can
 | [`RewriteAmpUrls`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/Transformer/RewriteAmpUrls.php) | Transformer that rewrites AMP runtime URLs to decide what version of the runtime to use. This allows you to do such things as switching to the LTS version or disabling ES modules.|
 | [`ServerSideRendering`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/Transformer/ServerSideRendering.php) | Transformer applying the server-side rendering transformations to the HTML input. This does immediately on the server what would normally be done on the client _after_ the runtime was downloaded and executed to process the DOM. As such, it allows for the removal of the boilerplate CSS that _hides_ the page while it has not yet been processed on the client, drastically improving time it takes for the First Contentful Paint (FCP).|
 | [`TransformedIdentifier`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/Transformer/TransformedIdentifier.php) | Transformer applying the transformed identifier transformations to the HTML input. This is what marks an AMP document as "already optimized", so that the AMP runtime does not need to process it anymore. |
+| [`OptimizeViewport`](https://github.com/ampproject/amp-toolbox-php/blob/main/src/Optimizer/Transformer/OptimizeViewport.php) | Transformer that normalizes and optimizes the viewport meta tag. By default it'll add `<meta name="viewport" content="width=device-width">` if viewport is missing, which is the bare minimum that AMP requires. |
 
 ### Configuring the Transformers
 
@@ -380,7 +381,7 @@ final class MyCustomTransformer implements Transformer
 		}
 
 		$content = $response->getBody();
-		
+
 		// Make use of the $content you've just retrieved from an external source.
 	}
 }
