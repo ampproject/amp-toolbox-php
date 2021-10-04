@@ -18,7 +18,7 @@ use AmpProject\Tag;
  * * default to 'width=device-width' when the viewport is missing, which is the bare minimum that AMP requires;
  * * extract properties from multiple viewport tags and merge them into a single tag;
  * * remove the initial-scale=1 attribute if applicable to avoid unnecessary tap delay.
- 
+
  *
  * @package ampproject/amp-toolbox
  */
@@ -93,10 +93,10 @@ final class OptimizeViewport implements Transformer
             // Remove initial-scale=1 to leave just width=device-width in order to avoid a tap delay that hurts FID.
             if (
                 $this->configuration->get(OptimizeViewportConfiguration::REMOVE_INITIAL_SCALE_VIEWPORT_PROPERTY)
-                && isset($parsedRules[Attribute::VIEWPORT_INITIAL_SCALE])
-                && abs((float) $parsedRules[Attribute::VIEWPORT_INITIAL_SCALE] - 1.0) < 0.0001
+                && isset($parsedRules[Attribute::INITIAL_SCALE])
+                && abs((float) $parsedRules[Attribute::INITIAL_SCALE] - 1.0) < 0.0001
             ) {
-                unset($parsedRules[Attribute::VIEWPORT_INITIAL_SCALE]);
+                unset($parsedRules[Attribute::INITIAL_SCALE]);
             }
 
             $viewport = implode(
