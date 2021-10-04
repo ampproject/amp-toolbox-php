@@ -38,6 +38,7 @@ class DefaultConfiguration implements Configuration
         Transformer\PreloadHeroImage::class      => Configuration\PreloadHeroImageConfiguration::class,
         Transformer\RewriteAmpUrls::class        => Configuration\RewriteAmpUrlsConfiguration::class,
         Transformer\TransformedIdentifier::class => Configuration\TransformedIdentifierConfiguration::class,
+        Transformer\OptimizeViewport::class      => Configuration\OptimizeViewportConfiguration::class,
         Transformer\MinifyHtml::class            => Configuration\MinifyHtmlConfiguration::class,
     ];
 
