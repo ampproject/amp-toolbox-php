@@ -66,7 +66,7 @@ final class OptimizeViewport implements Transformer
 
         $metaTags = $document->xpath->query(self::XPATH_QUERY);
 
-        if (! $metaTags->count()) {
+        if (! $metaTags->length) {
             $viewport = self::AMP_VIEWPORT;
         } else {
             // Merge one or more meta[name=viewport] tags into one.
