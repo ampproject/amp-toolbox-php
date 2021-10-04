@@ -12,11 +12,13 @@ use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\Tag;
 
 /**
- * Always ensure we have a single viewport meta tag.
+ * OptimizeViewport - Transformer that normalizes and optimizes the viewport meta tag.
  *
- * The viewport defaults to 'width=device-width', which is the bare minimum that AMP requires. When there are multiple
- * such meta tags, this optimizer extracts the viewport properties of each and then merges them into a single
- * meta[name=viewport] tag.
+ * This transformer will:
+ * * default to 'width=device-width' when the viewport is missing, which is the bare minimum that AMP requires;
+ * * extract properties from multiple viewport tags and merge them into a single tag;
+ * * remove the initial-scale=1 attribute if applicable to avoid unnecessary tap delay.
+ 
  *
  * @package ampproject/amp-toolbox
  */
@@ -32,6 +34,9 @@ final class OptimizeViewport implements Transformer
 
     /**
      * Xpath query to fetch the viewport meta tags.
+     *
+     * This transformer does not make use of the `Dom\Document::$viewport` helper, as it needs to
+     * deal properly with multiple viewport tags as well.
      *
      * @var string
      */
@@ -85,20 +90,20 @@ final class OptimizeViewport implements Transformer
                 $metaTag->parentNode->removeChild($metaTag);
             }
 
-            // Remove initial-scale=1 to leave just width=device-width in order to avoid a tap delay hurts FID.
+            // Remove initial-scale=1 to leave just width=device-width in order to avoid a tap delay that hurts FID.
             if (
                 $this->configuration->get(OptimizeViewportConfiguration::REMOVE_INITIAL_SCALE_VIEWPORT_PROPERTY)
-                && isset($parsedRules['initial-scale'])
-                && abs((float) $parsedRules['initial-scale'] - 1.0) < 0.0001
+                && isset($parsedRules[Attribute::VIEWPORT_INITIAL_SCALE])
+                && abs((float) $parsedRules[Attribute::VIEWPORT_INITIAL_SCALE] - 1.0) < 0.0001
             ) {
-                unset($parsedRules['initial-scale']);
+                unset($parsedRules[Attribute::VIEWPORT_INITIAL_SCALE]);
             }
 
             $viewport = implode(
                 ',',
                 array_map(
                     static function ($ruleName) use ($parsedRules) {
-                        return $ruleName . '=' . $parsedRules[ $ruleName ];
+                        return "{$ruleName}={$parsedRules[$ruleName]}";
                     },
                     array_keys($parsedRules)
                 )

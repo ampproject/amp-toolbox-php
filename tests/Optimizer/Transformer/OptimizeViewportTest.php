@@ -41,7 +41,7 @@ final class OptimizeViewportTest extends TestCase
                 . '</head><body></body></html>',
             ],
 
-            'removes the initial-scale=1' => [
+            'remove the initial-scale=1' => [
                 TestMarkup::DOCTYPE
                 . '<html ⚡><head>'
                 . TestMarkup::META_CHARSET
