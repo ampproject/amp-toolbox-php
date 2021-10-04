@@ -36,6 +36,7 @@ use ReflectionNamedType;
  * @property Element      $html                    The document's <html> element.
  * @property Element      $head                    The document's <head> element.
  * @property Element      $body                    The document's <body> element.
+ * @property Element|null $charset                 The document's charset meta element.
  * @property Element|null $viewport                The document's viewport meta element.
  * @property DOMNodeList  $ampElements             The document's <amp-*> elements.
  * @property Element      $ampCustomStyle          The document's <style amp-custom> element.
@@ -193,6 +194,7 @@ final class Document extends DOMDocument
                 Filter\AmpEmojiAttribute::class,
                 Filter\AmpBindAttributes::class,
                 Filter\SelfClosingTags::class,
+                Filter\SelfClosingSVGElements::class,
                 Filter\NoscriptElements::class,
                 Filter\DeduplicateTag::class,
                 Filter\ConvertHeadProfileToLink::class,
@@ -866,6 +868,19 @@ final class Document extends DOMDocument
 
                 $this->body = $body;
                 return $this->body;
+            case Attribute::CHARSET:
+                // This is not cached as it could potentially be requested too early, before the viewport was added, and
+                // the cache would then store null without rechecking later on after the viewport has been added.
+                for ($node = $this->head->firstChild; $node !== null; $node = $node->nextSibling) {
+                    if (
+                        $node instanceof Element
+                        && $node->tagName === Tag::META
+                        && $node->getAttribute(Attribute::NAME) === Attribute::CHARSET
+                    ) {
+                        return $node;
+                    }
+                }
+                return null;
             case Attribute::VIEWPORT:
                 // This is not cached as it could potentially be requested too early, before the viewport was added, and
                 // the cache would then store null without rechecking later on after the viewport has been added.

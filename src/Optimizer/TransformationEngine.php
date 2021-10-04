@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer;
 use AmpProject\Dom\Document;
 use AmpProject\RemoteGetRequest;
 use AmpProject\RemoteRequest\CurlRemoteGetRequest;
+use AmpProject\Validator\Spec;
 use ReflectionClass;
 use ReflectionException;
 
@@ -38,16 +39,28 @@ final class TransformationEngine
     private $transformers;
 
     /**
+     * Validator Spec instance to use.
+     *
+     * @var Spec
+     */
+    private $spec;
+
+    /**
      * Instantiate a TransformationEngine object.
      *
      * @param Configuration|null    $configuration Optional. Configuration data to use for setting up the transformers.
      * @param RemoteGetRequest|null $remoteRequest Optional. Transport to use for remote requests. Defaults to the
-     *                                     CurlRemoteGetRequest implementation shipped with the library.
+     *                                             CurlRemoteGetRequest implementation shipped with the library.
+     * @param Spec                  $spec          Optional. Validator spec instance to use.
      */
-    public function __construct(Configuration $configuration = null, RemoteGetRequest $remoteRequest = null)
-    {
+    public function __construct(
+        Configuration $configuration = null,
+        RemoteGetRequest $remoteRequest = null,
+        Spec $spec = null
+    ) {
         $this->configuration = isset($configuration) ? $configuration : new DefaultConfiguration();
-        $this->remoteRequest = isset($remoteRequest) ? $remoteRequest : new CurlRemoteGetRequest();
+        $this->remoteRequest = $remoteRequest;
+        $this->spec          = $spec;
 
         $this->initializeTransformers();
     }
@@ -138,7 +151,18 @@ final class TransformationEngine
             }
 
             if (is_a($dependencyType->name, RemoteGetRequest::class, true)) {
+                if ($this->remoteRequest === null) {
+                    $this->remoteRequest = new CurlRemoteGetRequest();
+                }
                 $dependencies[] = $this->remoteRequest;
+                continue;
+            }
+
+            if (is_a($dependencyType->name, Spec::class, true)) {
+                if ($this->spec === null) {
+                    $this->spec = new Spec();
+                }
+                $dependencies[] = $this->spec;
                 continue;
             }
 

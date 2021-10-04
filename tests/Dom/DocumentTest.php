@@ -1390,4 +1390,80 @@ class DocumentTest extends TestCase
             $document->saveHTMLFragment()
         );
     }
+
+    /**
+     * Data for self closing SVG element test.
+     *
+     * @return array Data.
+     */
+    public function dataSVGSelfClosingElements()
+    {
+        $head = '<head><meta charset="utf-8"></head>';
+
+        return [
+            'test self closing path tag' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                .   '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
+                .   '    <path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"/>'
+                .   '</svg>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                .   '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
+                .   '    <path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"/>'
+                .   '</svg>'
+                . '</body></html>',
+            ],
+            'test g tag without child element' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">'
+                . '    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52" fill="#1E1E1C" />'
+                . '    <mask id="mask0" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="20">'
+                . '        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52" fill="white" />'
+                . '    </mask>'
+                . '    <g mask="url(#mask0)" />'
+                . '</svg>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">'
+                . '    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52" fill="#1E1E1C" />'
+                . '    <mask id="mask0" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="20">'
+                . '        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52" fill="white" />'
+                . '    </mask>'
+                . '    <g mask="url(#mask0)" />'
+                . '</svg>'
+                . '</body></html>',
+            ],
+            'test g tag with child elements' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
+                . '    <g fill="white" stroke="green" stroke-width="5">'
+                . '        <circle cx="40" cy="40" r="25" />'
+                . '        <circle cx="60" cy="60" r="25" />'
+                . '    </g>'
+                . '</svg>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
+                . '    <g fill="white" stroke="green" stroke-width="5">'
+                . '        <circle cx="40" cy="40" r="25" />'
+                . '        <circle cx="60" cy="60" r="25" />'
+                . '    </g>'
+                . '</svg>'
+                . '</body></html>',
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider dataSVGSelfClosingElements
+     *
+     * @covers \AmpProject\Dom\Document\Filter\SelfClosingSVGElements::beforeLoad()
+     * @covers \AmpProject\Dom\Document\Filter\SelfClosingSVGElements::afterSave()
+     */
+    public function testSVGSelfClosingElements($source, $expected)
+    {
+        $document = Document::fromHtml($source);
+        $output = $document->saveHTML();
+        $this->assertSimilarMarkup($expected, $output);
+    }
 }
