@@ -33,7 +33,7 @@ final class Encoding
      *
      * @var string
      */
-    const DETECTION_ORDER = 'UTF-8, EUC-JP, eucJP-win, JIS, ISO-2022-JP, ISO-8859-15, ISO-8859-1, ASCII';
+    const DETECTION_ORDER = 'UTF-8, EUC-JP, eucJP-win, ISO-8859-15, JIS, ISO-2022-JP, ISO-8859-1, ASCII';
 
     /**
      * Associative array of encoding mappings.
