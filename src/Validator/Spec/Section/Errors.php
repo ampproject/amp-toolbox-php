@@ -218,6 +218,7 @@ final class Errors implements IterableSection
      *
      * @return Error Error object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

@@ -78,6 +78,7 @@ final class AttributeLists
      *
      * @return AttributeList Attribute list object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

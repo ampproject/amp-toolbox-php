@@ -106,6 +106,7 @@ final class DescendantTagLists implements IterableSection
      *
      * @return DescendantTagList Descendant tag list object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

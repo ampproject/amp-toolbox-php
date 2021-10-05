@@ -1002,7 +1002,7 @@ final class Document extends DOMDocument
      *                           You can also set the value later with Element->nodeValue.
      * @return Element|false A new instance of class Element or false if an error occurred.
      */
-    public function createElementWithAttributes($name, $attributes, $value = null)
+    public function createElementWithAttributes($name, $attributes, $value = '')
     {
         $element = parent::createElement($name, $value);
 

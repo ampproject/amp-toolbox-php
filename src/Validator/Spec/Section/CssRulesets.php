@@ -158,6 +158,7 @@ final class CssRulesets implements IterableSection
      *
      * @return CssRuleset CssRuleset object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

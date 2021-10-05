@@ -3358,6 +3358,7 @@ final class Tags implements IterableSection
      *
      * @return Tag Tag object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

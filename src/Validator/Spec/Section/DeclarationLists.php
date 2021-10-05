@@ -101,6 +101,7 @@ final class DeclarationLists implements IterableSection
      *
      * @return DeclarationList Declaration list object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();
