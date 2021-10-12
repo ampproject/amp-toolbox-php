@@ -113,7 +113,7 @@ final class DocumentEncoding implements BeforeLoadFilter
     {
         // No encoding was provided, so we need to guess.
         if (function_exists('mb_detect_encoding') && $this->originalEncoding->equals(Encoding::UNKNOWN)) {
-            $this->originalEncoding = new Encoding(mb_detect_encoding($source, Encoding::DETECTION_ORDER, true));
+            $this->originalEncoding = new Encoding($this->detectEncoding($source));
         }
 
         // Guessing the encoding seems to have failed, so we assume UTF-8 instead.
@@ -126,7 +126,7 @@ final class DocumentEncoding implements BeforeLoadFilter
 
         // Sanitization failed, so we do a last effort to auto-detect.
         if (function_exists('mb_detect_encoding') && $this->originalEncoding->equals(Encoding::UNKNOWN)) {
-            $detectedEncoding = mb_detect_encoding($source, Encoding::DETECTION_ORDER, true);
+            $detectedEncoding = $this->detectEncoding($source);
             if ($detectedEncoding !== false) {
                 $this->originalEncoding = new Encoding($detectedEncoding);
             }
@@ -214,5 +214,17 @@ final class DocumentEncoding implements BeforeLoadFilter
         }
 
         return false;
+    }
+
+    /**
+     * Detect character encoding.
+     *
+     * @param string $source Source content to detect the encoding of.
+     * @return string The character encoding of the source.
+     */
+    private function detectEncoding($source)
+    {
+        $detectionOrder = PHP_VERSION_ID >= 80100 ? Encoding::DETECTION_ORDER_PHP81 : Encoding::DETECTION_ORDER;
+        return mb_detect_encoding($source, $detectionOrder, true);
     }
 }

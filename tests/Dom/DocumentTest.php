@@ -308,6 +308,26 @@ class DocumentTest extends TestCase
                 mb_convert_encoding('€', 'ISO-8859-15', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body>€</body></html>',
             ],
+            'JIS_encoding_guessed_via_content'  => [
+                '',
+                mb_convert_encoding('<!DOCTYPE html><html><body><p>世界的に木材価格が高騰する「ウッドショック」が起きている。</p></body></html>', 'JIS', 'UTF-8'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>世界的に木材価格が高騰する「ウッドショック」が起きている。</p></body></html>',
+            ],
+            'EUC-JP_encoding_guessed_via_content'  => [
+                '',
+                mb_convert_encoding('<!DOCTYPE html><html><body><p>世界的に木材価格が高騰する「ウッドショック」が起きている。</p></body></html>', 'EUC-JP', 'UTF-8'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>世界的に木材価格が高騰する「ウッドショック」が起きている。</p></body></html>',
+            ],
+            'eucJP-win_encoding_guessed_via_content'  => [
+                '',
+                mb_convert_encoding('<!DOCTYPE html><html><body><p>世界的に木材価格が高騰する「ウッドショック」が起きている。</p></body></html>', 'eucJP-win', 'UTF-8'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>世界的に木材価格が高騰する「ウッドショック」が起きている。</p></body></html>',
+            ],
+            'ISO-2022-JP_encoding_guessed_via_content'  => [
+                '',
+                mb_convert_encoding('<!DOCTYPE html><html><body><p>世界的に木材価格が高騰する「ウッドショック」が起きている。</p></body></html>', 'ISO-2022-JP', 'UTF-8'),
+                '<!DOCTYPE html><html>' . $head . '<body><p>世界的に木材価格が高騰する「ウッドショック」が起きている。</p></body></html>',
+            ],
             'nodes_around_main_elements'            => [
                 'utf-8',
                 ' <!-- comment 1 --> <!doctype html> <!-- comment 2 --> <html> <!-- comment 3 --> <head></head> <!-- comment 4 --> <body></body> <!-- comment after body --></html><!-- start --><div>Query Monitor</div><!-- end -->',
