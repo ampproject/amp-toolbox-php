@@ -196,6 +196,16 @@ final class Dumper
     }
 
     /**
+     * Get the NetteDumper instance.
+     *
+     * @return NetteDumper
+     */
+    public function getDumper()
+    {
+        return $this->dumper;
+    }
+
+    /**
      * Get the string representation of a value.
      *
      * This takes into account the optional callback that might have been passed in.

@@ -8,7 +8,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 if (! class_exists('Nette\PhpGenerator\ClassType')) {
     echo "ERROR: The optional package nette/php-generator is needed for code generation.\n";
     echo "Install the package via the following Composer command:\n";
-    echo "composer require --dev nette/php-generator:^3.5\n";
+    echo "composer require --dev nette/php-generator:3.6.1\n";
     exit -1;
 }
 

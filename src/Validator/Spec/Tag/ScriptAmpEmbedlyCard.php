@@ -69,7 +69,7 @@ final class ScriptAmpEmbedlyCard extends TagWithExtensionSpec implements Identif
             'hasBento' => false,
         ],
         '1.0' => [
-            'hasCss' => false,
+            'hasCss' => true,
             'hasBento' => true,
         ],
     ];

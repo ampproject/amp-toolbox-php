@@ -7,6 +7,7 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Layout;
@@ -20,9 +21,11 @@ use AmpProject\Validator\Spec\Tag;
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
+ * @property-read array $attrs
  * @property-read string $specUrl
  * @property-read array<array<string>> $ampLayout
  * @property-read string $mandatoryAncestor
+ * @property-read array $childTags
  * @property-read array<string> $htmlFormat
  * @property-read array<string> $requiresExtension
  */
@@ -42,6 +45,22 @@ final class AmpStoryPanningMedia extends Tag implements Identifiable
      */
     const SPEC = [
         SpecRule::TAG_NAME => Extension::STORY_PANNING_MEDIA,
+        SpecRule::ATTRS => [
+            Attribute::DATA_X => [
+                SpecRule::VALUE_REGEX => '-?(0|[0-9]?\d\.?\d*%|100%)',
+            ],
+            Attribute::DATA_Y => [
+                SpecRule::VALUE_REGEX => '-?(0|[0-9]?\d\.?\d*%|100%)',
+            ],
+            Attribute::DATA_ZOOM => [
+                SpecRule::VALUE_REGEX => '\d+\.?\d*',
+            ],
+            Attribute::LOCK_BOUNDS => [
+                SpecRule::VALUE => [
+                    '',
+                ],
+            ],
+        ],
         SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-story-panning-media',
         SpecRule::AMP_LAYOUT => [
             SpecRule::SUPPORTED_LAYOUTS => [
@@ -49,6 +68,12 @@ final class AmpStoryPanningMedia extends Tag implements Identifiable
             ],
         ],
         SpecRule::MANDATORY_ANCESTOR => Extension::STORY_GRID_LAYER,
+        SpecRule::CHILD_TAGS => [
+            SpecRule::MANDATORY_NUM_CHILD_TAGS => 1,
+            SpecRule::CHILD_TAG_NAME_ONEOF => [
+                'AMP-IMG',
+            ],
+        ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
