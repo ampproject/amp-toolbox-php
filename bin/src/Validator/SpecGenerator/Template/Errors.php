@@ -78,6 +78,7 @@ final class Errors
      *
      * @return Error Error object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

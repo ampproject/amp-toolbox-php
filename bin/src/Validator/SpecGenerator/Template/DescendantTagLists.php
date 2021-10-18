@@ -78,6 +78,7 @@ final class DescendantTagLists
      *
      * @return DescendantTagList Descendant tag list object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

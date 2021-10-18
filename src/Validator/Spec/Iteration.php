@@ -26,6 +26,7 @@ trait Iteration
      *
      * @return object Tag object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         $this->initIterationArray();

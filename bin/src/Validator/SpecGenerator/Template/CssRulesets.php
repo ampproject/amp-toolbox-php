@@ -110,6 +110,7 @@ final class CssRulesets
      *
      * @return CssRuleset CssRuleset object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();
