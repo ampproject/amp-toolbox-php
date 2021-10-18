@@ -3,7 +3,6 @@
 namespace AmpProject\Tooling\Validator\SpecGenerator;
 
 use Nette\PhpGenerator\ClassType;
-use Nette\PhpGenerator\GlobalFunction;
 use Nette\PhpGenerator\Helpers;
 use Nette\PhpGenerator\Method;
 use Nette\PhpGenerator\PhpNamespace;
@@ -64,7 +63,7 @@ final class SpecPrinter extends Printer
         $consts = [];
         foreach ($class->getConstants() as $const) {
             $consts[] = Helpers::formatDocComment((string) $const->getComment())
-                . self::printAttributes($const->getAttributes(), $namespace)
+                . $this->printAttributes($const->getAttributes(), $namespace)
                 . "const {$const->getName()} = "
                 . $this->dumper->dump($const->getValue(), 0) . ";\n";
         }
@@ -77,7 +76,7 @@ final class SpecPrinter extends Printer
                 . '$' . $property->getName());
 
             $properties[] = Helpers::formatDocComment((string) $property->getComment())
-                . self::printAttributes($property->getAttributes(), $namespace)
+                . $this->printAttributes($property->getAttributes(), $namespace)
                 . $def
                 . ($property->getValue() === null && !$property->isInitialized()
                     ? ''
@@ -102,7 +101,7 @@ final class SpecPrinter extends Printer
 
         return Strings::normalize(
             Helpers::formatDocComment($class->getComment() . "\n")
-                . self::printAttributes($class->getAttributes(), $namespace)
+                . $this->printAttributes($class->getAttributes(), $namespace)
                 . ($class->isAbstract() ? 'abstract ' : '')
                 . ($class->isFinal() ? 'final ' : '')
                 . ($class->getName() ? $class->getType() . ' ' . $class->getName() . ' ' : '')
@@ -131,7 +130,7 @@ final class SpecPrinter extends Printer
                 . $method->getName();
 
         return Helpers::formatDocComment($method->getComment() . "\n")
-               . self::printAttributes($method->getAttributes(), $namespace)
+               . $this->printAttributes($method->getAttributes(), $namespace)
                . $line
                . ($params = $this->printParameters($method, $namespace, strlen($line) + strlen($this->indentation) + 2))
                . ($method->isAbstract() || $method->getBody() === null
@@ -162,8 +161,8 @@ final class SpecPrinter extends Printer
         }
         $items = [];
         foreach ($attrs as $attr) {
-            $args = (new Dumper())->format('...?:', $attr->getArguments());
-            $items[] = $this->printType($attr->getName(), false, $namespace) . ($args ? "($args)" : '');
+            $args = $this->dumper->getDumper()->format('...?:', $attr->getArguments());
+            $items[] = "\\" . $this->printType($attr->getName(), false, $namespace) . ($args ? "($args)" : '');
         }
         return $inline
             ? '#[' . implode(', ', $items) . '] '

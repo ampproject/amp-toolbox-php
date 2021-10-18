@@ -16,7 +16,7 @@ use AmpProject\Validator\Spec\Tag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 /**
- * Tag class ScriptAmpIframe.
+ * Tag class ScriptAmpSidebar2.
  *
  * @package ampproject/amp-toolbox.
  *
@@ -27,14 +27,14 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $extensionSpec
  * @property-read array<string> $excludes
  */
-final class ScriptAmpIframe extends TagWithExtensionSpec implements Identifiable
+final class ScriptAmpSidebar2 extends TagWithExtensionSpec implements Identifiable
 {
     /**
      * ID of the tag.
      *
      * @var string
      */
-    const ID = 'SCRIPT [amp-iframe]';
+    const ID = 'SCRIPT [amp-sidebar] (2)';
 
     /**
      * Array of extension spec rules.
@@ -42,14 +42,14 @@ final class ScriptAmpIframe extends TagWithExtensionSpec implements Identifiable
      * @var array
      */
     const EXTENSION_SPEC = [
-        SpecRule::NAME => 'amp-iframe',
+        SpecRule::NAME => 'amp-sidebar',
         SpecRule::VERSION => [
-            '1.0',
+            '0.1',
+            'latest',
         ],
-        SpecRule::VERSION_NAME => 'v1.0',
-        SpecRule::BENTO_SUPPORTED_VERSION => [
-            '1.0',
-        ],
+        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
+        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v0.1',
     ];
 
     /**
@@ -65,9 +65,9 @@ final class ScriptAmpIframe extends TagWithExtensionSpec implements Identifiable
      * @var array
      */
     const VERSIONS_META = [
-        '1.0' => [
+        '0.1' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 
@@ -85,11 +85,11 @@ final class ScriptAmpIframe extends TagWithExtensionSpec implements Identifiable
             Format::AMP,
         ],
         SpecRule::SATISFIES => [
-            'amp-iframe 1.0',
+            'amp-sidebar 0.1',
         ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
         SpecRule::EXCLUDES => [
-            'amp-iframe 0.1',
+            'amp-sidebar 1.0',
         ],
     ];
 }

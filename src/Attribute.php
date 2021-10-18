@@ -532,6 +532,7 @@ interface Attribute
     const LOAD_MORE_FAILED                = 'load-more-failed';
     const LOAD_MORE_LOADING               = 'load-more-loading';
     const LOCALE                          = 'locale';
+    const LOCK_BOUNDS                     = 'lock-bounds';
     const LONGDESC                        = 'longdesc';
     const LOOP                            = 'loop';
     const LOW                             = 'low';
@@ -1134,6 +1135,9 @@ interface Attribute
     const DATA_WEBCARE_ID                  = 'data-webcare-id';
     const DATA_WIDGET_ID                   = 'data-widget-id';
     const DATA_WIDGET_TYPE                 = 'data-widget-type';
+    const DATA_X                           = 'data-x';
+    const DATA_Y                           = 'data-y';
+    const DATA_ZOOM                        = 'data-zoom';
 
     const CROSSORIGIN_ANONYMOUS       = 'anonymous';
     const CROSSORIGIN_USE_CREDENTIALS = 'use-credentials';

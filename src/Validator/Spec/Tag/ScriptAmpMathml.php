@@ -23,7 +23,9 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
 final class ScriptAmpMathml extends TagWithExtensionSpec implements Identifiable
 {
@@ -42,8 +44,11 @@ final class ScriptAmpMathml extends TagWithExtensionSpec implements Identifiable
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-mathml',
         SpecRule::VERSION => [
-            '0.1',
-            'latest',
+            '1.0',
+        ],
+        SpecRule::VERSION_NAME => 'v1.0',
+        SpecRule::BENTO_SUPPORTED_VERSION => [
+            '1.0',
         ],
     ];
 
@@ -60,9 +65,9 @@ final class ScriptAmpMathml extends TagWithExtensionSpec implements Identifiable
      * @var array
      */
     const VERSIONS_META = [
-        '0.1' => [
+        '1.0' => [
             'hasCss' => true,
-            'hasBento' => false,
+            'hasBento' => true,
         ],
     ];
 
@@ -79,6 +84,12 @@ final class ScriptAmpMathml extends TagWithExtensionSpec implements Identifiable
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-mathml 1.0',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-mathml 0.1',
+        ],
     ];
 }

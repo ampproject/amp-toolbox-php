@@ -298,7 +298,7 @@ final class SpecGenerator
             if (!isset($extensions[$bundleConfig['name']])) {
                 $extensions[$bundleConfig['name']] = [
                     'versions' => [],
-                    'latestVersion' => null,
+                    'latestVersion' => '',
                 ];
             }
 
