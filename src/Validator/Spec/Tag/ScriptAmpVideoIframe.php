@@ -67,7 +67,7 @@ final class ScriptAmpVideoIframe extends TagWithExtensionSpec implements Identif
     const VERSIONS_META = [
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

@@ -70,7 +70,7 @@ final class ScriptAmpTimeago extends TagWithExtensionSpec implements Identifiabl
         ],
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

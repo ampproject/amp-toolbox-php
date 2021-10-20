@@ -65,7 +65,7 @@ final class ScriptAmpRender extends TagWithExtensionSpec implements Identifiable
     const VERSIONS_META = [
         '1.0' => [
             'hasCss' => false,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

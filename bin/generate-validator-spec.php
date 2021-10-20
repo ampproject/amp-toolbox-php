@@ -99,9 +99,24 @@ function fetch_json($url, $cache = false)
 try {
     $cache = ! empty($_ENV['CACHE_FETCHES']);
 
-    echo "Recursively removing $destination";
-    recursivelyRemoveDirectory($destination);
-    echo "\n";
+    $filepaths = [
+        "{$destination}/ErrorCode.php",
+        "{$destination}/Spec.php",
+    ];
+
+    foreach ($filepaths as $filepath) {
+        if (file_exists($filepath)) {
+            echo "Removing file {$filepath}";
+            unlink($filepath);
+        }
+        echo "\n";
+    }
+
+    if (is_dir("{$destination}/Spec")) {
+        echo "Recursively removing directory {$destination}/Spec";
+        recursivelyRemoveDirectory("{$destination}/Spec");
+        echo "\n";
+    }
 
     echo "Fetching {$spec_url}...";
     $spec_data = fetch_json($spec_url, $cache);

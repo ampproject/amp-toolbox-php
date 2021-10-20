@@ -67,7 +67,7 @@ final class ScriptAmpTwitter extends TagWithExtensionSpec implements Identifiabl
     const VERSIONS_META = [
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

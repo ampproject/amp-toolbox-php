@@ -70,7 +70,7 @@ final class ScriptAmpDateDisplay extends TagWithExtensionSpec implements Identif
         ],
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

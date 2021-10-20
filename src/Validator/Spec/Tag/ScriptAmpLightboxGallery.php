@@ -71,7 +71,7 @@ final class ScriptAmpLightboxGallery extends TagWithExtensionSpec implements Ide
         ],
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

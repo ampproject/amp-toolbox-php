@@ -70,7 +70,7 @@ final class ScriptAmpBaseCarousel extends TagWithExtensionSpec implements Identi
         ],
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

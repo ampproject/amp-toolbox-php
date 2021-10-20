@@ -265,8 +265,8 @@ final class FileManager
         $fqcn  = $this->getFullyQualifiedName($class);
         $alias = null;
 
-        if ($fqcn === 'AmpProject\\Element') {
-            $fqcn  = 'AmpProject\\Tag';
+        if ($fqcn === 'AmpProject\\Html\\Element') {
+            $fqcn  = 'AmpProject\\Html\\Tag';
             $alias = 'Element';
         }
 
@@ -287,8 +287,16 @@ final class FileManager
             return $class;
         }
 
+        if ($class === 'AtRule') {
+            return "AmpProject\\Html\\AtRule";
+        }
+
+        if ($class === 'Attribute') {
+            return "AmpProject\\Html\\Attribute";
+        }
+
         if ($class === 'Element') {
-            return "AmpProject\\Element";
+            return "AmpProject\\Html\\Element";
         }
 
         if (strpos($class, 'Tag\\') === 0) {

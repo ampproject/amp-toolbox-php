@@ -66,7 +66,7 @@ final class ScriptAmpWordpressEmbed extends TagWithExtensionSpec implements Iden
     const VERSIONS_META = [
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

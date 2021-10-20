@@ -66,7 +66,7 @@ final class ScriptAmpStreamGallery extends TagWithExtensionSpec implements Ident
     const VERSIONS_META = [
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

@@ -7,10 +7,10 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-use AmpProject\Html\Attribute;
 use AmpProject\Format;
-use AmpProject\Protocol;
+use AmpProject\Html\Attribute;
 use AmpProject\Html\Tag as Element;
+use AmpProject\Protocol;
 use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;

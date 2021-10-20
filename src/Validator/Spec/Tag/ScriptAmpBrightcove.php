@@ -67,7 +67,7 @@ final class ScriptAmpBrightcove extends TagWithExtensionSpec implements Identifi
     const VERSIONS_META = [
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

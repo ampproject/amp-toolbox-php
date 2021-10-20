@@ -70,7 +70,7 @@ final class ScriptAmpInlineGallery extends TagWithExtensionSpec implements Ident
         ],
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

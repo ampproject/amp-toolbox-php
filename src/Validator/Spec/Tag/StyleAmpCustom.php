@@ -7,9 +7,9 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
+use AmpProject\Format;
 use AmpProject\Html\AtRule;
 use AmpProject\Html\Attribute;
-use AmpProject\Format;
 use AmpProject\Html\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\Identifiable;
