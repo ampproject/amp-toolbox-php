@@ -26,6 +26,7 @@ trait Iteration
      *
      * @return object Tag object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         $this->initIterationArray();
@@ -40,6 +41,7 @@ trait Iteration
      *
      * @return void Any returned value is ignored.
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->initIterationArray();
@@ -52,6 +54,7 @@ trait Iteration
      *
      * @return string|null ID of the current iterable object, or null if out of bounds.
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         $this->initIterationArray();
@@ -65,6 +68,7 @@ trait Iteration
      * @return bool The return value will be casted to boolean and then evaluated.
      *              Returns true on success or false on failure.
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         $this->initIterationArray();
@@ -79,6 +83,7 @@ trait Iteration
      *
      * @return void Any returned value is ignored.
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->initIterationArray();
@@ -101,6 +106,7 @@ trait Iteration
      *
      * @return int The custom count as an integer.
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->getAvailableKeys());

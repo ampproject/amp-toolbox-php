@@ -34,6 +34,7 @@ final class Options implements ArrayAccess
      * @param string $option The option name.
      * @param mixed  $value  Option value.
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($option, $value)
     {
         $this->options[$option] = $value;
@@ -45,6 +46,7 @@ final class Options implements ArrayAccess
      * @param string $option Option name.
      * @return bool True if the option exists, false otherwise.
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($option)
     {
         return isset($this->options[$option]);
@@ -55,6 +57,7 @@ final class Options implements ArrayAccess
      *
      * @param string $option Option name.
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($option)
     {
         unset($this->options[$option]);
@@ -66,6 +69,7 @@ final class Options implements ArrayAccess
      * @param string $option Option name.
      * @return mixed If set, the value of the option, null otherwise.
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($option)
     {
         return isset($this->options[$option]) ? $this->options[$option] : null;

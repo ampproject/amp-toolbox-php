@@ -33,7 +33,15 @@ final class Encoding
      *
      * @var string
      */
-    const DETECTION_ORDER = 'UTF-8, EUC-JP, eucJP-win, JIS, ISO-2022-JP, ISO-8859-15, ISO-8859-1, ASCII';
+    const DETECTION_ORDER = 'JIS, UTF-8, EUC-JP, eucJP-win, ISO-2022-JP, ISO-8859-15, ISO-8859-1, ASCII';
+
+    /**
+     * Encoding detection order for PHP 8.1.
+     *
+     * In PHP 8.1, mb_detect_encoding gives different result than the lower versions. This alternative detection order
+     * list fixes this issue.
+     */
+    const DETECTION_ORDER_PHP81 = 'UTF-8, EUC-JP, eucJP-win, ISO-8859-15, JIS, ISO-2022-JP, ISO-8859-1, ASCII';
 
     /**
      * Associative array of encoding mappings.

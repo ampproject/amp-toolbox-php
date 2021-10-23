@@ -261,6 +261,7 @@ final class Tags
      *
      * @return Tag Tag object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

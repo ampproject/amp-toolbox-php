@@ -110,6 +110,7 @@ final class DocRulesets
      *
      * @return DocRuleset DocRuleset object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

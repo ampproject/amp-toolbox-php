@@ -78,6 +78,7 @@ final class DeclarationLists
      *
      * @return DeclarationList Declaration list object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();

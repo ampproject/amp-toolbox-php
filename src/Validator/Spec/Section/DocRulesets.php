@@ -146,6 +146,7 @@ final class DocRulesets implements IterableSection
      *
      * @return DocRuleset DocRuleset object.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->parentCurrent();
