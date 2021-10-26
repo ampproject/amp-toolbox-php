@@ -73,7 +73,7 @@ final class Element extends DOMElement
     public function setAttribute($name, $value)
     {
         // Make sure $value is always a string and not null.
-        $value = $value ? $value : '';
+        $value = strval($value);
 
         if (
             $name === Attribute::STYLE

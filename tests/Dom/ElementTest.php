@@ -480,4 +480,37 @@ class ElementTest extends TestCase
             $this->assertEquals($attributes[ $name ], $value, sprintf('Attribute "%s" does not have expected value.', $name));
         }
     }
+
+    /**
+     * Test setAttribute should always use string type attribute value.
+     */
+    public function testSetAttributeVShouldAlwaysUseStringValue()
+    {
+        $dom        = Document::fromHtml('<p>Hello World</p>');
+        $element    = $dom->createElement('div');
+        $attributes = [
+            'data-attr-string'        => 'string',
+            'data-attr-string-falsy'  => '0',
+            'data-attr-integer'       => 1,
+            'data-attr-integer-falsy' => 0,
+            'data-attr-float'         => 1.01,
+            'data-attr-float-falsy'   => 0.0,
+            'data-attr-null-attr'     => null,
+            'data-attr-boolean-true'  => true,
+            'data-attr-boolean-false' => false,
+
+        ];
+
+        $element->setAttributes($attributes);
+
+        $this->assertEquals('string', $element->getAttribute('data-attr-string'));
+        $this->assertEquals('0', $element->getAttribute('data-attr-string-falsy'));
+        $this->assertEquals('1', $element->getAttribute('data-attr-integer'));
+        $this->assertEquals('0', $element->getAttribute('data-attr-integer-falsy'));
+        $this->assertEquals('1.01', $element->getAttribute('data-attr-float'));
+        $this->assertEquals('0', $element->getAttribute('data-attr-float-falsy'));
+        $this->assertEquals('', $element->getAttribute('data-attr-null-attr'));
+        $this->assertEquals('1', $element->getAttribute('data-attr-boolean-true'));
+        $this->assertEquals('', $element->getAttribute('data-attr-boolean-false'));
+    }
 }
