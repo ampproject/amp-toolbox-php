@@ -43,9 +43,9 @@ interface Configuration
         Transformer\AmpBoilerplateErrorHandler::class,
         Transformer\GoogleFontsPreconnect::class,
         Transformer\RewriteAmpUrls::class,
+        Transformer\OptimizeViewport::class,
         Transformer\ReorderHead::class,
         Transformer\OptimizeAmpBind::class,
-        Transformer\OptimizeViewport::class,
         Transformer\MinifyHtml::class,
     ];
 
