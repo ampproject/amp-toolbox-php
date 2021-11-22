@@ -236,7 +236,7 @@ final class MinifyHtml implements Transformer
      */
     private function normalizeWhitespace($data)
     {
-        return preg_replace('/[\f\n\r\t\v ]{2,}/', ' ', $data);
+        return preg_replace('/[\f\n\r\t ]{2,}/', ' ', $data);
     }
 
     /**

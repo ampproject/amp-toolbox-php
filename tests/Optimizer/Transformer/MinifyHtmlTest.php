@@ -122,6 +122,15 @@ final class MinifyHtmlTest extends TestCase
                 '</amp-list> <p>Hello <strong>World</strong></p>' .
                 '</body></html>',
             ],
+            // @see https://github.com/ampproject/amp-toolbox-php/issues/420
+            'do not break Cyrillic х character' => [
+                TestMarkup::DOCTYPE . '<html ⚡> <head> ' .
+                TestMarkup::META_CHARSET .
+                ' </head> <body><p>Ф ф	Х х	Ц ц</p></body> </html>',
+                TestMarkup::DOCTYPE . '<html ⚡><head>' .
+                TestMarkup::META_CHARSET .
+                '</head><body><p>Ф ф	Х х	Ц ц</p></body></html>',
+            ],
         ];
     }
 
