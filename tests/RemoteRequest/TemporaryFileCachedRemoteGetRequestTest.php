@@ -59,7 +59,7 @@ class TemporaryFileCachedRemoteGetRequestTest extends TestCase
         $url             = $urls[0];
         $stubbedResponse = TestMarkup::STUBBED_REMOTE_REQUESTS[$url];
 
-        $filename = TemporaryFileCachedRemoteGetRequest::CACHED_FILE_PREFIX . md5($url . json_encode([]));
+        $filename = TemporaryFileCachedRemoteGetRequest::CACHED_FILE_PREFIX . md5($url);
         $file     = vfsStream::url(self::DIRECTORY_NAME . "/{$filename}");
 
         // Test that the temp file does not exist at first.

@@ -55,17 +55,11 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     private $directory;
 
     /**
-     * The temporary file abspath.
-     *
-     * @var string
-     */
-    private $file;
-
-    /**
      * Instantiate a TemporaryFileCachedRemoteGetRequest object.
      *
      * @param RemoteGetRequest $remoteGetRequest The decorated RemoteGetRequest object.
-     * @param string           $directory        Optional. Absolute path to the directory where temporary files are saved.
+     * @param string           $directory        Optional. Absolute path to the directory where temporary files are
+     *                                           saved.
      */
     public function __construct(RemoteGetRequest $remoteGetRequest, $directory = '')
     {
@@ -83,15 +77,13 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      */
     public function get($url, $headers = [])
     {
-        $filename = self::CACHED_FILE_PREFIX . md5($url . json_encode($headers));
+        $file = $this->getTemporaryFilePath($url);
 
-        $this->file = "{$this->directory}/{$filename}";
-
-        if (! file_exists($this->file)) {
+        if (! file_exists($file)) {
             return $this->getRemoteResponse($url, $headers);
         }
 
-        $cachedResponse = file_get_contents($this->file);
+        $cachedResponse = file_get_contents($file);
 
         if (false !== $cachedResponse) {
             if (PHP_MAJOR_VERSION >= 7) {
@@ -102,11 +94,23 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
             }
         }
 
-        if (! $cachedResponse instanceof RemoteGetRequestResponse || $this->isExpired($cachedResponse)) {
+        if (! $cachedResponse instanceof RemoteGetRequestResponse || $this->isExpired($file, $cachedResponse)) {
             return $this->getRemoteResponse($url, $headers);
         }
 
         return $cachedResponse;
+    }
+
+    /**
+     * Get the absolute path of the temporary file.
+     *
+     * @param string $url The request url.
+     * @return string The absolute path of the temporary file.
+     */
+    private function getTemporaryFilePath($url)
+    {
+        $filename = self::CACHED_FILE_PREFIX . md5($url);
+        return "{$this->directory}/{$filename}";
     }
 
     /**
@@ -115,13 +119,13 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      * @param string $url     URL to get.
      * @param array  $headers Associative array of headers to send with the request.
      * @return Response Response for the executed request.
-	 * @throws FailedToGetCachedResponse If the remote GET request could not be executed.
+     * @throws FailedToGetCachedResponse If the remote GET request could not be executed.
      */
     private function getRemoteResponse($url, $headers)
     {
         try {
             $response = $this->remoteGetRequest->get($url, $headers);
-            $this->cacheResponse($response);
+            $this->cacheResponse($url, $response);
             return $response;
         } catch (Exception $error) {
             throw FailedToGetCachedResponse::withUrl($url);
@@ -131,22 +135,24 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     /**
      * Save the response in temporary file.
      *
+     * @param string   $url      The request url.
      * @param Response $response The response that need to be cached.
      */
-    private function cacheResponse(Response $response)
+    private function cacheResponse($url, Response $response)
     {
-        file_put_contents($this->file, serialize($response));
+        file_put_contents($this->getTemporaryFilePath($url), serialize($response));
     }
 
     /**
      * Check whether the request is expired.
      *
+     * @param string                   $file     The absolute path of the file that contains the response data.
      * @param RemoteGetRequestResponse $response The response that need to be checked.
      * @return bool
      */
-    private function isExpired(RemoteGetRequestResponse $response)
+    private function isExpired($file, RemoteGetRequestResponse $response)
     {
-        $expiry = $this->getExpiryTime($response);
+        $expiry = $this->getExpiryTime($file, $response);
 
         return microtime(true) > $expiry->getTimestamp();
     }
@@ -154,14 +160,15 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     /**
      * Calculate the expiry time.
      *
+     * @param string                   $file     The absolute path of the file that contains the response data.
      * @param RemoteGetRequestResponse $response The response data need to be calculated.
      *
      * @return DateTimeImmutable Cache expiry time object.
      */
-    private function getExpiryTime(RemoteGetRequestResponse $response)
+    private function getExpiryTime($file, RemoteGetRequestResponse $response)
     {
         $expiry           = self::EXPIRY_TIME;
-        $fileModifiedTime = (new DateTimeImmutable())->setTimestamp(filemtime($this->file));
+        $fileModifiedTime = (new DateTimeImmutable())->setTimestamp(filemtime($file));
 
         if ($response->hasHeader(self::CACHE_CONTROL)) {
             $maxAge = $this->getMaxAge($response->getHeader(self::CACHE_CONTROL));
