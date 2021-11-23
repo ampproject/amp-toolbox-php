@@ -26,7 +26,7 @@ class TemporaryFileCachedRemoteGetRequestTest extends TestCase
     const DIRECTORY_NAME = 'test-temp-dir';
 
     /**
-     * Set up test environmemt
+     * Set up test environment.
      */
     public function set_up() // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
     {
@@ -60,14 +60,14 @@ class TemporaryFileCachedRemoteGetRequestTest extends TestCase
         $stubbedResponse = TestMarkup::STUBBED_REMOTE_REQUESTS[$url];
 
         $filename = TemporaryFileCachedRemoteGetRequest::CACHED_FILE_PREFIX . md5($url . json_encode([]));
-        $file     = vfsStream::url(self::DIRECTORY_NAME  . DIRECTORY_SEPARATOR . $filename);
+        $file     = vfsStream::url(self::DIRECTORY_NAME . "/{$filename}");
 
-        // Test that the temp file should not exists at first.
+        // Test that the temp file does not exist at first.
         $this->assertFalse(file_exists($file));
 
         $cachedRequest->get($url);
 
-        // Test that the temp file should exists after get the response.
+        // Test that the temp file exists after getting the response.
         $this->assertTrue(file_exists($file));
 
         // Test that file content is valid response data.

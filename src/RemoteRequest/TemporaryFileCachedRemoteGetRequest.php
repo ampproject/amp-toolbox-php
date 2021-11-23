@@ -48,7 +48,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     private $remoteGetRequest;
 
     /**
-     * The directory abspath where the temporary file would be saved.
+     * Absolute path to the directory where temporary files are saved.
      *
      * @var string
      */
@@ -65,7 +65,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      * Instantiate a TemporaryFileCachedRemoteGetRequest object.
      *
      * @param RemoteGetRequest $remoteGetRequest The decorated RemoteGetRequest object.
-     * @param string           $directory        Optional. The directory abspath where the temp file would be saved.
+     * @param string           $directory        Optional. Absolute path to the directory where temporary files are saved.
      */
     public function __construct(RemoteGetRequest $remoteGetRequest, $directory = '')
     {
@@ -85,7 +85,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     {
         $filename = self::CACHED_FILE_PREFIX . md5($url . json_encode($headers));
 
-        $this->file = $this->directory . DIRECTORY_SEPARATOR . $filename;
+        $this->file = "{$this->directory}/{$filename}";
 
         if (! file_exists($this->file)) {
             return $this->getRemoteResponse($url, $headers);
@@ -95,7 +95,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
 
         if (false !== $cachedResponse) {
             if (PHP_MAJOR_VERSION >= 7) {
-                $cachedResponse = unserialize($cachedResponse, [ RemoteGetRequestResponse::class ]);
+                $cachedResponse = unserialize($cachedResponse, [RemoteGetRequestResponse::class]);
             } else {
                 // PHP 5.6 does not provide the second $options argument yet.
                 $cachedResponse = unserialize($cachedResponse);
@@ -115,6 +115,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      * @param string $url     URL to get.
      * @param array  $headers Associative array of headers to send with the request.
      * @return Response Response for the executed request.
+	 * @throws FailedToGetCachedResponse If the remote GET request could not be executed.
      */
     private function getRemoteResponse($url, $headers)
     {
