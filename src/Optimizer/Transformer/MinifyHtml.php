@@ -13,6 +13,7 @@ use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
 use AmpProject\Protocol;
+use AmpProject\Str;
 use DOMComment;
 use DOMNode;
 use DOMText;
@@ -236,7 +237,7 @@ final class MinifyHtml implements Transformer
      */
     private function normalizeWhitespace($data)
     {
-        return preg_replace('/[\f\n\r\t ]{2,}/', ' ', $data);
+        return Str::regexReplace('/[\f\n\r\t\v ]{2,}/', ' ', $data);
     }
 
     /**
