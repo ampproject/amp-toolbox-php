@@ -2,6 +2,7 @@
 
 namespace AmpProject\RemoteRequest;
 
+use AmpProject\Exception\FailedRemoteRequest;
 use AmpProject\Exception\FailedToGetCachedResponse;
 use AmpProject\RemoteGetRequest;
 use AmpProject\Response;
@@ -40,11 +41,28 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     const EXPIRY_TIME = 2592000;
 
     /**
+     * The decorated RemoteGetRequest instance.
+     *
+     * @var RemoteGetRequest
+     */
+    private $remoteGetRequest;
+
+    /**
      * The temporary file abspath.
      *
      * @var string
      */
     private $file;
+
+    /**
+     * Instantiate a TemporaryFileCachedRemoteGetRequest object.
+     *
+     * @param RemoteGetRequest $remoteGetRequest The decorated RemoteGetRequest object.
+     */
+    public function __construct(RemoteGetRequest $remoteGetRequest)
+    {
+        $this->remoteGetRequest = $remoteGetRequest;
+    }
 
     /**
      * Get the cached request from a temporary file.
@@ -61,7 +79,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
         $this->file = sys_get_temp_dir() . '/' . $filename;
 
         if (! file_exists($this->file)) {
-            throw FailedToGetCachedResponse::withUrl($url);
+            return $this->getRemoteResponse($url, $headers);
         }
 
         $cachedResponse = file_get_contents($this->file);
@@ -76,10 +94,28 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
         }
 
         if (! $cachedResponse instanceof RemoteGetRequestResponse || $this->isExpired($cachedResponse)) {
-            throw FailedToGetCachedResponse::withUrl($url);
+            return $this->getRemoteResponse($url, $headers);
         }
 
         return $cachedResponse;
+    }
+
+    /**
+     * Get the remote response using the decorated RemoteGetRequest object.
+     *
+     * @param string $url     URL to get.
+     * @param array  $headers Associative array of headers to send with the request.
+     * @return Response Response for the executed request.
+     */
+    private function getRemoteResponse($url, $headers)
+    {
+        try {
+            $response = $this->remoteGetRequest->get($url, $headers);
+            $this->cacheResponse($response);
+            return $response;
+        } catch (FailedRemoteRequest $error) {
+            throw FailedToGetCachedResponse::withUrl($url);
+        }
     }
 
     /**
@@ -87,7 +123,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      *
      * @param RemoteGetRequestResponse $response The response that need to be cached.
      */
-    public function cacheResponse(RemoteGetRequestResponse $response)
+    private function cacheResponse(RemoteGetRequestResponse $response)
     {
         file_put_contents($this->file, serialize($response));
     }

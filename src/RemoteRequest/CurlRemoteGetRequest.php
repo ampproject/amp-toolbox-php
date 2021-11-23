@@ -3,7 +3,6 @@
 namespace AmpProject\RemoteRequest;
 
 use AmpProject\Exception\FailedRemoteRequest;
-use AmpProject\Exception\FailedToGetCachedResponse;
 use AmpProject\Exception\FailedToGetFromRemoteUrl;
 use AmpProject\RemoteGetRequest;
 use AmpProject\Response;
@@ -99,13 +98,6 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
      */
     public function get($url, $headers = [])
     {
-        try {
-            $cachedRequest  = new TemporaryFileCachedRemoteGetRequest();
-            return $cachedRequest->get($url, $headers);
-        } catch (FailedToGetCachedResponse $error) {
-            // Failed to get the cached response, so continue to make a cURL request.
-        }
-
         $retriesLeft = $this->retries;
         do {
             $curlHandle = curl_init();
@@ -153,11 +145,7 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
                 continue;
             }
 
-            $response = new RemoteGetRequestResponse($body, $headers, (int) $status);
-
-            $cachedRequest->cacheResponse($response);
-
-            return $response;
+            return new RemoteGetRequestResponse($body, $headers, (int) $status);
         } while ($retriesLeft--);
 
         // This should never be triggered, but we want to ensure we always have a typed return value,

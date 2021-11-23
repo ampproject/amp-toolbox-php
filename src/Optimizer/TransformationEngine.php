@@ -5,6 +5,7 @@ namespace AmpProject\Optimizer;
 use AmpProject\Dom\Document;
 use AmpProject\RemoteGetRequest;
 use AmpProject\RemoteRequest\CurlRemoteGetRequest;
+use AmpProject\RemoteRequest\TemporaryFileCachedRemoteGetRequest;
 use AmpProject\Validator\Spec;
 use ReflectionClass;
 use ReflectionException;
@@ -152,7 +153,7 @@ final class TransformationEngine
 
             if (is_a($dependencyType->name, RemoteGetRequest::class, true)) {
                 if ($this->remoteRequest === null) {
-                    $this->remoteRequest = new CurlRemoteGetRequest();
+                    $this->remoteRequest = new TemporaryFileCachedRemoteGetRequest(new CurlRemoteGetRequest());
                 }
                 $dependencies[] = $this->remoteRequest;
                 continue;
