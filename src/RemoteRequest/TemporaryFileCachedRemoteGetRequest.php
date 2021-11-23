@@ -147,7 +147,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     {
         $expiry = $this->getExpiryTime($response);
 
-        return new DateTimeImmutable('now') > $expiry;
+        return microtime(true) > $expiry->getTimestamp();
     }
 
     /**
