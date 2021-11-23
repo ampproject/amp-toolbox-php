@@ -2,11 +2,11 @@
 
 namespace AmpProject\RemoteRequest;
 
-use AmpProject\Exception\FailedRemoteRequest;
 use AmpProject\Exception\FailedToGetCachedResponse;
 use AmpProject\RemoteGetRequest;
 use AmpProject\Response;
 use DateTimeImmutable;
+use Exception;
 
 /**
  * Temporarily cache remote response.
@@ -48,6 +48,13 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     private $remoteGetRequest;
 
     /**
+     * The directory abspath where the temporary file would be saved.
+     *
+     * @var string
+     */
+    private $directory;
+
+    /**
      * The temporary file abspath.
      *
      * @var string
@@ -58,10 +65,12 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      * Instantiate a TemporaryFileCachedRemoteGetRequest object.
      *
      * @param RemoteGetRequest $remoteGetRequest The decorated RemoteGetRequest object.
+     * @param string           $directory        Optional. The directory abspath where the temp file would be saved.
      */
-    public function __construct(RemoteGetRequest $remoteGetRequest)
+    public function __construct(RemoteGetRequest $remoteGetRequest, $directory = '')
     {
         $this->remoteGetRequest = $remoteGetRequest;
+        $this->directory        = $directory ? $directory : sys_get_temp_dir();
     }
 
     /**
@@ -76,7 +85,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     {
         $filename = self::CACHED_FILE_PREFIX . md5($url . json_encode($headers));
 
-        $this->file = sys_get_temp_dir() . '/' . $filename;
+        $this->file = $this->directory . DIRECTORY_SEPARATOR . $filename;
 
         if (! file_exists($this->file)) {
             return $this->getRemoteResponse($url, $headers);
@@ -113,7 +122,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
             $response = $this->remoteGetRequest->get($url, $headers);
             $this->cacheResponse($response);
             return $response;
-        } catch (FailedRemoteRequest $error) {
+        } catch (Exception $error) {
             throw FailedToGetCachedResponse::withUrl($url);
         }
     }
@@ -121,9 +130,9 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     /**
      * Save the response in temporary file.
      *
-     * @param RemoteGetRequestResponse $response The response that need to be cached.
+     * @param Response $response The response that need to be cached.
      */
-    private function cacheResponse(RemoteGetRequestResponse $response)
+    private function cacheResponse(Response $response)
     {
         file_put_contents($this->file, serialize($response));
     }
@@ -155,7 +164,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
 
         if ($response->hasHeader(self::CACHE_CONTROL)) {
             $maxAge = $this->getMaxAge($response->getHeader(self::CACHE_CONTROL));
-            $expiry = $maxAge ? $maxAge : $expiry;
+            $expiry = ($maxAge >= 0) ? $maxAge : $expiry;
         }
 
         return $fileModifiedTime->modify("{$expiry} sec");
@@ -169,7 +178,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      */
     private function getMaxAge($cache_control_strings)
     {
-        $max_age = 0;
+        $max_age = -1;
 
         foreach ((array) $cache_control_strings as $cache_control_string) {
             $cache_control_parts = array_map('trim', explode(',', $cache_control_string));
