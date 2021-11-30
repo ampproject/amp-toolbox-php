@@ -2,7 +2,6 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
-use AmpProject\Validator\Spec\AggregateTag;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 
 /**

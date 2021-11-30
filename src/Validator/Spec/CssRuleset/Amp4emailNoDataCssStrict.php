@@ -7,8 +7,8 @@
 
 namespace AmpProject\Validator\Spec\CssRuleset;
 
-use AmpProject\Attribute;
 use AmpProject\Format;
+use AmpProject\Html\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\CssRuleset;
 use AmpProject\Validator\Spec\DeclarationList;

@@ -8,8 +8,8 @@
 namespace AmpProject\Validator\Spec\DescendantTagList;
 
 use AmpProject\Extension;
+use AmpProject\Html\Tag as Element;
 use AmpProject\Internal;
-use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\DescendantTagList;
 use AmpProject\Validator\Spec\Identifiable;
 

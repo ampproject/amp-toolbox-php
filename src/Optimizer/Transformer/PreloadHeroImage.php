@@ -2,7 +2,7 @@
 
 namespace AmpProject\Optimizer\Transformer;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Extension;
 use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;

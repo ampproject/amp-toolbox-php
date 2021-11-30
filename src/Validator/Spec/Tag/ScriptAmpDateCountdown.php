@@ -8,7 +8,7 @@
 namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
-use AmpProject\Tag as Element;
+use AmpProject\Html\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
@@ -70,7 +70,7 @@ final class ScriptAmpDateCountdown extends TagWithExtensionSpec implements Ident
         ],
         '1.0' => [
             'hasCss' => true,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

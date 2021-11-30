@@ -2,9 +2,9 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Exception\MaxCssByteCountExceeded;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use AmpProject\Tests\TestCase;
 use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;

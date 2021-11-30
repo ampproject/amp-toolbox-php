@@ -2,10 +2,10 @@
 
 namespace AmpProject\Dom\Document\Filter;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document\BeforeLoadFilter;
-use AmpProject\Dom\Document\Encoding;
-use AmpProject\Tag;
+use AmpProject\Encoding;
+use AmpProject\Html\Tag;
 
 /**
  * Filter for document encoding.

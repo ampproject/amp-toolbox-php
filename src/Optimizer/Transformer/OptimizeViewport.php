@@ -9,7 +9,7 @@ use AmpProject\Optimizer\Configuration\OptimizeViewportConfiguration;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 
 /**
  * OptimizeViewport - Transformer that normalizes and optimizes the viewport meta tag.

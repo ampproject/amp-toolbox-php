@@ -7,8 +7,17 @@ parameters:
 	paths:
 		- src/
 	ignoreErrors:
+		- '#^Unsafe usage of new static\(\).$#'
 		- '#^PHPDoc tag @throws with type AmpProject\\Exception\\FailedRemoteRequest is not subtype of Throwable$#'
 		- '#^Parameter \#1 (\$exception_handler|\$callback) of function set_exception_handler expects#'
 
 		# @see https://github.com/phpstan/phpstan/issues/5655
 		- '#^PHPDoc tag @var for constant (?:.*) with type array(?:.*) is not subtype of value array(?:.*)\.$#'
+	excludePaths:
+		analyse:
+			- src/Validator/Context.php
+			- src/Validator/ExtensionsContext.php
+			- src/Validator/ValidateTagResult.php
+			- src/Validator/ValidationErrorCollection.php
+			- src/Validator/ValidationHandler.php
+			- src/Validator/ValidatorRules.php

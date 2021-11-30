@@ -8,7 +8,7 @@
 namespace AmpProject\Validator\Spec\Tag;
 
 use AmpProject\Format;
-use AmpProject\Tag as Element;
+use AmpProject\Html\Tag as Element;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
@@ -65,7 +65,7 @@ final class ScriptAmpRender extends TagWithExtensionSpec implements Identifiable
     const VERSIONS_META = [
         '1.0' => [
             'hasCss' => false,
-            'hasBento' => true,
+            'hasBento' => false,
         ],
     ];
 

@@ -7,9 +7,9 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-use AmpProject\Attribute;
 use AmpProject\Format;
-use AmpProject\Tag as Element;
+use AmpProject\Html\Attribute;
+use AmpProject\Html\Tag as Element;
 use AmpProject\Validator\Spec\Identifiable;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
@@ -47,6 +47,7 @@ final class MetaNameAndContent extends Tag implements Identifiable
             Attribute::NAME => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(amp-.*|amp4ads-.*|apple-itunes-app|content-disposition|revisit-after|viewport)(\s|$)',
             ],
+            Attribute::MEDIA => [],
             Attribute::PROPERTY => [],
             Attribute::SCHEME => [],
         ],

@@ -3,7 +3,7 @@
 namespace AmpProject\Optimizer\Transformer;
 
 use AmpProject\Amp;
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\CssLength;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Element;
@@ -17,8 +17,8 @@ use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Exception\InvalidArgument;
 use AmpProject\Optimizer\Exception\InvalidHtmlAttribute;
 use AmpProject\Optimizer\Transformer;
-use AmpProject\Role;
-use AmpProject\Tag;
+use AmpProject\Html\Role;
+use AmpProject\Html\Tag;
 use DOMAttr;
 use Exception;
 

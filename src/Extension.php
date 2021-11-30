@@ -153,6 +153,10 @@ interface Extension
     const STORY_PAGE_OUTLINK                     = 'amp-story-page-outlink';
     const STORY_PANNING_MEDIA                    = 'amp-story-panning-media';
     const STORY_PLAYER                           = 'amp-story-player';
+    const STORY_SHOPPING                         = 'amp-story-shopping';
+    const STORY_SHOPPING_ATTACHMENT              = 'amp-story-shopping-attachment';
+    const STORY_SHOPPING_CONFIG                  = 'amp-story-shopping-config';
+    const STORY_SHOPPING_TAG                     = 'amp-story-shopping-tag';
     const STORY_SOCIAL_SHARE                     = 'amp-story-social-share';
     const STREAM_GALLERY                         = 'amp-stream-gallery';
     const SUBSCRIPTIONS                          = 'amp-subscriptions';

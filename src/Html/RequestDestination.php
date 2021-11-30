@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject;
+namespace AmpProject\Html;
 
 /**
  * Interface with constants for the different request destinations that are supported.

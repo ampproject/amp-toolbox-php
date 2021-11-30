@@ -4,7 +4,7 @@ namespace AmpProject\Dom\Document\Filter;
 
 use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 
 /**
  * Filter to secure and restore self-closing SVG related elements.

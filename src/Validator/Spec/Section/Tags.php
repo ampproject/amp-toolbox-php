@@ -14,8 +14,8 @@ use AmpProject\Exception\InvalidTagId;
 use AmpProject\Exception\InvalidTagName;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Html\Tag as Element;
 use AmpProject\Internal;
-use AmpProject\Tag as Element;
 use AmpProject\Validator\Spec\AggregateTag;
 use AmpProject\Validator\Spec\AggregateTagWithExtensionSpec;
 use AmpProject\Validator\Spec\IterableSection;
@@ -56,6 +56,7 @@ final class Tags implements IterableSection
         Tag\LinkRelManifest::ID => Tag\LinkRelManifest::class,
         Tag\LinkRelModulepreload::ID => Tag\LinkRelModulepreload::class,
         Tag\LinkRelPreload::ID => Tag\LinkRelPreload::class,
+        Tag\LinkRelStylesheetForAmpStory10Css::ID => Tag\LinkRelStylesheetForAmpStory10Css::class,
         Tag\LinkRelStylesheetForFonts::ID => Tag\LinkRelStylesheetForFonts::class,
         Tag\LinkItempropSameas::ID => Tag\LinkItempropSameas::class,
         Tag\LinkItemprop::ID => Tag\LinkItemprop::class,
@@ -674,6 +675,10 @@ final class Tags implements IterableSection
         Tag\AmpStoryPlayer::ID => Tag\AmpStoryPlayer::class,
         Tag\ImgIAmphtmlIntrinsicSizerAmpStoryPlayer::ID => Tag\ImgIAmphtmlIntrinsicSizerAmpStoryPlayer::class,
         Tag\AmpStoryPlayerImg::ID => Tag\AmpStoryPlayerImg::class,
+        Tag\ScriptAmpStoryShopping::ID => Tag\ScriptAmpStoryShopping::class,
+        Tag\AmpStoryShoppingTag::ID => Tag\AmpStoryShoppingTag::class,
+        Tag\AmpStoryShoppingConfig::ID => Tag\AmpStoryShoppingConfig::class,
+        Tag\AmpStoryShoppingAttachment::ID => Tag\AmpStoryShoppingAttachment::class,
         Tag\ScriptAmpStory::ID => Tag\ScriptAmpStory::class,
         Tag\AmpStory::ID => Tag\AmpStory::class,
         Tag\AmpStoryPage::ID => Tag\AmpStoryPage::class,
@@ -935,6 +940,7 @@ final class Tags implements IterableSection
             Tag\ScriptAmpStoryInteractive::ID,
             Tag\ScriptAmpStoryPanningMedia::ID,
             Tag\ScriptAmpStoryPlayer::ID,
+            Tag\ScriptAmpStoryShopping::ID,
             Tag\ScriptAmpStory::ID,
             Tag\ScriptAmpStreamGallery::ID,
             Tag\ScriptAmpSubscriptionsGoogle::ID,
@@ -1253,6 +1259,9 @@ final class Tags implements IterableSection
         Extension::STORY_PAGE_OUTLINK => Tag\AmpStoryPageOutlink::ID,
         Extension::STORY_PANNING_MEDIA => Tag\AmpStoryPanningMedia::ID,
         Extension::STORY_PLAYER => Tag\AmpStoryPlayer::ID,
+        'AMP-STORY-SHOPPING-ATTACHMENT' => Tag\AmpStoryShoppingAttachment::ID,
+        'AMP-STORY-SHOPPING-CONFIG' => Tag\AmpStoryShoppingConfig::ID,
+        'AMP-STORY-SHOPPING-TAG' => Tag\AmpStoryShoppingTag::ID,
         Extension::STORY_SOCIAL_SHARE => Tag\AmpStorySocialShare::ID,
         Extension::VIDEO => [
             Tag\AmpStoryAmpStoryPageAttachmentAmpVideo::ID,
@@ -1431,6 +1440,7 @@ final class Tags implements IterableSection
             Tag\LinkRelManifest::ID,
             Tag\LinkRelModulepreload::ID,
             Tag\LinkRelPreload::ID,
+            Tag\LinkRelStylesheetForAmpStory10Css::ID,
             Tag\LinkRelStylesheetForFonts::ID,
         ],
         Element::LISTING => Tag\Listing::ID,
@@ -1736,6 +1746,7 @@ final class Tags implements IterableSection
         Tag\LinkRelManifest::ID => Tag\LinkRelManifest::ID,
         Tag\LinkRelModulepreload::ID => Tag\LinkRelModulepreload::ID,
         Tag\LinkRelPreload::ID => Tag\LinkRelPreload::ID,
+        Tag\LinkRelStylesheetForAmpStory10Css::ID => Tag\LinkRelStylesheetForAmpStory10Css::ID,
         Tag\LinkRelStylesheetForFonts::ID => Tag\LinkRelStylesheetForFonts::ID,
         Tag\MetaCharsetUtf8::ID => Tag\MetaCharsetUtf8::ID,
         Tag\MetaHttpEquivContentLanguage::ID => Tag\MetaHttpEquivContentLanguage::ID,
@@ -2036,6 +2047,9 @@ final class Tags implements IterableSection
             Tag\AmpStoryPanningMedia::ID,
             Tag\AmpStoryPlayer::ID,
             Tag\AmpStoryPlayerImg::ID,
+            Tag\AmpStoryShoppingAttachment::ID,
+            Tag\AmpStoryShoppingConfig::ID,
+            Tag\AmpStoryShoppingTag::ID,
             Tag\AmpStorySocialShare::ID,
             Tag\AmpStorySocialShareExtensionJsonScript::ID,
             Tag\AmpStoryAmpAudio::ID,
@@ -2210,6 +2224,7 @@ final class Tags implements IterableSection
             Tag\LinkRelManifest::ID,
             Tag\LinkRelModulepreload::ID,
             Tag\LinkRelPreload::ID,
+            Tag\LinkRelStylesheetForAmpStory10Css::ID,
             Tag\LinkRelStylesheetForFonts::ID,
             Tag\Listing::ID,
             Tag\Main::ID,
@@ -2406,6 +2421,7 @@ final class Tags implements IterableSection
             Tag\ScriptAmpStoryInteractive::ID,
             Tag\ScriptAmpStoryPanningMedia::ID,
             Tag\ScriptAmpStoryPlayer::ID,
+            Tag\ScriptAmpStoryShopping::ID,
             Tag\ScriptAmpStory::ID,
             Tag\ScriptAmpStreamGallery::ID,
             Tag\ScriptAmpSubscriptionsGoogle::ID,
@@ -3079,6 +3095,7 @@ final class Tags implements IterableSection
         Extension::STORY_INTERACTIVE => Tag\ScriptAmpStoryInteractive::ID,
         Extension::STORY_PANNING_MEDIA => Tag\ScriptAmpStoryPanningMedia::ID,
         Extension::STORY_PLAYER => Tag\ScriptAmpStoryPlayer::ID,
+        'amp-story-shopping' => Tag\ScriptAmpStoryShopping::ID,
         Extension::STORY => Tag\ScriptAmpStory::ID,
         Extension::STREAM_GALLERY => Tag\ScriptAmpStreamGallery::ID,
         Extension::SUBSCRIPTIONS_GOOGLE => Tag\ScriptAmpSubscriptionsGoogle::ID,

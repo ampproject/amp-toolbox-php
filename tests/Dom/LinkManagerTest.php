@@ -2,8 +2,8 @@
 
 namespace AmpProject\Dom;
 
-use AmpProject\Attribute;
-use AmpProject\RequestDestination;
+use AmpProject\Html\Attribute;
+use AmpProject\Html\RequestDestination;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
 

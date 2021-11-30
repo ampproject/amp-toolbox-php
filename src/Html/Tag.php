@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject;
+namespace AmpProject\Html;
 
 /**
  * Interface with constants for the different types of tags.
@@ -14,11 +14,12 @@ interface Tag
     const ABBR                = 'abbr';
     const ACRONYM             = 'acronym';
     const ADDRESS             = 'address';
+    const APPLET              = 'applet';
     const AREA                = 'area';
     const ARTICLE             = 'article';
     const ASIDE               = 'aside';
     const AUDIO               = 'audio';
-    const B                   = 'B';
+    const B                   = 'b';
     const BASE                = 'base';
     const BASEFONT            = 'basefont';
     const BDI                 = 'bdi';
@@ -81,9 +82,11 @@ interface Tag
     const FIGCAPTION          = 'figcaption';
     const FIGURE              = 'figure';
     const FILTER              = 'filter';
+    const FONT                = 'font';
     const FOOTER              = 'footer';
     const FORM                = 'form';
     const FRAME               = 'frame';
+    const FRAMESET            = 'frameset';
     const G                   = 'g';
     const GLYPH               = 'glyph';
     const GLYPHREF            = 'glyphref';
@@ -105,6 +108,7 @@ interface Tag
     const IMG                 = 'img';
     const INPUT               = 'input';
     const INS                 = 'ins';
+    const ISINDEX             = 'isindex';
     const KBD                 = 'kbd';
     const KEYGEN              = 'keygen';
     const LABEL               = 'label';
@@ -115,9 +119,11 @@ interface Tag
     const LINK                = 'link';
     const LISTING             = 'listing';
     const MAIN                = 'main';
+    const MAP                 = 'map';
     const MARK                = 'mark';
     const MARKER              = 'marker';
     const MASK                = 'mask';
+    const MENU                = 'menu';
     const META                = 'meta';
     const METADATA            = 'metadata';
     const METER               = 'meter';
@@ -125,6 +131,7 @@ interface Tag
     const NAV                 = 'nav';
     const NEXTID              = 'nextid';
     const NOBR                = 'nobr';
+    const NOFRAMES            = 'noframes';
     const NOSCRIPT            = 'noscript';
     const O_P                 = 'o:p'; // @todo Will this be usable at present given PHP DOM?
     const OBJECT              = 'object';
@@ -195,7 +202,7 @@ interface Tag
     const VIEW                = 'view';
     const VKERN               = 'vkern';
     const WBR                 = 'wbr';
-    const _DOCTYPE            = '!DOCTYPE';
+    const _DOCTYPE            = '!doctype';
 
     /**
      * HTML elements that are self-closing.
@@ -241,5 +248,48 @@ interface Tag
         self::STYLE,
         self::NOSCRIPT,
         self::SCRIPT,
+    ];
+
+    /**
+     * Set of HTML tags which should never trigger an implied open of a <head> or <body> element.
+     */
+    const STRUCTURE_TAGS = [
+        self::_DOCTYPE,
+        self::HTML,
+        self::HEAD,
+        self::BODY,
+    ];
+
+    /**
+     * The set of HTML tags whose presence will implicitly close a <p> element.
+     * For example '<p>foo<h1>bar</h1>' should parse the same as '<p>foo</p><h1>bar</h1>'.
+     * @link https://www.w3.org/TR/html-markup/p.html
+     */
+    const P_CLOSING_TAGS = [
+        self::ADDRESS,
+        self::ARTICLE,
+        self::ASIDE,
+        self::BLOCKQUOTE,
+        self::DIR,
+        self::DL,
+        self::FIELDSET,
+        self::FOOTER,
+        self::FORM,
+        self::H1,
+        self::H2,
+        self::H3,
+        self::H4,
+        self::H5,
+        self::H6,
+        self::HEADER,
+        self::HR,
+        self::MENU,
+        self::NAV,
+        self::OL,
+        self::P,
+        self::PRE,
+        self::SECTION,
+        self::TABLE,
+        self::UL,
     ];
 }

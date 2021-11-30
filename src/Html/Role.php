@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject;
+namespace AmpProject\Html;
 
 /**
  * Interface with constants for the different types of accessibility roles.

@@ -2,7 +2,7 @@
 
 namespace AmpProject\Dom\Document\Filter;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document;
 use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;

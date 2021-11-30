@@ -7,8 +7,8 @@
 
 namespace AmpProject\Validator\Spec\AttributeList;
 
-use AmpProject\Attribute;
 use AmpProject\Extension;
+use AmpProject\Html\Attribute;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\Identifiable;

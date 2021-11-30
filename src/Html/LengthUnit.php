@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject;
+namespace AmpProject\Html;
 
 /**
  * Unit of a length.

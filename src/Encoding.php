@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpProject\Dom\Document;
+namespace AmpProject;
 
 /**
  * Encoding constants that are used to control Dom\Document encoding.

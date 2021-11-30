@@ -236,6 +236,7 @@ final class Tags implements Section
 
         $definition = "AmpProject\\{$constant}";
         $definition = str_replace('\\Element::', '\\Tag::', $definition);
+        $definition = str_replace('\\Tag::', '\\Html\\Tag::', $definition);
 
         if (!defined($definition)) {
             return $tagId;

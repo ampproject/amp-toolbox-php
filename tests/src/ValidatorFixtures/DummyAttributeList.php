@@ -2,7 +2,7 @@
 
 namespace AmpProject\Tests\ValidatorFixtures;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Validator\Spec\AttributeList;
 use AmpProject\Validator\Spec\SpecRule;
 

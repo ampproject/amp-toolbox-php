@@ -7,9 +7,9 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-use AmpProject\Attribute;
 use AmpProject\Extension;
 use AmpProject\Format;
+use AmpProject\Html\Attribute;
 use AmpProject\Layout;
 use AmpProject\Protocol;
 use AmpProject\Validator\Spec\AttributeList;
@@ -68,8 +68,11 @@ final class AmpAd extends Tag implements Identifiable
             Attribute::STICKY => [
                 SpecRule::VALUE => [
                     '',
-                    'top',
                     'bottom',
+                    'bottom-right',
+                    'left',
+                    'right',
+                    'top',
                 ],
             ],
             Attribute::ALWAYS_SERVE_NPA => [],

@@ -3,11 +3,11 @@
 namespace AmpProject\Dom;
 
 use AmpProject\Amp;
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\InvalidByteSequence;
 use AmpProject\Exception\MaxCssByteCountExceeded;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
 use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
