@@ -109,6 +109,7 @@ final class ValidationHandler implements HtmlSaxHandlerWithLocation
             $this->context->recordBodyTag($tag->attributes());
             $this->emitMissingExtensionErrors();
         }
+
         /*
         /** @type {ValidateTagResult} * /
         let resultForReferencePoint = {

@@ -65,11 +65,13 @@ interface Attribute
     const AMP_CUSTOM_LENGTH_CHECK         = 'amp-custom-length-check';
     const AMP_EMOJI                       = "\xE2\x9A\xA1";
     const AMP_EMOJI_ALT                   = "\xE2\x9A\xA1\xEF\xB8\x8F"; // See https://github.com/ampproject/amphtml/issues/25990.
+    const AMP_EXTENSION                   = 'amp-extension';
     const AMP_FX                          = 'amp-fx';
     const AMP_KEYFRAMES                   = 'amp-keyframes';
     const AMP_NESTED_SUBMENU              = 'amp-nested-submenu';
     const AMP_NESTED_SUBMENU_CLOSE        = 'amp-nested-submenu-close';
     const AMP_NESTED_SUBMENU_OPEN         = 'amp-nested-submenu-open';
+    const AMP_NOSCRIPT                    = 'amp-noscript';
     const AMP_ONERROR                     = 'amp-onerror';
     const AMP_RUNTIME                     = 'amp-runtime';
     const AMP_SCRIPT_SRC                  = 'amp-script-src';
@@ -138,6 +140,11 @@ interface Attribute
     const ASYNC                           = 'async';
     const AS_                             = 'as'; // Underscore needed because 'as' is a PHP keyword.
     const ATTRIBUTION                     = 'attribution';
+    const ATTRIBUTIONDESTINATION          = 'attributiondestination';
+    const ATTRIBUTIONEXPIRY               = 'attributionexpiry';
+    const ATTRIBUTIONREPORTTO             = 'attributionreportto';
+    const ATTRIBUTIONSOURCEEVENTID        = 'attributionsourceeventid';
+    const ATTRIBUTIONSOURCEID             = 'attributionsourceid';
     const AUTOCOMPLETE                    = 'autocomplete';
     const AUTOEXPAND                      = 'autoexpand';
     const AUTOFOCUS                       = 'autofocus';
@@ -214,6 +221,7 @@ interface Attribute
     const BREAK_INSIDE                    = 'break-inside';
     const CACHE                           = 'cache';
     const CAPTION_SIDE                    = 'caption-side';
+    const CAPTIONS_ID                     = 'captions-id';
     const CAPTURE                         = 'capture';
     const CARET_COLOR                     = 'caret-color';
     const CELLPADDING                     = 'cellpadding';
@@ -255,6 +263,7 @@ interface Attribute
     const CONTENTSTYLETYPE                = 'contentstyletype';
     const CONTROLS                        = 'controls';
     const CONTROLSLIST                    = 'controlslist';
+    const CONVERSIONDESTINATION           = 'conversiondestination';
     const COUNT_UP                        = 'count-up';
     const COUNTER_INCREMENT               = 'counter-increment';
     const COUNTER_RESET                   = 'counter-reset';
@@ -441,6 +450,8 @@ interface Attribute
     const IMPLEMENTS_MEDIA_SESSION        = 'implements-media-session';
     const IMPLEMENTS_ROTATE_TO_FULLSCREEN = 'implements-rotate-to-fullscreen';
     const IMPORTANCE                      = 'importance';
+    const IMPRESSIONDATA                  = 'impressiondata';
+    const IMPRESSIONEXPIRY                = 'impressionexpiry';
     const IN                              = 'in';
     const IN2                             = 'in2';
     const INFO_TEMPLATE                   = 'info-template';
@@ -521,6 +532,7 @@ interface Attribute
     const LOAD_MORE_FAILED                = 'load-more-failed';
     const LOAD_MORE_LOADING               = 'load-more-loading';
     const LOCALE                          = 'locale';
+    const LOCK_BOUNDS                     = 'lock-bounds';
     const LONGDESC                        = 'longdesc';
     const LOOP                            = 'loop';
     const LOW                             = 'low';
@@ -610,24 +622,28 @@ interface Attribute
     const OPTION_1_CONFETTI               = 'option-1-confetti';
     const OPTION_1_CORRECT                = 'option-1-correct';
     const OPTION_1_IMAGE                  = 'option-1-image';
+    const OPTION_1_IMAGE_ALT              = 'option-1-image-alt';
     const OPTION_1_RESULTS_CATEGORY       = 'option-1-results-category';
     const OPTION_1_RESULTS_THRESHOLD      = 'option-1-results-threshold';
     const OPTION_1_TEXT                   = 'option-1-text';
     const OPTION_2_CONFETTI               = 'option-2-confetti';
     const OPTION_2_CORRECT                = 'option-2-correct';
     const OPTION_2_IMAGE                  = 'option-2-image';
+    const OPTION_2_IMAGE_ALT              = 'option-2-image-alt';
     const OPTION_2_RESULTS_CATEGORY       = 'option-2-results-category';
     const OPTION_2_RESULTS_THRESHOLD      = 'option-2-results-threshold';
     const OPTION_2_TEXT                   = 'option-2-text';
     const OPTION_3_CONFETTI               = 'option-3-confetti';
     const OPTION_3_CORRECT                = 'option-3-correct';
     const OPTION_3_IMAGE                  = 'option-3-image';
+    const OPTION_3_IMAGE_ALT              = 'option-3-image-alt';
     const OPTION_3_RESULTS_CATEGORY       = 'option-3-results-category';
     const OPTION_3_RESULTS_THRESHOLD      = 'option-3-results-threshold';
     const OPTION_3_TEXT                   = 'option-3-text';
     const OPTION_4_CONFETTI               = 'option-4-confetti';
     const OPTION_4_CORRECT                = 'option-4-correct';
     const OPTION_4_IMAGE                  = 'option-4-image';
+    const OPTION_4_IMAGE_ALT              = 'option-4-image-alt';
     const OPTION_4_RESULTS_CATEGORY       = 'option-4-results-category';
     const OPTION_4_RESULTS_THRESHOLD      = 'option-4-results-threshold';
     const OPTION_4_TEXT                   = 'option-4-text';
@@ -713,6 +729,7 @@ interface Attribute
     const REFY                            = 'refy';
     const REL                             = 'rel';
     const RENDERER                        = 'renderer';
+    const REPORTINGORIGIN                 = 'reportingorigin';
     const REQUIRED                        = 'required';
     const REQUIREDEXTENSIONS              = 'requiredextensions';
     const REQUIREDFEATURES                = 'requiredfeatures';
@@ -924,6 +941,7 @@ interface Attribute
     const VISIBLE_WHEN_INVALID            = 'visible-when-invalid';
     const VOCAB                           = 'vocab';
     const VOICE_FAMILY                    = 'voice-family';
+    const VOLUME                          = 'volume';
     const WEEK_DAY_FORMAT                 = 'week-day-format';
     const WHEN_ENDED                      = 'when-ended';
     const WHITE_SPACE                     = 'white-space';
@@ -1118,6 +1136,9 @@ interface Attribute
     const DATA_WEBCARE_ID                  = 'data-webcare-id';
     const DATA_WIDGET_ID                   = 'data-widget-id';
     const DATA_WIDGET_TYPE                 = 'data-widget-type';
+    const DATA_X                           = 'data-x';
+    const DATA_Y                           = 'data-y';
+    const DATA_ZOOM                        = 'data-zoom';
 
     const CROSSORIGIN_ANONYMOUS       = 'anonymous';
     const CROSSORIGIN_USE_CREDENTIALS = 'use-credentials';

@@ -47,6 +47,7 @@ final class MetaNameAndContent extends Tag implements Identifiable
             Attribute::NAME => [
                 SpecRule::DISALLOWED_VALUE_REGEX => '(^|\s)(amp-.*|amp4ads-.*|apple-itunes-app|content-disposition|revisit-after|viewport)(\s|$)',
             ],
+            Attribute::MEDIA => [],
             Attribute::PROPERTY => [],
             Attribute::SCHEME => [],
         ],

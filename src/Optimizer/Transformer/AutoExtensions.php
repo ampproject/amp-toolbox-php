@@ -13,7 +13,7 @@ use AmpProject\Optimizer\Error\CannotParseJsonData;
 use AmpProject\Optimizer\ErrorCollection;
 use AmpProject\Optimizer\Transformer;
 use AmpProject\Optimizer\TransformerConfiguration;
-use AmpProject\Tag;
+use AmpProject\Html\Tag;
 use AmpProject\Validator\Spec;
 use AmpProject\Validator\Spec\AttributeList\GlobalAttrs;
 use AmpProject\Validator\Spec\SpecRule;

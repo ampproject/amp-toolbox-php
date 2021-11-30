@@ -65,6 +65,7 @@ final class ExtensionsContext
         return in_array($extension, $this->extensionsLoaded, true);
     }
 
+    /*
     /**
      * Record a possible error to report once we have collected all
      * extensions in the document. If the given extension is missing,
@@ -72,10 +73,9 @@ final class ExtensionsContext
      *
      * @param ParsedTagSpec $parsedTagSpec
      * @param FilePosition  $filePosition
-     */
+     * /
     private function recordFutureErrorsIfMissing(ParsedTagSpec $parsedTagSpec, FilePosition $filePosition)
     {
-        /*
         const tagSpec = parsedTagSpec.getSpec();
         for (const requiredExtension of tagSpec.requiresExtension) {
         if (!this.isExtensionLoaded(requiredExtension)) {
@@ -90,8 +90,9 @@ final class ExtensionsContext
             this.extensionMissingErrors_.push(
                 {missingExtension: requiredExtension, maybeError: error});
             }
-        }*/
+        }
     }
+    */
 
     /**
      * Returns a list of errors accrued while processing the <head> for tags requiring an extension which was not found.
@@ -143,12 +144,12 @@ final class ExtensionsContext
     /**
      * Update ExtensionContext state when we encounter an amp extension or tag using an extension.
      *
-     * @param ValidateTagResult $validateTagResult
+     * @param ValidateTagResult $validateTagResult Tag result to update from.
      */
     private function updateFromTagResult(ValidateTagResult $validateTagResult)
     {
         /*
-        if (result.bestMatchTagSpec === null) {
+        If (result.bestMatchTagSpec === null) {
             return;
         }
         const parsedTagSpec = result.bestMatchTagSpec;

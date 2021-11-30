@@ -260,7 +260,7 @@ abstract class FakeEnum implements JsonSerializable
      * @return string
      * @throws UnexpectedValueException If the value is not part of the enum.
      */
-    private static function assertValidValueReturningKey($value)
+    protected static function assertValidValueReturningKey($value)
     {
         if (false === ($key = static::search($value))) {
             throw new UnexpectedValueException("Value '$value' is not part of the enum " . static::class);

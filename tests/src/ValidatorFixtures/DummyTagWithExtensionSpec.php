@@ -2,7 +2,7 @@
 
 namespace AmpProject\Tests\ValidatorFixtures;
 
-use AmpProject\Tag as Element;
+use AmpProject\Html\Tag as Element;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\TagWithExtensionSpec;
 

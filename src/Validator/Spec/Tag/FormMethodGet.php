@@ -98,6 +98,7 @@ final class FormMethodGet extends Tag implements Identifiable
                     ],
                 ],
             ],
+            Attribute::XSSI_PREFIX => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\FormNameAttr::ID,

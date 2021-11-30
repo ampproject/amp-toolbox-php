@@ -158,7 +158,7 @@ final class ValidationResult
     /**
      * Set the transformer version.
      *
-     * @return int
+     * @param int $transformerVersion Transformer version.
      */
     public function setTransformerVersion($transformerVersion)
     {

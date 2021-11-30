@@ -105,7 +105,7 @@ final class ValidatorRules
     private function maybeEmitMandatoryTagValidationErrors($context, $validationResult)
     {
         /*
-        for (const tagSpecId of $this->mandatoryTagSpecs_) {
+        For (const tagSpecId of $this->mandatoryTagSpecs_) {
               const parsedTagSpec = $this->getByTagSpecId(tagSpecId);
               // Skip TagSpecs that aren't used for these type identifiers.
               if (!parsedTagSpec.isUsedForTypeIdentifiers(
@@ -120,7 +120,8 @@ final class ValidatorRules
                 [getTagDescriptiveName(spec)], getTagSpecUrl(spec),
                             validationResult);
         }
-        }*/
+        }
+        */
     }
 
     /**
@@ -133,65 +134,66 @@ final class ValidatorRules
      */
     private function maybeEmitAlsoRequiresTagValidationErrors($context, $validationResult)
     {
-    /** @type {!Array<number>} */
-    /*
-        const tagspecsValidated =
-            Object.keys($context->g$etTagspecsValidated()).map(Number);
-        googArray.sort(tagspecsValidated);
-        for (const tagSpecId of tagspecsValidated) {
-        const parsedTagSpec = $this->getByTagSpecId(tagSpecId);
-        // Skip TagSpecs that aren't used for these type identifiers.
-        if (!parsedTagSpec.isUsedForTypeIdentifiers(
-                context.getTypeIdentifiers())) {
-            continue;
-        }
-        for (const condition of parsedTagSpec.requires()) {
-            if (!context.satisfiesCondition(condition)) {
-                context.addError(
-                    generated.ValidationError.Code.TAG_REQUIRED_BY_MISSING,
-                    context.getFilePosition(),
-                    [
-                        context.getRules().getInternedString(condition),
-                        getTagDescriptiveName(parsedTagSpec.getSpec()),
-                    ],
-                    getTagSpecUrl(parsedTagSpec), validationResult);
+        /*
+        /** @type {!Array<number>} * /
+            const tagspecsValidated =
+                Object.keys($context->g$etTagspecsValidated()).map(Number);
+            googArray.sort(tagspecsValidated);
+            for (const tagSpecId of tagspecsValidated) {
+            const parsedTagSpec = $this->getByTagSpecId(tagSpecId);
+            // Skip TagSpecs that aren't used for these type identifiers.
+            if (!parsedTagSpec.isUsedForTypeIdentifiers(
+                    context.getTypeIdentifiers())) {
+                continue;
             }
-        }
-          for (const condition of parsedTagSpec.excludes()) {
-            if ($context->satisfiesCondition(condition)) {
-                context.addError(
-                    generated.ValidationError.Code.TAG_EXCLUDED_BY_TAG,
-                    context.getFilePosition(),
-                    [
-                        getTagDescriptiveName(parsedTagSpec.getSpec()),
-                        context.getRules().getInternedString(condition),
-                    ],
-                    getTagSpecUrl(parsedTagSpec), validationResult);
+            for (const condition of parsedTagSpec.requires()) {
+                if (!context.satisfiesCondition(condition)) {
+                    context.addError(
+                        generated.ValidationError.Code.TAG_REQUIRED_BY_MISSING,
+                        context.getFilePosition(),
+                        [
+                            context.getRules().getInternedString(condition),
+                            getTagDescriptiveName(parsedTagSpec.getSpec()),
+                        ],
+                        getTagSpecUrl(parsedTagSpec), validationResult);
+                }
             }
-        }
-          for (const tagspecId of parsedTagSpec.getAlsoRequiresTagWarning()) {
-            if (!context.getTagspecsValidated().hasOwnProperty(tagspecId)) {
-                const alsoRequiresTagspec = $this->getByTagSpecId(tagspecId);
-                context.addWarning(
-                    generated.ValidationError.Code.WARNING_TAG_REQUIRED_BY_MISSING,
-                    context.getFilePosition(),
-                    [
-                        getTagDescriptiveName(alsoRequiresTagspec.getSpec()),
-                        getTagDescriptiveName(parsedTagSpec.getSpec()),
-                    ],
-                    getTagSpecUrl(parsedTagSpec), validationResult);
+              for (const condition of parsedTagSpec.excludes()) {
+                if ($context->satisfiesCondition(condition)) {
+                    context.addError(
+                        generated.ValidationError.Code.TAG_EXCLUDED_BY_TAG,
+                        context.getFilePosition(),
+                        [
+                            getTagDescriptiveName(parsedTagSpec.getSpec()),
+                            context.getRules().getInternedString(condition),
+                        ],
+                        getTagSpecUrl(parsedTagSpec), validationResult);
+                }
             }
-        }
-        }
+              for (const tagspecId of parsedTagSpec.getAlsoRequiresTagWarning()) {
+                if (!context.getTagspecsValidated().hasOwnProperty(tagspecId)) {
+                    const alsoRequiresTagspec = $this->getByTagSpecId(tagspecId);
+                    context.addWarning(
+                        generated.ValidationError.Code.WARNING_TAG_REQUIRED_BY_MISSING,
+                        context.getFilePosition(),
+                        [
+                            getTagDescriptiveName(alsoRequiresTagspec.getSpec()),
+                            getTagDescriptiveName(parsedTagSpec.getSpec()),
+                        ],
+                        getTagSpecUrl(parsedTagSpec), validationResult);
+                }
+            }
+            }
 
-        const extensionsCtx = context.getExtensionsContext();
-        const unusedRequired = extensionsCtx.unusedExtensionsRequired();
-        for (const unusedExtensionName of unusedRequired) {
-        context.addError(
-                          generated.ValidationError.Code.EXTENSION_UNUSED, context.getFilePosition(),
-            [unusedExtensionName],
-            '', validationResult);
-    }*/
+            const extensionsCtx = context.getExtensionsContext();
+            const unusedRequired = extensionsCtx.unusedExtensionsRequired();
+            for (const unusedExtensionName of unusedRequired) {
+            context.addError(
+                              generated.ValidationError.Code.EXTENSION_UNUSED, context.getFilePosition(),
+                [unusedExtensionName],
+                '', validationResult);
+        }
+        */
     }
 
       /**
@@ -205,31 +207,33 @@ final class ValidatorRules
     private function maybeEmitMandatoryAlternativesSatisfiedErrors($context, $validationResult)
     {
         /*
-        const satisfied = context.getMandatoryAlternativesSatisfied();
+        Const satisfied = context.getMandatoryAlternativesSatisfied();
         /** @type {!Array<string>} * /
         const missing = [];
         const specUrlsByMissing = Object.create(null);
         for (const tagSpec of $this->rules_.tags) {
-        if (tagSpec.mandatoryAlternatives === null ||
-          !$this->isTagSpecCorrectHtmlFormat_(tagSpec)) {
-          continue;
+            if (tagSpec.mandatoryAlternatives === null ||
+              !$this->isTagSpecCorrectHtmlFormat_(tagSpec)) {
+              continue;
+            }
+            const alternative = tagSpec.mandatoryAlternatives;
+            if (satisfied.indexOf(alternative) === -1) {
+              const alternativeName = context.getRules().getInternedString(alternative);
+              missing.push(alternativeName);
+              specUrlsByMissing[alternativeName] = getTagSpecUrl(tagSpec);
+            }
         }
-        const alternative = tagSpec.mandatoryAlternatives;
-        if (satisfied.indexOf(alternative) === -1) {
-          const alternativeName =
-              context.getRules().getInternedString(alternative);
-          missing.push(alternativeName);
-          specUrlsByMissing[alternativeName] = getTagSpecUrl(tagSpec);
-        }
-    }
         sortAndUniquify(missing);
         for (const tagMissing of missing) {
-        context.addError(
-                        generated.ValidationError.Code.MANDATORY_TAG_MISSING,
-                        context.getFilePosition(),
-          [tagMissing],
-           specUrlsByMissing[tagMissing], validationResult);
-    }*/
+            context.addError(
+                generated.ValidationError.Code.MANDATORY_TAG_MISSING,
+                context.getFilePosition(),
+                [tagMissing],
+                specUrlsByMissing[tagMissing],
+                validationResult
+            );
+        }
+        */
     }
 
       /**
@@ -241,7 +245,7 @@ final class ValidatorRules
     private function maybeEmitDocSizeErrors($context, $validationResult)
     {
         /*
-        const parsedDocSpec = context.matchingDocSpec();
+        Const parsedDocSpec = context.matchingDocSpec();
         if (parsedDocSpec !== null) {
           const bytesUsed = context.getDocByteSize();
           /** @type {!generated.DocSpec} * /
@@ -253,7 +257,8 @@ final class ValidatorRules
                   [docSpec.maxBytes.toString(), bytesUsed.toString()],
                   docSpec.maxBytesSpecUrl, validationResult);
           }
-        }*/
+        }
+        */
     }
 
       /**
@@ -265,7 +270,7 @@ final class ValidatorRules
     private function maybeEmitCssLengthSpecErrors($context, $validationResult)
     {
         /*
-        const bytesUsed =
+        Const bytesUsed =
           context.getInlineStyleByteSize() + context.getStyleTagByteSize();
 
         const parsedCssSpec = context.matchingDocCssSpec();
@@ -289,7 +294,8 @@ final class ValidatorRules
                       cssSpec.maxBytesSpecUrl, validationResult);
               }
           }
-        }*/
+        }
+        */
     }
 
       /**
@@ -301,13 +307,13 @@ final class ValidatorRules
     private function maybeEmitValueSetMismatchErrors($context, $validationResult)
     {
         /*
-        const providedKeys = context.valueSetsProvided();
+        Const providedKeys = context.valueSetsProvided();
         for (const [requiredKey, errors] of context.valueSetsRequired()) {
         if (!providedKeys.has(/** @type {string} * / (requiredKey))) {
           for (const error of errors)
             context.addBuiltError(error, validationResult);
         }
-    }*/
+        */
     }
 
     /**

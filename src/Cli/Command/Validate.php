@@ -84,7 +84,7 @@ final class Validate extends Command
                 $error->getColumn(),
                 $error->getSeverity(),
                 $error->getCode(),
-                implode(', ', $error->getParams()),
+                implode(', ', $error->getParams())
             );
         }
 

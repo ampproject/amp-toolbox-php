@@ -79,6 +79,9 @@ final class AmpStoryAmpVideo extends Tag implements Identifiable
                     Extension::STORY_CAPTIONS,
                 ],
             ],
+            Attribute::VOLUME => [
+                SpecRule::VALUE_REGEX => '^((0?\.[1-9]+)?|1(\.0*)?)$',
+            ],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ExtendedAmpGlobal::ID,

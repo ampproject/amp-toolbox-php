@@ -13,3 +13,11 @@ parameters:
 
 		# @see https://github.com/phpstan/phpstan/issues/5655
 		- '#^PHPDoc tag @var for constant (?:.*) with type array(?:.*) is not subtype of value array(?:.*)\.$#'
+	excludePaths:
+		analyse:
+			- src/Validator/Context.php
+			- src/Validator/ExtensionsContext.php
+			- src/Validator/ValidateTagResult.php
+			- src/Validator/ValidationErrorCollection.php
+			- src/Validator/ValidationHandler.php
+			- src/Validator/ValidatorRules.php
