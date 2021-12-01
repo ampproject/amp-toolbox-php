@@ -85,7 +85,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
 
         $cachedResponse = file_get_contents($file);
 
-        if (false !== $cachedResponse) {
+        if ($cachedResponse !== false) {
             if (PHP_MAJOR_VERSION >= 7) {
                 $cachedResponse = unserialize($cachedResponse, [RemoteGetRequestResponse::class]);
             } else {
@@ -105,7 +105,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      * Get the absolute path of the temporary file.
      *
      * @param string $url The request url.
-     * @return string The absolute path of the temporary file.
+     * @return string The absolute path to the temporary file.
      */
     private function getTemporaryFilePath($url)
     {
@@ -133,10 +133,10 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     }
 
     /**
-     * Save the response in temporary file.
+     * Save the response in a temporary file.
      *
      * @param string   $url      The request url.
-     * @param Response $response The response that need to be cached.
+     * @param Response $response The response that needs to be cached.
      */
     private function cacheResponse($url, Response $response)
     {
@@ -147,7 +147,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      * Check whether the request is expired.
      *
      * @param string                   $file     The absolute path of the file that contains the response data.
-     * @param RemoteGetRequestResponse $response The response that need to be checked.
+     * @param RemoteGetRequestResponse $response The response that needs to be checked.
      * @return bool
      */
     private function isExpired($file, RemoteGetRequestResponse $response)
@@ -161,7 +161,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      * Calculate the expiry time.
      *
      * @param string                   $file     The absolute path of the file that contains the response data.
-     * @param RemoteGetRequestResponse $response The response data need to be calculated.
+     * @param RemoteGetRequestResponse $response The response data that needs to be calculated.
      *
      * @return DateTimeImmutable Cache expiry time object.
      */
@@ -181,29 +181,29 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
     /**
      * Extract the max-age from response header.
      *
-     * @param array $cache_control_strings Cache-Control header value.
+     * @param array $cacheControlStrings Cache-Control header value.
      * @return int The max-age value of the Cache-Control header.
      */
-    private function getMaxAge($cache_control_strings)
+    private function getMaxAge($cacheControlStrings)
     {
-        $max_age = -1;
+        $maxAge = -1;
 
-        foreach ((array) $cache_control_strings as $cache_control_string) {
-            $cache_control_parts = array_map('trim', explode(',', $cache_control_string));
+        foreach ((array) $cacheControlStrings as $cacheControlString) {
+            $cacheControlParts = array_map('trim', explode(',', $cacheControlString));
 
-            foreach ($cache_control_parts as $cache_control_part) {
-                $cache_control_setting_parts = array_map('trim', explode('=', $cache_control_part));
+            foreach ($cacheControlParts as $cacheControlPart) {
+                $cacheControlSettingParts = array_map('trim', explode('=', $cacheControlPart));
 
-                if (count($cache_control_setting_parts) !== 2) {
+                if (count($cacheControlSettingParts) !== 2) {
                     continue;
                 }
 
-                if ('max-age' === $cache_control_setting_parts[0]) {
-                    $max_age = abs((int)$cache_control_setting_parts[1]);
+                if ('max-age' === $cacheControlSettingParts[0]) {
+                    $maxAge = abs((int)$cacheControlSettingParts[1]);
                 }
             }
         }
 
-        return $max_age;
+        return $maxAge;
     }
 }
