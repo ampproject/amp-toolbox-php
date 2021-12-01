@@ -198,7 +198,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
                     continue;
                 }
 
-                if ('max-age' === $cacheControlSettingParts[0]) {
+                if ($cacheControlSettingParts[0] === 'max-age') {
                     $maxAge = abs((int)$cacheControlSettingParts[1]);
                 }
             }
