@@ -85,6 +85,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
 
         $cachedResponse = file_get_contents($file);
 
+        // phpcs:disable PHPCompatibility.FunctionUse.NewFunctionParameters.unserialize_optionsFound
         if ($cachedResponse !== false) {
             if (PHP_MAJOR_VERSION >= 7) {
                 $cachedResponse = unserialize($cachedResponse, [RemoteGetRequestResponse::class]);
@@ -93,6 +94,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
                 $cachedResponse = unserialize($cachedResponse);
             }
         }
+        // phpcs:enable PHPCompatibility.FunctionUse.NewFunctionParameters.unserialize_optionsFound
 
         if (! $cachedResponse instanceof RemoteGetRequestResponse || $this->isExpired($file, $cachedResponse)) {
             return $this->getRemoteResponse($url, $headers);
