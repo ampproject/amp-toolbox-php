@@ -2,7 +2,7 @@
 
 namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 

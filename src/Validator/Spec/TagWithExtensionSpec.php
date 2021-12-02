@@ -7,7 +7,7 @@
 
 namespace AmpProject\Validator\Spec;
 
-use AmpProject\Attribute;
+use AmpProject\Html\Attribute;
 
 /**
  * A tag specification that provides the script for an AMP extension.
