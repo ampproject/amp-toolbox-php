@@ -76,7 +76,7 @@ final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
             self::MINIFY                  => true,
             self::MINIFY_AMP_SCRIPT       => false,
             self::MINIFY_JSON             => true,
-            self::COLLAPSE_WHITESPACE     => true,
+            self::COLLAPSE_WHITESPACE     => false,
             self::REMOVE_COMMENTS         => true,
             self::COMMENT_IGNORE_PATTERN  => '',
         ];

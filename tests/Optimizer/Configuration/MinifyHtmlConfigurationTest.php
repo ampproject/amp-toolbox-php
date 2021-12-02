@@ -29,8 +29,8 @@ final class MinifyHtmlConfigurationTest extends TestCase
         $this->assertEquals(false, $configuration->minifyAmpScript);
         $this->assertEquals(true, $configuration->get('minifyJSON'));
         $this->assertEquals(true, $configuration->minifyJSON);
-        $this->assertEquals(true, $configuration->get('collapseWhitespace'));
-        $this->assertEquals(true, $configuration->collapseWhitespace);
+        $this->assertEquals(false, $configuration->get('collapseWhitespace'));
+        $this->assertEquals(false, $configuration->collapseWhitespace);
         $this->assertEquals(true, $configuration->get('removeComments'));
         $this->assertEquals(true, $configuration->removeComments);
         $this->assertEquals('', $configuration->get('commentIgnorePattern'));
@@ -40,7 +40,7 @@ final class MinifyHtmlConfigurationTest extends TestCase
                 'minify'                => true,
                 'minifyAmpScript'       => false,
                 'minifyJSON'            => true,
-                'collapseWhitespace'    => true,
+                'collapseWhitespace'    => false,
                 'removeComments'        => true,
                 'commentIgnorePattern'  => '',
             ],
@@ -54,7 +54,7 @@ final class MinifyHtmlConfigurationTest extends TestCase
             'minify'                => false,
             'minifyAmpScript'       => true,
             'minifyJSON'            => false,
-            'collapseWhitespace'    => false,
+            'collapseWhitespace'    => true,
             'removeComments'        => false,
             'commentIgnorePattern'  => '/^\s*__[a-b]+__\s*$/',
         ]);
@@ -65,8 +65,8 @@ final class MinifyHtmlConfigurationTest extends TestCase
         $this->assertEquals(true, $configuration->minifyAmpScript);
         $this->assertEquals(false, $configuration->get('minifyJSON'));
         $this->assertEquals(false, $configuration->minifyJSON);
-        $this->assertEquals(false, $configuration->get('collapseWhitespace'));
-        $this->assertEquals(false, $configuration->collapseWhitespace);
+        $this->assertEquals(true, $configuration->get('collapseWhitespace'));
+        $this->assertEquals(true, $configuration->collapseWhitespace);
         $this->assertEquals(false, $configuration->get('removeComments'));
         $this->assertEquals(false, $configuration->removeComments);
         $this->assertEquals('/^\s*__[a-b]+__\s*$/', $configuration->get('commentIgnorePattern'));
@@ -76,7 +76,7 @@ final class MinifyHtmlConfigurationTest extends TestCase
                 'minify'                => false,
                 'minifyAmpScript'       => true,
                 'minifyJSON'            => false,
-                'collapseWhitespace'    => false,
+                'collapseWhitespace'    => true,
                 'removeComments'        => false,
                 'commentIgnorePattern'  => '/^\s*__[a-b]+__\s*$/',
             ],
