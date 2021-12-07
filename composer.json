@@ -49,7 +49,10 @@
   "autoload": {
     "psr-4": {
       "AmpProject\\": "src/"
-    }
+    },
+    "files": [
+      "include/compatibility-fixes.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
