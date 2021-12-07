@@ -38,16 +38,21 @@ final class MovedClasses implements CompatibilityFix
      */
     public static function register()
     {
-        $autoloader = static function ($oldClassName) {
-            if (! array_key_exists($oldClassName, self::ALIASES)) {
-                return false;
-            }
+        spl_autoload_register(__CLASS__ . '::autoloader');
+    }
 
-            class_alias(self::ALIASES[$oldClassName], $oldClassName, true);
+    /**
+     * Autoloader to register.
+     *
+     * @param string $oldClassName Old class name that was requested to be autoloaded.
+     * @return void
+     */
+    public static function autoloader($oldClassName)
+    {
+        if (! array_key_exists($oldClassName, self::ALIASES)) {
+            return;
+        }
 
-            return true;
-        };
-
-        spl_autoload_register($autoloader);
+        class_alias(self::ALIASES[$oldClassName], $oldClassName, true);
     }
 }
