@@ -5,6 +5,7 @@ parameters:
 	level: 5
 	inferPrivatePropertyTypeFromConstructor: true
 	paths:
+		- include/
 		- src/
 	ignoreErrors:
 		- '#^Unsafe usage of new static\(\).$#'

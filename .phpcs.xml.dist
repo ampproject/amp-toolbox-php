@@ -13,6 +13,7 @@
 
     <!-- Include only the directories containing PHP files. -->
     <file>bin/</file>
+    <file>include/</file>
     <file>src/</file>
     <file>tests/</file>
 
