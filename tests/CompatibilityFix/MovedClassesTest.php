@@ -15,7 +15,7 @@ class MovedClassesTest extends TestCase
 
     public function testClassAliasesExist()
     {
-        foreach (MovedClasses::ALIASES as $old => $new) {
+        foreach (array_keys(MovedClasses::ALIASES) as $old) {
             $this->assertTrue(class_exists($old) || interface_exists($old));
         }
     }
