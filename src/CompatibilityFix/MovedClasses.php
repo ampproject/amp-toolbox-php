@@ -18,7 +18,7 @@ final class MovedClasses implements CompatibilityFix
      * @var array<string, string> Associative array of class alias mappings.
      */
     const ALIASES = [
-        // v0.9.0 - moving HTML-based utility into a separate `Html` subnamespace.
+        // v0.9.0 - moved HTML-based utility into a separate `Html` sub-namespace.
         'AmpProject\AtRule'             => 'AmpProject\Html\AtRule',
         'AmpProject\Attribute'          => 'AmpProject\Html\Attribute',
         'AmpProject\LengthUnit'         => 'AmpProject\Html\LengthUnit',
@@ -26,7 +26,7 @@ final class MovedClasses implements CompatibilityFix
         'AmpProject\Role'               => 'AmpProject\Html\Role',
         'AmpProject\Tag'                => 'AmpProject\Html\Tag',
 
-        // v0.9.0 - Extracting `Encoding` out of `Dom\Document`, as it is turned into AMP value object.
+        // v0.9.0 - extracted `Encoding` out of `Dom\Document`, as it is turned into AMP value object.
         'AmpProject\Dom\Document\Encoding' => 'AmpProject\Encoding',
 
     ];
