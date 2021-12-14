@@ -55,11 +55,17 @@ final class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter
      */
     public function beforeLoad($html)
     {
-        return preg_replace(
+        $result = preg_replace(
             '#<script(\s[^>]*?template=(["\']?)amp-mustache\2[^>]*)>(.*?)</script\s*?>#is',
             '<tmp-script$1>$3</tmp-script>',
             $html
         );
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 
     /**

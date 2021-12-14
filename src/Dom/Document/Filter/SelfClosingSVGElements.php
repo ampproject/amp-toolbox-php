@@ -38,7 +38,13 @@ final class SelfClosingSVGElements implements BeforeLoadFilter, AfterSaveFilter
             $regexPattern = '#<(' . implode('|', self::SELF_CLOSING_TAGS) . ')((?>\s+[^/>]*))/?>(?!.*</\1>)#i';
         }
 
-        return preg_replace($regexPattern, '<$1$2></$1>', $html);
+        $result = preg_replace($regexPattern, '<$1$2></$1>', $html);
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 
     /**
@@ -55,6 +61,12 @@ final class SelfClosingSVGElements implements BeforeLoadFilter, AfterSaveFilter
             $regexPattern = '#<(' . implode('|', self::SELF_CLOSING_TAGS) . ')((?>\s+[^>]*))>(?><\/\1>)#i';
         }
 
-        return preg_replace($regexPattern, '<$1$2 />', $html);
+        $result = preg_replace($regexPattern, '<$1$2 />', $html);
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 }

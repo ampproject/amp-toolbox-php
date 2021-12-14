@@ -48,7 +48,7 @@ final class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
     {
         $this->usedAmpEmoji = '';
 
-        return preg_replace_callback(
+        $result = preg_replace_callback(
             self::AMP_EMOJI_ATTRIBUTE_PATTERN,
             function ($matches) {
                 // Split into individual attributes.
@@ -85,6 +85,12 @@ final class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
             $html,
             1
         );
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 
     /**
@@ -99,11 +105,17 @@ final class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
             return $html;
         }
 
-        return preg_replace(
+        $result = preg_replace(
             '/(<html\s[^>]*?)' . preg_quote(Document::EMOJI_AMP_ATTRIBUTE_PLACEHOLDER, '/') . '="([^"]*)"/i',
             '\1' . $this->usedAmpEmoji . '\2',
             $html,
             1
         );
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 }

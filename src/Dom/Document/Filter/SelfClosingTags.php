@@ -40,7 +40,13 @@ final class SelfClosingTags implements BeforeLoadFilter, AfterSaveFilter
 
         $this->selfClosingTagsTransformed = true;
 
-        return preg_replace($regexPattern, '<$1$2></$1>', $html);
+        $result = preg_replace($regexPattern, '<$1$2></$1>', $html);
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 
     /**
@@ -63,6 +69,12 @@ final class SelfClosingTags implements BeforeLoadFilter, AfterSaveFilter
 
         $this->selfClosingTagsTransformed = false;
 
-        return preg_replace($regexPattern, '', $html);
+        $result = preg_replace($regexPattern, '', $html);
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 }

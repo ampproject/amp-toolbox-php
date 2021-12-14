@@ -44,7 +44,13 @@ final class ProtectEsiTags implements BeforeLoadFilter, AfterSaveFilter
             '$1esi-',
         ];
 
-        return preg_replace($patterns, $replacements, $html);
+        $result = preg_replace($patterns, $replacements, $html);
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 
     /**
@@ -67,6 +73,12 @@ final class ProtectEsiTags implements BeforeLoadFilter, AfterSaveFilter
             '/>',
         ];
 
-        return preg_replace($patterns, $replacements, $html);
+        $result = preg_replace($patterns, $replacements, $html);
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 }
