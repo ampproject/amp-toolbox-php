@@ -49,7 +49,6 @@ use AmpProject\Validator\Spec\SpecRule;
  */
 abstract class Tag
 {
-
     /**
      * ID of the tag.
      *

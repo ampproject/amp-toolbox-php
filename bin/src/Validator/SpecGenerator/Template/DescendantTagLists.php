@@ -14,7 +14,6 @@ use AmpProject\Validator\Spec;
  */
 final class DescendantTagLists
 {
-
     /** @var array<array> */
     const DESCENDANT_TAG_LISTS = [];
 

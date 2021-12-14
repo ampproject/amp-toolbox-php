@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidListName extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidListName exception for a attribute that is not found within the attribute
      * list name index.

@@ -29,7 +29,6 @@ use DOMAttr;
  */
 final class OptimizeAmpBind implements Transformer
 {
-
     /**
      * Configuration store to use.
      *

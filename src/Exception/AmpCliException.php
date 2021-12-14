@@ -9,7 +9,6 @@ namespace AmpProject\Exception;
  */
 interface AmpCliException extends AmpException
 {
-
     /**
      * No error code specified.
      *

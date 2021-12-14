@@ -11,7 +11,6 @@ namespace AmpProject\Html;
  */
 interface Attribute
 {
-
     const ABBR                            = 'abbr';
     const ABOUT                           = 'about';
     const ACCEPT                          = 'accept';

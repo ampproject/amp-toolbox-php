@@ -8,7 +8,6 @@ use AmpProject\Tests\ValidatorFixtures\DummyAttributeList;
 
 class AttributeListTest extends TestCase
 {
-
     /**
      * @covers \AmpProject\Validator\Spec\AttributeList::getId()
      * @covers \AmpProject\Validator\Spec\AttributeList::get()

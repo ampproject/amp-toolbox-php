@@ -11,7 +11,6 @@ namespace AmpProject\Html;
  */
 interface Role
 {
-
     /**
      * A message with an alert or error information.
      *

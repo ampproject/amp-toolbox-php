@@ -13,7 +13,6 @@ use OverflowException;
  */
 final class MaxCssByteCountExceeded extends OverflowException implements AmpException
 {
-
     /**
      * Instantiate a MaxCssByteCountExceeded exception for an inline style that exceeds the maximum byte count.
      *

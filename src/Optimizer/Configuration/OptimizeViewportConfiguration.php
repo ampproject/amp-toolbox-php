@@ -14,7 +14,6 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  */
 final class OptimizeViewportConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Whether we should remove the initial-scale=1 in order to avoid a tap delay that hurts FID.
      *

@@ -14,7 +14,6 @@ use AmpProject\Html\Tag;
  */
 final class ConvertHeadProfileToLink implements AfterLoadFilter
 {
-
     /**
      * Converts a possible head[profile] attribute to link[rel=profile].
      *

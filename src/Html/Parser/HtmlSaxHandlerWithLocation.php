@@ -9,7 +9,6 @@ namespace AmpProject\Html\Parser;
  */
 interface HtmlSaxHandlerWithLocation extends HtmlSaxHandler
 {
-
     /**
      * Called prior to parsing a document, that is, before startTag().
      *

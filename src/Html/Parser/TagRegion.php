@@ -20,7 +20,6 @@ use AmpProject\FakeEnum;
  */
 final class TagRegion extends FakeEnum
 {
-
     const PRE_DOCTYPE = 0;
     const PRE_HTML    = 1;
     const PRE_HEAD    = 2;

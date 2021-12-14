@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 interface CompatibilityFix
 {
-
     /**
      * Register the compatibility fix.
      *

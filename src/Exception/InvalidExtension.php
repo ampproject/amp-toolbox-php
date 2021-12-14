@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidExtension extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidExtension exception for an extension that is not found within the extension spec index.
      *

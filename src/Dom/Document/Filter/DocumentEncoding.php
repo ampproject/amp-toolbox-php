@@ -14,7 +14,6 @@ use AmpProject\Html\Tag;
  */
 final class DocumentEncoding implements BeforeLoadFilter
 {
-
     /**
      * Regex pattern to find a tag without an attribute.
      *

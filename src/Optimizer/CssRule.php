@@ -14,7 +14,6 @@ namespace AmpProject\Optimizer;
  */
 final class CssRule
 {
-
     /**
      * Characters to use for trimming CSS values.
      *

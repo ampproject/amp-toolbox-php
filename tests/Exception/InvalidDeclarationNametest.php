@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidDeclarationNameTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an invalid declaration name.
      */

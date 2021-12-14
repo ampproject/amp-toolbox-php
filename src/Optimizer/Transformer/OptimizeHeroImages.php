@@ -47,7 +47,6 @@ use AmpProject\Url;
  */
 final class OptimizeHeroImages implements Transformer
 {
-
     /**
      * Class(es) to apply to a serverside-rendered image element.
      *

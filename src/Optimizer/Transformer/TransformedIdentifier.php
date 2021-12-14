@@ -27,7 +27,6 @@ use AmpProject\Validator\Spec\SpecRule;
  */
 final class TransformedIdentifier implements Transformer
 {
-
     /**
      * Attribute name of the "transformed" identifier.
      *

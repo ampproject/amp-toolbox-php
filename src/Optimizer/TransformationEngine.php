@@ -17,7 +17,6 @@ use ReflectionException;
  */
 final class TransformationEngine
 {
-
     /**
      * Internal storage for the configuration settings.
      *

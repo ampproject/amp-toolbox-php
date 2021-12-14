@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidSapiTest extends TestCase
 {
-
     /**
      * Test throwing the exception for a SAPI.
      */

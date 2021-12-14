@@ -9,7 +9,6 @@ namespace AmpProject\Html\Parser;
  */
 interface HtmlSaxHandler
 {
-
     /**
      * Handler called when the parser found a new tag.
      *

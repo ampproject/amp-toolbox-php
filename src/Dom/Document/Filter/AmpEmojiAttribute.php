@@ -14,7 +14,6 @@ use AmpProject\Dom\Document\BeforeLoadFilter;
  */
 final class AmpEmojiAttribute implements BeforeLoadFilter, AfterSaveFilter
 {
-
     /**
      * Pattern to match an AMP emoji together with its variant (amp4ads, amp4email, ...).
      *

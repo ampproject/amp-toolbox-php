@@ -11,7 +11,6 @@ use AmpProject\Str;
  */
 final class DocLocator
 {
-
     /**
      * Line mapped to a given position.
      *

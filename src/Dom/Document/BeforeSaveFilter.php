@@ -11,7 +11,6 @@ use AmpProject\Dom\Document;
  */
 interface BeforeSaveFilter extends Filter
 {
-
     /**
      * Preprocess the DOM to be saved into HTML.
      *

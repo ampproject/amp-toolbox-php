@@ -12,7 +12,6 @@ use AmpProject\Extension;
  */
 final class ExtensionsContext
 {
-
     /**
      * Extensions that have been already loaded.
      *

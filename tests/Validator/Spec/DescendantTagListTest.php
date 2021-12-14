@@ -7,7 +7,6 @@ use AmpProject\Tests\ValidatorFixtures\DummyDescendantTagList;
 
 class DescendantTagListTest extends TestCase
 {
-
     /**
      * @covers \AmpProject\Validator\Spec\DescendantTagList::getId()
      * @covers \AmpProject\Validator\Spec\DescendantTagList::has()

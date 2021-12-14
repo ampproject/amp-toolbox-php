@@ -9,5 +9,4 @@ namespace AmpProject\Exception;
  */
 interface FailedRemoteRequest extends AmpException
 {
-
 }

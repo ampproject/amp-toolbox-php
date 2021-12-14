@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 interface Format
 {
-
     /**
      * AMP for websites format.
      *

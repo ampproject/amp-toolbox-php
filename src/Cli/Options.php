@@ -22,7 +22,6 @@ use AmpProject\Exception\Cli\MissingArgument;
  */
 class Options
 {
-
     /**
      * List of options to parse.
      *

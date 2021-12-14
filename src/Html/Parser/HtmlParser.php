@@ -16,7 +16,6 @@ use AmpProject\Str;
  */
 final class HtmlParser
 {
-
     /**
      * Regular expression that matches the next token to be processed.
      *

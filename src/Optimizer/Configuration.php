@@ -11,7 +11,6 @@ use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
  */
 interface Configuration
 {
-
     /**
      * Key to use for managing the array of active transformers.
      *

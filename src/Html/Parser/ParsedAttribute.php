@@ -9,7 +9,6 @@ namespace AmpProject\Html\Parser;
  */
 final class ParsedAttribute
 {
-
     /**
      * Name of the attribute.
      *

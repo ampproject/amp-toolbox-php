@@ -13,7 +13,6 @@ use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
  */
 class DefaultConfiguration implements Configuration
 {
-
     /**
      * Associative array of already validated configuration settings.
      *

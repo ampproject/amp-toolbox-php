@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidSpecName extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidSpecName exception for a spec that is not found within the spec name index.
      *

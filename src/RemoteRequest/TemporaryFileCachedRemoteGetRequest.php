@@ -15,7 +15,6 @@ use Exception;
  */
 final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
 {
-
     /**
      * Prefix to use to identify cached file.
      *

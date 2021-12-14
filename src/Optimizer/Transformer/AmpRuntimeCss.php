@@ -35,7 +35,6 @@ use Exception;
  */
 final class AmpRuntimeCss implements Transformer
 {
-
     /**
      * XPath query to fetch the <style amp-runtime> element.
      *

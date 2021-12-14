@@ -21,7 +21,6 @@ use AmpProject\Validator\Spec\Error\InvalidDoctypeHtml;
  */
 final class ValidationHandler implements HtmlSaxHandlerWithLocation
 {
-
     /**
      * AMP HTML format to validate against.
      *

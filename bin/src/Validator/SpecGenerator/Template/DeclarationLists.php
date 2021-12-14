@@ -14,7 +14,6 @@ use AmpProject\Validator\Spec;
  */
 final class DeclarationLists
 {
-
     /** @var array<array> */
     const DECLARATION_LISTS = [];
 

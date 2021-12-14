@@ -9,7 +9,6 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
  */
 interface Identifiable
 {
-
     /**
      * Get the ID of the identifiable element.
      *

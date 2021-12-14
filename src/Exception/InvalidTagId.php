@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidTagId extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidTagId exception for a tag that is not found within the tag name index.
      *

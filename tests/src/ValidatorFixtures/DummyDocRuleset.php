@@ -10,7 +10,6 @@ use AmpProject\Validator\Spec\SpecRule;
  */
 class DummyDocRuleset extends DocRuleset
 {
-
     /** @var string */
     const ID = 'DUMMY';
 

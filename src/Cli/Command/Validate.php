@@ -17,7 +17,6 @@ use AmpProject\Validator\ValidationStatus;
  */
 final class Validate extends Command
 {
-
     /**
      * Name of the command.
      *

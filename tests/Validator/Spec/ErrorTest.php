@@ -8,7 +8,6 @@ use AmpProject\Tests\ValidatorFixtures\DummyError;
 
 class ErrorTest extends TestCase
 {
-
     /**
      * @covers \AmpProject\Validator\Spec\Error::getCode()
      * @covers \AmpProject\Validator\Spec\Error::get()

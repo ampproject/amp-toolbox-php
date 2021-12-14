@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidErrorCode extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidErrorCode exception for an unknown error code.
      *

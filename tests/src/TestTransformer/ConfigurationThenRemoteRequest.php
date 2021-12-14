@@ -10,7 +10,6 @@ use AmpProject\RemoteGetRequest;
 
 final class ConfigurationThenRemoteRequest implements Transformer
 {
-
     public function __construct(TransformerConfiguration $configuration, RemoteGetRequest $remoteRequest)
     {
     }

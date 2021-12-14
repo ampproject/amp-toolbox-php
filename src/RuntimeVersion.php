@@ -35,7 +35,6 @@ namespace AmpProject;
  */
 final class RuntimeVersion
 {
-
     /**
      * Option to retrieve the latest canary version data instead of the production version data.
      *

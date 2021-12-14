@@ -13,7 +13,6 @@ use AmpProject\Validator\Spec\Tag;
  */
 abstract class TagWithExtensionSpec extends Tag
 {
-
     /**
      * Array of extension spec rules.
      *

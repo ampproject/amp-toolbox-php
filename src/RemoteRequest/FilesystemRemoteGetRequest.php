@@ -17,7 +17,6 @@ use LogicException;
  */
 final class FilesystemRemoteGetRequest implements RemoteGetRequest
 {
-
     /**
      * Associative array of data for mapping between arguments and filepaths pointing to the results to return.
      *

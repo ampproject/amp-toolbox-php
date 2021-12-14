@@ -15,7 +15,6 @@ use AmpProject\Html\Tag;
  */
 final class NoscriptElements implements BeforeLoadFilter, AfterLoadFilter
 {
-
     /**
      * UniqueIdManager instance to use.
      *

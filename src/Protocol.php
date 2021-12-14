@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 interface Protocol
 {
-
     const AMP_SCRIPT    = 'amp-script';
     const AMP_STATE     = 'amp-state';
     const BBMI          = 'bbmi';

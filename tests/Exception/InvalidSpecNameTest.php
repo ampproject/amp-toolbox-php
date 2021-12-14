@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidSpecNameTest extends TestCase
 {
-
     /**
      * Test throwing the exception for a spec name.
      */

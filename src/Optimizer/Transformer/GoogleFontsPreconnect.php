@@ -13,7 +13,6 @@ use AmpProject\Optimizer\Transformer;
  */
 final class GoogleFontsPreconnect implements Transformer
 {
-
     /**
      * Domain that the Google Fonts static files are loaded from.
      *

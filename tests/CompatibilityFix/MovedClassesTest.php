@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class MovedClassesTest extends TestCase
 {
-
     public function testClassAliasesExist()
     {
         foreach (array_keys(MovedClasses::ALIASES) as $old) {

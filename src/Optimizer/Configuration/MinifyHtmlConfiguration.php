@@ -20,7 +20,6 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  */
 final class MinifyHtmlConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Whether minification is enabled.
      *

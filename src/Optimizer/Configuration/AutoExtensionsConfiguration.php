@@ -20,7 +20,6 @@ use ReflectionClass;
  */
 final class AutoExtensionsConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Configuration key that specifies the AMP format.
      *

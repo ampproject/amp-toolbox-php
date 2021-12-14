@@ -13,7 +13,6 @@ use AmpProject\Validator\Spec\Section;
  */
 class SpecTest extends TestCase
 {
-
     public function testItCanBeInstantiated()
     {
         $spec = new Spec();

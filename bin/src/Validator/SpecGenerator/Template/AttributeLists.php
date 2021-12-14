@@ -14,7 +14,6 @@ use AmpProject\Validator\Spec;
  */
 final class AttributeLists
 {
-
     /** @var array<array> */
     const ATTRIBUTE_LISTS = [];
 

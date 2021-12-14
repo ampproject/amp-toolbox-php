@@ -13,7 +13,6 @@ use AmpProject\Html\Tag;
  */
 final class SelfClosingTags implements BeforeLoadFilter, AfterSaveFilter
 {
-
     /**
      * Whether the self-closing tags were transformed and need to be restored.
      *

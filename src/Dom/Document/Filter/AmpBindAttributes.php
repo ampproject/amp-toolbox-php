@@ -15,7 +15,6 @@ use AmpProject\Dom\Options;
  */
 final class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
 {
-
     /**
      * Pattern for HTML attribute accounting for binding attr name in data attribute syntax, boolean attribute,
      * single/double-quoted attribute value, and unquoted attribute values.

@@ -18,7 +18,6 @@ use AmpProject\Exception\Cli\InvalidColumnFormat;
  */
 class TableFormatter
 {
-
     /**
      * Border between columns.
      *

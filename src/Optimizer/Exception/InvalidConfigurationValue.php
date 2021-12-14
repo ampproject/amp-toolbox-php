@@ -11,7 +11,6 @@ use InvalidArgumentException;
  */
 final class InvalidConfigurationValue extends InvalidArgumentException implements AmpOptimizerException
 {
-
     /**
      * Instantiate an InvalidConfigurationValue exception for an invalid value type.
      *

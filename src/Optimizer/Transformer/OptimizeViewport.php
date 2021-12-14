@@ -23,7 +23,6 @@ use AmpProject\Html\Tag;
  */
 final class OptimizeViewport implements Transformer
 {
-
     /**
      * Viewport settings to use for AMP markup.
      *

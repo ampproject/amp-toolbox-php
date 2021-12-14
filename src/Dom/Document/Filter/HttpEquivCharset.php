@@ -19,7 +19,6 @@ use DOMComment;
  */
 final class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter, BeforeSaveFilter, AfterSaveFilter
 {
-
     /**
      * Value of the content field of the meta tag for the http-equiv compatibility charset.
      *

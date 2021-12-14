@@ -15,7 +15,6 @@ use DOMAttr;
  */
 final class DeduplicateTag implements AfterLoadFilter
 {
-
     /**
      * Deduplicate head and body tags.
      *

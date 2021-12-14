@@ -4,7 +4,6 @@ namespace AmpProject\Tooling\Validator\SpecGenerator;
 
 trait MagicPropertyAnnotations
 {
-
     /**
      * Get the magic property annotations for a given spec.
      *

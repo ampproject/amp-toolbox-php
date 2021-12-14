@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidCssRulesetNameTest extends TestCase
 {
-
     /**
      * Test throwing the exception for a CSS name.
      */

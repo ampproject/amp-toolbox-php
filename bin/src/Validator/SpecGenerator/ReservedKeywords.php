@@ -4,7 +4,6 @@ namespace AmpProject\Tooling\Validator\SpecGenerator;
 
 final class ReservedKeywords
 {
-
     /**
      * List of reserved keywords.
      *

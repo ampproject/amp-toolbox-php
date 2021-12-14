@@ -12,7 +12,6 @@ use AmpProject\Str;
  */
 final class ParsedTag
 {
-
     /**
      * Name of the parsed tag.
      *

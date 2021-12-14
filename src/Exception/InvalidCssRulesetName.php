@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidCssRulesetName extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidCssRulesetName exception for a CSS ruleset that is not found within the CSS rulesets index.
      *

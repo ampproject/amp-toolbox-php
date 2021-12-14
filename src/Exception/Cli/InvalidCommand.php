@@ -12,7 +12,6 @@ use InvalidArgumentException;
  */
 final class InvalidCommand extends InvalidArgumentException implements AmpCliException
 {
-
     /**
      * Instantiate an InvalidCommand exception for an unregistered command that is being referenced.
      *

@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class OptionsTest extends TestCase
 {
-
     /**
      * Test setting default options.
      *

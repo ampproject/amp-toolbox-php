@@ -12,7 +12,6 @@ use Iterator;
  */
 interface IterableSection extends Iterator, Countable
 {
-
     /**
      * Get the list of available keys.
      *

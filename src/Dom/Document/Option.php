@@ -9,7 +9,6 @@ namespace AmpProject\Dom\Document;
  */
 interface Option
 {
-
     /**
      * Option to configure the preferred amp-bind syntax.
      *

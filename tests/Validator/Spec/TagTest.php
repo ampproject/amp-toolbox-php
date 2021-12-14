@@ -8,7 +8,6 @@ use AmpProject\Tests\ValidatorFixtures\DummyTag;
 
 class TagTest extends TestCase
 {
-
     /**
      * @covers \AmpProject\Validator\Spec\Tag::get()
      * @covers \AmpProject\Validator\Spec\Tag::has()

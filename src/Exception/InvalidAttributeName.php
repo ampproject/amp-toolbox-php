@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidAttributeName extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidAttributeName exception for an attribute that is not found within name index.
      *

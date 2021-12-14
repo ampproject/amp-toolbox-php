@@ -12,7 +12,6 @@ use OutOfBoundsException;
  */
 final class InvalidColumnFormat extends OutOfBoundsException implements AmpCliException
 {
-
     /**
      * Instantiate an InvalidColumn exception for multiple fluid columns.
      *

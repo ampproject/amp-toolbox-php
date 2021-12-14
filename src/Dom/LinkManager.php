@@ -17,7 +17,6 @@ use DOMNode;
  */
 final class LinkManager
 {
-
     /**
      * List of relations currently managed by the link manager.
      *

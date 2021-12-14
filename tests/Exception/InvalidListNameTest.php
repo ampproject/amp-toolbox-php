@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidListNameTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an attribute list.
      */

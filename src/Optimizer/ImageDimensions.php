@@ -9,7 +9,6 @@ use AmpProject\Html\LengthUnit;
 
 final class ImageDimensions
 {
-
     /**
      * Regular expression pattern to match the trailing unit of a dimension.
      *

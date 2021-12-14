@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidDeclarationName extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidDeclarationName exception for an declaration that is not found within name index.
      *

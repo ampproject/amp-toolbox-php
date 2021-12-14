@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class UrlTest extends TestCase
 {
-
     public function dataParsing()
     {
         return [

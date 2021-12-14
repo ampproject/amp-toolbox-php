@@ -9,7 +9,6 @@ namespace AmpProject\Tests;
  */
 trait MarkupComparison
 {
-
     /**
      * Assert markup is equal.
      *

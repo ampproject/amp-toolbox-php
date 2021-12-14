@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidDocRulesetNameTest extends TestCase
 {
-
     /**
      * Test throwing the exception for a document ruleset name.
      */

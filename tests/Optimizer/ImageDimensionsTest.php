@@ -18,7 +18,6 @@ use stdClass;
  */
 class ImageDimensionsTest extends TestCase
 {
-
     /**
      * Test instantiating the ImageDimensions object.
      *

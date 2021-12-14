@@ -15,7 +15,6 @@ use DOMNode;
  */
 final class Amp
 {
-
     /**
      * Attribute prefix for AMP-bind data attributes.
      *

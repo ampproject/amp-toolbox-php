@@ -12,7 +12,6 @@ use Iterator;
  */
 final class ValidationErrorCollection implements Countable, Iterator
 {
-
     /**
      * Internal storage for the errors that were added.
      *

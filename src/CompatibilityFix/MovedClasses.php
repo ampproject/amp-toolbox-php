@@ -11,7 +11,6 @@ use AmpProject\CompatibilityFix;
  */
 final class MovedClasses implements CompatibilityFix
 {
-
     /**
      * Mapping of aliases to be registered.
      *

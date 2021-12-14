@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidDocRulesetName extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidDocRulesetName exception for a document ruleset that is not found within the document
      * rulesets index.

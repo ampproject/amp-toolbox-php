@@ -39,7 +39,6 @@ use Exception;
  */
 final class ServerSideRendering implements Transformer
 {
-
     /**
      * List of layouts that support server-side rendering.
      *

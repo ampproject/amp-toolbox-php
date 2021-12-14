@@ -7,7 +7,6 @@ use Nette\PhpGenerator\PhpNamespace;
 
 interface Section
 {
-
     /**
      * Process a section.
      *

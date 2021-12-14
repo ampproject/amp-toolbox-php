@@ -7,7 +7,6 @@ use AmpProject\Validator\Spec\SpecRule;
 
 class DummyError extends Error
 {
-
     /** @var string */
     const CODE = 'dummy';
 

@@ -9,7 +9,6 @@ namespace AmpProject\Dom;
  */
 final class UniqueIdManager
 {
-
     /**
      * Store the current index by prefix.
      *

@@ -18,7 +18,6 @@ use DOMElement;
  */
 final class Element extends DOMElement
 {
-
     /**
      * Regular expression pattern to match events and actions within an 'on' attribute.
      *

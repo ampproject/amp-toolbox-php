@@ -9,7 +9,6 @@ namespace AmpProject\Validator;
  */
 final class ValidationResult
 {
-
     /**
      * Validation result status.
      *
