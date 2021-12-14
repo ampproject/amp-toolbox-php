@@ -35,7 +35,13 @@ final class SvgSourceAttributeEncoding implements AfterSaveFilter
      */
     public function afterSave($html)
     {
-        return preg_replace_callback(self::I_AMPHTML_SIZER_REGEX_PATTERN, [$this, 'adaptSizer'], $html);
+        $result = preg_replace_callback(self::I_AMPHTML_SIZER_REGEX_PATTERN, [$this, 'adaptSizer'], $html);
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 
     /**
@@ -49,6 +55,11 @@ final class SvgSourceAttributeEncoding implements AfterSaveFilter
         $src = $matches['src'];
         $src = htmlspecialchars_decode($src, ENT_NOQUOTES);
         $src = preg_replace_callback(self::SRC_SVG_REGEX_PATTERN, [$this, 'adaptSvg'], $src);
+
+        if (! is_string($src)) {
+            // The regex replace failed, so revert to the initial src.
+            $src = $matches['src'];
+        }
 
         return $matches['before_src'] . $src . $matches['after_src'];
     }

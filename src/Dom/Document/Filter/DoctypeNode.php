@@ -61,13 +61,19 @@ final class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
      */
     public function beforeLoad($html)
     {
-        return preg_replace(
+        $result = preg_replace(
             self::HTML_SECURE_DOCTYPE_IF_NOT_FIRST_PATTERN,
             self::HTML_SECURE_DOCTYPE_REPLACEMENT_TEMPLATE,
             $html,
             1,
             $this->securedDoctype
         );
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 
     /**
@@ -82,11 +88,17 @@ final class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
             return $html;
         }
 
-        return preg_replace(
+        $result = preg_replace(
             self::HTML_RESTORE_DOCTYPE_PATTERN,
             self::HTML_RESTORE_DOCTYPE_REPLACEMENT_TEMPLATE,
             $html,
             1
         );
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 }

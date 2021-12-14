@@ -58,7 +58,7 @@ final class NoscriptElements implements BeforeLoadFilter, AfterLoadFilter
     public function beforeLoad($html)
     {
         if (version_compare(LIBXML_DOTTED_VERSION, '2.8', '<')) {
-            $html = preg_replace_callback(
+            $result = preg_replace_callback(
                 '#^.+?(?=<body)#is',
                 function ($headMatches) {
                     return preg_replace_callback(
@@ -73,6 +73,10 @@ final class NoscriptElements implements BeforeLoadFilter, AfterLoadFilter
                 },
                 $html
             );
+
+            if (is_string($result)) {
+                $html = $result;
+            }
         }
 
         return $html;

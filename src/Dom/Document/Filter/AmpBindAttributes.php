@@ -116,10 +116,7 @@ final class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
          * @return string Replacement.
          */
         $replaceCallback = function ($tagMatches) {
-
-            // Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
-            $oldAttrs = rtrim(preg_replace('#(?<!=)/$#', '', $tagMatches['attrs']));
-
+            $oldAttrs = $this->maybeStripSelfClosingSlash($tagMatches['attrs']);
             $newAttrs = '';
             $offset   = 0;
             while (
@@ -151,22 +148,17 @@ final class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
             return '<' . $tagMatches['name'] . $newAttrs . '>';
         };
 
-        $converted = preg_replace_callback(
+        $result = preg_replace_callback(
             self::AMP_BIND_SQUARE_START_PATTERN,
             $replaceCallback,
             $html
         );
 
-        /*
-         * If the regex engine incurred an error during processing, for example exceeding the backtrack
-         * limit, $converted will be null. In this case we return the originally passed document to allow
-         * DOMDocument to attempt to load it.  If the AMP HTML doesn't make use of amp-bind or similar
-         * attributes, then everything should still work.
-         *
-         * See https://github.com/ampproject/amp-wp/issues/993 for additional context on this issue.
-         * See http://php.net/manual/en/pcre.constants.php for additional info on PCRE errors.
-         */
-        return (null !== $converted) ? $converted : $html;
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 
     /**
@@ -205,10 +197,7 @@ final class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
          * @return string Replacement.
          */
         $replaceCallback = function ($tagMatches) {
-
-            // Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
-            $oldAttrs = rtrim(preg_replace('#(?<!=)/$#', '', $tagMatches['attrs']));
-
+            $oldAttrs = $this->maybeStripSelfClosingSlash($tagMatches['attrs']);
             $newAttrs = '';
             $offset   = 0;
             while (
@@ -241,21 +230,33 @@ final class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
             return '<' . $tagMatches['name'] . $newAttrs . '>';
         };
 
-        $converted = preg_replace_callback(
+        $result = preg_replace_callback(
             self::AMP_BIND_DATA_START_PATTERN,
             $replaceCallback,
             $html
         );
 
-        /*
-         * If the regex engine incurred an error during processing, for example exceeding the backtrack
-         * limit, $converted will be null. In this case we return the originally passed document to allow
-         * DOMDocument to attempt to load it.  If the AMP HTML doesn't make use of amp-bind or similar
-         * attributes, then everything should still work.
-         *
-         * See https://github.com/ampproject/amp-wp/issues/993 for additional context on this issue.
-         * See http://php.net/manual/en/pcre.constants.php for additional info on PCRE errors.
-         */
-        return (null !== $converted) ? $converted : $html;
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Strip the self-closing slash as long as it is not an attribute value, like for the href attribute.
+     *
+     * @param string $attributes Attributes to strip the self-closing slash of.
+     * @return string Adapted attributes.
+     */
+    private function maybeStripSelfClosingSlash($attributes)
+    {
+        $result = preg_replace('#(?<!=)/$#', '', $attributes);
+
+        if (! is_string($result)) {
+            return rtrim($attributes);
+        }
+
+        return rtrim($result);
     }
 }

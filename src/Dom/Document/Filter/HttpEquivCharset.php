@@ -102,7 +102,7 @@ final class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter, Befor
         $count = 0;
 
         // We try first to detect an existing <head> node.
-        $html = preg_replace(
+        $result = preg_replace(
             self::HTML_GET_HEAD_OPENING_TAG_PATTERN,
             self::HTML_GET_HEAD_OPENING_TAG_REPLACEMENT,
             $html,
@@ -110,15 +110,23 @@ final class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter, Befor
             $count
         );
 
+        if (is_string($result)) {
+            $html = $result;
+        }
+
         // If no <head> was found, we look for the <html> tag instead.
         if ($count < 1) {
-            $html = preg_replace(
+            $result = preg_replace(
                 self::HTML_GET_HTML_OPENING_TAG_PATTERN,
                 self::HTML_GET_HTML_OPENING_TAG_REPLACEMENT,
                 $html,
                 1,
                 $count
             );
+
+            if (is_string($result)) {
+                $html = $result;
+            }
         }
 
         // Finally, we just prepend the head with the required http-equiv charset.
@@ -182,6 +190,12 @@ final class HttpEquivCharset implements BeforeLoadFilter, AfterLoadFilter, Befor
             $this->temporaryCharset->parentNode->removeChild($this->temporaryCharset);
         }
 
-        return preg_replace(self::HTML_GET_HTTP_EQUIV_TAG_PATTERN, '', $html, 1);
+        $result = preg_replace(self::HTML_GET_HTTP_EQUIV_TAG_PATTERN, '', $html, 1);
+
+        if (! is_string($result)) {
+            return $html;
+        }
+
+        return $result;
     }
 }
