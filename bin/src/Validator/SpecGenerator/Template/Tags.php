@@ -22,7 +22,6 @@ use LogicException;
  */
 final class Tags
 {
-
     const TAGS = [];
 
     const BY_TAG_NAME       = [];

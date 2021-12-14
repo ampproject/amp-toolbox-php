@@ -18,7 +18,6 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  */
 final class OptimizeHeroImagesConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Configuration key that holds the attribute that is used to store inline styles that
      * were moved to <style amp-custom>.

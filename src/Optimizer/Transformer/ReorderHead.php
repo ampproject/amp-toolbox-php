@@ -45,7 +45,6 @@ use DOMNodeList;
  */
 final class ReorderHead implements Transformer
 {
-
     /**
      * Regular expression pattern to match resource hints pointing to an AMP resource.
      */

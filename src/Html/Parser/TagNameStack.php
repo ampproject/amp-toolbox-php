@@ -19,7 +19,6 @@ use AmpProject\Str;
  */
 final class TagNameStack
 {
-
     /**
      * Regular expression that matches strings composed of all space characters, as defined in
      * https://infra.spec.whatwg.org/#ascii-whitespace, and in the various HTML parsing rules at

@@ -9,7 +9,6 @@ namespace AmpProject\Html;
  */
 interface Tag
 {
-
     const A                   = 'a';
     const ABBR                = 'abbr';
     const ACRONYM             = 'acronym';

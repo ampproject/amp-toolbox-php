@@ -13,7 +13,6 @@ use IteratorAggregate;
  */
 final class ErrorCollection implements Countable, IteratorAggregate
 {
-
     /**
      * Internal storage for the errors that were added.
      *

@@ -16,7 +16,6 @@ use AmpProject\Optimizer\TransformerConfiguration;
  */
 abstract class BaseTransformerConfiguration implements TransformerConfiguration
 {
-
     /**
      * Associative array of allowed keys and their respective default values.
      *

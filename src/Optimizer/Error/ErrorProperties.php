@@ -11,7 +11,6 @@ use ReflectionClass;
  */
 trait ErrorProperties
 {
-
     /**
      * Instantiate an Error object.
      *

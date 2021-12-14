@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class DocLocatorTest extends TestCase
 {
-
     /**
      * @covers \AmpProject\Html\Parser\DocLocator::__construct()
      * @covers \AmpProject\Html\Parser\DocLocator::getDocumentByteSize()

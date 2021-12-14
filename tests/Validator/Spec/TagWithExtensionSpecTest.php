@@ -7,7 +7,6 @@ use AmpProject\Tests\ValidatorFixtures\DummyTagWithExtensionSpec;
 
 class TagWithExtensionSpecTest extends TestCase
 {
-
     /**
      * @covers \AmpProject\Validator\Spec\TagWithExtensionSpec::getExtensionName()
      */

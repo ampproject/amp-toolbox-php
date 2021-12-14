@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 final class Str
 {
-
     /**
      * Whether to try to use multibyte functions.
      *

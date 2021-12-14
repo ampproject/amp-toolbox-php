@@ -15,7 +15,6 @@ use AmpProject\Dom\Options;
  */
 final class LibxmlCompatibility implements BeforeLoadFilter, AfterLoadFilter
 {
-
     /**
      * Options instance to use.
      *

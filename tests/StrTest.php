@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class StrTest extends TestCase
 {
-
     public function dataLength()
     {
         return [

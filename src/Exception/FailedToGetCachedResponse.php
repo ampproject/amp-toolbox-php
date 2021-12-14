@@ -11,7 +11,6 @@ use RuntimeException;
  */
 final class FailedToGetCachedResponse extends RuntimeException implements FailedRemoteRequest
 {
-
     /**
      * Instantiate a FailedToGetCachedResponse exception for a URL if the cached response data could not be
      * retrieved.

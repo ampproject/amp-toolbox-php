@@ -14,7 +14,6 @@ use AmpProject\Validator\Spec\Error;
  */
 class ValidationEngineTest extends TestCase
 {
-
     public function dataValidateHtml()
     {
         return [

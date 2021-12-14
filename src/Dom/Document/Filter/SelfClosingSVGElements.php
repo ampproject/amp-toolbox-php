@@ -13,7 +13,6 @@ use AmpProject\Html\Tag;
  */
 final class SelfClosingSVGElements implements BeforeLoadFilter, AfterSaveFilter
 {
-
     /**
      * SVG elements that are self-closing.
      *

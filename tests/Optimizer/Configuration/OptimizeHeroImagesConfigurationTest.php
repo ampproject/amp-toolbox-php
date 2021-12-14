@@ -18,7 +18,6 @@ use stdClass;
  */
 final class OptimizeHeroImagesConfigurationTest extends TestCase
 {
-
     public function testDefaults()
     {
         $configuration = new OptimizeHeroImagesConfiguration([]);

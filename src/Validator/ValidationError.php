@@ -9,7 +9,6 @@ namespace AmpProject\Validator;
  */
 final class ValidationError
 {
-
     /**
      * Severity of the validation error.
      *

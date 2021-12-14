@@ -14,7 +14,6 @@ use AmpProject\Validator\Spec;
  */
 final class Errors
 {
-
     /** @var array<array> */
     const ERRORS = [];
 

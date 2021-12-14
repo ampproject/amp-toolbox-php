@@ -12,7 +12,6 @@ use InvalidArgumentException;
  */
 final class FailedToParseHtml extends InvalidArgumentException implements AmpException
 {
-
     /**
      * Instantiate a FailedToParseHtml exception for a HTML that could not be parsed.
      *

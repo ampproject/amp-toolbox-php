@@ -17,7 +17,6 @@ use org\bovigo\vfs\vfsStream;
  */
 class TemporaryFileCachedRemoteGetRequestTest extends TestCase
 {
-
     /**
      * The test directory name.
      *

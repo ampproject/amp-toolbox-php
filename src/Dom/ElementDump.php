@@ -15,7 +15,6 @@ use DOMAttr;
  */
 final class ElementDump
 {
-
     /**
      * Element to dump.
      *

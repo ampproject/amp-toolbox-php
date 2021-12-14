@@ -13,7 +13,6 @@ namespace AmpProject\Html;
  */
 final class LengthUnit
 {
-
     /**
      * Centimeters.
      *

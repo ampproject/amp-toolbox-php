@@ -9,7 +9,6 @@ namespace AmpProject\Html\Parser;
  */
 interface EFlags
 {
-
     const OPTIONAL_ENDTAG   = 1;
     const EMPTY_            = 2;
     const CDATA             = 4;

@@ -18,7 +18,6 @@ use AmpProject\Html\Tag;
  */
 final class AmpBoilerplateErrorHandler implements Transformer
 {
-
     /**
      * XPath query to find an AMP runtime script using ES6 modules.
      *

@@ -58,7 +58,6 @@ use Exception;
  */
 final class RewriteAmpUrls implements Transformer
 {
-
     /**
      * Configuration to use.
      *

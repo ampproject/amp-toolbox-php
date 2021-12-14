@@ -25,7 +25,6 @@ use AmpProject\Validator\Spec\SpecRule;
  */
 abstract class CssRuleset
 {
-
     /**
      * ID of the CSS ruleset.
      *

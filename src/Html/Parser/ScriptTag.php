@@ -15,7 +15,6 @@ use AmpProject\Str;
  */
 final class ScriptTag
 {
-
     /**
      * Name of the tag.
      *

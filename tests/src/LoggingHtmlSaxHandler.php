@@ -13,7 +13,6 @@ use AmpProject\Html\Parser\ParsedTag;
  */
 final class LoggingHtmlSaxHandler implements HtmlSaxHandler
 {
-
     /**
      * Log storage.
      *

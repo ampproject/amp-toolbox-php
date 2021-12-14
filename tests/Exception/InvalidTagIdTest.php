@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidTagIdTest extends TestCase
 {
-
     /**
      * Test throwing the exception for a tag ID.
      */

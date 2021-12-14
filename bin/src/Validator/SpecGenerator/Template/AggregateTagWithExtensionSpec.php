@@ -14,7 +14,6 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  */
 final class AggregateTagWithExtensionSpec extends TagWithExtensionSpec
 {
-
     /**
      * Array of TagWithExtensionSpec instances that this AggregateTag aggregates.
      *

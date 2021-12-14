@@ -9,5 +9,4 @@ namespace AmpProject\Html;
  */
 interface LowerCaseTag extends Tag
 {
-
 }

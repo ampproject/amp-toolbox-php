@@ -29,7 +29,6 @@ use Peast\Renderer;
  */
 final class MinifyHtml implements Transformer
 {
-
     /**
      * Configuration store to use.
      *

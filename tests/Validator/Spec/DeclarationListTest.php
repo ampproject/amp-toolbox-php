@@ -8,7 +8,6 @@ use AmpProject\Tests\ValidatorFixtures\DummyDeclarationList;
 
 class DeclarationListTest extends TestCase
 {
-
     /**
      * @covers \AmpProject\Validator\Spec\DeclarationList::getId()
      * @covers \AmpProject\Validator\Spec\DeclarationList::get()

@@ -15,7 +15,6 @@ use AmpProject\Validator\Spec\Tag;
  */
 final class AggregateTag extends Tag
 {
-
     /**
      * List of spec rules that can be aggregated.
      *

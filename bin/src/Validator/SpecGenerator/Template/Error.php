@@ -14,7 +14,6 @@ use AmpProject\Exception\InvalidSpecRuleName;
  */
 abstract class Error
 {
-
     /**
      * Code of the error.
      *

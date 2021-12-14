@@ -16,7 +16,6 @@ use AmpProject\Html\Tag;
  */
 final class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter, BeforeSaveFilter, AfterSaveFilter
 {
-
     /**
      * Xpath query to fetch the elements containing Mustache templates (both <template type=amp-mustache> and
      * <script type=text/plain template=amp-mustache>).

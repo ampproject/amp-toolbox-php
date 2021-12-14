@@ -11,7 +11,6 @@ use OutOfRangeException;
  */
 final class InvalidFormat extends OutOfRangeException implements AmpException
 {
-
     /**
      * Instantiate an InvalidFormat exception when an invalid AMP format is being requested.
      *

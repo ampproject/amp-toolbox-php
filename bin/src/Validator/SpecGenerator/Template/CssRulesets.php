@@ -15,7 +15,6 @@ use AmpProject\Validator\Spec\CssRuleset;
  */
 final class CssRulesets
 {
-
     const CSS_RULESETS = [];
 
     const BY_FORMAT = [];

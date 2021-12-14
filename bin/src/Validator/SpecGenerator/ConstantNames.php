@@ -6,7 +6,6 @@ use AmpProject\Amp;
 
 trait ConstantNames
 {
-
     /**
      * Get the constant name for a given value.
      *

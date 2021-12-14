@@ -20,7 +20,6 @@ use stdClass;
  */
 final class TransformedIdentifierConfigurationTest extends TestCase
 {
-
     public function testDefaults()
     {
         $configuration = new TransformedIdentifierConfiguration([]);

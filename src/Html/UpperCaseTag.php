@@ -9,7 +9,6 @@ namespace AmpProject\Html;
  */
 interface UpperCaseTag
 {
-
     const A                   = 'A';
     const ABBR                = 'ABBR';
     const ACRONYM             = 'ACRONYM';

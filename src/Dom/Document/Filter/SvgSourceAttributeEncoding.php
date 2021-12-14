@@ -11,7 +11,6 @@ use AmpProject\Dom\Document\AfterSaveFilter;
  */
 final class SvgSourceAttributeEncoding implements AfterSaveFilter
 {
-
     /**
      * Regex pattern to match an SVG sizer element.
      *

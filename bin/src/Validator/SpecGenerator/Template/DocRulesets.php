@@ -15,7 +15,6 @@ use AmpProject\Validator\Spec\DocRuleset;
  */
 final class DocRulesets
 {
-
     const DOC_RULESETS = [];
 
     const BY_FORMAT = [];

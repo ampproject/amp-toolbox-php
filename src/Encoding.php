@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 final class Encoding
 {
-
     /**
      * UTF-8 encoding, which is the fallback.
      *

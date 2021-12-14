@@ -48,7 +48,6 @@ use ReflectionNamedType;
  */
 final class Document extends DOMDocument
 {
-
     /**
      * Default document type to use.
      *

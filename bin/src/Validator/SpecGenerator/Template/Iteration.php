@@ -9,7 +9,6 @@ namespace AmpProject\Tooling\Validator\SpecGenerator\Template;
  */
 trait Iteration
 {
-
     /**
      * Array to use for iteration.
      *

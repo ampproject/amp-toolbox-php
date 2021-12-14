@@ -12,7 +12,6 @@ use AmpProject\Dom\Document\BeforeLoadFilter;
  */
 final class ProtectEsiTags implements BeforeLoadFilter, AfterSaveFilter
 {
-
     /**
      * List of self-closing ESI tags.
      *

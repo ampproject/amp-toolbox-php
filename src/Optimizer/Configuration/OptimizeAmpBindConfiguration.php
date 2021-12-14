@@ -13,7 +13,6 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
  */
 final class OptimizeAmpBindConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Whether the amp-bind optimizer is enabled.
      *

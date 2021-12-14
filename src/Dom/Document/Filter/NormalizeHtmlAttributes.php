@@ -13,7 +13,6 @@ use DOMAttr;
  */
 final class NormalizeHtmlAttributes implements AfterLoadFilter
 {
-
     /**
      * Normalizes HTML attributes to be HTML5 compatible.
      *

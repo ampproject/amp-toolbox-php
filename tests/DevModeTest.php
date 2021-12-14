@@ -14,7 +14,6 @@ use AmpProject\Tests\TestCase;
  */
 class DevModeTest extends TestCase
 {
-
     public function dataIsActiveForDocument()
     {
         return [

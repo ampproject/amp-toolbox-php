@@ -9,7 +9,6 @@ namespace AmpProject\Validator;
  */
 final class FilePosition
 {
-
     /**
      * Line position into the file.
      *

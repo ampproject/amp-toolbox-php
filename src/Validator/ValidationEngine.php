@@ -13,7 +13,6 @@ use AmpProject\Html\Parser\HtmlParser;
  */
 final class ValidationEngine
 {
-
     /**
      * Validate the provided DOM document.
      *

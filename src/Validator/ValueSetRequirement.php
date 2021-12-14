@@ -9,5 +9,4 @@ namespace AmpProject\Validator;
  */
 final class ValueSetRequirement
 {
-
 }

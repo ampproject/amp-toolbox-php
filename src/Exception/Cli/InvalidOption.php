@@ -12,7 +12,6 @@ use OutOfBoundsException;
  */
 final class InvalidOption extends OutOfBoundsException implements AmpCliException
 {
-
     /**
      * Instantiate an InvalidOption exception for an unknown option that was passed to the CLI.
      *

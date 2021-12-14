@@ -9,7 +9,6 @@ namespace AmpProject\Dom\Document;
  */
 interface AfterSaveFilter extends Filter
 {
-
     /**
      * Process the Dom\Document after being saved from Dom\Document.
      *

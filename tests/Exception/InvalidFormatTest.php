@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidFormatTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an format.
      */

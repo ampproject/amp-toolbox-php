@@ -13,7 +13,6 @@ use AmpProject\Tests\TestCase;
  */
 class ColorsTest extends TestCase
 {
-
     public function testInstantiation()
     {
         // No TERM present, color should be the result of posix_isatty(STDOUT).

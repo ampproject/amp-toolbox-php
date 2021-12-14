@@ -11,7 +11,6 @@ use AmpProject\Validator\Spec\Tag;
  */
 class DummyTag extends Tag
 {
-
     /** @var string */
     const ID = 'dummy';
 

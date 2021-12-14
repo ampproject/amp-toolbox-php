@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class CssRuleTest extends TestCase
 {
-
     public function dataCssRuleOutput()
     {
         // ID will always be set to i-amp-42 for the tests.

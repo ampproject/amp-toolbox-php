@@ -14,7 +14,6 @@ use AmpProject\Exception\InvalidSpecRuleName;
  */
 abstract class DeclarationList
 {
-
     /**
      * ID of the declaration list.
      *

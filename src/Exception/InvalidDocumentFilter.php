@@ -11,7 +11,6 @@ use InvalidArgumentException;
  */
 final class InvalidDocumentFilter extends InvalidArgumentException implements AmpException
 {
-
     /**
      * Instantiate an InvalidDocumentFilter exception for a class that was not a valid filter.
      *

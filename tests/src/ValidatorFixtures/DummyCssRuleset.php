@@ -10,7 +10,6 @@ use AmpProject\Validator\Spec\SpecRule;
  */
 class DummyCssRuleset extends CssRuleset
 {
-
     /** @var string */
     const ID = 'dummy';
 

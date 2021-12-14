@@ -12,7 +12,6 @@ use DomainException;
  */
 final class MissingArgument extends DomainException implements AmpCliException
 {
-
     /**
      * Instantiate a MissingArgument exception for an argument that is required but missing.
      *

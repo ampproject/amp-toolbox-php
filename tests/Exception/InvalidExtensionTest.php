@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidExtensionTest extends TestCase
 {
-
     /**
      * Test throwing the exception for an extension.
      */

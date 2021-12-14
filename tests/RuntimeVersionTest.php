@@ -14,7 +14,6 @@ use AmpProject\Tests\TestCase;
  */
 class RuntimeVersionTest extends TestCase
 {
-
     /**
      * Associative array of mapping data for stubbing remote requests.
      *

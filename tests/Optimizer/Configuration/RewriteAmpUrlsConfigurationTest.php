@@ -19,7 +19,6 @@ use stdClass;
  */
 final class RewriteAmpUrlsConfigurationTest extends TestCase
 {
-
     public function testDefaults()
     {
         $configuration = new RewriteAmpUrlsConfiguration([]);

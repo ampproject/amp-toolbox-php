@@ -12,7 +12,6 @@ use AmpProject\Tests\TestCase;
  */
 class InvalidErrorCodeTest extends TestCase
 {
-
     /**
      * Test throwing the exception for a error code.
      */

@@ -11,7 +11,6 @@ use AmpProject\Response;
  */
 final class RemoteGetRequestResponse implements Response
 {
-
     /**
      * Body of the response.
      *

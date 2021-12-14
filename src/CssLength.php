@@ -15,7 +15,6 @@ namespace AmpProject;
  */
 final class CssLength
 {
-
     // Special attribute values.
     const AUTO  = 'auto';
     const FLUID = 'fluid';

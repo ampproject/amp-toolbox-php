@@ -14,7 +14,6 @@ use AmpProject\Exception\InvalidSpecRuleName;
  */
 abstract class AttributeList
 {
-
     /**
      * ID of the attribute list.
      *

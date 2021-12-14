@@ -11,7 +11,6 @@ use AmpProject\Dom\Document;
  */
 interface AfterLoadFilter extends Filter
 {
-
     /**
      * Process the Document after the html loaded into the Dom\Document.
      *

@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 interface Layout
 {
-
     const NODISPLAY    = 'nodisplay';
     const FIXED        = 'fixed';
     const RESPONSIVE   = 'responsive';

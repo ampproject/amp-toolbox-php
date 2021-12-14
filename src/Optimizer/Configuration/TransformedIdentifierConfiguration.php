@@ -17,7 +17,6 @@ use AmpProject\Validator\Spec\SpecRule;
  */
 final class TransformedIdentifierConfiguration extends BaseTransformerConfiguration
 {
-
     /**
      * Configuration key that holds the version number to use.
      *

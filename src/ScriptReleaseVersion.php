@@ -15,7 +15,6 @@ namespace AmpProject;
  */
 final class ScriptReleaseVersion extends FakeEnum
 {
-
     const UNKNOWN             = 'unknown';
     const STANDARD            = 'standard';
     const LTS                 = 'lts';

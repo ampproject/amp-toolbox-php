@@ -37,7 +37,6 @@ use AmpProject\Optimizer\TransformerConfiguration;
  */
 final class PreloadHeroImage implements Transformer
 {
-
     /**
      * Class(es) to apply to a serverside-rendered image element.
      *

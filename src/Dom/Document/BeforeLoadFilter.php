@@ -9,7 +9,6 @@ namespace AmpProject\Dom\Document;
  */
 interface BeforeLoadFilter extends Filter
 {
-
     /**
      * Preprocess the HTML to be loaded into the Dom\Document.
      *

@@ -13,7 +13,6 @@ use AmpProject\Exception\InvalidSpecRuleName;
  */
 abstract class DescendantTagList
 {
-
     /**
      * ID of the descendant tag list.
      *

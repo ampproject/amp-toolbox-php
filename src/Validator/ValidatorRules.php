@@ -14,7 +14,6 @@ use AmpProject\Validator\Spec\Error\MandatoryAttrMissing;
 
 final class ValidatorRules
 {
-
     /**
      * Regular expression to validate the value of a transformed attribute.
      *

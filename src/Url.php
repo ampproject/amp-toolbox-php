@@ -20,7 +20,6 @@ use AmpProject\Exception\FailedToParseUrl;
  */
 final class Url
 {
-
     const SCHEME   = 'scheme';
     const HOST     = 'host';
     const PORT     = 'port';

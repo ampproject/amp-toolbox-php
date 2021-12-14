@@ -11,7 +11,6 @@ use RuntimeException;
  */
 final class FailedToCreateLink extends RuntimeException implements AmpException
 {
-
     /**
      * Instantiate a FailedToCreateLink exception for a link that could not be created.
      *

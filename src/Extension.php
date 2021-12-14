@@ -9,7 +9,6 @@ namespace AmpProject;
  */
 interface Extension
 {
-
     const ACCESS                                 = 'amp-access';
     const ACCESS_LATERPAY                        = 'amp-access-laterpay';
     const ACCESS_POOOL                           = 'amp-access-poool';

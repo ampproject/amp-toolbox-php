@@ -16,7 +16,6 @@ use AmpProject\Exception\InvalidByteSequence;
  */
 final class DetectInvalidByteSequence implements BeforeLoadFilter
 {
-
     /**
      * Options instance to use.
      *

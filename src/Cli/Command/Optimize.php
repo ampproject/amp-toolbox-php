@@ -15,7 +15,6 @@ use AmpProject\Optimizer\TransformationEngine;
  */
 final class Optimize extends Command
 {
-
     /**
      * Name of the command.
      *

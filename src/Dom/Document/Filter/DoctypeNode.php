@@ -12,7 +12,6 @@ use AmpProject\Dom\Document\BeforeLoadFilter;
  */
 final class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
 {
-
     /**
      * Regex pattern used for securing the doctype node if it is not the first one.
      *

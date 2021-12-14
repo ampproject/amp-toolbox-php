@@ -11,7 +11,6 @@ use AmpProject\Optimizer\Exception\UnknownConfigurationKey;
  */
 interface TransformerConfiguration
 {
-
     /**
      * Get the value for a given key.
      *

@@ -4,7 +4,6 @@ namespace AmpProject\Tooling\Validator\SpecGenerator;
 
 trait ClassNames
 {
-
     /**
      * Get a valid PHP class name from an ID string.
      *

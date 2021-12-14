@@ -14,7 +14,6 @@ use AmpProject\Html\Parser\ParsedAttribute;
  */
 final class Context
 {
-
     /**
      * Validator rules to be applied.
      *

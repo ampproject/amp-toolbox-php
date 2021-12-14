@@ -15,7 +15,6 @@ namespace AmpProject\Tests;
  */
 final class TestMarkup
 {
-
     /**
      * Associative array of mapping data for stubbing remote requests.
      *

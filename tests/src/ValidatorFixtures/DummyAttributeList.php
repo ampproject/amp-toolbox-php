@@ -13,7 +13,6 @@ use AmpProject\Validator\Spec\SpecRule;
  */
 class DummyAttributeList extends AttributeList
 {
-
     /** @var string */
     const ID = 'dummy';
 

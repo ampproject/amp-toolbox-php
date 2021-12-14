@@ -14,7 +14,6 @@ use AmpProject\Tests\TestCase;
  */
 class HtmlParserTest extends TestCase
 {
-
     public function dataParsing()
     {
         return [

@@ -15,7 +15,6 @@ use AmpProject\Validator\Spec\SpecRule;
  */
 abstract class DocRuleset
 {
-
     /**
      * ID of the document ruleset.
      *
