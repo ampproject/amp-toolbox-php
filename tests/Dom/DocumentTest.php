@@ -1486,4 +1486,55 @@ class DocumentTest extends TestCase
         $output = $document->saveHTML();
         $this->assertSimilarMarkup($expected, $output);
     }
+
+    /**
+     * Data for AmpProject\Dom\Document test.
+     *
+     * @return array Data.
+     */
+    public function dataHtmlEntities()
+    {
+        $head = '<head><meta charset="utf-8"></head>';
+
+        return [
+            'prevent_html_entities_from_double_encoding' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<p>Lorem ipsum dolor sit&comma; amet consectetur adipisicing elit&period; Repudiandae maxime accusamus mollitia nobis deleniti&colon; quia laborum iste &amp; reprehenderit&period;</p>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae maxime accusamus mollitia nobis deleniti: quia laborum iste &amp; reprehenderit.</p>'
+                . '</body></html>',
+                []
+            ],
+            'do_not_filter_entities' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<p>Lorem ipsum dolor sit&comma; amet consectetur</p>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<p>Lorem ipsum dolor sit&amp;comma; amet consectetur</p>'
+                . '</body></html>',
+                [
+                    Option::FILTER_HTML_ENTITIES => false,
+                ]
+            ],
+        ];
+    }
+
+    /**
+     *
+     * @param string $source   Source content.
+     * @param string $expected Expected target content.
+     * @param array  $options  Options for Document class.
+     *
+     * @dataProvider dataHtmlEntities
+     *
+     * @covers \AmpProject\Dom\Document\Filter\HtmlEntities::beforeLoad()
+     */
+    public function testHtmlEntities($source, $expected, $options)
+    {
+        $document = Document::fromHtml($source, $options);
+        $output   = $document->saveHTML();
+
+        $this->assertEqualMarkup($expected, $output);
+    }
 }
