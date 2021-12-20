@@ -11,7 +11,7 @@ use AmpProject\Dom\Options;
  *
  * @package ampproject/amp-toolbox
  */
-final class HtmlEntities implements BeforeLoadFilter
+final class NormalizeHtmlEntities implements BeforeLoadFilter
 {
     /**
      * Options instance to use.
@@ -76,6 +76,7 @@ final class HtmlEntities implements BeforeLoadFilter
      */
     protected function hasHtmlEntities($html)
     {
+		// TODO: Discuss other popular entities to look for, especially for languages with different punctuation symbols.
         return preg_match('/&comma;|&period;|&excl;|&quest;/', $html);
     }
 }

@@ -1488,7 +1488,7 @@ class DocumentTest extends TestCase
     }
 
     /**
-     * Data for AmpProject\Dom\Document test.
+     * Data for AmpProject\Dom\Document\Filter\HtmlEntities test.
      *
      * @return array Data.
      */
@@ -1506,7 +1506,7 @@ class DocumentTest extends TestCase
                 . '</body></html>',
                 []
             ],
-            'do_not_filter_entities' => [
+            'html_entities_filtering_can_be_disabled' => [
                 '<!DOCTYPE html><html><head></head><body>'
                 . '<p>Lorem ipsum dolor sit&comma; amet consectetur</p>'
                 . '</body></html>',
@@ -1521,6 +1521,7 @@ class DocumentTest extends TestCase
     }
 
     /**
+     * Test HtmlEntities document filter.
      *
      * @param string $source   Source content.
      * @param string $expected Expected target content.
