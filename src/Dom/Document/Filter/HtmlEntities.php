@@ -13,7 +13,6 @@ use AmpProject\Dom\Options;
  */
 final class HtmlEntities implements BeforeLoadFilter
 {
-
     /**
      * Options instance to use.
      *
