@@ -23,10 +23,12 @@ class OptionsTest extends TestCase
     {
         $options        = new Options(Option::DEFAULTS);
         $defaultOptions = [
-            'amp_bind_syntax' => 'auto',
-            'encoding'        => null,
-            'libxml_flags'    => 0,
-            'check_encoding'  => false,
+            'amp_bind_syntax'            => 'auto',
+            'encoding'                   => null,
+            'libxml_flags'               => 0,
+            'check_encoding'             => false,
+            'filter_html_entities'       => 'auto',
+            'filter_html_entities_flags' => ENT_HTML5,
         ];
 
         $this->assertSame($options->toArray(), $defaultOptions);

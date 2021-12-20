@@ -38,15 +38,33 @@ interface Option
     const CHECK_ENCODING = 'check_encoding';
 
     /**
+     * Option to use the HtmlEntities filter.
+     *
+     * Accepted values are 'auto', true and false.
+     *
+     * @var string
+     */
+    const FILTER_HTML_ENTITIES = 'filter_html_entities';
+
+    /**
+     * Flags option for html entities.
+     *
+     * @var string
+     */
+    const FILTER_HTML_ENTITIES_FLAGS = 'filter_html_entities_flags';
+
+    /**
      * Associative array of known options and their respective default value.
      *
      * @var array
      */
     const DEFAULTS = [
-        self::AMP_BIND_SYNTAX => self::AMP_BIND_SYNTAX_AUTO,
-        self::ENCODING        => null,
-        self::LIBXML_FLAGS    => 0,
-        self::CHECK_ENCODING  => false,
+        self::AMP_BIND_SYNTAX             => self::AMP_BIND_SYNTAX_AUTO,
+        self::ENCODING                    => null,
+        self::LIBXML_FLAGS                => 0,
+        self::CHECK_ENCODING              => false,
+        self::FILTER_HTML_ENTITIES        => self::FILTER_HTML_ENTITIES_AUTO,
+        self::FILTER_HTML_ENTITIES_FLAGS  => ENT_HTML5,
     ];
 
     /**
@@ -69,4 +87,11 @@ interface Option
      * @var string
      */
     const AMP_BIND_SYNTAX_SQUARE_BRACKETS = 'square_brackets';
+
+    /**
+     * Possible value 'auto' for the 'filter_html_entities' option.
+     *
+     * @var string
+     */
+    const FILTER_HTML_ENTITIES_AUTO = 'auto';
 }
