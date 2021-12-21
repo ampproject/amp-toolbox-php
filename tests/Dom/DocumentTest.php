@@ -1488,7 +1488,7 @@ class DocumentTest extends TestCase
     }
 
     /**
-     * Data for AmpProject\Dom\Document\Filter\HtmlEntities test.
+     * Data for AmpProject\Dom\Document\Filter\NormalizeHtmlEntities test.
      *
      * @return array Data.
      */
@@ -1506,7 +1506,7 @@ class DocumentTest extends TestCase
                 . '</body></html>',
                 []
             ],
-            'html_entities_filtering_can_be_disabled' => [
+            'normalizing_html_entities_can_be_disabled' => [
                 '<!DOCTYPE html><html><head></head><body>'
                 . '<p>Lorem ipsum dolor sit&comma; amet consectetur</p>'
                 . '</body></html>',
@@ -1514,14 +1514,37 @@ class DocumentTest extends TestCase
                 . '<p>Lorem ipsum dolor sit&amp;comma; amet consectetur</p>'
                 . '</body></html>',
                 [
-                    Option::FILTER_HTML_ENTITIES => false,
+                    Option::NORMALIZE_HTML_ENTITIES => Option::NORMALIZE_HTML_ENTITIES_NEVER,
+                ]
+            ],
+            'normalize_using_custom_flags' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<p>A &#039;quote&#039; is &lt;b&gt;bold&lt;/b&gt;&period;</p>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<p>A \'quote\' is <b>bold</b>&amp;period;</p>'
+                . '</body></html>',
+                [
+                    Option::NORMALIZE_HTML_ENTITIES       => Option::NORMALIZE_HTML_ENTITIES_ALWAYS,
+                    Option::NORMALIZE_HTML_ENTITIES_FLAGS => ENT_QUOTES,
+                ]
+            ],
+            'single_and_double_quotes_always_converted_by_DOMDocument_saveHTML_method' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<p>Lorem &quot;ipsum&quot; &apos;dolor&apos; sit amet&comma; consectetur&semi; adipisicing elit</p>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<p>Lorem "ipsum" \'dolor\' sit amet&amp;comma; consectetur&amp;semi; adipisicing elit</p>'
+                . '</body></html>',
+                [
+                    Option::NORMALIZE_HTML_ENTITIES_FLAGS => ENT_NOQUOTES,
                 ]
             ],
         ];
     }
 
     /**
-     * Test HtmlEntities document filter.
+     * Test NormalizeHtmlEntities document filter.
      *
      * @param string $source   Source content.
      * @param string $expected Expected target content.
@@ -1529,7 +1552,7 @@ class DocumentTest extends TestCase
      *
      * @dataProvider dataHtmlEntities
      *
-     * @covers \AmpProject\Dom\Document\Filter\HtmlEntities::beforeLoad()
+     * @covers \AmpProject\Dom\Document\Filter\NormalizeHtmlEntities::beforeLoad()
      */
     public function testHtmlEntities($source, $expected, $options)
     {

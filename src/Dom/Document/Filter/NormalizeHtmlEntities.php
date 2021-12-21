@@ -21,16 +21,16 @@ final class NormalizeHtmlEntities implements BeforeLoadFilter
     private $options;
 
     /**
-     * Whether to use this HtmlEntities or not.
+     * Whether to use this NormalizeHtmlEntities or not.
      *
-     * Possible values are 'auto', true and false.
+     * Accepted values are 'auto', 'always' and 'never'.
      *
-     * @var string|bool
+     * @var string
      */
-    private $filterHtmlEntities;
+    private $normalizeHtmlEntities;
 
     /**
-     * HtmlEntities constructor.
+     * NormalizeHtmlEntities constructor.
      *
      * @param Options $options Options instance to use.
      */
@@ -38,10 +38,17 @@ final class NormalizeHtmlEntities implements BeforeLoadFilter
     {
         $this->options = $options;
 
-        if (! isset($options[Option::FILTER_HTML_ENTITIES]) || $options[Option::FILTER_HTML_ENTITIES] === 'auto') {
-            $this->filterHtmlEntities = 'auto';
-        } else {
-            $this->filterHtmlEntities = (bool) $options[Option::FILTER_HTML_ENTITIES];
+        switch ($options[Option::NORMALIZE_HTML_ENTITIES]) {
+            case Option::NORMALIZE_HTML_ENTITIES_NEVER:
+                $this->normalizeHtmlEntities = Option::NORMALIZE_HTML_ENTITIES_NEVER;
+                break;
+            case Option::NORMALIZE_HTML_ENTITIES_ALWAYS:
+                $this->normalizeHtmlEntities = Option::NORMALIZE_HTML_ENTITIES_ALWAYS;
+                break;
+            case Option::NORMALIZE_HTML_ENTITIES_AUTO:
+            default:
+                $this->normalizeHtmlEntities = Option::NORMALIZE_HTML_ENTITIES_AUTO;
+                break;
         }
     }
 
@@ -53,17 +60,19 @@ final class NormalizeHtmlEntities implements BeforeLoadFilter
      */
     public function beforeLoad($html)
     {
-        if (! $this->filterHtmlEntities) {
-            return $html;
-        }
-
-        if (($this->filterHtmlEntities === Option::FILTER_HTML_ENTITIES_AUTO) && ! $this->hasHtmlEntities($html)) {
+        if (
+            ($this->normalizeHtmlEntities === Option::NORMALIZE_HTML_ENTITIES_NEVER)
+            || (
+                ($this->normalizeHtmlEntities === Option::NORMALIZE_HTML_ENTITIES_AUTO)
+                && ! $this->hasHtmlEntities($html)
+            )
+        ) {
             return $html;
         }
 
         return html_entity_decode(
             $html,
-            $this->options[Option::FILTER_HTML_ENTITIES_FLAGS],
+            $this->options[Option::NORMALIZE_HTML_ENTITIES_FLAGS],
             $this->options[Option::ENCODING]
         );
     }
@@ -76,7 +85,8 @@ final class NormalizeHtmlEntities implements BeforeLoadFilter
      */
     protected function hasHtmlEntities($html)
     {
-		// TODO: Discuss other popular entities to look for, especially for languages with different punctuation symbols.
+        // TODO: Discuss other popular entities to look for, especially for languages
+        // with different punctuation symbols.
         return preg_match('/&comma;|&period;|&excl;|&quest;/', $html);
     }
 }
