@@ -2,14 +2,14 @@
 
 namespace AmpProject\Exception;
 
-use InvalidArgumentException;
+use DomainException;
 
 /**
  * Exception thrown when an invalid option value was provided.
  *
  * @package ampproject/amp-toolbox
  */
-final class InvalidOptionValue extends InvalidArgumentException implements AmpException
+final class InvalidOptionValue extends DomainException implements AmpException
 {
     /**
      * Instantiate an InvalidOptionValue exception for an invalid option value.
