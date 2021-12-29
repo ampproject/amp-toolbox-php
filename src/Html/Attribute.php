@@ -74,6 +74,7 @@ interface Attribute
     const AMP_ONERROR                     = 'amp-onerror';
     const AMP_RUNTIME                     = 'amp-runtime';
     const AMP_SCRIPT_SRC                  = 'amp-script-src';
+    const AMP_STORY_DVH_POLLYFILL         = 'amp-story-dvh-polyfill';
     const ANCHOR                          = 'anchor';
     const ANIMATE                         = 'animate';
     const ANIMATE_IN                      = 'animate-in';
@@ -1109,6 +1110,7 @@ interface Attribute
     const DATA_SORT_TIME                   = 'data-sort-time';
     const DATA_SRC                         = 'data-src';
     const DATA_START                       = 'data-start';
+    const DATA_STORY_SUPPORTS_LANDSCAPE    = 'data-story-supports-landscape';
     const DATA_STREAMTYPE                  = 'data-streamtype';
     const DATA_TAG                         = 'data-tag';
     const DATA_TAGS                        = 'data-tags';
