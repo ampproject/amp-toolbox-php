@@ -79,7 +79,7 @@ final class AmpStoryCssOptimizerTest extends TestCase
                 . '    <amp-story-grid-layer template="fill">'
                 . '      <amp-img src="https://ampbyexample.com/img/image3.jpg" width="720" height="1280"></amp-img>'
                 . '    </amp-story-grid-layer>'
-                . '    <amp-story-grid-layer aspect-ratio="5:10" style="background-color: yellow; font-size: 2px;--aspect-ratio:5/10"></amp-story-grid-layer>'
+                . '    <amp-story-grid-layer aspect-ratio="5:10" style="--aspect-ratio:5/10;background-color: yellow; font-size: 2px;"></amp-story-grid-layer>'
                 . '  </amp-story-page>'
                 . '</amp-story>'
                 . '</body></html>',

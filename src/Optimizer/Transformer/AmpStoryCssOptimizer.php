@@ -238,7 +238,7 @@ final class AmpStoryCssOptimizer implements Transformer
 
             $aspectRatio = str_replace(':', '/', $node->getAttribute(Attribute::ASPECT_RATIO));
 
-            $node->addInlineStyle('--' . Attribute::ASPECT_RATIO . ':' . $aspectRatio);
+            $node->addInlineStyle('--' . Attribute::ASPECT_RATIO . ':' . $aspectRatio, true);
         }
     }
 }
