@@ -5,6 +5,7 @@ namespace AmpProject\Dom\Document\Filter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Dom\Options;
+use AmpProject\Exception\InvalidOptionValue;
 
 /**
  * Handles the html entities present in the html and prevent them from double encoding.
@@ -13,6 +14,12 @@ use AmpProject\Dom\Options;
  */
 final class NormalizeHtmlEntities implements BeforeLoadFilter
 {
+    const VALID_NORMALIZE_OPTION_VALUES = [
+        Option::NORMALIZE_HTML_ENTITIES_AUTO,
+        Option::NORMALIZE_HTML_ENTITIES_ALWAYS,
+        Option::NORMALIZE_HTML_ENTITIES_NEVER,
+    ];
+
     /**
      * Options instance to use.
      *
@@ -33,15 +40,21 @@ final class NormalizeHtmlEntities implements BeforeLoadFilter
      * NormalizeHtmlEntities constructor.
      *
      * @param Options $options Options instance to use.
+     *
+     * @throws InvalidOptionValue If invalid value is set to normalize_html_entities option.
      */
     public function __construct(Options $options)
     {
         $this->options = $options;
 
-		$this->normalizeHtmlEntities = $options[Option::NORMALIZE_HTML_ENTITIES];
-		if (! in_array($this->normalizeHtmlEntities, self::VALID_NORMALIZE_OPTION_VALUES, true)) {
-			throw InvalidOptionValue::forValue($this->normalizeHtmlEntities, self::VALID_NORMALIZE_OPTION_VALUES);
-		}
+        $this->normalizeHtmlEntities = $options[Option::NORMALIZE_HTML_ENTITIES];
+        if (! in_array($this->normalizeHtmlEntities, self::VALID_NORMALIZE_OPTION_VALUES, true)) {
+            throw InvalidOptionValue::forValue(
+                Option::NORMALIZE_HTML_ENTITIES,
+                self::VALID_NORMALIZE_OPTION_VALUES,
+                $this->normalizeHtmlEntities
+            );
+        }
     }
 
     /**

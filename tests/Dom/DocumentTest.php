@@ -3,10 +3,11 @@
 namespace AmpProject\Dom;
 
 use AmpProject\Amp;
-use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\InvalidByteSequence;
+use AmpProject\Exception\InvalidOptionValue;
 use AmpProject\Exception\MaxCssByteCountExceeded;
+use AmpProject\Html\Attribute;
 use AmpProject\Html\Tag;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
@@ -1554,11 +1555,32 @@ class DocumentTest extends TestCase
      *
      * @covers \AmpProject\Dom\Document\Filter\NormalizeHtmlEntities::beforeLoad()
      */
-    public function testHtmlEntities($source, $expected, $options)
+    public function testNormalizeHtmlEntities($source, $expected, $options)
     {
         $document = Document::fromHtml($source, $options);
         $output   = $document->saveHTML();
 
         $this->assertEqualMarkup($expected, $output);
+    }
+
+    /**
+     * Test NormalizeHtmlEntities throws exception for invalid option value.
+     *
+     * @covers \AmpProject\Dom\Document\Filter\NormalizeHtmlEntities::__construct()
+     */
+    public function testInvalidOptionValueThrowsByNormalizeHtmlEntities()
+    {
+        $this->expectException(InvalidOptionValue::class);
+        $this->expectExceptionMessage(
+            "The value for the option 'normalize_html_entities' expected the value to be one of "
+            . "[auto, always, never], got 'invalid-option' instead."
+        );
+
+        $source  = '<!DOCTYPE html><html><head></head><body></body></html>';
+        $options = [
+            Option::NORMALIZE_HTML_ENTITIES => 'invalid-option',
+        ];
+
+        Document::fromHtml($source, $options);
     }
 }
