@@ -8,7 +8,7 @@ use AmpProject\Dom\Options;
 use AmpProject\Exception\InvalidOptionValue;
 
 /**
- * Handles the html entities present in the html and prevent them from double encoding.
+ * Handles the html entities present in the html and prevents them from double encoding.
  *
  * @package ampproject/amp-toolbox
  */
@@ -28,7 +28,7 @@ final class NormalizeHtmlEntities implements BeforeLoadFilter
     private $options;
 
     /**
-     * Whether to use this NormalizeHtmlEntities or not.
+     * Whether to use the NormalizeHtmlEntities filter or not.
      *
      * Accepted values are 'auto', 'always' and 'never'.
      *
