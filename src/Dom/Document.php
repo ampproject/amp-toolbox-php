@@ -204,6 +204,7 @@ final class Document extends DOMDocument
                 Filter\HttpEquivCharset::class,
                 Filter\LibxmlCompatibility::class,
                 Filter\ProtectEsiTags::class,
+                Filter\NormalizeHtmlEntities::class,
             ]
         );
     }

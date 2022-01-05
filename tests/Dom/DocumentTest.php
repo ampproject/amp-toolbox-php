@@ -3,10 +3,11 @@
 namespace AmpProject\Dom;
 
 use AmpProject\Amp;
-use AmpProject\Html\Attribute;
 use AmpProject\Dom\Document\Option;
 use AmpProject\Exception\InvalidByteSequence;
+use AmpProject\Exception\InvalidOptionValue;
 use AmpProject\Exception\MaxCssByteCountExceeded;
+use AmpProject\Html\Attribute;
 use AmpProject\Html\Tag;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
@@ -1485,5 +1486,101 @@ class DocumentTest extends TestCase
         $document = Document::fromHtml($source);
         $output = $document->saveHTML();
         $this->assertSimilarMarkup($expected, $output);
+    }
+
+    /**
+     * Data for AmpProject\Dom\Document\Filter\NormalizeHtmlEntities test.
+     *
+     * @return array Data.
+     */
+    public function dataHtmlEntities()
+    {
+        $head = '<head><meta charset="utf-8"></head>';
+
+        return [
+            'prevent_html_entities_from_double_encoding' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<p>Lorem ipsum dolor sit&comma; amet consectetur adipisicing elit&period; Repudiandae maxime accusamus mollitia nobis deleniti&colon; quia laborum iste &amp; reprehenderit&period;</p>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae maxime accusamus mollitia nobis deleniti: quia laborum iste &amp; reprehenderit.</p>'
+                . '</body></html>',
+                []
+            ],
+            'normalizing_html_entities_can_be_disabled' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<p>Lorem ipsum dolor sit&comma; amet consectetur</p>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<p>Lorem ipsum dolor sit&amp;comma; amet consectetur</p>'
+                . '</body></html>',
+                [
+                    Option::NORMALIZE_HTML_ENTITIES => Option::NORMALIZE_HTML_ENTITIES_NEVER,
+                ]
+            ],
+            'normalize_using_custom_flags' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<p>A &#039;quote&#039; is &lt;b&gt;bold&lt;/b&gt;&period;</p>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<p>A \'quote\' is <b>bold</b>&amp;period;</p>'
+                . '</body></html>',
+                [
+                    Option::NORMALIZE_HTML_ENTITIES       => Option::NORMALIZE_HTML_ENTITIES_ALWAYS,
+                    Option::NORMALIZE_HTML_ENTITIES_FLAGS => ENT_QUOTES,
+                ]
+            ],
+            'single_and_double_quotes_always_converted_by_DOMDocument_saveHTML_method' => [
+                '<!DOCTYPE html><html><head></head><body>'
+                . '<p>Lorem &quot;ipsum&quot; &apos;dolor&apos; sit amet&comma; consectetur&semi; adipisicing elit</p>'
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>'
+                . '<p>Lorem "ipsum" \'dolor\' sit amet&amp;comma; consectetur&amp;semi; adipisicing elit</p>'
+                . '</body></html>',
+                [
+                    Option::NORMALIZE_HTML_ENTITIES_FLAGS => ENT_NOQUOTES,
+                ]
+            ],
+        ];
+    }
+
+    /**
+     * Test NormalizeHtmlEntities document filter.
+     *
+     * @param string $source   Source content.
+     * @param string $expected Expected target content.
+     * @param array  $options  Options for Document class.
+     *
+     * @dataProvider dataHtmlEntities
+     *
+     * @covers \AmpProject\Dom\Document\Filter\NormalizeHtmlEntities::beforeLoad()
+     */
+    public function testNormalizeHtmlEntities($source, $expected, $options)
+    {
+        $document = Document::fromHtml($source, $options);
+        $output   = $document->saveHTML();
+
+        $this->assertEqualMarkup($expected, $output);
+    }
+
+    /**
+     * Test NormalizeHtmlEntities throws exception for invalid option value.
+     *
+     * @covers \AmpProject\Dom\Document\Filter\NormalizeHtmlEntities::__construct()
+     */
+    public function testInvalidOptionValueThrowsByNormalizeHtmlEntities()
+    {
+        $this->expectException(InvalidOptionValue::class);
+        $this->expectExceptionMessage(
+            "The value for the option 'normalize_html_entities' expected the value to be one of "
+            . "[auto, always, never], got 'invalid-option' instead."
+        );
+
+        $source  = '<!DOCTYPE html><html><head></head><body></body></html>';
+        $options = [
+            Option::NORMALIZE_HTML_ENTITIES => 'invalid-option',
+        ];
+
+        Document::fromHtml($source, $options);
     }
 }
