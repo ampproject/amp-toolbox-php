@@ -38,18 +38,10 @@ final class NormalizeHtmlEntities implements BeforeLoadFilter
     {
         $this->options = $options;
 
-        switch ($options[Option::NORMALIZE_HTML_ENTITIES]) {
-            case Option::NORMALIZE_HTML_ENTITIES_NEVER:
-                $this->normalizeHtmlEntities = Option::NORMALIZE_HTML_ENTITIES_NEVER;
-                break;
-            case Option::NORMALIZE_HTML_ENTITIES_ALWAYS:
-                $this->normalizeHtmlEntities = Option::NORMALIZE_HTML_ENTITIES_ALWAYS;
-                break;
-            case Option::NORMALIZE_HTML_ENTITIES_AUTO:
-            default:
-                $this->normalizeHtmlEntities = Option::NORMALIZE_HTML_ENTITIES_AUTO;
-                break;
-        }
+		$this->normalizeHtmlEntities = $options[Option::NORMALIZE_HTML_ENTITIES];
+		if (! in_array($this->normalizeHtmlEntities, self::VALID_NORMALIZE_OPTION_VALUES, true)) {
+			throw InvalidOptionValue::forValue($this->normalizeHtmlEntities, self::VALID_NORMALIZE_OPTION_VALUES);
+		}
     }
 
     /**
