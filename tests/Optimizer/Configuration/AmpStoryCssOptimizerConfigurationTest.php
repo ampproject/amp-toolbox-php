@@ -22,8 +22,8 @@ final class AmpStoryCssOptimizerConfigurationTest extends TestCase
     {
         $configuration = new AmpStoryCssOptimizerConfiguration([]);
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
-        $this->assertEquals(false, $configuration->get('optimizeAmpStory'));
-        $this->assertEquals(false, $configuration->optimizeAmpStory);
+        $this->assertFalse($configuration->get('optimizeAmpStory'));
+        $this->assertFalse($configuration->optimizeAmpStory);
         $this->assertEquals(
             [
                 'optimizeAmpStory' => false,
@@ -38,8 +38,8 @@ final class AmpStoryCssOptimizerConfigurationTest extends TestCase
             'optimizeAmpStory' => true,
         ]);
         $this->assertInstanceOf(TransformerConfiguration::class, $configuration);
-        $this->assertEquals(true, $configuration->get('optimizeAmpStory'));
-        $this->assertEquals(true, $configuration->optimizeAmpStory);
+        $this->assertTrue($configuration->get('optimizeAmpStory'));
+        $this->assertTrue($configuration->optimizeAmpStory);
         $this->assertEquals(
             [
                 'optimizeAmpStory' => true,

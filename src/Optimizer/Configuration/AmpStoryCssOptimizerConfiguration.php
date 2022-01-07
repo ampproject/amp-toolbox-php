@@ -8,9 +8,7 @@ use AmpProject\Optimizer\Exception\InvalidConfigurationValue;
 /**
  * Configuration for the AmpStoryCssOptimizer transformer.
  *
- * @property string $format                  Specifies the AMP format. Defaults to `AMP`.
- * @property bool   $autoExtensionImport     Set to `false` to disable the auto extension import. Defaults to `true`.
- * @property bool   $experimentBindAttribute Enables experimental conversion of bind attributes. Defaults to `false`.
+ * @property bool $optimizeAmpStory Whether to enable AMP Story optimizations or not. Defaults to `false`.
  *
  * @package ampproject/amp-toolbox
  */

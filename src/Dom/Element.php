@@ -43,7 +43,7 @@ final class Element extends DOMElement
      * Add CSS styles to the element as an inline style attribute.
      *
      * @param string $style   CSS style(s) to add to the inline style attribute.
-     * @param bool   $prepend Whether to prepend the new style to existing style or not.
+     * @param bool   $prepend Optional. Whether to prepend the new style to existing styles or not. Defaults to false.
      * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
      * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
      */
@@ -56,7 +56,7 @@ final class Element extends DOMElement
             $existingStyle = rtrim($existingStyle, ';') . ';';
         }
 
-        $newStyle = ! $prepend ? ($existingStyle . $style) : ($style . ';' . $existingStyle);
+        $newStyle = $prepend ? ($style . ';' . $existingStyle) : ($existingStyle . $style);
 
         return $this->setAttribute(Attribute::STYLE, $newStyle);
     }

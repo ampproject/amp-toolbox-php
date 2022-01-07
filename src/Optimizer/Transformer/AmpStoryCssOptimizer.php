@@ -18,11 +18,11 @@ use AmpProject\Optimizer\TransformerConfiguration;
  * AmpStoryCssOptimizer - CSS Optimizer for AMP Story
  *
  * This transformer will:
- * - append link[rel=stylesheet] to amp-story-1.0.css.
- * - modify the amp-custom css to use --amp-story-${vh/vw/vmin/vmax}.
- * - append inline <script> for the dvh polyfill.
- * - SSR data-story-supports-landscape.
- * - SSR aspect-ratio into style.
+ * - append `link[rel=stylesheet]` to `amp-story-1.0.css`.
+ * - modify the `amp-custom` CSS to use `--amp-story-${vh/vw/vmin/vmax}`.
+ * - append inline `<script>` for the `dvh` polyfill.
+ * - SSR `data-story-supports-landscape`.
+ * - SSR `aspect-ratio` into style.
  *
  * @package ampproject/amp-toolbox
  */
@@ -45,7 +45,7 @@ final class AmpStoryCssOptimizer implements Transformer
     private $configuration;
 
     /**
-     * Instantiate a AmpStoryCssOptimizer object.
+     * Instantiate an AmpStoryCssOptimizer object.
      *
      * @param TransformerConfiguration $configuration Configuration store to use.
      */
@@ -101,7 +101,7 @@ final class AmpStoryCssOptimizer implements Transformer
 
         if ($styleAmpCustom) {
             $this->modifyAmpCustomCSS($styleAmpCustom);
-            // Make sure to not double install the dvh polyfill.
+            // Make sure to not install the dvh polyfill twice.
             if (! $hasAmpStoryDvhPolyfillScript) {
                 $this->appendAmpStoryDvhPolyfillScript($document);
             }
@@ -119,8 +119,8 @@ final class AmpStoryCssOptimizer implements Transformer
      */
     private function isAmpStoryScript(Element $element)
     {
-        return ($element->tagName === Tag::SCRIPT)
-            && ($element->getAttribute(Attribute::CUSTOM_ELEMENT) === Extension::STORY);
+        return $element->tagName === Tag::SCRIPT
+            && $element->getAttribute(Attribute::CUSTOM_ELEMENT) === Extension::STORY;
     }
 
     /**
@@ -131,7 +131,8 @@ final class AmpStoryCssOptimizer implements Transformer
      */
     private function isAmpStoryDvhPolyfillScript(Element $element)
     {
-        return $element->tagName === Tag::SCRIPT && $element->hasAttribute(Attribute::AMP_STORY_DVH_POLLYFILL);
+        return $element->tagName === Tag::SCRIPT
+            && $element->hasAttribute(Attribute::AMP_STORY_DVH_POLLYFILL);
     }
 
     /**
@@ -142,7 +143,8 @@ final class AmpStoryCssOptimizer implements Transformer
      */
     private function isStyleAmpCustom(Element $element)
     {
-        return $element->tagName === Tag::STYLE && $element->hasAttribute(Attribute::AMP_CUSTOM);
+        return $element->tagName === Tag::STYLE
+            && $element->hasAttribute(Attribute::AMP_CUSTOM);
     }
 
     /**
@@ -183,9 +185,13 @@ final class AmpStoryCssOptimizer implements Transformer
      */
     private function appendAmpStoryDvhPolyfillScript(Document $document)
     {
-        $ampStoryDvhPolyfillScript = $document->createElementWithAttributes(Tag::SCRIPT, [
-            Attribute::AMP_STORY_DVH_POLLYFILL => '',
-        ], self::AMP_STORY_DVH_POLYFILL_CONTENT);
+        $ampStoryDvhPolyfillScript = $document->createElementWithAttributes(
+            Tag::SCRIPT,
+            [
+                Attribute::AMP_STORY_DVH_POLLYFILL => '',
+            ],
+            self::AMP_STORY_DVH_POLYFILL_CONTENT
+        );
 
         $document->head->appendChild($ampStoryDvhPolyfillScript);
     }
@@ -197,12 +203,9 @@ final class AmpStoryCssOptimizer implements Transformer
      */
     private function supportsLandscapeSSR(Document $document)
     {
-        /**
-         * @var Element|null
-         */
         $story = $document->body->getElementsByTagName(Extension::STORY)->item(0);
 
-        if (! $story) {
+        if (! $story instanceof Element) {
             return;
         }
 
@@ -238,7 +241,7 @@ final class AmpStoryCssOptimizer implements Transformer
 
             $aspectRatio = str_replace(':', '/', $node->getAttribute(Attribute::ASPECT_RATIO));
 
-            $node->addInlineStyle('--' . Attribute::ASPECT_RATIO . ':' . $aspectRatio, true);
+            $node->addInlineStyle("--aspect-ratio:{$aspectRatio}", true);
         }
     }
 }
