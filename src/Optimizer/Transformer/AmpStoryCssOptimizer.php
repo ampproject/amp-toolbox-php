@@ -154,10 +154,15 @@ final class AmpStoryCssOptimizer implements Transformer
      */
     private function appendAmpStoryCssLink(Document $document)
     {
+        // @TODO Need to take the following into account when deciding on a version:
+        // - latest stable version available,
+        // - the channel that the runtime is locked to, i.e. whether LTS is active.
+        $href = Amp::CACHE_HOST . '/v0/amp-story-1.0.css';
+
         $ampStoryCssLink = $document->createElementWithAttributes(Tag::LINK, [
             Attribute::REL           => Attribute::REL_STYLESHEET,
             Attribute::AMP_EXTENSION => Extension::STORY,
-            Attribute::HREF          => Amp::CACHE_HOST . '/v0/amp-story-1.0.css',
+            Attribute::HREF          => $href,
         ]);
 
         $document->head->appendChild($ampStoryCssLink);
