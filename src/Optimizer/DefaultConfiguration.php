@@ -39,6 +39,7 @@ class DefaultConfiguration implements Configuration
         Transformer\TransformedIdentifier::class => Configuration\TransformedIdentifierConfiguration::class,
         Transformer\OptimizeViewport::class      => Configuration\OptimizeViewportConfiguration::class,
         Transformer\MinifyHtml::class            => Configuration\MinifyHtmlConfiguration::class,
+        Transformer\AmpStoryCssOptimizer::class  => Configuration\AmpStoryCssOptimizerConfiguration::class,
     ];
 
     /**

@@ -4,12 +4,14 @@ namespace AmpProject\Optimizer;
 
 use AmpProject\Dom\Document;
 use AmpProject\Optimizer\Configuration\AmpRuntimeCssConfiguration;
+use AmpProject\Optimizer\Configuration\AmpStoryCssOptimizerConfiguration;
 use AmpProject\Optimizer\Configuration\MinifyHtmlConfiguration;
 use AmpProject\Optimizer\Configuration\AutoExtensionsConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeAmpBindConfiguration;
 use AmpProject\Optimizer\Configuration\OptimizeHeroImagesConfiguration;
 use AmpProject\Optimizer\Configuration\RewriteAmpUrlsConfiguration;
 use AmpProject\Optimizer\Transformer\AmpBoilerplateErrorHandler;
+use AmpProject\Optimizer\Transformer\AmpStoryCssOptimizer;
 use AmpProject\Optimizer\Transformer\GoogleFontsPreconnect;
 use AmpProject\Optimizer\Transformer\AutoExtensions;
 use AmpProject\Optimizer\Transformer\OptimizeAmpBind;
@@ -117,6 +119,10 @@ final class SpecTest extends TestCase
             'ServerSideRendering'           => [
                 ServerSideRendering::class,
                 self::TRANSFORMER_SPEC_PATH . '/valid/ServerSideRendering',
+            ],
+            'AmpStoryCssOptimizer'           => [
+                AmpStoryCssOptimizer::class,
+                self::TRANSFORMER_SPEC_PATH . '/experimental/AmpStoryCssTransformer',
             ],
         ];
 
@@ -257,6 +263,9 @@ final class SpecTest extends TestCase
                     break;
                 case 'rtv':
                     $mappedConfiguration[RewriteAmpUrls::class][RewriteAmpUrlsConfiguration::RTV] = $value;
+                    break;
+                case 'optimizeAmpStory':
+                    $mappedConfiguration[AmpStoryCssOptimizer::class][AmpStoryCssOptimizerConfiguration::OPTIMIZE_AMP_STORY] = $value;
                     break;
 
                 case '__format':
