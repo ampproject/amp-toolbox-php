@@ -41,6 +41,10 @@ class TableFormatter
      */
     protected $colors;
 
+    protected $tableColumnWidths = [];
+
+    protected $maxColumnWidth = 0;
+
     /**
      * TableFormatter constructor.
      *
@@ -364,5 +368,67 @@ class TableFormatter
         }
 
         return implode($break, $lines);
+    }
+
+    public function formatTable($rows, $headers = [])
+    {
+        $this->tableRows = [];
+
+        $this->setBorder(' | ');
+
+        if (! empty($headers)) {
+            $this->calculateTableColumns($headers);
+        }
+
+        foreach ($rows as $row) {
+            $this->calculateTableColumns($row);
+        }
+
+        $paddedWidth      = $this->maxColumnWidth + 2;
+        $numberOfColumns  = count($this->tableColumnWidths);
+        $horizontalBorder = '+' . implode('+', array_pad([], $numberOfColumns, str_repeat('-', $paddedWidth))) . '+';
+
+        $columns = array_merge(
+            [$paddedWidth],
+            array_fill(0, $numberOfColumns - 2, $this->maxColumnWidth),
+            [$paddedWidth]
+        );
+
+        $table = $horizontalBorder . "\n";
+
+        if (! empty($headers)) {
+            $table .= $this->getTableRow($headers, $columns, $numberOfColumns);
+            $table .= $horizontalBorder . "\n";
+        }
+
+        foreach ($rows as $row) {
+            $table .= $this->getTableRow($row, $columns, $numberOfColumns);
+        }
+
+        $table .= $horizontalBorder;
+
+        return $table;
+    }
+
+    protected function calculateTableColumns($row)
+    {
+        foreach($row as $i => $rowContent) {
+            $width = strlen($rowContent);
+
+            if ($width > $this->maxColumnWidth) {
+                $this->maxColumnWidth = $width;
+            }
+
+            if (! isset($this->tableColumnWidths[$i]) || $width > $this->tableColumnWidths[$i]) {
+                $this->tableColumnWidths[$i] = $width;
+            }
+        }
+    }
+
+    protected function getTableRow($row, $columns, $numberOfColumns)
+    {
+        $row[0] = '| ' . $row[0];
+        $row[$numberOfColumns - 1] = str_pad($row[$numberOfColumns - 1], $this->maxColumnWidth, ' ') . ' |';
+        return trim($this->format($columns, $row)) . "\n";
     }
 }

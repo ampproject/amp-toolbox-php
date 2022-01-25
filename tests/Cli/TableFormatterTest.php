@@ -142,4 +142,41 @@ class TableFormatterTest extends TestCase
         $result = $tableFormatter->format([5, '*'], [$column1, $column2]);
         $this->assertEquals($expected, $result);
     }
+
+    public function testFormatTable()
+    {
+        $items = [
+            [ 'html', 'HTML', 'Markup Language' ],
+            [ 'css', 'CSS', 'Style Sheet' ],
+            [ 'js', 'JavaScript', 'Programming language' ],
+        ];
+
+        $headers = [ 'Name', 'Title', 'Description' ];
+
+        $tableFormatter = new TableFormatter();
+        $table = $tableFormatter->formatTable( $items, $headers );
+
+        $expected = ""
+            . "+----------------------+----------------------+----------------------+" . "\n"
+            . "| Name                 | Title                | Description          |" . "\n"
+            . "+----------------------+----------------------+----------------------+" . "\n"
+            . "| html                 | HTML                 | Markup Language      |" . "\n"
+            . "| css                  | CSS                  | Style Sheet          |" . "\n"
+            . "| js                   | JavaScript           | Programming language |" . "\n"
+            . "+----------------------+----------------------+----------------------+";
+
+        $this->assertEquals($expected, $table);
+
+        $tableFormatter = new TableFormatter();
+        $table = $tableFormatter->formatTable( $items );
+
+        $expected = ""
+            . "+----------------------+----------------------+----------------------+" . "\n"
+            . "| html                 | HTML                 | Markup Language      |" . "\n"
+            . "| css                  | CSS                  | Style Sheet          |" . "\n"
+            . "| js                   | JavaScript           | Programming language |" . "\n"
+            . "+----------------------+----------------------+----------------------+";
+
+        $this->assertEquals($expected, $table);
+    }
 }
