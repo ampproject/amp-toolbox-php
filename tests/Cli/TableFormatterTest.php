@@ -145,38 +145,39 @@ class TableFormatterTest extends TestCase
 
     public function testFormatTable()
     {
-        $items = [
-            [ 'html', 'HTML', 'Markup Language' ],
-            [ 'css', 'CSS', 'Style Sheet' ],
-            [ 'js', 'JavaScript', 'Programming language' ],
+        $headers = ['Name', 'Title', 'Description'];
+        $rows    = [
+            ['html', 'HTML', 'Markup Language'],
+            ['css', 'CSS', 'Style Sheet'],
+            ['js', 'JavaScript', 'Programming language'],
         ];
 
-        $headers = [ 'Name', 'Title', 'Description' ];
-
         $tableFormatter = new TableFormatter();
-        $table = $tableFormatter->formatTable( $items, $headers );
 
-        $expected = ""
-            . "+----------------------+----------------------+----------------------+" . "\n"
-            . "| Name                 | Title                | Description          |" . "\n"
-            . "+----------------------+----------------------+----------------------+" . "\n"
-            . "| html                 | HTML                 | Markup Language      |" . "\n"
-            . "| css                  | CSS                  | Style Sheet          |" . "\n"
-            . "| js                   | JavaScript           | Programming language |" . "\n"
-            . "+----------------------+----------------------+----------------------+";
+        // With headers.
+        $expected = <<<OUTPUT
+            +----------------------+----------------------+----------------------+
+            | Name                 | Title                | Description          |
+            +----------------------+----------------------+----------------------+
+            | html                 | HTML                 | Markup Language      |
+            | css                  | CSS                  | Style Sheet          |
+            | js                   | JavaScript           | Programming language |
+            +----------------------+----------------------+----------------------+
+            OUTPUT;
 
+        $table = $tableFormatter->formatTable($rows, $headers);
         $this->assertEquals($expected, $table);
 
-        $tableFormatter = new TableFormatter();
-        $table = $tableFormatter->formatTable( $items );
+        // Without headers.
+        $expected = <<<OUTPUT
+            +----------------------+----------------------+----------------------+
+            | html                 | HTML                 | Markup Language      |
+            | css                  | CSS                  | Style Sheet          |
+            | js                   | JavaScript           | Programming language |
+            +----------------------+----------------------+----------------------+
+            OUTPUT;
 
-        $expected = ""
-            . "+----------------------+----------------------+----------------------+" . "\n"
-            . "| html                 | HTML                 | Markup Language      |" . "\n"
-            . "| css                  | CSS                  | Style Sheet          |" . "\n"
-            . "| js                   | JavaScript           | Programming language |" . "\n"
-            . "+----------------------+----------------------+----------------------+";
-
+        $table = $tableFormatter->formatTable($rows);
         $this->assertEquals($expected, $table);
     }
 }
