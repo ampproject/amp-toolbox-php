@@ -156,26 +156,26 @@ class TableFormatterTest extends TestCase
 
         // With headers.
         $expected = <<<OUTPUT
-            +----------------------+----------------------+----------------------+
-            | Name                 | Title                | Description          |
-            +----------------------+----------------------+----------------------+
-            | html                 | HTML                 | Markup Language      |
-            | css                  | CSS                  | Style Sheet          |
-            | js                   | JavaScript           | Programming language |
-            +----------------------+----------------------+----------------------+
-            OUTPUT;
++----------------------+----------------------+----------------------+
+| Name                 | Title                | Description          |
++----------------------+----------------------+----------------------+
+| html                 | HTML                 | Markup Language      |
+| css                  | CSS                  | Style Sheet          |
+| js                   | JavaScript           | Programming language |
++----------------------+----------------------+----------------------+
+OUTPUT;
 
         $table = $tableFormatter->formatTable($rows, $headers);
         $this->assertEquals($expected, $table);
 
         // Without headers.
         $expected = <<<OUTPUT
-            +----------------------+----------------------+----------------------+
-            | html                 | HTML                 | Markup Language      |
-            | css                  | CSS                  | Style Sheet          |
-            | js                   | JavaScript           | Programming language |
-            +----------------------+----------------------+----------------------+
-            OUTPUT;
++----------------------+----------------------+----------------------+
+| html                 | HTML                 | Markup Language      |
+| css                  | CSS                  | Style Sheet          |
+| js                   | JavaScript           | Programming language |
++----------------------+----------------------+----------------------+
+OUTPUT;
 
         $table = $tableFormatter->formatTable($rows);
         $this->assertEquals($expected, $table);
@@ -198,19 +198,19 @@ class TableFormatterTest extends TestCase
         $tableFormatter->setMaxWidth(100);
 
         $expected = <<<OUTPUT
-            +---------+---------+------------------------------------------------------------------+-----------+
-            | Column1 | Column2 | Column3Column3Column3Column3Column3Column3Column3Column3Column3C | Column4   |
-            |         |         | olumn3Column3Column3Column3Column3Column3Column3Column3Column3Co |           |
-            |         |         | lumn3Column3                                                     |           |
-            +---------+---------+------------------------------------------------------------------+-----------+
-            | item11  | item12  | item13 item13 item13 item13 item13 item13 item13 item13 item13   | item14    |
-            |         |         | item13 item13 item13 item13 item13 item13 item13 item13 item13   |           |
-            |         |         | item13 item13                                                    |           |
-            | item21  | item22  | item23                                                           | item24    |
-            | item31  | item32  | item33                                                           | item34    |
-            | item41  | item42  | item43                                                           | item44    |
-            +---------+---------+------------------------------------------------------------------+-----------+
-            OUTPUT;
++---------+---------+------------------------------------------------------------------+-----------+
+| Column1 | Column2 | Column3Column3Column3Column3Column3Column3Column3Column3Column3C | Column4   |
+|         |         | olumn3Column3Column3Column3Column3Column3Column3Column3Column3Co |           |
+|         |         | lumn3Column3                                                     |           |
++---------+---------+------------------------------------------------------------------+-----------+
+| item11  | item12  | item13 item13 item13 item13 item13 item13 item13 item13 item13   | item14    |
+|         |         | item13 item13 item13 item13 item13 item13 item13 item13 item13   |           |
+|         |         | item13 item13                                                    |           |
+| item21  | item22  | item23                                                           | item24    |
+| item31  | item32  | item33                                                           | item34    |
+| item41  | item42  | item43                                                           | item44    |
++---------+---------+------------------------------------------------------------------+-----------+
+OUTPUT;
 
         $table = $tableFormatter->formatTable($rows, $headers);
         $this->assertEquals($expected, $table);
@@ -227,25 +227,25 @@ class TableFormatterTest extends TestCase
         $tableFormatter->setMaxWidth(120);
 
         $expected = <<<OUTPUT
-            +---------+-----------------------------------------------+------------------------------------------------+-----------+
-            | Column1 | Column2                                       | Column3Column3Column3Column3Column3Column3Colu | Column4   |
-            |         |                                               | mn3Column3Column3Column3Column3Column3Column3C |           |
-            |         |                                               | olumn3Column3Column3Column3Column3Column3Colum |           |
-            |         |                                               | n3                                             |           |
-            +---------+-----------------------------------------------+------------------------------------------------+-----------+
-            | item11  | item12                                        | item13                                         | item14    |
-            | item21  | item22                                        | item23                                         | item24    |
-            | item31  | item32 item32 item32 item32 item32 item32     | item33                                         | item34    |
-            |         | item32 item32 item32 item32 item32 item32     |                                                |           |
-            |         | item32 item32 item32 item32 item32 item32     |                                                |           |
-            |         | item32 item32                                 |                                                |           |
-            | item41  | item42 item42 item42 item42 item42 item42     | item43                                         | item44    |
-            |         | item42 item42 item42 item42 item42 item42     |                                                |           |
-            |         | item42 item42 item42 item42 item42 item42     |                                                |           |
-            |         | item42 item42 item42 item42 item42 item42     |                                                |           |
-            |         | item42 item42 item42 item42 item42 item42     |                                                |           |
-            +---------+-----------------------------------------------+------------------------------------------------+-----------+
-            OUTPUT;
++---------+-----------------------------------------------+------------------------------------------------+-----------+
+| Column1 | Column2                                       | Column3Column3Column3Column3Column3Column3Colu | Column4   |
+|         |                                               | mn3Column3Column3Column3Column3Column3Column3C |           |
+|         |                                               | olumn3Column3Column3Column3Column3Column3Colum |           |
+|         |                                               | n3                                             |           |
++---------+-----------------------------------------------+------------------------------------------------+-----------+
+| item11  | item12                                        | item13                                         | item14    |
+| item21  | item22                                        | item23                                         | item24    |
+| item31  | item32 item32 item32 item32 item32 item32     | item33                                         | item34    |
+|         | item32 item32 item32 item32 item32 item32     |                                                |           |
+|         | item32 item32 item32 item32 item32 item32     |                                                |           |
+|         | item32 item32                                 |                                                |           |
+| item41  | item42 item42 item42 item42 item42 item42     | item43                                         | item44    |
+|         | item42 item42 item42 item42 item42 item42     |                                                |           |
+|         | item42 item42 item42 item42 item42 item42     |                                                |           |
+|         | item42 item42 item42 item42 item42 item42     |                                                |           |
+|         | item42 item42 item42 item42 item42 item42     |                                                |           |
++---------+-----------------------------------------------+------------------------------------------------+-----------+
+OUTPUT;
 
         $table = $tableFormatter->formatTable($rows, $headers);
         $this->assertEquals($expected, $table);
