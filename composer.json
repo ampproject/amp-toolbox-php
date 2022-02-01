@@ -32,7 +32,11 @@
     "mck89/peast": "Needed to minify the AMP script."
   },
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "civicrm/composer-downloads-plugin": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   },
   "extra": {
     "downloads": {
