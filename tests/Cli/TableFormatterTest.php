@@ -156,13 +156,13 @@ class TableFormatterTest extends TestCase
 
         // With headers.
         $expected = <<<OUTPUT
-+----------------------+----------------------+----------------------+
-| Name                 | Title                | Description          |
-+----------------------+----------------------+----------------------+
-| html                 | HTML                 | Markup Language      |
-| css                  | CSS                  | Style Sheet          |
-| js                   | JavaScript           | Programming language |
-+----------------------+----------------------+----------------------+
++------+------------+----------------------+
+| Name | Title      | Description          |
++------+------------+----------------------+
+| html | HTML       | Markup Language      |
+| css  | CSS        | Style Sheet          |
+| js   | JavaScript | Programming language |
++------+------------+----------------------+
 OUTPUT;
 
         $table = $tableFormatter->formatTable($rows, $headers);
@@ -170,11 +170,11 @@ OUTPUT;
 
         // Without headers.
         $expected = <<<OUTPUT
-+----------------------+----------------------+----------------------+
-| html                 | HTML                 | Markup Language      |
-| css                  | CSS                  | Style Sheet          |
-| js                   | JavaScript           | Programming language |
-+----------------------+----------------------+----------------------+
++------+------------+----------------------+
+| html | HTML       | Markup Language      |
+| css  | CSS        | Style Sheet          |
+| js   | JavaScript | Programming language |
++------+------------+----------------------+
 OUTPUT;
 
         $table = $tableFormatter->formatTable($rows);

@@ -423,14 +423,16 @@ class TableFormatter
             $this->calculateTableColumnWidths($row);
         }
 
-        $paddedWidth      = $this->maxColumnWidth + 2;
         $numberOfColumns  = count($this->tableColumnWidths);
 
-        $columns = array_merge(
-            [$paddedWidth],
-            array_fill(0, $numberOfColumns - 2, $this->maxColumnWidth),
-            [$paddedWidth]
-        );
+        $columns = array_map(function ($width, $index) {
+            // Add extra padding to the first and last columns.
+            if ($index === 0 || $index === count($this->tableColumnWidths) - 1) {
+                $width = $width + 2;
+            }
+
+            return $width;
+        }, $this->tableColumnWidths, array_keys($this->tableColumnWidths));
 
         // For a three column table, we'll have have "| " at start and " |" at the end,
         // and in-between two " | ". So in total "| " + " | " + " | " + " |" = 10 chars.
