@@ -498,7 +498,7 @@ final class ServerSideRendering implements Transformer
                 break;
             case Layout::FLUID:
                 $styles = 'width:100%;height:0;';
-                $this->addClass($element, AMP::LAYOUT_AWAITING_SIZE_CLASS);
+                $this->addClass($element, Amp::LAYOUT_AWAITING_SIZE_CLASS);
                 break;
             case Layout::FLEX_ITEM:
                 if ($width->isDefined()) {
@@ -624,7 +624,7 @@ final class ServerSideRendering implements Transformer
         $style = empty($style) ? 'display:block' : "display:block;{$style}";
 
         $sizer = $document->createElement(Amp::SIZER_ELEMENT);
-        $sizer->setAttribute(Attribute::SLOT, AMP::SERVICE_SLOT);
+        $sizer->setAttribute(Attribute::SLOT, Amp::SERVICE_SLOT);
         $sizer->addInlineStyle(sprintf($style, $paddingString));
 
         return $sizer;
