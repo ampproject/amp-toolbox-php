@@ -149,6 +149,7 @@ try {
 
     echo "Done!\n";
 } catch (Exception $exception) {
+    echo "\n";
     echo 'ERROR: ' . $exception->getMessage() . "\n";
     exit -1;
 }
