@@ -57,13 +57,6 @@ final class DocRulesets implements IterableSection
     private $docRulesetsCache = [];
 
     /**
-     * Array used for storing the iteration index in.
-     *
-     * @var array<string>|null
-     */
-    private $iterationArray;
-
-    /**
      * Get a document ruleset by its document ruleset ID.
      *
      * @param string $docRulesetId document ruleset ID to get the collection of document rulesets for.

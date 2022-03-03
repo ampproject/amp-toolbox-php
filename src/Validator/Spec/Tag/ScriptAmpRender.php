@@ -45,9 +45,6 @@ final class ScriptAmpRender extends TagWithExtensionSpec implements Identifiable
             '1.0',
             'latest',
         ],
-        SpecRule::BENTO_SUPPORTED_VERSION => [
-            '1.0',
-        ],
     ];
 
     /**

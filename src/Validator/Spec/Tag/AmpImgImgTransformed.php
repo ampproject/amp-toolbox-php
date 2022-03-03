@@ -50,6 +50,13 @@ final class AmpImgImgTransformed extends Tag implements Identifiable
             Attribute::ALT => [],
             Attribute::ATTRIBUTION => [],
             Attribute::HEIGHT => [],
+            Attribute::IMPORTANCE => [
+                SpecRule::VALUE_CASEI => [
+                    'high',
+                    'low',
+                    'auto',
+                ],
+            ],
             Attribute::OBJECT_FIT => [],
             Attribute::OBJECT_POSITION => [],
             Attribute::REFERRERPOLICY => [],

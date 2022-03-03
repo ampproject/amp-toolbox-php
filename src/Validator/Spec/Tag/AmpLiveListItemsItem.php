@@ -58,6 +58,6 @@ final class AmpLiveListItemsItem extends Tag implements Identifiable
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::DESCRIPTIVE_NAME => 'amp-live-list [items] item',
+        SpecRule::DESCRIPTIVE_NAME => 'amp-live-list [data-sort-time] child',
     ];
 }

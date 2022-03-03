@@ -22,7 +22,7 @@ use AmpProject\Validator\Spec\Tag;
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
- * @property-read array<array> $attrs
+ * @property-read array $attrs
  * @property-read array<string> $attrLists
  * @property-read string $specUrl
  * @property-read array<array<string>> $ampLayout
@@ -49,6 +49,13 @@ final class AmpImg extends Tag implements Identifiable
             Attribute::ALT => [],
             Attribute::ATTRIBUTION => [],
             Attribute::CROSSORIGIN => [],
+            Attribute::IMPORTANCE => [
+                SpecRule::VALUE_CASEI => [
+                    'high',
+                    'low',
+                    'auto',
+                ],
+            ],
             Attribute::OBJECT_FIT => [],
             Attribute::OBJECT_POSITION => [],
             Attribute::PLACEHOLDER => [],

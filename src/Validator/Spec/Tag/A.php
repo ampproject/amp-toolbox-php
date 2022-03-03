@@ -66,6 +66,7 @@ final class A extends Tag implements Identifiable
                         Protocol::FEED,
                         Protocol::INTENT,
                         Protocol::LINE,
+                        Protocol::MICROSOFT_EDGE,
                         Protocol::SKYPE,
                         Protocol::SMS,
                         Protocol::SNAPCHAT,

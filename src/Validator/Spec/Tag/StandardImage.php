@@ -7,7 +7,6 @@
 
 namespace AmpProject\Validator\Spec\Tag;
 
-use AmpProject\Extension;
 use AmpProject\Format;
 use AmpProject\Html\Attribute;
 use AmpProject\Html\Tag as Element;
@@ -17,28 +16,26 @@ use AmpProject\Validator\Spec\SpecRule;
 use AmpProject\Validator\Spec\Tag;
 
 /**
- * Tag class NoscriptImg.
+ * Tag class StandardImage.
  *
  * @package ampproject/amp-toolbox.
  *
  * @property-read string $tagName
  * @property-read string $specName
- * @property-read array $attrs
+ * @property-read array<array<array<string>>> $attrs
  * @property-read array<string> $attrLists
- * @property-read string $specUrl
- * @property-read string $mandatoryAncestor
- * @property-read string $mandatoryAncestorSuggestedAlternative
+ * @property-read array<string> $disallowedAncestor
  * @property-read array<string> $htmlFormat
  * @property-read string $descriptiveName
  */
-final class NoscriptImg extends Tag implements Identifiable
+final class StandardImage extends Tag implements Identifiable
 {
     /**
      * ID of the tag.
      *
      * @var string
      */
-    const ID = 'noscript > img';
+    const ID = 'Standard Image';
 
     /**
      * Array of spec rules.
@@ -46,27 +43,23 @@ final class NoscriptImg extends Tag implements Identifiable
      * @var array
      */
     const SPEC = [
-        SpecRule::TAG_NAME => Element::IMG,
-        SpecRule::SPEC_NAME => 'noscript > img',
+        SpecRule::TAG_NAME => Element::IMAGE,
+        SpecRule::SPEC_NAME => 'Standard Image',
         SpecRule::ATTRS => [
-            Attribute::ATTRIBUTION => [],
             Attribute::DECODING => [
                 SpecRule::VALUE_CASEI => [
                     'async',
-                    'auto',
-                    'sync',
                 ],
             ],
-            Attribute::INTRINSICSIZE => [],
-            Attribute::SIZES => [],
         ],
         SpecRule::ATTR_LISTS => [
             AttributeList\ImgAttrs::ID,
             AttributeList\MandatorySrcOrSrcset::ID,
         ],
-        SpecRule::SPEC_URL => 'https://amp.dev/documentation/components/amp-img/',
-        SpecRule::MANDATORY_ANCESTOR => Element::NOSCRIPT,
-        SpecRule::MANDATORY_ANCESTOR_SUGGESTED_ALTERNATIVE => Extension::IMG,
+        SpecRule::DISALLOWED_ANCESTOR => [
+            'AMP-IMG',
+            'AMP-STORY',
+        ],
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],

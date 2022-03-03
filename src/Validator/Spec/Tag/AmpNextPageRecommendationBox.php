@@ -24,6 +24,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $mandatoryParent
  * @property-read array<array<bool>> $attrs
  * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
  */
 final class AmpNextPageRecommendationBox extends Tag implements Identifiable
 {
@@ -51,5 +52,6 @@ final class AmpNextPageRecommendationBox extends Tag implements Identifiable
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-next-page [recommendation-box] child',
     ];
 }
