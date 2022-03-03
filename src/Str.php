@@ -108,6 +108,9 @@ final class Str
      */
     public static function position($text, $substring, $offset = 0)
     {
+        // Make sure $offset is always an integer.
+        $offset = $offset ? (int) $offset : 0;
+
         return (self::$useMultibyte && function_exists('mb_strpos'))
             ? mb_strpos($text, $substring, $offset)
             : strpos($text, $substring, $offset);
@@ -123,6 +126,9 @@ final class Str
      */
     public static function lastPosition($text, $substring, $offset = 0)
     {
+        // Make sure $offset is always an integer.
+        $offset = $offset ? (int) $offset : 0;
+
         return (self::$useMultibyte && function_exists('mb_strrpos'))
             ? mb_strrpos($text, $substring, $offset)
             : strrpos($text, $substring, $offset);
