@@ -68,6 +68,7 @@ interface Extension
     const GOOGLE_ASSISTANT_VOICE_BAR             = 'amp-google-assistant-voice-bar';
     const GOOGLE_ASSISTANT_VOICE_BUTTON          = 'amp-google-assistant-voice-button';
     const GOOGLE_DOCUMENT_EMBED                  = 'amp-google-document-embed';
+    const GOOGLE_READ_ALOUD_PLAYER               = 'amp-google-read-aloud-player';
     const GWD_ANIMATION                          = 'amp-gwd-animation';
     const HULU                                   = 'amp-hulu';
     const IFRAME                                 = 'amp-iframe';
@@ -157,6 +158,7 @@ interface Extension
     const STORY_SHOPPING_CONFIG                  = 'amp-story-shopping-config';
     const STORY_SHOPPING_TAG                     = 'amp-story-shopping-tag';
     const STORY_SOCIAL_SHARE                     = 'amp-story-social-share';
+    const STORY_SUBSCRIPTIONS                    = 'amp-story-subscriptions';
     const STREAM_GALLERY                         = 'amp-stream-gallery';
     const SUBSCRIPTIONS                          = 'amp-subscriptions';
     const SUBSCRIPTIONS_GOOGLE                   = 'amp-subscriptions-google';

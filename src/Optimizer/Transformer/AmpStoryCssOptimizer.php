@@ -132,7 +132,7 @@ final class AmpStoryCssOptimizer implements Transformer
     private function isAmpStoryDvhPolyfillScript(Element $element)
     {
         return $element->tagName === Tag::SCRIPT
-            && $element->hasAttribute(Attribute::AMP_STORY_DVH_POLLYFILL);
+            && $element->hasAttribute(Attribute::AMP_STORY_DVH_POLYFILL);
     }
 
     /**
@@ -193,7 +193,7 @@ final class AmpStoryCssOptimizer implements Transformer
         $ampStoryDvhPolyfillScript = $document->createElementWithAttributes(
             Tag::SCRIPT,
             [
-                Attribute::AMP_STORY_DVH_POLLYFILL => '',
+                Attribute::AMP_STORY_DVH_POLYFILL => '',
             ],
             self::AMP_STORY_DVH_POLYFILL_CONTENT
         );
