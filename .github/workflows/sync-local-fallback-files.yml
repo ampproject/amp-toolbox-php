@@ -1,8 +1,8 @@
 name: Sync runtime local fallback files
 on:
   schedule:
-    # https://crontab.guru/every-night-at-midnight
-    - cron: 0 0 * * *
+    # https://crontab.guru/once-a-week
+    - cron: 0 0 * * 0
 
 jobs:
   sync-local-fallback-files:
@@ -93,4 +93,4 @@ jobs:
           pr_title: Sync local fallback files
           pr_body: ${{ steps.body.outputs.text }}
           pr_reviewer: schlessera
-          pr_label: SSR,automerge
+          pr_label: SSR
