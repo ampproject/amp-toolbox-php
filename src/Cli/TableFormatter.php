@@ -153,8 +153,8 @@ class TableFormatter
         for ($index = 0; $index < $maxLength; $index++) {
             foreach ($columns as $column => $width) {
                 if ($this->isBorderedTable && $column === 0) {
-                    $output .= ltrim($this->border);
-                    $width = $width - 2;
+                    $output .= $this->border . str_repeat(' ', $this->padding);
+                    $width = $width - strlen($this->border) - $this->padding;
                 }
 
                 if (isset($wrapped[$column][$index])) {
@@ -180,7 +180,7 @@ class TableFormatter
                 }
 
                 if ($this->isBorderedTable && $column === $last) {
-                    $output .= rtrim($this->border);
+                    $output .= str_repeat(' ', $this->padding) . $this->border;
                 }
             }
             $output .= "\n";
@@ -412,7 +412,8 @@ class TableFormatter
      */
     public function formatTable($rows, $headers = [])
     {
-        $this->setBorder(' | ');
+        $this->setBorder('|');
+        $this->setPadding(1);
         $this->setIsBorderedTable(true);
 
         if (! empty($headers)) {
@@ -428,7 +429,7 @@ class TableFormatter
         $columns = array_map(function ($width, $index) {
             // Add extra padding to the first and last columns.
             if ($index === 0 || $index === count($this->tableColumnWidths) - 1) {
-                $width = $width + 2;
+                $width = $width + strlen($this->border) + $this->padding;
             }
 
             return $width;
@@ -436,7 +437,8 @@ class TableFormatter
 
         // For a three column table, we'll have have "| " at start and " |" at the end,
         // and in-between two " | ". So in total "| " + " | " + " | " + " |" = 10 chars.
-        $totalBorderWidth     = 4 + ($numberOfColumns - 1) * 3;
+		$borderCharWidth = strlen($this->border);
+        $totalBorderWidth     = 2 * ($borderCharWidth + $this->padding) + ($numberOfColumns - 1) * ($borderCharWidth + ($this->padding * 2));
         $estimatedColumnWidth = $numberOfColumns * $this->maxColumnWidth;
         $estimatedTotalWidth  = $totalBorderWidth + $estimatedColumnWidth;
 
@@ -459,7 +461,7 @@ class TableFormatter
                 $avrgExtraWidth = floor($extraWidth / count($resizedWidths));
 
                 foreach ($this->tableColumnWidths as $i => &$width) {
-                    if (in_array($width, $resizedWidths)) {
+                    if (in_array($width, $resizedWidths, true)) {
                         $width = $avrg + $avrgExtraWidth;
                         array_shift($resizedWidths);
                         if (empty($resizedWidths)) {
@@ -469,7 +471,7 @@ class TableFormatter
                     }
 
                     if ($i === 0 || $i === $numberOfColumns - 1) {
-                        $width = $width + 2;
+                        $width = $width + strlen($this->border) + $this->padding;
                     }
 
                     $columns[$i] = intval($width);
@@ -552,8 +554,9 @@ class TableFormatter
         $tableRow = explode("\n", $tableRow);
         $firstRow = array_shift($tableRow);
         $firstRow = trim($firstRow);
-        $border   = preg_replace('/[^|]/', '-', $firstRow);
-        $border   = preg_replace('/[|]/', '+', $border);
+		$borderChar = preg_quote($this->border, '/');
+        $border     = preg_replace("/[^{$borderChar}]/", '-', $firstRow);
+        $border     = preg_replace("/[{$borderChar}]/", '+', $border);
 
         return $border;
     }
