@@ -26,6 +26,13 @@ class TableFormatter
     protected $border = ' ';
 
     /**
+     * Padding around the border.
+     *
+     * @var int
+     */
+    protected $padding = 0;
+
+    /**
      * The terminal width in characters.
      *
      * Falls back to 74 characters if it cannot be detected.
@@ -40,6 +47,27 @@ class TableFormatter
      * @var Colors
      */
     protected $colors;
+
+    /**
+     * Width of each column size based on the content length.
+     *
+     * @var array
+     */
+    protected $tableColumnWidths = [];
+
+    /**
+     * Maximum length of the table content.
+     *
+     * @var int
+     */
+    protected $maxColumnWidth = 0;
+
+    /**
+     * Whether to wrap the table with borders.
+     *
+     * @var bool
+     */
+    protected $isBorderedTable = false;
 
     /**
      * TableFormatter constructor.
@@ -80,6 +108,18 @@ class TableFormatter
     public function setBorder($border)
     {
         $this->border = $border;
+    }
+
+    /**
+     * Set the padding.
+     *
+     * The padding around the border is added to the column widths.
+     *
+     * @param int $padding Padding to set.
+     */
+    public function setPadding($padding)
+    {
+        $this->padding = $padding;
     }
 
     /**
@@ -131,12 +171,23 @@ class TableFormatter
         $output = '';
         for ($index = 0; $index < $maxLength; $index++) {
             foreach ($columns as $column => $width) {
+                if ($this->isBorderedTable && $column === 0) {
+                    $output .= $this->border . str_repeat(' ', $this->padding);
+                    $width = $width - strlen($this->border) - $this->padding;
+                }
+
                 if (isset($wrapped[$column][$index])) {
                     $value = $wrapped[$column][$index];
                 } else {
                     $value = '';
                 }
+
+                if ($this->isBorderedTable && $column === $last && $width > $this->tableColumnWidths[$last]) {
+                    $width = $this->tableColumnWidths[$last];
+                }
+
                 $chunk = $this->pad($value, $width);
+
                 if (isset($colors[$column]) && $colors[$column]) {
                     $chunk = $this->colors->wrap($chunk, $colors[$column]);
                 }
@@ -144,7 +195,11 @@ class TableFormatter
 
                 // Add border in-between columns.
                 if ($column != $last) {
-                    $output .= $this->border;
+                    $output .= str_repeat(' ', $this->padding) . $this->border . str_repeat(' ', $this->padding);
+                }
+
+                if ($this->isBorderedTable && $column === $last) {
+                    $output .= str_repeat(' ', $this->padding) . $this->border;
                 }
             }
             $output .= "\n";
@@ -364,5 +419,166 @@ class TableFormatter
         }
 
         return implode($break, $lines);
+    }
+
+    /**
+     * Format the rows in a bordered table.
+     *
+     * @param array<array<string>> $rows    List of texts for each column.
+     * @param array<string>        $headers Optional. List of texts used in the table header.
+     *
+     * @return string A borered table containing the given rows.
+     */
+    public function formatTable($rows, $headers = [])
+    {
+        $this->setBorder('|');
+        $this->setPadding(1);
+        $this->setIsBorderedTable(true);
+
+        if (! empty($headers)) {
+            $this->calculateTableColumnWidths($headers);
+        }
+
+        foreach ($rows as $row) {
+            $this->calculateTableColumnWidths($row);
+        }
+
+        $numberOfColumns  = count($this->tableColumnWidths);
+
+        $columns = array_map(function ($width, $index) {
+            // Add extra padding to the first and last columns.
+            if ($index === 0 || $index === count($this->tableColumnWidths) - 1) {
+                $width = $width + strlen($this->border) + $this->padding;
+            }
+
+            return $width;
+        }, $this->tableColumnWidths, array_keys($this->tableColumnWidths));
+
+        // For a three column table, we'll have have "| " at start and " |" at the end,
+        // and in-between two " | ". So in total "| " + " | " + " | " + " |" = 10 chars.
+        $borderCharWidth  = strlen($this->border);
+        $totalBorderWidth = 2 * ($borderCharWidth + $this->padding)
+            + ($numberOfColumns - 1)
+            * ($borderCharWidth + ($this->padding * 2));
+        $estimatedColumnWidth = $numberOfColumns * $this->maxColumnWidth;
+        $estimatedTotalWidth  = $totalBorderWidth + $estimatedColumnWidth;
+
+        if ($estimatedTotalWidth > $this->maxWidth) {
+            $maxWidthWithoutBorders = $this->maxWidth - $totalBorderWidth;
+
+            $avrg          = floor($maxWidthWithoutBorders / $numberOfColumns);
+            $resizedWidths = [];
+            $extraWidth    = 0;
+
+            foreach ($this->tableColumnWidths as $width) {
+                if ($width > $avrg) {
+                    $resizedWidths[] = $width;
+                } else {
+                    $extraWidth = $extraWidth + ($avrg - $width);
+                }
+            }
+
+            if (! empty($resizedWidths) && $extraWidth) {
+                $avrgExtraWidth = floor($extraWidth / count($resizedWidths));
+
+                foreach ($this->tableColumnWidths as $i => &$width) {
+                    if (in_array($width, $resizedWidths, true)) {
+                        $width = $avrg + $avrgExtraWidth;
+                        array_shift($resizedWidths);
+                        if (empty($resizedWidths)) {
+                            $width = 0; // Zero it so not in sum.
+                            $width = $maxWidthWithoutBorders - array_sum($this->tableColumnWidths);
+                        }
+                    }
+
+                    if ($i === 0 || $i === $numberOfColumns - 1) {
+                        $width = $width + strlen($this->border) + $this->padding;
+                    }
+
+                    $columns[$i] = intval($width);
+                }
+            }
+        }
+
+        $horizontalBorder = $this->getTableHorizontalBorder($rows[0], $columns);
+
+        $table = $horizontalBorder . "\n";
+
+        if (! empty($headers)) {
+            $table .= $this->getTableRow($headers, $columns);
+            $table .= $horizontalBorder . "\n";
+        }
+
+        foreach ($rows as $row) {
+            $table .= $this->getTableRow($row, $columns);
+        }
+
+        $table .= $horizontalBorder;
+
+        return $table;
+    }
+
+    /**
+     * Whether the table is wrapped with borders or not.
+     *
+     * @param bool $isBorderedTable Whether the table is wrapped with borders or not.
+     */
+    public function setIsBorderedTable($isBorderedTable)
+    {
+        $this->isBorderedTable = $isBorderedTable;
+    }
+
+    /**
+     * Calculate table column widths based on the column content length.
+     *
+     * @param array<string> $row List of texts for each column.
+     */
+    protected function calculateTableColumnWidths($row)
+    {
+        foreach ($row as $i => $rowContent) {
+            $width = strlen($rowContent);
+
+            if ($width > $this->maxColumnWidth) {
+                $this->maxColumnWidth = $width;
+            }
+
+            if (! isset($this->tableColumnWidths[$i]) || $width > $this->tableColumnWidths[$i]) {
+                $this->tableColumnWidths[$i] = $width;
+            }
+        }
+    }
+
+    /**
+     * Get the table row.
+     *
+     * @param array<string> $row     List of texts for each column.
+     * @param array<int>    $columns List of maximum column widths.
+     *
+     * @return string Table row.
+     */
+    protected function getTableRow($row, $columns)
+    {
+        return trim($this->format($columns, $row)) . "\n";
+    }
+
+    /**
+     * Get the table horizontal border.
+     *
+     * @param array<string> $row     List of texts for each column.
+     * @param array<int>    $columns List of maximum column widths.
+     *
+     * @return string Table border.
+     */
+    protected function getTableHorizontalBorder($row, $columns)
+    {
+        $tableRow = $this->getTableRow($row, $columns);
+        $tableRow = explode("\n", $tableRow);
+        $firstRow = array_shift($tableRow);
+        $firstRow = trim($firstRow);
+        $borderChar = preg_quote($this->border, '/');
+        $border     = preg_replace("/[^{$borderChar}]/", '-', $firstRow);
+        $border     = preg_replace("/[{$borderChar}]/", '+', $border);
+
+        return $border;
     }
 }

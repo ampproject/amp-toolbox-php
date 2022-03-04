@@ -142,4 +142,112 @@ class TableFormatterTest extends TestCase
         $result = $tableFormatter->format([5, '*'], [$column1, $column2]);
         $this->assertEquals($expected, $result);
     }
+
+    public function testFormatTable()
+    {
+        $headers = ['Name', 'Title', 'Description'];
+        $rows    = [
+            ['html', 'HTML', 'Markup Language'],
+            ['css', 'CSS', 'Style Sheet'],
+            ['js', 'JavaScript', 'Programming language'],
+        ];
+
+        $tableFormatter = new TableFormatter();
+
+        // With headers.
+        $expected = <<<OUTPUT
++------+------------+----------------------+
+| Name | Title      | Description          |
++------+------------+----------------------+
+| html | HTML       | Markup Language      |
+| css  | CSS        | Style Sheet          |
+| js   | JavaScript | Programming language |
++------+------------+----------------------+
+OUTPUT;
+
+        $table = $tableFormatter->formatTable($rows, $headers);
+        $this->assertEquals($expected, $table);
+
+        // Without headers.
+        $expected = <<<OUTPUT
++------+------------+----------------------+
+| html | HTML       | Markup Language      |
+| css  | CSS        | Style Sheet          |
+| js   | JavaScript | Programming language |
++------+------------+----------------------+
+OUTPUT;
+
+        $table = $tableFormatter->formatTable($rows);
+        $this->assertEquals($expected, $table);
+    }
+
+    public function testFormatTableWithLongText()
+    {
+        $column4 = str_repeat('Column3', 20);
+        $headers = ['Column1', 'Column2', $column4, 'Column4'];
+
+        $item13 = rtrim(str_repeat('item13 ', 20));
+        $rows = [
+            ['item11', 'item12', $item13, 'item14'],
+            ['item21', 'item22', 'item23', 'item24'],
+            ['item31', 'item32', 'item33', 'item34'],
+            ['item41', 'item42', 'item43', 'item44'],
+        ];
+
+        $tableFormatter = new TableFormatter();
+        $tableFormatter->setMaxWidth(100);
+
+        $expected = <<<OUTPUT
++---------+---------+------------------------------------------------------------------+-----------+
+| Column1 | Column2 | Column3Column3Column3Column3Column3Column3Column3Column3Column3C | Column4   |
+|         |         | olumn3Column3Column3Column3Column3Column3Column3Column3Column3Co |           |
+|         |         | lumn3Column3                                                     |           |
++---------+---------+------------------------------------------------------------------+-----------+
+| item11  | item12  | item13 item13 item13 item13 item13 item13 item13 item13 item13   | item14    |
+|         |         | item13 item13 item13 item13 item13 item13 item13 item13 item13   |           |
+|         |         | item13 item13                                                    |           |
+| item21  | item22  | item23                                                           | item24    |
+| item31  | item32  | item33                                                           | item34    |
+| item41  | item42  | item43                                                           | item44    |
++---------+---------+------------------------------------------------------------------+-----------+
+OUTPUT;
+
+        $table = $tableFormatter->formatTable($rows, $headers);
+        $this->assertEquals($expected, $table);
+
+        $item32 = rtrim(str_repeat('item32 ', 20));
+        $item42 = rtrim(str_repeat('item42 ', 30));
+        $rows = [
+            ['item11', 'item12', 'item13', 'item14'],
+            ['item21', 'item22', 'item23', 'item24'],
+            ['item31', $item32, 'item33', 'item34'],
+            ['item41', $item42, 'item43', 'item44'],
+        ];
+        $tableFormatter = new TableFormatter();
+        $tableFormatter->setMaxWidth(120);
+
+        $expected = <<<OUTPUT
++---------+-----------------------------------------------+------------------------------------------------+-----------+
+| Column1 | Column2                                       | Column3Column3Column3Column3Column3Column3Colu | Column4   |
+|         |                                               | mn3Column3Column3Column3Column3Column3Column3C |           |
+|         |                                               | olumn3Column3Column3Column3Column3Column3Colum |           |
+|         |                                               | n3                                             |           |
++---------+-----------------------------------------------+------------------------------------------------+-----------+
+| item11  | item12                                        | item13                                         | item14    |
+| item21  | item22                                        | item23                                         | item24    |
+| item31  | item32 item32 item32 item32 item32 item32     | item33                                         | item34    |
+|         | item32 item32 item32 item32 item32 item32     |                                                |           |
+|         | item32 item32 item32 item32 item32 item32     |                                                |           |
+|         | item32 item32                                 |                                                |           |
+| item41  | item42 item42 item42 item42 item42 item42     | item43                                         | item44    |
+|         | item42 item42 item42 item42 item42 item42     |                                                |           |
+|         | item42 item42 item42 item42 item42 item42     |                                                |           |
+|         | item42 item42 item42 item42 item42 item42     |                                                |           |
+|         | item42 item42 item42 item42 item42 item42     |                                                |           |
++---------+-----------------------------------------------+------------------------------------------------+-----------+
+OUTPUT;
+
+        $table = $tableFormatter->formatTable($rows, $headers);
+        $this->assertEquals($expected, $table);
+    }
 }
