@@ -26,6 +26,13 @@ class TableFormatter
     protected $border = ' ';
 
     /**
+     * Padding around the border.
+     *
+     * @var int
+     */
+    protected $padding = 0;
+
+    /**
      * The terminal width in characters.
      *
      * Falls back to 74 characters if it cannot be detected.
@@ -104,6 +111,18 @@ class TableFormatter
     }
 
     /**
+     * Set the padding.
+     *
+     * The padding around the border is added to the column widths.
+     *
+     * @param int $padding Padding to set.
+     */
+    public function setPadding($padding)
+    {
+        $this->padding = $padding;
+    }
+
+    /**
      * Width of the terminal in characters.
      *
      * Initially auto-detected, with a fallback of 74 characters.
@@ -176,7 +195,7 @@ class TableFormatter
 
                 // Add border in-between columns.
                 if ($column != $last) {
-                    $output .= $this->border;
+                    $output .= str_repeat(' ', $this->padding) . $this->border . str_repeat(' ', $this->padding);
                 }
 
                 if ($this->isBorderedTable && $column === $last) {
@@ -437,8 +456,10 @@ class TableFormatter
 
         // For a three column table, we'll have have "| " at start and " |" at the end,
         // and in-between two " | ". So in total "| " + " | " + " | " + " |" = 10 chars.
-		$borderCharWidth = strlen($this->border);
-        $totalBorderWidth     = 2 * ($borderCharWidth + $this->padding) + ($numberOfColumns - 1) * ($borderCharWidth + ($this->padding * 2));
+        $borderCharWidth  = strlen($this->border);
+        $totalBorderWidth = 2 * ($borderCharWidth + $this->padding)
+            + ($numberOfColumns - 1)
+            * ($borderCharWidth + ($this->padding * 2));
         $estimatedColumnWidth = $numberOfColumns * $this->maxColumnWidth;
         $estimatedTotalWidth  = $totalBorderWidth + $estimatedColumnWidth;
 
@@ -554,7 +575,7 @@ class TableFormatter
         $tableRow = explode("\n", $tableRow);
         $firstRow = array_shift($tableRow);
         $firstRow = trim($firstRow);
-		$borderChar = preg_quote($this->border, '/');
+        $borderChar = preg_quote($this->border, '/');
         $border     = preg_replace("/[^{$borderChar}]/", '-', $firstRow);
         $border     = preg_replace("/[{$borderChar}]/", '+', $border);
 
