@@ -33,7 +33,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, iconv, json, libxml, zip
           coverage: ${{ matrix.coverage && 'pcov' || 'none' }}
-          ini-values: pcov.directory=.
+          ini-values: pcov.directory=., error_reporting=E_ALL
           tools: composer
 
       - name: Get Composer Cache Directory
