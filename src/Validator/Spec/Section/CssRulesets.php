@@ -69,13 +69,6 @@ final class CssRulesets implements IterableSection
     private $cssRulesetsCache = [];
 
     /**
-     * Array used for storing the iteration index in.
-     *
-     * @var array<string>|null
-     */
-    private $iterationArray;
-
-    /**
      * Get a CSS ruleset by its CSS ruleset ID.
      *
      * @param string $cssRulesetId CSS ruleset ID to get the collection of CSS rulesets for.

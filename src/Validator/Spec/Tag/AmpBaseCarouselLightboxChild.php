@@ -22,6 +22,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specName
  * @property-read array<array<string>> $attrs
  * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
  */
 final class AmpBaseCarouselLightboxChild extends Tag implements Identifiable
 {
@@ -48,5 +49,6 @@ final class AmpBaseCarouselLightboxChild extends Tag implements Identifiable
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-base-carousel [lightbox-thumbnail-id] child',
     ];
 }

@@ -186,7 +186,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $pitch
  * @property-read array $pitchRange
  * @property-read array $placeItems
- * @property-read array<array<string>> $position
+ * @property-read array $position
  * @property-read array $quotes
  * @property-read array $resize
  * @property-read array $richness
@@ -431,15 +431,7 @@ final class EmailSpecificDeclarations extends DeclarationList implements Identif
         Attribute::PITCH => [],
         Attribute::PITCH_RANGE => [],
         Attribute::PLACE_ITEMS => [],
-        Attribute::POSITION => [
-            SpecRule::VALUE_CASEI => [
-                'absolute',
-                'inherit',
-                'initial',
-                'relative',
-                'static',
-            ],
-        ],
+        Attribute::POSITION => [],
         Attribute::QUOTES => [],
         Attribute::RESIZE => [],
         Attribute::RICHNESS => [],

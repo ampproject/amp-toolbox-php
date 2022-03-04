@@ -66,6 +66,7 @@ use AmpProject\Validator\Spec\SpecRule;
  * @property-read array $ariaLabelledby
  * @property-read array $ariaLevel
  * @property-read array $ariaLive
+ * @property-read array $ariaModal
  * @property-read array $ariaMultiline
  * @property-read array $ariaMultiselectable
  * @property-read array $ariaOrientation
@@ -227,6 +228,7 @@ final class GlobalAttrs extends AttributeList implements Identifiable
         Attribute::ARIA_LABELLEDBY => [],
         Attribute::ARIA_LEVEL => [],
         Attribute::ARIA_LIVE => [],
+        Attribute::ARIA_MODAL => [],
         Attribute::ARIA_MULTILINE => [],
         Attribute::ARIA_MULTISELECTABLE => [],
         Attribute::ARIA_ORIENTATION => [],

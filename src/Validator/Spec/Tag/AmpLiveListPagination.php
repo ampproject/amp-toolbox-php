@@ -51,6 +51,6 @@ final class AmpLiveListPagination extends Tag implements Identifiable
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
-        SpecRule::DESCRIPTIVE_NAME => 'amp-live-list [pagination]',
+        SpecRule::DESCRIPTIVE_NAME => 'amp-live-list [pagination] child',
     ];
 }

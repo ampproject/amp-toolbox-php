@@ -23,7 +23,7 @@ use AmpProject\Validator\Spec\Tag;
  *
  * @property-read string $tagName
  * @property-read string $specName
- * @property-read array<array> $attrs
+ * @property-read array $attrs
  * @property-read array<string> $attrLists
  * @property-read string $specUrl
  * @property-read array<array<string>> $ampLayout
@@ -55,6 +55,13 @@ final class AmpImgTransformed extends Tag implements Identifiable
             ],
             Attribute::ALT => [],
             Attribute::ATTRIBUTION => [],
+            Attribute::IMPORTANCE => [
+                SpecRule::VALUE_CASEI => [
+                    'high',
+                    'low',
+                    'auto',
+                ],
+            ],
             Attribute::OBJECT_FIT => [],
             Attribute::OBJECT_POSITION => [],
             Attribute::PLACEHOLDER => [],

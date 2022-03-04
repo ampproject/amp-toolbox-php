@@ -25,6 +25,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specUrl
  * @property-read array<array<string>> $referencePoints
  * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
  */
 final class AmpStoryGridLayerAnimateIn extends Tag implements Identifiable
 {
@@ -113,5 +114,6 @@ final class AmpStoryGridLayerAnimateIn extends Tag implements Identifiable
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-story-grid-layer [animate-in] child',
     ];
 }

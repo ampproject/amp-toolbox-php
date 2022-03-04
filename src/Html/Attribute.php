@@ -74,7 +74,7 @@ interface Attribute
     const AMP_ONERROR                     = 'amp-onerror';
     const AMP_RUNTIME                     = 'amp-runtime';
     const AMP_SCRIPT_SRC                  = 'amp-script-src';
-    const AMP_STORY_DVH_POLLYFILL         = 'amp-story-dvh-polyfill';
+    const AMP_STORY_DVH_POLYFILL          = 'amp-story-dvh-polyfill';
     const ANCHOR                          = 'anchor';
     const ANIMATE                         = 'animate';
     const ANIMATE_IN                      = 'animate-in';
@@ -115,6 +115,7 @@ interface Attribute
     const ARIA_LABELLEDBY                 = 'aria-labelledby';
     const ARIA_LEVEL                      = 'aria-level';
     const ARIA_LIVE                       = 'aria-live';
+    const ARIA_MODAL                      = 'aria-modal';
     const ARIA_MULTILINE                  = 'aria-multiline';
     const ARIA_MULTISELECTABLE            = 'aria-multiselectable';
     const ARIA_ORIENTATION                = 'aria-orientation';
@@ -439,6 +440,7 @@ interface Attribute
     const HOST_SERVICE                    = 'host-service';
     const HREF                            = 'href';
     const HREFLANG                        = 'hreflang';
+    const HSPACE                          = 'hspace';
     const HTML                            = 'html';
     const HTTP_EQUIV                      = 'http-equiv';
     const HYPHENS                         = 'hyphens';
@@ -920,6 +922,7 @@ interface Attribute
     const UNICODE                         = 'unicode';
     const UNICODE_BIDI                    = 'unicode-bidi';
     const UPDATE                          = 'update';
+    const USEMAP                          = 'usemap';
     const USER_SELECT                     = 'user-select';
     const VALIDATION_FOR                  = 'validation-for';
     const VALIGN                          = 'valign';
@@ -943,6 +946,7 @@ interface Attribute
     const VOCAB                           = 'vocab';
     const VOICE_FAMILY                    = 'voice-family';
     const VOLUME                          = 'volume';
+    const VSPACE                          = 'vspace';
     const WEEK_DAY_FORMAT                 = 'week-day-format';
     const WHEN_ENDED                      = 'when-ended';
     const WHITE_SPACE                     = 'white-space';
@@ -1010,15 +1014,18 @@ interface Attribute
 
     const DATA_ACCOUNT                     = 'data-account';
     const DATA_ACTION                      = 'data-action';
+    const DATA_AD_TAG_URL                  = 'data-ad-tag-url';
     const DATA_AMPDEVMODE                  = 'data-ampdevmode';
     const DATA_AMP_AUTOCOMPLETE_OPT_IN     = 'data-amp-autocomplete-opt-in';
     const DATA_AMP_BIND_SRC                = 'data-amp-bind-src';
     const DATA_AMP_STORY_PLAYER_POSTER_IMG = 'data-amp-story-player-poster-img';
     const DATA_APESTER_CHANNEL_TOKEN       = 'data-apester-channel-token';
     const DATA_APESTER_MEDIA_ID            = 'data-apester-media-id';
+    const DATA_API_KEY                     = 'data-api-key';
     const DATA_APP_KEY                     = 'data-app-key';
     const DATA_BCID                        = 'data-bcid';
     const DATA_BORDER                      = 'data-border';
+    const DATA_CALL_TO_ACTION_LABEL        = 'data-call-to-action-label';
     const DATA_CARDS                       = 'data-cards';
     const DATA_CAROUSEL                    = 'data-carousel';
     const DATA_CLIENT                      = 'data-client';
@@ -1056,6 +1063,7 @@ interface Attribute
     const DATA_IMG                         = 'data-img';
     const DATA_IMGUR_ID                    = 'data-imgur-id';
     const DATA_INFO                        = 'data-info';
+    const DATA_INTRO                       = 'data-intro';
     const DATA_ITEM                        = 'data-item';
     const DATA_ITEMS                       = 'data-items';
     const DATA_ITEM_INFO                   = 'data-item-info';
@@ -1064,6 +1072,7 @@ interface Attribute
     const DATA_LIGHT                       = 'data-light';
     const DATA_LIMIT                       = 'data-limit';
     const DATA_LIVE_CHANNELID              = 'data-live-channelid';
+    const DATA_LOCALE                      = 'data-locale';
     const DATA_MAX_ITEMS_PER_PAGE          = 'data-max-items-per-page';
     const DATA_MEDIAID                     = 'data-mediaid';
     const DATA_MEDIA_HASHED_ID             = 'data-media-hashed-id';
@@ -1076,6 +1085,7 @@ interface Attribute
     const DATA_MY_CONTENT                  = 'data-my-content';
     const DATA_NAME                        = 'data-name';
     const DATA_ORIGIN                      = 'data-origin';
+    const DATA_OUTRO                       = 'data-outro';
     const DATA_OUTSTREAM                   = 'data-outstream';
     const DATA_PARAM_VIDEOID               = 'data-param-videoid';
     const DATA_PARTNER                     = 'data-partner';
@@ -1108,6 +1118,7 @@ interface Attribute
     const DATA_SITE_ID                     = 'data-site-id';
     const DATA_SLOT                        = 'data-slot';
     const DATA_SORT_TIME                   = 'data-sort-time';
+    const DATA_SPEAKABLE                   = 'data-speakable';
     const DATA_SRC                         = 'data-src';
     const DATA_START                       = 'data-start';
     const DATA_STORY_SUPPORTS_LANDSCAPE    = 'data-story-supports-landscape';
@@ -1126,6 +1137,7 @@ interface Attribute
     const DATA_TOMBSTONE                   = 'data-tombstone';
     const DATA_TOOLTIP_ICON                = 'data-tooltip-icon';
     const DATA_TRACKID                     = 'data-trackid';
+    const DATA_TRACKING_IDS                = 'data-tracking-ids';
     const DATA_TWEETID                     = 'data-tweetid';
     const DATA_UI_HIGHLIGHT                = 'data-ui-highlight';
     const DATA_UI_LOGO                     = 'data-ui-logo';
@@ -1135,6 +1147,7 @@ interface Attribute
     const DATA_VIDEOID                     = 'data-videoid';
     const DATA_VINEID                      = 'data-vineid';
     const DATA_VISUAL                      = 'data-visual';
+    const DATA_VOICE                       = 'data-voice';
     const DATA_WEBCARE_ID                  = 'data-webcare-id';
     const DATA_WIDGET_ID                   = 'data-widget-id';
     const DATA_WIDGET_TYPE                 = 'data-widget-type';

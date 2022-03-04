@@ -52,10 +52,6 @@ final class DocRulesets implements Section
               ->addComment("Cache of instantiated DocRuleset objects.\n\n@var array<DocRuleset>")
               ->setValue([]);
 
-        $class->addProperty('iterationArray')
-              ->setPrivate()
-              ->addComment("Array used for storing the iteration index in.\n\n@var array<string>|null");
-
         foreach ($spec as $attributes) {
             $docRulesetId               = $this->getNameForRuleset($attributes);
             $docRulesets[$docRulesetId] = $attributes;

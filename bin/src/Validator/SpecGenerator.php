@@ -279,11 +279,26 @@ final class SpecGenerator
      */
     private function gatherExtensionsMeta($bundlesConfig)
     {
+        // TODO: Remove this when https://github.com/ampproject/amphtml/pull/37799 is resolved.
+        $extensionsMissingLatestVersion = [
+            'amp-app-banner'               => '0.1',
+            'amp-gist'                     => '0.1',
+            'amp-google-read-aloud-player' => '0.1',
+            'amp-list'                     => '0.1',
+            'amp-story-page-attachment'    => '0.1',
+            'amp-story-subscriptions'      => '0.1',
+        ];
+
         $extensions = [];
         foreach ($bundlesConfig as $bundleConfig) {
             if (! isset($bundleConfig['name']) || ! is_string($bundleConfig['name'])) {
                 throw new Exception('Missing name in bundles.config.extensions.json');
             }
+
+            if (isset($extensionsMissingLatestVersion[$bundleConfig['name']])) {
+                $bundleConfig['latestVersion'] = $extensionsMissingLatestVersion[$bundleConfig['name']];
+            }
+
             if (! isset($bundleConfig['latestVersion']) || ! is_string($bundleConfig['latestVersion'])) {
                 throw new Exception('Missing string latestVersion in bundles.config.extensions.json');
             }

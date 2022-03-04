@@ -52,10 +52,6 @@ final class CssRulesets implements Section
               ->addComment("Cache of instantiated CssRuleset objects.\n\n@var array<CssRuleset>")
               ->setValue([]);
 
-        $class->addProperty('iterationArray')
-              ->setPrivate()
-              ->addComment("Array used for storing the iteration index in.\n\n@var array<string>|null");
-
         foreach ($spec as $attributes) {
             $cssRulesetId               = $this->getNameForRuleset($attributes);
             $cssRulesets[$cssRulesetId] = $attributes;

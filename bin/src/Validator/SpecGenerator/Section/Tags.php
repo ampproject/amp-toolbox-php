@@ -72,10 +72,6 @@ final class Tags implements Section
               ->addComment("Cache of instantiated Tag objects.\n\n@var array<Tag>")
               ->setValue([]);
 
-        $class->addProperty('iterationArray')
-              ->setPrivate()
-              ->addComment("Array used for storing the iteration index in.\n\n@var array<string>|null");
-
         foreach ($spec as $tag) {
             $tagId = $this->getTagId($tags, $tag);
 

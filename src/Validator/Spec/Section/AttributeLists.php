@@ -37,6 +37,7 @@ final class AttributeLists implements IterableSection
         AttributeList\CiteAttr::ID => AttributeList\CiteAttr::class,
         AttributeList\ClickAttributions::ID => AttributeList\ClickAttributions::class,
         AttributeList\PrivateClickMeasurementAttributes::ID => AttributeList\PrivateClickMeasurementAttributes::class,
+        AttributeList\ImgAttrs::ID => AttributeList\ImgAttrs::class,
         AttributeList\TrackAttrsNoSubtitles::ID => AttributeList\TrackAttrsNoSubtitles::class,
         AttributeList\TrackAttrsSubtitles::ID => AttributeList\TrackAttrsSubtitles::class,
         AttributeList\InputCommonAttr::ID => AttributeList\InputCommonAttr::class,

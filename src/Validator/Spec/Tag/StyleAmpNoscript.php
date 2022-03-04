@@ -163,6 +163,7 @@ final class StyleAmpNoscript extends Tag implements Identifiable
                         SpecRule::NAME => AtRule::_MOZ_DOCUMENT,
                     ],
                 ],
+                SpecRule::ALLOW_IMPORTANT => true,
             ],
             SpecRule::DOC_CSS_BYTES => true,
         ],

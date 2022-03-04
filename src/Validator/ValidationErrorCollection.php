@@ -52,6 +52,7 @@ final class ValidationErrorCollection implements Countable, Iterator
      *
      * @return int Number of contained errors.
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->errors);
@@ -86,6 +87,7 @@ final class ValidationErrorCollection implements Countable, Iterator
      *
      * @return ValidationError Current validation error.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return current($this->errors);
@@ -96,6 +98,7 @@ final class ValidationErrorCollection implements Countable, Iterator
      *
      * @return void Any returned value is ignored.
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         next($this->errors);
@@ -106,6 +109,7 @@ final class ValidationErrorCollection implements Countable, Iterator
      *
      * @return string|int|null Scalar on success, or null on failure.
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return key($this->errors);
@@ -116,6 +120,7 @@ final class ValidationErrorCollection implements Countable, Iterator
      *
      * @return bool Whether the current position is valid.
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return $this->key() !== null;
@@ -126,6 +131,7 @@ final class ValidationErrorCollection implements Countable, Iterator
      *
      * @return void Any returned value is ignored.
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         reset($this->errors);

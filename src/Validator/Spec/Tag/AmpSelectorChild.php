@@ -21,6 +21,7 @@ use AmpProject\Validator\Spec\Tag;
  * @property-read string $specName
  * @property-read array<array<string>> $referencePoints
  * @property-read array<string> $htmlFormat
+ * @property-read string $descriptiveName
  */
 final class AmpSelectorChild extends Tag implements Identifiable
 {
@@ -52,5 +53,6 @@ final class AmpSelectorChild extends Tag implements Identifiable
             Format::AMP4ADS,
             Format::AMP4EMAIL,
         ],
+        SpecRule::DESCRIPTIVE_NAME => 'amp-selector child',
     ];
 }

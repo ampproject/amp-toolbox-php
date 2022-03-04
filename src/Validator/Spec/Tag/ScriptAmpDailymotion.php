@@ -23,7 +23,9 @@ use AmpProject\Validator\Spec\TagWithExtensionSpec;
  * @property-read string $tagName
  * @property-read array<string> $attrLists
  * @property-read array<string> $htmlFormat
+ * @property-read array<string> $satisfies
  * @property-read string $extensionSpec
+ * @property-read array<string> $excludes
  */
 final class ScriptAmpDailymotion extends TagWithExtensionSpec implements Identifiable
 {
@@ -42,11 +44,12 @@ final class ScriptAmpDailymotion extends TagWithExtensionSpec implements Identif
     const EXTENSION_SPEC = [
         SpecRule::NAME => 'amp-dailymotion',
         SpecRule::VERSION => [
-            '0.1',
-            'latest',
+            '1.0',
         ],
-        SpecRule::DEPRECATED_ALLOW_DUPLICATES => true,
-        SpecRule::REQUIRES_USAGE => 'EXEMPTED',
+        SpecRule::VERSION_NAME => 'v1.0',
+        SpecRule::BENTO_SUPPORTED_VERSION => [
+            '1.0',
+        ],
     ];
 
     /**
@@ -62,8 +65,8 @@ final class ScriptAmpDailymotion extends TagWithExtensionSpec implements Identif
      * @var array
      */
     const VERSIONS_META = [
-        '0.1' => [
-            'hasCss' => false,
+        '1.0' => [
+            'hasCss' => true,
             'hasBento' => false,
         ],
     ];
@@ -81,6 +84,12 @@ final class ScriptAmpDailymotion extends TagWithExtensionSpec implements Identif
         SpecRule::HTML_FORMAT => [
             Format::AMP,
         ],
+        SpecRule::SATISFIES => [
+            'amp-dailymotion 1.0',
+        ],
         SpecRule::EXTENSION_SPEC => self::EXTENSION_SPEC,
+        SpecRule::EXCLUDES => [
+            'amp-dailymotion 0.1',
+        ],
     ];
 }
