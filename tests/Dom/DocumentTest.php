@@ -1429,8 +1429,8 @@ class DocumentTest extends TestCase
                 .   '</svg>'
                 . '</body></html>',
                 '<!DOCTYPE html><html>' . $head . '<body>'
-                .   '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
-                .   '    <path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"/>'
+                .   '<svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
+                .   '    <path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z" />'
                 .   '</svg>'
                 . '</body></html>',
             ],
@@ -1445,9 +1445,9 @@ class DocumentTest extends TestCase
                 . '</svg>'
                 . '</body></html>',
                 '<!DOCTYPE html><html>' . $head . '<body>'
-                . '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">'
+                . '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none">'
                 . '    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52" fill="#1E1E1C" />'
-                . '    <mask id="mask0" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="20">'
+                . '    <mask id="mask0" maskunits="userSpaceOnUse" x="2" y="2" width="20" height="20">'
                 . '        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52" fill="white" />'
                 . '    </mask>'
                 . '    <g mask="url(#mask0)" />'
@@ -1464,7 +1464,7 @@ class DocumentTest extends TestCase
                 . '</svg>'
                 . '</body></html>',
                 '<!DOCTYPE html><html>' . $head . '<body>'
-                . '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
+                . '<svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">'
                 . '    <g fill="white" stroke="green" stroke-width="5">'
                 . '        <circle cx="40" cy="40" r="25" />'
                 . '        <circle cx="60" cy="60" r="25" />'
@@ -1483,7 +1483,7 @@ class DocumentTest extends TestCase
                 '<!DOCTYPE html><html>' . $head . '<body>' . PHP_EOL
                 . '<svg>' . PHP_EOL
                 . '  <g id="ok">' . PHP_EOL
-                . '    <path/>' . PHP_EOL
+                . '    <path />' . PHP_EOL
                 . '  </g>' . PHP_EOL
                 . '</svg>' . PHP_EOL
                 . '</body></html>',
@@ -1501,7 +1501,7 @@ class DocumentTest extends TestCase
     {
         $document = Document::fromHtml($source);
         $output = $document->saveHTML();
-        $this->assertSimilarMarkup($expected, $output);
+        $this->assertEqualMarkup($expected, $output);
     }
 
     /**
