@@ -1471,6 +1471,22 @@ class DocumentTest extends TestCase
                 . '    </g>'
                 . '</svg>'
                 . '</body></html>',
+            ],
+            'test g tag one path child and newlines' => [
+                '<!DOCTYPE html><html><head></head><body>' . PHP_EOL
+                . '<svg>' . PHP_EOL
+                . '  <g id="ok">' . PHP_EOL
+                . '    <path/>' . PHP_EOL
+                . '  </g>' . PHP_EOL
+                . '</svg>' . PHP_EOL
+                . '</body></html>',
+                '<!DOCTYPE html><html>' . $head . '<body>' . PHP_EOL
+                . '<svg>' . PHP_EOL
+                . '  <g id="ok">' . PHP_EOL
+                . '    <path/>' . PHP_EOL
+                . '  </g>' . PHP_EOL
+                . '</svg>' . PHP_EOL
+                . '</body></html>',
             ]
         ];
     }
