@@ -249,6 +249,15 @@ final class OptimizeHeroImagesTest extends TestCase
                 ),
             ],
 
+            'hero image with noscript fallback' => [
+                $input(
+                    '<amp-img data-hero width="500" height="400" src="/img1.png"><noscript><img data-hero width="500" height="400" src="/img1.png"></noscript></amp-img>'
+                ),
+                $output(
+                    '<amp-img data-hero height="400" i-amphtml-ssr src="/img1.png" width="500"><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" src="/img1.png"></amp-img>'
+                ),
+            ],
+
             'superfluous candidates are ignored without throwing an error' => [
                 $input(
                     '<amp-img width="500" height="400" src="/foo.png"></amp-img>'
