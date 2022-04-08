@@ -202,7 +202,11 @@ final class OptimizeHeroImages implements Transformer
         $node                = $document->body;
 
         while ($node !== null) {
-            if (! $node instanceof Element) {
+            if (
+                ! $node instanceof Element
+                ||
+                ( $node->parentNode instanceof Element && $node->parentNode->tagName === Tag::NOSCRIPT )
+            ) {
                 $node = NodeWalker::nextNode($node);
                 continue;
             }
