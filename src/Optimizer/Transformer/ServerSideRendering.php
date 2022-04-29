@@ -590,9 +590,15 @@ final class ServerSideRendering implements Transformer
         if ($layout === Layout::RESPONSIVE) {
             $elementId = $element->getAttribute(Attribute::ID);
             if (!empty($elementId) && array_key_exists($elementId, $this->customSizerStyles)) {
-                $sizer = $this->createResponsiveSizer($document, $width, $height, $this->customSizerStyles[$elementId]);
+                $sizer = $this->createResponsiveSizer(
+                    $document,
+                    $element,
+                    $width,
+                    $height,
+                    $this->customSizerStyles[$elementId]
+                );
             } else {
-                $sizer = $this->createResponsiveSizer($document, $width, $height);
+                $sizer = $this->createResponsiveSizer($document, $element, $width, $height);
             }
         } elseif ($layout === Layout::INTRINSIC) {
             $sizer = $this->createIntrinsicSizer($document, $width, $height);
@@ -607,6 +613,7 @@ final class ServerSideRendering implements Transformer
      * Create a sizer element for a responsive layout.
      *
      * @param Document  $document DOM document to create the sizer for.
+     * @param Element   $element  Element to add a sizer to.
      * @param CssLength $width    Calculated width of the element.
      * @param CssLength $height   Calculated height of the element.
      * @param string    $style    Style to use for the sizer. Defaults to padding-top in percentage.
@@ -614,18 +621,22 @@ final class ServerSideRendering implements Transformer
      */
     private function createResponsiveSizer(
         Document $document,
+        Element $element,
         CssLength $width,
         CssLength $height,
-        $style = 'padding-top:%s%%'
+        $style = ''
     ) {
         $padding       = $height->getNumeral() / $width->getNumeral() * 100;
         $paddingString = rtrim(rtrim(sprintf('%.4F', round($padding, 4)), '0'), '.');
+        $paddingStyle  = ! $element->hasAttribute(Attribute::HEIGHTS)
+            ? sprintf('padding-top:%s%%', $paddingString)
+            : '';
 
-        $style = empty($style) ? 'display:block' : "display:block;{$style}";
+        $style = "display:block;{$paddingStyle};{$style}";
 
         $sizer = $document->createElement(Amp::SIZER_ELEMENT);
         $sizer->setAttribute(Attribute::SLOT, Amp::SERVICE_SLOT);
-        $sizer->addInlineStyle(sprintf($style, $paddingString));
+        $sizer->addInlineStyle($style);
 
         return $sizer;
     }
