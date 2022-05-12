@@ -142,6 +142,7 @@ final class ServerSideRendering implements Transformer
             if ($ampElement->tagName === Extension::AUDIO) {
                 $errors->add(Error\CannotRemoveBoilerplate::fromAmpAudio($ampElement));
                 $canRemoveBoilerplate = false;
+                $this->ssrAmpAudio($document, $ampElement);
             }
 
             /*
@@ -1059,5 +1060,29 @@ final class ServerSideRendering implements Transformer
         }
 
         return abs($number) < self::FLOATING_POINT_EPSILON;
+    }
+
+    /**
+     * Server-side rendering of an amp-audio element.
+     *
+     * @param Document $document DOM document to apply the transformations to.
+     * @param Element  $element  Element to adapt.
+     */
+    private function ssrAmpAudio(Document $document, Element $element)
+    {
+        // Check if we already have a SSR-ed audio element.
+        if ($element->hasChildNodes()) {
+            foreach ($element->childNodes as $childNode) {
+                if ($childNode instanceof Element && $childNode->tagName === Tag::AUDIO) {
+                    return;
+                }
+            }
+        }
+
+        $audio = $document->createElement(Tag::AUDIO);
+        $audio->setAttribute(Attribute::CONTROLS, '');
+        $audio->addInlineStyle('width:100%');
+
+        $element->appendChild($audio);
     }
 }

@@ -132,7 +132,7 @@ final class ServerSideRenderingTest extends TestCase
 
             'amp-audio' => [
                 $input('<amp-audio></amp-audio>'),
-                $expectWithBoilerplate('<amp-audio></amp-audio>'),
+                $expectWithBoilerplate('<amp-audio><audio controls style="width:100%;"></audio></amp-audio>'),
                 [
                     Error\CannotRemoveBoilerplate::fromAmpAudio(
                         Document::fromHtmlFragment(
@@ -326,6 +326,66 @@ final class ServerSideRenderingTest extends TestCase
                 $input('<amp-ad type="doubleclick" data-slot="/6355419/Travel" layout="fluid" height="fluid" width="300"></amp-ad>'),
                 $expectWithoutBoilerplate('<amp-ad class="i-amphtml-layout-fluid i-amphtml-layout-awaiting-size" data-slot="/6355419/Travel" height="fluid" width="300" i-amphtml-layout="fluid" layout="fluid" style="width:100%;height:0;" type="doubleclick"></amp-ad>'),
             ],
+
+            'server side render amp-audio' => [
+                $input('<amp-audio src="http://example.com/audio.mp3" width="300"></amp-audio>'),
+                $expectWithBoilerplate('<amp-audio src="http://example.com/audio.mp3" width="300"><audio controls style="width:100%;"></audio></amp-audio>'),
+                [
+                    Error\CannotRemoveBoilerplate::fromAmpAudio(
+                        Document::fromHtmlFragment(
+                            '<amp-audio src="http://example.com/audio.mp3" width="300"></amp-audio>'
+                        )->body->firstChild
+                    ),
+                ],
+            ],
+
+            'ssr amp-audio appends audio element' => [
+                $input(
+                    '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                        . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
+                    . '</amp-audio>'
+                ),
+                $expectWithBoilerplate(
+                    '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                        . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
+                        . '<audio controls style="width:100%;"></audio>'
+                    . '</amp-audio>'
+                ),
+                [
+                    Error\CannotRemoveBoilerplate::fromAmpAudio(
+                        Document::fromHtmlFragment(
+                            '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                                . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
+                            . '</amp-audio>'
+                        )->body->firstChild
+                    ),
+                ],
+            ],
+
+            'skip ssr amp-audio if audio child node is present' => [
+                $input(
+                    '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                        . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
+                        . '<audio controls="" style="width: 100%" src="http://example.com/audio.mp3"></audio>'
+                    . '</amp-audio>'
+                ),
+                $expectWithBoilerplate(
+                    '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                        . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
+                        . '<audio controls="" style="width: 100%" src="http://example.com/audio.mp3"></audio>'
+                    . '</amp-audio>'
+                ),
+                [
+                    Error\CannotRemoveBoilerplate::fromAmpAudio(
+                        Document::fromHtmlFragment(
+                            '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                                . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
+                                . '<audio controls="" style="width: 100%" src="http://example.com/audio.mp3"></audio>'
+                            . '</amp-audio>'
+                        )->body->firstChild
+                    ),
+                ],
+            ]
         ];
     }
 
