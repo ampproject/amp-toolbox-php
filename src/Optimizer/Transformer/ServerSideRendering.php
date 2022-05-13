@@ -1079,10 +1079,10 @@ final class ServerSideRendering implements Transformer
             }
         }
 
-        $audio = $document->createElement(Tag::AUDIO);
-        $audio->setAttribute($document->createAttributeNode(Attribute::CONTROLS));
-        $audio->addInlineStyle('width:100%');
+        $audio    = $document->createElement(Tag::AUDIO);
+        $controls = $document->createAttribute(Attribute::CONTROLS);
 
+        $audio->appendChild($controls);
         $element->appendChild($audio);
     }
 }

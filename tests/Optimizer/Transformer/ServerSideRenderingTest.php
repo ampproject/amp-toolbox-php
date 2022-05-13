@@ -132,7 +132,7 @@ final class ServerSideRenderingTest extends TestCase
 
             'amp-audio' => [
                 $input('<amp-audio></amp-audio>'),
-                $expectWithBoilerplate('<amp-audio><audio controls style="width:100%;"></audio></amp-audio>'),
+                $expectWithBoilerplate('<amp-audio><audio controls></audio></amp-audio>'),
                 [
                     Error\CannotRemoveBoilerplate::fromAmpAudio(
                         Document::fromHtmlFragment(
@@ -329,7 +329,7 @@ final class ServerSideRenderingTest extends TestCase
 
             'server side render amp-audio' => [
                 $input('<amp-audio src="http://example.com/audio.mp3" width="300"></amp-audio>'),
-                $expectWithBoilerplate('<amp-audio src="http://example.com/audio.mp3" width="300"><audio controls style="width:100%;"></audio></amp-audio>'),
+                $expectWithBoilerplate('<amp-audio src="http://example.com/audio.mp3" width="300"><audio controls></audio></amp-audio>'),
                 [
                     Error\CannotRemoveBoilerplate::fromAmpAudio(
                         Document::fromHtmlFragment(
@@ -348,7 +348,7 @@ final class ServerSideRenderingTest extends TestCase
                 $expectWithBoilerplate(
                     '<amp-audio src="http://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
-                        . '<audio controls style="width:100%;"></audio>'
+                        . '<audio controls></audio>'
                     . '</amp-audio>'
                 ),
                 [
@@ -366,13 +366,13 @@ final class ServerSideRenderingTest extends TestCase
                 $input(
                     '<amp-audio src="http://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
-                        . '<audio controls="" style="width: 100%" src="http://example.com/audio.mp3"></audio>'
+                        . '<audio controls src="http://example.com/audio.mp3"></audio>'
                     . '</amp-audio>'
                 ),
                 $expectWithBoilerplate(
                     '<amp-audio src="http://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
-                        . '<audio controls="" style="width: 100%" src="http://example.com/audio.mp3"></audio>'
+                        . '<audio controls src="http://example.com/audio.mp3"></audio>'
                     . '</amp-audio>'
                 ),
                 [
@@ -380,7 +380,7 @@ final class ServerSideRenderingTest extends TestCase
                         Document::fromHtmlFragment(
                             '<amp-audio src="http://example.com/audio.mp3" width="300">'
                                 . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
-                                . '<audio controls="" style="width: 100%" src="http://example.com/audio.mp3"></audio>'
+                                . '<audio controls src="http://example.com/audio.mp3"></audio>'
                             . '</amp-audio>'
                         )->body->firstChild
                     ),
