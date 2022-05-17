@@ -566,7 +566,13 @@ final class Document extends DOMDocument
         } elseif (! preg_match(self::HTML_STRUCTURE_BODY_END_TAG, $content, $matches)) {
             // Only <body> missing.
             // @todo This is an expensive regex operation, look into further optimization.
-            $content = preg_replace(self::HTML_STRUCTURE_HEAD_TAG, '$0<body>', $content, 1);
+            $content = preg_replace(self::HTML_STRUCTURE_HEAD_TAG, '$0<body>', $content, 1, $count);
+
+            // Closing </head> tag is missing.
+            if (! $count) {
+                $content = $content . '</head><body>';
+            }
+
             $content .= '</body>';
         }
 
