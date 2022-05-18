@@ -11,6 +11,7 @@ use AmpProject\Html\Attribute;
 use AmpProject\Html\Tag;
 use AmpProject\Tests\MarkupComparison;
 use AmpProject\Tests\TestCase;
+use AmpProject\Tests\TestMarkup;
 use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;
 use DOMNode;
@@ -752,6 +753,17 @@ class DocumentTest extends TestCase
         $this->assertEquals('meta', $dom->head->firstChild->tagName);
         $this->assertNull($dom->head->firstChild->nextSibling);
         $this->assertEquals(6, $dom->body->childNodes->length);
+
+        // Test with missing closing head tag.
+        $expected = TestMarkup::DOCTYPE . '<html>'
+            . '<head>' . TestMarkup::META_CHARSET . '<meta name="foo" content="bar"></head>'
+            . '<body><foo></foo><bar></bar></body></html>';
+
+        $html     = '<html><head><meta name="foo" content="bar"><foo></foo><bar></bar>';
+        $document = Document::fromHtml($html);
+        $output   = $document->saveHTML();
+
+        $this->assertEqualMarkup($expected, $output);
     }
 
     /**
