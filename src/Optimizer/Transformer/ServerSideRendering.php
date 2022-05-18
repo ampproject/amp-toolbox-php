@@ -131,7 +131,6 @@ final class ServerSideRendering implements Transformer
              */
             if ($ampElement->tagName === Extension::AUDIO) {
                 $this->ssrAmpAudio($document, $ampElement);
-                continue;
             }
 
             /*
