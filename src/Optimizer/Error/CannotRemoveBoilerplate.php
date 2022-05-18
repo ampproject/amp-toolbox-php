@@ -22,8 +22,6 @@ final class CannotRemoveBoilerplate implements Error
                                           . 'attribute produced an error: ';
     const RENDER_DELAYING_SCRIPT_STRING = 'Cannot remove boilerplate because the document contains a render-delaying '
                                           . 'extension: ';
-    const AMP_AUDIO_STRING              = 'Cannot remove boilerplate because the document contains an extension that '
-                                          . 'needs to know the dimensions of the browser: ';
     const UNSUPPORTED_LAYOUT_STRING     = 'Cannot remove boilerplate because of an unsupported layout: ';
 
     /**
@@ -57,17 +55,6 @@ final class CannotRemoveBoilerplate implements Error
     public static function fromAmpExperiment(Element $element)
     {
         return new self(self::RENDER_DELAYING_SCRIPT_STRING . $element->tagName);
-    }
-
-    /**
-     * Instantiate a CannotRemoveBoilerplate object for an amp-audio element.
-     *
-     * @param Element $element amp-audio element.
-     * @return self
-     */
-    public static function fromAmpAudio(Element $element)
-    {
-        return new self(self::AMP_AUDIO_STRING . new ElementDump($element));
     }
 
     /**

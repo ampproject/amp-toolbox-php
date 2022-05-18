@@ -132,14 +132,7 @@ final class ServerSideRenderingTest extends TestCase
 
             'amp-audio' => [
                 $input('<amp-audio></amp-audio>'),
-                $expectWithBoilerplate('<amp-audio><audio controls></audio></amp-audio>'),
-                [
-                    Error\CannotRemoveBoilerplate::fromAmpAudio(
-                        Document::fromHtmlFragment(
-                            '<amp-audio></amp-audio>'
-                        )->body->firstChild
-                    ),
-                ],
+                $expectWithoutBoilerplate('<amp-audio><audio controls></audio></amp-audio>'),
             ],
 
             'amp-experiment is non-empty' => [
@@ -329,14 +322,7 @@ final class ServerSideRenderingTest extends TestCase
 
             'server side render amp-audio' => [
                 $input('<amp-audio src="http://example.com/audio.mp3" width="300"></amp-audio>'),
-                $expectWithBoilerplate('<amp-audio src="http://example.com/audio.mp3" width="300"><audio controls></audio></amp-audio>'),
-                [
-                    Error\CannotRemoveBoilerplate::fromAmpAudio(
-                        Document::fromHtmlFragment(
-                            '<amp-audio src="http://example.com/audio.mp3" width="300"></amp-audio>'
-                        )->body->firstChild
-                    ),
-                ],
+                $expectWithoutBoilerplate('<amp-audio src="http://example.com/audio.mp3" width="300"><audio controls></audio></amp-audio>'),
             ],
 
             'ssr amp-audio appends audio element' => [
@@ -345,21 +331,12 @@ final class ServerSideRenderingTest extends TestCase
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
                     . '</amp-audio>'
                 ),
-                $expectWithBoilerplate(
+                $expectWithoutBoilerplate(
                     '<amp-audio src="http://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
                         . '<audio controls></audio>'
                     . '</amp-audio>'
                 ),
-                [
-                    Error\CannotRemoveBoilerplate::fromAmpAudio(
-                        Document::fromHtmlFragment(
-                            '<amp-audio src="http://example.com/audio.mp3" width="300">'
-                                . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
-                            . '</amp-audio>'
-                        )->body->firstChild
-                    ),
-                ],
             ],
 
             'skip ssr amp-audio if audio child node is present' => [
@@ -369,22 +346,12 @@ final class ServerSideRenderingTest extends TestCase
                         . '<audio controls src="http://example.com/audio.mp3"></audio>'
                     . '</amp-audio>'
                 ),
-                $expectWithBoilerplate(
+                $expectWithoutBoilerplate(
                     '<amp-audio src="http://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
                         . '<audio controls src="http://example.com/audio.mp3"></audio>'
                     . '</amp-audio>'
                 ),
-                [
-                    Error\CannotRemoveBoilerplate::fromAmpAudio(
-                        Document::fromHtmlFragment(
-                            '<amp-audio src="http://example.com/audio.mp3" width="300">'
-                                . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
-                                . '<audio controls src="http://example.com/audio.mp3"></audio>'
-                            . '</amp-audio>'
-                        )->body->firstChild
-                    ),
-                ],
             ]
         ];
     }

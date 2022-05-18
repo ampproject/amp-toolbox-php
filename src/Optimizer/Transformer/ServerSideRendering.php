@@ -127,22 +127,20 @@ final class ServerSideRendering implements Transformer
             }
 
             /*
+             * Server-side rendering of an amp-audio element.
+             */
+            if ($ampElement->tagName === Extension::AUDIO) {
+                $this->ssrAmpAudio($document, $ampElement);
+                continue;
+            }
+
+            /*
              * amp-experiment is a render delaying extension iff the tag is used in the doc. We check for that here
              * rather than checking for the existence of the amp-experiment script in IsRenderDelayingExtension below.
              */
             if ($ampElement->tagName === Extension::EXPERIMENT && $this->isAmpExperimentUsed($ampElement)) {
                 $errors->add(Error\CannotRemoveBoilerplate::fromAmpExperiment($ampElement));
                 $canRemoveBoilerplate = false;
-            }
-
-            /*
-             * amp-audio requires knowing the dimensions of the browser. Do not remove the boilerplate or apply layout
-             * if amp-audio is present in the document.
-             */
-            if ($ampElement->tagName === Extension::AUDIO) {
-                $errors->add(Error\CannotRemoveBoilerplate::fromAmpAudio($ampElement));
-                $canRemoveBoilerplate = false;
-                $this->ssrAmpAudio($document, $ampElement);
             }
 
             /*
