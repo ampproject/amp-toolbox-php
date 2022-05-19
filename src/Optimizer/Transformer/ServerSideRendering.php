@@ -127,20 +127,18 @@ final class ServerSideRendering implements Transformer
             }
 
             /*
+             * Server-side rendering of an amp-audio element.
+             */
+            if ($ampElement->tagName === Extension::AUDIO) {
+                $this->ssrAmpAudio($document, $ampElement);
+            }
+
+            /*
              * amp-experiment is a render delaying extension iff the tag is used in the doc. We check for that here
              * rather than checking for the existence of the amp-experiment script in IsRenderDelayingExtension below.
              */
             if ($ampElement->tagName === Extension::EXPERIMENT && $this->isAmpExperimentUsed($ampElement)) {
                 $errors->add(Error\CannotRemoveBoilerplate::fromAmpExperiment($ampElement));
-                $canRemoveBoilerplate = false;
-            }
-
-            /*
-             * amp-audio requires knowing the dimensions of the browser. Do not remove the boilerplate or apply layout
-             * if amp-audio is present in the document.
-             */
-            if ($ampElement->tagName === Extension::AUDIO) {
-                $errors->add(Error\CannotRemoveBoilerplate::fromAmpAudio($ampElement));
                 $canRemoveBoilerplate = false;
             }
 
@@ -1059,5 +1057,29 @@ final class ServerSideRendering implements Transformer
         }
 
         return abs($number) < self::FLOATING_POINT_EPSILON;
+    }
+
+    /**
+     * Server-side rendering of an amp-audio element.
+     *
+     * @param Document $document DOM document to apply the transformations to.
+     * @param Element  $element  Element to adapt.
+     */
+    private function ssrAmpAudio(Document $document, Element $element)
+    {
+        // Check if we already have a SSR-ed audio element.
+        if ($element->hasChildNodes()) {
+            foreach ($element->childNodes as $childNode) {
+                if ($childNode instanceof Element && $childNode->tagName === Tag::AUDIO) {
+                    return;
+                }
+            }
+        }
+
+        $audio    = $document->createElement(Tag::AUDIO);
+        $controls = $document->createAttribute(Attribute::CONTROLS);
+
+        $audio->setAttributeNode($controls);
+        $element->appendChild($audio);
     }
 }
