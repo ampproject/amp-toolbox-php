@@ -10,12 +10,12 @@ parameters:
 	ignoreErrors:
 		- '#^PHPDoc tag @throws with type AmpProject\\Exception\\FailedRemoteRequest is not subtype of Throwable$#'
 		- '#^Parameter \#1 (\$exception_handler|\$callback) of function set_exception_handler expects#'
-		- '#^@readonly property AmpProject\\FakeEnum::\$key is assigned outside of the constructor.$#'
 
 		# @see https://github.com/phpstan/phpstan/issues/5655
 		- '#^PHPDoc tag @var for constant (?:.*) with type array(?:.*) is not subtype of value array(?:.*)\.$#'
 	excludePaths:
 		analyse:
+			- src/FakeEnum.php
 			- src/Validator/Context.php
 			- src/Validator/ExtensionsContext.php
 			- src/Validator/ValidateTagResult.php
