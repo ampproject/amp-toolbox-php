@@ -22,7 +22,7 @@ final class DoctypeNode implements BeforeLoadFilter, AfterSaveFilter
     /**
      * Regex replacement template for securing the doctype node.
      *
-     * @var string.
+     * @var string
      */
     const HTML_SECURE_DOCTYPE_REPLACEMENT_TEMPLATE = '\1!--amp-\3\4-->';
 

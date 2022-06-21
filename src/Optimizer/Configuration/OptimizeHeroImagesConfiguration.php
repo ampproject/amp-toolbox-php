@@ -24,7 +24,7 @@ final class OptimizeHeroImagesConfiguration extends BaseTransformerConfiguration
      *
      * An empty string signifies that no backup is available.
      *
-     * @var string.
+     * @var string
      */
     const INLINE_STYLE_BACKUP_ATTRIBUTE = 'inlineStyleBackupAttribute';
 
