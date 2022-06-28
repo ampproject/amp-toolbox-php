@@ -48,8 +48,6 @@ final class SpecTest extends TestCase
         'ReorderHead - preserves_amp_custom_style_order' => 'see https://github.com/ampproject/amp-toolbox/issues/604',
 
         'MinifyHtml - minifies_inline_amp-script'          => 'see https://github.com/ampproject/amp-toolbox-php/issues/260',
-
-        'ServerSideRendering - does_not_transform_amp_audio' => 'The amp-toolbox needs to implement SSR amp-audio',
     ];
 
     const CLASS_SKIP_TEST = '__SKIP__';
