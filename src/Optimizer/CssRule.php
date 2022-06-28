@@ -26,7 +26,7 @@ final class CssRule
      *
      * Use applyId() to finalize the CSS rule.
      *
-     * @var string.
+     * @var string
      */
     const ID_PLACEHOLDER = '__ID__';
 
