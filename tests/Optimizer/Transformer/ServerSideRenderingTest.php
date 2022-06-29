@@ -321,18 +321,18 @@ final class ServerSideRenderingTest extends TestCase
             ],
 
             'server side render amp-audio' => [
-                $input('<amp-audio src="http://example.com/audio.mp3" width="300"></amp-audio>'),
-                $expectWithoutBoilerplate('<amp-audio src="http://example.com/audio.mp3" width="300"><audio controls></audio></amp-audio>'),
+                $input('<amp-audio src="https://example.com/audio.mp3" width="300"></amp-audio>'),
+                $expectWithoutBoilerplate('<amp-audio src="https://example.com/audio.mp3" width="300"><audio controls></audio></amp-audio>'),
             ],
 
             'ssr amp-audio appends audio element' => [
                 $input(
-                    '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                    '<amp-audio src="https://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
                     . '</amp-audio>'
                 ),
                 $expectWithoutBoilerplate(
-                    '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                    '<amp-audio src="https://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
                         . '<audio controls></audio>'
                     . '</amp-audio>'
@@ -341,15 +341,15 @@ final class ServerSideRenderingTest extends TestCase
 
             'skip ssr amp-audio if audio child node is present' => [
                 $input(
-                    '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                    '<amp-audio src="https://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
-                        . '<audio controls src="http://example.com/audio.mp3"></audio>'
+                        . '<audio controls src="https://example.com/audio.mp3"></audio>'
                     . '</amp-audio>'
                 ),
                 $expectWithoutBoilerplate(
-                    '<amp-audio src="http://example.com/audio.mp3" width="300">'
+                    '<amp-audio src="https://example.com/audio.mp3" width="300">'
                         . '<div fallback="">Your browser doesn’t support HTML5 audio</div>'
-                        . '<audio controls src="http://example.com/audio.mp3"></audio>'
+                        . '<audio controls src="https://example.com/audio.mp3"></audio>'
                     . '</amp-audio>'
                 ),
             ]
