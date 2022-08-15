@@ -56,7 +56,7 @@ class TemporaryFileCachedRemoteGetRequestTest extends TestCase
 
         $urls            = array_keys(TestMarkup::STUBBED_REMOTE_REQUESTS);
         $url             = $urls[0];
-        $stubbedResponse = TestMarkup::STUBBED_REMOTE_REQUESTS[$url];
+        $stubbedResponse = TestMarkup::STUBBED_REMOTE_REQUESTS[$url]['body'];
 
         $filename = TemporaryFileCachedRemoteGetRequest::CACHED_FILE_PREFIX . md5($url);
         $file     = vfsStream::url(self::DIRECTORY_NAME . "/{$filename}");

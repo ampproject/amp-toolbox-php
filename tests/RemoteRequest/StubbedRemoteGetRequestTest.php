@@ -17,7 +17,7 @@ class StubbedRemoteGetRequestTest extends TestCase
     {
         $stubbedRequest = new StubbedRemoteGetRequest(
             [
-                'https://example.com/stubbed-file' => 'stubbed response',
+                'https://example.com/stubbed-file' => ['body' => 'stubbed response'],
             ]
         );
 
@@ -32,7 +32,7 @@ class StubbedRemoteGetRequestTest extends TestCase
     {
         $stubbedRequest = new StubbedRemoteGetRequest(
             [
-                'https://example.com/stubbed-file' => 'stubbed response',
+                'https://example.com/stubbed-file' => ['body' => 'stubbed response'],
             ]
         );
 
