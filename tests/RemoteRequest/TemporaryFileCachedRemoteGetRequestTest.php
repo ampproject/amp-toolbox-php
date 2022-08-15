@@ -113,6 +113,24 @@ class TemporaryFileCachedRemoteGetRequestTest extends TestCase
     }
 
     /**
+     * Test that errors do not get cached.
+     */
+    public function testCacheOnlyValidRepsonses()
+    {
+        $unknownUrl = 'https://cdn.ampproject.com/non-existant.really.not.html';
+
+        $tmpDirectory = vfsStream::url(self::DIRECTORY_NAME);
+        $cachedRequest = new TemporaryFileCachedRemoteGetRequest(
+            new StubbedRemoteGetRequest([$unknownUrl => ['body' => '404 content', 'status' => 404]]),
+            $tmpDirectory
+        );
+
+        $cachedRequest->get($unknownUrl);
+
+        $this->assertFileDoesNotExist($tmpDirectory . DIRECTORY_SEPARATOR . TemporaryFileCachedRemoteGetRequest::CACHED_FILE_PREFIX . md5($unknownUrl));
+    }
+
+    /**
      * Get the request class instance to test against.
      *
      * @return TemporaryFileCachedRemoteGetRequest Request object instance to test against.
