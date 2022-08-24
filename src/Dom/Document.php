@@ -109,6 +109,12 @@ final class Document extends DOMDocument
     const XPATH_INLINE_STYLE_ATTRIBUTES_QUERY = './/@style';
 
     /**
+     * Associative array for lazily-created, cached properties for the document.
+     * @var
+     */
+    private $properties = [];
+
+    /**
      * Associative array of options to configure the behavior of the DOM document abstraction.
      *
      * @see Option::DEFAULTS For a list of available options.
@@ -819,6 +825,29 @@ final class Document extends DOMDocument
     }
 
     /**
+     * Get the array of allowed keys of lazily-created, cached properties.
+     * The array index is the key and the array value is the key's default value.
+     *
+     * @return array Array of allowed keys.
+     */
+    protected function getAllowedKeys()
+    {
+        return [
+            'xpath',
+            Tag::HTML,
+            Tag::HEAD,
+            Tag::BODY,
+            Attribute::CHARSET,
+            Attribute::VIEWPORT,
+            'ampElements',
+            'ampCustomStyle',
+            'ampCustomStyleByteCount',
+            'inlineStyleByteCount',
+            'links',
+        ];
+    }
+
+    /**
      * Magic getter to implement lazily-created, cached properties for the document.
      *
      * @param string $name Name of the property to get.
@@ -828,8 +857,8 @@ final class Document extends DOMDocument
     {
         switch ($name) {
             case 'xpath':
-                $this->xpath = new DOMXPath($this);
-                return $this->xpath;
+                $this->properties['xpath'] = new DOMXPath($this);
+                return $this->properties['xpath'];
             case Tag::HTML:
                 $html = $this->getElementsByTagName(Tag::HTML)->item(0);
 
@@ -843,8 +872,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forHtmlElement($html);
                 }
 
-                $this->html = $html;
-                return $this->html;
+                $this->properties['html'] = $html;
+                return $this->properties['html'];
             case Tag::HEAD:
                 $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
 
@@ -858,8 +887,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forHeadElement($head);
                 }
 
-                $this->head = $head;
-                return $this->head;
+                $this->properties['head'] = $head;
+                return $this->properties['head'];
             case Tag::BODY:
                 $body = $this->getElementsByTagName(Tag::BODY)->item(0);
 
@@ -873,8 +902,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forBodyElement($body);
                 }
 
-                $this->body = $body;
-                return $this->body;
+                $this->properties['body'] = $body;
+                return $this->properties['body'];
             case Attribute::CHARSET:
                 // This is not cached as it could potentially be requested too early, before the viewport was added, and
                 // the cache would then store null without rechecking later on after the viewport has been added.
@@ -960,6 +989,39 @@ final class Document extends DOMDocument
         // Mimic regular PHP behavior for missing notices.
         trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
         return null;
+    }
+
+    /**
+     * Magic setter to implement lazily-created, cached properties for the document.
+     *
+     * @param string $name Name of the property to set.
+     * @param mixed $value Value of the property.
+     */
+    public function __set($name, $value)
+    {
+        if (!in_array( $name, $this->getAllowedKeys(), true)) {
+            // Mimic regular PHP behavior for missing notices.
+            trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+            return;
+        }
+
+        $this->properties[$name] = $value;
+    }
+
+    /**
+     * Magic callback for lazily-created, cached properties for the document.
+     *
+     * @param string $name Name of the property to set.
+     */
+    public function __isset($name)
+    {
+        if ( !in_array( $name, $this->getAllowedKeys(), true) ) {
+            // Mimic regular PHP behavior for missing notices.
+            trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+            return false;
+        }
+
+        return isset($this->properties[$name]);
     }
 
     /**
