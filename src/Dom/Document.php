@@ -774,7 +774,7 @@ final class Document extends DOMDocument
     public function addAmpCustomStyle($style)
     {
         $style         = trim($style, CssRule::CSS_TRIM_CHARACTERS);
-        $existingStyle = (string)$this->ampCustomStyle->textContent;
+        $existingStyle = (string)$this->properties['ampCustomStyle']->textContent;
 
         // Inject new styles before any potential source map annotation comment like: /*# sourceURL=amp-custom.css */.
         // If not present, then just put it at the end of the stylesheet. This isn't strictly required, but putting the
@@ -788,12 +788,12 @@ final class Document extends DOMDocument
 
         $newByteCount = strlen($newStyle);
 
-        if ($this->getRemainingCustomCssSpace() < ($newByteCount - $this->ampCustomStyleByteCount)) {
+        if ($this->getRemainingCustomCssSpace() < ($newByteCount - $this->properties['ampCustomStyleByteCount'])) {
             throw MaxCssByteCountExceeded::forAmpCustom($newStyle);
         }
 
-        $this->ampCustomStyle->textContent = $newStyle;
-        $this->ampCustomStyleByteCount     = $newByteCount;
+        $this->properties['ampCustomStyle']->textContent = $newStyle;
+        $this->properties['ampCustomStyleByteCount']     = $newByteCount;
     }
 
     /**
@@ -803,7 +803,7 @@ final class Document extends DOMDocument
      */
     public function addInlineStyleByteCount($byteCount)
     {
-        $this->inlineStyleByteCount += $byteCount;
+        $this->properties['inlineStyleByteCount'] += $byteCount;
     }
 
     /**
@@ -820,7 +820,7 @@ final class Document extends DOMDocument
 
         return max(
             0,
-            $this->cssMaxByteCountEnforced - (int)$this->ampCustomStyleByteCount - (int)$this->inlineStyleByteCount
+            $this->cssMaxByteCountEnforced - (int)$this->properties['ampCustomStyleByteCount'] - (int)$this->properties['inlineStyleByteCount']
         );
     }
 
@@ -944,39 +944,39 @@ final class Document extends DOMDocument
                     $this->head->appendChild($ampCustomStyle);
                 }
 
-                $this->ampCustomStyle = $ampCustomStyle;
+                $this->properties['ampCustomStyle'] = $ampCustomStyle;
 
-                return $this->ampCustomStyle;
+                return $this->properties['ampCustomStyle'];
 
             case 'ampCustomStyleByteCount':
-                if (!isset($this->ampCustomStyle)) {
+                if (!isset($this->properties['ampCustomStyle'])) {
                     $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
                     if (!$ampCustomStyle instanceof Element) {
                         return 0;
                     } else {
-                        $this->ampCustomStyle = $ampCustomStyle;
+                        $this->properties['ampCustomStyle'] = $ampCustomStyle;
                     }
                 }
 
-                if (!isset($this->ampCustomStyleByteCount)) {
-                    $this->ampCustomStyleByteCount = strlen($this->ampCustomStyle->textContent);
+                if (!isset($this->properties['ampCustomStyleByteCount'])) {
+                    $this->properties['ampCustomStyleByteCount'] = strlen($this->properties['ampCustomStyle']->textContent);
                 }
 
-                return $this->ampCustomStyleByteCount;
+                return $this->properties['ampCustomStyleByteCount'];
 
             case 'inlineStyleByteCount':
-                if (!isset($this->inlineStyleByteCount)) {
-                    $this->inlineStyleByteCount = 0;
+                if (!isset($this->properties['inlineStyleByteCount'])) {
+                    $this->properties['inlineStyleByteCount'] = 0;
                     $attributes = $this->xpath->query(
                         self::XPATH_INLINE_STYLE_ATTRIBUTES_QUERY,
                         $this->documentElement
                     );
                     foreach ($attributes as $attribute) {
-                        $this->inlineStyleByteCount += strlen($attribute->textContent);
+                        $this->properties['inlineStyleByteCount'] += strlen($attribute->textContent);
                     }
                 }
 
-                return $this->inlineStyleByteCount;
+                return $this->properties['inlineStyleByteCount'];
 
             case 'links':
                 if (! isset($this->links)) {
