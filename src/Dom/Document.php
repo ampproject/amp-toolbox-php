@@ -774,7 +774,7 @@ final class Document extends DOMDocument
     public function addAmpCustomStyle($style)
     {
         $style         = trim($style, CssRule::CSS_TRIM_CHARACTERS);
-        $existingStyle = (string)$this->properties['ampCustomStyle']->textContent;
+        $existingStyle = (string)$this->ampCustomStyle->textContent;
 
         // Inject new styles before any potential source map annotation comment like: /*# sourceURL=amp-custom.css */.
         // If not present, then just put it at the end of the stylesheet. This isn't strictly required, but putting the
@@ -788,12 +788,12 @@ final class Document extends DOMDocument
 
         $newByteCount = strlen($newStyle);
 
-        if ($this->getRemainingCustomCssSpace() < ($newByteCount - $this->properties['ampCustomStyleByteCount'])) {
+        if ($this->getRemainingCustomCssSpace() < ($newByteCount - $this->ampCustomStyleByteCount)) {
             throw MaxCssByteCountExceeded::forAmpCustom($newStyle);
         }
 
-        $this->properties['ampCustomStyle']->textContent = $newStyle;
-        $this->properties['ampCustomStyleByteCount']     = $newByteCount;
+        $this->ampCustomStyle->textContent = $newStyle;
+        $this->ampCustomStyleByteCount     = $newByteCount;
     }
 
     /**
@@ -820,7 +820,7 @@ final class Document extends DOMDocument
 
         return max(
             0,
-            $this->cssMaxByteCountEnforced - (int)$this->properties['ampCustomStyleByteCount'] - (int)$this->properties['inlineStyleByteCount']
+            $this->cssMaxByteCountEnforced - (int)$this->ampCustomStyleByteCount - (int)$this->inlineStyleByteCount
         );
     }
 
@@ -844,6 +844,9 @@ final class Document extends DOMDocument
             'ampCustomStyleByteCount',
             'inlineStyleByteCount',
             'links',
+            // Sometimes accessed by \Optimizer\Transformer\MinifyHtml::minifyNode().
+            // TODO: Revisit this.
+            'tagName',
         ];
     }
 
