@@ -32,18 +32,6 @@ use ReflectionNamedType;
 /**
  * Abstract away some of the difficulties of working with PHP's DOMDocument.
  *
- * @property DOMXPath     $xpath                   XPath query object for this document.
- * @property Element      $html                    The document's <html> element.
- * @property Element      $head                    The document's <head> element.
- * @property Element      $body                    The document's <body> element.
- * @property Element|null $charset                 The document's charset meta element.
- * @property Element|null $viewport                The document's viewport meta element.
- * @property DOMNodeList  $ampElements             The document's <amp-*> elements.
- * @property Element      $ampCustomStyle          The document's <style amp-custom> element.
- * @property int          $ampCustomStyleByteCount Count of bytes of CSS in the <style amp-custom> tag.
- * @property int          $inlineStyleByteCount    Count of bytes of CSS in all of the inline style attributes.
- * @property LinkManager  $links                   Link manager to manage <link> tags in the <head>.
- *
  * @package ampproject/amp-toolbox
  */
 final class Document extends DOMDocument
@@ -107,6 +95,83 @@ final class Document extends DOMDocument
      * @var string
      */
     const XPATH_INLINE_STYLE_ATTRIBUTES_QUERY = './/@style';
+
+    /**
+     * XPath query object for this document.
+     *
+     * @var DOMXPath
+     */
+    public $xpath;
+
+    /**
+     * The document's <html> element.
+     *
+     * @var Element
+     */
+    public $html;
+
+    /**
+     * The document's <head> element.
+     *
+     * @var Element
+     */
+    public $head;
+
+    /**
+     * The document's <body> element.
+     *
+     * @var Element
+     */
+    public $body;
+
+    /**
+     * The document's charset meta element.
+     *
+     * @var Element|null
+     */
+    public $charset;
+
+    /**
+     * The document's viewport meta element.
+     *
+     * @var Element|null
+     */
+    public $viewport;
+
+    /**
+     * The document's <amp-*> elements.
+     *
+     * @var DOMNodeList
+     */
+    public $ampElements;
+
+    /**
+     * The document's <style amp-custom> element.
+     *
+     * @var Element
+     */
+    public $ampCustomStyle;
+
+    /**
+     * Count of bytes of CSS in the <style amp-custom> tag.
+     *
+     * @var int
+     */
+    public $ampCustomStyleByteCount;
+
+    /**
+     * Link manager to manage <link> tags in the <head>.
+     *
+     * @var LinkManager
+     */
+    public $Links;
+
+    /**
+     * Count of bytes of CSS in all of the inline style attributes.
+     *
+     * @var int
+     */
+    public $inlineStyleByteCount;
 
     /**
      * Associative array of options to configure the behavior of the DOM document abstraction.
