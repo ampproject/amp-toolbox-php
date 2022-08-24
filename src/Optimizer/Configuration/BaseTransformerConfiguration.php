@@ -24,6 +24,13 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
     private $allowedKeys;
 
     /**
+     * Associative array of configuration data.
+     *
+     * @var array
+     */
+    private $configuration = [];
+
+    /**
      * Instantiate an AmpRuntimeCssConfiguration object.
      *
      * @param array $configuration Optional. Associative array of configuration data. Defaults to an empty array.
@@ -37,7 +44,7 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
             if (! array_key_exists($key, $this->allowedKeys)) {
                 throw InvalidConfigurationKey::fromTransformerKey(static::class, $key);
             }
-            $this->$key = $this->validate($key, $value);
+            $this->configuration[$key] = $this->validate($key, $value);
         }
     }
 
@@ -58,7 +65,7 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
         }
 
         // At this point, the configuration should either have received this value or filled it with a default.
-        return $this->$key;
+        return $this->configuration[$key];
     }
 
     /**
@@ -71,7 +78,7 @@ abstract class BaseTransformerConfiguration implements TransformerConfiguration
         $configArray = [];
 
         foreach (array_keys($this->allowedKeys) as $key) {
-            $configArray[$key] = $this->$key;
+            $configArray[$key] = $this->configuration[$key];
         }
 
         return $configArray;
