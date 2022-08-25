@@ -110,7 +110,8 @@ final class Document extends DOMDocument
 
     /**
      * Associative array for lazily-created, cached properties for the document.
-     * @var
+     *
+     * @var array
      */
     private $properties = [];
 
@@ -641,22 +642,22 @@ final class Document extends DOMDocument
             }
 
             $this->body = $body;
-            $html->appendChild($this->body);
+            $html->appendChild($body);
 
-            if ($oldDocumentElement !== $this->body && $oldDocumentElement !== $this->head) {
-                $this->body->appendChild($oldDocumentElement);
+            if ($oldDocumentElement !== $body && $oldDocumentElement !== $this->head) {
+                $body->appendChild($oldDocumentElement);
             }
         } else {
             $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
             if (!$head) {
-                $this->head = $this->createElement(Tag::HEAD);
-                $this->documentElement->insertBefore($this->head, $this->documentElement->firstChild);
+                $this->properties['head'] = $this->createElement(Tag::HEAD);
+                $this->documentElement->insertBefore($this->properties['head'], $this->documentElement->firstChild);
             }
 
             $body = $this->getElementsByTagName(Tag::BODY)->item(0);
             if (!$body) {
-                $this->body = $this->createElement(Tag::BODY);
-                $this->documentElement->appendChild($this->body);
+                $this->properties['body'] = $this->createElement(Tag::BODY);
+                $this->documentElement->appendChild($this->properties['body']);
             }
         }
 
@@ -670,11 +671,14 @@ final class Document extends DOMDocument
     private function moveInvalidHeadNodesToBody()
     {
         // Walking backwards makes it easier to move elements in the expected order.
-        $node = $this->head->lastChild;
+        $node = $this->properties['head']->lastChild;
         while ($node) {
             $nextSibling = $node->previousSibling;
-            if (! $this->isValidHeadNode($node)) {
-                $this->body->insertBefore($this->head->removeChild($node), $this->body->firstChild);
+            if (!$this->isValidHeadNode($node)) {
+                $this->properties['body']->insertBefore(
+                    $this->properties['head']->removeChild($node),
+                    $this->properties['body']->firstChild
+                );
             }
             $node = $nextSibling;
         }
@@ -691,8 +695,8 @@ final class Document extends DOMDocument
     private function movePostBodyNodesToBody()
     {
         // Move nodes (likely comments) from after the </body>.
-        while ($this->body->nextSibling) {
-            $this->body->appendChild($this->body->nextSibling);
+        while ($this->properties['body']->nextSibling) {
+            $this->properties['body']->appendChild($this->properties['body']->nextSibling);
         }
 
         // Move nodes from after the </html>.
@@ -701,11 +705,11 @@ final class Document extends DOMDocument
             if ($nextSibling instanceof Element && Tag::HTML === $nextSibling->nodeName) {
                 // Handle trailing elements getting wrapped in implicit duplicate <html>.
                 while ($nextSibling->firstChild) {
-                    $this->body->appendChild($nextSibling->firstChild);
+                    $this->properties['body']->appendChild($nextSibling->firstChild);
                 }
                 $nextSibling->parentNode->removeChild($nextSibling); // Discard now-empty implicit <html>.
             } else {
-                $this->body->appendChild($this->documentElement->nextSibling);
+                $this->properties['body']->appendChild($this->documentElement->nextSibling);
             }
         }
     }
@@ -956,13 +960,14 @@ final class Document extends DOMDocument
                     $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
                     if (!$ampCustomStyle instanceof Element) {
                         return 0;
-                    } else {
-                        $this->properties['ampCustomStyle'] = $ampCustomStyle;
                     }
+
+                    $this->properties['ampCustomStyle'] = $ampCustomStyle;
                 }
 
                 if (!isset($this->properties['ampCustomStyleByteCount'])) {
-                    $this->properties['ampCustomStyleByteCount'] = strlen($this->properties['ampCustomStyle']->textContent);
+                    $this->properties['ampCustomStyleByteCount'] =
+                        strlen($this->properties['ampCustomStyle']->textContent);
                 }
 
                 return $this->properties['ampCustomStyleByteCount'];
@@ -998,11 +1003,11 @@ final class Document extends DOMDocument
      * Magic setter to implement lazily-created, cached properties for the document.
      *
      * @param string $name Name of the property to set.
-     * @param mixed $value Value of the property.
+     * @param mixed  $value Value of the property.
      */
     public function __set($name, $value)
     {
-        if (!in_array( $name, $this->getAllowedKeys(), true)) {
+        if (!in_array($name, $this->getAllowedKeys(), true)) {
             // Mimic regular PHP behavior for missing notices.
             trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
             return;
@@ -1018,7 +1023,7 @@ final class Document extends DOMDocument
      */
     public function __isset($name)
     {
-        if ( !in_array( $name, $this->getAllowedKeys(), true) ) {
+        if (!in_array($name, $this->getAllowedKeys(), true)) {
             // Mimic regular PHP behavior for missing notices.
             trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
             return false;
