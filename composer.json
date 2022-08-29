@@ -4,7 +4,7 @@
   "description": "A collection of AMP tools making it easier to publish and host AMP pages with PHP.",
   "license": "Apache-2.0",
   "require": {
-    "php": "^5.6 || ^7.0 || ^8.0 || ^8.1",
+    "php": "^5.6 || ^7.0 || ^8.0",
     "ext-dom": "*",
     "ext-filter": "*",
     "ext-iconv": "*",
