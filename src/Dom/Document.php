@@ -848,9 +848,6 @@ final class Document extends DOMDocument
             'ampCustomStyleByteCount',
             'inlineStyleByteCount',
             'links',
-            // Sometimes accessed by \Optimizer\Transformer\MinifyHtml::minifyNode().
-            // TODO: Revisit this.
-            'tagName',
         ];
     }
 
