@@ -141,6 +141,11 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
      */
     private function cacheResponse($url, Response $response)
     {
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode >= 300) {
+            return;
+        }
+
         file_put_contents($this->getTemporaryFilePath($url), serialize($response));
     }
 
