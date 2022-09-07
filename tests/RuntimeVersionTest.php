@@ -20,8 +20,8 @@ class RuntimeVersionTest extends TestCase
      * @var array
      */
     const STUBBED_REMOTE_REQUESTS = [
-        'https://cdn.ampproject.org/rtv/metadata' => '{"ampRuntimeVersion":"012345678900000","ampCssUrl":"https://cdn.ampproject.org/rtv/012345678900000/v0.css","canaryPercentage":"0.1","diversions":["023456789000000","034567890100000","045678901200000"]}',
-        'https://cdn.ampproject.org/v0.css'       => '/* v0.css */',
+        'https://cdn.ampproject.org/rtv/metadata' => ['body' => '{"ampRuntimeVersion":"012345678900000","ampCssUrl":"https://cdn.ampproject.org/rtv/012345678900000/v0.css","canaryPercentage":"0.1","diversions":["023456789000000","034567890100000","045678901200000"]}'],
+        'https://cdn.ampproject.org/v0.css'       => ['body' => '/* v0.css */'],
     ];
 
     /**

@@ -56,7 +56,7 @@ class TemporaryFileCachedRemoteGetRequestTest extends TestCase
 
         $urls            = array_keys(TestMarkup::STUBBED_REMOTE_REQUESTS);
         $url             = $urls[0];
-        $stubbedResponse = TestMarkup::STUBBED_REMOTE_REQUESTS[$url];
+        $stubbedResponse = TestMarkup::STUBBED_REMOTE_REQUESTS[$url]['body'];
 
         $filename = TemporaryFileCachedRemoteGetRequest::CACHED_FILE_PREFIX . md5($url);
         $file     = vfsStream::url(self::DIRECTORY_NAME . "/{$filename}");
@@ -110,6 +110,24 @@ class TemporaryFileCachedRemoteGetRequestTest extends TestCase
         $this->expectException(FailedToGetCachedResponse::class);
 
         $cachedRequest->get('http://example.com');
+    }
+
+    /**
+     * Test that errors do not get cached.
+     */
+    public function testCacheOnlyValidRepsonses()
+    {
+        $unknownUrl = 'https://cdn.ampproject.com/non-existant.really.not.html';
+
+        $tmpDirectory = vfsStream::url(self::DIRECTORY_NAME);
+        $cachedRequest = new TemporaryFileCachedRemoteGetRequest(
+            new StubbedRemoteGetRequest([$unknownUrl => ['body' => '404 content', 'status' => 404]]),
+            $tmpDirectory
+        );
+
+        $cachedRequest->get($unknownUrl);
+
+        $this->assertFileDoesNotExist($tmpDirectory . DIRECTORY_SEPARATOR . TemporaryFileCachedRemoteGetRequest::CACHED_FILE_PREFIX . md5($unknownUrl));
     }
 
     /**
