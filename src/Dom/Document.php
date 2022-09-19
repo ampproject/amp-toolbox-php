@@ -692,7 +692,7 @@ final class Document extends DOMDocument
                 throw FailedToRetrieveRequiredDomElement::forBodyElement($body);
             }
 
-            $this->body = $body;
+            $this->properties['body'] = $body;
             $html->appendChild($body);
 
             if ($oldDocumentElement !== $body && $oldDocumentElement !== $this->head) {
