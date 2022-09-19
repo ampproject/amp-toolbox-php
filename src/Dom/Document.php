@@ -150,13 +150,6 @@ final class Document extends DOMDocument
     private $cssMaxByteCountEnforced = -1;
 
     /**
-     * Resource hint manager to manage resource hint <link> tags in the <head>.
-     *
-     * @var LinkManager|null
-     */
-    private $links;
-
-    /**
      * List of document filter class names.
      *
      * @var string[]
@@ -321,7 +314,7 @@ final class Document extends DOMDocument
     private function reset()
     {
         // Drop references to old DOM document.
-        unset($this->xpath, $this->head, $this->body);
+        unset($this->properties['xpath'], $this->properties['head'], $this->properties['body']);
 
         // Reference of the document itself doesn't change here, but might need to change in the future.
         return $this;
@@ -625,8 +618,8 @@ final class Document extends DOMDocument
                 throw FailedToRetrieveRequiredDomElement::forHeadElement($head);
             }
 
-            $this->head = $head;
-            $html->appendChild($this->head);
+            $this->properties['head'] = $head;
+            $html->appendChild($head);
 
             if ($oldDocumentElement->nodeName === Tag::BODY) {
                 $body = $oldDocumentElement;
@@ -797,7 +790,7 @@ final class Document extends DOMDocument
         }
 
         $this->ampCustomStyle->textContent = $newStyle;
-        $this->ampCustomStyleByteCount     = $newByteCount;
+        $this->properties['ampCustomStyleByteCount'] = $newByteCount;
     }
 
     /**
@@ -984,8 +977,8 @@ final class Document extends DOMDocument
                 return $this->properties['inlineStyleByteCount'];
 
             case 'links':
-                if (! isset($this->links)) {
-                    $this->links = new LinkManager($this);
+                if (! isset($this->properties['links'])) {
+                    $this->properties['links'] = new LinkManager($this);
                 }
 
                 return $this->links;
