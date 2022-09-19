@@ -981,7 +981,7 @@ final class Document extends DOMDocument
                     $this->properties['links'] = new LinkManager($this);
                 }
 
-                return $this->links;
+                return $this->properties['links'];
         }
 
         // Mimic regular PHP behavior for missing notices.
