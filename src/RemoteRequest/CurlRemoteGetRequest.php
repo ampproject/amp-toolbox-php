@@ -36,7 +36,6 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
     const RETRYABLE_ERROR_CODES = [
         CURLE_COULDNT_RESOLVE_HOST,
         CURLE_COULDNT_CONNECT,
-        CURLE_HTTP_NOT_FOUND,
         CURLE_READ_ERROR,
         CURLE_OPERATION_TIMEOUTED,
         CURLE_HTTP_POST_ERROR,
