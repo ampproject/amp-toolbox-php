@@ -98,7 +98,7 @@ final class MinifyHtml implements Transformer
         }
 
         // Update options based on the current node.
-        if (isset($node->tagName)) {
+        if ($node instanceof Element) {
             if ($canCollapseWhitespace && !$this->canCollapseWhitespace($node->tagName)) {
                 $canCollapseWhitespace = false;
             }

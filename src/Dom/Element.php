@@ -40,6 +40,13 @@ final class Element extends DOMElement
     const PROPERTY_GETTER_ERROR_MESSAGE = 'Undefined property: AmpProject\\Dom\\Element::';
 
     /**
+     * Associative array for lazily-created, cached properties for the document.
+     *
+     * @var array
+     */
+    private $properties = [];
+
+    /**
      * Add CSS styles to the element as an inline style attribute.
      *
      * @param string $style   CSS style(s) to add to the inline style attribute.
@@ -268,16 +275,49 @@ final class Element extends DOMElement
     {
         switch ($name) {
             case 'inlineStyleByteCount':
-                if (!isset($this->inlineStyleByteCount)) {
-                    $this->inlineStyleByteCount = strlen((string)$this->getAttribute(Attribute::STYLE));
+                if (!isset($this->properties['inlineStyleByteCount'])) {
+                    $this->properties['inlineStyleByteCount'] = strlen((string)$this->getAttribute(Attribute::STYLE));
                 }
 
-                return $this->inlineStyleByteCount;
+                return $this->properties['inlineStyleByteCount'];
         }
 
         // Mimic regular PHP behavior for missing notices.
         trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
 
         return null;
+    }
+
+    /**
+     * Magic setter to implement lazily-created, cached properties for the element.
+     *
+     * @param string $name Name of the property to set.
+     * @param mixed  $value Value of the property.
+     */
+    public function __set($name, $value)
+    {
+        if ($name !== 'inlineStyleByteCount') {
+            // Mimic regular PHP behavior for missing notices.
+            trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+            return;
+        }
+
+        $this->properties[$name] = $value;
+    }
+
+    /**
+     * Magic callback for lazily-created, cached properties for the element.
+     *
+     * @param string $name Name of the property to set.
+     */
+    public function __isset($name)
+    {
+        if ($name !== 'inlineStyleByteCount') {
+            // Mimic regular PHP behavior for missing notices.
+            trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+            return false;
+        }
+
+        return isset($this->properties[$name]);
     }
 }

@@ -109,6 +109,13 @@ final class Document extends DOMDocument
     const XPATH_INLINE_STYLE_ATTRIBUTES_QUERY = './/@style';
 
     /**
+     * Associative array for lazily-created, cached properties for the document.
+     *
+     * @var array
+     */
+    private $properties = [];
+
+    /**
      * Associative array of options to configure the behavior of the DOM document abstraction.
      *
      * @see Option::DEFAULTS For a list of available options.
@@ -141,13 +148,6 @@ final class Document extends DOMDocument
      * @var int
      */
     private $cssMaxByteCountEnforced = -1;
-
-    /**
-     * Resource hint manager to manage resource hint <link> tags in the <head>.
-     *
-     * @var LinkManager|null
-     */
-    private $links;
 
     /**
      * List of document filter class names.
@@ -314,7 +314,7 @@ final class Document extends DOMDocument
     private function reset()
     {
         // Drop references to old DOM document.
-        unset($this->xpath, $this->head, $this->body);
+        unset($this->properties['xpath'], $this->properties['head'], $this->properties['body']);
 
         // Reference of the document itself doesn't change here, but might need to change in the future.
         return $this;
@@ -587,6 +587,8 @@ final class Document extends DOMDocument
 
     /**
      * Normalize the structure of the document if it was already provided as a DOM.
+     *
+     * Warning: This method may not use any magic getters for html, head, or body.
      */
     public function normalizeDomStructure()
     {
@@ -618,8 +620,8 @@ final class Document extends DOMDocument
                 throw FailedToRetrieveRequiredDomElement::forHeadElement($head);
             }
 
-            $this->head = $head;
-            $html->appendChild($this->head);
+            $this->properties['head'] = $head;
+            $html->appendChild($head);
 
             if ($oldDocumentElement->nodeName === Tag::BODY) {
                 $body = $oldDocumentElement;
@@ -634,23 +636,23 @@ final class Document extends DOMDocument
                 throw FailedToRetrieveRequiredDomElement::forBodyElement($body);
             }
 
-            $this->body = $body;
-            $html->appendChild($this->body);
+            $this->properties['body'] = $body;
+            $html->appendChild($body);
 
-            if ($oldDocumentElement !== $this->body && $oldDocumentElement !== $this->head) {
-                $this->body->appendChild($oldDocumentElement);
+            if ($oldDocumentElement !== $body && $oldDocumentElement !== $this->head) {
+                $body->appendChild($oldDocumentElement);
             }
         } else {
             $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
             if (!$head) {
-                $this->head = $this->createElement(Tag::HEAD);
-                $this->documentElement->insertBefore($this->head, $this->documentElement->firstChild);
+                $this->properties['head'] = $this->createElement(Tag::HEAD);
+                $this->documentElement->insertBefore($this->properties['head'], $this->documentElement->firstChild);
             }
 
             $body = $this->getElementsByTagName(Tag::BODY)->item(0);
             if (!$body) {
-                $this->body = $this->createElement(Tag::BODY);
-                $this->documentElement->appendChild($this->body);
+                $this->properties['body'] = $this->createElement(Tag::BODY);
+                $this->documentElement->appendChild($this->properties['body']);
             }
         }
 
@@ -660,15 +662,20 @@ final class Document extends DOMDocument
 
     /**
      * Move invalid head nodes back to the body.
+     *
+     * Warning: This method may not use any magic getters for html, head, or body.
      */
     private function moveInvalidHeadNodesToBody()
     {
         // Walking backwards makes it easier to move elements in the expected order.
-        $node = $this->head->lastChild;
+        $node = $this->properties['head']->lastChild;
         while ($node) {
             $nextSibling = $node->previousSibling;
-            if (! $this->isValidHeadNode($node)) {
-                $this->body->insertBefore($this->head->removeChild($node), $this->body->firstChild);
+            if (!$this->isValidHeadNode($node)) {
+                $this->properties['body']->insertBefore(
+                    $this->properties['head']->removeChild($node),
+                    $this->properties['body']->firstChild
+                );
             }
             $node = $nextSibling;
         }
@@ -681,12 +688,14 @@ final class Document extends DOMDocument
      * the </body> not valid in AMP, but trailing elements after </html> will get wrapped in additional <html> elements.
      * While comment nodes would be allowed in AMP, everything is moved regardless so that source stack comments will
      * retain their relative position with the element nodes they annotate.
+     *
+     * Warning: This method may not use any magic getters for html, head, or body.
      */
     private function movePostBodyNodesToBody()
     {
         // Move nodes (likely comments) from after the </body>.
-        while ($this->body->nextSibling) {
-            $this->body->appendChild($this->body->nextSibling);
+        while ($this->properties['body']->nextSibling) {
+            $this->properties['body']->appendChild($this->properties['body']->nextSibling);
         }
 
         // Move nodes from after the </html>.
@@ -695,17 +704,19 @@ final class Document extends DOMDocument
             if ($nextSibling instanceof Element && Tag::HTML === $nextSibling->nodeName) {
                 // Handle trailing elements getting wrapped in implicit duplicate <html>.
                 while ($nextSibling->firstChild) {
-                    $this->body->appendChild($nextSibling->firstChild);
+                    $this->properties['body']->appendChild($nextSibling->firstChild);
                 }
                 $nextSibling->parentNode->removeChild($nextSibling); // Discard now-empty implicit <html>.
             } else {
-                $this->body->appendChild($this->documentElement->nextSibling);
+                $this->properties['body']->appendChild($this->documentElement->nextSibling);
             }
         }
     }
 
     /**
      * Determine whether a node can be in the head.
+     *
+     * Warning: This method may not use any magic getters for html, head, or body.
      *
      * @link https://github.com/ampproject/amphtml/blob/445d6e3be8a5063e2738c6f90fdcd57f2b6208be/validator/engine/htmlparser.js#L83-L100
      * @link https://www.w3.org/TR/html5/document-metadata.html
@@ -787,7 +798,7 @@ final class Document extends DOMDocument
         }
 
         $this->ampCustomStyle->textContent = $newStyle;
-        $this->ampCustomStyleByteCount     = $newByteCount;
+        $this->properties['ampCustomStyleByteCount'] = $newByteCount;
     }
 
     /**
@@ -819,6 +830,29 @@ final class Document extends DOMDocument
     }
 
     /**
+     * Get the array of allowed keys of lazily-created, cached properties.
+     * The array index is the key and the array value is the key's default value.
+     *
+     * @return array Array of allowed keys.
+     */
+    protected function getAllowedKeys()
+    {
+        return [
+            'xpath',
+            Tag::HTML,
+            Tag::HEAD,
+            Tag::BODY,
+            Attribute::CHARSET,
+            Attribute::VIEWPORT,
+            'ampElements',
+            'ampCustomStyle',
+            'ampCustomStyleByteCount',
+            'inlineStyleByteCount',
+            'links',
+        ];
+    }
+
+    /**
      * Magic getter to implement lazily-created, cached properties for the document.
      *
      * @param string $name Name of the property to get.
@@ -828,8 +862,8 @@ final class Document extends DOMDocument
     {
         switch ($name) {
             case 'xpath':
-                $this->xpath = new DOMXPath($this);
-                return $this->xpath;
+                $this->properties['xpath'] = new DOMXPath($this);
+                return $this->properties['xpath'];
             case Tag::HTML:
                 $html = $this->getElementsByTagName(Tag::HTML)->item(0);
 
@@ -843,8 +877,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forHtmlElement($html);
                 }
 
-                $this->html = $html;
-                return $this->html;
+                $this->properties['html'] = $html;
+                return $this->properties['html'];
             case Tag::HEAD:
                 $head = $this->getElementsByTagName(Tag::HEAD)->item(0);
 
@@ -858,8 +892,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forHeadElement($head);
                 }
 
-                $this->head = $head;
-                return $this->head;
+                $this->properties['head'] = $head;
+                return $this->properties['head'];
             case Tag::BODY:
                 $body = $this->getElementsByTagName(Tag::BODY)->item(0);
 
@@ -873,8 +907,8 @@ final class Document extends DOMDocument
                     throw FailedToRetrieveRequiredDomElement::forBodyElement($body);
                 }
 
-                $this->body = $body;
-                return $this->body;
+                $this->properties['body'] = $body;
+                return $this->properties['body'];
             case Attribute::CHARSET:
                 // This is not cached as it could potentially be requested too early, before the viewport was added, and
                 // the cache would then store null without rechecking later on after the viewport has been added.
@@ -915,51 +949,85 @@ final class Document extends DOMDocument
                     $this->head->appendChild($ampCustomStyle);
                 }
 
-                $this->ampCustomStyle = $ampCustomStyle;
+                $this->properties['ampCustomStyle'] = $ampCustomStyle;
 
-                return $this->ampCustomStyle;
+                return $this->properties['ampCustomStyle'];
 
             case 'ampCustomStyleByteCount':
-                if (!isset($this->ampCustomStyle)) {
+                if (!isset($this->properties['ampCustomStyle'])) {
                     $ampCustomStyle = $this->xpath->query(self::XPATH_AMP_CUSTOM_STYLE_QUERY, $this->head)->item(0);
                     if (!$ampCustomStyle instanceof Element) {
                         return 0;
-                    } else {
-                        $this->ampCustomStyle = $ampCustomStyle;
                     }
+
+                    $this->properties['ampCustomStyle'] = $ampCustomStyle;
                 }
 
-                if (!isset($this->ampCustomStyleByteCount)) {
-                    $this->ampCustomStyleByteCount = strlen($this->ampCustomStyle->textContent);
+                if (!isset($this->properties['ampCustomStyleByteCount'])) {
+                    $this->properties['ampCustomStyleByteCount'] =
+                        strlen($this->properties['ampCustomStyle']->textContent);
                 }
 
-                return $this->ampCustomStyleByteCount;
+                return $this->properties['ampCustomStyleByteCount'];
 
             case 'inlineStyleByteCount':
-                if (!isset($this->inlineStyleByteCount)) {
-                    $this->inlineStyleByteCount = 0;
+                if (!isset($this->properties['inlineStyleByteCount'])) {
+                    $this->properties['inlineStyleByteCount'] = 0;
                     $attributes = $this->xpath->query(
                         self::XPATH_INLINE_STYLE_ATTRIBUTES_QUERY,
                         $this->documentElement
                     );
                     foreach ($attributes as $attribute) {
-                        $this->inlineStyleByteCount += strlen($attribute->textContent);
+                        $this->properties['inlineStyleByteCount'] += strlen($attribute->textContent);
                     }
                 }
 
-                return $this->inlineStyleByteCount;
+                return $this->properties['inlineStyleByteCount'];
 
             case 'links':
-                if (! isset($this->links)) {
-                    $this->links = new LinkManager($this);
+                if (! isset($this->properties['links'])) {
+                    $this->properties['links'] = new LinkManager($this);
                 }
 
-                return $this->links;
+                return $this->properties['links'];
         }
 
         // Mimic regular PHP behavior for missing notices.
         trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
         return null;
+    }
+
+    /**
+     * Magic setter to implement lazily-created, cached properties for the document.
+     *
+     * @param string $name Name of the property to set.
+     * @param mixed  $value Value of the property.
+     */
+    public function __set($name, $value)
+    {
+        if (!in_array($name, $this->getAllowedKeys(), true)) {
+            // Mimic regular PHP behavior for missing notices.
+            trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+            return;
+        }
+
+        $this->properties[$name] = $value;
+    }
+
+    /**
+     * Magic callback for lazily-created, cached properties for the document.
+     *
+     * @param string $name Name of the property to set.
+     */
+    public function __isset($name)
+    {
+        if (!in_array($name, $this->getAllowedKeys(), true)) {
+            // Mimic regular PHP behavior for missing notices.
+            trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
+            return false;
+        }
+
+        return isset($this->properties[$name]);
     }
 
     /**

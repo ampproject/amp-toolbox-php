@@ -241,8 +241,9 @@ class ImageDimensionsTest extends TestCase
 
         $imageDimensions = new ImageDimensions($image);
 
-        $this->assertEquals($expectedNumericWidth, $imageDimensions->getNumericWidth());
-        $this->assertEquals($expectedNumericHeight, $imageDimensions->getNumericHeight());
+        $delta = 0.00000000000001;
+        $this->assertEqualsWithDelta($expectedNumericWidth, $imageDimensions->getNumericWidth(), $delta);
+        $this->assertEqualsWithDelta($expectedNumericHeight, $imageDimensions->getNumericHeight(), $delta);
     }
 
     /**

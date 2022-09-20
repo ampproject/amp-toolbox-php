@@ -246,42 +246,42 @@ class DocumentTest extends TestCase
             ],
             'iso_8859_1_encoding_predefined'           => [
                 'iso-8859-1',
-                utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
+                mb_convert_encoding('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>', 'ISO-8859-1', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
             'iso_8859_1_encoding_predefined_uc'        => [
                 'ISO-8859-1',
-                utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
+                mb_convert_encoding('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>', 'ISO-8859-1', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
             'iso_8859_1_encoding_auto'                 => [
                 'iso-8859-1',
-                utf8_decode('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>'),
+                mb_convert_encoding('<!DOCTYPE html><html><head></head><body><p>ÄÖÜ</p></body></html>', 'ISO-8859-1', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
             'iso_8859_1_encoding_guessed_via_charset'  => [
                 '',
-                utf8_decode('<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /></head><body><p>ÄÖÜ</p></body></html>'),
+                mb_convert_encoding('<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /></head><body><p>ÄÖÜ</p></body></html>', 'ISO-8859-1', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
             'iso_8859_1_encoding_guessed_via_wrong_charset'  => [
                 '',
-                utf8_decode('<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=something-else" /></head><body><p>ÄÖÜ</p></body></html>'),
+                mb_convert_encoding('<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=something-else" /></head><body><p>ÄÖÜ</p></body></html>', 'ISO-8859-1', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
             'iso_8859_1_encoding_guessed_via_content'  => [
                 '',
-                utf8_decode('<!DOCTYPE html><html><body><p>ÄÖÜ</p></body></html>'),
+                mb_convert_encoding('<!DOCTYPE html><html><body><p>ÄÖÜ</p></body></html>', 'ISO-8859-1', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
             'mapping_encodings_to_fallbacks'  => [
                 'latin-1',
-                utf8_decode('<!DOCTYPE html><html><body><p>ÄÖÜ</p></body></html>'),
+                mb_convert_encoding('<!DOCTYPE html><html><body><p>ÄÖÜ</p></body></html>', 'ISO-8859-1', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body><p>ÄÖÜ</p></body></html>',
             ],
             'raw_iso_8859_1'                           => [
                 '',
-                utf8_decode('ÄÖÜ'),
+                mb_convert_encoding('ÄÖÜ', 'ISO-8859-1', 'UTF-8'),
                 '<!DOCTYPE html><html>' . $head . '<body>ÄÖÜ</body></html>',
             ],
             // Make sure we correctly identify the ISO-8859 sub-charsets ("€" does not exist in ISO-8859-1).
