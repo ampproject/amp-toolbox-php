@@ -587,6 +587,8 @@ final class Document extends DOMDocument
 
     /**
      * Normalize the structure of the document if it was already provided as a DOM.
+     *
+     * Warning: This method may not use any magic getters for html, head, or body.
      */
     public function normalizeDomStructure()
     {
@@ -660,6 +662,8 @@ final class Document extends DOMDocument
 
     /**
      * Move invalid head nodes back to the body.
+     *
+     * Warning: This method may not use any magic getters for html, head, or body.
      */
     private function moveInvalidHeadNodesToBody()
     {
@@ -684,6 +688,8 @@ final class Document extends DOMDocument
      * the </body> not valid in AMP, but trailing elements after </html> will get wrapped in additional <html> elements.
      * While comment nodes would be allowed in AMP, everything is moved regardless so that source stack comments will
      * retain their relative position with the element nodes they annotate.
+     *
+     * Warning: This method may not use any magic getters for html, head, or body.
      */
     private function movePostBodyNodesToBody()
     {
@@ -709,6 +715,8 @@ final class Document extends DOMDocument
 
     /**
      * Determine whether a node can be in the head.
+     *
+     * Warning: This method may not use any magic getters for html, head, or body.
      *
      * @link https://github.com/ampproject/amphtml/blob/445d6e3be8a5063e2738c6f90fdcd57f2b6208be/validator/engine/htmlparser.js#L83-L100
      * @link https://www.w3.org/TR/html5/document-metadata.html
@@ -800,7 +808,7 @@ final class Document extends DOMDocument
      */
     public function addInlineStyleByteCount($byteCount)
     {
-        $this->properties['inlineStyleByteCount'] += $byteCount;
+        $this->inlineStyleByteCount += $byteCount;
     }
 
     /**
