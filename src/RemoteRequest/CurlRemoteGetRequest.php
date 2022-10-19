@@ -6,6 +6,7 @@ use AmpProject\Exception\FailedRemoteRequest;
 use AmpProject\Exception\FailedToGetFromRemoteUrl;
 use AmpProject\RemoteGetRequest;
 use AmpProject\Response;
+use AmpProject\Exception\FailedToParseUrl;
 
 /**
  * Remote request transport using cURL.
@@ -97,6 +98,11 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
     public function get($url, $headers = [])
     {
         $retriesLeft = $this->retries;
+
+        if (! is_string($url) || empty($url)) {
+            throw FailedToGetFromRemoteUrl::withException($url, FailedToParseUrl::forUrl($url));
+        }
+
         do {
             $curlHandle = curl_init();
 
