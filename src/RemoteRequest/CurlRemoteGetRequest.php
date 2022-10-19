@@ -36,7 +36,6 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
     const RETRYABLE_ERROR_CODES = [
         CURLE_COULDNT_RESOLVE_HOST,
         CURLE_COULDNT_CONNECT,
-        CURLE_HTTP_NOT_FOUND,
         CURLE_READ_ERROR,
         CURLE_OPERATION_TIMEOUTED,
         CURLE_HTTP_POST_ERROR,
@@ -107,6 +106,7 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
             curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, $this->sslVerify ? 1 : 0);
             curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, $this->sslVerify ? 2 : 0);
             curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curlHandle, CURLOPT_FAILONERROR, true);
             curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, $this->timeout);
             curl_setopt($curlHandle, CURLOPT_TIMEOUT, $this->timeout);
 
