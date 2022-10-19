@@ -107,7 +107,6 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
             $curlHandle = curl_init();
 
             curl_setopt($curlHandle, CURLOPT_URL, $url);
-            curl_setopt($curlHandle, CURLOPT_HEADER, 0);
             curl_setopt($curlHandle, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, $this->sslVerify ? 1 : 0);
             curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, $this->sslVerify ? 2 : 0);
