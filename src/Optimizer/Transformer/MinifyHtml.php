@@ -266,7 +266,10 @@ final class MinifyHtml implements Transformer
         }
 
         if (! empty($decodedData)) {
-            $data = json_encode($decodedData, JSON_HEX_AMP | JSON_HEX_TAG | JSON_UNESCAPED_SLASHES);
+            $data = json_encode(
+                $decodedData,
+                JSON_HEX_AMP | JSON_HEX_TAG | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+            );
 
             if (JSON_ERROR_NONE !== json_last_error()) {
                 $errors->add(Error\InvalidJson::fromLastErrorMsgAfterEncoding());

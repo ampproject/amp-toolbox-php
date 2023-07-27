@@ -238,4 +238,21 @@ final class MinifyHtmlTest extends TestCase
             $this->markTestSkipped('Found the optional package mck89/peast.');
         }
     }
+
+    /**
+     * Test multi-byte escaping while JSON minification.
+     *
+     * @covers \AmpProject\Optimizer\Transformer\MinifyHtml::minifyJson()
+     */
+    public function testMinifyJson()
+    {
+        $document      = Document::fromHtml(TestMarkup::DOCTYPE . '<html ⚡> <head> ' . TestMarkup::META_CHARSET . ' </head> <body><script type="application/json">{"foo":"✨", "bar":true}</script></body> </html>');
+        $configuration = new MinifyHtmlConfiguration([MinifyHtmlConfiguration::MINIFY_JSON => true]);
+        $transformer   = new MinifyHtml($configuration);
+        $errors        = new ErrorCollection();
+
+        $transformer->transform($document, $errors);
+
+        $this->assertSimilarMarkup(TestMarkup::DOCTYPE . '<html ⚡><head>' . TestMarkup::META_CHARSET . '</head><body><script type="application/json">{"foo":"✨","bar":true}</script></body></html>', $document->saveHTML());
+    }
 }
