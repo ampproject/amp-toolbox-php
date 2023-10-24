@@ -114,6 +114,13 @@ final class OptimizeHeroImages implements Transformer
     const NOSCRIPT_IMG_XPATH_QUERY = './noscript/img';
 
     /**
+     * XPath query to relatively fetch all noscript > img[fetchpriority="high"] elements.
+     *
+     * @var string
+     */
+    const NOSCRIPT_IMG_FETCHPRIORITY_HIGH_XPATH_QUERY = './noscript/img[@fetchpriority="high"]';
+
+    /**
      * Regular expression pattern to extract the URL from a CSS background-image property.
      *
      * @var string
@@ -213,6 +220,17 @@ final class OptimizeHeroImages implements Transformer
 
             if ($node->tagName === Tag::P) {
                 $seenParagraphCount++;
+            }
+
+            if ($node->tagName === Extension::IMG && ! $node->hasAttribute(Attribute::DATA_HERO)) {
+                $highFetchpriorityImage = $document->xpath->query(
+                    self::NOSCRIPT_IMG_FETCHPRIORITY_HIGH_XPATH_QUERY,
+                    $node
+                )->item(0);
+
+                if ($highFetchpriorityImage instanceof Element) {
+                    $node->setAttribute(Attribute::DATA_HERO, '');
+                }
             }
 
             $heroImage = $this->detectImageWithAttribute($node, Attribute::DATA_HERO);
