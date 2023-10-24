@@ -344,6 +344,7 @@ interface Attribute
     const EXTRA_SPACE                     = 'extra-space';
     const FALLBACK                        = 'fallback';
     const FETCH_ERROR                     = 'fetch-error';
+    const FETCHPRIORITY                   = 'fetchpriority';
     const FILL                            = 'fill';
     const FILL_OPACITY                    = 'fill-opacity';
     const FILL_RULE                       = 'fill-rule';

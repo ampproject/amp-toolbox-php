@@ -341,6 +341,30 @@ final class OptimizeHeroImagesTest extends TestCase
                     . '</amp-story-player>'
                 ),
             ],
+
+            'preserves fetchpriority attribute from noscript fallback img' => [
+                $input(
+                    '<amp-img width="500" height="400" src="/img1.png"><noscript><img src="/img1.png" width="500" height="400" fetchpriority="high"></noscript></amp-img>'
+                ),
+                $output(
+                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" fetchpriority="high" src="/img1.png"></amp-img>'
+                ),
+            ],
+
+            'automatically ssr img element with high fetchpriority attribute from noscript fallback img even when not a hero image' => [
+                $input(
+                    '<amp-img width="500" height="400" src="/img1.png"></amp-img>'
+                    . '<p>Hello World 1</p>'
+                    . '<p>Hello World 2</p>'
+                    .  '<amp-img width="500" height="400" src="/img2.png"><noscript><img src="/img2.png" width="500" height="400" fetchpriority="high"></noscript></amp-img>'
+                ),
+                $output(
+                    '<amp-img width="500" height="400" src="/img1.png"></amp-img>'
+                    . '<p>Hello World 1</p>'
+                    . '<p>Hello World 2</p>'
+                    . '<amp-img data-hero width="500" height="400" src="/img2.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" fetchpriority="high" src="/img2.png"></amp-img>'
+                ),
+            ],
         ];
     }
 

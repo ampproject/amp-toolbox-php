@@ -114,6 +114,13 @@ final class OptimizeHeroImages implements Transformer
     const NOSCRIPT_IMG_XPATH_QUERY = './noscript/img';
 
     /**
+     * XPath query to relatively fetch all noscript > img[fetchpriority="high"] elements.
+     *
+     * @var string
+     */
+    const NOSCRIPT_IMG_FETCHPRIORITY_HIGH_XPATH_QUERY = './noscript/img[@fetchpriority="high"]';
+
+    /**
      * Regular expression pattern to extract the URL from a CSS background-image property.
      *
      * @var string
@@ -213,6 +220,17 @@ final class OptimizeHeroImages implements Transformer
 
             if ($node->tagName === Tag::P) {
                 $seenParagraphCount++;
+            }
+
+            if ($node->tagName === Extension::IMG && ! $node->hasAttribute(Attribute::DATA_HERO)) {
+                $highFetchpriorityImage = $document->xpath->query(
+                    self::NOSCRIPT_IMG_FETCHPRIORITY_HIGH_XPATH_QUERY,
+                    $node
+                )->item(0);
+
+                if ($highFetchpriorityImage instanceof Element) {
+                    $node->appendChild($document->createAttribute(Attribute::DATA_HERO));
+                }
             }
 
             $heroImage = $this->detectImageWithAttribute($node, Attribute::DATA_HERO);
@@ -564,6 +582,14 @@ final class OptimizeHeroImages implements Transformer
             // Preserve the original loading attribute from the noscript fallback img.
             if ($noscript_img->hasAttribute(Attribute::LOADING)) {
                 $imgElement->setAttribute(Attribute::LOADING, $noscript_img->getAttribute(Attribute::LOADING));
+            }
+
+            // Preserve the original fetchpriority attribute from the noscript fallback img.
+            if ($noscript_img->hasAttribute(Attribute::FETCHPRIORITY)) {
+                $imgElement->setAttribute(
+                    Attribute::FETCHPRIORITY,
+                    $noscript_img->getAttribute(Attribute::FETCHPRIORITY)
+                );
             }
 
             // Remove any noscript>img when an amp-img is pre-rendered.
