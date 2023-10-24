@@ -566,6 +566,14 @@ final class OptimizeHeroImages implements Transformer
                 $imgElement->setAttribute(Attribute::LOADING, $noscript_img->getAttribute(Attribute::LOADING));
             }
 
+            // Preserve the original fetchpriority attribute from the noscript fallback img.
+            if ($noscript_img->hasAttribute(Attribute::FETCHPRIORITY)) {
+                $imgElement->setAttribute(
+                    Attribute::FETCHPRIORITY,
+                    $noscript_img->getAttribute(Attribute::FETCHPRIORITY)
+                );
+            }
+
             // Remove any noscript>img when an amp-img is pre-rendered.
             $noscript_img->parentNode->parentNode->removeChild($noscript_img->parentNode);
         } elseif (! $this->isMarkedAsHeroImage($element)) {
