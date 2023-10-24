@@ -229,7 +229,7 @@ final class OptimizeHeroImages implements Transformer
                 )->item(0);
 
                 if ($highFetchpriorityImage instanceof Element) {
-                    $node->setAttribute(Attribute::DATA_HERO, '');
+                    $node->appendChild($document->createAttribute(Attribute::DATA_HERO));
                 }
             }
 
