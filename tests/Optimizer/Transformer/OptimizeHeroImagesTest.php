@@ -341,6 +341,15 @@ final class OptimizeHeroImagesTest extends TestCase
                     . '</amp-story-player>'
                 ),
             ],
+
+            'preserves fetchpriority attribute from noscript fallback img on prerendered image' => [
+                $input(
+                    '<amp-img width="500" height="400" src="/img1.png"><noscript><img src="/img1.png" width="500" height="400" fetchpriority="high"></noscript></amp-img>'
+                ),
+                $output(
+                    '<amp-img data-hero width="500" height="400" src="/img1.png" i-amphtml-ssr><img class="i-amphtml-fill-content i-amphtml-replaced-content" decoding="async" fetchpriority="high" src="/img1.png"></amp-img>'
+                ),
+            ],
         ];
     }
 
