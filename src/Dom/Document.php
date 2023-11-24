@@ -330,6 +330,7 @@ final class Document extends DOMDocument
      *                                  parameters if an int or string is passed. Defaults to an empty array.
      * @return bool true on success or false on failure.
      */
+    #[\ReturnTypeWillChange]
     public function loadHTML($source, $options = [])
     {
         $source  = $this->normalizeDocumentStructure($source);
