@@ -23,7 +23,7 @@
     "sirbrillig/phpcs-variable-analysis": "^2.11.2",
     "squizlabs/php_codesniffer": "^3",
     "wp-coding-standards/wpcs": "^2.3",
-    "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0"
+    "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0 || ^2.0.0"
   },
   "suggest": {
     "ext-json": "Provides native implementation of json_encode()/json_decode().",
