@@ -138,7 +138,7 @@ final class Url
      * @param Url|null    $baseUrl Base URL.
      * @throws FailedToParseUrl Exception when the URL or Base URL is malformed.
      */
-    public function __construct($url = null, Url $baseUrl = null)
+    public function __construct($url = null, ?Url $baseUrl = null)
     {
         $parsedUrl = [];
 
