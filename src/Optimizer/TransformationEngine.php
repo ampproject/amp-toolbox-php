@@ -58,7 +58,7 @@ final class TransformationEngine
         ?RemoteGetRequest $remoteRequest = null,
         ?Spec $spec = null
     ) {
-        $this->configuration = isset($configuration) ? $configuration : new DefaultConfiguration();
+        $this->configuration = $configuration ?? new DefaultConfiguration();
         $this->remoteRequest = $remoteRequest;
         $this->spec          = $spec;
 
