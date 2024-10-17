@@ -54,9 +54,9 @@ final class TransformationEngine
      * @param Spec                  $spec          Optional. Validator spec instance to use.
      */
     public function __construct(
-        Configuration $configuration = null,
-        RemoteGetRequest $remoteRequest = null,
-        Spec $spec = null
+        ?Configuration $configuration = null,
+        ?RemoteGetRequest $remoteRequest = null,
+        ?Spec $spec = null
     ) {
         $this->configuration = isset($configuration) ? $configuration : new DefaultConfiguration();
         $this->remoteRequest = $remoteRequest;

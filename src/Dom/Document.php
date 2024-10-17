@@ -413,7 +413,7 @@ final class Document extends DOMDocument
      * @return string The HTML, or false if an error occurred.
      */
     #[\ReturnTypeWillChange]
-    public function saveHTML(DOMNode $node = null)
+    public function saveHTML(?DOMNode $node = null)
     {
         return $this->saveHTMLFragment($node);
     }
@@ -424,7 +424,7 @@ final class Document extends DOMDocument
      * @param DOMNode|null $node Optional. Parameter to output a subset of the document.
      * @return string The HTML fragment, or false if an error occurred.
      */
-    public function saveHTMLFragment(DOMNode $node = null)
+    public function saveHTMLFragment(?DOMNode $node = null)
     {
         $filtersInReverse = array_reverse($this->filters);
 
