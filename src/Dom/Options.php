@@ -72,7 +72,7 @@ final class Options implements ArrayAccess
     #[\ReturnTypeWillChange]
     public function offsetGet($option)
     {
-        return isset($this->options[$option]) ? $this->options[$option] : null;
+        return $this->options[ $option ] ?? null;
     }
 
     /**

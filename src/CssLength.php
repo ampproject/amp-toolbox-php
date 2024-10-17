@@ -112,7 +112,7 @@ final class CssLength
         if (preg_match($pattern, $this->attrValue, $match)) {
             $this->isValid = true;
             $this->numeral = isset($match['numeral']) ? (float)$match['numeral'] : $this->numeral;
-            $this->unit    = isset($match['unit']) ? $match['unit'] : $this->unit;
+            $this->unit    = $match['unit'] ?? $this->unit;
         }
     }
 
