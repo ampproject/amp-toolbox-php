@@ -215,7 +215,7 @@ final class AmpBindAttributes implements BeforeLoadFilter, AfterSaveFilter
                     ||
                     in_array($attrName, $this->convertedAmpBindAttributes, true)
                 ) {
-                    $attrValue = isset($attrMatches['value']) ? $attrMatches['value'] : '=""';
+                    $attrValue = $attrMatches['value'] ?? '=""';
                     $newAttrs .= " [{$attrName}]{$attrValue}";
                 } else {
                     $newAttrs .= $attrMatches[0];

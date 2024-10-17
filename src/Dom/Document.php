@@ -227,7 +227,7 @@ final class Document extends DOMDocument
             $options = [Option::ENCODING => $options];
         }
 
-        $encoding = isset($options[Option::ENCODING]) ? $options[Option::ENCODING] : null;
+        $encoding = $options[ Option::ENCODING ] ?? null;
 
         $dom = new self('', $encoding);
 
@@ -258,7 +258,7 @@ final class Document extends DOMDocument
             $options = [Option::ENCODING => $options];
         }
 
-        $encoding = isset($options[Option::ENCODING]) ? $options[Option::ENCODING] : null;
+        $encoding = $options[ Option::ENCODING ] ?? null;
 
         $dom = new self('', $encoding);
 
@@ -413,7 +413,7 @@ final class Document extends DOMDocument
      * @return string The HTML, or false if an error occurred.
      */
     #[\ReturnTypeWillChange]
-    public function saveHTML(DOMNode $node = null)
+    public function saveHTML(?DOMNode $node = null)
     {
         return $this->saveHTMLFragment($node);
     }
@@ -424,7 +424,7 @@ final class Document extends DOMDocument
      * @param DOMNode|null $node Optional. Parameter to output a subset of the document.
      * @return string The HTML fragment, or false if an error occurred.
      */
-    public function saveHTMLFragment(DOMNode $node = null)
+    public function saveHTMLFragment(?DOMNode $node = null)
     {
         $filtersInReverse = array_reverse($this->filters);
 
@@ -551,7 +551,7 @@ final class Document extends DOMDocument
             $content   = preg_replace(self::HTML_STRUCTURE_HTML_START_TAG, '', $content, 1);
 
             preg_match(self::HTML_STRUCTURE_HTML_END_TAG, $content, $matches);
-            $htmlEnd = isset($matches['html_end']) ? $matches['html_end'] : $htmlEnd;
+            $htmlEnd = $matches['html_end'] ?? $htmlEnd;
             $content = preg_replace(self::HTML_STRUCTURE_HTML_END_TAG, '', $content, 1);
         }
 

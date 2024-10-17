@@ -56,7 +56,7 @@ final class ValidationHandler implements HtmlSaxHandlerWithLocation
      */
     private $validationResult;
 
-    public function __construct($htmlFormat = Format::AMP, Spec $spec = null)
+    public function __construct($htmlFormat = Format::AMP, ?Spec $spec = null)
     {
         $this->htmlFormat       = $htmlFormat;
         $this->spec             = $spec instanceof Spec ? $spec : new Spec();

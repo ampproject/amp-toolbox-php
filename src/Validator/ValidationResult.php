@@ -85,8 +85,8 @@ final class ValidationResult
      *                                                        array.
      */
     public function __construct(
-        ValidationStatus $status = null,
-        ValidationErrorCollection $errors = null,
+        ?ValidationStatus $status = null,
+        ?ValidationErrorCollection $errors = null,
         $specRevision = -1,
         $transformerVersion = 0,
         $typeIdentifiers = [],

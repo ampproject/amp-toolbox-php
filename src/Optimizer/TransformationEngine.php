@@ -51,14 +51,14 @@ final class TransformationEngine
      * @param Configuration|null    $configuration Optional. Configuration data to use for setting up the transformers.
      * @param RemoteGetRequest|null $remoteRequest Optional. Transport to use for remote requests. Defaults to the
      *                                             CurlRemoteGetRequest implementation shipped with the library.
-     * @param Spec                  $spec          Optional. Validator spec instance to use.
+     * @param Spec|null             $spec          Optional. Validator spec instance to use.
      */
     public function __construct(
-        Configuration $configuration = null,
-        RemoteGetRequest $remoteRequest = null,
-        Spec $spec = null
+        ?Configuration $configuration = null,
+        ?RemoteGetRequest $remoteRequest = null,
+        ?Spec $spec = null
     ) {
-        $this->configuration = isset($configuration) ? $configuration : new DefaultConfiguration();
+        $this->configuration = $configuration ?? new DefaultConfiguration();
         $this->remoteRequest = $remoteRequest;
         $this->spec          = $spec;
 

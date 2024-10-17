@@ -25,7 +25,7 @@ final class CannotPreloadImage implements Error
      * @param Element|null $element Optional. Image element that has the srcset attribute, or null if no element.
      * @return self
      */
-    public static function fromImageWithSrcsetAttribute(Element $element = null)
+    public static function fromImageWithSrcsetAttribute(?Element $element = null)
     {
         $message = self::SRCSET_STRING;
 
