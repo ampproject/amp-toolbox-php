@@ -72,7 +72,7 @@ final class ValidatorRules
      * @param string    $htmlFormat Optional. AMP HTML format to validate against.
      * @param Spec|null $spec       Optional. Validator specification to use.
      */
-    public function __construct($htmlFormat = Format::AMP, Spec $spec = null)
+    public function __construct($htmlFormat = Format::AMP, ?Spec $spec = null)
     {
         $this->htmlFormat = $htmlFormat;
         $this->spec       = $spec instanceof Spec ? $spec : new Spec();

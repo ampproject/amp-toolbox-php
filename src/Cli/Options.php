@@ -77,7 +77,7 @@ class Options
      * @param Colors $colors Optional. Configured color object.
      * @throws InvalidArgument When arguments can't be read.
      */
-    public function __construct(Colors $colors = null)
+    public function __construct(?Colors $colors = null)
     {
         $this->colors = $colors instanceof Colors ? $colors : new Colors();
 

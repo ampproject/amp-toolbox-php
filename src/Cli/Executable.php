@@ -77,7 +77,7 @@ abstract class Executable
      * @param Colors|null  $colors    Optional. Instance of the Colors object to use. Defaults to null to instantiate a
      *                                new one.
      */
-    public function __construct($autocatch = true, Options $options = null, Colors $colors = null)
+    public function __construct($autocatch = true, ?Options $options = null, ?Colors $colors = null)
     {
         if ($autocatch) {
             set_exception_handler([$this, 'fatal']);

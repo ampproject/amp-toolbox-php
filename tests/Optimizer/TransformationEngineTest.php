@@ -132,7 +132,7 @@ final class TransformationEngineTest extends TestCase
      * @param Configuration|null $configuration Optional. Configuration object to use.
      * @return TransformationEngine Transformation engine instance to test against.
      */
-    private function getTransformationEngine(Configuration $configuration = null)
+    private function getTransformationEngine(?Configuration $configuration = null)
     {
         return new TransformationEngine(
             $configuration,
