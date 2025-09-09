@@ -66,7 +66,7 @@ final class SpecTest extends TestCase
      *
      * @return array Scenarios to test.
      */
-    public function dataTransformerSpecFiles()
+    public static function dataTransformerSpecFiles()
     {
         $scenarios = [];
         $suites    = [
