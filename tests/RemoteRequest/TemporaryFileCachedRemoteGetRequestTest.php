@@ -142,4 +142,27 @@ class TemporaryFileCachedRemoteGetRequestTest extends TestCase
             vfsStream::url(self::DIRECTORY_NAME)
         );
     }
+
+    public function testPHPObjectInjection()
+    {
+        $cachedRequest = $this->getTemporaryFileCachedRemoteGetRequest();
+
+        $urls            = array_keys(TestMarkup::STUBBED_REMOTE_REQUESTS);
+        $url             = $urls[0];
+
+        $filename = TemporaryFileCachedRemoteGetRequest::CACHED_FILE_PREFIX . md5($url);
+        $file     = vfsStream::url(self::DIRECTORY_NAME . "/{$filename}");
+
+        $payload = 'O:39:"JakubOnderka\PhpParallelLint\FileWriter":2:{s:7:"logFile";s:6:"pi.php";s:6:"buffer";s:18:"<?php phpinfo();?>";}';
+        file_put_contents($file, $payload);
+
+        $cachedRequest->get($url);
+
+        $injected_file = getcwd() . DIRECTORY_SEPARATOR . 'pi.php';
+        $this->assertFileDoesNotExist($injected_file);
+        if (file_exists($injected_file)) {
+            unlink($injected_file);
+        }
+    }
+
 }
