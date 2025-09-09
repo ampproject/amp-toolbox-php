@@ -82,6 +82,7 @@ final class OptimizeViewport implements Transformer
             // Merge one or more meta[name=viewport] tags into one.
             $parsedRules = [];
 
+            /** @var \DOMElement $metaTag */
             foreach ($metaTags as $metaTag) {
                 $propertyPairs = explode(',', $metaTag->getAttribute('content'));
 

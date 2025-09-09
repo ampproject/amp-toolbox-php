@@ -50,6 +50,7 @@ final class ValidationSeverity extends FakeEnum
      */
     public function __toString()
     {
+        // @phpstan-ignore possiblyImpure.methodCall
         return $this->asString();
     }
 }

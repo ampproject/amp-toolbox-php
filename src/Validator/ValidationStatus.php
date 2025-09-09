@@ -46,6 +46,7 @@ final class ValidationStatus extends FakeEnum
      */
     public function __toString()
     {
+        // @phpstan-ignore possiblyImpure.methodCall
         return $this->asString();
     }
 }
