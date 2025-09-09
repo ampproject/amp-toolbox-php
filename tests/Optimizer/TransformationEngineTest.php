@@ -151,7 +151,7 @@ final class TransformationEngineTest extends TestCase
     private function getPrivateProperty($object, $propertyName)
     {
         $property = ( new ReflectionClass($object) )->getProperty($propertyName);
-        if ( PHP_VERSION_ID < 80100 ) {
+        if (PHP_VERSION_ID < 80100) {
             $property->setAccessible(true);
         }
         return $property->getValue($object);
