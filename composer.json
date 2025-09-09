@@ -81,8 +81,8 @@
     "sync-fallback-files":  "bin/sync-amp-runtime-local-fallback-resources.php",
     "sync-test-specs":  "rm -rf tests/spec && bin/sync-amp-toolbox-test-suite.php",
     "sync": [
-      "sync-fallback-files",
-      "sync-test-specs"
+      "@sync-fallback-files",
+      "@sync-test-specs"
     ]
   }
 }
