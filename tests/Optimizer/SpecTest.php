@@ -340,7 +340,9 @@ final class SpecTest extends TestCase
     private function callPrivateMethod($object, $methodName, $args = [])
     {
         $method = (new ReflectionClass($object))->getMethod($methodName);
-        $method->setAccessible(true);
+        if ( PHP_VERSION_ID < 80100 ) {
+            $method->setAccessible(true);
+        }
 
         return $method->invokeArgs($object, $args);
     }
