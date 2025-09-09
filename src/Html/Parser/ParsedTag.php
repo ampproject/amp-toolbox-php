@@ -77,13 +77,6 @@ final class ParsedTag
 
         // Sort the attribute array by (lower case) name.
         usort($this->attributes, function (ParsedAttribute $a, ParsedAttribute $b) {
-            if (PHP_MAJOR_VERSION < 7 && $a->name() === $b->name()) {
-                // Hack required for PHP 5.6, as it does not maintain stable order for equal items.
-                // See https://bugs.php.net/bug.php?id=69158.
-                // To get around this, we compare the index within $this->attributes instead to maintain existing order.
-                return strcmp(array_search($a, $this->attributes, true), array_search($b, $this->attributes, true));
-            }
-
             return strcmp($a->name(), $b->name());
         });
 

@@ -38,6 +38,7 @@ final class AmpExecutable extends Executable
     {
         foreach (self::COMMAND_CLASSES as $commandClass) {
             /** @var Command $command */
+            // @phpstan-ignore varTag.nativeType
             $command = new $commandClass($this);
 
             $command->register($options);

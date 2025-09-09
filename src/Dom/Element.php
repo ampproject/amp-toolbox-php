@@ -77,7 +77,7 @@ final class Element extends DOMElement
      * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
      * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
      */
-    public function setAttribute($name, $value)
+    public function setAttribute($name, $value) // @phpstan-ignore return.unusedType
     {
         // Make sure $value is always a string and not null.
         $value = strval($value);
@@ -191,7 +191,7 @@ final class Element extends DOMElement
             $matches = [];
             $results = preg_match_all(self::AMP_EVENT_ACTIONS_REGEX_PATTERN, $eventActionString, $matches);
 
-            if (! $results || ! isset($matches['event'])) {
+            if (! $results) {
                 continue;
             }
 
@@ -209,7 +209,7 @@ final class Element extends DOMElement
                     $matches = [];
                     $results = preg_match_all(self::AMP_ACTION_REGEX_PATTERN, $actions, $matches);
 
-                    if (! $results || ! isset($matches['action'])) {
+                    if (! $results) {
                         $actionsArray[] = $actions;
                         return;
                     }

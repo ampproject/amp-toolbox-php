@@ -47,14 +47,14 @@ final class ImageDimensions
     /**
      * Unit of the width of the image.
      *
-     * @var int|float|string|null
+     * @var string|null
      */
     private $widthUnit;
 
     /**
      * Unit of the height of the image.
      *
-     * @var int|float|string|null
+     * @var string|null
      */
     private $heightUnit;
 

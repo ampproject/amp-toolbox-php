@@ -26,7 +26,9 @@ trait PrivateAccess
     private function callPrivateMethod($object, $methodName, $args = [])
     {
         $method = ( new ReflectionClass($object) )->getMethod($methodName);
-        $method->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $method->setAccessible(true);
+        }
         return $method->invokeArgs($object, $args);
     }
 
@@ -57,7 +59,9 @@ trait PrivateAccess
     private function setPrivateProperty($object, $propertyName, $value)
     {
         $property = ( new ReflectionClass($object) )->getProperty($propertyName);
-        $property->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $property->setAccessible(true);
+        }
 
         // Note: In PHP 8, `ReflectionProperty::getValue()` now requires that an object be supplied if it's a
         // non-static property.
@@ -75,7 +79,9 @@ trait PrivateAccess
     private function getPrivateProperty($object, $propertyName)
     {
         $property = ( new ReflectionClass($object) )->getProperty($propertyName);
-        $property->setAccessible(true);
+        if (PHP_VERSION_ID < 80100) {
+            $property->setAccessible(true);
+        }
 
         // Note: In PHP 8, `ReflectionProperty::getValue()` now requires that an object be supplied if it's a
         // non-static property.

@@ -136,7 +136,9 @@ final class CurlRemoteGetRequest implements RemoteGetRequest
             $status = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
 
             $curlErrno = curl_errno($curlHandle);
-            curl_close($curlHandle);
+            if (PHP_VERSION_ID < 80000) {
+                curl_close($curlHandle);
+            }
 
             if ($body === false || $status < 200 || $status >= 300) {
                 if (! $retriesLeft || in_array($curlErrno, self::RETRYABLE_ERROR_CODES, true) === false) {

@@ -127,16 +127,10 @@ final class TransformationEngine
         foreach ($constructor->getParameters() as $parameter) {
             $dependencyType = null;
 
-            // The use of `ReflectionParameter::getClass()` is deprecated in PHP 8, and is superseded
-            // by `ReflectionParameter::getType()`. See https://github.com/php/php-src/pull/5209.
-            if (PHP_VERSION_ID >= 70100) {
-                if ($parameter->getType()) {
-                    /** @var \ReflectionNamedType $returnType */
-                    $returnType = $parameter->getType();
-                    $dependencyType = new ReflectionClass($returnType->getName());
-                }
-            } else {
-                $dependencyType = $parameter->getClass();
+            if ($parameter->getType()) {
+                /** @var \ReflectionNamedType $returnType */
+                $returnType = $parameter->getType();
+                $dependencyType = new ReflectionClass($returnType->getName());
             }
 
             if ($dependencyType === null) {

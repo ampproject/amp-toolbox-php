@@ -542,8 +542,6 @@ class Options
         }
 
         if (
-            is_array($_SERVER)
-            &&
             array_key_exists('argv', $_SERVER)
             &&
             is_array($_SERVER['argv'])

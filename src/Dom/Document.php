@@ -434,11 +434,7 @@ final class Document extends DOMDocument
             }
         }
 
-        if (null === $node || PHP_VERSION_ID >= 70300) {
-            $html = parent::saveHTML($node);
-        } else {
-            $html = $this->extractNodeViaFragmentBoundaries($node);
-        }
+        $html = parent::saveHTML($node);
 
         foreach ($filtersInReverse as $filter) {
             if ($filter instanceof AfterSaveFilter) {
@@ -472,43 +468,6 @@ final class Document extends DOMDocument
         $charset = $this->createElement(Tag::META);
         $charset->setAttribute(Attribute::CHARSET, Encoding::AMP);
         $this->head->insertBefore($charset, $this->head->firstChild);
-    }
-
-    /**
-     * Extract a node's HTML via fragment boundaries.
-     *
-     * Temporarily adds fragment boundary comments in order to locate the desired node to extract from
-     * the given HTML document. This is required because libxml seems to only preserve whitespace when
-     * serializing when calling DOMDocument::saveHTML() on the entire document. If you pass the element
-     * to DOMDocument::saveHTML() then formatting whitespace gets added unexpectedly. This is seen to
-     * be fixed in PHP 7.3, but for older versions of PHP the following workaround is needed.
-     *
-     * @param DOMNode $node Node to extract the HTML for.
-     * @return string Extracted HTML string.
-     */
-    private function extractNodeViaFragmentBoundaries(DOMNode $node)
-    {
-        $boundary      = $this->uniqueIdManager->getUniqueId('fragment_boundary');
-        $startBoundary = $boundary . ':start';
-        $endBoundary   = $boundary . ':end';
-        $commentStart  = $this->createComment($startBoundary);
-        $commentEnd    = $this->createComment($endBoundary);
-
-        $node->parentNode->insertBefore($commentStart, $node);
-        $node->parentNode->insertBefore($commentEnd, $node->nextSibling);
-
-        $pattern = '/^.*?'
-                   . preg_quote("<!--{$startBoundary}-->", '/')
-                   . '(.*)'
-                   . preg_quote("<!--{$endBoundary}-->", '/')
-                   . '.*?\s*$/s';
-
-        $html = preg_replace($pattern, '$1', parent::saveHTML());
-
-        $node->parentNode->removeChild($commentStart);
-        $node->parentNode->removeChild($commentEnd);
-
-        return $html;
     }
 
     /**
@@ -1144,16 +1103,10 @@ final class Document extends DOMDocument
         foreach ($parameters as $parameter) {
             $dependencyType = null;
 
-            // The use of `ReflectionParameter::getClass()` is deprecated in PHP 8, and is superseded
-            // by `ReflectionParameter::getType()`. See https://github.com/php/php-src/pull/5209.
-            if (PHP_VERSION_ID >= 70100) {
-                if ($parameter->getType()) {
-                    /** @var ReflectionNamedType $returnType */
-                    $returnType = $parameter->getType();
-                    $dependencyType = new ReflectionClass($returnType->getName());
-                }
-            } else {
-                $dependencyType = $parameter->getClass();
+            if ($parameter->getType()) {
+                /** @var ReflectionNamedType $returnType */
+                $returnType = $parameter->getType();
+                $dependencyType = new ReflectionClass($returnType->getName());
             }
 
             if ($dependencyType === null) {
