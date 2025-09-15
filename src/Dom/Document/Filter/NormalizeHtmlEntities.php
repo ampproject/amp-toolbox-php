@@ -92,6 +92,6 @@ final class NormalizeHtmlEntities implements BeforeLoadFilter
     {
         // TODO: Discuss other popular entities to look for, especially for languages
         // with different punctuation symbols.
-        return preg_match('/&comma;|&period;|&excl;|&quest;/', $html);
+        return 1 === preg_match('/&comma;|&period;|&excl;|&quest;/', $html);
     }
 }
