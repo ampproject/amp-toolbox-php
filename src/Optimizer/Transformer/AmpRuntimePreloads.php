@@ -37,7 +37,7 @@ final class AmpRuntimePreloads implements Transformer
      * Check whether the AMP runtime script is needed.
      *
      * @param Document $document Document to check in.
-     * @return bool Whether the AMP runtime script is needed.
+     * @return false Whether the AMP runtime script is needed.
      */
     private function isAmpRuntimeScriptNeeded(Document $document)
     {
