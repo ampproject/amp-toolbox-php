@@ -107,6 +107,25 @@ abstract class FakeEnum implements JsonSerializable
     }
 
     /**
+     * This method exists only for the compatibility reason when deserializing a previously serialized version
+     * that didn't have the key property.
+     *
+     * @param array $data Data to unserialize from.
+     * @psalm-param array $data
+     */
+    public function __unserialize(array $data): void
+    {
+        /** @psalm-suppress DocblockTypeContradiction key can be null when deserializing an enum without the key */
+        if ($this->key === null) {
+            /**
+             * @psalm-suppress InaccessibleProperty key is not readonly as marked by psalm
+             * @psalm-suppress PossiblyFalsePropertyAssignmentValue deserializing a case that was removed
+             */
+            $this->key = static::search($this->value);
+        }
+    }
+
+    /**
      * Create a new enum instance from a value.
      *
      * @param mixed $value Value to create the new enum instance for.
