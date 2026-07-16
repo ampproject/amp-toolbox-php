@@ -162,7 +162,7 @@ final class RewriteAmpUrls implements Transformer
         }
 
         foreach (Amp::CACHE_HOSTS as $cacheHost) {
-            if (strpos($url, $cacheHost) === 0) {
+            if (strpos($url, $cacheHost . '/') === 0) {
                 return true;
             }
         }
