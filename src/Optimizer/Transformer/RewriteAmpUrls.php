@@ -161,7 +161,13 @@ final class RewriteAmpUrls implements Transformer
             return false;
         }
 
-        return strpos($url, Amp::CACHE_HOST) === 0;
+        foreach (Amp::CACHE_HOSTS as $cacheHost) {
+            if (strpos($url, $cacheHost) === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -177,6 +183,12 @@ final class RewriteAmpUrls implements Transformer
         // otherwise we end up with the lts or rtv suffix being added twice.
         if (strpos($url, $host) === 0) {
             return $url;
+        }
+
+        foreach (Amp::CACHE_HOSTS as $cacheHost) {
+            if (strpos($url, $cacheHost) === 0) {
+                return str_replace($cacheHost, $host, $url);
+            }
         }
 
         return str_replace(Amp::CACHE_HOST, $host, $url);
