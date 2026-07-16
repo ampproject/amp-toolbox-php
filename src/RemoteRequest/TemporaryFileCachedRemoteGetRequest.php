@@ -86,7 +86,7 @@ final class TemporaryFileCachedRemoteGetRequest implements RemoteGetRequest
 
         // phpcs:disable PHPCompatibility.FunctionUse.NewFunctionParameters.unserialize_optionsFound
         if ($cachedResponse !== false) {
-            $cachedResponse = unserialize($cachedResponse, [RemoteGetRequestResponse::class]);
+            $cachedResponse = unserialize($cachedResponse, ['allowed_classes' => [RemoteGetRequestResponse::class]]);
         }
         // phpcs:enable PHPCompatibility.FunctionUse.NewFunctionParameters.unserialize_optionsFound
 

@@ -10,7 +10,6 @@ parameters:
 		- src/
 	ignoreErrors:
 		- '#^PHPDoc tag @throws with type AmpProject\\Exception\\FailedRemoteRequest is not subtype of Throwable$#'
-		- '#^Parameter \#1 (\$exception_handler|\$callback) of function set_exception_handler expects#'
 	excludePaths:
 		analyse:
 			- src/FakeEnum.php

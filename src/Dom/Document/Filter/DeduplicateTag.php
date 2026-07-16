@@ -71,9 +71,7 @@ final class DeduplicateTag implements AfterLoadFilter
             }
 
             // Avoid doing the above query again if possible.
-            if (in_array($tagName, [Tag::HEAD, Tag::BODY], true)) {
-                $document->$tagName = $mainTag;
-            }
+            $document->$tagName = $mainTag;
         }
     }
 }
