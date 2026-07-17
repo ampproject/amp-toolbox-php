@@ -162,7 +162,7 @@ final class RewriteAmpUrls implements Transformer
         }
 
         foreach (Amp::CACHE_HOSTS as $cacheHost) {
-            if (strpos($url, $cacheHost . '/') === 0) {
+            if ($url === $cacheHost || strpos($url, $cacheHost . '/') === 0) {
                 return true;
             }
         }
@@ -192,6 +192,7 @@ final class RewriteAmpUrls implements Transformer
         }
 
         return $url;
+    }
 
     /**
      * Replace <script> elements with their ES module counterparts.
