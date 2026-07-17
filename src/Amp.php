@@ -50,6 +50,23 @@ final class Amp
     const CACHE_HOST = 'https://cdn.ampproject.org';
 
     /**
+     * Alternative host and scheme of the AMP cache.
+     *
+     * @var string
+     */
+    const CACHE_HOST_AMPJS = 'https://ampjs.org';
+
+    /**
+     * List of valid AMP cache hosts.
+     *
+     * @var string[]
+     */
+    const CACHE_HOSTS = [
+        self::CACHE_HOST,
+        self::CACHE_HOST_AMPJS,
+    ];
+
+    /**
      * URL of the AMP cache.
      *
      * @var string
@@ -152,7 +169,15 @@ final class Amp
 
         $src = $node->getAttribute(Attribute::SRC);
 
-        if (strpos($src, self::CACHE_ROOT_URL) !== 0) {
+        $hasCacheHost = false;
+        foreach (self::CACHE_HOSTS as $cacheHost) {
+            if (strpos($src, $cacheHost . '/') === 0) {
+                $hasCacheHost = true;
+                break;
+            }
+        }
+
+        if (! $hasCacheHost) {
             return false;
         }
 
@@ -190,7 +215,15 @@ final class Amp
 
         $src = $node->getAttribute(Attribute::SRC);
 
-        if (strpos($src, self::CACHE_HOST . '/v0/amp-viewer-integration-') !== 0) {
+        $hasViewerHost = false;
+        foreach (self::CACHE_HOSTS as $cacheHost) {
+            if (strpos($src, $cacheHost . '/v0/amp-viewer-integration-') === 0) {
+                $hasViewerHost = true;
+                break;
+            }
+        }
+
+        if (! $hasViewerHost) {
             return false;
         }
 

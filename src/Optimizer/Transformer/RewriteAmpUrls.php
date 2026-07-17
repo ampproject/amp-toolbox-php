@@ -161,7 +161,13 @@ final class RewriteAmpUrls implements Transformer
             return false;
         }
 
-        return strpos($url, Amp::CACHE_HOST) === 0;
+        foreach (Amp::CACHE_HOSTS as $cacheHost) {
+            if ($url === $cacheHost || strpos($url, $cacheHost . '/') === 0) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -179,7 +185,13 @@ final class RewriteAmpUrls implements Transformer
             return $url;
         }
 
-        return str_replace(Amp::CACHE_HOST, $host, $url);
+        foreach (Amp::CACHE_HOSTS as $cacheHost) {
+            if (strpos($url, $cacheHost . '/') === 0) {
+                return $host . substr($url, strlen($cacheHost));
+            }
+        }
+
+        return $url;
     }
 
     /**
