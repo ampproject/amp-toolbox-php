@@ -305,4 +305,15 @@ final class Url
         trigger_error(self::PROPERTY_GETTER_ERROR_MESSAGE . $name, E_USER_NOTICE);
         return null;
     }
+
+    /**
+     * Magic isset to check if an individual part is set.
+     *
+     * @param string $name Name of the part to check.
+     * @return bool Whether the part is set.
+     */
+    public function __isset($name)
+    {
+        return array_key_exists($name, self::URL_DEFAULT_PARTS) && $this->$name !== null;
+    }
 }

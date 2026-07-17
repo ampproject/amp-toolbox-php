@@ -26,10 +26,12 @@ class AmpTest extends TestCase
     {
         $dom          = new Document();
         $ampSrc       = 'https://cdn.ampproject.org/v0.js';
+        $ampjsSrc     = 'https://ampjs.org/v0.js';
         $ampForAdsSrc = 'https://cdn.ampproject.org/amp4ads-v0.js';
 
         return [
             'amp-runtime'          => [$this->createAmpCDNScript($dom, $ampSrc), true],
+            'ampjs-runtime'        => [$this->createAmpCDNScript($dom, $ampjsSrc), true],
             'amp-for-ads-runtime'  => [$this->createAmpCDNScript($dom, $ampForAdsSrc), true],
             'amp-extension-script' => [$this->createExtensionScript($dom, 'amp-runtime'), false],
             'not-a-script'         => [$dom->createElement(Tag::STYLE), false],

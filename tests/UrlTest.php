@@ -69,6 +69,10 @@ class UrlTest extends TestCase
         $this->assertEquals('/demo/', $url->path);
         $this->assertEquals('filter=true', $url->query);
         $this->assertEquals('anchor', $url->fragment);
+        $this->assertTrue(isset($url->scheme));
+        $this->assertFalse(empty($url->scheme));
+        $this->assertFalse(isset($url->nonsense));
+        $this->assertTrue(empty($url->nonsense));
 
         $this->expectError();
         $url->nonsense;

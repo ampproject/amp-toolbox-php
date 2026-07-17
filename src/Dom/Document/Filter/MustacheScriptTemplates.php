@@ -8,6 +8,7 @@ use AmpProject\Dom\Document\AfterSaveFilter;
 use AmpProject\Dom\Document\BeforeLoadFilter;
 use AmpProject\Dom\Document\BeforeSaveFilter;
 use AmpProject\Html\Tag;
+use DOMElement;
 
 /**
  * Filter to handle the script[template="amp-mustache"].
@@ -128,8 +129,9 @@ final class MustacheScriptTemplates implements BeforeLoadFilter, AfterLoadFilter
                     // unterminated entity reference "baz". When the attribute value is updated via setAttribute() this
                     // same problem does not occur, so that is why the following is used.
 
-                    // @phpstan-ignore method.notFound
-                    $attribute->parentNode->setAttribute($attribute->nodeName, $value);
+                    if ($attribute->parentNode instanceof DOMElement) {
+                        $attribute->parentNode->setAttribute($attribute->nodeName, $value);
+                    }
 
                     $this->mustacheTagsReplaced = true;
                 }

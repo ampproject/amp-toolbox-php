@@ -535,6 +535,7 @@ class Options
      */
     private function readPHPArgv()
     {
+        /** @var list<string>|null $argv */
         global $argv;
 
         if (is_array($argv)) {
