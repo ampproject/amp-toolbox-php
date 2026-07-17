@@ -66,7 +66,7 @@
   },
   "scripts": {
     "cbf": "phpcbf",
-    "compat": "if [ -z $TEST_SKIP_PHPCOMPAT ]; then phpcs --standard=PHPCompatibility -s -p src --runtime-set testVersion 5.6; fi",
+    "compat": "if [ -z $TEST_SKIP_PHPCOMPAT ]; then phpcs --standard=PHPCompatibility -s -p src --runtime-set testVersion 7.4; fi",
     "cs": "if [ -z $TEST_SKIP_PHPCS ]; then phpcs; fi",
     "lint": "if [ -z $TEST_SKIP_LINTING ]; then parallel-lint -j 10 --colors --exclude vendor .; fi",
     "test": [
