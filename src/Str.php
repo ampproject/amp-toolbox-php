@@ -50,10 +50,6 @@ final class Str
         if (function_exists('mb_internal_encoding')) {
             mb_internal_encoding($encoding);
         }
-
-        if (function_exists('mb_regex_encoding')) {
-            mb_regex_encoding($encoding);
-        }
     }
 
     /**
@@ -163,23 +159,17 @@ final class Str
     }
 
     /**
-     * Perform a regular expression search and replace.
+     * Perform a regular expression search and match.
      *
-     * Note: This does not fully support named capture groups, due to a limitation in the mbstring extension.
-     *
-     * @param string $pattern  Regular expression pattern to target elements to replace.
-     * @param string $text     Text to look for a match in.
+     * @param string $pattern Regular expression pattern to target elements to match.
+     * @param string $text    Text to look for a match in.
      * @param array  $matches Optional. If $matches is provided, then it is filled with the results of search.
-     * @return int|bool Whether the text matches the regular expression pattern.
+     * @return int|false Returns 1 if the pattern matches, 0 if it doesn't, or false on error.
      */
     public static function regexMatch($pattern, $text, &$matches = null)
     {
-        if (self::$useMultibyte && function_exists('mb_ereg')) {
-            list($pattern, $modifiers) = self::extractPatternAndModifiers($pattern);
-
-            return self::position($modifiers, 'i') === false
-                ? mb_ereg($pattern, $text, $matches)
-                : mb_eregi($pattern, $text, $matches);
+        if (self::$useMultibyte) {
+            $pattern = self::ensureMultibytePattern($pattern);
         }
 
         return preg_match($pattern, $text, $matches);
@@ -188,8 +178,6 @@ final class Str
     /**
      * Perform a regular expression search and replace.
      *
-     * Note: This does not fully support named capture groups, due to a limitation in the mbstring extension.
-     *
      * @param string $pattern     Regular expression pattern to target elements to replace.
      * @param string $replacement Replacement string.
      * @param string $subject     Subject to do the replacements with.
@@ -197,10 +185,8 @@ final class Str
      */
     public static function regexReplace($pattern, $replacement, $subject)
     {
-        if (self::$useMultibyte && function_exists('mb_ereg_replace')) {
-            list($pattern, $modifiers) = self::extractPatternAndModifiers($pattern);
-
-            return mb_ereg_replace($pattern, $replacement, $subject, $modifiers);
+        if (self::$useMultibyte) {
+            $pattern = self::ensureMultibytePattern($pattern);
         }
 
         return preg_replace($pattern, $replacement, $subject);
@@ -208,42 +194,55 @@ final class Str
 
 
     /**
-     * Perform a regular expression search and replace.
+     * Perform a regular expression search and replace using a callback.
      *
      * @param string   $pattern  Regular expression pattern to target elements to replace.
-     * @param callable $callback Replacement string.
+     * @param callable $callback Replacement callback.
      * @param string   $subject  Subject to do the replacements with.
      * @return string|null Modified string, or null on error.
      */
     public static function regexReplaceCallback($pattern, $callback, $subject)
     {
-        if (self::$useMultibyte && function_exists('mb_ereg_replace_callback')) {
-            list($pattern, $modifiers) = self::extractPatternAndModifiers($pattern);
-
-            return mb_ereg_replace_callback($pattern, $callback, $subject, $modifiers);
+        if (self::$useMultibyte) {
+            $pattern = self::ensureMultibytePattern($pattern);
         }
 
         return preg_replace_callback($pattern, $callback, $subject);
     }
 
     /**
-     * Extract multi-byte regex pattern and modifiers from single-byte pattern.
+     * Ensure the regular expression pattern has the PCRE UTF-8 (u) modifier.
      *
-     * The mb_ereg_* functions don't use a separator, so we need to adapt the preg_* patterns.
-     *
-     * @param string $pattern Regular expression preg_* pattern that we need to adapt for mb_ereg_*.
-     * @return array Array with the adapted pattern and the modifiers.
+     * @param string $pattern Regular expression pattern.
+     * @return string Pattern with the 'u' modifier appended if missing.
      */
-    private static function extractPatternAndModifiers($pattern)
+    private static function ensureMultibytePattern($pattern)
     {
-        $separator            = self::substring($pattern, 0, 1);
-        $secondSeparatorIndex = self::lastPosition($pattern, $separator, 1);
-        $modifiers            = self::substring($pattern, $secondSeparatorIndex + 1);
-        $pattern              = self::substring($pattern, 1, $secondSeparatorIndex - 1);
+        if ($pattern === '') {
+            return $pattern;
+        }
 
-        // UTF-8 flag 'u' from preg_* means "GNU regex" for mb_ereg_* functions, so we better strip it.
-        $modifiers = str_replace('u', '', $modifiers);
+        $closingDelimiter = $pattern[0];
+        if ($closingDelimiter === '(') {
+            $closingDelimiter = ')';
+        } elseif ($closingDelimiter === '{') {
+            $closingDelimiter = '}';
+        } elseif ($closingDelimiter === '[') {
+            $closingDelimiter = ']';
+        } elseif ($closingDelimiter === '<') {
+            $closingDelimiter = '>';
+        }
 
-        return [$pattern, $modifiers];
+        $closingPos = strrpos($pattern, $closingDelimiter);
+        if ($closingPos === false) {
+            return $pattern;
+        }
+
+        $modifiers = substr($pattern, $closingPos + 1);
+        if (strpos($modifiers, 'u') === false) {
+            return $pattern . 'u';
+        }
+
+        return $pattern;
     }
 }
