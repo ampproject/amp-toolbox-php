@@ -85,7 +85,7 @@ final class HtmlParser
      *
      * @var string
      */
-    const NULL_REGEX = "/\0/";
+    const NULL_REGEX = '/\0/';
 
     /**
      * Regular expression that matches entities.
