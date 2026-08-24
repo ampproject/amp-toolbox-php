@@ -19,6 +19,8 @@ jobs:
             random: true
           - php: '8.5'
             experimental: true
+          - php: '8.6'
+            experimental: true
 
     steps:
       - name: Checkout
