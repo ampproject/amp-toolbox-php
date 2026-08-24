@@ -87,7 +87,9 @@ final class MinifyHtmlTest extends TestCase
                 '<script type="application/json">invalid json</script>' .
                 '</body></html>',
                 [
-                    new InvalidJson('Error decoding JSON: Syntax error'),
+                    PHP_VERSION_ID >= 80600
+                        ? new InvalidJson('Error decoding JSON: Syntax error near location 1:1')
+                        : new InvalidJson('Error decoding JSON: Syntax error'),
                 ]
             ],
             'mustache template with commented template tags' => [

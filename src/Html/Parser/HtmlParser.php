@@ -85,35 +85,35 @@ final class HtmlParser
      *
      * @var string
      */
-    const NULL_REGEX = "/\0/g";
+    const NULL_REGEX = '/\0/';
 
     /**
      * Regular expression that matches entities.
      *
      * @var string
      */
-    const ENTITY_REGEX = '/&(#\d+|#x[0-9A-Fa-f]+|\w+);/g';
+    const ENTITY_REGEX = '/&(#\d+|#x[0-9A-Fa-f]+|\w+);/';
 
     /**
      * Regular expression that matches loose &s.
      *
      * @var string
      */
-    const LOOSE_AMP_REGEX = '/&([^a-z#]|#(?:[^0-9x]|x(?:[^0-9a-f]|$)|$)|$)/gi';
+    const LOOSE_AMP_REGEX = '/&([^a-z#]|#(?:[^0-9x]|x(?:[^0-9a-f]|$)|$)|$)/i';
 
     /**
      * Regular expression that matches <.
      *
      * @var string
      */
-    const LT_REGEX = '/</g';
+    const LT_REGEX = '/</';
 
     /**
      * Regular expression that matches >.
      *
      * @var string
      */
-    const GT_REGEX = '/>/g';
+    const GT_REGEX = '/>/';
 
     /**
      * Regular expression that matches decimal numbers.
