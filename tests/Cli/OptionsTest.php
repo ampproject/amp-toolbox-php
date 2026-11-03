@@ -119,6 +119,55 @@ class OptionsTest extends TestCase
         $this->assertEquals(['foo'], $this->getPrivateProperty($options, 'arguments'));
     }
 
+    public function testOptionsAfterArguments()
+    {
+        $options = new Options();
+        $options->registerOption('exclude', 'exclude files', 'x', 'file');
+        $options->registerOption('force', 'force the operation', 'f');
+
+        $this->setPrivateProperty($options, 'arguments', ['bang', '-x', 'foo', 'baz', '--force', '-', '--', '-x']);
+        $options->parseOptions();
+
+        $this->assertEquals('foo', $options->getOption('exclude'));
+        $this->assertTrue($options->getOption('force'));
+        $this->assertEquals(['bang', 'baz', '-', '-x'], $this->getPrivateProperty($options, 'arguments'));
+    }
+
+    /**
+     * @dataProvider globalOptionsWithCommandDataProvider
+     *
+     * @param string[] $arguments
+     */
+    public function testGlobalOptionsWithCommand($arguments)
+    {
+        $options = new Options();
+        $options->registerOption('no-colors', 'do not use colors');
+        $options->registerOption('loglevel', 'minimum log level', 'l', 'level');
+        $options->registerCommand('optimize', 'optimize a file');
+        $options->registerArgument('file', 'file to optimize', true, 'optimize');
+
+        $this->setPrivateProperty($options, 'arguments', $arguments);
+        $options->parseOptions();
+
+        $this->assertEquals('optimize', $options->getCommand());
+        $this->assertTrue($options->getOption('no-colors'));
+        $this->assertEquals('debug', $options->getOption('loglevel'));
+        $this->assertEquals(['file.html'], $this->getPrivateProperty($options, 'arguments'));
+    }
+
+    /**
+     * @return array
+     */
+    public function globalOptionsWithCommandDataProvider()
+    {
+        return [
+            'options before command'  => [['--no-colors', '--loglevel', 'debug', 'optimize', 'file.html']],
+            'options after command'   => [['optimize', '--no-colors', '-l', 'debug', 'file.html']],
+            'options after argument'  => [['optimize', 'file.html', '--no-colors', '--loglevel=debug']],
+            'options around argument' => [['--no-colors', 'optimize', 'file.html', '-l', 'debug']],
+        ];
+    }
+
     public function testCommandHelp()
     {
         $options = new Options();

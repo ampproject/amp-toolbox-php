@@ -269,16 +269,16 @@ class Options
                 break;
             }
 
-            // '-' is stdin - a normal argument.
-            if ($argument == '-') {
-                $nonOptions = array_merge($nonOptions, array_slice($this->arguments, $index));
+            // A command ends the first pass. Its options are parsed in a second pass further down.
+            if (! $this->command && ! $nonOptions && $argument !== '' && isset($this->setup[$argument])) {
+                $nonOptions = array_slice($this->arguments, $index);
                 break;
             }
 
-            // First non-option.
-            if ($argument[0] != '-') {
-                $nonOptions = array_merge($nonOptions, array_slice($this->arguments, $index));
-                break;
+            // Non-option, or '-' for stdin, which is a normal argument. Keep parsing for options that follow it.
+            if ($argument === '' || $argument === '-' || $argument[0] !== '-') {
+                $nonOptions[] = $argument;
+                continue;
             }
 
             // Long option.
@@ -287,12 +287,13 @@ class Options
                 $option   = array_shift($argument);
                 $value    = array_shift($argument);
 
-                if (! isset($this->setup[$this->command]['options'][$option])) {
+                $scope = $this->getOptionScope('options', $option);
+                if ($scope === null) {
                     throw InvalidOption::forUnknownOption($option);
                 }
 
                 // Argument required?
-                if ($this->setup[$this->command]['options'][$option]['needsArgument']) {
+                if ($this->setup[$scope]['options'][$option]['needsArgument']) {
                     if (
                         is_null($value) && $index + 1 < $argumentCount && ! preg_match(
                             '/^--?[\w]/',
@@ -314,14 +315,15 @@ class Options
 
             // Short option.
             $option = substr($argument, 1);
-            if (! isset($this->setup[$this->command]['short'][$option])) {
+            $scope  = $this->getOptionScope('short', $option);
+            if ($scope === null) {
                 throw InvalidOption::forUnknownOption($option);
             } else {
-                $option = $this->setup[$this->command]['short'][$option]; // Store it under long name.
+                $option = $this->setup[$scope]['short'][$option]; // Store it under long name.
             }
 
             // Argument required?
-            if ($this->setup[$this->command]['options'][$option]['needsArgument']) {
+            if ($this->setup[$scope]['options'][$option]['needsArgument']) {
                 $value = null;
                 if ($index + 1 < $argumentCount && ! preg_match('/^--?[\w]/', $this->arguments[$index + 1])) {
                     $value = $this->arguments[++$index];
@@ -344,6 +346,29 @@ class Options
             $this->command = array_shift($this->arguments);
             $this->parseOptions(); // Second pass.
         }
+    }
+
+    /**
+     * Get the scope an option is registered in for the current command.
+     *
+     * Options of the current command take precedence over global options with the same name.
+     *
+     * @param string $type   Type of option, either 'options' for long options or 'short' for short options.
+     * @param string $option Name of the option.
+     * @return string|null Name of the command the option is registered for, an empty string for a global option, or
+     *                     null if the option is unknown.
+     */
+    protected function getOptionScope($type, $option)
+    {
+        if (isset($this->setup[$this->command][$type][$option])) {
+            return $this->command;
+        }
+
+        if (isset($this->setup[''][$type][$option])) {
+            return '';
+        }
+
+        return null;
     }
 
     /**
