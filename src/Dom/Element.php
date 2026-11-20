@@ -106,7 +106,6 @@ final class Element extends DOMElement
      *
      * @param string $name  The name of the attribute.
      * @return DOMAttr|false The new or modified DOMAttr or false if an error occurred.
-     * @throws MaxCssByteCountExceeded If the allowed max byte count is exceeded.
      */
     public function addBooleanAttribute($name)
     {

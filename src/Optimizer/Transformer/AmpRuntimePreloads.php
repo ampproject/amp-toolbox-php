@@ -24,7 +24,7 @@ final class AmpRuntimePreloads implements Transformer
      */
     public function transform(Document $document, ErrorCollection $errors)
     {
-        if ($this->isAmpRuntimeScriptNeeded($document)) {
+        if ($this->isAmpRuntimeScriptNeeded()) {
             $document->links->addPreload($this->getAmpRuntimeScriptHost(), RequestDestination::SCRIPT);
         }
 
@@ -36,10 +36,9 @@ final class AmpRuntimePreloads implements Transformer
     /**
      * Check whether the AMP runtime script is needed.
      *
-     * @param Document $document Document to check in.
      * @return false Whether the AMP runtime script is needed.
      */
-    private function isAmpRuntimeScriptNeeded(Document $document)
+    private function isAmpRuntimeScriptNeeded()
     {
         // TODO: What condition should be used here... same as isAmpRuntimeCssNeeded()?
         return false;
