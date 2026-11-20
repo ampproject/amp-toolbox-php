@@ -15,6 +15,7 @@ use AmpProject\Tests\TestMarkup;
 use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;
 use DOMNode;
+use DOMText;
 
 /**
  * Tests for AmpProject\Dom\Document.
@@ -738,7 +739,12 @@ class DocumentTest extends TestCase
         $this->assertEquals('meta', $dom->head->firstChild->tagName);
         $this->assertNull($dom->head->firstChild->nextSibling);
         $body_first_child = $dom->body->firstChild;
-        $this->assertInstanceOf(Element::class, $body_first_child);
+        // libxml2 2.14.0 stopped implying <p> start tags for text nodes.
+        if (version_compare(LIBXML_DOTTED_VERSION, '2.14', '>=')) {
+            $this->assertInstanceOf(DOMText::class, $body_first_child);
+        } else {
+            $this->assertInstanceOf(Element::class, $body_first_child);
+        }
         $this->assertEquals('text', $body_first_child->textContent);
 
         // Valid nodes.
@@ -1524,6 +1530,8 @@ class DocumentTest extends TestCase
     public function dataHtmlEntities()
     {
         $head = '<head><meta charset="utf-8"></head>';
+        // libxml2 2.14.0 parses HTML5 named character references (e.g. &comma;, &period;, &semi;) natively.
+        $isLibxml214OrNewer = version_compare(LIBXML_DOTTED_VERSION, '2.14', '>=');
 
         return [
             'prevent_html_entities_from_double_encoding' => [
@@ -1540,7 +1548,11 @@ class DocumentTest extends TestCase
                 . '<p>Lorem ipsum dolor sit&comma; amet consectetur</p>'
                 . '</body></html>',
                 '<!DOCTYPE html><html>' . $head . '<body>'
-                . '<p>Lorem ipsum dolor sit&amp;comma; amet consectetur</p>'
+                . (
+                    $isLibxml214OrNewer
+                        ? '<p>Lorem ipsum dolor sit, amet consectetur</p>'
+                        : '<p>Lorem ipsum dolor sit&amp;comma; amet consectetur</p>'
+                )
                 . '</body></html>',
                 [
                     Option::NORMALIZE_HTML_ENTITIES => Option::NORMALIZE_HTML_ENTITIES_NEVER,
@@ -1551,7 +1563,11 @@ class DocumentTest extends TestCase
                 . '<p>A &#039;quote&#039; is &lt;b&gt;bold&lt;/b&gt;&period;</p>'
                 . '</body></html>',
                 '<!DOCTYPE html><html>' . $head . '<body>'
-                . '<p>A \'quote\' is <b>bold</b>&amp;period;</p>'
+                . (
+                    $isLibxml214OrNewer
+                        ? '<p>A \'quote\' is <b>bold</b>.</p>'
+                        : '<p>A \'quote\' is <b>bold</b>&amp;period;</p>'
+                )
                 . '</body></html>',
                 [
                     Option::NORMALIZE_HTML_ENTITIES       => Option::NORMALIZE_HTML_ENTITIES_ALWAYS,
@@ -1563,7 +1579,11 @@ class DocumentTest extends TestCase
                 . '<p>Lorem &quot;ipsum&quot; &apos;dolor&apos; sit amet&comma; consectetur&semi; adipisicing elit</p>'
                 . '</body></html>',
                 '<!DOCTYPE html><html>' . $head . '<body>'
-                . '<p>Lorem "ipsum" \'dolor\' sit amet&amp;comma; consectetur&amp;semi; adipisicing elit</p>'
+                . (
+                    $isLibxml214OrNewer
+                        ? '<p>Lorem "ipsum" \'dolor\' sit amet, consectetur; adipisicing elit</p>'
+                        : '<p>Lorem "ipsum" \'dolor\' sit amet&amp;comma; consectetur&amp;semi; adipisicing elit</p>'
+                )
                 . '</body></html>',
                 [
                     Option::NORMALIZE_HTML_ENTITIES_FLAGS => ENT_NOQUOTES,
