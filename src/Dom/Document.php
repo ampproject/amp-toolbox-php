@@ -370,8 +370,6 @@ final class Document extends DOMDocument
         $this->reset();
 
         foreach ($this->filterClasses as $filterClass) {
-            $filter = null;
-
             try {
                 $filter = $this->instantiateFilter($filterClass);
                 $this->filters[] = $filter;
