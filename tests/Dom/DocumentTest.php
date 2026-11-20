@@ -14,6 +14,7 @@ use AmpProject\Tests\TestCase;
 use AmpProject\Tests\TestMarkup;
 use AmpProject\Validator\Spec\CssRuleset\AmpNoTransformed;
 use AmpProject\Validator\Spec\SpecRule;
+use DOMComment;
 use DOMNode;
 use DOMText;
 
@@ -733,6 +734,8 @@ class DocumentTest extends TestCase
     {
         // The meta charset tag that is automatically added needs to always be taken into account.
 
+        $isLibxml214OrNewer = version_compare(LIBXML_DOTTED_VERSION, '2.14', '>=');
+
         // Text node.
         $html = '<html><head>text</head><body><span>end</span></body></html>';
         $dom  = Document::fromHtml($html);
@@ -740,7 +743,7 @@ class DocumentTest extends TestCase
         $this->assertNull($dom->head->firstChild->nextSibling);
         $body_first_child = $dom->body->firstChild;
         // libxml2 2.14.0 stopped implying <p> start tags for text nodes.
-        if (version_compare(LIBXML_DOTTED_VERSION, '2.14', '>=')) {
+        if ($isLibxml214OrNewer) {
             $this->assertInstanceOf(DOMText::class, $body_first_child);
         } else {
             $this->assertInstanceOf(Element::class, $body_first_child);
@@ -757,8 +760,16 @@ class DocumentTest extends TestCase
         $html = '<html><head><?pi ?><span></span><div></div><p>hi</p><img src="https://example.com"><iframe src="/"></iframe></head><body></body></html>';
         $dom  = Document::fromHtml($html);
         $this->assertEquals('meta', $dom->head->firstChild->tagName);
-        $this->assertNull($dom->head->firstChild->nextSibling);
-        $this->assertEquals(6, $dom->body->childNodes->length);
+        // libxml2 2.14.0 parses XML processing instructions in HTML as bogus comments (DOMComment),
+        // which are valid head nodes.
+        if ($isLibxml214OrNewer) {
+            $this->assertInstanceOf(DOMComment::class, $dom->head->firstChild->nextSibling);
+            $this->assertNull($dom->head->firstChild->nextSibling->nextSibling);
+            $this->assertEquals(5, $dom->body->childNodes->length);
+        } else {
+            $this->assertNull($dom->head->firstChild->nextSibling);
+            $this->assertEquals(6, $dom->body->childNodes->length);
+        }
 
         // Test with missing closing head tag.
         $expected = TestMarkup::DOCTYPE . '<html>'
