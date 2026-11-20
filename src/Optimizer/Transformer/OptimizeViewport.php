@@ -72,8 +72,6 @@ final class OptimizeViewport implements Transformer
      */
     public function transform(Document $document, ErrorCollection $errors)
     {
-        $viewport = '';
-
         $metaTags = $document->xpath->query(self::XPATH_QUERY);
 
         if (! $metaTags->length) {
